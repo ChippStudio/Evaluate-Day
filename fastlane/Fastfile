@@ -1,0 +1,109 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  end
+
+  desc "Push a new release build to the App Store"
+  lane :release_screenshots do
+    # Get information from info.plist
+    buildVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSBuild")
+    appVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleShortVersionString")
+
+    # Set information into info.plist
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleVersion", value: buildVersion)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSDemo", value: false)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSSandbox", value: false)
+
+    # make screenshots
+    snapshot(scheme: "EvaluateDay",
+            reinstall_app: true,
+            stop_after_first_error: true,
+            clear_previous_screenshots: true,)
+    frameit(white: true)
+    sh "python3 screenshots.py"
+
+    # Certificat and sigh
+    cert
+    sigh
+
+    # Build and release
+    gym(scheme: "EvaluateDay") # Build your app - more options available
+    deliver(force: true,
+            app_version: appVersion,
+            screenshots_path: "./fastlane/store_screenshots")
+
+  end
+
+  lane :release do
+    # Get information from info.plist
+    buildVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSBuild")
+    appVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleShortVersionString")
+
+    # Set information into info.plist
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleVersion", value: buildVersion)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSDemo", value: false)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSSandbox", value: false)
+
+    # Certificat and sigh
+    cert
+    sigh
+
+    # Build and release
+    gym(scheme: "EvaluateDay") # Build your app - more options available
+    deliver(force: true,
+            app_version: appVersion,
+            screenshots_path: "./fastlane/store_screenshots")
+  end
+
+  lane :screenshots do
+    # Test snapshots
+    snapshot(scheme: "EvaluateDay",
+            reinstall_app: true,
+            stop_after_first_error: true,
+            clear_previous_screenshots: true,)
+    frameit(white: false)
+    sh "python3 screenshots.py"
+  end
+
+  lane :frame do
+    frameit(white: false)
+    sh "python3 screenshots.py"
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    notification(title: "Done",
+                subtitle: "Successful lane",
+                message: "View result")
+    slack(
+       message: "Successfully lane",
+       success: true,
+       payload: {
+         "Lane" => lane
+       }
+    )
+  end
+
+  error do |lane, exception|
+    notification(title: "Error",
+                subtitle: "Unsuccessful lane",
+                message: exception.message)
+     slack(
+       message: exception.message,
+       success: false
+     )
+  end
+end

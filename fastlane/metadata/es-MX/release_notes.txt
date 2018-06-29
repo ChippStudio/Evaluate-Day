@@ -1,0 +1,7 @@
+- Light update of user interface
+- Bug fixes and performance improvements
+- Now you can change only app icon
+- More 3D Touch in app
+
+Thank you for using Evaluate Day app
+Questions / Suggestions? Write to us at support@evaluateday.com

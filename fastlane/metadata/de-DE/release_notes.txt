@@ -1,0 +1,7 @@
+- Einfaches Upgrade der Benutzeroberfläche
+- Viele Fehler behoben und die Leistung verbessert
+- Jetzt können Sie nur das Anwendungssymbol ändern
+- Mehr 3D Touch in der App
+
+Vielen Dank für die Verwendung von Evaluate Day.
+Fragen / Anregungen? Schreiben Sie uns an support@evaluateday.com

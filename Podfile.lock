@@ -1,0 +1,162 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Amplitude-iOS (4.0.4)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - Branch (0.25.0):
+    - Branch/Core (= 0.25.0)
+  - Branch/Core (0.25.0)
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
+  - Crashlytics (3.10.3):
+    - Fabric (~> 1.7.8)
+  - Fabric (1.7.8)
+  - FBSDKCoreKit (4.34.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.34.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.34.0):
+    - FBSDKCoreKit (~> 4.34.0)
+  - FSCalendar (2.7.9)
+  - IGListKit (3.4.0):
+    - IGListKit/Default (= 3.4.0)
+  - IGListKit/Default (3.4.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.4.0)
+  - MarqueeLabel/Swift (3.1.6)
+  - NotificationBannerSwift (1.6.3):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 4.0)
+  - PINCache (3.0.1-beta.6):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
+    - PINCache/Core (= 3.0.1-beta.6)
+  - PINCache/Arc-exception-safe (3.0.1-beta.6):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.6):
+    - PINOperation (~> 1.1.0)
+  - PINOperation (1.1.1)
+  - PINRemoteImage/Core (3.0.0-beta.13):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.13):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.13):
+    - PINCache (= 3.0.1-beta.6)
+    - PINRemoteImage/Core
+  - Realm (3.7.4):
+    - Realm/Headers (= 3.7.4)
+  - Realm/Headers (3.7.4)
+  - RealmSwift (3.7.4):
+    - Realm (= 3.7.4)
+  - RxSwift (4.2.0)
+  - SimulatorStatusMagic (2.2)
+  - SnapKit (4.0.0)
+  - SwiftKeychainWrapper (3.0.1)
+  - SwiftyJSON (4.1.0)
+  - Texture (2.7):
+    - Texture/PINRemoteImage (= 2.7)
+  - Texture/Core (2.7)
+  - Texture/IGListKit (2.7):
+    - IGListKit (~> 3.0)
+    - Texture/Core
+  - Texture/PINRemoteImage (2.7):
+    - PINRemoteImage/iOS (= 3.0.0-beta.13)
+    - PINRemoteImage/PINCache
+    - Texture/Core
+  - YandexMobileMetrica (3.1.1):
+    - YandexMobileMetrica/Static (= 3.1.1)
+  - YandexMobileMetrica/Static (3.1.1)
+  - YandexMobileMetricaPush (0.6.0):
+    - YandexMobileMetricaPush/Static (= 0.6.0)
+  - YandexMobileMetricaPush/Static (0.6.0):
+    - YandexMobileMetrica (~> 3.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - Amplitude-iOS (~> 4.0.4)
+  - Branch
+  - Charts
+  - Crashlytics
+  - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+  - FSCalendar
+  - NotificationBannerSwift
+  - RealmSwift
+  - RxSwift (~> 4.0)
+  - SimulatorStatusMagic
+  - SnapKit
+  - SwiftKeychainWrapper
+  - SwiftyJSON
+  - Texture
+  - Texture/IGListKit
+  - YandexMobileMetrica
+  - YandexMobileMetricaPush
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Amplitude-iOS
+    - Bolts
+    - Branch
+    - Charts
+    - Crashlytics
+    - Fabric
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - FSCalendar
+    - IGListKit
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
+    - Realm
+    - RealmSwift
+    - RxSwift
+    - SimulatorStatusMagic
+    - SnapKit
+    - SwiftKeychainWrapper
+    - SwiftyJSON
+    - Texture
+    - YandexMobileMetrica
+    - YandexMobileMetricaPush
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Branch: 127d29ab0a8866025eece1cf9e950ddb6f7d4070
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  Crashlytics: 2aea305161a2122492698c75af27f2b98aa49a25
+  Fabric: fba4684a95df789565b0b27fc5b6e68f1755af32
+  FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
+  FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
+  FBSDKShareKit: 511d1dfc71204c0a8d69e6c5e3c964dcf0d4f3d9
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
+  MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
+  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
+  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
+  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
+  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
+  Realm: a469bb59e33f9926102ccaea4349822c53b9117e
+  RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
+  YandexMobileMetrica: e849316e9e934b8525e65bc906090f0577de1340
+  YandexMobileMetricaPush: 973073e69b63c9c3ec45ccb1fbfecd997538650a
+
+PODFILE CHECKSUM: 3ddfed7afaac52fc59a45cadce28ffa38a64b392
+
+COCOAPODS: 1.5.0

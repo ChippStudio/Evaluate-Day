@@ -1,0 +1,29 @@
+disabled_rules: # rule identifiers to exclude from running
+    - trailing_whitespace
+    - force_try
+    - force_cast
+    - function_body_length
+    - cyclomatic_complexity
+    - type_name
+    - legacy_constructor
+    - shorthand_operator
+    - large_tuple
+    - for_where
+    - implicit_getter
+    - discarded_notification_center_observer
+    - compiler_protocol_init
+    - empty_enum_arguments
+excluded:
+    - Pods
+    - EvaluateDay/Localization/LaurineGenerator.swift
+    - EvaluateDay/Localization/Localizations.swift
+
+line_length: 600
+type_body_length: 500
+file_length: 780
+
+variable_name:
+  min_length:
+    warning: 1
+  max_length:
+    warning: 50

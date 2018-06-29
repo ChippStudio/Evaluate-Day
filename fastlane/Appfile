@@ -1,0 +1,8 @@
+app_identifier "ee.chippstudio.EvaluateDay" # The bundle identifier of your app
+apple_id "konstantin@chippstudio.ee" # Your Apple email address
+
+itc_team_id "117725108" # iTunes Connect Team ID
+team_id "7H73NQ5KRA" # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
