@@ -73,8 +73,12 @@ fastlane/metadata/review_information
 fastlane/metadata/trade_representative_contact_information
 fastlane/store_screenshots
 fastlane/test_output
+Preview.html
 
 # Secrets files
 EvaluateDay/Support/Secret/fabric.apikey
 EvaluateDay/Support/Secret/fabric.buildsecret
 EvaluateDay/Support/Secret/secret.swift
+
+# macOS
+**/.DS_Store
