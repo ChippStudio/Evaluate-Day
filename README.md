@@ -2,7 +2,7 @@
 
 Evaluate Day is now open source iOS app! Download latest release version on [App Store](https://itunes.apple.com/app/apple-store/id1319180010?pt=117725108&ct=GitHub&mt=8).
 
-![Evaluate Day for iOS](GitHub/screenshots.png)
+![Evaluate Day for iOS](github/screenshots.png)
 
 ## Getting started
 
