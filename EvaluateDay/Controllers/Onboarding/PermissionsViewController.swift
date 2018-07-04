@@ -161,7 +161,7 @@ class PermissionsViewController: UIViewController, ASTableDataSource, ASTableDel
     // MARK: - Actions
     @objc func nextButtonAction(sender: NextButton) {
         if Store.current.isPro {
-            let presentingController = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController()!
+            let presentingController = UIStoryboard(name: Storyboards.tab.rawValue, bundle: nil).instantiateInitialViewController()!
             presentingController.transition = WelcomeTransition(animationDuration: 0.6)
             try! Database.manager.app.write {
                 Database.manager.application.isShowWelcome = true

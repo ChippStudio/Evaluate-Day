@@ -1,4 +1,4 @@
-- Light update of user interface
+- Light update of us​er interface
 - Bug fixes and performance improvements
 - Now you can change only app icon
 - More 3D Touch in app

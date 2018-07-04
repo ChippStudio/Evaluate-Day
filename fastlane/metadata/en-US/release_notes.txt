@@ -1,6 +1,6 @@
-- Light update of user interface
+- Light update of the user interface
 - Bug fixes and performance improvements
-- Now you can change only app icon
+- Now you can change the ​only app icon
 - More 3D Touch in app
 
 Thank you for using Evaluate Day app

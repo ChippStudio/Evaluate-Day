@@ -83,7 +83,10 @@ class JournalEntryNode: ASCellNode {
         }
         
         self.textPreview.truncationMode = .byCharWrapping
-        self.textPreview.style.preferredSize.width = constrainedSize.max.width - self.leftOffset - imageOffset - itemsSpacingOffset - rightOffset
+        let textMaxWidth = constrainedSize.max.width - self.leftOffset - imageOffset - itemsSpacingOffset - rightOffset
+        if textMaxWidth > 0.0 {
+            self.textPreview.style.preferredSize.width = textMaxWidth
+        }
         self.textPreview.style.preferredSize.height = self.sizeText.size().height
         
         let data = ASStackLayoutSpec.horizontal()

@@ -147,7 +147,7 @@ class WelcomeViewController: UIViewController {
         }
     }
     private func setCardsFromEvaluateDayTwo(completion: ((Bool) -> Void)?) {
-        guard let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ee.madmind.evaluateday") else {
+        guard let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: oldGroupKey) else {
             completion?(false)
             return
         }

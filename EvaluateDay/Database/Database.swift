@@ -44,7 +44,7 @@ final class Database: NSObject {
         let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { _, _ in })
         Realm.Configuration.defaultConfiguration = config
         
-        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ee.chippstudio.evaluateday")
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupKey)
         
         let appURL = container!.appendingPathComponent(appRealmKey, isDirectory: false).appendingPathExtension(realmKey)
         self.appConfig = Realm.Configuration(fileURL: appURL, schemaVersion: self.schemaVersion, migrationBlock: { (migration, oldSchemaVersion) in
@@ -71,7 +71,7 @@ final class Database: NSObject {
     
     // MARK: - Private
     private func configureRealms() {
-        guard let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ee.chippstudio.evaluateday") else {
+        guard let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupKey) else {
             return
         }
         
@@ -114,7 +114,7 @@ final class Database: NSObject {
         }
         
         // Create new media folder if neaded
-        if let documentPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ee.chippstudio.evaluateday")?.path {
+        if let documentPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupKey)?.path {
             // Custom folder path
             let mediaPath = documentPath.appending("/media")
             if !FileManager.default.fileExists(atPath: mediaPath) {

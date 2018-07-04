@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.syncEngine = SyncEngine()
         
         // Init Branch
-        Branch.getInstance().initSession(launchOptions: launchOptions) { (parameters, error) in
+        Branch.getInstance(branchApiKey).initSession(launchOptions: launchOptions) { (parameters, error) in
             if error != nil {
                 print(error!.localizedDescription)
             } else {
@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - Open URL
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let branchHandler = Branch.getInstance().application(app, open: url, options: options)
+        let branchHandler = Branch.getInstance(branchApiKey).application(app, open: url, options: options)
         let facebookHandler = FBSDKApplicationDelegate.sharedInstance()!.application(app, open: url, options: options)
         
         return facebookHandler || branchHandler
@@ -230,7 +230,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - Respond Universal Links
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         // pass the url to the handle deep link call
-        return Branch.getInstance().continue(userActivity)
+        return Branch.getInstance(branchApiKey).continue(userActivity)
     }
     
     // MARK: - Quick actions
