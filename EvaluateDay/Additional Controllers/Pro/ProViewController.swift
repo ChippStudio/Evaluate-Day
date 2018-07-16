@@ -214,7 +214,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     // Fallback on earlier versions
                     // Without introductory price
                     return {
-                        let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.monthly, alignment: .center, style: style)
+                        let node = DescriptionNode(text: "", alignment: .center, style: style)
                         return node
                     }
                 }
@@ -252,7 +252,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     // Fallback on earlier versions
                     // Without introductory price
                     return {
-                        return DescriptionNode(text: Localizations.settings.pro.subscription.description.anuualy(value1: "30%"), alignment: .center, style: style)
+                        return DescriptionNode(text: Localizations.settings.pro.subscription.introductory.discount(value1: "30%"), alignment: .center, style: style)
                     }
                 }
             case 7:

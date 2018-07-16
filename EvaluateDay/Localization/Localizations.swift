@@ -518,14 +518,6 @@ public struct Localizations {
                     /// Base translation: All subscription can be canceled at any time
                     public static var cancel : String = NSLocalizedString("settings.pro.subscription.description.cancel", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                    /// Base translation: 1 Week free
-                    public static var monthly : String = NSLocalizedString("settings.pro.subscription.description.monthly", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                    /// Base translation: 1 Month free + %@ discount
-                    public static func anuualy(value1 : String) -> String {
-                        return String(format: NSLocalizedString("settings.pro.subscription.description.anuualy", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-                    }
-
                     /// Base translation: Subscriptions will be charged to your credit card through your iTunes account. Your subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You will not be able to cancel the subscription once activated. Manage your subscriptions in Account Settings after purchase. Any unused portion of a free trial peri​od, will be forfeited when the user purchases a subscription.
                     public static var iTunes : String = NSLocalizedString("settings.pro.subscription.description.iTunes", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
@@ -752,17 +744,22 @@ public struct Localizations {
 
     public struct many {
 
-        /// Base translation: %i d
-        public static func day(value1 : Int) -> String {
-            return String(format: NSLocalizedString("many.day", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-        }
-
-        /// Base translation: %i w
+        /// Base translation: %li w
         public static func week(value1 : Int) -> String {
             return String(format: NSLocalizedString("many.week", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
         }
 
-        /// Base translation: %i m
+        /// Base translation: %li y
+        public static func year(value1 : Int) -> String {
+            return String(format: NSLocalizedString("many.year", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+        }
+
+        /// Base translation: %li d
+        public static func day(value1 : Int) -> String {
+            return String(format: NSLocalizedString("many.day", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+        }
+
+        /// Base translation: %li m
         public static func month(value1 : Int) -> String {
             return String(format: NSLocalizedString("many.month", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
         }

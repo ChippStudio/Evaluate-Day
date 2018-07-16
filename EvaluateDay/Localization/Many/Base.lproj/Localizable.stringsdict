@@ -11,11 +11,11 @@
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string>i</string>
+			<string>li</string>
 			<key>zero</key>
 			<string>Week</string>
 			<key>one</key>
-			<string> %i Week</string>
+			<string>%li Week</string>
 			<key>two</key>
 			<string></string>
 			<key>few</key>
@@ -23,7 +23,7 @@
 			<key>many</key>
 			<string></string>
 			<key>other</key>
-			<string>%i Weeks</string>
+			<string>%li Weeks</string>
 		</dict>
 	</dict>
 	<key>many.day</key>
@@ -35,11 +35,11 @@
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string>i</string>
+			<string>li</string>
 			<key>zero</key>
 			<string>Day</string>
 			<key>one</key>
-			<string> %i Day</string>
+			<string>%li Day</string>
 			<key>two</key>
 			<string></string>
 			<key>few</key>
@@ -47,7 +47,7 @@
 			<key>many</key>
 			<string></string>
 			<key>other</key>
-			<string>%i Days</string>
+			<string>%li Days</string>
 		</dict>
 	</dict>
 	<key>many.month</key>
@@ -59,11 +59,11 @@
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string>i</string>
+			<string>li</string>
 			<key>zero</key>
 			<string>Month</string>
 			<key>one</key>
-			<string> %i Month</string>
+			<string>%li Month</string>
 			<key>two</key>
 			<string></string>
 			<key>few</key>
@@ -71,8 +71,32 @@
 			<key>many</key>
 			<string></string>
 			<key>other</key>
-			<string>%i Months</string>
+			<string>%li Months</string>
 		</dict>
 	</dict>
+    <key>many.year</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@var@</string>
+        <key>var</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>li</string>
+            <key>zero</key>
+            <string>Year</string>
+            <key>one</key>
+            <string>%li Year</string>
+            <key>two</key>
+            <string></string>
+            <key>few</key>
+            <string></string>
+            <key>many</key>
+            <string></string>
+            <key>other</key>
+            <string>%li Years</string>
+        </dict>
+    </dict>
 </dict>
 </plist>

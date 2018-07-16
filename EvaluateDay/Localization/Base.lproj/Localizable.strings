@@ -39,9 +39,10 @@
 "general.shortcut.activity.title" = "Open Activity";
 
 // MARK: - Many
-"many.week" = "%i w";
-"many.day" = "%i d";
-"many.month" = "%i m";
+"many.week" = "%li w";
+"many.day" = "%li d";
+"many.month" = "%li m";
+"many.year" = "%li y";
 
 // MARK: - Welcome
 "welcome.bychippstudio" = "by Chipp Studio";
@@ -315,10 +316,8 @@
 "settings.pro.subscription.buy.annualy" = "%@ / Year";
 "settings.pro.subscription.buy.monthly" = "%@ / Month";
 "settings.pro.subscription.buy.lifetime" = "%@ / Lifetime";
-"settings.pro.subscription.description.anuualy" = "1 Month free + %@ discount";
 "settings.pro.subscription.description.cancel" = "All subscription can be canceled at any time";
 "settings.pro.subscription.description.iTunes" = "Subscriptions will be charged to your credit card through your iTunes account. Your subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You will not be able to cancel the subscription once activated. Manage your subscriptions in Account Settings after purchase. Any unused portion of a free trial peri​od, will be forfeited when the user purchases a subscription.";
-"settings.pro.subscription.description.monthly" = "1 Week free";
 "settings.pro.subscription.manage" = "Manage Subscription";
 "settings.pro.subscription.title.anuualy" = "Annually subscription";
 "settings.pro.subscription.title.monthly" = "Monthly subscription";
