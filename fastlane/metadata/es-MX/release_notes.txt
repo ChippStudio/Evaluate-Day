@@ -1,3 +1,7 @@
+3.1.4
+Minor performance improvements and bug fixes
+
+3.1.3
 - Light update of us​er interface
 - Bug fixes and performance improvements
 - Now you can change only app icon

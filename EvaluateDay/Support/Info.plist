@@ -101,7 +101,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.3</string>
+	<string>3.1.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -140,7 +140,7 @@
 	<key>CFBundleVersion</key>
 	<string>5166</string>
 	<key>CSBuild</key>
-	<string>5175</string>
+	<string>5193</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>

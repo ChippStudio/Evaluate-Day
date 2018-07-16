@@ -50,7 +50,12 @@ extension Card: CloudKitSyncable {
         case .habit:
             let habitCard = card.data as! HabitCard
             habitCard.multiple = record.object(forKey: "multiple") as! Bool
-            habitCard.negative = record.object(forKey: "negative") as! Bool
+            // New in iCloud model. May be nil if data from older model version
+            if let neg = record.object(forKey: "negative") as? Bool {
+                habitCard.negative = neg
+            } else {
+                habitCard.negative = false
+            }
         case .tracker: ()
         case .list: ()
         case .goal:

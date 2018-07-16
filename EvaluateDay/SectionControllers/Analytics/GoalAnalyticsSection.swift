@@ -313,10 +313,10 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
         let indexPath = IndexPath(row: sender.view.tag, section: self.section)
         var inView = UIView()
         if self.lineChartData != nil {
-            inView = AnalyticsLineChartShareView(image: self.lineChartData!.0, xValue: self.lineChartData!.1, yValue: self.lineChartData!.2, positive: (self.card.data as! CriterionThreeCard).positive, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
+            inView = AnalyticsLineChartShareView(image: self.lineChartData!.0, xValue: self.lineChartData!.1, yValue: self.lineChartData!.2, positive: true, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
             self.lineChartData = nil
         } else if self.barChartData != nil {
-            inView = AnalyticsBarChartShareView(image: self.barChartData!.0, xValue: self.barChartData!.1, yValue: self.barChartData!.2, positive: (self.card.data as! CriterionThreeCard).positive, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
+            inView = AnalyticsBarChartShareView(image: self.barChartData!.0, xValue: self.barChartData!.1, yValue: self.barChartData!.2, positive: true, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
             self.barChartData = nil
         } else {
             // View from title

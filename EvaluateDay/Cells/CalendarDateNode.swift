@@ -39,6 +39,10 @@ class CalendarDateNode: ASCellNode {
         formatter.dateFormat = "EEE"
         self.weekday.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.calendarWeekdayFont, NSAttributedStringKey.foregroundColor: style.calendarWeekdayColor, NSAttributedStringKey.paragraphStyle: paragraph])
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+        self.accessibilityElementsHidden = false
         self.automaticallyManagesSubnodes = true
     }
     

@@ -206,27 +206,31 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
             }
         }
         
-        if UserDefaults.standard.bool(forKey: "demo") || UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || KeychainWrapper.standard.integer(forKey: keychainProStart) != nil {
-            self.controlFromPreviousVersion { (isPro, date) in
-                self.valid = date
-                try! Database.manager.app.write {
-                    Database.manager.application.user.pro = isPro
-                }
-                
-                if !isPro {
-                    // Clear pro version
-                    KeychainWrapper.standard.removeObject(forKey: keychainProDuration)
-                    KeychainWrapper.standard.removeObject(forKey: keychainProStart)
+        self.validateReceipt(completion: { (isPro, date) in
+            self.valid = date
+            try! Database.manager.app.write {
+                Database.manager.application.user.pro = isPro
+            }
+            
+            if isPro {
+                // Clear pro version from keychain
+                KeychainWrapper.standard.removeObject(forKey: keychainProDuration)
+                KeychainWrapper.standard.removeObject(forKey: keychainProStart)
+            } else {
+                self.controlFromPreviousVersion { (isPro, date) in
+                    self.valid = date
+                    try! Database.manager.app.write {
+                        Database.manager.application.user.pro = isPro
+                    }
+                    
+                    if !isPro {
+                        // Clear pro version
+                        KeychainWrapper.standard.removeObject(forKey: keychainProDuration)
+                        KeychainWrapper.standard.removeObject(forKey: keychainProStart)
+                    }
                 }
             }
-        } else {
-            self.validateReceipt(completion: { (isPro, date) in
-                self.valid = date
-                try! Database.manager.app.write {
-                    Database.manager.application.user.pro = isPro
-                }
-            })
-        }
+        })
     }
     
     func payment(product: SKProduct!, completion: @escaping (SKPaymentTransaction?, Error?) -> Void) {

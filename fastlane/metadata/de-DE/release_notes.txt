@@ -1,3 +1,7 @@
+3.1.4
+Geringfügige Leistungsverbesserungen und Fehlerbehebungen
+
+3.1.3
 - Einfaches Upgrade der Benutzeroberfläche
 - Viele Fehler behoben und die Leistung verbessert
 - Jetzt können Sie nur das Anwendungssymbol ändern
