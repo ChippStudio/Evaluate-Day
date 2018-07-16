@@ -24,6 +24,7 @@ platform :ios do
     # Set information into info.plist
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleVersion", value: buildVersion)
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSDemo", value: false)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSTest", value: false)
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSSandbox", value: false)
 
     # make screenshots
@@ -54,6 +55,7 @@ platform :ios do
     # Set information into info.plist
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleVersion", value: buildVersion)
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSDemo", value: false)
+    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSTest", value: false)
     set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSSandbox", value: false)
 
     # Certificat and sigh

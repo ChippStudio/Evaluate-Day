@@ -38,6 +38,11 @@
 "general.shortcut.new.title" = "Add new card";
 "general.shortcut.activity.title" = "Open Activity";
 
+// MARK: - Many
+"many.week" = "%i w";
+"many.day" = "%i d";
+"many.month" = "%i m";
+
 // MARK: - Welcome
 "welcome.bychippstudio" = "by Chipp Studio";
 "welcome.cards.first" = "Add a new card for each action or problem";
@@ -318,6 +323,9 @@
 "settings.pro.subscription.title.anuualy" = "Annually subscription";
 "settings.pro.subscription.title.monthly" = "Monthly subscription";
 "settings.pro.subscription.title.lifetime" = "Lifetime subscription";
+"settings.pro.subscription.introductory.trial" = "Trial Available, try %@ for free";
+"settings.pro.subscription.introductory.discount" = "%@ discount";
+"settings.pro.subscription.introductory.start" = "Try %@ per %@";
 "settings.pro.title" = "Subscription";
 "settings.support.faq" = "FAQ";
 "settings.support.mail.body" = "\n \n Evaluate Day Version: %@ \n Evaluate Day Build: %@ \n iOS Version: %@";

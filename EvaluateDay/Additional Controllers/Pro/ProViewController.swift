@@ -205,9 +205,18 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     return node
                 }
             case 3:
-                return {
-                    let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.monthly, alignment: .center, style: style)
-                    return node
+                if #available(iOS 11.2, *) {
+                    return {
+                        let node = DescriptionNode(text: Store.current.mouthly.introductory, alignment: .center, style: style)
+                        return node
+                    }
+                } else {
+                    // Fallback on earlier versions
+                    // Without introductory price
+                    return {
+                        let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.monthly, alignment: .center, style: style)
+                        return node
+                    }
                 }
             case 4:
                 return {
@@ -228,10 +237,24 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     return node
                 }
             case 6:
-                return {
-                    return DescriptionNode(text: Localizations.settings.pro.subscription.description.anuualy(value1: "30%"), alignment: .center, style: style)
+                if #available(iOS 11.2, *) {
+                    var text = Store.current.annualy.introductory
+                    if !text.isEmpty {
+                        text += " + "
+                    }
+                    text += Localizations.settings.pro.subscription.introductory.discount(value1: "30%")
+                    
+                    return {
+                        let node = DescriptionNode(text: text, alignment: .center, style: style)
+                        return node
+                    }
+                } else {
+                    // Fallback on earlier versions
+                    // Without introductory price
+                    return {
+                        return DescriptionNode(text: Localizations.settings.pro.subscription.description.anuualy(value1: "30%"), alignment: .center, style: style)
+                    }
                 }
-                
             case 7:
                 return {
                     let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.cancel, alignment: .left, style: style)
@@ -468,6 +491,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             self.evaluateLoadView = nil
         }
     }
+    
     private func observable() {
         _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
             let style = Themes.manager.settingsStyle

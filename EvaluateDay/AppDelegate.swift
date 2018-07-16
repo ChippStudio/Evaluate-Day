@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Danger ZONE please not release with TRUE
         UserDefaults.standard.register(defaults: ["demo": Bundle.main.object(forInfoDictionaryKey: "CSDemo") as! Bool,
-                                                  "isAddedDemoData": false, "logPurchaseTurnOffReason": false, "sendAnaliticsPurchaceDate": Date().timeIntervalSince1970])
+                                                  "test": Bundle.main.object(forInfoDictionaryKey: "CSTest") as! Bool,
+                                                  "isAddedDemoData": false,
+                                                  "logPurchaseTurnOffReason": false,
+                                                  "sendAnaliticsPurchaceDate": Date().timeIntervalSince1970])
         
         if !UserDefaults.standard.bool(forKey: "demo") && !UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
         

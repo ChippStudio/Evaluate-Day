@@ -105,28 +105,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array/>
-		</dict>
-		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb184140535498012</string>
 			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array/>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
@@ -138,12 +120,14 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5166</string>
-	<key>CSBuild</key>
 	<string>5193</string>
+	<key>CSBuild</key>
+	<string>5231</string>
 	<key>CSDemo</key>
-	<true/>
+	<false/>
 	<key>CSSandbox</key>
+	<false/>
+	<key>CSTest</key>
 	<false/>
 	<key>Fabric</key>
 	<dict>

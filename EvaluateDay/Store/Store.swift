@@ -41,8 +41,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     }
     
     // MARK: - Private variable
-    let monthlyProductID = "com.evaluateday.pro.month"
-    let annuallyProductID = "com.evaluateday.pro.year"
+    var monthlyProductID = "com.evaluateday.pro.month"
+    var annuallyProductID = "com.evaluateday.pro.year"
+    
     let lifetimeProductId = "com.evaluateday.pro.lifetime"
     
     // MARK: - Private handlers
@@ -52,6 +53,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     // MARK: - Private init
     private override init() {
         super.init()
+        
+        if UserDefaults.standard.bool(forKey: "test") {
+            self.monthlyProductID = "com.evaluateday.test.pro.month"
+            self.annuallyProductID = "com.evaluateday.test.pro.year"
+        }
     }
     
     // MARK: - SKProductsRequestDelegate

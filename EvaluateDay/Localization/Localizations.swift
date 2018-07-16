@@ -17,6 +17,19 @@ import Foundation
 public struct Localizations {
 
 
+    public struct update {
+
+        /// Base translation: Download now
+        public static var button : String = NSLocalizedString("update.button", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Please update your version of Evaluate Day
+        public static var title : String = NSLocalizedString("update.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: In new version we add new type of cards, please download new version from App Store
+        public static var subtitle : String = NSLocalizedString("update.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+    }
+
     public struct list {
 
         /// Base translation: All your card
@@ -481,6 +494,25 @@ public struct Localizations {
 
                 }
 
+                public struct introductory {
+
+                    /// Base translation: Try %@ per %@
+                    public static func start(value1 : String, _ value2 : String) -> String {
+                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.start", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
+                    }
+
+                    /// Base translation: Trial Available, try %@ for free
+                    public static func trial(value1 : String) -> String {
+                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.trial", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                    }
+
+                    /// Base translation: %@ discount
+                    public static func discount(value1 : String) -> String {
+                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.discount", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                    }
+
+                }
+
                 public struct description {
 
                     /// Base translation: All subscription can be canceled at any time
@@ -718,43 +750,23 @@ public struct Localizations {
         }
     }
 
-    public struct messages {
+    public struct many {
 
-
-        public struct data {
-
-
-            public struct local {
-
-
-                public struct deleteAll {
-
-                    /// Base translation: All local data deleted
-                    public static var title : String = NSLocalizedString("messages.data.local.deleteAll.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                    /// Base translation: Done
-                    public static var subtitle : String = NSLocalizedString("messages.data.local.deleteAll.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                }
-            }
-
-            public struct cloud {
-
-
-                public struct deleteAll {
-
-                    /// Base translation: Done
-                    public static var subtitle : String = NSLocalizedString("messages.data.cloud.deleteAll.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                    /// Base translation: All iCloud data deleted
-                    public static var title : String = NSLocalizedString("messages.data.cloud.deleteAll.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                    /// Base translation: Error
-                    public static var error : String = NSLocalizedString("messages.data.cloud.deleteAll.error", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                }
-            }
+        /// Base translation: %i d
+        public static func day(value1 : Int) -> String {
+            return String(format: NSLocalizedString("many.day", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
         }
+
+        /// Base translation: %i w
+        public static func week(value1 : Int) -> String {
+            return String(format: NSLocalizedString("many.week", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+        }
+
+        /// Base translation: %i m
+        public static func month(value1 : Int) -> String {
+            return String(format: NSLocalizedString("many.month", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+        }
+
     }
 
     public struct new {
@@ -1509,6 +1521,45 @@ public struct Localizations {
 
     }
 
+    public struct messages {
+
+
+        public struct data {
+
+
+            public struct local {
+
+
+                public struct deleteAll {
+
+                    /// Base translation: All local data deleted
+                    public static var title : String = NSLocalizedString("messages.data.local.deleteAll.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Done
+                    public static var subtitle : String = NSLocalizedString("messages.data.local.deleteAll.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                }
+            }
+
+            public struct cloud {
+
+
+                public struct deleteAll {
+
+                    /// Base translation: Done
+                    public static var subtitle : String = NSLocalizedString("messages.data.cloud.deleteAll.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: All iCloud data deleted
+                    public static var title : String = NSLocalizedString("messages.data.cloud.deleteAll.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Error
+                    public static var error : String = NSLocalizedString("messages.data.cloud.deleteAll.error", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                }
+            }
+        }
+    }
+
     public struct calendar {
 
         /// Base translation: Open
@@ -1573,19 +1624,6 @@ public struct Localizations {
             }
 
         }
-    }
-
-    public struct update {
-
-        /// Base translation: Download now
-        public static var button : String = NSLocalizedString("update.button", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: Please update your version of Evaluate Day
-        public static var title : String = NSLocalizedString("update.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: In new version we add new type of cards, please download new version from App Store
-        public static var subtitle : String = NSLocalizedString("update.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
     }
 
     public struct analytics {
