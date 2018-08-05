@@ -323,7 +323,6 @@
 "settings.pro.subscription.title.monthly" = "Monthly subscription";
 "settings.pro.subscription.title.lifetime" = "Lifetime subscription";
 "settings.pro.subscription.introductory.trial" = "Trial Available, try %@ for free";
-"settings.pro.subscription.introductory.discount" = "%@ discount";
 "settings.pro.subscription.introductory.start" = "Try %@ per %@";
 "settings.pro.title" = "Subscription";
 "settings.support.faq" = "FAQ";

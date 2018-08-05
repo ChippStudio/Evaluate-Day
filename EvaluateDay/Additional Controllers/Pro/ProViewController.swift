@@ -238,14 +238,8 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 6:
                 if #available(iOS 11.2, *) {
-                    var text = Store.current.annualy.introductory
-                    if !text.isEmpty {
-                        text += " + "
-                    }
-                    text += Localizations.settings.pro.subscription.introductory.discount(value1: "30%")
-                    
                     return {
-                        let node = DescriptionNode(text: text, alignment: .center, style: style)
+                        let node = DescriptionNode(text: Store.current.annualy.introductory, alignment: .center, style: style)
                         return node
                     }
                 } else {

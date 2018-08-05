@@ -14,7 +14,6 @@ import Branch
 import StoreKit
 
 class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewControllerPreviewingDelegate {
-    
     // MARK: - UI
     var newCardButton: UIBarButtonItem!
     var reorderCardsButton: UIBarButtonItem!

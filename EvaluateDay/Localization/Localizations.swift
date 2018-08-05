@@ -496,19 +496,14 @@ public struct Localizations {
 
                 public struct introductory {
 
-                    /// Base translation: Try %@ per %@
-                    public static func start(value1 : String, _ value2 : String) -> String {
-                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.start", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
-                    }
-
                     /// Base translation: Trial Available, try %@ for free
                     public static func trial(value1 : String) -> String {
                         return String(format: NSLocalizedString("settings.pro.subscription.introductory.trial", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
                     }
 
-                    /// Base translation: %@ discount
-                    public static func discount(value1 : String) -> String {
-                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.discount", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                    /// Base translation: Try %@ per %@
+                    public static func start(value1 : String, _ value2 : String) -> String {
+                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.start", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
                     }
 
                 }

@@ -120,15 +120,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5193</string>
+	<string>5255</string>
 	<key>CSBuild</key>
-	<string>5253</string>
+	<string>5265</string>
 	<key>CSDemo</key>
 	<false/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>
-	<true/>
+	<false/>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

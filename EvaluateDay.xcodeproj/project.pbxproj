@@ -1756,7 +1756,7 @@
 				FBBDFC70680E9F12BFBE8F12 /* [CP] Embed Pods Frameworks */,
 				B5B27E6A1F9DA95300CB9121 /* Fabric */,
 				B5B27E731F9DAD5900CB9121 /* SwiftLint */,
-				B5B27E741F9DAE3A00CB9121 /* Buid Number */,
+				B5B27E741F9DAE3A00CB9121 /* Build Number */,
 				B5B27E751F9DAE7900CB9121 /* Localization */,
 			);
 			buildRules = (
@@ -1979,14 +1979,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		B5B27E741F9DAE3A00CB9121 /* Buid Number */ = {
+		B5B27E741F9DAE3A00CB9121 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Buid Number";
+			name = "Build Number";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
