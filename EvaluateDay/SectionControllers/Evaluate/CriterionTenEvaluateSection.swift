@@ -66,20 +66,26 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             
             let criterionCard = self.card.data as! CriterionTenCard
             var value: Float = 0.0
+            var previousValue: Float = 0.0
             let isPositive = criterionCard.positive
             if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
                 value = Float(saveValue.value)
             }
+            var components = DateComponents()
+            components.day = -1
+            let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+            if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).sorted(byKeyPath: "edited", ascending: false).first {
+                previousValue = Float(saveValue.value)
+            }
             
             return {
-                let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, isPositive: isPositive, lock: lock, style: style)
+                let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, style: style)
                 node.visual(withStyle: style)
                 
                 OperationQueue.main.addOperation {
                     node.title.shareButton.view.tag = index
                 }
                 node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                node.analytics.button.addTarget(self, action: #selector(self.analyticsNodeAction(sender:)), forControlEvents: .touchUpInside)
                 
                 node.slider.didChangeValue = { newCurrentValue in
                     if criterionCard.realm != nil {
@@ -167,10 +173,12 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             return
         }
         
-        self.isOpenEdit = !self.isOpenEdit
-        collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-            batchContext.reload(self)
-        }, completion: nil)
+        self.didSelectItem?(self.section, self.card)
+        
+//        self.isOpenEdit = !self.isOpenEdit
+//        collectionContext?.performBatch(animated: true, updates: { (batchContext) in
+//            batchContext.reload(self)
+//        }, completion: nil)
     }
     
     // MARK: - Actions
@@ -235,25 +243,19 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         }
         self.unarchiveHandler?(indexPath, self.card)
     }
-    
-    @objc private func analyticsNodeAction(sender: ASButtonNode) {
-        self.didSelectItem?(self.section, self.card)
-    }
 }
 
 class TenNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
-    var analytics: AnalyticsNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.slider = CriterionEvaluateNode(current: current, maxValue: 10.0, isPositive: isPositive, lock: lock, style: style)
-        self.analytics = AnalyticsNode(style: style)
+        self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock, style: style)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -261,7 +263,7 @@ class TenNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.slider, self.analytics]
+        stack.children = [self.title, self.slider]
         
         return stack
     }

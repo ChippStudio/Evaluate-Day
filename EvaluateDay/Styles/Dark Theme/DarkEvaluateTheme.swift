@@ -45,8 +45,14 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var criterionEvaluateMaximumTrackColor: UIColor { return UIColor.white }
     var criterionEvaluateMinimumPositiveTrackColor: UIColor { return UIColor.pewterBlue }
     var criterionEvaluateMinimumNegativeTrackColor: UIColor { return UIColor.salmon }
-    var criterionEvaluateCurrentValueColor: UIColor { return UIColor.white }
-    var criterionEvaluateCurrentValueFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var criterionEvaluateCurrentValueFont: UIFont { return UIFont.avenirNext(size: 48.0, weight: .demiBold) }
+    var criterionEvaluateDateColor: UIColor {return UIColor.white }
+    var criterionEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var criterionEvaluatePreviousValueColor: UIColor { return UIColor.white }
+    var criterionEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .medium) }
+    var criterionEvaluatePersentColor: UIColor { return UIColor.white }
+    var criterionEvaluatePersentFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
+    var criterionEvaluateSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - CriterionThreeEvaluateNodeStyle
     var criterionThreeEvaluatePositiveColor: UIColor { return UIColor.pewterBlue }

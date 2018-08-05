@@ -45,8 +45,14 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var criterionEvaluateMaximumTrackColor: UIColor { return UIColor.paleGrey }
     var criterionEvaluateMinimumPositiveTrackColor: UIColor { return UIColor.darkBlueGreen }
     var criterionEvaluateMinimumNegativeTrackColor: UIColor { return UIColor.grapePurple }
-    var criterionEvaluateCurrentValueColor: UIColor { return UIColor.paleGrey }
-    var criterionEvaluateCurrentValueFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var criterionEvaluateCurrentValueFont: UIFont { return UIFont.avenirNext(size: 48.0, weight: .demiBold) }
+    var criterionEvaluateDateColor: UIColor {return UIColor.paleGrey }
+    var criterionEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var criterionEvaluatePreviousValueColor: UIColor { return UIColor.paleGrey }
+    var criterionEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .medium) }
+    var criterionEvaluatePersentColor: UIColor { return UIColor.paleGrey }
+    var criterionEvaluatePersentFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
+    var criterionEvaluateSeparatorColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - CriterionThreeEvaluateNodeStyle
     var criterionThreeEvaluatePositiveColor: UIColor { return UIColor.darkBlueGreen }
