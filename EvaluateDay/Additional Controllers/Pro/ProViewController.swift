@@ -246,7 +246,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     // Fallback on earlier versions
                     // Without introductory price
                     return {
-                        return DescriptionNode(text: Localizations.settings.pro.subscription.introductory.discount(value1: "30%"), alignment: .center, style: style)
+                        return DescriptionNode(text: "", alignment: .center, style: style)
                     }
                 }
             case 7:

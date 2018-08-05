@@ -32,10 +32,14 @@ class TitleNode: ASCellNode {
     init(title: String, subtitle: String, image: UIImage, style: TitleNodeStyle) {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.titleTitleFont, NSAttributedStringKey.foregroundColor: style.titleTitleColor])
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineSpacing = -10.0
+        
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.titleTitleFont, NSAttributedStringKey.foregroundColor: style.titleTitleColor, NSAttributedStringKey.paragraphStyle: paragraph])
         self.subtitle.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: style.titleSubtitleFont, NSAttributedStringKey.foregroundColor: style.titleSubtitleColor])
         self.previewImage.image = image
         self.previewImage.contentMode = .scaleAspectFit
+        self.previewImage.alpha = 0.2
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.titleShareTintColor)
@@ -46,24 +50,34 @@ class TitleNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.previewImage.style.preferredSize = CGSize(width: 30.0, height: 30.0)
+        self.previewImage.style.preferredSize = CGSize(width: 60.0, height: 60.0)
         self.shareButton.style.preferredSize = CGSize (width: 50.0, height: 50.0)
         
-        let text = ASStackLayoutSpec.vertical()
-//        text.spacing = 5.0
-        text.style.flexShrink = 1.0
-        text.children = [self.title, self.subtitle]
+        self.title.style.flexShrink = 1.0
         
-        let spacing = ASLayoutSpec()
-        spacing.style.flexGrow = 1.0
+        let spacer = ASLayoutSpec()
+        spacer.style.flexGrow = 1.0
         
-        let cell = ASStackLayoutSpec.horizontal()
-        cell.spacing = 10.0
-        cell.style.flexGrow = 1.0
-        cell.alignItems = .start
-        cell.children = [self.previewImage, text, spacing, self.shareButton]
+        let imageInsets = UIEdgeInsets(top: 0.0, left: -6.0, bottom: 0.0, right: 0.0)
+        let imageInset = ASInsetLayoutSpec(insets: imageInsets, child: self.previewImage)
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 10.0, bottom: 10.0, right: 10.0)
+        let topLine = ASStackLayoutSpec.horizontal()
+        topLine.style.flexGrow = 1.0
+        topLine.style.flexShrink = 1.0
+        topLine.alignItems = .center
+        topLine.children = [self.title, imageInset, spacer, self.shareButton]
+        
+        let topLineInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 0.0, right: 0.0)
+        let topLineInset = ASInsetLayoutSpec(insets: topLineInsets, child: topLine)
+        topLineInset.style.flexShrink = 1.0
+        
+        let subtitleInsets = UIEdgeInsets(top: -10.0, left: 30.0, bottom: 10.0, right: 10.0)
+        let subtitleInset = ASInsetLayoutSpec(insets: subtitleInsets, child: self.subtitle)
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.children = [topLineInset, subtitleInset]
+        
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 0.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
