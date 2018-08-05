@@ -20,13 +20,9 @@ protocol EvaluableSection {
     
     // MARK: - Handlers
     var shareHandler: ((_ indexPath: IndexPath, _ bcard: Card, _ items: [Any]) -> Void)? { get set }
-    var deleteHandler: ((_ indexPath: IndexPath, _ bcard: Card) -> Void)? { get set }
-    var editHandler: ((_ indexPath: IndexPath, _ bcard: Card) -> Void)? { get set }
-    var mergeHandler: ((_ indexPath: IndexPath, _ bcard: Card) -> Void)? { get set }
-    var unarchiveHandler: ((_ indexPath: IndexPath, _ bcard: Card) -> Void)? { get set }
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
-protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, CalendarDateNodeStyle, ActionNodeStyle, UnarchiveNodeStyle, AnalyticsNodeStyle, FutureNodeStyle, HabitNegativeNodeStyle { }
+protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, CalendarDateNodeStyle, ActionNodeStyle, UnarchiveNodeStyle, FutureNodeStyle, HabitNegativeNodeStyle { }
 
 // MARK: - Analytical
 protocol AnalyticalSection {

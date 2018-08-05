@@ -189,11 +189,6 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var unarchiveButtonColor: UIColor { return UIColor.pewterBlue }
     var unarchiveDividerColor: UIColor { return UIColor.darkGreyBlue }
     
-    // MARK: - AnalyticsNodeStyle
-    var analyticsNodeTextColor: UIColor { return UIColor.white }
-    var analyticsNodeTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var analyticsNodeTintColor: UIColor { return UIColor.snow }
-    
     // MARK: - FutureNodeStyle
     var presentFutureQuoteFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .medium) }
     var presentFutureQuoteColor: UIColor { return UIColor.white }

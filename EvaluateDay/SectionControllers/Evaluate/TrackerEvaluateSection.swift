@@ -30,14 +30,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     
     // MARK: - Actions
     var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
-    
-    // MARK: - Flags
-    var isOpenEdit: Bool = false
     
     // MARK: - Init
     init(card: Card) {
@@ -51,104 +44,63 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        var base: Int = 1
-        if self.isOpenEdit {
-            base += 1
-        }
-        if self.card.archived {
-            base += 1
-        }
-        return base
+        return 1
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.evaluateStyle
+        var lock = false
+        if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
+            lock = true
+        }
         
-        if index == 0 {
-            var lock = false
-            if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
-                lock = true
-            }
-            
-            if self.card.archived {
-                lock = true
-            }
-            
-            let title = self.card.title
-            let subtitle = self.card.subtitle
-            let image = Sources.image(forType: self.card.type)
-            
-            let trackerCard = self.card.data as! TrackerCard
-            let valuesCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", self.date.start, self.date.end, false).count
-            
-            var commetsStack = [String]()
-            for comment in self.comments {
-                if !comment.text.isEmpty {
-                    commetsStack.append(comment.text)
-                }
-            }
-            
-            return {
-                let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, comments: commetsStack, style: style)
-                node.visual(withStyle: style)
-                
-                OperationQueue.main.addOperation {
-                    node.title.shareButton.view.tag = index
-                }
-                node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                node.analytics.button.addTarget(self, action: #selector(self.analyticsNodeAction(sender:)), forControlEvents: .touchUpInside)
-                
-                if !lock {
-                    node.mark.markButton.addTarget(self, action: #selector(self.markAction(sender:)), forControlEvents: .touchUpInside)
-                    node.mark.markAndCommentButton.addTarget(self, action: #selector(self.markAndCommentAction(sender:)), forControlEvents: .touchUpInside)
-                    if node.mark.deleteButton != nil {
-                        node.mark.deleteButton!.addTarget(self, action: #selector(self.removeLastAction(sender:)), forControlEvents: .touchUpInside)
-                    }
-                }
-                
-                if !lock {
-                    for comment in node.comments {
-                        comment.editButton.addTarget(self, action: #selector(self.editCommentAction(sender:)), forControlEvents: .touchUpInside)
-                    }
-                }
-                
-                return node
+        if self.card.archived {
+            lock = true
+        }
+        
+        let title = self.card.title
+        let subtitle = self.card.subtitle
+        let image = Sources.image(forType: self.card.type)
+        let archived = self.card.archived
+        
+        let trackerCard = self.card.data as! TrackerCard
+        let valuesCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", self.date.start, self.date.end, false).count
+        
+        var commetsStack = [String]()
+        for comment in self.comments {
+            if !comment.text.isEmpty {
+                commetsStack.append(comment.text)
             }
         }
         
-        if index == 1 {
-            if self.isOpenEdit {
-                var actions = [ActionsNodeAction.settings, ActionsNodeAction.delete]
-                if Database.manager.data.objects(Card.self).filter("typeRaw=%@ AND isDeleted=%@", self.card.typeRaw, false).count > 1 {
-                    actions.insert(.merge, at: 0)
-                }
-                var isBottomDivider = false
-                if self.card.archived {
-                    isBottomDivider = true
-                }
-                return {
-                    let node = ActionsNode(actions: actions, isDividers: true, isBottomDivider: isBottomDivider, style: style)
-                    if !isBottomDivider {
-                        node.bottomOffset = 50.0
-                    }
-                    for action in node.actions {
-                        action.addTarget(self, action: #selector(self.actionHandler(sender:)), forControlEvents: .touchUpInside)
-                    }
-                    return node
-                }
-            } else {
-                return {
-                    let node = UnarchiveNode(style: style)
-                    node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                    return node
+        return {
+            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, comments: commetsStack, style: style)
+            node.visual(withStyle: style)
+            
+            OperationQueue.main.addOperation {
+                node.title.shareButton.view.tag = index
+            }
+            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+            
+            if !lock {
+                node.mark.markButton.addTarget(self, action: #selector(self.markAction(sender:)), forControlEvents: .touchUpInside)
+                node.mark.markAndCommentButton.addTarget(self, action: #selector(self.markAndCommentAction(sender:)), forControlEvents: .touchUpInside)
+                if node.mark.deleteButton != nil {
+                    node.mark.deleteButton!.addTarget(self, action: #selector(self.removeLastAction(sender:)), forControlEvents: .touchUpInside)
                 }
             }
-        } else {
-            return {
-                let node = UnarchiveNode(style: style)
-                node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                return node
+            
+            if !lock {
+                for comment in node.comments {
+                    comment.editButton.addTarget(self, action: #selector(self.editCommentAction(sender:)), forControlEvents: .touchUpInside)
+                }
             }
+            
+            if archived {
+                node.backgroundColor = style.background
+            }
+            
+            return node
         }
     }
     
@@ -179,10 +131,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             return
         }
         
-        self.isOpenEdit = !self.isOpenEdit
-        collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-            batchContext.reload(self)
-        }, completion: nil)
+        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - TextTopViewControllerDelegate
@@ -292,31 +241,6 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             self.shareHandler?(indexPath, self.card, items)
         }
     }
-    
-    @objc private func actionHandler(sender: ASButtonNode) {
-        let indexPath = IndexPath(row: 1, section: self.section)
-        if let action = ActionsNodeAction(rawValue: sender.view.tag) {
-            if action == .delete {
-                self.deleteHandler?(indexPath, self.card)
-            } else if action == .settings {
-                self.editHandler?(indexPath, self.card)
-            } else if action == .merge {
-                self.mergeHandler?(indexPath, self.card)
-            }
-        }
-    }
-    
-    @objc private func unarchiveButtonAction(sender: ASButtonNode) {
-        var indexPath = IndexPath(row: 1, section: self.section)
-        if self.isOpenEdit {
-            indexPath = IndexPath(row: 2, section: self.section)
-        }
-        self.unarchiveHandler?(indexPath, self.card)
-    }
-    
-    @objc private func analyticsNodeAction(sender: ASButtonNode) {
-        self.didSelectItem?(self.section, self.card)
-    }
 }
 
 class TrackerNode: ASCellNode, CardNode {
@@ -324,7 +248,6 @@ class TrackerNode: ASCellNode, CardNode {
     var title: TitleNode!
     var mark: HabitEvaluateNode!
     var comments = [HabitEvaluateCommentNode]()
-    var analytics: AnalyticsNode!
     
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, marks: Int, comments: [String], style: EvaluableStyle) {
@@ -332,7 +255,6 @@ class TrackerNode: ASCellNode, CardNode {
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.mark = HabitEvaluateNode(marks: marks, style: style)
-        self.analytics = AnalyticsNode(style: style)
         
         for (i, comment) in comments.enumerated() {
             let newComment = HabitEvaluateCommentNode(comment: comment, style: style)
@@ -355,7 +277,6 @@ class TrackerNode: ASCellNode, CardNode {
         }
         
         stack.children!.append(self.mark)
-        stack.children!.append(self.analytics)
         
         return stack
     }

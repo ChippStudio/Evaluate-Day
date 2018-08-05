@@ -189,11 +189,6 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var unarchiveButtonColor: UIColor { return UIColor.darkBlueGreen }
     var unarchiveDividerColor: UIColor { return UIColor.pumpkin }
     
-    // MARK: - AnalyticsNodeStyle
-    var analyticsNodeTextColor: UIColor { return UIColor.paleGrey }
-    var analyticsNodeTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var analyticsNodeTintColor: UIColor { return UIColor.paleGrey }
-    
     // MARK: - FutureNodeStyle
     var presentFutureQuoteFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .medium) }
     var presentFutureQuoteColor: UIColor { return UIColor.paleGrey }

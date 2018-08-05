@@ -47,8 +47,6 @@
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
 		B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */; };
-		B53E5F4F2056AA6100B50B60 /* CalendarObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4E2056AA6100B50B60 /* CalendarObject.swift */; };
-		B53E5F512056AADA00B50B60 /* CalendarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F502056AADA00B50B60 /* CalendarSection.swift */; };
 		B53E5F532056AB5900B50B60 /* CalendarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F522056AB5900B50B60 /* CalendarNode.swift */; };
 		B53E5F552056AE2900B50B60 /* CalendarDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F542056AE2900B50B60 /* CalendarDateNode.swift */; };
 		B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */; };
@@ -315,9 +313,6 @@
 		B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D854EA1FD06C8000BB4E14 /* SelectCardList.storyboard */; };
 		B5D854ED1FD06CA700BB4E14 /* SelectCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854EC1FD06CA700BB4E14 /* SelectCardListViewController.swift */; };
 		B5D854EF1FD07B8400BB4E14 /* TimeBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854EE1FD07B8300BB4E14 /* TimeBottomViewController.swift */; };
-		B5D9A83F205ABDA200F84091 /* AnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A83E205ABDA200F84091 /* AnalyticsNode.swift */; };
-		B5D9A841205AD45100F84091 /* FutureObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A840205AD45100F84091 /* FutureObject.swift */; };
-		B5D9A843205AD4CB00F84091 /* FutureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A842205AD4CB00F84091 /* FutureSection.swift */; };
 		B5D9A845205AD57B00F84091 /* FutureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A844205AD57B00F84091 /* FutureNode.swift */; };
 		B5D9A847205BBABB00F84091 /* ActivityUserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */; };
 		B5D9A84A205BBB4300F84091 /* ActivityUserSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A849205BBB4300F84091 /* ActivityUserSection.swift */; };
@@ -442,8 +437,6 @@
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkActivityControllerTheme.swift; sourceTree = "<group>"; };
-		B53E5F4E2056AA6100B50B60 /* CalendarObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarObject.swift; sourceTree = "<group>"; };
-		B53E5F502056AADA00B50B60 /* CalendarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSection.swift; sourceTree = "<group>"; };
 		B53E5F522056AB5900B50B60 /* CalendarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNode.swift; sourceTree = "<group>"; };
 		B53E5F542056AE2900B50B60 /* CalendarDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateNode.swift; sourceTree = "<group>"; };
 		B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorCard+Extensions.swift"; sourceTree = "<group>"; };
@@ -720,9 +713,6 @@
 		B5D854EA1FD06C8000BB4E14 /* SelectCardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectCardList.storyboard; sourceTree = "<group>"; };
 		B5D854EC1FD06CA700BB4E14 /* SelectCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCardListViewController.swift; sourceTree = "<group>"; };
 		B5D854EE1FD07B8300BB4E14 /* TimeBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBottomViewController.swift; sourceTree = "<group>"; };
-		B5D9A83E205ABDA200F84091 /* AnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsNode.swift; sourceTree = "<group>"; };
-		B5D9A840205AD45100F84091 /* FutureObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureObject.swift; sourceTree = "<group>"; };
-		B5D9A842205AD4CB00F84091 /* FutureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureSection.swift; sourceTree = "<group>"; };
 		B5D9A844205AD57B00F84091 /* FutureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureNode.swift; sourceTree = "<group>"; };
 		B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityUserObject.swift; sourceTree = "<group>"; };
 		B5D9A849205BBB4300F84091 /* ActivityUserSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityUserSection.swift; sourceTree = "<group>"; };
@@ -983,8 +973,6 @@
 			children = (
 				B5DED7951FCB00F3002DD956 /* Update.swift */,
 				B50DDE441FEBE57900E7FBEF /* ProLock.swift */,
-				B53E5F4E2056AA6100B50B60 /* CalendarObject.swift */,
-				B5D9A840205AD45100F84091 /* FutureObject.swift */,
 				B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */,
 				B5D9A84E2060122A00F84091 /* ActivityAnalyticsObject.swift */,
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
@@ -1161,8 +1149,6 @@
 				B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */,
 				B5A9D5AF2022062D006DFB32 /* JournalEvaluateSection.swift */,
 				B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */,
-				B53E5F502056AADA00B50B60 /* CalendarSection.swift */,
-				B5D9A842205AD4CB00F84091 /* FutureSection.swift */,
 			);
 			path = Evaluate;
 			sourceTree = "<group>";
@@ -1486,7 +1472,6 @@
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
-				B5D9A83E205ABDA200F84091 /* AnalyticsNode.swift */,
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
 				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
@@ -2184,7 +2169,6 @@
 				B5257D5A1FE93FC800AC54DE /* DarkAnalyticalTheme.swift in Sources */,
 				B5C7572C1F9DCA300032199E /* Card.swift in Sources */,
 				B5A11417200F82ED008DBF02 /* CriterionThreeMergeSection.swift in Sources */,
-				B5D9A83F205ABDA200F84091 /* AnalyticsNode.swift in Sources */,
 				B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */,
 				B55D326D2074F67300BD1E75 /* OrangeCardSettingsTheme.swift in Sources */,
 				B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */,
@@ -2284,7 +2268,6 @@
 				B584E0D11FE27177008093D5 /* SlidesViewController.swift in Sources */,
 				B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */,
 				B5A2619B1FBBFEA1008EB017 /* UnarchiveNode.swift in Sources */,
-				B5D9A843205AD4CB00F84091 /* FutureSection.swift in Sources */,
 				B52D26D72017135900332D0A /* EvaluateCounterShareView.swift in Sources */,
 				B55464D92028607500923CE3 /* JournalMergeSection.swift in Sources */,
 				B5B27E891F9DC33200CB9121 /* EvaluateViewController.swift in Sources */,
@@ -2298,7 +2281,6 @@
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
 				B5FD38F61FDEDC6B0071B1F0 /* AnalyticsStackShareView.swift in Sources */,
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
-				B53E5F512056AADA00B50B60 /* CalendarSection.swift in Sources */,
 				B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */,
 				B5D0C7BB20A8539A000F98EF /* BlackTopControllerTheme.swift in Sources */,
 				B5AB1E992019DA8300BB1A64 /* ListItemEvaluateNode.swift in Sources */,
@@ -2351,7 +2333,6 @@
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,
 				B52D26E720175FB800332D0A /* HabitEvaluateSection.swift in Sources */,
 				B5D0C7BE20A8539A000F98EF /* BlackCardMergeTheme.swift in Sources */,
-				B53E5F4F2056AA6100B50B60 /* CalendarObject.swift in Sources */,
 				B593182C1FFAD53A000D8FFE /* CardMergeViewController.swift in Sources */,
 				B56218121FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift in Sources */,
 				B5257D591FE93FC800AC54DE /* DarkNewCardTheme.swift in Sources */,
@@ -2397,7 +2378,6 @@
 				B5257D441FE91C1300AC54DE /* WebViewController.swift in Sources */,
 				B587D6B31FB59CA2006D62C1 /* LightSettingsTheme.swift in Sources */,
 				B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */,
-				B5D9A841205AD45100F84091 /* FutureObject.swift in Sources */,
 				B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */,
 				B5BD3B322007A65E0075C75F /* CheckInCard+Extensions.swift in Sources */,
 				B5257D611FE93FC800AC54DE /* DarkBottomControllerTheme.swift in Sources */,

@@ -19,10 +19,6 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     
     // MARK: - Actions
     var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
     
     // MARK: - Init
@@ -54,6 +50,7 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         let title = self.card.title
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
+        let archived = self.card.archived
         
         let phraseCard = self.card.data as! PhraseCard
         var text = ""
@@ -73,6 +70,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             
             if !lock {
                 node.phrase.editButton.addTarget(self, action: #selector(self.editTextAction(sender:)), forControlEvents: .touchUpInside)
+            }
+            
+            if archived {
+                node.backgroundColor = style.background
             }
             
             return node

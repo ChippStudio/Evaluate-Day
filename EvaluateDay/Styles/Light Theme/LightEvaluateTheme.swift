@@ -188,11 +188,6 @@ struct LightEvaluateTheme: EvaluableStyle {
     var unarchiveButtonColor: UIColor { return UIColor.viridian }
     var unarchiveDividerColor: UIColor { return UIColor.platinum }
     
-    // MARK: - AnalyticsNodeStyle
-    var analyticsNodeTextColor: UIColor { return UIColor.gunmetal }
-    var analyticsNodeTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var analyticsNodeTintColor: UIColor { return UIColor.darkGreyBlue }
-    
     // MARK: - FutureNodeStyle
     var presentFutureQuoteFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .medium) }
     var presentFutureQuoteColor: UIColor { return UIColor.gunmetal }

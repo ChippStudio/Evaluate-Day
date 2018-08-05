@@ -18,14 +18,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     
     // MARK: - Actions
     var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
-    
-    // MARK: - Flags
-    var isOpenEdit: Bool = false
     
     // MARK: - Init
     init(card: Card) {
@@ -39,96 +32,56 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        var base: Int = 1
-        if self.isOpenEdit {
-            base += 1
-        }
-        if self.card.archived {
-            base += 1
-        }
-        return base
+        return 1
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.evaluateStyle
-        if index == 0 {
-            var lock = false
-            if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
-                lock = true
-            }
-            
-            if self.card.archived {
-                lock = true
-            }
-            
-            let title = self.card.title
-            let subtitle = self.card.subtitle
-            let image = Sources.image(forType: self.card.type)
-            
-            let counterCard = self.card.data as! CounterCard
-            var value: Double = 0.0
-            var sumValue: Double?
-            if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
-                value = currentValue.value
-            }
-            if counterCard.isSum {
-                sumValue = counterCard.startValue
-                for v in counterCard.values {
-                    sumValue! += v.value
-                }
-            }
-            
-            return {
-                let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, style: style)
-                node.visual(withStyle: style)
-                OperationQueue.main.addOperation {
-                    node.title.shareButton.view.tag = index
-                }
-                node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                node.analytics.button.addTarget(self, action: #selector(self.analyticsNodeAction(sender:)), forControlEvents: .touchUpInside)
-                
-                if !lock {
-                    node.counter.plus.addTarget(self, action: #selector(self.plusButtonAction(sender:)), forControlEvents: .touchUpInside)
-                    node.counter.minus.addTarget(self, action: #selector(self.minusButtonAction(sender:)), forControlEvents: .touchUpInside)
-                    node.counter.customValueButton.addTarget(self, action: #selector(self.customValueButtonAction(sender:)), forControlEvents: .touchUpInside)
-                }
-                return node
+        var lock = false
+        if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
+            lock = true
+        }
+        
+        if self.card.archived {
+            lock = true
+        }
+        
+        let title = self.card.title
+        let subtitle = self.card.subtitle
+        let image = Sources.image(forType: self.card.type)
+        let archived = self.card.archived
+        
+        let counterCard = self.card.data as! CounterCard
+        var value: Double = 0.0
+        var sumValue: Double?
+        if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
+            value = currentValue.value
+        }
+        if counterCard.isSum {
+            sumValue = counterCard.startValue
+            for v in counterCard.values {
+                sumValue! += v.value
             }
         }
         
-        if index == 1 {
-            if self.isOpenEdit {
-                var actions = [ActionsNodeAction.settings, ActionsNodeAction.delete]
-                if Database.manager.data.objects(Card.self).filter("typeRaw=%@ AND isDeleted=%@", self.card.typeRaw, false).count > 1 {
-                    actions.insert(.merge, at: 0)
-                }
-                var isBottomDivider = false
-                if self.card.archived {
-                    isBottomDivider = true
-                }
-                return {
-                    let node = ActionsNode(actions: actions, isDividers: true, isBottomDivider: isBottomDivider, style: style)
-                    if !isBottomDivider {
-                        node.bottomOffset = 50.0
-                    }
-                    for action in node.actions {
-                        action.addTarget(self, action: #selector(self.actionHandler(sender:)), forControlEvents: .touchUpInside)
-                    }
-                    return node
-                }
-            } else {
-                return {
-                    let node = UnarchiveNode(style: style)
-                    node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                    return node
-                }
+        return {
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, style: style)
+            node.visual(withStyle: style)
+            OperationQueue.main.addOperation {
+                node.title.shareButton.view.tag = index
             }
-        } else {
-            return {
-                let node = UnarchiveNode(style: style)
-                node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                return node
+            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+            
+            if !lock {
+                node.counter.plus.addTarget(self, action: #selector(self.plusButtonAction(sender:)), forControlEvents: .touchUpInside)
+                node.counter.minus.addTarget(self, action: #selector(self.minusButtonAction(sender:)), forControlEvents: .touchUpInside)
+                node.counter.customValueButton.addTarget(self, action: #selector(self.customValueButtonAction(sender:)), forControlEvents: .touchUpInside)
             }
+            
+            if archived {
+                node.backgroundColor = style.background
+            }
+            return node
         }
     }
     
@@ -159,10 +112,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             return
         }
         
-        self.isOpenEdit = !self.isOpenEdit
-        collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-            batchContext.reload(self)
-        }, completion: nil)
+        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - TextTopViewControllerDelegate
@@ -289,38 +239,12 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             self.shareHandler?(indexPath, self.card, items)
         }
     }
-    
-    @objc private func actionHandler(sender: ASButtonNode) {
-        let indexPath = IndexPath(row: 1, section: self.section)
-        if let action = ActionsNodeAction(rawValue: sender.view.tag) {
-            if action == .delete {
-                self.deleteHandler?(indexPath, self.card)
-            } else if action == .settings {
-                self.editHandler?(indexPath, self.card)
-            } else if action == .merge {
-                self.mergeHandler?(indexPath, self.card)
-            }
-        }
-    }
-    
-    @objc private func unarchiveButtonAction(sender: ASButtonNode) {
-        var indexPath = IndexPath(row: 1, section: self.section)
-        if self.isOpenEdit {
-            indexPath = IndexPath(row: 2, section: self.section)
-        }
-        self.unarchiveHandler?(indexPath, self.card)
-    }
-    
-    @objc private func analyticsNodeAction(sender: ASButtonNode) {
-        self.didSelectItem?(self.section, self.card)
-    }
 }
 
 class CounterNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var counter: CounterEvaluateNode!
-    var analytics: AnalyticsNode!
     
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, style: EvaluableStyle) {
@@ -328,7 +252,6 @@ class CounterNode: ASCellNode, CardNode {
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, style: style)
-        self.analytics = AnalyticsNode(style: style)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -336,7 +259,7 @@ class CounterNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.counter, self.analytics]
+        stack.children = [self.title, self.counter]
         
         return stack
     }

@@ -42,8 +42,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
     let proLockObject = ProLock()
-    let calendarObject = CalendarObject()
-    let futureObject = FutureObject()
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -139,16 +137,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 let diffCard = DiffCard(card: c)
                 diffableCards.append(diffCard)
             }
-        } else {
-            diffableCards.append(self.futureObject)
         }
         
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
             diffableCards.insert(self.proLockObject, at: 0)
-        }
-        
-        if self.cards.count != 0 {
-            diffableCards.insert(self.calendarObject, at: 0)
         }
         
         if self.cards.isEmpty || self.cards.count == 1 {
@@ -183,27 +175,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                     sendEvent(.shareFromEvaluateDay, withProperties: ["type": bcard.type.string])
                     self.present(shareActivity, animated: true, completion: nil)
                 }
-                cntrl.deleteHandler = { (indexPath, card) in
-                    self.deleteCard(indexPath: indexPath, card: card)
-                }
-                cntrl.editHandler = { (indexPath, card) in
-                    if card.data as? Editable != nil {
-                        let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
-                        controller.card = card
-                        controller.titleString = Sources.title(forType: card.type)
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    }
-                }
-                cntrl.mergeHandler = { (indexPath, card) in
-                    if card.data as? Mergeable != nil {
-                        let controller = UIStoryboard(name: Storyboards.cardMerge.rawValue, bundle: nil).instantiateInitialViewController() as! CardMergeViewController
-                        controller.card = card
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    }
-                }
-                cntrl.unarchiveHandler = { (indexPath, card) in
-                    self.unarchiveCard(indexPath: indexPath, card: card)
-                }
                 cntrl.didSelectItem = { (index, card) in
                     let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                     analytycs.card = card
@@ -219,22 +190,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             return section
-        } else if object is CalendarObject {
-            let section = CalendarSection()
-            section.didSelectDate = { (date) in
-                self.date = date
-            }
-            var newInsets = cardInsets
-            newInsets.bottom = 50.0
-            section.inset = newInsets
-            return section
-        } else if object is FutureObject {
-            let section = FutureSection()
-            section.shareAction = { () in
-                self.shareAction()
-            }
-            section.inset = cardInsets
-            return section
         }
         
         return ListSectionController()
@@ -246,14 +201,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     // MARK: - UIViewControllerPreviewingDelegate
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = self.collectionNode.indexPathForItem(at: location) else {
+        guard let indexPath = self.collectionNode.indexPathForItem(at: location), let targetCell = collectionNode.view.visibleCells.first(where: { $0.frame.contains(location) })else {
             return nil
         }
         
+        previewingContext.sourceRect = targetCell.frame
         if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
-            let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
-            analytics.card = section.card
-            return analytics
+            let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
+            settings.card = section.card
+            return settings
         }
         
         return nil
@@ -264,23 +220,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     // MARK: - Actions
-    @objc func activityButtonAction(_ sender: UIBarButtonItem) {
-        let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-        controller.modalPresentationStyle = .formSheet
-        self.present(controller, animated: true, completion: nil)
-    }
-    
-    @objc func settingsButtonAction(_ sender: UIBarButtonItem) {
-        if self.view.traitCollection.userInterfaceIdiom == .phone {
-            let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
-            self.present(controller, animated: true, completion: nil)
-        } else {
-            let controller = UIStoryboard(name: Storyboards.settingsSplit.rawValue, bundle: nil).instantiateInitialViewController()!
-            controller.transition = SplitSettingsTransition(animationDuration: 0.4)
-            self.present(controller, animated: true, completion: nil)
-        }
-    }
-    
     @objc func newCardButtonAction(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
         self.navigationController?.pushViewController(controller, animated: true)
@@ -291,101 +230,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         controller.cards = self.cards
         controller.closeByTap = true
         self.present(controller, animated: true, completion: nil)
-    }
-    
-    func deleteCard(indexPath: IndexPath, card: Card) {
-        var message = Localizations.list.card.deleteMessage
-        if !card.archived {
-            message += "\n\n \(Localizations.list.card.archiveNotDelete) \n\n"
-            message += Localizations.list.card.archiveMessage
-        }
-        
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: message, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
-            // Delete card
-            sendEvent(.deleteCard, withProperties: ["type": card.type.string])
-            try! Database.manager.data.write {
-                card.data.deleteValues()
-                card.isDeleted = true
-            }
-            
-            Feedback.player.play(sound: .deleteCard, feedbackType: .success)
-        }
-        
-        let archiveAction = UIAlertAction(title: Localizations.general.archive, style: .default) { (_) in
-            // Archive card
-            sendEvent(.archiveCard, withProperties: ["type": card.type.string])
-            
-            try! Database.manager.data.write {
-                card.archived = true
-                card.archivedDate = Date()
-                card.edited = Date()
-            }
-            
-            if let section = self.adapter.sectionController(forSection: indexPath.section) {
-                section.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-                    batchContext.reload(section)
-                }, completion: nil)
-            }
-        }
-        
-        if !card.archived {
-            alert.addAction(archiveAction)
-        }
-        
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        
-        if self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            let node = self.collectionNode.nodeForItem(at: indexPath) as! ActionsNode
-            let b = node.button(forType: .delete)
-            alert.popoverPresentationController?.sourceRect = b!.frame
-            alert.popoverPresentationController?.sourceView = node.view
-        }
-        
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
-        self.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        }
-    }
-    
-    func unarchiveCard(indexPath: IndexPath, card: Card) {
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.list.card.unarchiveMessage, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let unarchiveAction = UIAlertAction(title: Localizations.general.unarchive, style: .default) { (_) in
-            // Unarchive card
-            try! Database.manager.data.write {
-                card.archived = false
-                card.archivedDate = nil
-                card.edited = Date()
-            }
-            sendEvent(.unarchiveCard, withProperties: ["type": card.type.string])
-            
-            if let section = self.adapter.sectionController(forSection: indexPath.section) {
-                section.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-                    batchContext.reload(section)
-                }, completion: nil)
-            }
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(unarchiveAction)
-        
-        if self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            let node = self.collectionNode.nodeForItem(at: indexPath) as! UnarchiveNode
-            alert.popoverPresentationController?.sourceRect = node.unarchiveButton.frame
-            alert.popoverPresentationController?.sourceView = node.view
-        }
-        
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
-        self.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        }
     }
     
     func shareAction() {

@@ -18,10 +18,6 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
     
     // MARK: - Actions
     var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
     
     // MARK: - Init
@@ -53,6 +49,7 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         let title = self.card.title
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
+        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionTenCard
         var value: Float = 0.0
@@ -94,6 +91,10 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
                         }
                     }
                 }
+            }
+            
+            if archived {
+                node.backgroundColor = style.background
             }
             
             return node

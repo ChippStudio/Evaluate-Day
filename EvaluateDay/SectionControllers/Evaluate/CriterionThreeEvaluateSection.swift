@@ -18,14 +18,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
     
     // MARK: - Actions
     var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
-    
-    // MARK: - Flags
-    var isOpenEdit: Bool = false
     
     // MARK: - Init
     init(card: Card) {
@@ -39,109 +32,69 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        var base: Int = 1
-        if self.isOpenEdit {
-            base += 1
-        }
-        if self.card.archived {
-            base += 1
-        }
-        return base
+        return 1
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.evaluateStyle
-        if index == 0 {
-            var lock = false
-            if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
-                lock = true
-            }
-            
-            if self.card.archived {
-                lock = true
-            }
-            
-            let title = self.card.title
-            let subtitle = self.card.subtitle
-            let image = Sources.image(forType: self.card.type)
-            
-            let criterionCard = self.card.data as! CriterionThreeCard
-            var value: Double?
-            let isPositive = criterionCard.positive
-            if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
-                value = saveValue.value
-            }
-            
-            return {
-                let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, isPositive: isPositive, lock: lock, style: style)
-                node.visual(withStyle: style)
-                
-                OperationQueue.main.addOperation {
-                    node.title.shareButton.view.tag = index
-                }
-                node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                node.analytics.button.addTarget(self, action: #selector(self.analyticsNodeAction(sender:)), forControlEvents: .touchUpInside)
-                
-                node.buttons.didChangeValue = { newCurrentValue in
-                    if criterionCard.realm != nil {
-                        if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
-                            try! Database.manager.data.write {
-                                value.value = Double(newCurrentValue)
-                                value.edited = Date()
-                            }
-                        } else {
-                            let newValue = NumberValue()
-                            newValue.value = Double(newCurrentValue)
-                            newValue.created = self.date
-                            newValue.owner = self.card.id
-                            try! Database.manager.data.write {
-                                Database.manager.data.add(newValue)
-                            }
-                        }
-                        
-                        self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-                            batchContext.reload(self)
-                        }, completion: nil)
-                    }
-                }
-                
-                return node
-            }
+        var lock = false
+        if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
+            lock = true
         }
         
-        if index == 1 {
-            if self.isOpenEdit {
-                var actions = [ActionsNodeAction.settings, ActionsNodeAction.delete]
-                if Database.manager.data.objects(Card.self).filter("typeRaw=%@ AND isDeleted=%@", self.card.typeRaw, false).count > 1 {
-                    actions.insert(.merge, at: 0)
-                }
-                var isBottomDivider = false
-                if self.card.archived {
-                    isBottomDivider = true
-                }
-                return {
-                    let node = ActionsNode(actions: actions, isDividers: true, isBottomDivider: isBottomDivider, style: style)
-                    if !isBottomDivider {
-                        node.bottomOffset = 50.0
+        if self.card.archived {
+            lock = true
+        }
+        
+        let title = self.card.title
+        let subtitle = self.card.subtitle
+        let image = Sources.image(forType: self.card.type)
+        let archived = self.card.archived
+        
+        let criterionCard = self.card.data as! CriterionThreeCard
+        var value: Double?
+        let isPositive = criterionCard.positive
+        if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
+            value = saveValue.value
+        }
+        
+        return {
+            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, isPositive: isPositive, lock: lock, style: style)
+            node.visual(withStyle: style)
+            
+            OperationQueue.main.addOperation {
+                node.title.shareButton.view.tag = index
+            }
+            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+            
+            node.buttons.didChangeValue = { newCurrentValue in
+                if criterionCard.realm != nil {
+                    if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
+                        try! Database.manager.data.write {
+                            value.value = Double(newCurrentValue)
+                            value.edited = Date()
+                        }
+                    } else {
+                        let newValue = NumberValue()
+                        newValue.value = Double(newCurrentValue)
+                        newValue.created = self.date
+                        newValue.owner = self.card.id
+                        try! Database.manager.data.write {
+                            Database.manager.data.add(newValue)
+                        }
                     }
-                    for action in node.actions {
-                        action.addTarget(self, action: #selector(self.actionHandler(sender:)), forControlEvents: .touchUpInside)
-                    }
-                    return node
-                }
-            } else {
-                return {
-                    let node = UnarchiveNode(style: style)
-                    node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                    return node
+                    
+                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                        batchContext.reload(self)
+                    }, completion: nil)
                 }
             }
-        } else {
-            return {
-                let node = UnarchiveNode(style: style)
-                node.unarchiveButton.addTarget(self, action: #selector(self.unarchiveButtonAction(sender:)), forControlEvents: .touchUpInside)
-                return node
+            
+            if archived {
+                node.backgroundColor = style.background
             }
+            
+            return node
         }
     }
     
@@ -172,10 +125,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             return
         }
         
-        self.isOpenEdit = !self.isOpenEdit
-        collectionContext?.performBatch(animated: true, updates: { (batchContext) in
-            batchContext.reload(self)
-        }, completion: nil)
+        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
@@ -219,38 +169,12 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             self.shareHandler?(indexPath, self.card, items)
         }
     }
-    
-    @objc private func actionHandler(sender: ASButtonNode) {
-        let indexPath = IndexPath(row: 1, section: self.section)
-        if let action = ActionsNodeAction(rawValue: sender.view.tag) {
-            if action == .delete {
-                self.deleteHandler?(indexPath, self.card)
-            } else if action == .settings {
-                self.editHandler?(indexPath, self.card)
-            } else if action == .merge {
-                self.mergeHandler?(indexPath, self.card)
-            }
-        }
-    }
-    
-    @objc private func unarchiveButtonAction(sender: ASButtonNode) {
-        var indexPath = IndexPath(row: 1, section: self.section)
-        if self.isOpenEdit {
-            indexPath = IndexPath(row: 2, section: self.section)
-        }
-        self.unarchiveHandler?(indexPath, self.card)
-    }
-    
-    @objc private func analyticsNodeAction(sender: ASButtonNode) {
-        self.didSelectItem?(self.section, self.card)
-    }
 }
 
 class ThreeNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var buttons: CriterionThreeEvaluateNode!
-    var analytics: AnalyticsNode!
     
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, current: Double?, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
@@ -258,7 +182,6 @@ class ThreeNode: ASCellNode, CardNode {
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.buttons = CriterionThreeEvaluateNode(value: current, lock: lock, positive: isPositive, style: style)
-        self.analytics = AnalyticsNode(style: style)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -266,7 +189,7 @@ class ThreeNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.buttons, self.analytics]
+        stack.children = [self.title, self.buttons]
         
         return stack
     }
