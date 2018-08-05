@@ -23,14 +23,6 @@ struct LightEvaluateTheme: EvaluableStyle {
     var tableNodeSeparatorColor: UIColor { return UIColor.lightGray }
     var actionSheetTintColor: UIColor { return UIColor.gunmetal }
     
-    // MARK: - CalendarDateNodeStyle
-    var calendarDateColor: UIColor { return UIColor.gunmetal }
-    var calendarDateFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .demiBold) }
-    var calendarWeekdayColor: UIColor { return UIColor.gunmetal }
-    var calendarWeekdayFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .regular) }
-    var calendarBackgroundColor: UIColor { return UIColor.white}
-    var calendarSelectedColor: UIColor { return UIColor.platinum }
-    
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.gunmetal }
     var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
@@ -176,27 +168,6 @@ struct LightEvaluateTheme: EvaluableStyle {
     var cardListEmptyNewTintColor: UIColor { return UIColor.gunmetal }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.brownishRed }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.white }
-    
-    // MARK: - Action Node
-    var actionDeleteTintColor: UIColor { return UIColor.brownishRed }
-    var actionEditTintColor: UIColor { return UIColor.gunmetal }
-    var actionMergeTintColor: UIColor { return UIColor.gunmetal }
-    var actionDividerColor: UIColor { return UIColor.platinum }
-    
-    // MARK: - UnarchiveNodeStyle
-    var unarchiveButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular)}
-    var unarchiveButtonColor: UIColor { return UIColor.viridian }
-    var unarchiveDividerColor: UIColor { return UIColor.platinum }
-    
-    // MARK: - FutureNodeStyle
-    var presentFutureQuoteFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .medium) }
-    var presentFutureQuoteColor: UIColor { return UIColor.gunmetal }
-    var presentFutureAuthorFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .demiBold) }
-    var presentFutureAuthorColor: UIColor { return UIColor.gunmetal }
-    var presentFutureShareFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var presentFutureShareTintColor: UIColor { return UIColor.gunmetal }
-    var presentFutureShareTintHighlightedColor: UIColor { return UIColor.brownishRed }
-    var presentFutureShareBackgroundColor: UIColor { return UIColor.white }
     
     // MARK: - HabitNegativeNodeStyle
     var habitNegativeDescriptionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }

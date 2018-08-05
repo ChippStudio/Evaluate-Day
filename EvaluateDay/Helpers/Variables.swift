@@ -36,7 +36,7 @@ let cardsLimit: Int = 3
 let pastDaysLimit: Int = 3
 
 // MARK: - Cards
-let cardInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 0.0)
+let cardInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
 
 // MARK: - Demo Locations
 let dayLocations: [(longitude: Double, latitude: Double, area: String, locality: String, country: String, name: String)] = [

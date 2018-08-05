@@ -47,8 +47,6 @@
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
 		B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */; };
-		B53E5F532056AB5900B50B60 /* CalendarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F522056AB5900B50B60 /* CalendarNode.swift */; };
-		B53E5F552056AE2900B50B60 /* CalendarDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F542056AE2900B50B60 /* CalendarDateNode.swift */; };
 		B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */; };
 		B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */; };
 		B5535AEC1FEFF7A500D2AE25 /* Store+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */; };
@@ -313,7 +311,6 @@
 		B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D854EA1FD06C8000BB4E14 /* SelectCardList.storyboard */; };
 		B5D854ED1FD06CA700BB4E14 /* SelectCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854EC1FD06CA700BB4E14 /* SelectCardListViewController.swift */; };
 		B5D854EF1FD07B8400BB4E14 /* TimeBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854EE1FD07B8300BB4E14 /* TimeBottomViewController.swift */; };
-		B5D9A845205AD57B00F84091 /* FutureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A844205AD57B00F84091 /* FutureNode.swift */; };
 		B5D9A847205BBABB00F84091 /* ActivityUserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */; };
 		B5D9A84A205BBB4300F84091 /* ActivityUserSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A849205BBB4300F84091 /* ActivityUserSection.swift */; };
 		B5D9A84C205BC43600F84091 /* UserInformationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9A84B205BC43600F84091 /* UserInformationNode.swift */; };
@@ -437,8 +434,6 @@
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkActivityControllerTheme.swift; sourceTree = "<group>"; };
-		B53E5F522056AB5900B50B60 /* CalendarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNode.swift; sourceTree = "<group>"; };
-		B53E5F542056AE2900B50B60 /* CalendarDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateNode.swift; sourceTree = "<group>"; };
 		B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CriterionHundredCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Enums.swift"; sourceTree = "<group>"; };
@@ -713,7 +708,6 @@
 		B5D854EA1FD06C8000BB4E14 /* SelectCardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectCardList.storyboard; sourceTree = "<group>"; };
 		B5D854EC1FD06CA700BB4E14 /* SelectCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCardListViewController.swift; sourceTree = "<group>"; };
 		B5D854EE1FD07B8300BB4E14 /* TimeBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBottomViewController.swift; sourceTree = "<group>"; };
-		B5D9A844205AD57B00F84091 /* FutureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureNode.swift; sourceTree = "<group>"; };
 		B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityUserObject.swift; sourceTree = "<group>"; };
 		B5D9A849205BBB4300F84091 /* ActivityUserSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityUserSection.swift; sourceTree = "<group>"; };
 		B5D9A84B205BC43600F84091 /* UserInformationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationNode.swift; sourceTree = "<group>"; };
@@ -1529,9 +1523,6 @@
 				B584E0DE1FE2A5FB008093D5 /* WelcomeLastSlideNode.swift */,
 				B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */,
 				B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */,
-				B53E5F522056AB5900B50B60 /* CalendarNode.swift */,
-				B53E5F542056AE2900B50B60 /* CalendarDateNode.swift */,
-				B5D9A844205AD57B00F84091 /* FutureNode.swift */,
 				B5D9A84B205BC43600F84091 /* UserInformationNode.swift */,
 				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
 			);
@@ -2193,8 +2184,6 @@
 				B59318351FFAD816000D8FFE /* CriterionHundredMergeSection.swift in Sources */,
 				B5257D3F1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift in Sources */,
 				B5E7721E1FA07E59002FA03F /* Source.swift in Sources */,
-				B53E5F532056AB5900B50B60 /* CalendarNode.swift in Sources */,
-				B5D9A845205AD57B00F84091 /* FutureNode.swift in Sources */,
 				B5B27E9B1F9DC54000CB9121 /* NewCardViewController.swift in Sources */,
 				B587D6BF1FB6D5E1006D62C1 /* Colors.swift in Sources */,
 				B5F597761FBDA1AB0098A071 /* AnalyticsStatisticNode.swift in Sources */,
@@ -2322,7 +2311,6 @@
 				B5FD38F41FDEC0130071B1F0 /* AnalyticsBarChartShareView.swift in Sources */,
 				B5CA2D591FB43A9300547EC8 /* LightAnalyticalTheme.swift in Sources */,
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
-				B53E5F552056AE2900B50B60 /* CalendarDateNode.swift in Sources */,
 				B5BD3B492009ED660075C75F /* LightMapControllerTheme.swift in Sources */,
 				B55D326E2074F67300BD1E75 /* OrangePasscodeControllerTheme.swift in Sources */,
 				B5C757261F9DC9890032199E /* WelcomeViewController.swift in Sources */,

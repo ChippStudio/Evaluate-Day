@@ -232,55 +232,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.present(controller, animated: true, completion: nil)
     }
     
-    func shareAction() {
-        
-        let inView = CalendarShareView(message: Localizations.calendar.empty.futureQuote.text, author: Localizations.calendar.empty.futureQuote.author)
-        
-        // Share Image
-        let sv = ShareView(view: inView)
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        
-        var items = [Any]()
-        if let im = sv.snapshot {
-            items.append(im)
-        }
-        
-        sv.removeFromSuperview()
-        
-        // Make universal Branch Link
-        let linkObject = BranchUniversalObject(canonicalIdentifier: "calendarShare")
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
-        
-        let linkProperties = BranchLinkProperties()
-        linkProperties.feature = "Quote Share"
-        linkProperties.channel = "Calendar"
-        
-        linkObject.getShortUrl(with: linkProperties) { (link, error) in
-            if error != nil && link == nil {
-                print(error!.localizedDescription)
-            } else {
-                items.append(link!)
-            }
-            
-            let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            if self.traitCollection.userInterfaceIdiom == .pad {
-                shareActivity.modalPresentationStyle = .popover
-                let indexPath = IndexPath(row: 0, section: 1)
-                let node = self.collectionNode.nodeForItem(at: indexPath) as! FutureNode
-                shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                shareActivity.popoverPresentationController?.sourceView = node.view
-            }
-            sendEvent(.shareFromCalendar, withProperties: nil)
-            self.present(shareActivity, animated: true, completion: nil)
-        }
-    }
-    
     func scrollToCard(cardID: String) {
         for (i, c) in self.cards.enumerated() {
             if c.id == cardID {

@@ -22,7 +22,7 @@ protocol EvaluableSection {
     var shareHandler: ((_ indexPath: IndexPath, _ bcard: Card, _ items: [Any]) -> Void)? { get set }
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
-protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, CalendarDateNodeStyle, ActionNodeStyle, UnarchiveNodeStyle, FutureNodeStyle, HabitNegativeNodeStyle { }
+protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, HabitNegativeNodeStyle { }
 
 // MARK: - Analytical
 protocol AnalyticalSection {
