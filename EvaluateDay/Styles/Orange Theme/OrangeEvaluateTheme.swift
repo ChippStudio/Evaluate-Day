@@ -87,9 +87,12 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var checkInActionSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - PhraseEvaluateNodeStyle
-    var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }
     var phraseEvaluateTextColor: UIColor { return UIColor.paleGrey }
-    var phraseEvaluateTintColor: UIColor { return UIColor.paleGrey }
+    var phraseEvaluateButtonColor: UIColor { return UIColor.paleGrey }
+    var phraseEvaluateButtonTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var phraseEvaluateDateColor: UIColor { return UIColor.paleGrey }
+    var phraseEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CounterEvaluateNodeStyle
     var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }

@@ -87,9 +87,12 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var checkInActionSeparatorColor: UIColor { return UIColor.lightGray }
     
     // MARK: - PhraseEvaluateNodeStyle
-    var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }
     var phraseEvaluateTextColor: UIColor { return UIColor.white }
-    var phraseEvaluateTintColor: UIColor { return UIColor.white }
+    var phraseEvaluateButtonColor: UIColor { return UIColor.white }
+    var phraseEvaluateButtonTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var phraseEvaluateDateColor: UIColor { return UIColor.white }
+    var phraseEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CounterEvaluateNodeStyle
     var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }

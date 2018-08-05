@@ -12,28 +12,35 @@ import AsyncDisplayKit
 protocol PhraseEvaluateNodeStyle {
     var phraseEvaluateTextFont: UIFont { get }
     var phraseEvaluateTextColor: UIColor { get }
-    var phraseEvaluateTintColor: UIColor { get }
+    var phraseEvaluateButtonColor: UIColor { get }
+    var phraseEvaluateButtonTextFont: UIFont { get }
+    var phraseEvaluateDateColor: UIColor { get }
+    var phraseEvaluateDateFont: UIFont { get }
 }
 
 class PhraseEvaluateNode: ASCellNode {
     
     // MARK: - UI
     var text = ASTextNode()
+    var date = ASTextNode()
     var editButton = ASButtonNode()
     var editButtonCover = ASDisplayNode()
     
     // MARK: - Init
-    init(text: String, style: PhraseEvaluateNodeStyle) {
+    init(text: String, date: Date, style: PhraseEvaluateNodeStyle) {
         super.init()
         
-        self.editButtonCover.borderColor = style.phraseEvaluateTintColor.cgColor
+        self.editButtonCover.borderColor = style.phraseEvaluateButtonColor.cgColor
         self.editButtonCover.borderWidth = 1.0
         
-        self.editButton.setImage(#imageLiteral(resourceName: "edit").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.editButton.imageNode.contentMode = .scaleAspectFit
-        self.editButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.phraseEvaluateTintColor)
+        self.editButton.setAttributedTitle(NSAttributedString(string: Localizations.general.edit, attributes: [NSAttributedStringKey.font: style.phraseEvaluateButtonTextFont, NSAttributedStringKey.foregroundColor: style.phraseEvaluateButtonColor]), for: .normal)
         
         self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.phraseEvaluateTextFont, NSAttributedStringKey.foregroundColor: style.phraseEvaluateTextColor])
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        self.date.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.phraseEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.phraseEvaluateDateColor])
         
         self.automaticallyManagesSubnodes = true
     }
@@ -41,20 +48,24 @@ class PhraseEvaluateNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.editButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
-        self.editButtonCover.cornerRadius = 25.0
+        self.editButtonCover.cornerRadius = 10.0
+        let buttonInsets = UIEdgeInsets(top: 7.0, left: 40.0, bottom: 7.0, right: 40.0)
+        let buttonInset = ASInsetLayoutSpec(insets: buttonInsets, child: self.editButton)
         
-        let edit = ASBackgroundLayoutSpec(child: self.editButton, background: self.editButtonCover)
+        let edit = ASBackgroundLayoutSpec(child: buttonInset, background: self.editButtonCover)
         
         self.text.style.flexShrink = 1.0
         
-        let cell = ASStackLayoutSpec.horizontal()
-        cell.alignItems = .center
-        cell.justifyContent = .spaceBetween
-        cell.spacing = 10.0
-        cell.children = [self.text, edit]
+        let editAndDate = ASStackLayoutSpec.horizontal()
+        editAndDate.justifyContent = .spaceBetween
+        editAndDate.alignItems = .end
+        editAndDate.children = [edit, self.date]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 50.0, bottom: 10.0, right: 20.0)
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 10.0
+        cell.children = [self.text, editAndDate]
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 20.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
