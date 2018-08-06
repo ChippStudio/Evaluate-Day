@@ -237,7 +237,7 @@ class JournalNode: ASCellNode, CardNode {
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.new = JournalNewEntryActionNode(date: date, style: style)
         for (i, entry) in entries.enumerated() {
-            let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, style: style)
+            let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true, style: style)
             self.entries.append(newEntry)
         }
         

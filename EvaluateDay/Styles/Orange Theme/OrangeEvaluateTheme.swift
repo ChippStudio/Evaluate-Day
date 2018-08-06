@@ -96,15 +96,15 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var phraseEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CounterEvaluateNodeStyle
-    var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }
+    var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .demiBold) }
     var counterEvaluateCounterColor: UIColor { return UIColor.paleGrey }
-    var counterEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var counterEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium) }
     var counterEvaluateSumColor: UIColor { return UIColor.paleGrey }
     var counterEvaluatePlusColor: UIColor { return UIColor.darkBlueGreen }
     var counterEvaluatePlusHighlightedColor: UIColor { return UIColor.paleGrey }
     var counterEvaluateMinusColor: UIColor { return UIColor.grapePurple }
     var counterEvaluateMinusHighlightedColor: UIColor { return UIColor.paleGrey }
-    var counterEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var counterEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var counterEvaluateCustomValueColor: UIColor { return UIColor.paleGrey }
     var counterEvaluateCustomValueHighlightedColor: UIColor { return UIColor.grapePurple }
     var counterEvaluateDateColor: UIColor { return UIColor.paleGrey }
@@ -166,6 +166,7 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var journalNodeTextColor: UIColor { return UIColor.paleGrey }
     var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var journalNodeMetadataColor: UIColor { return UIColor.paleGrey }
+    var journalNodeTextCoverColor: UIColor { return UIColor.pumpkin }
     
     // MARK: - UpdateNodeStyle
     var updateTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

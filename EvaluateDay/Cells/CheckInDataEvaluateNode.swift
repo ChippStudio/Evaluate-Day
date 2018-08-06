@@ -82,7 +82,7 @@ class CheckInDataEvaluateNode: ASCellNode {
         cell.spacing = 10.0
         cell.children = [address, coordinateStack]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 20.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         if self.button != nil {

@@ -165,6 +165,7 @@ struct LightEvaluateTheme: EvaluableStyle {
     var journalNodeTextColor: UIColor { return UIColor.gunmetal }
     var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var journalNodeMetadataColor: UIColor { return UIColor.gunmetal }
+    var journalNodeTextCoverColor: UIColor { return UIColor.white }
     
     // MARK: - UpdateNodeStyle
     var updateTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
