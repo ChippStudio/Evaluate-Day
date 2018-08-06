@@ -43,6 +43,8 @@ struct LightEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInActionCheckInButtonColor: UIColor { return UIColor.viridian }
     var checkInActionCheckInButtonHighlightColor: UIColor { return UIColor.gunmetal }
     var checkInActionSeparatorColor: UIColor { return UIColor.gunmetal }
+    var checkInActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionDateColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - CheckInPermissionNodeStyle
     var checkInPermissionDescriptionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
@@ -50,6 +52,8 @@ struct LightEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var checkInPermissionButtonColor: UIColor { return UIColor.viridian }
     var checkInPermissionButtonHighlightColor: UIColor { return UIColor.gunmetal }
+    var checkInPermissionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionDateColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - CheckInDataEvaluateNodeStyle
     var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
@@ -58,7 +62,7 @@ struct LightEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInDataOtherAddressColor: UIColor { return UIColor.gunmetal }
     var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
     var checkInDataCoordinatesColor: UIColor { return UIColor.gunmetal }
-    var checkInDataMapTintColor: UIColor { return UIColor.gunmetal }
+    var checkInDataSeparatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - WeatherNodeStyle
     var weatherNodeTintColor: UIColor { return UIColor.gunmetal }

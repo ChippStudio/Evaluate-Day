@@ -78,7 +78,7 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
         
         return {
-            let node = CheckInNode(title: title, subtitle: subtitle, image: image, datas: datas, permissions: permissions, style: style)
+            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, style: style)
                 node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -282,7 +282,7 @@ class CheckInNode: ASCellNode, CardNode {
     var permission: CheckInPermissionNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
@@ -292,9 +292,9 @@ class CheckInNode: ASCellNode, CardNode {
         }
         
         if permissions {
-            self.permission = CheckInPermissionNode(style: style)
+            self.permission = CheckInPermissionNode(date: date, style: style)
         } else {
-            self.checkin = CheckInActionNode(style: style)
+            self.checkin = CheckInActionNode(date: date, style: style)
         }
         
         self.automaticallyManagesSubnodes = true

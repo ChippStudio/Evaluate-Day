@@ -17,6 +17,8 @@ protocol CheckInActionNodeStyle {
     var checkInActionCheckInButtonColor: UIColor { get }
     var checkInActionCheckInButtonHighlightColor: UIColor { get }
     var checkInActionSeparatorColor: UIColor { get }
+    var checkInActionDateFont: UIFont { get }
+    var checkInActionDateColor: UIColor { get }
 }
 
 class CheckInActionNode: ASCellNode {
@@ -24,9 +26,10 @@ class CheckInActionNode: ASCellNode {
     var mapButton = ASButtonNode()
     var checkInButton = ASButtonNode()
     var separatorNode = ASDisplayNode()
+    var currentDate = ASTextNode()
     
     // MARK: - Init
-    init(style: CheckInActionNodeStyle) {
+    init(date: Date, style: CheckInActionNodeStyle) {
         super.init()
         
         let checkInTitleString = NSAttributedString(string: Localizations.evaluate.checkin.quickCheckin, attributes: [NSAttributedStringKey.font: style.checkInActionCheckInButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionCheckInButtonColor])
@@ -43,6 +46,11 @@ class CheckInActionNode: ASCellNode {
         
         self.separatorNode.backgroundColor = style.checkInActionSeparatorColor
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.checkInActionDateFont, NSAttributedStringKey.foregroundColor: style.checkInActionDateColor])
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -53,11 +61,15 @@ class CheckInActionNode: ASCellNode {
         let separatorInsets = UIEdgeInsets(top: -10.0, left: 0.0, bottom: -10.0, right: 0.0)
         let separatorInset = ASInsetLayoutSpec(insets: separatorInsets, child: self.separatorNode)
         
-        let cell = ASStackLayoutSpec.horizontal()
-        cell.justifyContent = .spaceAround
-        cell.children = [self.checkInButton, separatorInset, self.mapButton]
+        let buttons = ASStackLayoutSpec.horizontal()
+        buttons.justifyContent = .spaceAround
+        buttons.children = [self.checkInButton, separatorInset, self.mapButton]
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 50.0, bottom: 20.0, right: 10.0)
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 15
+        cell.children = [self.currentDate, buttons]
+        
+        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

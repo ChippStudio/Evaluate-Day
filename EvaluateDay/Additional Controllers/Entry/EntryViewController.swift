@@ -182,8 +182,9 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             }
             
             if Permissions.defaults.locationStatus == .authorizedWhenInUse {
+                let date = self.textValue.created
                 return {
-                    let node = CheckInActionNode(style: style)
+                    let node = CheckInActionNode(date: date, style: style)
                     if !self.lock {
                         node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
                         node.checkInButton.addTarget(self, action: #selector(self.quickCheckIn(sender:)), forControlEvents: .touchUpInside)
@@ -192,8 +193,9 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                     return node
                 }
             } else {
+                let date = self.textValue.created
                 return {
-                    let node = CheckInPermissionNode(style: style)
+                    let node = CheckInPermissionNode(date: date, style: style)
                     if !self.lock {
                         node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
                         node.permissionButton.addTarget(self, action: #selector(self.allowLocation(sender:)), forControlEvents: .touchUpInside)

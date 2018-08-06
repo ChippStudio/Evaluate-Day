@@ -42,6 +42,8 @@ struct BlackEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInActionCheckInButtonColor: UIColor { return UIColor.pewterBlue }
     var checkInActionCheckInButtonHighlightColor: UIColor { return UIColor.white }
     var checkInActionSeparatorColor: UIColor { return UIColor.white }
+    var checkInActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionDateColor: UIColor { return UIColor.white }
     
     // MARK: - CheckInPermissionNodeStyle
     var checkInPermissionDescriptionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
@@ -49,6 +51,8 @@ struct BlackEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var checkInPermissionButtonColor: UIColor { return UIColor.pewterBlue }
     var checkInPermissionButtonHighlightColor: UIColor { return UIColor.white }
+    var checkInPermissionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionDateColor: UIColor { return UIColor.white }
     
     // MARK: - CheckInDataEvaluateNodeStyle
     var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
@@ -58,7 +62,7 @@ struct BlackEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
     var checkInDataCoordinatesColor: UIColor { return UIColor.white }
     var checkInDataDotColor: UIColor { return UIColor.pewterBlue }
-    var checkInDataMapTintColor: UIColor { return UIColor.white }
+    var checkInDataSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - WeatherNodeStyle
     var weatherNodeTintColor: UIColor { return UIColor.white }

@@ -15,6 +15,8 @@ protocol CheckInPermissionNodeStyle {
     var checkInPermissionButtonFont: UIFont { get }
     var checkInPermissionButtonColor: UIColor { get }
     var checkInPermissionButtonHighlightColor: UIColor { get }
+    var checkInPermissionDateFont: UIFont { get }
+    var checkInPermissionDateColor: UIColor { get }
 }
 
 class CheckInPermissionNode: ASCellNode {
@@ -24,9 +26,10 @@ class CheckInPermissionNode: ASCellNode {
     var permissionCover = ASDisplayNode()
     var mapButton = ASButtonNode()
     var mapButtonCover = ASDisplayNode()
+    var currentDate = ASTextNode()
     
     // MARK: - Init
-    init(style: CheckInPermissionNodeStyle) {
+    init(date: Date, style: CheckInPermissionNodeStyle) {
         super.init()
         
         let paragraph = NSMutableParagraphStyle()
@@ -53,6 +56,11 @@ class CheckInPermissionNode: ASCellNode {
         self.mapButtonCover.borderColor = style.checkInPermissionButtonColor.cgColor
         self.mapButtonCover.borderWidth = 1.0
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.checkInPermissionDateFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionDateColor])
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -73,8 +81,12 @@ class CheckInPermissionNode: ASCellNode {
         cellStack.spacing = 10.0
         cellStack.children = [self.descriptionNode, permission, map]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 50.0, bottom: 10.0, right: 10.0)
-        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cellStack)
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 10.0
+        cell.children = [self.currentDate, cellStack]
+        
+        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
     }

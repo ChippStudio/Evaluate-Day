@@ -65,7 +65,7 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
     var checkInDataCoordinatesColor: UIColor { return UIColor.white }
     var checkInDataDotColor: UIColor { return UIColor.pewterBlue }
-    var checkInDataMapTintColor: UIColor { return UIColor.white }
+    var checkInDataSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - CheckInPermissionNodeStyle
     var checkInPermissionDescriptionFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
@@ -73,15 +73,19 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var checkInPermissionButtonColor: UIColor { return UIColor.white }
     var checkInPermissionButtonHighlightColor: UIColor { return UIColor.salmon }
+    var checkInPermissionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionDateColor: UIColor { return UIColor.white }
     
     // MARK: - CheckInActionNodeStyle
-    var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var checkInActionMapButtonColor: UIColor { return UIColor.pewterBlue }
     var checkInActionMapButtonHighlightColor: UIColor { return UIColor.salmon }
-    var checkInActionCheckInButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionCheckInButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var checkInActionCheckInButtonColor: UIColor { return UIColor.pewterBlue }
     var checkInActionCheckInButtonHighlightColor: UIColor { return UIColor.salmon }
-    var checkInActionSeparatorColor: UIColor { return UIColor.lightGray }
+    var checkInActionSeparatorColor: UIColor { return UIColor.white }
+    var checkInActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionDateColor: UIColor { return UIColor.white }
     
     // MARK: - PhraseEvaluateNodeStyle
     var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }

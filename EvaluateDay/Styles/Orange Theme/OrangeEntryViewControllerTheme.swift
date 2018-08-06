@@ -42,6 +42,8 @@ struct OrangeEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInActionCheckInButtonColor: UIColor { return UIColor.darkBlueGreen }
     var checkInActionCheckInButtonHighlightColor: UIColor { return UIColor.paleGrey }
     var checkInActionSeparatorColor: UIColor { return UIColor.paleGrey }
+    var checkInActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionDateColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - CheckInPermissionNodeStyle
     var checkInPermissionDescriptionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
@@ -49,16 +51,18 @@ struct OrangeEntryViewControllerTheme: EntryViewControllerStyle {
     var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var checkInPermissionButtonColor: UIColor { return UIColor.darkBlueGreen }
     var checkInPermissionButtonHighlightColor: UIColor { return UIColor.paleGrey }
+    var checkInPermissionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionDateColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - CheckInDataEvaluateNodeStyle
-    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
+    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .bold) }
     var checkInDataStreetColor: UIColor { return UIColor.paleGrey }
-    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var checkInDataOtherAddressColor: UIColor { return UIColor.paleGrey }
-    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
+    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var checkInDataCoordinatesColor: UIColor { return UIColor.paleGrey }
     var checkInDataDotColor: UIColor { return UIColor.darkBlueGreen }
-    var checkInDataMapTintColor: UIColor { return UIColor.paleGrey }
+    var checkInDataSeparatorColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - WeatherNodeStyle
     var weatherNodeTintColor: UIColor { return UIColor.paleGrey }

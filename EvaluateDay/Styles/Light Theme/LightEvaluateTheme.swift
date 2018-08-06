@@ -58,29 +58,33 @@ struct LightEvaluateTheme: EvaluableStyle {
     var criterionThreeEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CheckInDataEvaluateNodeStyle
-    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
+    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .bold) }
     var checkInDataStreetColor: UIColor { return UIColor.gunmetal }
-    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var checkInDataOtherAddressColor: UIColor { return UIColor.gunmetal }
-    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
+    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var checkInDataCoordinatesColor: UIColor { return UIColor.gunmetal }
-    var checkInDataMapTintColor: UIColor { return UIColor.gunmetal }
+    var checkInDataSeparatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - CheckInPermissionNodeStyle
     var checkInPermissionDescriptionFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var checkInPermissionDescriptionColor: UIColor { return UIColor.gunmetal }
-    var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .bold) }
     var checkInPermissionButtonColor: UIColor { return UIColor.viridian }
     var checkInPermissionButtonHighlightColor: UIColor { return UIColor.brownishRed }
+    var checkInPermissionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInPermissionDateColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - CheckInActionNodeStyle
-    var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var checkInActionMapButtonColor: UIColor { return UIColor.viridian }
     var checkInActionMapButtonHighlightColor: UIColor { return UIColor.brownishRed }
-    var checkInActionCheckInButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionCheckInButtonFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var checkInActionCheckInButtonColor: UIColor { return UIColor.viridian }
     var checkInActionCheckInButtonHighlightColor: UIColor { return UIColor.brownishRed }
-    var checkInActionSeparatorColor: UIColor { return UIColor.lightGray }
+    var checkInActionSeparatorColor: UIColor { return UIColor.gunmetal }
+    var checkInActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInActionDateColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - PhraseEvaluateNodeStyle
     var phraseEvaluateTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }
