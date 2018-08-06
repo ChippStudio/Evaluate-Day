@@ -53,9 +53,17 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         
         let counterCard = self.card.data as! CounterCard
         var value: Double = 0.0
+        var previousValue: Double = 0.0
         var sumValue: Double?
         if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
             value = currentValue.value
+        }
+        
+        var components = DateComponents()
+        components.day = -1
+        let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+        if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).first {
+            previousValue = currentValue.value
         }
         if counterCard.isSum {
             sumValue = counterCard.startValue
@@ -65,7 +73,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
         
         return {
-            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, style: style)
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, style: style)
             node.visual(withStyle: style)
             OperationQueue.main.addOperation {
                 node.title.shareButton.view.tag = index
@@ -247,11 +255,11 @@ class CounterNode: ASCellNode, CardNode {
     var counter: CounterEvaluateNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, style: style)
+        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, style: style)
         
         self.automaticallyManagesSubnodes = true
     }

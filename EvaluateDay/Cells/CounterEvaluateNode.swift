@@ -21,6 +21,11 @@ protocol CounterEvaluateNodeStyle {
     var counterEvaluateCustomValueFont: UIFont { get }
     var counterEvaluateCustomValueColor: UIColor { get }
     var counterEvaluateCustomValueHighlightedColor: UIColor { get }
+    var counterEvaluateDateColor: UIColor { get }
+    var counterEvaluateDateFont: UIFont { get }
+    var counterEvaluatePreviousValueFont: UIFont { get }
+    var counterEvaluatePreviousValueColor: UIColor { get }
+    var counterEvaluateSeparatorColor: UIColor { get }
 }
 
 class CounterEvaluateNode: ASCellNode {
@@ -34,9 +39,13 @@ class CounterEvaluateNode: ASCellNode {
     var customValueButtonCover = ASDisplayNode()
     var plusCover = ASDisplayNode()
     var minusCover = ASDisplayNode()
+    var currentDate = ASTextNode()
+    var previousDate = ASTextNode()
+    var previousValue = ASTextNode()
+    var separator = ASDisplayNode()
     
     // MARK: - Init
-    init(value: Double, sumValue: Double?, style: CounterEvaluateNodeStyle) {
+    init(value: Double, sumValue: Double?, previousValue: Double, date: Date, style: CounterEvaluateNodeStyle) {
         super.init()
         
         // Plus and minus buttons and covers
@@ -73,12 +82,29 @@ class CounterEvaluateNode: ASCellNode {
         if sumValue != nil {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
-            self.sumText?.attributedText = NSAttributedString(string: Localizations.evaluate.counter.sum(value1: sumString), attributes: [NSAttributedStringKey.font: style.counterEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateSumColor])
+            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: style.counterEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateSumColor])
         }
         
         // counter
         let valueString = String(format: "%.2f", value)
         self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: style.counterEvaluateCounterFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateCounterColor])
+        
+        let previousValueString = String(format: "%.2f", previousValue)
+        self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: style.counterEvaluatePreviousValueFont, NSAttributedStringKey.foregroundColor: style.counterEvaluatePreviousValueColor])
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.counterEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateDateColor])
+        
+        var components = DateComponents()
+        components.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: components, to: date)!
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: style.counterEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateDateColor])
+        
+        self.separator.backgroundColor = style.counterEvaluateSeparatorColor
+        self.separator.cornerRadius = 2.0
         
         self.automaticallyManagesSubnodes = true
     }
@@ -107,15 +133,36 @@ class CounterEvaluateNode: ASCellNode {
         buttons.spacing = 10.0
         buttons.children = [plusButton, minusButton, customButton]
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 5.0
-        cell.children = [self.counter, buttons]
+        let currentStack = ASStackLayoutSpec.vertical()
+        currentStack.alignItems = .end
+        currentStack.spacing = 10.0
+        currentStack.children = [self.counter, self.currentDate]
+        
+        let previousStack = ASStackLayoutSpec.vertical()
+        previousStack.alignItems = .end
+        previousStack.spacing = 10.0
+        previousStack.children = [self.previousValue, self.previousDate]
+        
+        self.separator.style.preferredSize = CGSize(width: 4.0, height: 80.0)
+        
+        let valuesStack = ASStackLayoutSpec.horizontal()
+        valuesStack.spacing = 20.0
+        valuesStack.alignItems = .end
+        valuesStack.flexWrap = .wrap
+        valuesStack.children = [currentStack, self.separator, previousStack]
         
         if self.sumText != nil {
-            cell.children?.insert(self.sumText!, at: 1)
+            valuesStack.children?.append(self.sumText!)
         }
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 50.0, bottom: 10.0, right: 25.0)
+        let valueInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 0.0)
+        let valueInset = ASInsetLayoutSpec(insets: valueInsets, child: valuesStack)
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 5.0
+        cell.children = [valueInset, buttons]
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

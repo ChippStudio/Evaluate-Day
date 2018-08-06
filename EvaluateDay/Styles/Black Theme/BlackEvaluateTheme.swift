@@ -103,6 +103,11 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var counterEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var counterEvaluateCustomValueColor: UIColor { return UIColor.white }
     var counterEvaluateCustomValueHighlightedColor: UIColor { return UIColor.salmon }
+    var counterEvaluateDateColor: UIColor { return UIColor.white }
+    var counterEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var counterEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium)}
+    var counterEvaluatePreviousValueColor: UIColor { return UIColor.white }
+    var counterEvaluateSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - HabitEvaluateNodeStyle
     var evaluateHabitCounterFont: UIFont { return UIFont.avenirNext(size: 46.0, weight: .regular) }

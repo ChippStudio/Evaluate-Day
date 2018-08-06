@@ -91,17 +91,22 @@ struct LightEvaluateTheme: EvaluableStyle {
     var phraseEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CounterEvaluateNodeStyle
-    var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }
+    var counterEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .demiBold) }
     var counterEvaluateCounterColor: UIColor { return UIColor.gunmetal }
-    var counterEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var counterEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium) }
     var counterEvaluateSumColor: UIColor { return UIColor.gunmetal }
     var counterEvaluatePlusColor: UIColor { return UIColor.viridian }
     var counterEvaluatePlusHighlightedColor: UIColor { return UIColor.gunmetal }
     var counterEvaluateMinusColor: UIColor { return UIColor.brownishRed }
     var counterEvaluateMinusHighlightedColor: UIColor { return UIColor.gunmetal }
-    var counterEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var counterEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var counterEvaluateCustomValueColor: UIColor { return UIColor.gunmetal }
     var counterEvaluateCustomValueHighlightedColor: UIColor { return UIColor.brownishRed }
+    var counterEvaluateDateColor: UIColor { return UIColor.gunmetal }
+    var counterEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var counterEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium)}
+    var counterEvaluatePreviousValueColor: UIColor { return UIColor.gunmetal }
+    var counterEvaluateSeparatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - HabitEvaluateNodeStyle
     var evaluateHabitCounterFont: UIFont { return UIFont.avenirNext(size: 46.0, weight: .regular) }
@@ -130,7 +135,7 @@ struct LightEvaluateTheme: EvaluableStyle {
     var listItemTextColor: UIColor { return UIColor.gunmetal }
     var listItemTintColor: UIColor { return UIColor.gunmetal }
     
-    // MARK: - goalEvaluateNodeStyle
+    // MARK: - GoalEvaluateNodeStyle
     var goalEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }
     var goalEvaluateCounterColor: UIColor { return UIColor.gunmetal }
     var goalEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
