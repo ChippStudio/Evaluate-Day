@@ -19,6 +19,6 @@ struct DarkTopControllerTheme: TopViewControllerStyle {
     var titleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var textColor: UIColor { return UIColor.white }
     var textFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var buttonsFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var buttonsFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }
     var buttonsColor: UIColor { return UIColor.white }
 }

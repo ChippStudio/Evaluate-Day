@@ -62,10 +62,10 @@ class PhraseEvaluateNode: ASCellNode {
         editAndDate.children = [edit, self.date]
         
         let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 10.0
+        cell.spacing = 30.0
         cell.children = [self.text, editAndDate]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 20.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 40.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

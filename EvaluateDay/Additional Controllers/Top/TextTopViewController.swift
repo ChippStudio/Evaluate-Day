@@ -25,12 +25,17 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     // MARK: - UI
     var textView: UITextView = UITextView()
     var titleLabel: UILabel = UILabel()
+    var bottomView: UIView = UIView()
     
     // MARK: - Variable
     weak var delegate: TextTopViewControllerDelegate?
     
     var property: String = ""
     var onlyNumbers: Bool = false
+    
+    private var maxTextViewHeight: CGFloat = 100.0
+    
+//    private var heightConstraint
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -47,6 +52,7 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         self.textView.backgroundColor = style.topViewColor
         self.textView.textColor = style.textColor
         self.textView.font = style.textFont
+        self.textView.tintColor = style.textColor
         self.textView.delegate = self
         self.textView.inputAccessoryView = self.viewForTextView()
         if self.onlyNumbers {
@@ -74,6 +80,8 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
             make.height.equalTo(100.0)
         }
         
+        // Keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +93,12 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         super.viewWillAppear(animated)
         
         self.textView.becomeFirstResponder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.textViewDidChange(self.textView)
     }
     
     // MARK: - UITextViewDelegate
@@ -114,6 +128,25 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         return false
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        // Control text view height
+        let rext = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        var newHeight: CGFloat = 100.0
+        if rext.height > newHeight && rext.height < self.maxTextViewHeight {
+            newHeight = rext.height
+        } else if rext.height > self.maxTextViewHeight {
+            newHeight = self.maxTextViewHeight
+        }
+        
+        self.textView.snp.updateConstraints { (make) in
+            make.height.equalTo(newHeight)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     // MARK: - Actions
     @objc func cancelButtonAction(sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -122,6 +155,13 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     @objc func saveButtonAction(sender: UIButton) {
         self.delegate?.textTopController?(controller: self, willCloseWith: self.textView.text, forProperty: self.property)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Keyboard actions
+    @objc func keyboardWillShow(sender: Notification) {
+        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
+        
+        self.maxTextViewHeight = self.view.frame.size.height - height - 150
     }
     
     // MARK: - Private func

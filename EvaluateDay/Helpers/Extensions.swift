@@ -153,8 +153,8 @@ extension ASCellNode {
         self.cornerRadius = 10.0
         
         self.shadowColor = style.cardShadowColor.cgColor
-        self.shadowRadius = 2.0
-        self.shadowOpacity = 0.4
+        self.shadowRadius = 4.0
+        self.shadowOpacity = 0.2
         self.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.clipsToBounds = false
     }

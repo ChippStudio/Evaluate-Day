@@ -115,10 +115,10 @@ class CriterionEvaluateNode: ASCellNode {
         dataStack.children = [currentValueStack, self.separator, previousValueStack, persentStack]
         
         let cellStack = ASStackLayoutSpec.vertical()
-        cellStack.spacing = 20.0
+        cellStack.spacing = 40.0
         cellStack.children = [dataStack, self.sliderNode]
         
-        let sliderInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 20.0)
+        let sliderInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 40.0, right: 20.0)
         let sliderInset = ASInsetLayoutSpec(insets: sliderInsets, child: cellStack)
         
         return sliderInset

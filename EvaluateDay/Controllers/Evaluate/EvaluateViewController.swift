@@ -83,6 +83,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Force Touch
         if self.traitCollection.forceTouchCapability == .available {
             self.registerForPreviewing(with: self, sourceView: self.collectionNode.view)
+        } else {
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction(sender:)))
+            longPress.minimumPressDuration = 0.5
+            self.view.addGestureRecognizer(longPress)
         }
     }
 
@@ -112,6 +116,13 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 print("ERROR - \(error.localizedDescription)")
             }
         })
+        
+        // control date
+        let currentDate = Date()
+        let components = Calendar.current.dateComponents([.day], from: self.date, to: currentDate)
+        if components.day != 0 {
+            self.date = currentDate
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -206,6 +217,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         }
         
         previewingContext.sourceRect = targetCell.frame
+        
         if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
             let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             settings.card = section.card
@@ -238,6 +250,19 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 let indexPath = IndexPath(row: 0, section: i)
                 self.collectionNode.scrollToItem(at: indexPath, at: .top, animated: true)
                 break
+            }
+        }
+    }
+    @objc func longPressAction(sender: UILongPressGestureRecognizer) {
+        guard let indexPath = self.collectionNode.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
+            return
+        }
+        
+        if self.navigationController?.topViewController is EvaluateViewController {
+            if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
+                let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
+                settings.card = section.card
+                self.navigationController?.pushViewController(settings, animated: true)
             }
         }
     }

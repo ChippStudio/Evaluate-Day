@@ -39,7 +39,7 @@ class TitleNode: ASCellNode {
         self.subtitle.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: style.titleSubtitleFont, NSAttributedStringKey.foregroundColor: style.titleSubtitleColor])
         self.previewImage.image = image
         self.previewImage.contentMode = .scaleAspectFit
-        self.previewImage.alpha = 0.2
+        self.previewImage.alpha = 0.5
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.titleShareTintColor)

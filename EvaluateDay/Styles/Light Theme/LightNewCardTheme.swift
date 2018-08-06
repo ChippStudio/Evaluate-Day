@@ -19,7 +19,7 @@ struct LightNewCardTheme: NewCardStyle {
     // Card source node
     var sourceTitleColor: UIColor { return UIColor.gunmetal }
     var sourceSubtitleColor: UIColor { return UIColor.viridian }
-    var sourceTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .demiBold) }
+    var sourceTitleFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .bold) }
     var sourceSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var sourceUntouchableColor: UIColor { return UIColor.lightGray }
 }

@@ -47,14 +47,19 @@ class SourceNode: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        let textStack = ASStackLayoutSpec.vertical()
-        textStack.children = [self.title, self.subtitle]
-        textStack.style.flexShrink = 1.0
+        let titleStack = ASStackLayoutSpec.horizontal()
+        titleStack.spacing = -10
+        titleStack.alignItems = .center
+        titleStack.style.flexShrink = 1.0
+        titleStack.children = [self.imageNode, self.title]
         
-        self.imageNode.style.preferredSize = CGSize(width: 40.0, height: 40.0)
-        let cellStack = ASStackLayoutSpec.horizontal()
-        cellStack.spacing = 10.0
-        cellStack.children = [self.imageNode, textStack]
+        self.imageNode.style.preferredSize = CGSize(width: 60.0, height: 60.0)
+        
+        let subtitleInsets = UIEdgeInsets(top: -15.0, left: 40.0, bottom: 20.0, right: 10.0)
+        let subtitleInset = ASInsetLayoutSpec(insets: subtitleInsets, child: self.subtitle)
+        
+        let cellStack = ASStackLayoutSpec.vertical()
+        cellStack.children = [titleStack, subtitleInset]
         cellStack.style.flexShrink = 1.0
         
         let fullCellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
