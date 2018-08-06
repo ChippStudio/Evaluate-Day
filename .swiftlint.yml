@@ -13,6 +13,8 @@ disabled_rules: # rule identifiers to exclude from running
     - discarded_notification_center_observer
     - compiler_protocol_init
     - empty_enum_arguments
+    - class_delegate_protocol
+    - weak_delegate
 excluded:
     - Pods
     - EvaluateDay/Localization/LaurineGenerator.swift

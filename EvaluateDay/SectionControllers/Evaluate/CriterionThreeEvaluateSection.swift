@@ -53,13 +53,22 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
         
         let criterionCard = self.card.data as! CriterionThreeCard
         var value: Double?
+        var previousValue: Double?
         let isPositive = criterionCard.positive
         if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
             value = saveValue.value
         }
         
+        var components = DateComponents()
+        components.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+        if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).sorted(byKeyPath: "edited", ascending: false).first {
+            previousValue = saveValue.value
+        }
+        
         return {
-            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, isPositive: isPositive, lock: lock, style: style)
+            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -177,11 +186,11 @@ class ThreeNode: ASCellNode, CardNode {
     var buttons: CriterionThreeEvaluateNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Double?, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.buttons = CriterionThreeEvaluateNode(value: current, lock: lock, positive: isPositive, style: style)
+        self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive, style: style)
         
         self.automaticallyManagesSubnodes = true
     }

@@ -88,6 +88,12 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             longPress.minimumPressDuration = 0.5
             self.view.addGestureRecognizer(longPress)
         }
+        
+        if UserDefaults.standard.bool(forKey: "demo") {
+            let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(makeCardSnapshot(sender:)))
+            tapGesture.numberOfTouchesRequired = 2
+            self.view.addGestureRecognizer(tapGesture)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -212,7 +218,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     // MARK: - UIViewControllerPreviewingDelegate
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = self.collectionNode.indexPathForItem(at: location), let targetCell = collectionNode.view.visibleCells.first(where: { $0.frame.contains(location) })else {
+        guard let indexPath = self.collectionNode.indexPathForItem(at: location), let targetCell = collectionNode.view.visibleCells.first(where: { $0.frame.contains(location) }) else {
             return nil
         }
         
@@ -315,5 +321,22 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 self.collectionNode.reloadData()
             })
         })
+    }
+    
+    @objc private func makeCardSnapshot(sender: UILongPressGestureRecognizer) {
+        guard let node = collectionNode.view.visibleCells.first(where: { $0.frame.contains(sender.location(in: self.collectionNode.view)) }) else {
+            print("Not the collection node")
+            return
+        }
+        
+        if let image = node.snapshot {
+            let shareActivity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            if self.traitCollection.userInterfaceIdiom == .pad {
+                shareActivity.modalPresentationStyle = .popover
+                shareActivity.popoverPresentationController?.sourceRect = node.frame
+                shareActivity.popoverPresentationController?.sourceView = node.contentView
+            }
+            self.present(shareActivity, animated: true, completion: nil)
+        }
     }
 }

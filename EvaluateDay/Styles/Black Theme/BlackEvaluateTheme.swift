@@ -51,6 +51,9 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var criterionThreeEvaluateNeutralColor: UIColor { return UIColor.booger }
     var criterionThreeEvaluateNegativeColor: UIColor { return UIColor.salmon }
     var criterionThreeEvaluateUnsetColor: UIColor { return UIColor.lightGray }
+    var criterionThreeEvaluateSeparatorColor: UIColor { return UIColor.white }
+    var criterionThreeEvaluateDateColor: UIColor { return UIColor.white }
+    var criterionThreeEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CheckInDataEvaluateNodeStyle
     var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }

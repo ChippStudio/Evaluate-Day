@@ -51,6 +51,9 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var criterionThreeEvaluateNeutralColor: UIColor { return UIColor.booger }
     var criterionThreeEvaluateNegativeColor: UIColor { return UIColor.grapePurple }
     var criterionThreeEvaluateUnsetColor: UIColor { return UIColor.white }
+    var criterionThreeEvaluateSeparatorColor: UIColor { return UIColor.paleGrey }
+    var criterionThreeEvaluateDateColor: UIColor { return UIColor.paleGrey }
+    var criterionThreeEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CheckInDataEvaluateNodeStyle
     var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
