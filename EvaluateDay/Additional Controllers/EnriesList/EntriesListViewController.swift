@@ -74,7 +74,6 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         
         return {
             let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, style: Themes.manager.evaluateStyle)
-            node.leftOffset = 10.0
             return node
         }
     }

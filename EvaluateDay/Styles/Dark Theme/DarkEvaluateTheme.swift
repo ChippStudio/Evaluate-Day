@@ -145,13 +145,15 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var goalEvaluateCustomValueHighlightedColor: UIColor { return UIColor.salmon }
     
     // MARK: - JournalNewEntryActionNodeStyle
-    var journalNewEntryActionButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var journalNewEntryActionButtonFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
     var journalNewEntryActionButtonColor: UIColor { return UIColor.white }
     var journalNewEntryActionButtonHighlightedColor: UIColor { return UIColor.salmon }
     var journalNewEntryActionTintColor: UIColor { return UIColor.white }
+    var journalNewEntryActionDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var journalNewEntryActionDateColor: UIColor { return UIColor.white }
     
     // MARK: - JournalEntryNodeStyle
-    var journalNodeTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var journalNodeTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var journalNodeTextColor: UIColor { return UIColor.white }
     var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var journalNodeMetadataColor: UIColor { return UIColor.white }
