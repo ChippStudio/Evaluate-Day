@@ -11,11 +11,14 @@ import AsyncDisplayKit
 
 protocol ColorEvaluateNodeStyle {
     var selectedColor: UIColor { get }
+    var selectedColorDateColor: UIColor { get }
+    var selectedColorDateFont: UIFont { get }
 }
 class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegate {
 
     // MARK: - UI
     var colorCollection: ASCollectionNode!
+    var currentDate = ASTextNode()
     
     // MARK: - Variable
     var didSelectColor: ((String) -> Void)?
@@ -25,7 +28,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
     private var colorStyle: ColorEvaluateNodeStyle
     
     // MARK: - Init
-    init(selectedColor: String, lock: Bool = false, style: ColorEvaluateNodeStyle) {
+    init(selectedColor: String, date: Date, lock: Bool = false, style: ColorEvaluateNodeStyle) {
         self.selectedColor = selectedColor
         self.colorStyle = style
         self.lock = lock
@@ -48,6 +51,11 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
             self.colorCollection.view.showsHorizontalScrollIndicator = false
         }
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.selectedColorDateFont, NSAttributedStringKey.foregroundColor: style.selectedColorDateColor])
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -59,10 +67,18 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         }
     }
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.colorCollection.style.preferredSize.height = 70.0
+        self.colorCollection.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 70.0)
         
-        let cellInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 10.0, right: 0.0)
-        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: colorCollection)
+        let dateInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 10.0)
+        let dateInset = ASInsetLayoutSpec(insets: dateInsets, child: self.currentDate)
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 15.0
+        cell.alignItems = .end
+        cell.children = [self.colorCollection, dateInset]
+        
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 30.0, right: 0.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
     }

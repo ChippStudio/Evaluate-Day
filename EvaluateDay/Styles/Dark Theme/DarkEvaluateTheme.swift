@@ -32,6 +32,8 @@ struct DarkEvaluateTheme: EvaluableStyle {
     
     // MARK: - Color Evaluate node
     var selectedColor: UIColor { return UIColor.salmon }
+    var selectedColorDateColor: UIColor { return UIColor.white }
+    var selectedColorDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CriterionEvaluateNodeStyle
     var criterionEvaluateMaximumTrackColor: UIColor { return UIColor.white }

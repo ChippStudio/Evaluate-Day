@@ -32,6 +32,8 @@ struct LightEvaluateTheme: EvaluableStyle {
     
     // MARK: - Color Evaluate node
     var selectedColor: UIColor { return UIColor.brownishRed }
+    var selectedColorDateColor: UIColor { return UIColor.gunmetal }
+    var selectedColorDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CriterionEvaluateNodeStyle
     var criterionEvaluateMaximumTrackColor: UIColor { return UIColor.gunmetal }

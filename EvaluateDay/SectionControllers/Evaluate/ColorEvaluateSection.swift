@@ -58,7 +58,7 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         }
         
         return {
-            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, lock: lock, style: style)
+            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, date: self.date, lock: lock, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -177,11 +177,11 @@ class ColorNode: ASCellNode, CardNode {
     var colors: ColorEvaluateNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, selectedColor: String, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, selectedColor: String, date: Date, lock: Bool, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.colors = ColorEvaluateNode(selectedColor: selectedColor, lock: lock, style: style)
+        self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock, style: style)
         
         self.automaticallyManagesSubnodes = true
     }

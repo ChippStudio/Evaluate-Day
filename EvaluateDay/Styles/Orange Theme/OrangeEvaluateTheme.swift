@@ -32,6 +32,8 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     
     // MARK: - Color Evaluate node
     var selectedColor: UIColor { return UIColor.white }
+    var selectedColorDateColor: UIColor { return UIColor.paleGrey }
+    var selectedColorDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     
     // MARK: - CriterionEvaluateNodeStyle
     var criterionEvaluateMaximumTrackColor: UIColor { return UIColor.paleGrey }
