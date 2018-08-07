@@ -54,6 +54,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         
         let goalCard = self.card.data as! GoalCard
         var value: Double = 0.0
+        var previousValue: Double = 0.0
         let goalValue = goalCard.goalValue
         var sumValue: Double?
         if let currentValue = goalCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
@@ -66,8 +67,16 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
         }
         
+        var components = DateComponents()
+        components.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+        if let currentValue = goalCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).first {
+            previousValue = currentValue.value
+        }
+        
         return {
-            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, goalValue: goalValue, sumValue: sumValue, style: style)
+            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -252,11 +261,11 @@ class GoalNode: ASCellNode, CardNode {
     var goal: GoalEvaluateNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, goalValue: Double, sumValue: Double?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.goal = GoalEvaluateNode(value: value, goalValue: goalValue, sumValue: sumValue, style: style)
+        self.goal = GoalEvaluateNode(value: value, previousValue: previousValue, date: date, goalValue: goalValue, sumValue: sumValue, style: style)
         
         self.automaticallyManagesSubnodes = true
     }

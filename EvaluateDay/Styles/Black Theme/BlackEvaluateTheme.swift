@@ -151,17 +151,24 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var listItemTintColor: UIColor { return UIColor.white }
     
     // MARK: - GoalEvaluateNodeStyle
-    var goalEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }
+    var goalEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .demiBold) }
     var goalEvaluateCounterColor: UIColor { return UIColor.white }
-    var goalEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var goalEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium) }
     var goalEvaluateSumColor: UIColor { return UIColor.white }
     var goalEvaluatePlusColor: UIColor { return UIColor.pewterBlue }
     var goalEvaluatePlusHighlightedColor: UIColor { return UIColor.white }
     var goalEvaluateMinusColor: UIColor { return UIColor.salmon }
     var goalEvaluateMinusHighlightedColor: UIColor { return UIColor.white }
-    var goalEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var goalEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var goalEvaluateCustomValueColor: UIColor { return UIColor.white }
     var goalEvaluateCustomValueHighlightedColor: UIColor { return UIColor.salmon }
+    var goalEvaluateGoalFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
+    var goalEvaluateGoalColor: UIColor { return UIColor.white }
+    var goalEvaluateDateColor: UIColor { return UIColor.white }
+    var goalEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var goalEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium)}
+    var goalEvaluatePreviousValueColor: UIColor { return UIColor.white }
+    var goalEvaluateSeparatorColor: UIColor { return UIColor.white }
     
     // MARK: - JournalNewEntryActionNodeStyle
     var journalNewEntryActionButtonFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }

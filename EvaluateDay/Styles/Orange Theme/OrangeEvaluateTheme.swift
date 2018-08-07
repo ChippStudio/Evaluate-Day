@@ -151,17 +151,24 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var listItemTintColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - GoalEvaluateNodeStyle
-    var goalEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 40.0, weight: .ultraLight) }
+    var goalEvaluateCounterFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .demiBold) }
     var goalEvaluateCounterColor: UIColor { return UIColor.paleGrey }
-    var goalEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var goalEvaluateSumFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
     var goalEvaluateSumColor: UIColor { return UIColor.paleGrey }
     var goalEvaluatePlusColor: UIColor { return UIColor.darkBlueGreen }
     var goalEvaluatePlusHighlightedColor: UIColor { return UIColor.white }
     var goalEvaluateMinusColor: UIColor { return UIColor.grapePurple }
     var goalEvaluateMinusHighlightedColor: UIColor { return UIColor.paleGrey }
-    var goalEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var goalEvaluateCustomValueFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     var goalEvaluateCustomValueColor: UIColor { return UIColor.paleGrey }
     var goalEvaluateCustomValueHighlightedColor: UIColor { return UIColor.grapePurple }
+    var goalEvaluateGoalFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium) }
+    var goalEvaluateGoalColor: UIColor { return UIColor.paleGrey }
+    var goalEvaluateDateColor: UIColor { return UIColor.paleGrey }
+    var goalEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var goalEvaluatePreviousValueFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .medium)}
+    var goalEvaluatePreviousValueColor: UIColor { return UIColor.paleGrey }
+    var goalEvaluateSeparatorColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - JournalNewEntryActionNodeStyle
     var journalNewEntryActionButtonFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }

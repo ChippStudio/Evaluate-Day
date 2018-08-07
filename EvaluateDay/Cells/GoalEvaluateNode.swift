@@ -21,13 +21,28 @@ protocol GoalEvaluateNodeStyle {
     var goalEvaluateCustomValueFont: UIFont { get }
     var goalEvaluateCustomValueColor: UIColor { get }
     var goalEvaluateCustomValueHighlightedColor: UIColor { get }
+    var goalEvaluateGoalFont: UIFont { get }
+    var goalEvaluateGoalColor: UIColor { get }
+    var goalEvaluateDateColor: UIColor { get }
+    var goalEvaluateDateFont: UIFont { get }
+    var goalEvaluatePreviousValueFont: UIFont { get }
+    var goalEvaluatePreviousValueColor: UIColor { get }
+    var goalEvaluateSeparatorColor: UIColor { get }
 }
 
 class GoalEvaluateNode: ASCellNode {
     // MARK: - UI
     var sumText: ASTextNode?
     var goalText = ASTextNode()
+    
     var counter = ASTextNode()
+    var previousCounter = ASTextNode()
+    
+    var currentDate = ASTextNode()
+    var previousDate = ASTextNode()
+    
+    var separator = ASDisplayNode()
+    
     var plus = ASButtonNode()
     var minus = ASButtonNode()
     var customValueButton = ASButtonNode()
@@ -36,7 +51,7 @@ class GoalEvaluateNode: ASCellNode {
     var minusCover = ASDisplayNode()
     
     // MARK: - Init
-    init(value: Double, goalValue: Double, sumValue: Double?, style: GoalEvaluateNodeStyle) {
+    init(value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, style: GoalEvaluateNodeStyle) {
         super.init()
         
         // Plus and minus buttons and covers
@@ -70,18 +85,36 @@ class GoalEvaluateNode: ASCellNode {
         self.customValueButtonCover.borderColor = style.goalEvaluateCustomValueColor.cgColor
         
         let goalString = String(format: "%.2f", goalValue)
-        self.goalText.attributedText = NSAttributedString(string: Localizations.cardSettings.goal.goal + " - \(goalString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateSumColor])
+        self.goalText.attributedText = NSAttributedString(string: Localizations.cardSettings.goal.goal + " - \(goalString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateGoalFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateGoalColor])
         
         // Sum title if needed
         if sumValue != nil {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
-            self.sumText?.attributedText = NSAttributedString(string: Localizations.evaluate.counter.sum(value1: sumString), attributes: [NSAttributedStringKey.font: style.goalEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateSumColor])
+            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateSumColor])
         }
         
         // counter
         let valueString = String(format: "%.2f", value)
         self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: style.goalEvaluateCounterFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateCounterColor])
+        
+        let previousValueString = String(format: "%.2f", previousValue)
+        self.previousCounter.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: style.goalEvaluatePreviousValueFont, NSAttributedStringKey.foregroundColor: style.goalEvaluatePreviousValueColor])
+        
+        // Date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        var compnents = DateComponents()
+        compnents.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: compnents, to: date)!
+        
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.goalEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateDateColor])
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: style.goalEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateDateColor])
+        
+        self.separator.backgroundColor = style.goalEvaluateSeparatorColor
+        self.separator.cornerRadius = 2.0
         
         self.automaticallyManagesSubnodes = true
     }
@@ -110,15 +143,39 @@ class GoalEvaluateNode: ASCellNode {
         buttons.spacing = 10.0
         buttons.children = [plusButton, minusButton, customButton]
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 5.0
-        cell.children = [self.counter, self.goalText, buttons]
+        let currentStack = ASStackLayoutSpec.vertical()
+        currentStack.alignItems = .end
+        currentStack.spacing = 10.0
+        currentStack.children = [self.counter, self.currentDate]
+        
+        let previousStack = ASStackLayoutSpec.vertical()
+        previousStack.alignItems = .end
+        previousStack.spacing = 10.0
+        previousStack.children = [self.previousCounter, self.previousDate]
+        
+        self.separator.style.preferredSize = CGSize(width: 4.0, height: 80.0)
+        
+        let valuesStack = ASStackLayoutSpec.horizontal()
+        valuesStack.spacing = 20.0
+        valuesStack.alignItems = .end
+        valuesStack.flexWrap = .wrap
+        valuesStack.children = [currentStack, self.separator, previousStack]
         
         if self.sumText != nil {
-            cell.children?.insert(self.sumText!, at: 1)
+            valuesStack.children?.append(self.sumText!)
         }
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 50.0, bottom: 10.0, right: 25.0)
+        let valuesStactInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 30.0, right: 10.0)
+        let valuesStackInset = ASInsetLayoutSpec(insets: valuesStactInsets, child: valuesStack)
+        
+        let goalInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 20.0, right: 10.0)
+        let goalInset = ASInsetLayoutSpec(insets: goalInsets, child: self.goalText)
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 5.0
+        cell.children = [goalInset, valuesStackInset, buttons]
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
