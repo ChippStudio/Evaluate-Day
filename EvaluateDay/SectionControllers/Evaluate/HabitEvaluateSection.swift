@@ -74,8 +74,14 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             }
         }
         
+        var components = DateComponents()
+        components.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+        let previousValueCount = habitCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", previousDate.start, previousDate.end, false).count
+        
         return {
-            let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, comments: commetsStack, style: style)
+            let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -260,11 +266,11 @@ class HabitNode: ASCellNode, CardNode {
     var comments = [HabitEvaluateCommentNode]()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, comments: [String], style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.mark = HabitEvaluateNode(marks: marks, style: style)
+        self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
         
         if negative {
             self.negative = HabitNegativeNode(style: style)

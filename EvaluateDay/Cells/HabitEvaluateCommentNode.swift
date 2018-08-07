@@ -18,7 +18,7 @@ class HabitEvaluateCommentNode: ASCellNode {
     // MARK: - UI
     var commentTextNode = ASTextNode()
     var editButton = ASButtonNode()
-    var editButtonCover = ASDisplayNode()
+    var separator = ASDisplayNode()
     
     // MARK: - Init
     init(comment: String, style: HabitEvaluateCommentNodeStyle) {
@@ -26,32 +26,26 @@ class HabitEvaluateCommentNode: ASCellNode {
         
         self.commentTextNode.attributedText = NSAttributedString(string: comment, attributes: [NSAttributedStringKey.font: style.habitEvaluateCommentFont, NSAttributedStringKey.foregroundColor: style.habitEvaluateCommentTintColor])
         
-        self.editButton.setImage(#imageLiteral(resourceName: "edit").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.editButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.habitEvaluateCommentTintColor)
-        
-        self.editButtonCover.borderColor = style.habitEvaluateCommentTintColor.cgColor
-        self.editButtonCover.borderWidth = 1.0
+        self.separator.backgroundColor = style.habitEvaluateCommentTintColor
         
         self.automaticallyManagesSubnodes = true
     }
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.editButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
-        self.editButtonCover.cornerRadius = 50.0/2.0
         
-        let button = ASBackgroundLayoutSpec(child: self.editButton, background: self.editButtonCover)
-        
+        self.separator.style.preferredSize = CGSize(width: 200.0, height: 1.0)
+    
         self.commentTextNode.style.flexShrink = 1.0
         
-        let cell = ASStackLayoutSpec.horizontal()
+        let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 10.0
-        cell.alignItems = .center
-        cell.justifyContent = .spaceBetween
-        cell.children = [self.commentTextNode, button]
+        cell.alignItems = .end
+        cell.children = [self.commentTextNode, self.separator]
         
-        let cellInsets = UIEdgeInsets(top: 5.0, left: 50.0, bottom: 5.0, right: 25.0)
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 10.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
-        return cellInset
+        let back = ASOverlayLayoutSpec(child: cellInset, overlay: self.editButton)
+        return back
     }
 }

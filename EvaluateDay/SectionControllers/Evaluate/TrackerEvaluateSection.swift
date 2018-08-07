@@ -73,8 +73,14 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
         }
         
+        var components = DateComponents()
+        components.day = -1
+        
+        let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
+        let previousValueCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", previousDate.start, previousDate.end, false).count
+        
         return {
-            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, comments: commetsStack, style: style)
+            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -250,11 +256,11 @@ class TrackerNode: ASCellNode, CardNode {
     var comments = [HabitEvaluateCommentNode]()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, marks: Int, comments: [String], style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.mark = HabitEvaluateNode(marks: marks, style: style)
+        self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
         
         for (i, comment) in comments.enumerated() {
             let newComment = HabitEvaluateCommentNode(comment: comment, style: style)

@@ -122,13 +122,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 print("ERROR - \(error.localizedDescription)")
             }
         })
-        
-        // control date
-        let currentDate = Date()
-        let components = Calendar.current.dateComponents([.day], from: self.date, to: currentDate)
-        if components.day != 0 {
-            self.date = currentDate
-        }
+        self.date = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {

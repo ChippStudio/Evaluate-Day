@@ -113,17 +113,27 @@ struct LightEvaluateTheme: EvaluableStyle {
     var counterEvaluateSeparatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - HabitEvaluateNodeStyle
-    var evaluateHabitCounterFont: UIFont { return UIFont.avenirNext(size: 46.0, weight: .regular) }
+    var evaluateHabitCounterFont: UIFont { return UIFont.avenirNext(size: 48.0, weight: .demiBold) }
     var evaluateHabitCounterColor: UIColor { return UIColor.gunmetal }
-    var evaluateHabitButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var evaluateHabitButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .bold) }
     var evaluateHabitMarksColor: UIColor { return UIColor.viridian }
     var evaluateHabitDeleteColor: UIColor { return UIColor.brownishRed }
     var evaluateHabitHighlightedColor: UIColor { return UIColor.gunmetal }
-    var evaluateHabitSeparatorColor: UIColor { return UIColor.lightGray }
+    var evaluateHabitSeparatorColor: UIColor { return UIColor.gunmetal }
+    var evaluateHabitDateColor: UIColor { return UIColor.gunmetal }
+    var evaluateHabitDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var evaluateHabitPreviousCountColor: UIColor { return UIColor.gunmetal }
+    var evaluateHabitPreviousCountFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .demiBold) }
     
     // MARK: - HabitEvaluateCommentNodeStyle
-    var habitEvaluateCommentFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var habitEvaluateCommentFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var habitEvaluateCommentTintColor: UIColor { return UIColor.gunmetal }
+    
+    // MARK: - HabitNegativeNodeStyle
+    var habitNegativeDescriptionFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .demiBold) }
+    var habitNegativeDescriptionColor: UIColor { return UIColor.charcoal }
+    var habitNegativeCoverColor: UIColor { return UIColor.brownishRed }
+    var habitNegativeCoverAlpha: CGFloat { return 0.5 }
     
     // MARK: - ListEvaluateNodeStyle
     var listEvaluateViewButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
@@ -185,10 +195,4 @@ struct LightEvaluateTheme: EvaluableStyle {
     var cardListEmptyNewTintColor: UIColor { return UIColor.gunmetal }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.brownishRed }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.white }
-    
-    // MARK: - HabitNegativeNodeStyle
-    var habitNegativeDescriptionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
-    var habitNegativeDescriptionColor: UIColor { return UIColor.charcoal }
-    var habitNegativeCoverColor: UIColor { return UIColor.brownishRed }
-    var habitNegativeCoverAlpha: CGFloat { return 0.1 }
 }
