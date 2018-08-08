@@ -137,13 +137,16 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var habitNegativeCoverAlpha: CGFloat { return 0.5 }
     
     // MARK: - ListEvaluateNodeStyle
-    var listEvaluateViewButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var listEvaluateViewButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .bold) }
     var listEvaluateViewButtonColor: UIColor { return UIColor.paleGrey }
     var listEvaluateViewButtonHighlightedColor: UIColor { return UIColor.darkBlueGreen }
-    var listEvaluateDayDoneFont: UIFont { return UIFont.avenirNext(size: 36.0, weight: .regular) }
+    var listEvaluateDayDoneFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .demiBold) }
     var listEvaluateDayDoneColor: UIColor { return UIColor.paleGrey }
-    var listEvaluateAllDoneFont: UIFont { return UIFont.avenirNext(size: 25.0, weight: .regular) }
+    var listEvaluateAllDoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var listEvaluateAllDoneColor: UIColor { return UIColor.paleGrey }
+    var listEvaluateDateFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var listEvaluateDateColor: UIColor { return UIColor.paleGrey }
+    var listEvaluateSeparatorColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - ListItemEvaluateNodeStyle
     var listItemTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }

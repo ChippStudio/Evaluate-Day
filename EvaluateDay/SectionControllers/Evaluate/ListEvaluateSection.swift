@@ -58,7 +58,7 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         let all = listCard.values.count
         
         return {
-            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, style: style)
+            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -165,11 +165,11 @@ class ListNode: ASCellNode, CardNode {
     var list: ListEvaluateNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, style: style)
+        self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date, style: style)
         
         self.automaticallyManagesSubnodes = true
     }
