@@ -143,6 +143,8 @@
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
+		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
+		B59F9F50211B30E600A59516 /* CardSettingsNotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */; };
 		B5A0CFDA1FAC6018002B1636 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFD91FAC6018002B1636 /* Sections.swift */; };
 		B5A0CFDC1FAC6D55002B1636 /* CardSettingsBooleanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */; };
 		B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */; };
@@ -533,6 +535,8 @@
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
+		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
+		B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationSection.swift; sourceTree = "<group>"; };
 		B5A0CFD91FAC6018002B1636 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsBooleanNode.swift; sourceTree = "<group>"; };
 		B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
@@ -974,6 +978,7 @@
 				B5D9A846205BBABB00F84091 /* ActivityUserObject.swift */,
 				B5D9A84E2060122A00F84091 /* ActivityAnalyticsObject.swift */,
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
+				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 			);
 			path = "Additional Objects";
 			sourceTree = "<group>";
@@ -1127,6 +1132,7 @@
 				B5AB1E832018BFE600BB1A64 /* ListEditableSection.swift */,
 				B57B063A201B114700C4E182 /* GoalEditableSection.swift */,
 				B5A9D5AD20220540006DFB32 /* JournalEditableSection.swift */,
+				B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */,
 			);
 			path = Editable;
 			sourceTree = "<group>";
@@ -2094,6 +2100,7 @@
 				B5A1140D200F79E6008DBF02 /* CriterionThreeEvaluateSection.swift in Sources */,
 				B5A9D5A8201F01E6006DFB32 /* JournalCard+Extensions.swift in Sources */,
 				B5D9A847205BBABB00F84091 /* ActivityUserObject.swift in Sources */,
+				B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */,
 				B5AC0E1820E4C8B500F13A79 /* DarkTabControllerTheme.swift in Sources */,
 				B55D3280207902C300BD1E75 /* TrackerCard.swift in Sources */,
 				B5AB1E8C2018CB1300BB1A64 /* ListEvaluateSection.swift in Sources */,
@@ -2166,6 +2173,7 @@
 				B5257D5A1FE93FC800AC54DE /* DarkAnalyticalTheme.swift in Sources */,
 				B5C7572C1F9DCA300032199E /* Card.swift in Sources */,
 				B5A11417200F82ED008DBF02 /* CriterionThreeMergeSection.swift in Sources */,
+				B59F9F50211B30E600A59516 /* CardSettingsNotificationSection.swift in Sources */,
 				B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */,
 				B55D326D2074F67300BD1E75 /* OrangeCardSettingsTheme.swift in Sources */,
 				B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */,

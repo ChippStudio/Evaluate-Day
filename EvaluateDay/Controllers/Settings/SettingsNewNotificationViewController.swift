@@ -15,9 +15,11 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
     // MARK: - UI
     var tableNode: ASTableNode!
     var saveButton: UIBarButtonItem!
+    var deleteButton: UIBarButtonItem!
     
     // MARK: - Variable
     var notification = LocalNotification()
+    var card: Card!
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -30,6 +32,9 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             self.notification.message = Localizations.settings.notifications.new.defaultMessage
             self.saveButton = UIBarButtonItem(title: Localizations.general.save, style: .plain, target: self, action: #selector(saveAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.saveButton
+        } else {
+            self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(deleteAction(sender:)))
+            self.navigationItem.rightBarButtonItem = self.deleteButton
         }
         
         // Set table node
@@ -140,7 +145,11 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
                     subtitle = Localizations.settings.notifications.new.optional
                 }
             } else {
-                subtitle = Localizations.settings.notifications.new.optional
+                if self.card != nil {
+                    subtitle = self.card.title
+                } else {
+                    subtitle = Localizations.settings.notifications.new.optional
+                }
             }
         }
         
@@ -182,9 +191,11 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             }
             self.navigationController?.pushViewController(controller, animated: true)
         default:
-            let controller = UIStoryboard(name: Storyboards.selectCardList.rawValue, bundle: nil).instantiateInitialViewController() as! SelectCardListViewController
-            controller.delegate = self
-            self.navigationController?.pushViewController(controller, animated: true)
+            if self.card == nil {
+                let controller = UIStoryboard(name: Storyboards.selectCardList.rawValue, bundle: nil).instantiateInitialViewController() as! SelectCardListViewController
+                controller.delegate = self
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         }
     }
     
@@ -241,6 +252,29 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         
         sendEvent(.addNewNotification, withProperties: nil)
         self.navigationController?.popViewController(animated: true )
+    }
+    
+    @objc func deleteAction(sender: UIBarButtonItem) {
+        if self.notification.repeatNotification == "1111111" {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [self.notification.id])
+        } else {
+            var ids = [String]()
+            for (i, w) in self.notification.repeatNotification.enumerated() {
+                if w == "1" {
+                    ids.append(self.notification.id + "-\(i)")
+                }
+            }
+            
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ids)
+        }
+        
+        try! Database.manager.app.write {
+            Database.manager.app.delete(self.notification)
+        }
+        
+        sendEvent(.deleteNotification, withProperties: nil)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private

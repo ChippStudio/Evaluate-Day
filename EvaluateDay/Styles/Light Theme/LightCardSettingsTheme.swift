@@ -49,4 +49,12 @@ struct LightCardSettingsTheme: CardSettingsStyle {
     // MARK: - CardSettingsSectionTitleNodeStyle
     var cardSettingsSectionTitleFont: UIFont { return UIFont.avenirNext(size: 13.0, weight: .regular) }
     var cardSettingsSectionTitleColor: UIColor { return UIColor.gunmetal }
+    
+    // MARK: - SettingsNotificationNodeStyle
+    var settingsNotificationMessageColor: UIColor { return UIColor.gunmetal }
+    var settingsNotificationMessageFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var settingsNotificationTimeColor: UIColor { return UIColor.lightGray }
+    var settingsNotificationTimeFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var settingsNotificationCardColor: UIColor { return UIColor.viridian }
+    var settingsNotificationCardFont: UIFont { return UIFont.avenirNext(size: 15.0, weight: .regular) }
 }

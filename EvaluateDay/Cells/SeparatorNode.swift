@@ -20,6 +20,7 @@ class SeparatorNode: ASCellNode {
     
     // MARK: - Variables
     var leftInset: CGFloat = 0.0
+    var bottomInset: CGFloat = 0.0
     
     // MARK: - Init
     init(style: SeparatorNodeStyle) {
@@ -34,7 +35,7 @@ class SeparatorNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         self.separator.style.preferredSize.height = 0.5
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: self.leftInset, bottom: 0.0, right: 0.0)
+        let separatorInsets = UIEdgeInsets(top: 0.0, left: self.leftInset, bottom: bottomInset, right: 0.0)
         let separatorInset = ASInsetLayoutSpec(insets: separatorInsets, child: self.separator)
         return separatorInset
     }

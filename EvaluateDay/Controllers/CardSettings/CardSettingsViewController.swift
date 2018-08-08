@@ -20,6 +20,9 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     var card: Card!
     var adapter: ListAdapter!
     
+    // MARK: - Private
+    private var notificationObject: CardSettingsNotificationObject!
+    
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,7 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.adapter.performUpdates(animated: true, completion: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -71,6 +75,11 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         let crd = DiffCard(card: self.card)
+        if self.card.realm != nil {
+            let not = CardSettingsNotificationObject(card: self.card)
+            return [crd, not]
+        }
+        
         return [crd]
     }
     
@@ -105,6 +114,10 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
                 }
                 return controller
             }
+        } else if object is CardSettingsNotificationObject {
+            let controller = CardSettingsNotificationSection(card: self.card)
+            controller.inset = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 0.0, right: 0.0)
+            return controller
         }
         
         return ListSectionController()
