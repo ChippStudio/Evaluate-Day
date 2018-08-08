@@ -21,8 +21,8 @@ struct OrangeCardSettingsTheme: CardSettingsStyle {
     var cardSettingsTextPlaceholder: UIColor { return UIColor.lightGray }
     var cardSettingsText: UIColor { return UIColor.paleGrey }
     var cardSettingsTextTitle: UIColor { return UIColor.paleGrey }
-    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var cardSettingsTextTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
+    var cardSettingsTextTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     
     // MARK: - CardSettings Boolean
     var settingsBooleanTitle: UIColor { return UIColor.paleGrey}
@@ -42,4 +42,11 @@ struct OrangeCardSettingsTheme: CardSettingsStyle {
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.paleGrey }
     var imageTintColor: UIColor { return UIColor.paleGrey }
+    
+    // MARK: - SeparatorNodeStyle
+    var separatorNodeColor: UIColor { return UIColor.paleGrey }
+    
+    // MARK: - CardSettingsSectionTitleNodeStyle
+    var cardSettingsSectionTitleFont: UIFont { return UIFont.avenirNext(size: 13.0, weight: .regular) }
+    var cardSettingsSectionTitleColor: UIColor { return UIColor.white }
 }

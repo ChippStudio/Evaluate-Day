@@ -14,6 +14,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
 
     // MARK: - UI
     var collectionNode: ASCollectionNode!
+    var settingsButton: UIBarButtonItem!
     
     // MARK: - Variable
     var card: Card!
@@ -38,6 +39,10 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
         adapter.dataSource = self
+        
+        // Buttons
+        self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(openCardSettingsAction(sender:)))
+        self.navigationItem.rightBarButtonItem = self.settingsButton
         
         self.observable()
         
@@ -153,6 +158,11 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
     }
     
     // MARK: - Actions
+    @objc func openCardSettingsAction(sender: UIBarButtonItem) {
+        let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
+        controller.card = self.card
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
     // MARK: - Private
     private func observable() {

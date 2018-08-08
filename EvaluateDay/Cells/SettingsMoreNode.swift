@@ -26,6 +26,7 @@ class SettingsMoreNode: ASCellNode {
     var disclosureImage = ASImageNode()
     
     var topInset: CGFloat = 10.0
+    var leftInset: CGFloat = 15.0
     
     // MARK: - Init
     init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle) {
@@ -99,7 +100,7 @@ class SettingsMoreNode: ASCellNode {
         cell.style.flexGrow = 1.0
         cell.children = [imageTitle, self.disclosureImage]
 
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 15.0, bottom: 10.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
 
         return cellInset

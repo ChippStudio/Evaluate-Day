@@ -10,6 +10,15 @@ import UIKit
 import IGListKit
 import AsyncDisplayKit
 
+private enum CriterionHundredSettingsNodeType {
+    case sectionTitle
+    case title
+    case subtitles
+    case separator
+    case positiveBool
+    case positiveDescription
+}
+
 class CriterionHundredEditableSection: ListSectionController, ASSectionController, EditableSection {
     // MARK: - Variable
     var card: Card!
@@ -17,6 +26,9 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
     // MARK: - Actions
     var setTextHandler: ((String, String, String?) -> Void)?
     var setBoolHandler: ((Bool, String, Bool) -> Void)?
+    
+    // MARK: - Private Variables
+    private var nodes = [CriterionHundredSettingsNodeType]()
     
     // MARK: - Init
     init(card: Card) {
@@ -26,33 +38,56 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
         } else {
             self.card = card
         }
+        
+        self.nodes.append(.sectionTitle)
+        self.nodes.append(.separator)
+        self.nodes.append(.title)
+        self.nodes.append(.separator)
+        self.nodes.append(.subtitles)
+        self.nodes.append(.separator)
+        self.nodes.append(.positiveBool)
+        self.nodes.append(.positiveDescription)
+        self.nodes.append(.separator)
     }
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        return 4
+        return self.nodes.count
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let style = Themes.manager.cardSettingsStyle
-        if index == 0 {
+        
+        switch self.nodes[index] {
+        case .sectionTitle:
+            return {
+                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                return node
+            }
+        case .title:
             let title = Localizations.cardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
-                node.topInset = 10.0
                 return node
             }
-        } else if index == 1 {
+        case .subtitles:
             let subtitle = Localizations.cardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
-                node.topInset = 20.0
                 return node
             }
-        } else if index == 2 {
+        case .separator:
+            return {
+                let separator = SeparatorNode(style: style)
+                if index != 1 && index != self.nodes.count - 1 {
+                    separator.leftInset = 20.0
+                }
+                return separator
+            }
+        case .positiveBool:
             let title = Localizations.cardSettings.criterion.feater.title
             let isOn = (self.card.data as! CriterionHundredCard).positive
             return {
@@ -60,13 +95,12 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "positive", (self.card.data as! CriterionHundredCard).positive)
                 }
-                node.topInset = 50.0
                 return node
             }
-        } else {
+        case .positiveDescription:
             return {
                 let node = DescriptionNode(text: Localizations.cardSettings.criterion.feater.description, alignment: .left, style: style)
-                node.topInset = 5.0
+                node.topInset = 10.0
                 return node
             }
         }
@@ -88,10 +122,9 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 0 {
+        if self.nodes[index] == .title {
             self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
-        }
-        if index == 1 {
+        } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
         }
     }

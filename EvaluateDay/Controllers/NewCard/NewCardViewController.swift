@@ -133,7 +133,6 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
         if newCard.data as? Editable != nil {
             let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             controller.card = newCard
-            controller.titleString = source.title
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

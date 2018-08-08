@@ -24,7 +24,7 @@ class CardSettingsTextNode: ASCellNode {
     var text: ASTextNode = ASTextNode()
     
     // MARK: - Variable
-    var topInset: CGFloat = 0.0
+    var topInset: CGFloat = 10.0
     
     // MARK: - Init
     init(title: String, text: String, style: CardSettingsTextNodeStyle) {
@@ -46,13 +46,17 @@ class CardSettingsTextNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        let textInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
+        let textInset = ASInsetLayoutSpec(insets: textInsets, child: self.text)
+        
         let texts = ASStackLayoutSpec.vertical()
         texts.spacing = 5
-        texts.children = [self.title, self.text]
+        texts.children = [self.title, textInset]
         
-        let textInsets = UIEdgeInsets(top: self.topInset, left: 15.0, bottom: 0.0, right: 15.0)
-        let textInset = ASInsetLayoutSpec(insets: textInsets, child: texts)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 10.0, right: 15.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: texts)
         
-        return textInset
+        return cellInset
     }
 }

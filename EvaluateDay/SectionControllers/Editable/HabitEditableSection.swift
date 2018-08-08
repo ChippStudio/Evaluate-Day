@@ -10,6 +10,17 @@ import UIKit
 import AsyncDisplayKit
 import IGListKit
 
+private enum HabitSettingsNodeType {
+    case sectionTitle
+    case title
+    case subtitles
+    case separator
+    case multipleBool
+    case multipleDescription
+    case negativeBool
+    case negativeDescription
+}
+
 class HabitEditableSection: ListSectionController, ASSectionController, EditableSection {
     // MARK: - Variable
     var card: Card!
@@ -17,6 +28,9 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
     // MARK: - Actions
     var setTextHandler: ((String, String, String?) -> Void)?
     var setBoolHandler: ((Bool, String, Bool) -> Void)?
+    
+    // MARK: - Private Variables
+    private var nodes = [HabitSettingsNodeType]()
     
     // MARK: - Init
     init(card: Card) {
@@ -26,33 +40,58 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
         } else {
             self.card = card
         }
+        
+        self.nodes.append(.sectionTitle)
+        self.nodes.append(.separator)
+        self.nodes.append(.title)
+        self.nodes.append(.separator)
+        self.nodes.append(.subtitles)
+        self.nodes.append(.separator)
+        self.nodes.append(.multipleBool)
+        self.nodes.append(.multipleDescription)
+        self.nodes.append(.separator)
+        self.nodes.append(.negativeBool)
+        self.nodes.append(.negativeDescription)
+        self.nodes.append(.separator)
     }
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        return 6
+        return self.nodes.count
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let style = Themes.manager.cardSettingsStyle
-        if index == 0 {
+        switch self.nodes[index] {
+        case .sectionTitle:
+            return {
+                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                return node
+            }
+        case .title:
             let title = Localizations.cardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
-                node.topInset = 10.0
                 return node
             }
-        } else if index == 1 {
+        case .subtitles:
             let subtitle = Localizations.cardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
-                node.topInset = 20.0
                 return node
             }
-        } else if index == 2 {
+        case .separator:
+            return {
+                let separator = SeparatorNode(style: style)
+                if index != 1 && index != self.nodes.count - 1 {
+                    separator.leftInset = 20.0
+                }
+                return separator
+            }
+        case .multipleBool:
             let title = Localizations.cardSettings.habit.multiple
             let isOn = (self.card.data as! HabitCard).multiple
             return {
@@ -63,15 +102,14 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
                         batchContext.reload(self)
                     }, completion: nil)
                 }
-                node.topInset = 50.0
                 return node
             }
-        } else if index == 3 {
+        case .multipleDescription:
             return {
                 let node = DescriptionNode(text: Localizations.cardSettings.habit.description, alignment: .left, style: style)
                 return node
             }
-        } else if index == 4 {
+        case .negativeBool:
             let title = Localizations.cardSettings.habit.negative.title
             let isOn = (self.card.data as! HabitCard).negative
             return {
@@ -82,10 +120,9 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
                         batchContext.reload(self)
                     }, completion: nil)
                 }
-                node.topInset = 50.0
                 return node
             }
-        } else {
+        case .negativeDescription:
             return {
                 let node = DescriptionNode(text: Localizations.cardSettings.habit.negative.description, alignment: .left, style: style)
                 return node
@@ -109,10 +146,9 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 0 {
+        if self.nodes[index] == .title {
             self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
-        }
-        if index == 1 {
+        } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
         }
     }

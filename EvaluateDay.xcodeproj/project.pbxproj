@@ -141,6 +141,8 @@
 		B59318351FFAD816000D8FFE /* CriterionHundredMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
+		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
+		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B5A0CFDA1FAC6018002B1636 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFD91FAC6018002B1636 /* Sections.swift */; };
 		B5A0CFDC1FAC6D55002B1636 /* CardSettingsBooleanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */; };
 		B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */; };
@@ -529,6 +531,8 @@
 		B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredMergeSection.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
+		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
+		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B5A0CFD91FAC6018002B1636 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsBooleanNode.swift; sourceTree = "<group>"; };
 		B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
@@ -1497,6 +1501,7 @@
 				B59B4C761FD6B21D00E9A778 /* InfoNode.swift */,
 				B55D328B207917B800BD1E75 /* HabitNegativeNode.swift */,
 				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
+				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
 				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
 				B5F597731FBD70B40098A071 /* AnalyticsColorStatisticNode.swift */,
@@ -1525,6 +1530,7 @@
 				B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */,
 				B5D9A84B205BC43600F84091 /* UserInformationNode.swift */,
 				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
+				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2323,6 +2329,7 @@
 				B5D0C7BE20A8539A000F98EF /* BlackCardMergeTheme.swift in Sources */,
 				B593182C1FFAD53A000D8FFE /* CardMergeViewController.swift in Sources */,
 				B56218121FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift in Sources */,
+				B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */,
 				B5257D591FE93FC800AC54DE /* DarkNewCardTheme.swift in Sources */,
 				B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */,
 				B5D0C7BC20A8539A000F98EF /* BlackCardSettingsTheme.swift in Sources */,
@@ -2351,6 +2358,7 @@
 				B5F597701FBD4E1F0098A071 /* Variables.swift in Sources */,
 				B5EC885B201229590056C1C7 /* CounterEditableSection.swift in Sources */,
 				B5FD38F01FDEB3DF0071B1F0 /* AnalyticsCalendarShareView.swift in Sources */,
+				B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */,
 				B5BD3B4F2009F98D0075C75F /* CheckInPermissionNode.swift in Sources */,
 				B5D854BD1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift in Sources */,
 				B5A0CFE31FAF8DDA002B1636 /* TopViewController.swift in Sources */,

@@ -10,6 +10,17 @@ import UIKit
 import AsyncDisplayKit
 import IGListKit
 
+private enum GoalSettingsNodeType {
+    case sectionTitle
+    case title
+    case subtitles
+    case separator
+    case goal
+    case step
+    case total
+    case initial
+}
+
 class GoalEditableSection: ListSectionController, ASSectionController, EditableSection, TextTopViewControllerDelegate {
     // MARK: - Variable
     var card: Card!
@@ -17,6 +28,9 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
     // MARK: - Actions
     var setTextHandler: ((String, String, String?) -> Void)?
     var setBoolHandler: ((Bool, String, Bool) -> Void)?
+    
+    // MARK: - Private Variables
+    private var nodes = [GoalSettingsNodeType]()
     
     // MARK: - Init
     init(card: Card) {
@@ -26,69 +40,79 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         } else {
             self.card = card
         }
+        
+        self.nodesSource()
     }
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        if (self.card.data as! GoalCard).isSum {
-            return 6
-        }
-        
-        return 5
+        return self.nodes.count
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let style = Themes.manager.cardSettingsStyle
-        if index == 0 {
+        switch self.nodes[index] {
+        case .sectionTitle:
+            return {
+                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                return node
+            }
+        case .title:
             let title = Localizations.cardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
-                node.topInset = 10.0
                 return node
             }
-        } else if index == 1 {
+        case .subtitles:
             let subtitle = Localizations.cardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
-                node.topInset = 20.0
                 return node
             }
-        } else if index == 2 {
+        case .separator:
+            return {
+                let separator = SeparatorNode(style: style)
+                if index != 1 && index != self.nodes.count - 1 {
+                    separator.leftInset = 20.0
+                }
+                return separator
+            }
+        case .goal:
             let step = (self.card.data as! GoalCard).goalValue
             return {
                 let node = SettingsMoreNode(title: Localizations.cardSettings.goal.goal, subtitle: String(format: "%.2f", step), image: nil, style: style)
-                node.topInset = 50.0
+                node.leftInset = 20.0
                 return node
             }
-        } else if index == 3 {
+        case .step:
             let step = (self.card.data as! GoalCard).step
             return {
                 let node = SettingsMoreNode(title: Localizations.cardSettings.counter.step, subtitle: String(format: "%.2f", step), image: nil, style: style)
-                node.topInset = 50.0
+                node.leftInset = 20.0
                 return node
             }
-        } else if index == 4 {
+        case .total:
             let title = Localizations.cardSettings.counter.sum.title
             let isOn = (self.card.data as! GoalCard).isSum
             return {
                 let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "isSum", (self.card.data as! GoalCard).isSum)
+                    self.nodesSource()
                     self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                         batchContext.reload(self)
                     }, completion: nil)
                 }
-                node.topInset = 50.0
                 return node
             }
-        } else {
+        case .initial:
             let start = (self.card.data as! GoalCard).startValue
             return {
                 let node = SettingsMoreNode(title: Localizations.cardSettings.counter.start, subtitle: String(format: "%.2f", start), image: nil, style: style)
-                node.topInset = 50.0
+                node.leftInset = 20.0
                 return node
             }
         }
@@ -110,14 +134,11 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 0 {
+        if self.nodes[index] == .title {
             self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
-        }
-        if index == 1 {
+        } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
-        }
-        
-        if index == 2 {
+        } else if self.nodes[index] == .goal {
             // Goal value set
             let controller = TextTopViewController()
             controller.onlyNumbers = true
@@ -125,9 +146,7 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
             controller.delegate = self
             controller.titleLabel.text = Localizations.cardSettings.goal.goal
             self.viewController?.present(controller, animated: true, completion: nil)
-        }
-        
-        if index == 3 {
+        } else if self.nodes[index] == .step {
             // Step value set
             let controller = TextTopViewController()
             controller.onlyNumbers = true
@@ -135,9 +154,7 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
             controller.delegate = self
             controller.titleLabel.text = Localizations.cardSettings.counter.step
             self.viewController?.present(controller, animated: true, completion: nil)
-        }
-        
-        if index == 5 {
+        } else if self.nodes[index] == .initial {
             // Start value
             let controller = TextTopViewController()
             controller.onlyNumbers = true
@@ -163,6 +180,28 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
             self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                 batchContext.reload(self)
             }, completion: nil)
+        }
+    }
+    
+    // MARK: - Private
+    private func nodesSource() {
+        self.nodes.removeAll()
+        
+        self.nodes.append(.sectionTitle)
+        self.nodes.append(.separator)
+        self.nodes.append(.title)
+        self.nodes.append(.separator)
+        self.nodes.append(.subtitles)
+        self.nodes.append(.separator)
+        self.nodes.append(.goal)
+        self.nodes.append(.separator)
+        self.nodes.append(.step)
+        self.nodes.append(.separator)
+        self.nodes.append(.total)
+        self.nodes.append(.separator)
+        if (self.card.data as! GoalCard).isSum {
+            self.nodes.append(.initial)
+            self.nodes.append(.separator)
         }
     }
 }

@@ -19,7 +19,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     // MARK: - Variable
     var card: Card!
     var adapter: ListAdapter!
-    var titleString: String?
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -28,6 +27,7 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         // Collection view
         self.collectionNode = ASCollectionNode(collectionViewLayout: UICollectionViewFlowLayout())
         self.collectionNode.view.alwaysBounceVertical = true
+        self.collectionNode.contentInset.top += 40.0
         self.view.addSubnode(self.collectionNode)
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
@@ -40,7 +40,9 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
             self.saveButton = UIBarButtonItem(title: Localizations.general.save, style: .plain, target: self, action: #selector(saveButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.saveButton
         }
-        self.navigationItem.title = self.titleString
+        
+        // MARK: - Navigation Item
+        self.navigationItem.title = Localizations.settings.title + ": " + Sources.title(forType: self.card.type)
         
         self.observable()
     }

@@ -23,7 +23,7 @@ class CardSettingsBooleanNode: ASCellNode {
     var switcher: ASDisplayNode!
     
     // MARK: - Variable
-    var topInset: CGFloat = 0.0
+    var topInset: CGFloat = 10.0
     
     // MARK: - Handler
     var switchAction: ((_ isOn: Bool) -> Void)?
@@ -64,7 +64,7 @@ class CardSettingsBooleanNode: ASCellNode {
         cell.alignItems = .center
         cell.children = [self.title, spacer, self.switcher]
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 15.0, bottom: 0.0, right: 15.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 10.0, right: 15.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

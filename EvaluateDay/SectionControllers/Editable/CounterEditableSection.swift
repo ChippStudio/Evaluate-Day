@@ -10,6 +10,16 @@ import UIKit
 import AsyncDisplayKit
 import IGListKit
 
+private enum CounterSettingsNodeType {
+    case sectionTitle
+    case title
+    case subtitles
+    case separator
+    case step
+    case total
+    case initial
+}
+
 class CounterEditableSection: ListSectionController, ASSectionController, EditableSection, TextTopViewControllerDelegate {
     // MARK: - Variable
     var card: Card!
@@ -17,6 +27,9 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
     // MARK: - Actions
     var setTextHandler: ((String, String, String?) -> Void)?
     var setBoolHandler: ((Bool, String, Bool) -> Void)?
+    
+    // MARK: - Private Variables
+    private var nodes = [CounterSettingsNodeType]()
     
     // MARK: - Init
     init(card: Card) {
@@ -26,62 +39,72 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
         } else {
             self.card = card
         }
+        
+        self.nodesSource()
     }
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        if (self.card.data as! CounterCard).isSum {
-            return 5
-        }
-        
-        return 4
+        return self.nodes.count
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let style = Themes.manager.cardSettingsStyle
-        if index == 0 {
+        switch self.nodes[index] {
+        case .sectionTitle:
+            return {
+                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                return node
+            }
+        case .title:
             let title = Localizations.cardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
-                node.topInset = 10.0
                 return node
             }
-        } else if index == 1 {
+        case .subtitles:
             let subtitle = Localizations.cardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
-                node.topInset = 20.0
                 return node
             }
-        } else if index == 2 {
+        case .separator:
+            return {
+                let separator = SeparatorNode(style: style)
+                if index != 1 && index != self.nodes.count - 1 {
+                    separator.leftInset = 20.0
+                }
+                return separator
+            }
+        case .step:
             let step = (self.card.data as! CounterCard).step
             return {
                 let node = SettingsMoreNode(title: Localizations.cardSettings.counter.step, subtitle: String(format: "%.2f", step), image: nil, style: style)
-                node.topInset = 50.0
+                node.leftInset = 20.0
                 return node
             }
-        } else if index == 3 {
+        case .total:
             let title = Localizations.cardSettings.counter.sum.title
             let isOn = (self.card.data as! CounterCard).isSum
             return {
                 let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "isSum", (self.card.data as! CounterCard).isSum)
+                    self.nodesSource()
                     self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                         batchContext.reload(self)
                     }, completion: nil)
                 }
-                node.topInset = 50.0
                 return node
             }
-        } else {
+        case .initial:
             let start = (self.card.data as! CounterCard).startValue
             return {
                 let node = SettingsMoreNode(title: Localizations.cardSettings.counter.start, subtitle: String(format: "%.2f", start), image: nil, style: style)
-                node.topInset = 50.0
+                node.leftInset = 20.0
                 return node
             }
         }
@@ -103,14 +126,11 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 0 {
+        if self.nodes[index] == .title {
             self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
-        }
-        if index == 1 {
+        } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
-        }
-        
-        if index == 2 {
+        } else if self.nodes[index] == .step {
             // Step value set
             let controller = TextTopViewController()
             controller.onlyNumbers = true
@@ -118,9 +138,7 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
             controller.delegate = self
             controller.titleLabel.text = Localizations.cardSettings.counter.step
             self.viewController?.present(controller, animated: true, completion: nil)
-        }
-        
-        if index == 4 {
+        } else if self.nodes[index] == .initial {
             // Start value
             let controller = TextTopViewController()
             controller.onlyNumbers = true
@@ -146,6 +164,26 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
             self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                 batchContext.reload(self)
             }, completion: nil)
+        }
+    }
+    
+    // MARK: - Private
+    private func nodesSource() {
+        self.nodes.removeAll()
+        
+        self.nodes.append(.sectionTitle)
+        self.nodes.append(.separator)
+        self.nodes.append(.title)
+        self.nodes.append(.separator)
+        self.nodes.append(.subtitles)
+        self.nodes.append(.separator)
+        self.nodes.append(.step)
+        self.nodes.append(.separator)
+        self.nodes.append(.total)
+        self.nodes.append(.separator)
+        if (self.card.data as! CounterCard).isSum {
+            self.nodes.append(.initial)
+            self.nodes.append(.separator)
         }
     }
 }
