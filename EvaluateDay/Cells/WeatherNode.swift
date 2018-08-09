@@ -49,7 +49,7 @@ class WeatherNode: ASCellNode {
         cell.spacing = 10.0
         cell.children = [self.iconImage, self.textNode]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 30.0, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

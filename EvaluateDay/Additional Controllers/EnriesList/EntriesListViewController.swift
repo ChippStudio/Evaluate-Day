@@ -30,6 +30,7 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         self.tableNode = ASTableNode(style: .grouped)
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
+        self.tableNode.view.separatorStyle = .none
         self.view.addSubnode(self.tableNode)
     }
 
@@ -63,9 +64,21 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         let entry = self.nodes[indexPath.section][indexPath.row]
         let text = entry.text
         var metadata = [String]()
-        metadata.append(DateFormatter.localizedString(from: entry.created, dateStyle: .none, timeStyle: .short))
+        metadata.append(DateFormatter.localizedString(from: entry.created, dateStyle: .medium, timeStyle: .short))
         if let loc = entry.location {
             metadata.append(loc.streetString)
+        }
+        if let w = entry.weather {
+            if w.pressure != 0.0 && w.humidity != 0.0 {
+                var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
+                //                    var apparentTemperature = "\(String(format: "%.0f", w.apparentTemperature)) ℃"
+                if !Database.manager.application.settings.celsius {
+                    temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
+                    //                        apparentTemperature = "\(String(format: "%.0f", (w.apparentTemperature * (9/5) + 32))) ℉"
+                }
+                
+                metadata.append(temperature)
+            }
         }
         var photo: UIImage?
         if let p = entry.photos.first {
@@ -95,7 +108,7 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
+        let style = Themes.manager.entryControllerStyle
         header.textLabel?.textColor = style.tableSectionHeaderColor
         header.textLabel!.font = style.tableSectionHeaderFont
     }

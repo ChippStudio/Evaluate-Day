@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 
 struct LightEntryViewControllerTheme: EntryViewControllerStyle {
-    
     // MARK: - General controller
     var background: UIColor { return UIColor.snow }
     var barColor: UIColor { return UIColor.snow }
     var barTint: UIColor { return UIColor.viridian }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
-    
     var tableNodeSeparatorColor: UIColor { return UIColor.lightGray }
+    var tableSectionHeaderColor: UIColor { return UIColor.gunmetal }
+    var tableSectionHeaderFont: UIFont { return UIFont.avenirNext(size: 15.0, weight: .medium) }
     
     // MARK: - TextNode
     var textNodeFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
@@ -32,8 +32,9 @@ struct LightEntryViewControllerTheme: EntryViewControllerStyle {
     var actionDividerColor: UIColor { return UIColor.platinum }
     
     // MARK: - DateNodeStyle
-    var dateNodeFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var dateNodeFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
     var dateFontColor: UIColor { return UIColor.gunmetal }
+    var dateNodeSeparatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - CheckInActionNodeStyle
     var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
@@ -69,4 +70,12 @@ struct LightEntryViewControllerTheme: EntryViewControllerStyle {
     var weatherNodeDataTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .demiBold) }
     var weatherNodeTextFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var weatherNodeTextColor: UIColor { return UIColor.gunmetal }
+    
+    // MARK: - JournalEntryNodeStyle
+    var journalNodeTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var journalNodeTextColor: UIColor { return UIColor.gunmetal }
+    var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var journalNodeMetadataColor: UIColor { return UIColor.gunmetal }
+    var journalNodeTextCoverColor: UIColor { return UIColor.white }
+    var journalNodeImagePlaceHolderTintColor: UIColor { return UIColor.gunmetal }
 }

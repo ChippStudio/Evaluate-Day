@@ -16,8 +16,9 @@ struct OrangeEntryViewControllerTheme: EntryViewControllerStyle {
     var barTint: UIColor { return UIColor.paleGrey }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
-    
     var tableNodeSeparatorColor: UIColor { return UIColor.white }
+    var tableSectionHeaderColor: UIColor { return UIColor.paleGrey }
+    var tableSectionHeaderFont: UIFont { return UIFont.avenirNext(size: 15.0, weight: .medium) }
     
     // MARK: - TextNode
     var textNodeFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
@@ -31,8 +32,9 @@ struct OrangeEntryViewControllerTheme: EntryViewControllerStyle {
     var actionDividerColor: UIColor { return UIColor.darkBlueGreen }
     
     // MARK: - DateNodeStyle
-    var dateNodeFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var dateNodeFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
     var dateFontColor: UIColor { return UIColor.paleGrey }
+    var dateNodeSeparatorColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - CheckInActionNodeStyle
     var checkInActionMapButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
@@ -69,4 +71,12 @@ struct OrangeEntryViewControllerTheme: EntryViewControllerStyle {
     var weatherNodeDataTextFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .demiBold) }
     var weatherNodeTextFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var weatherNodeTextColor: UIColor { return UIColor.paleGrey }
+    
+    // MARK: - JournalEntryNodeStyle
+    var journalNodeTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var journalNodeTextColor: UIColor { return UIColor.paleGrey }
+    var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var journalNodeMetadataColor: UIColor { return UIColor.paleGrey }
+    var journalNodeTextCoverColor: UIColor { return UIColor.pumpkin }
+    var journalNodeImagePlaceHolderTintColor: UIColor { return UIColor.paleGrey }
 }

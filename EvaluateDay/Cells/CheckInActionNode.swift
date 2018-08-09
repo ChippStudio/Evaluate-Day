@@ -28,6 +28,9 @@ class CheckInActionNode: ASCellNode {
     var separatorNode = ASDisplayNode()
     var currentDate = ASTextNode()
     
+    // MARK: - Variables
+    var leftInset: CGFloat = 10.0
+    
     // MARK: - Init
     init(date: Date, style: CheckInActionNodeStyle) {
         super.init()
@@ -69,7 +72,7 @@ class CheckInActionNode: ASCellNode {
         cell.spacing = 15
         cell.children = [self.currentDate, buttons]
         
-        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 30.0, left: leftInset, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

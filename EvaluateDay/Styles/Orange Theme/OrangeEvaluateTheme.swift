@@ -188,6 +188,7 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var journalNodeMetadataColor: UIColor { return UIColor.paleGrey }
     var journalNodeTextCoverColor: UIColor { return UIColor.pumpkin }
+    var journalNodeImagePlaceHolderTintColor: UIColor { return UIColor.white }
     
     // MARK: - UpdateNodeStyle
     var updateTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

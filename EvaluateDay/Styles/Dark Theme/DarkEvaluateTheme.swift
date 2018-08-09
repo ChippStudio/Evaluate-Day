@@ -188,6 +188,7 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var journalNodeMetadataFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var journalNodeMetadataColor: UIColor { return UIColor.white }
     var journalNodeTextCoverColor: UIColor { return UIColor.gunmetal }
+    var journalNodeImagePlaceHolderTintColor: UIColor { return UIColor.white }
     
     // MARK: - UpdateNodeStyle
     var updateTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

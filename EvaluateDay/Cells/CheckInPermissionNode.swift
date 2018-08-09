@@ -28,6 +28,9 @@ class CheckInPermissionNode: ASCellNode {
     var mapButtonCover = ASDisplayNode()
     var currentDate = ASTextNode()
     
+    // MARK: - Variable
+    var leftInset: CGFloat = 10.0
+    
     // MARK: - Init
     init(date: Date, style: CheckInPermissionNodeStyle) {
         super.init()
@@ -85,7 +88,7 @@ class CheckInPermissionNode: ASCellNode {
         cell.spacing = 10.0
         cell.children = [self.currentDate, cellStack]
         
-        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 30.0, left: self.leftInset, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

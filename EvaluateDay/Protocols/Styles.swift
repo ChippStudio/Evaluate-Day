@@ -127,13 +127,15 @@ protocol PasscodeStyle {
     var buttonSubColor: UIColor { get }
 }
 
-protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle, CheckInActionNodeStyle, CheckInPermissionNodeStyle, CheckInDataEvaluateNodeStyle, WeatherNodeStyle {
+protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle, CheckInActionNodeStyle, CheckInPermissionNodeStyle, CheckInDataEvaluateNodeStyle, WeatherNodeStyle, JournalEntryNodeStyle {
     var background: UIColor { get }
     var barColor: UIColor { get }
     var barTint: UIColor { get }
     var barTitleFont: UIFont { get }
     var barLargeTitleFont: UIFont { get }
     var tableNodeSeparatorColor: UIColor { get }
+    var tableSectionHeaderColor: UIColor { get }
+    var tableSectionHeaderFont: UIFont { get }
 }
 
 protocol ShareViewStyle: EvaluateColorShareViewStyle, EvaluateHundredTenCriterionShareViewStyle, ListShareViewStyle, AnalyticsStackShareViewStyle, EvaluateCheckInShareViewStyle, EvaluateCriterionThreeShareViewStyle, EvaluatePhraseShareViewStyle, EvaluateCounterShareViewStyle, EvaluateHabitShareViewStyle, EvaluateListShareViewStyle, EvaluateGoalShareViewStyle, EvaluateJournalShareViewStyle, CalendarShareViewStyle {
