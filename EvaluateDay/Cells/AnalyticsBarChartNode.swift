@@ -30,7 +30,6 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     var topOffset: CGFloat = 0.0
     var leftOffset: CGFloat = 40.0
     var options: [AnalyticsChartNodeOptionsKey: Any]?
-    var preShareAction: (((UIImage, String, String)) -> Void)?
     
     private var valueAttributes: [NSAttributedStringKey: Any]!
     private var dateAttributes: [NSAttributedStringKey: Any]!
@@ -65,7 +64,6 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.chartNodeShareTintColor)
-        self.shareButton.addTarget(self, action: #selector(sharePreAction(sender:)), forControlEvents: .touchDown)
         
         var dateString = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
         var lastValueString = Localizations.general.none
@@ -199,14 +197,5 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         
         self.selectedXValue = dateString
         self.selectedYValue = "\(Int(entry.y))"
-    }
-    
-    // MARK: - Actions
-    @objc func sharePreAction(sender: ASButtonNode) {
-        if let image = self.chart.snapshot {
-            if self.selectedXValue != nil && self.selectedYValue != nil {
-                self.preShareAction?((image, self.selectedXValue!, self.selectedYValue!))
-            }
-        }
     }
 }

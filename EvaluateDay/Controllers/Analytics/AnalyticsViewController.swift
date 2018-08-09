@@ -88,46 +88,6 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
             if let data = object.data as? Analytical {
                 let controller = data.analyticalSectionController
                 if var cntrl = controller as? AnalyticalSection {
-                    cntrl.shareHandler = { (indexPath, items) in
-                        let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                        var shareType = "Unknown"
-                        if self.traitCollection.userInterfaceIdiom == .pad {
-                            shareActivity.modalPresentationStyle = .popover
-                            if let node = self.collectionNode.nodeForItem(at: indexPath) as? TitleNode {
-                                shareActivity.popoverPresentationController?.sourceView = node.view
-                                shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                                shareType = "Statistics"
-                            } else if let node = self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsCalendarNode {
-                                shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                                shareActivity.popoverPresentationController?.sourceView = node.view
-                                shareType = "Calendar"
-                            } else if let node = self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsBarChartNode {
-                                shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                                shareActivity.popoverPresentationController?.sourceView = node.view
-                                shareType = "Bar Chart"
-                            } else if let node = self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsLineChartNode {
-                                shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                                shareActivity.popoverPresentationController?.sourceView = node.view
-                                shareType = "Line Chart"
-                            } else {
-                                shareActivity.popoverPresentationController?.sourceRect = self.collectionNode.frame
-                                shareActivity.popoverPresentationController?.sourceView = self.view
-                            }
-                        } else {
-                            if self.collectionNode.nodeForItem(at: indexPath) as? TitleNode != nil {
-                                shareType = "Statistics"
-                            } else if self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsCalendarNode != nil {
-                                shareType = "Calendar"
-                            } else if self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsBarChartNode != nil {
-                                shareType = "Bar Chart"
-                            } else if self.collectionNode.nodeForItem(at: indexPath) as? AnalyticsLineChartNode != nil {
-                                shareType = "Line Chart"
-                            }
-                        }
-                        
-                        sendEvent(.shareFromAnalytics, withProperties: ["type": self.card.type.string, "share": shareType])
-                        self.present(shareActivity, animated: true, completion: nil)
-                    }
                     cntrl.exportHandler = { (indexPath, index, file) in
                         let vc = UIActivityViewController(activityItems: [file], applicationActivities: [])
                         

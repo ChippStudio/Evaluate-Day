@@ -32,7 +32,6 @@ class AnalyticsMapNode: ASCellNode {
     // MARK: - Variables
     var topInset: CGFloat = 0.0
     var didLoadMap: (() -> Void)?
-    var preShareAction: ((UIImage) -> Void)?
     
     // MARK: - Init
     init(title: String, actionTitle: String?, style: AnalyticsMapNodeStyle) {
@@ -45,7 +44,6 @@ class AnalyticsMapNode: ASCellNode {
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.mapNodeShareTintColor)
-        self.shareButton.addTarget(self, action: #selector(sharePreAction(sender:)), forControlEvents: .touchDown)
         
         if actionTitle != nil {
             self.actionButton = ASButtonNode()
@@ -115,12 +113,5 @@ class AnalyticsMapNode: ASCellNode {
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
-    }
-    
-    // MARK: - Actions
-    @objc func sharePreAction(sender: ASButtonNode) {
-        if let image = self.mapView.snapshot {
-            self.preShareAction?(image)
-        }
     }
 }

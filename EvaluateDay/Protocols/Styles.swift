@@ -138,27 +138,7 @@ protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle
     var tableSectionHeaderFont: UIFont { get }
 }
 
-protocol ShareViewStyle: EvaluateColorShareViewStyle, EvaluateHundredTenCriterionShareViewStyle, ListShareViewStyle, AnalyticsStackShareViewStyle, EvaluateCheckInShareViewStyle, EvaluateCriterionThreeShareViewStyle, EvaluatePhraseShareViewStyle, EvaluateCounterShareViewStyle, EvaluateHabitShareViewStyle, EvaluateListShareViewStyle, EvaluateGoalShareViewStyle, EvaluateJournalShareViewStyle, CalendarShareViewStyle {
-    var background: UIColor { get }
-    var borderColor: UIColor { get }
-    var titleTint: UIColor { get }
-    var titleFont: UIFont { get }
-    var descriptionColor: UIColor { get }
-    var descriptionFont: UIFont { get }
-    
-    var cardShareBackground: UIColor { get }
-    var cardShareTitleColor: UIColor { get }
-    var cardShareTitleFont: UIFont { get }
-    var cardShareSubtitleColor: UIColor { get }
-    var cardShareSubtitleFont: UIFont { get }
-    var cardShareDateColor: UIColor { get }
-    var cardShareDateFont: UIFont { get }
-    
-    var cardSelectedDateColor: UIColor { get }
-    var cardSelectedDateFont: UIFont { get }
-    var cardSelectedValuePositiveColor: UIColor { get }
-    var cardSelectedValueNegativeColor: UIColor { get }
-    var cardSelectedValueFont: UIFont { get }
+protocol ShareViewStyle {
 }
 
 protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeStyle, DescriptionNodeStyle {

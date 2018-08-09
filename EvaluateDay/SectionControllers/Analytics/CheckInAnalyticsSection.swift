@@ -23,14 +23,11 @@ private enum AnalyticsNodeType {
 class CheckInAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance, MKMapViewDelegate {
     // MARK: - Variable
     var card: Card!
-    var shareCalendarImage: UIImage?
-    var shareMapImage: UIImage?
     
     private var data: [(title: String, data: String)]?
     private var nodes = [AnalyticsNodeType]()
     
     // MARK: - Actions
-    var shareHandler: ((IndexPath, [Any]) -> Void)?
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)?
     
     // MARK: - Init
@@ -97,9 +94,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                     }
                     node.mapView.delegate = self
                 }
-                node.preShareAction = { (image) in
-                    self.shareMapImage = image
-                }
                 return node
             }
         case .information:
@@ -147,9 +141,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 node.topInset = 50.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
-                }
-                node.preShareAction = { (image) in
-                    self.shareCalendarImage = image
                 }
                 return node
             }
@@ -351,99 +342,7 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     @objc private func shareAction(sender: ASButtonNode) {
-        let style = Themes.manager.analyticalStyle
-        let indexPath = IndexPath(row: sender.view.tag, section: self.section)
-        // Make shareble view
-        var inView = UIView()
-        if self.shareCalendarImage != nil {
-            inView = AnalyticsCalendarShareView(image: self.shareCalendarImage!, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
-            self.shareCalendarImage = nil
-        } else if self.shareMapImage != nil {
-            inView = AnalyticsCalendarShareView(image: self.shareMapImage!, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
-            self.shareMapImage = nil
-        } else {
-            // View from title
-            if self.data != nil {
-                var stack = [UIView]()
-                for d in self.data! {
-                    let view = UIView()
-                    view.backgroundColor = UIColor.clear
-                    
-                    let leftLabel = UILabel()
-                    leftLabel.text = d.title
-                    leftLabel.textColor = style.statisticDataTitleColor
-                    leftLabel.font = style.statisticDataTitleFont
-                    view.addSubview(leftLabel)
-                    leftLabel.snp.makeConstraints({ (make) in
-                        make.top.equalToSuperview()
-                        make.leading.equalToSuperview()
-                    })
-                    
-                    let rightLabel = UILabel()
-                    rightLabel.textColor = style.statisticDataColor
-                    rightLabel.font = style.statisticDataFont
-                    rightLabel.textAlignment = .right
-                    rightLabel.text = d.data
-                    view.addSubview(rightLabel)
-                    rightLabel.snp.makeConstraints({ (make) in
-                        make.top.equalToSuperview()
-                        make.trailing.equalToSuperview()
-                        make.leading.equalTo(leftLabel.snp.trailing).offset(5.0)
-                    })
-                    
-                    let separator = UIView()
-                    separator.backgroundColor = style.statisticSeparatorColor
-                    
-                    view.addSubview(separator)
-                    separator.snp.makeConstraints({ (make) in
-                        make.trailing.equalToSuperview().offset(-5.0)
-                        make.leading.equalToSuperview().offset(5.0)
-                        make.bottom.equalToSuperview()
-                        make.top.equalTo(rightLabel.snp.bottom).offset(5.0)
-                        make.top.equalTo(leftLabel.snp.bottom).offset(5.0)
-                        make.height.equalTo(0.5)
-                    })
-                    
-                    stack.append(view)
-                }
-                
-                inView = AnalyticsStackShareView(stack: stack, text: "", title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
-            }
-        }
-        
-        // Share Image
-        let sv = ShareView(view: inView)
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        
-        var items = [Any]()
-        if let im = sv.snapshot {
-            items.append(im)
-        }
-        
-        sv.removeFromSuperview()
-        
-        // Make universal Branch Link
-        let linkObject = BranchUniversalObject(canonicalIdentifier: "checkInShare")
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
-        
-        let linkProperties = BranchLinkProperties()
-        linkProperties.feature = "Content share"
-        linkProperties.channel = "Analytics"
-        
-        linkObject.getShortUrl(with: linkProperties) { (link, error) in
-            if error != nil && link == nil {
-                print(error!.localizedDescription)
-            } else {
-                items.append(link!)
-            }
-            
-            self.shareHandler?(indexPath, items)
-        }
+        // FIXME: - Need share sction
+        print("Share action not implemented")
     }
 }

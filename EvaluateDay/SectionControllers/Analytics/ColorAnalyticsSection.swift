@@ -22,14 +22,12 @@ private enum AnalyticsNodeType {
 class ColorAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
     // MARK: - Variable
     var card: Card!
-    var shareCalendarImage: UIImage?
     
     private var data: [(color: String, data: String)]?
     
     private var nodes = [AnalyticsNodeType]()
     
     // MARK: - Actions
-    var shareHandler: ((IndexPath, [Any]) -> Void)?
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)?
     
     // MARK: - Init
@@ -102,9 +100,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 node.topInset = 50.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
-                }
-                node.preShareAction = { (image) in
-                    self.shareCalendarImage = image
                 }
                 return node
             }
@@ -286,98 +281,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         return path
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let style = Themes.manager.analyticalStyle
-        let indexPath = IndexPath(row: sender.view.tag, section: self.section)
-        // Make shareble view
-        var inView = UIView()
-        if self.shareCalendarImage != nil {
-            inView = AnalyticsCalendarShareView(image: self.shareCalendarImage!, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
-            self.shareCalendarImage = nil
-        } else {
-            // View from title
-            if self.data != nil {
-                var stack = [UIView]()
-                for d in self.data! {
-                    let view = UIView()
-                    view.backgroundColor = UIColor.clear
-                    let dot = UIView()
-                    dot.backgroundColor = d.color.color
-                    if d.color == "FFFFFF" {
-                        dot.layer.borderColor = style.statisticDataColor.cgColor
-                        dot.layer.borderWidth = 0.5
-                    }
-                    dot.layer.cornerRadius = 10.0
-                    let label = UILabel()
-                    label.font = style.statisticDataFont
-                    label.textColor = style.statisticDataColor
-                    label.text = d.data
-                    label.textAlignment = .right
-                    
-                    let separator = UIView()
-                    separator.backgroundColor = style.statisticSeparatorColor
-                    
-                    view.addSubview(dot)
-                    view.addSubview(label)
-                    view.addSubview(separator)
-                    
-                    dot.snp.makeConstraints({ (make) in
-                        make.top.equalToSuperview()
-                        make.leading.equalToSuperview()
-                        make.width.equalTo(20.0)
-                        make.height.equalTo(20.0)
-                    })
-                    label.snp.makeConstraints({ (make) in
-                        make.centerY.equalTo(dot)
-                        make.leading.equalTo(dot.snp.trailing).offset(10.0)
-                        make.trailing.equalToSuperview()
-                    })
-                    separator.snp.makeConstraints({ (make) in
-                        make.trailing.equalToSuperview().offset(-5.0)
-                        make.leading.equalToSuperview().offset(5.0)
-                        make.bottom.equalToSuperview()
-                        make.height.equalTo(0.5)
-                        make.top.equalTo(dot.snp.bottom).offset(5.0)
-                    })
-                    stack.append(view)
-                }
-                
-                inView = AnalyticsStackShareView(stack: stack, text: Localizations.analytics.statistics.color.title, title: self.card.title, subtitle: self.card.subtitle, type: self.card.type)
-            }
-        }
-        
-        // Share Image
-        let sv = ShareView(view: inView)
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        
-        var items = [Any]()
-        if let im = sv.snapshot {
-            items.append(im)
-        }
-        
-        sv.removeFromSuperview()
-        
-        // Make universal Branch Link
-        let linkObject = BranchUniversalObject(canonicalIdentifier: "colorShare")
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
-        
-        let linkProperties = BranchLinkProperties()
-        linkProperties.feature = "Content share"
-        linkProperties.channel = "Analytics"
-        
-        linkObject.getShortUrl(with: linkProperties) { (link, error) in
-            if error != nil && link == nil {
-                print(error!.localizedDescription)
-            } else {
-                items.append(link!)
-            }
-            
-            self.shareHandler?(indexPath, items)
-        }
+        // FIXME: - Need share sction
+        print("Share action not implemented")
     }
 }

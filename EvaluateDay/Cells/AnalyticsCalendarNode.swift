@@ -31,7 +31,6 @@ class AnalyticsCalendarNode: ASCellNode {
     // MARK: - Variable
     var topInset: CGFloat = 0.0
     var didLoadCalendar: (() -> Void)?
-    var preShareAction: ((UIImage) -> Void)?
     
     // MARK: - Unit
     init(title: String, style: AnalyticsCalendarNodeStyle) {
@@ -44,7 +43,6 @@ class AnalyticsCalendarNode: ASCellNode {
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.calendarShareTintColor)
-        self.shareButton.addTarget(self, action: #selector(sharePreAction(sender:)), forControlEvents: .touchDown)
         
         self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.calendar = FSCalendar()
@@ -96,12 +94,5 @@ class AnalyticsCalendarNode: ASCellNode {
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
-    }
-    
-    // MARK: - Actions
-    @objc func sharePreAction(sender: ASButtonNode) {
-        if let image = self.calendar.snapshot {
-            self.preShareAction?(image)
-        }
     }
 }

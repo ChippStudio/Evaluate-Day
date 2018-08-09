@@ -17,7 +17,6 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
     var date: Date!
     
     // MARK: - Actions
-    var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
     
     // MARK: - Init
@@ -118,44 +117,8 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         }
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let indexPath = IndexPath(row: sender.view.tag, section: self.section)
-        let listCard = self.card.data as! ListCard
-        let done = listCard.values.filter("(doneDate >= %@) AND (doneDate <= %@) AND (done=%@)", self.date.start, self.date.end, true).count
-        let allDone = listCard.values.filter("done=%@", true).count
-        let all = listCard.values.count
-        
-        let sv = ShareView(view: EvaluateListShareView(all: all, inDayDone: done, allDone: allDone, title: self.card.title, subtitle: self.card.subtitle, date: self.date))
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        var items = [Any]()
-        if let im = sv.snapshot {
-            items.append(im)
-        }
-        
-        sv.removeFromSuperview()
-        
-        // Make universal Branch Link
-        let linkObject = BranchUniversalObject(canonicalIdentifier: "listShare")
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
-        
-        let linkProperties = BranchLinkProperties()
-        linkProperties.feature = "Content share"
-        linkProperties.channel = "Evaluate"
-        
-        linkObject.getShortUrl(with: linkProperties) { (link, error) in
-            if error != nil && link == nil {
-                print(error!.localizedDescription)
-            } else {
-                items.append(link!)
-            }
-            
-            self.shareHandler?(indexPath, self.card, items)
-        }
+        // FIXME: - Need share sction
+        print("Share action not implemented")
     }
 }
 

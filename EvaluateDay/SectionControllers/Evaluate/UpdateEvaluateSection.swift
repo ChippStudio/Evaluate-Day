@@ -16,11 +16,6 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
     var date: Date!
     
     // MARK: - Actions
-    var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
-    var deleteHandler: ((IndexPath, Card) -> Void)?
-    var editHandler: ((IndexPath, Card) -> Void)?
-    var mergeHandler: ((IndexPath, Card) -> Void)?
-    var unarchiveHandler: ((IndexPath, Card) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
     
     // MARK: - Init

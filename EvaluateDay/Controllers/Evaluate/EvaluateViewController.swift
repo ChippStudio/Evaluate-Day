@@ -174,18 +174,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             controller.inset = cardInsets
             if var cntrl = controller as? EvaluableSection {
                 cntrl.date = self.date
-                cntrl.shareHandler = { (indexPath, bcard, items) in
-                    
-                    let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                    if self.traitCollection.userInterfaceIdiom == .pad {
-                        shareActivity.modalPresentationStyle = .popover
-                        let node = self.collectionNode.nodeForItem(at: indexPath) as! CardNode
-                        shareActivity.popoverPresentationController?.sourceRect = node.title.shareButton.frame
-                        shareActivity.popoverPresentationController?.sourceView = node.title.view
-                    }
-                    sendEvent(.shareFromEvaluateDay, withProperties: ["type": bcard.type.string])
-                    self.present(shareActivity, animated: true, completion: nil)
-                }
                 cntrl.didSelectItem = { (index, card) in
                     let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                     analytycs.card = card

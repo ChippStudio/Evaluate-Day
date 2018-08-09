@@ -19,7 +19,6 @@ protocol EvaluableSection {
     var date: Date! { get set }
     
     // MARK: - Handlers
-    var shareHandler: ((_ indexPath: IndexPath, _ bcard: Card, _ items: [Any]) -> Void)? { get set }
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
 protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, HabitNegativeNodeStyle { }
@@ -30,7 +29,6 @@ protocol AnalyticalSection {
     var card: Card! { get set }
     
     // MARK: - Handlers
-    var shareHandler: ((_ indexPath: IndexPath, _ items: [Any]) -> Void)? { get set }
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
 protocol AnalyticalSectionStyle: TitleNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle { }

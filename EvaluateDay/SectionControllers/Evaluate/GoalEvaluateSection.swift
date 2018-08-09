@@ -17,7 +17,6 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
     var date: Date!
     
     // MARK: - Actions
-    var shareHandler: ((IndexPath, Card, [Any]) -> Void)?
     var didSelectItem: ((Int, Card) -> Void)?
     
     // MARK: - Init
@@ -206,52 +205,8 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let indexPath = IndexPath(row: sender.view.tag, section: self.section)
-        let goalCard = self.card.data as! GoalCard
-        let goalValue = goalCard.goalValue
-        var value: Double = 0.0
-        var sumValue: Double?
-        if let currentValue = goalCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
-            value = currentValue.value
-        }
-        if goalCard.isSum {
-            sumValue = goalCard.startValue
-            for v in goalCard.values {
-                sumValue! += v.value
-            }
-        }
-        let sv = ShareView(view: EvaluateGoalShareView(value: value, goalValue: goalValue, sumValue: sumValue, title: self.card.title, subtitle: self.card.subtitle, date: self.date))
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        var items = [Any]()
-        if let im = sv.snapshot {
-            items.append(im)
-        }
-        
-        sv.removeFromSuperview()
-        
-        // Make universal Branch Link
-        let linkObject = BranchUniversalObject(canonicalIdentifier: "goalShare")
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
-        
-        let linkProperties = BranchLinkProperties()
-        linkProperties.feature = "Content share"
-        linkProperties.channel = "Evaluate"
-        
-        linkObject.getShortUrl(with: linkProperties) { (link, error) in
-            if error != nil && link == nil {
-                print(error!.localizedDescription)
-            } else {
-                items.append(link!)
-            }
-            
-            self.shareHandler?(indexPath, self.card, items)
-        }
+        // FIXME: - Need share sction
+        print("Share action not implemented")
     }
 }
 
