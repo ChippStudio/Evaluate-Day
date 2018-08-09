@@ -36,7 +36,7 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         self.tableNode = ASTableNode(style: .plain)
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
-        self.tableNode.view.separatorStyle = .none
+//        self.tableNode.view.separatorStyle = .none
         self.view.addSubnode(self.tableNode)
     }
 

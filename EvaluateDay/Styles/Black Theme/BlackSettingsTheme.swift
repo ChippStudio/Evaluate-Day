@@ -39,8 +39,8 @@ struct BlackSettingsTheme: SettingsStyle {
     
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.white }
-    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var settingsSubtitleNodeColor: UIColor { return UIColor.salmon }
+    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var settingsSubtitleNodeColor: UIColor { return UIColor.white }
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.white }
     var imageTintColor: UIColor { return UIColor.white  }

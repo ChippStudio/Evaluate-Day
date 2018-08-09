@@ -60,8 +60,8 @@ struct LightSettingsTheme: SettingsStyle {
     
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.gunmetal }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var titleSubtitleColor: UIColor { return UIColor.gray }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var titleSubtitleColor: UIColor { return UIColor.gunmetal }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
     

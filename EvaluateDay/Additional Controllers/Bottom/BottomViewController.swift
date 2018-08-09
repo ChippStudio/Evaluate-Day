@@ -86,7 +86,8 @@ class BottomViewController: UIViewController {
         }
         
         if collection.horizontalSizeClass == .compact {
-            self.contentView.layer.cornerRadius = 0.0
+            self.contentView.layer.cornerRadius = 5.0
+            self.contentView.clipsToBounds = true
         } else {
             self.contentView.layer.cornerRadius = 10.0
             self.contentView.clipsToBounds = true

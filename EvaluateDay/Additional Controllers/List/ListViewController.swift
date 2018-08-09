@@ -143,15 +143,6 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
                 item.doneDate = self.date
             }
         }
-        
-        if let node = self.tableNode.nodeForRow(at: sourceIndexPath) as? ListItemEvaluateNode {
-            let style = Themes.manager.evaluateStyle
-            if item.done {
-                node.doneDot.backgroundColor = style.listItemTintColor
-            } else {
-                node.doneDot.backgroundColor = UIColor.clear
-            }
-        }
     }
     
     // MARK: - ASTableDelegate

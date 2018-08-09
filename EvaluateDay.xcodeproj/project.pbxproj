@@ -129,8 +129,6 @@
 		B587D6BF1FB6D5E1006D62C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6BE1FB6D5E1006D62C1 /* Colors.swift */; };
 		B587D6C81FB96D11006D62C1 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B587D6C71FB96D11006D62C1 /* Icons.xcassets */; };
 		B587D6CD1FB96FA3006D62C1 /* PresentFutureEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6CC1FB96FA3006D62C1 /* PresentFutureEmptyView.swift */; };
-		B589B8F0206CB7AF0002A965 /* Like.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B589B8EF206CB7AF0002A965 /* Like.storyboard */; };
-		B589B8F2206CB7C00002A965 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B589B8F1206CB7C00002A965 /* LikeViewController.swift */; };
 		B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */; };
 		B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */; };
 		B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318231FF90890000D8FFE /* ColorEditableSection.swift */; };
@@ -523,8 +521,6 @@
 		B587D6BE1FB6D5E1006D62C1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B587D6C71FB96D11006D62C1 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		B587D6CC1FB96FA3006D62C1 /* PresentFutureEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentFutureEmptyView.swift; sourceTree = "<group>"; };
-		B589B8EF206CB7AF0002A965 /* Like.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Like.storyboard; sourceTree = "<group>"; };
-		B589B8F1206CB7C00002A965 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
 		B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredCard.swift; sourceTree = "<group>"; };
 		B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEditableSection.swift; sourceTree = "<group>"; };
 		B59318231FF90890000D8FFE /* ColorEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEditableSection.swift; sourceTree = "<group>"; };
@@ -1002,15 +998,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B589B8EE206CB79A0002A965 /* Like */ = {
-			isa = PBXGroup;
-			children = (
-				B589B8EF206CB7AF0002A965 /* Like.storyboard */,
-				B589B8F1206CB7C00002A965 /* LikeViewController.swift */,
-			);
-			path = Like;
-			sourceTree = "<group>";
-		};
 		B591FAD41FA83288007EE0F1 /* SectionControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1084,7 +1071,6 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B589B8EE206CB79A0002A965 /* Like */,
 				B55464E22029CEA900923CE3 /* EnriesList */,
 				B5693EF320246EDC00B8879C /* Entry */,
 				B5EC884F2011EF640056C1C7 /* Phrases */,
@@ -1861,7 +1847,6 @@
 				B5A730EE1FF2437C006B6F58 /* openPro.wav in Resources */,
 				B5B27E8C1F9DC3BC00CB9121 /* Settings.storyboard in Resources */,
 				B5693EF520246EE900B8879C /* Entry.storyboard in Resources */,
-				B589B8F0206CB7AF0002A965 /* Like.storyboard in Resources */,
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
 				B5AC0E0E20E4AEF500F13A79 /* BlackAppIcon.png in Resources */,
@@ -2253,7 +2238,6 @@
 				B5AC0E1C20E4C93D00F13A79 /* BlackTabControllerTheme.swift in Sources */,
 				B5F5977E1FC990FE0098A071 /* AnalyticsChartNodes.swift in Sources */,
 				B5DE2CB32001003B00EFBCA5 /* NumberValue+Extensions.swift in Sources */,
-				B589B8F2206CB7C00002A965 /* LikeViewController.swift in Sources */,
 				B5693EF2202462F100B8879C /* JournalNewEntryActionNode.swift in Sources */,
 				B57F45CC20E675D900672FD6 /* secret.swift in Sources */,
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,

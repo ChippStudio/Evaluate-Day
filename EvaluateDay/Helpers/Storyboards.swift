@@ -30,5 +30,4 @@ enum Storyboards: String {
     case list = "List"
     case entry = "Entry"
     case entriesList = "EntriesList"
-    case like = "Like"
 }

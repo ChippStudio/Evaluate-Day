@@ -46,7 +46,7 @@ class ListItemEvaluateNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        let dotSize: CGFloat = 30.0
+        let dotSize: CGFloat = 20.0
         let dotOffset: CGFloat = 2.0
         
         self.doneButton.style.preferredSize = CGSize(width: dotSize, height: dotSize)
