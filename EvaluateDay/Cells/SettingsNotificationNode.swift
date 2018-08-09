@@ -24,6 +24,9 @@ class SettingsNotificationNode: ASCellNode {
     var message = ASTextNode()
     var information = ASTextNode()
     
+    // MARK: - Variables
+    var leftInset: CGFloat = 15.0
+    
     // MARK: - Init
     init(message: String, time: String, localizedRepeat: String, card: String, style: SettingsNotificationNodeStyle) {
         super.init()
@@ -43,7 +46,7 @@ class SettingsNotificationNode: ASCellNode {
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [self.message, self.information]
         
-        let cellInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 5.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 5.0, left: leftInset, bottom: 5.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

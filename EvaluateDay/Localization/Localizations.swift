@@ -1193,6 +1193,9 @@ public struct Localizations {
         /// Base translation: Tap to enter new
         public static var textPlaceholder : String = NSLocalizedString("cardSettings.textPlaceholder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        /// Base translation: Danger Zone
+        public static var dangerZone : String = NSLocalizedString("cardSettings.dangerZone", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
 
         public struct goal {
 

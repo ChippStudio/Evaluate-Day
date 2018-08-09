@@ -245,6 +245,9 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
     
     // MARK: - Actions
     @objc func saveAction(sender: UIBarButtonItem) {
+        if self.card != nil {
+            self.notification.cardID = self.card.id
+        }
         try! Database.manager.app.write {
             Database.manager.app.add(self.notification)
             Database.manager.application.notifications.append(self.notification)

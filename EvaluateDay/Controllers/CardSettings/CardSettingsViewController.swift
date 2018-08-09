@@ -77,7 +77,8 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         let crd = DiffCard(card: self.card)
         if self.card.realm != nil {
             let not = CardSettingsNotificationObject(card: self.card)
-            return [crd, not]
+            let del = CardSettingsDeleteObject()
+            return [crd, not, del]
         }
         
         return [crd]
@@ -116,7 +117,11 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
             }
         } else if object is CardSettingsNotificationObject {
             let controller = CardSettingsNotificationSection(card: self.card)
-            controller.inset = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 0.0, right: 0.0)
+            controller.inset = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 0.0, right: 0.0)
+            return controller
+        } else if object is CardSettingsDeleteObject {
+            let controller = CardSettingsDeleteSection(card: self.card)
+            controller.inset = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 30.0, right: 0.0)
             return controller
         }
         
@@ -155,6 +160,12 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         // Analytics
         sendEvent(.addNewCard, withProperties: ["type": self.card.type.string])
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func deleteButtonAction(sender: UIBarButtonItem) {
+    }
+        
+    @objc func mergeButtonAction(sender: UIBarButtonItem) {
     }
     
     // MARK: - Private

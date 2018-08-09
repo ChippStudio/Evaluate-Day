@@ -16,12 +16,16 @@ struct LightCardSettingsTheme: CardSettingsStyle {
     var barTint: UIColor { return UIColor.viridian }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var dangerZoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
+    var dangerZoneDeleteColor: UIColor { return UIColor.brownishRed }
+    var dangerZoneMergeColor: UIColor { return UIColor.gunmetal }
+    var dangerZoneArchiveColor: UIColor { return UIColor.viridian }
     
     // MARK: - CardSettings Text
     var cardSettingsTextPlaceholder: UIColor { return UIColor.lightGray }
     var cardSettingsText: UIColor { return UIColor.gunmetal }
     var cardSettingsTextTitle: UIColor { return UIColor.gunmetal }
-    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
+    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var cardSettingsTextTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     
     // MARK: - CardSettings Boolean
@@ -47,7 +51,7 @@ struct LightCardSettingsTheme: CardSettingsStyle {
     var separatorNodeColor: UIColor { return UIColor.lightGray }
     
     // MARK: - CardSettingsSectionTitleNodeStyle
-    var cardSettingsSectionTitleFont: UIFont { return UIFont.avenirNext(size: 13.0, weight: .regular) }
+    var cardSettingsSectionTitleFont: UIFont { return UIFont.avenirNext(size: 15.0, weight: .regular) }
     var cardSettingsSectionTitleColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - SettingsNotificationNodeStyle

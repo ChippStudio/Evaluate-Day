@@ -61,6 +61,10 @@ protocol CardSettingsStyle: EditableSectionStyle {
     var barTint: UIColor { get }
     var barTitleFont: UIFont { get }
     var barLargeTitleFont: UIFont { get }
+    var dangerZoneFont: UIFont { get }
+    var dangerZoneDeleteColor: UIColor { get }
+    var dangerZoneMergeColor: UIColor { get }
+    var dangerZoneArchiveColor: UIColor { get }
 }
 
 protocol CardMergeStyle: MergeSectionStyle {

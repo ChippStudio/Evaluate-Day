@@ -221,6 +221,7 @@
 "cardSettings.textPlaceholder" = "Tap to enter new";
 "cardSettings.title" = "Title";
 "cardSettings.untitle" = "Untitled %@";
+"cardSettings.dangerZone" = "Danger Zone";
 
 // MARK: - Card merge
 "cardMerge.action" = "Merge";

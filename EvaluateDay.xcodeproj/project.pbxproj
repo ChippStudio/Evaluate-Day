@@ -88,6 +88,8 @@
 		B55D328820790A5500BD1E75 /* TrackerAnalyticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D328720790A5500BD1E75 /* TrackerAnalyticsSection.swift */; };
 		B55D328A20790B4400BD1E75 /* TrackerMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D328920790B4400BD1E75 /* TrackerMergeSection.swift */; };
 		B55D328C207917B800BD1E75 /* HabitNegativeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D328B207917B800BD1E75 /* HabitNegativeNode.swift */; };
+		B560DB3F211B575C00378AD8 /* CardSettingsDeleteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */; };
+		B560DB41211B580800378AD8 /* CardSettingsDeleteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */; };
 		B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */ = {isa = PBXBuildFile; fileRef = B56217F01FD30F4A0061AC70 /* EvaluatePush.wav */; };
 		B56218051FD5672D0061AC70 /* ProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56218041FD5672D0061AC70 /* ProViewController.swift */; };
 		B562180A1FD56A6C0061AC70 /* SettingsProButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */; };
@@ -479,6 +481,8 @@
 		B55D328720790A5500BD1E75 /* TrackerAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerAnalyticsSection.swift; sourceTree = "<group>"; };
 		B55D328920790B4400BD1E75 /* TrackerMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMergeSection.swift; sourceTree = "<group>"; };
 		B55D328B207917B800BD1E75 /* HabitNegativeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitNegativeNode.swift; sourceTree = "<group>"; };
+		B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsDeleteObject.swift; sourceTree = "<group>"; };
+		B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsDeleteSection.swift; sourceTree = "<group>"; };
 		B56217F01FD30F4A0061AC70 /* EvaluatePush.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EvaluatePush.wav; sourceTree = "<group>"; };
 		B56218041FD5672D0061AC70 /* ProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViewController.swift; sourceTree = "<group>"; };
 		B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsProButtonNode.swift; sourceTree = "<group>"; };
@@ -979,6 +983,7 @@
 				B5D9A84E2060122A00F84091 /* ActivityAnalyticsObject.swift */,
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
+				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
 			);
 			path = "Additional Objects";
 			sourceTree = "<group>";
@@ -1133,6 +1138,7 @@
 				B57B063A201B114700C4E182 /* GoalEditableSection.swift */,
 				B5A9D5AD20220540006DFB32 /* JournalEditableSection.swift */,
 				B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */,
+				B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */,
 			);
 			path = Editable;
 			sourceTree = "<group>";
@@ -2107,6 +2113,7 @@
 				B5E772221FA0819D002FA03F /* SourceNode.swift in Sources */,
 				B5B7EE3E20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift in Sources */,
 				B5BD3B1E2007676F0075C75F /* CriterionTenCard+Extensions.swift in Sources */,
+				B560DB41211B580800378AD8 /* CardSettingsDeleteSection.swift in Sources */,
 				B5FFDD4D201B8429008D0365 /* PhotoValue.swift in Sources */,
 				B5257D621FE93FC800AC54DE /* DarkSlidesControllerTheme.swift in Sources */,
 				B562180E1FD57E5C0061AC70 /* Store.swift in Sources */,
@@ -2379,6 +2386,7 @@
 				B55D32752074F67300BD1E75 /* OrangeActivityControllerTheme.swift in Sources */,
 				B55464D3202743FF00923CE3 /* JournalEntryNode.swift in Sources */,
 				B52D26DF20174A0E00332D0A /* HabitCard+Extensions.swift in Sources */,
+				B560DB3F211B575C00378AD8 /* CardSettingsDeleteObject.swift in Sources */,
 				B5257D441FE91C1300AC54DE /* WebViewController.swift in Sources */,
 				B587D6B31FB59CA2006D62C1 /* LightSettingsTheme.swift in Sources */,
 				B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */,

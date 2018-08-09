@@ -16,12 +16,16 @@ struct DarkCardSettingsTheme: CardSettingsStyle {
     var barTint: UIColor { return UIColor.white }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var dangerZoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
+    var dangerZoneDeleteColor: UIColor { return UIColor.salmon }
+    var dangerZoneMergeColor: UIColor { return UIColor.white }
+    var dangerZoneArchiveColor: UIColor { return UIColor.pewterBlue }
     
     // MARK: - CardSettings Text
     var cardSettingsTextPlaceholder: UIColor { return UIColor.lightGray }
     var cardSettingsText: UIColor { return UIColor.white }
     var cardSettingsTextTitle: UIColor { return UIColor.white }
-    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
+    var cardSettingsTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var cardSettingsTextTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     
     // MARK: - CardSettings Boolean

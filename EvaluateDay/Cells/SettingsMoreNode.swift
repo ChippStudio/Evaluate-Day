@@ -29,10 +29,14 @@ class SettingsMoreNode: ASCellNode {
     var leftInset: CGFloat = 15.0
     
     // MARK: - Init
-    init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle) {
+    init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle, titleAttributes: [NSAttributedStringKey: NSObject]? = nil) {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsTitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsTitleNodeColor])
+        var titleNewAttributes = [NSAttributedStringKey.font: style.settingsTitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsTitleNodeColor]
+        if titleAttributes != nil {
+            titleNewAttributes = titleAttributes!
+        }
+        self.title.attributedText = NSAttributedString(string: title, attributes: titleNewAttributes)
         
         if subtitle != nil {
             self.subtitle = ASTextNode()
@@ -44,6 +48,7 @@ class SettingsMoreNode: ASCellNode {
         if image != nil {
             self.imageNode = ASImageNode()
             self.imageNode.image = image
+            self.imageNode.contentMode = .scaleAspectFit
             self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.disclosureTintColor)
         }
         

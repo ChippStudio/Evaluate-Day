@@ -52,16 +52,8 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         case .separator:
             return {
                 let separator = SeparatorNode(style: style)
-                if index != 1 && index != self.nodes.count - 1 {
+                if index != 1 && index != 3 && index != self.nodes.count - 1 {
                     separator.leftInset = 20.0
-                }
-                
-                if index == 3 {
-                    separator.leftInset = 0.0
-                    separator.bottomInset = 30.0
-                }
-                if index == 4 {
-                    separator.leftInset = 0.0
                 }
                 return separator
             }
@@ -79,6 +71,7 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
             let cardTitle = self.card.title
             return {
                 let node = SettingsNotificationNode(message: title, time: timeString, localizedRepeat: localizedRepeat, card: cardTitle, style: style)
+                node.leftInset = 20.0
                 return node
             }
         }
@@ -142,10 +135,6 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         self.nodes.append((node: .separator, notification: nil))
         self.nodes.append((node: .new, notification: nil))
         self.nodes.append((node: .separator, notification: nil))
-        
-        if !self.notifications.isEmpty {
-            self.nodes.append((node: .separator, notification: nil))
-        }
         
         for n in self.notifications {
             if n.cardID != nil {
