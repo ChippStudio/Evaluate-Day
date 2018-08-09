@@ -29,6 +29,7 @@ protocol EvaluableStyle: EvaluableSectionStyle, CardListEmptyViewStyle {
     var background: UIColor { get }
     var statusBarStyle: UIStatusBarStyle { get }
     var cardColor: UIColor { get }
+    var cardArchiveColor: UIColor { get }
     var cardShadowColor: UIColor { get }
     var barColor: UIColor { get }
     var barTint: UIColor { get }

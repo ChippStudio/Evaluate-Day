@@ -94,7 +94,7 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             
             return node

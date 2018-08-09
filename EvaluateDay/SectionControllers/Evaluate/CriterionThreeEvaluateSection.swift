@@ -100,7 +100,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             
             return node

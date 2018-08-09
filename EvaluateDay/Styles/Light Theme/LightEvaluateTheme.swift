@@ -19,6 +19,7 @@ struct LightEvaluateTheme: EvaluableStyle {
     var barTint: UIColor { return UIColor.viridian }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var cardArchiveColor: UIColor { return UIColor.lightText }
     
     var tableNodeSeparatorColor: UIColor { return UIColor.lightGray }
     var actionSheetTintColor: UIColor { return UIColor.gunmetal }

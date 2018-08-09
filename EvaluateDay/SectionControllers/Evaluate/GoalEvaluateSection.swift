@@ -91,7 +91,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             
             return node

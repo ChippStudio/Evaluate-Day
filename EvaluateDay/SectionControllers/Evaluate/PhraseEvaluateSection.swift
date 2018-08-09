@@ -73,7 +73,7 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             
             return node

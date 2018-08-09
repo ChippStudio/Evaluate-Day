@@ -104,7 +104,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             
             return node

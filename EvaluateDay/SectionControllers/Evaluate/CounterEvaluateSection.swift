@@ -87,7 +87,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
             
             if archived {
-                node.backgroundColor = style.background
+                node.backgroundColor = style.cardArchiveColor
             }
             return node
         }

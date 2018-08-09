@@ -19,6 +19,7 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var barTint: UIColor { return UIColor.paleGrey }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var cardArchiveColor: UIColor { return UIColor.squash }
     
     var tableNodeSeparatorColor: UIColor { return UIColor.lightGray }
     var actionSheetTintColor: UIColor { return UIColor.pumpkin }
