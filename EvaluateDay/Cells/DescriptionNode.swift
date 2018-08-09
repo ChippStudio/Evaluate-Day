@@ -20,6 +20,7 @@ class DescriptionNode: ASCellNode {
     
     // MARK: - Variable
     var topInset: CGFloat = 0.0
+    var leftInset: CGFloat = 20.0
     
     // MARK: - Init
     init(text: String, alignment: NSTextAlignment, style: DescriptionNodeStyle) {
@@ -37,7 +38,7 @@ class DescriptionNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 10.0, right: 15.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 10.0, right: 15.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: self.textNode)
         
         return cellInset

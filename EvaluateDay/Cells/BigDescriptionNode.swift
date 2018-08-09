@@ -12,12 +12,14 @@ import AsyncDisplayKit
 protocol BigDescriptionNodeStyle {
     var bigDescriptionNodeTextColor: UIColor { get }
     var bigDescriptionNodeTextFont: UIFont { get }
+    var bigDescriptionNodeSeparatorColor: UIColor { get }
 }
 
 class BigDescriptionNode: ASCellNode {
     
     // MARK: - UI
     var textNode = ASTextNode()
+    var separator = ASDisplayNode()
     
     // MARK: - Variable
     var topInset: CGFloat = 0.0
@@ -33,13 +35,22 @@ class BigDescriptionNode: ASCellNode {
         
         self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.bigDescriptionNodeTextFont, NSAttributedStringKey.foregroundColor: style.bigDescriptionNodeTextColor, NSAttributedStringKey.paragraphStyle: paragraph])
         
+        self.separator.backgroundColor = style.bigDescriptionNodeSeparatorColor
+        
         self.automaticallyManagesSubnodes = true
     }
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 15.0, bottom: 0.0, right: 15.0)
-        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: self.textNode)
+        
+        self.separator.style.preferredSize.height = 0.2
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 5.0
+        cell.children = [self.textNode, self.separator]
+        
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 0.0, right: 0.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
     }

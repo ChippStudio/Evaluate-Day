@@ -27,6 +27,7 @@ class TitleNode: ASCellNode {
     
     // MARK: - Variable
     var topInset: CGFloat = 10.0
+    var leftInset: CGFloat = 0.0
 
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, style: TitleNodeStyle) {
@@ -77,7 +78,7 @@ class TitleNode: ASCellNode {
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [topLineInset, subtitleInset]
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 0.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 0.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

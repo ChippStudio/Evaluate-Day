@@ -19,14 +19,14 @@ struct LightCardMergeTheme: CardMergeStyle {
     
     // MARK: - TitleNodeStyle
     var titleTitleColor: UIColor { return UIColor.gunmetal }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var titleSubtitleColor: UIColor { return UIColor.gray }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var titleSubtitleColor: UIColor { return UIColor.gunmetal }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
 
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.gunmetal }
-    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
     var settingsSubtitleNodeColor: UIColor {return UIColor.viridian }
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.gunmetal }
@@ -39,6 +39,7 @@ struct LightCardMergeTheme: CardMergeStyle {
     // MARK: - BigDescriptionNodeStyle
     var bigDescriptionNodeTextColor: UIColor { return UIColor.gunmetal }
     var bigDescriptionNodeTextFont: UIFont { return UIFont.avenirNext(size: 26.0, weight: .regular) }
+    var bigDescriptionNodeSeparatorColor: UIColor { return UIColor.lightGray }
     
     // MARK: - SettingsProButtonNodeStyle
     var proButtonTextColor: UIColor { return UIColor.white }

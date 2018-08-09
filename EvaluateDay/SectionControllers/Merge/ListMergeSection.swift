@@ -60,6 +60,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
                 node.shareButton.alpha = 0.0
                 node.topInset = 10.0
+                node.leftInset = 20.0
                 return node
             }
         case 2:
@@ -75,7 +76,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
             }
             return {
                 let node = SettingsProButtonNode(title: Localizations.cardMerge.action, full: full, style: style)
-                node.topInset = 30.0
+                node.topInset = 50.0
                 node.didPressed = { () in
                     if self.selectedIndex == nil {
                         let alert = UIAlertController(title: nil, message: Localizations.cardMerge.mustSelect, preferredStyle: .alert)
@@ -124,6 +125,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
                         node.selectImage.alpha = 1.0
                     }
                 }
+                node.leftInset = 20.0
                 return node
             }
         }

@@ -18,6 +18,7 @@ class SettingsSelectNode: ASCellNode {
     
     // MARK: - Variable
     var topInset: CGFloat = 10.0
+    var leftInset: CGFloat = 15.0
     
     // MARK: - Init
     init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle) {
@@ -62,7 +63,7 @@ class SettingsSelectNode: ASCellNode {
         self.selectImage.style.preferredSize = CGSize(width: 20.0, height: 20.0)
         cell.children?.append(self.selectImage)
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 15.0, bottom: 10.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
