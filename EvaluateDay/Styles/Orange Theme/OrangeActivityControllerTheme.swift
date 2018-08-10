@@ -51,7 +51,8 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     var statisticDataFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     // AnalyticsStatisticNodeStyle
     var statisticDataTitleColor: UIColor { return UIColor.paleGrey }
-    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var statisticDataCellBackground: UIColor { return UIColor.pumpkin }
     
     // AnalyticsChartNodeStyle
     var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

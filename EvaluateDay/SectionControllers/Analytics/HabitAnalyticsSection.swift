@@ -113,7 +113,6 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
             
             return {
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
-                node.topInset = 20.0
                 return node
             }
         case .calendar:

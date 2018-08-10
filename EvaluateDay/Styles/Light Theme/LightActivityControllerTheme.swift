@@ -72,7 +72,8 @@ struct LightActivityControllerTheme: ActivityControllerStyle {
     var statisticDataFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     // AnalyticsStatisticNodeStyle
     var statisticDataTitleColor: UIColor { return UIColor.gunmetal }
-    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var statisticDataCellBackground: UIColor { return UIColor.white }
     
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.gunmetal }

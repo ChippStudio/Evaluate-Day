@@ -15,7 +15,7 @@ struct OrangeShareViewTheme: ShareViewStyle {
     var shareViewLinkColor: UIColor { return UIColor.gunmetal }
     var shareViewTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var shareViewLinkFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
-    var shareViewIconImage: UIImage { return #imageLiteral(resourceName: "appIcon1024") }
+    var shareViewIconImage: UIImage { return #imageLiteral(resourceName: "OrangeAppIcon.png") }
     
     var shareControllerBackground: UIColor { return UIColor.squash }
     var shareControllerCloseTintColor: UIColor { return UIColor.paleGrey }

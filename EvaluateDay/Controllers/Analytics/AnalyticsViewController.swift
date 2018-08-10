@@ -25,7 +25,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.analytics.title
+        self.navigationItem.title = Localizations.analytics.title + ": " + Sources.title(forType: self.card.type)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }

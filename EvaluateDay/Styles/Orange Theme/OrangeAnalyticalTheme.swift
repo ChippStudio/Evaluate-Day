@@ -20,8 +20,8 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     
     // Title Node
     var titleTitleColor: UIColor { return UIColor.paleGrey }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var titleSubtitleColor: UIColor { return UIColor.white }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var titleSubtitleColor: UIColor { return UIColor.paleGrey }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.paleGrey }
     
@@ -48,10 +48,12 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var statisticSeparatorColor: UIColor { return UIColor.paleGrey }
     var statisticDataColor: UIColor { return UIColor.paleGrey }
-    var statisticDataFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var statisticDataFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     // AnalyticsStatisticNodeStyle
     var statisticDataTitleColor: UIColor { return UIColor.paleGrey }
-    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .ultraLight) }
+    var statisticDataCellBackground: UIColor { return UIColor.pumpkin }
+    
     // AnalyticsChartNodeStyle
     var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.paleGrey }

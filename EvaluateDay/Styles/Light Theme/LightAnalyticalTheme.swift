@@ -20,8 +20,8 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     
     // Title Node
     var titleTitleColor: UIColor { return UIColor.gunmetal }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var titleSubtitleColor: UIColor { return UIColor.gray }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var titleSubtitleColor: UIColor { return UIColor.gunmetal }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
     
@@ -48,10 +48,11 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var statisticSeparatorColor: UIColor { return UIColor.gunmetal }
     var statisticDataColor: UIColor { return UIColor.gunmetal }
-    var statisticDataFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var statisticDataFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     // AnalyticsStatisticNodeStyle
     var statisticDataTitleColor: UIColor { return UIColor.gunmetal }
-    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var statisticDataTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .ultraLight) }
+    var statisticDataCellBackground: UIColor { return UIColor.white }
     
     // AnalyticsChartNodeStyle
     var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
