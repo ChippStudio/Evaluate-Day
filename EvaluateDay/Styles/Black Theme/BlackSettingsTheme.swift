@@ -39,7 +39,7 @@ struct BlackSettingsTheme: SettingsStyle {
     
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.white }
-    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var settingsSubtitleNodeColor: UIColor { return UIColor.white }
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.white }
@@ -60,7 +60,7 @@ struct BlackSettingsTheme: SettingsStyle {
     
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.white }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
     var titleSubtitleColor: UIColor { return UIColor.gray }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.white }
