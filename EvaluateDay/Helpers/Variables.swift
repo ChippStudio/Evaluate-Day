@@ -24,6 +24,7 @@ let appURLString = "https://itunes.apple.com/app/id1319180010"
 let subscriptionManageURL = "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"
 let privacyURLString = "http://evaluateday.com/privacy"
 let eulaURLString = "http://evaluateday.com/terms"
+let appSiteURLString = "http://evaluateday.com"
 
 // MARK: - Mails
 let feedbackMail = "support@evaluateday.com"

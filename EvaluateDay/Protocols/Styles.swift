@@ -139,6 +139,20 @@ protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle
 }
 
 protocol ShareViewStyle {
+    var shareViewBackgroundColor: UIColor { get }
+    var shareViewTitleColor: UIColor { get }
+    var shareViewLinkColor: UIColor { get }
+    var shareViewTitleFont: UIFont { get }
+    var shareViewLinkFont: UIFont { get }
+    var shareViewIconImage: UIImage { get }
+    
+    // Controller
+    var shareControllerBackground: UIColor { get }
+    var shareControllerCloseTintColor: UIColor { get }
+    var shareControllerShareButtonColor: UIColor { get }
+    var shareControllerShareButtonTextColor: UIColor { get }
+    var shareControllerShareButtonTextHighlightedColor: UIColor { get }
+    var shareControllerShareButtonTextFont: UIFont { get }
 }
 
 protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeStyle, DescriptionNodeStyle {

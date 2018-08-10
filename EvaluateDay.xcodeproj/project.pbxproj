@@ -137,6 +137,9 @@
 		B59318351FFAD816000D8FFE /* CriterionHundredMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
+		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
+		B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA062211D66D500A9FCFB /* Share.storyboard */; };
+		B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA064211D66E100A9FCFB /* ShareViewController.swift */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -512,6 +515,9 @@
 		B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredMergeSection.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
+		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		B59DA062211D66D500A9FCFB /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
+		B59DA064211D66E100A9FCFB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -959,6 +965,7 @@
 				B5DED7A21FCC607D002DD956 /* SettingsFooterView.swift */,
 				B5729EDA2003935D00481D6F /* NextButton.swift */,
 				B5D11DAD206261B100D559BF /* LoadView.swift */,
+				B59DA05F211D5F0100A9FCFB /* ShareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1033,9 +1040,19 @@
 			path = Pro;
 			sourceTree = "<group>";
 		};
+		B59DA061211D66C400A9FCFB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				B59DA062211D66D500A9FCFB /* Share.storyboard */,
+				B59DA064211D66E100A9FCFB /* ShareViewController.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59DA061211D66C400A9FCFB /* Share */,
 				B55464E22029CEA900923CE3 /* EnriesList */,
 				B5693EF320246EDC00B8879C /* Entry */,
 				B5EC884F2011EF640056C1C7 /* Phrases */,
@@ -1807,6 +1824,7 @@
 				B5D854CA1FCDAA6F00BB4E14 /* Passcode.storyboard in Resources */,
 				B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */,
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
+				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
 				B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */,
@@ -2137,6 +2155,7 @@
 				B5FD38E11FDC41D80071B1F0 /* SettingsSplitViewController.swift in Sources */,
 				B5257D5C1FE93FC800AC54DE /* DarkPasscodeControllerTheme.swift in Sources */,
 				B55464E62029CED200923CE3 /* EntriesListViewController.swift in Sources */,
+				B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */,
 				B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */,
 				B5257D601FE93FC800AC54DE /* DarkEvaluateTheme.swift in Sources */,
 				B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */,
@@ -2187,6 +2206,7 @@
 				B5257D6D1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift in Sources */,
 				B57B064B201B224200C4E182 /* GoalAnalyticsSection.swift in Sources */,
 				B59318271FFA4AA7000D8FFE /* DiffCard.swift in Sources */,
+				B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */,
 				B5DE2CAB2000DDA300EFBCA5 /* NumberValue.swift in Sources */,
 				B5AB1E972019D0C500BB1A64 /* ListViewController.swift in Sources */,
 				B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */,

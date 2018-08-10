@@ -1463,39 +1463,14 @@ public struct Localizations {
 
     public struct share {
 
-        /// Base translation: I haven't yet evaluated the day based on this criterion
-        public static var noHundredValue : String = NSLocalizedString("share.noHundredValue", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: I haven't yet evaluated the day based on this criterion
-        public static var noTenValue : String = NSLocalizedString("share.noTenValue", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: Have not rated the day using this criterion
-        public static var noThreeValue : String = NSLocalizedString("share.noThreeValue", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: I can't pick a color
-        public static var noColor : String = NSLocalizedString("share.noColor", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
         /// Base translation: Shared with Evaluate Day app
         public static var description : String = NSLocalizedString("share.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: I got absolutely no thoughts in my head
-        public static var noPhrase : String = NSLocalizedString("share.noPhrase", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: Not been anywhere today yet
-        public static var noCheckIns : String = NSLocalizedString("share.noCheckIns", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
 
         public struct link {
 
             /// Base translation: Try Evaluate Day
             public static var title : String = NSLocalizedString("share.link.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        }
-
-        public struct list {
-
-            /// Base translation: I started this card in Evaluate Day
-            public static var description : String = NSLocalizedString("share.list.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
     }

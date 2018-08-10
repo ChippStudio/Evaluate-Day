@@ -355,13 +355,6 @@
 // MARK: - Share
 "share.description" = "Shared with Evaluate Day app";
 "share.link.title" = "Try Evaluate Day";
-"share.list.description" = "I started this card in Evaluate Day";
-"share.noCheckIns" = "Not been anywhere today yet";
-"share.noColor" = "I can't pick a color";
-"share.noHundredValue" = "I haven't yet evaluated the day based on this criterion";
-"share.noPhrase" = "I got absolutely no thoughts in my head";
-"share.noTenValue" = "I haven't yet evaluated the day based on this criterion";
-"share.noThreeValue" = "Have not rated the day using this criterion";
 
 // MARK: - Messages
 "messages.data.local.deleteAll.title" = "All local data deleted";

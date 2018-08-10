@@ -205,8 +205,32 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        // FIXME: - Need share sction
-        print("Share action not implemented")
+        guard let controller = self.viewController as? EvaluateViewController else {
+            return
+        }
+        
+        let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as! GoalNode
+        if let nodeImage = node.view.snapshot {
+            let sv = ShareView(image: nodeImage)
+            UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
+            sv.snp.makeConstraints { (make) in
+                make.top.equalToSuperview()
+                make.leading.equalToSuperview()
+            }
+            sv.layoutIfNeeded()
+            let im = sv.snapshot
+            sv.removeFromSuperview()
+            
+            let shareContrroller = UIStoryboard(name: Storyboards.share.rawValue, bundle: nil).instantiateInitialViewController() as! ShareViewController
+            shareContrroller.image = im
+            shareContrroller.canonicalIdentifier = "goalShare"
+            shareContrroller.channel = "Evaluate"
+            shareContrroller.shareHandler = { () in
+                sendEvent(.shareFromEvaluateDay, withProperties: ["type": self.card.type.string])
+            }
+            
+            self.viewController?.present(shareContrroller, animated: true, completion: nil)
+        }
     }
 }
 
