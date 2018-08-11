@@ -45,7 +45,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.gunmetal }
-    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var statisticSeparatorColor: UIColor { return UIColor.gunmetal }
     var statisticDataColor: UIColor { return UIColor.gunmetal }
     var statisticDataFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
@@ -55,7 +55,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var statisticDataCellBackground: UIColor { return UIColor.white }
     
     // AnalyticsChartNodeStyle
-    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.gunmetal }
     var chartNodeShareTintColor: UIColor { return UIColor.gunmetal }
     var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

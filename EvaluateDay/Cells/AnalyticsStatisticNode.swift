@@ -70,7 +70,7 @@ class AnalyticsStatisticNode: ASCellNode, UICollectionViewDataSource, UICollecti
         cell.spacing = 20.0
         cell.children = [titleInset, self.stats]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 30.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 40.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
@@ -148,8 +148,8 @@ class StatisticCollectionCell: UICollectionViewCell {
         
         self.dataLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(20.0)
-            make.trailing.equalToSuperview().offset(-30.0)
-            make.leading.equalToSuperview().offset(30.0)
+            make.trailing.equalToSuperview().offset(-20.0)
+            make.leading.equalToSuperview().offset(20.0)
             make.bottom.equalToSuperview().offset(-20.0)
         }
     }

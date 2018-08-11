@@ -87,7 +87,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
             return {
                 let node = AnalyticsColorStatisticNode(data: self.data!, style: style)
-                node.topInset = 20.0
                 return node
             }
         case .calendar:

@@ -45,7 +45,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.paleGrey }
-    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var statisticSeparatorColor: UIColor { return UIColor.paleGrey }
     var statisticDataColor: UIColor { return UIColor.paleGrey }
     var statisticDataFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
@@ -55,7 +55,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var statisticDataCellBackground: UIColor { return UIColor.pumpkin }
     
     // AnalyticsChartNodeStyle
-    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.paleGrey }
     var chartNodeShareTintColor: UIColor { return UIColor.paleGrey }
     var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }

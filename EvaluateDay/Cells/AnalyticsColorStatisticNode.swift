@@ -17,37 +17,42 @@ protocol AnalyticsColorStatisticNodeStyle {
     var statisticDataFont: UIFont { get }
 }
 
-class AnalyticsColorStatisticNode: ASCellNode {
+class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - UI
     var titleNode: ASTextNode = ASTextNode()
-    var stats = [(dot: ASDisplayNode, title: ASTextNode, separator: ASDisplayNode)]()
+    var stats: ASDisplayNode!
     
     // MARK: - Variables
-    var topInset: CGFloat = 0.0
+    var collectionView: UICollectionView!
+    var data = [(color: String, data: String)]()
     
     // MARK: - Init
     init(data: [(color: String, data: String)], style: AnalyticsColorStatisticNodeStyle) {
         super.init()
         
-        self.titleNode.attributedText = NSAttributedString(string: Localizations.analytics.statistics.color.title, attributes: [NSAttributedStringKey.foregroundColor: style.statisticTitleColor, NSAttributedStringKey.font: style.statisticTitleFont])
+        self.data = data
         
-        for d in data {
-            let dotNode = ASDisplayNode()
-            dotNode.backgroundColor = d.color.color
-            if d.color == "FFFFFF" {
-                dotNode.borderColor = UIColor.black.cgColor
-                dotNode.borderWidth = 0.5
-            }
+        self.titleNode.attributedText = NSAttributedString(string: Localizations.analytics.statistics.color.title.uppercased(), attributes: [NSAttributedStringKey.foregroundColor: style.statisticTitleColor, NSAttributedStringKey.font: style.statisticTitleFont])
+        
+        self.stats = ASDisplayNode(viewBlock: { () -> UIView in
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 110.0, height: 110.0)
+            layout.minimumInteritemSpacing = 10.0
+            layout.minimumLineSpacing = 20.0
+            layout.scrollDirection = .horizontal
             
-            let dataTitleNode = ASTextNode()
-            dataTitleNode.attributedText = NSAttributedString(string: d.data, attributes: [NSAttributedStringKey.font: style.statisticDataFont, NSAttributedStringKey.foregroundColor: style.statisticDataColor])
+            self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+            self.collectionView.delegate = self
+            self.collectionView.dataSource = self
+            self.collectionView.backgroundColor = UIColor.clear
+            self.collectionView.showsVerticalScrollIndicator = false
+            self.collectionView.showsHorizontalScrollIndicator = false
             
-            let separatorNode = ASDisplayNode()
-            separatorNode.backgroundColor = style.statisticSeparatorColor
+            self.collectionView.register(StatisticColorCollectionCell.classForCoder(), forCellWithReuseIdentifier: "stat")
             
-            self.stats.append((dot: dotNode, title: dataTitleNode, separator: separatorNode))
-        }
+            return self.collectionView
+        })
         
         self.automaticallyManagesSubnodes = true
     }
@@ -55,33 +60,93 @@ class AnalyticsColorStatisticNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        var statsStaks = [ASLayoutSpec]()
-        for s in self.stats {
-            s.dot.style.preferredSize = CGSize(width: 20.0, height: 20.0)
-            s.dot.cornerRadius = 20.0/2
-            s.separator.style.preferredSize.width = 0.5
+        self.stats.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 110.0)
+        
+        let titleInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        let titleInset = ASInsetLayoutSpec(insets: titleInsets, child: self.titleNode)
+        
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 20.0
+        cell.children = [titleInset, self.stats]
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 40.0, right: 0.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        
+        return cellInset
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.data.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "stat", for: indexPath) as! StatisticColorCollectionCell
+        let stat = self.data[indexPath.row]
+        cell.dataLabel.text = stat.data
+        cell.color = stat.color
+        return cell
+    }
+}
+
+class StatisticColorCollectionCell: UICollectionViewCell {
+    // MARK: - UI
+    var dataLabel: UILabel!
+    
+    // MARK: - Variables
+    var color: String! {
+        didSet {
+            if color == "FFFFFF" {
+                self.dataLabel.textColor = UIColor.gunmetal
+            } else {
+                self.dataLabel.textColor = UIColor.white
+            }
             
-            let dataStack = ASStackLayoutSpec.horizontal()
-            dataStack.spacing = 10.0
-            dataStack.children = [s.dot, s.title, s.separator]
-            
-            let cellStackInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 0.0, right: 0.0)
-            let cellStackInset = ASInsetLayoutSpec(insets: cellStackInsets, child: dataStack)
-            
-            statsStaks.append(cellStackInset)
+            self.contentView.backgroundColor = color.color
+        }
+    }
+    
+    // MARK: - Override
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initSubviews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initSubviews()
+    }
+    
+    // MARK: - Init subviews
+    fileprivate func initSubviews() {
+        // Custom initialization
+        for v in self.contentView.subviews {
+            v.removeFromSuperview()
         }
         
-        let dots = ASStackLayoutSpec.horizontal()
-        dots.spacing = 10.0
-        dots.flexWrap = ASStackLayoutFlexWrap.wrap
-        dots.children = statsStaks
+        let style = Themes.manager.analyticalStyle
         
-        let fullCell = ASStackLayoutSpec.vertical()
-        fullCell.children = [self.titleNode, dots]
+        self.contentView.backgroundColor = style.statisticDataCellBackground
+        self.contentView.layer.masksToBounds = true
+        self.contentView.layer.cornerRadius = 8.0
         
-        let fullCellInsets = UIEdgeInsets(top: self.topInset, left: 50.0, bottom: 0.0, right: 10.0)
-        let fullCellInset = ASInsetLayoutSpec(insets: fullCellInsets, child: fullCell)
+        self.dataLabel = UILabel()
+        self.dataLabel.numberOfLines = 2
+        self.dataLabel.font = style.statisticDataFont
+        self.dataLabel.textColor = style.statisticDataColor
+        self.dataLabel.adjustsFontSizeToFitWidth = true
+        self.dataLabel.textAlignment = .center
         
-        return fullCellInset
+        self.contentView.addSubview(self.dataLabel)
+        
+        self.dataLabel.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-30.0)
+            make.leading.equalToSuperview().offset(30.0)
+        }
     }
 }
