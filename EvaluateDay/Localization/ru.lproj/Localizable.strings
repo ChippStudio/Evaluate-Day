@@ -192,10 +192,6 @@
 "settings.sync.last" = "Последняя cинхронизация";
 "settings.sync.never" = "никогда";
 "share.description" = "Shared with Evaluate Day app";
-"share.list.description" = "Такую карточку я завел в Evaluate Day";
-"share.noColor" = "Не могу сделать выбор цвета";
-"share.noHundredValue" = "По этому критерию день еще не оценен";
-"share.noTenValue" = "По этому критерию день еще не оценен";
 "share.link.title" = "Попробуйте оценить день";
 "update.title" = "Пожалуйста, обновите вашу версию Evaluate Day";
 "update.subtitle" = "В новой версии мы добавили новый тип карточки, пожалуйста, скачайте новую версию из App Store";
@@ -244,9 +240,6 @@
 "cardSettings.habit.multiple" = "Несколько";
 "cardSettings.habit.description" = "Множество повторений за день";
 "cardSettings.goal.goal" = "Цель";
-"share.noCheckIns" = "Сегодня я еще нигде не был";
-"share.noPhrase" = "В голове совсем нет никаких мыслей";
-"share.noThreeValue" = "Еще не оценил день по этому критерию";
 "demo.criterion.three.title" = "Настроение";
 "demo.criterion.three.subtitle" = "Мое ежедневное настроение";
 "demo.phrase.dayOne" = "Создайте свой уникальный набор карточек, просто отсортируйте как вам удобно и ежедневно отмечайте все изменения.";
@@ -377,3 +370,5 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "settings.pro.subscription.introductory.discount" = "%@ скидки";
 "settings.pro.subscription.introductory.start" = "Попробуйте %@ за %@";
 "many.year" = "%li y";
+"analytics.timeTravel" = "Путешествие во времени";
+"cardSettings.dangerZone" = "Опасная зона";

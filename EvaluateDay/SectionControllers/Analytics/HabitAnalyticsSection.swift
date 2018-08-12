@@ -351,7 +351,61 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     @objc private func shareAction(sender: ASButtonNode) {
-        // FIXME: - Need share sction
-        print("Share action not implemented")
+        guard let controller = self.viewController as? AnalyticsViewController else {
+            return
+        }
+        
+        let node = controller.collectionNode.nodeForItem(at: IndexPath(row: sender.view.tag, section: self.section))!
+        
+        var nodeImageViews = [UIImageView(image: node.view.snapshot)]
+        if self.nodes[sender.view.tag] == .title {
+            if let statNode = controller.collectionNode.nodeForItem(at: IndexPath(row: sender.view.tag + 1, section: self.section)) as? AnalyticsStatisticNode {
+                nodeImageViews.append(UIImageView(image: statNode.view.snapshot))
+            }
+        }
+        
+        let imageBackgroundView = UIView()
+        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+        
+        let stack = UIStackView(arrangedSubviews: nodeImageViews)
+        stack.axis = .vertical
+        
+        imageBackgroundView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(imageBackgroundView)
+        imageBackgroundView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        imageBackgroundView.layoutIfNeeded()
+        let imageBackgroundViewImage = imageBackgroundView.snapshot!
+        imageBackgroundView.removeFromSuperview()
+        
+        let sv = ShareView(image: imageBackgroundViewImage)
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
+        sv.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        sv.layoutIfNeeded()
+        let im = sv.snapshot
+        sv.removeFromSuperview()
+        
+        let shareContrroller = UIStoryboard(name: Storyboards.share.rawValue, bundle: nil).instantiateInitialViewController() as! ShareViewController
+        shareContrroller.image = im
+        shareContrroller.canonicalIdentifier = "habitShare"
+        shareContrroller.channel = "Analytics"
+        shareContrroller.shareHandler = { () in
+            sendEvent(.shareFromEvaluateDay, withProperties: ["type": self.card.type.string])
+        }
+        
+        self.viewController?.present(shareContrroller, animated: true, completion: nil)
     }
 }

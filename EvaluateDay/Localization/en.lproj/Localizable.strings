@@ -193,10 +193,6 @@
 "settings.sync.last" = "Last Sync";
 "settings.sync.never" = "never";
 "share.description" = "Shared with Evaluate Day app";
-"share.list.description" = "I started this card in Evaluate Day";
-"share.noColor" = "I can't pick a color";
-"share.noHundredValue" = "I haven't yet evaluated the day based on this criterion";
-"share.noTenValue" = "I haven't yet evaluated the day based on this criterion";
 "share.link.title" = "Try Evaluate Day";
 "update.title" = "Please update your version of Evaluate Day";
 "update.subtitle" = "In new version we add new type of cards, please download new version from App Store";
@@ -245,9 +241,6 @@
 "cardSettings.habit.multiple" = "Multiple";
 "cardSettings.habit.description" = "Multiple repetitions per day";
 "cardSettings.goal.goal" = "Goal";
-"share.noCheckIns" = "Not been anywhere today yet";
-"share.noPhrase" = "I got absolutely no thoughts in my head";
-"share.noThreeValue" = "Have not rated the day using this criterion";
 "demo.criterion.three.title" = "Mood";
 "demo.criterion.three.subtitle" = "My daily mood";
 "demo.phrase.dayOne" = "Create your unique set of cards, sort them however you like and record all the changes every day.";
@@ -378,3 +371,5 @@ Head to the analytics section to read all the notes.";
 "settings.pro.subscription.introductory.discount" = "%@ discount";
 "settings.pro.subscription.introductory.start" = "Try %@ per %@";
 "many.year" = "%li y";
+"analytics.timeTravel" = "Time Travel";
+"cardSettings.dangerZone" = "Danger Zone";

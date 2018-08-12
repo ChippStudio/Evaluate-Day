@@ -37,7 +37,7 @@ class AnalyticsTimeTravelNode: ASCellNode {
         
         let cell = ASStackLayoutSpec.horizontal()
         cell.spacing = 20.0
-        cell.justifyContent = .spaceAround
+        cell.justifyContent = .center
         cell.children = [self.title, self.image]
         
         let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 40.0, right: 0.0)
