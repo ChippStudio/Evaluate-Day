@@ -14,12 +14,11 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
 
     // MARK: - UI
     var collectionNode: ASCollectionNode!
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var collectionCover: UIView!
+    var icons = ["WhiteAppIcon"]
     
-    // MARK: - VAriables
-    let colors = ["FFFFFF", "414C58", "D67500", "0F0F0F"]
-    var selectedColor = "FFFFFF"
+    // MARK: - Variables
+    private let contentInset: CGFloat = 20.0
+    
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,30 +27,20 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         self.navigationItem.title = Localizations.settings.themes.select.icon
         
         // set table node
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        let layout = self.calculateLayout()
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         self.collectionNode.dataSource = self
         self.collectionNode.delegate = self
-        self.collectionNode.view.alwaysBounceHorizontal = true
-        self.collectionCover.addSubnode(self.collectionNode)
+        self.collectionNode.view.alwaysBounceVertical = true
+        self.collectionNode.contentInset = UIEdgeInsets(top: 20.0, left: self.contentInset, bottom: 0.0, right: self.contentInset)
+        self.view.addSubnode(self.collectionNode)
         
-        // Set icon
-        self.iconImage.layer.masksToBounds = true
-        self.iconImage.layer.cornerRadius = 20.0
-        
-        if let icon = UIApplication.shared.alternateIconName {
-            self.iconImage.image = UIImage(named: icon)
-            if icon == "DarkAppIcon" {
-                self.selectedColor = "414C58"
-            } else if icon == "OrangeAppIcon" {
-                self.selectedColor = "D67500"
-            } else if icon == "BlackAppIcon" {
-                self.selectedColor = "0F0F0F"
+        if let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? NSDictionary {
+            if let icon = icons["CFBundleAlternateIcons"] as? NSDictionary {
+                for i in icon {
+                    self.icons.append(i.key as! String)
+                }
             }
-        } else {
-            self.iconImage.image = UIImage(named: "WhiteAppIcon")
-            self.selectedColor = "FFFFFF"
         }
         
         // Analytics
@@ -65,11 +54,12 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.collectionNode.frame = self.collectionCover.bounds
+        self.collectionNode.frame = self.view.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.collectionNode.view.setCollectionViewLayout(self.calculateLayout(), animated: true)
         self.observable()
     }
     
@@ -79,18 +69,25 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return self.colors.count
+        return self.icons.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
-        return {
-            let node = ColorDotNode(color: self.colors[indexPath.row], style: style)
-            if self.colors[indexPath.row] == self.selectedColor {
-                node.colorSelected = true
-            } else {
-                node.colorSelected = false
+        let style = Themes.manager.settingsStyle
+        let icon = self.icons[indexPath.row]
+        var selected: Bool = false
+        if let currentIcon = UIApplication.shared.alternateIconName {
+            if currentIcon == icon {
+                selected = true
             }
+        } else {
+            if indexPath.row == 0 {
+                selected = true
+            }
+        }
+        
+        return {
+            let node = SettingsIconSelectNode(icon: UIImage(named: icon), selected: selected, style: style)
             return node
         }
     }
@@ -98,29 +95,20 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
     // MARK: - ASCollectionDelegate
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
         collectionNode.deselectItem(at: indexPath, animated: true)
-        let color = self.colors[indexPath.row]
-        let app = UIApplication.shared
-        switch color {
-        case "FFFFFF":
-            app.setAlternateIconName(nil, completionHandler: nil)
-            self.selectedColor = "FFFFFF"
-            self.iconImage.image = UIImage(named: "WhiteAppIcon")
-        case "414C58":
-            app.setAlternateIconName("DarkAppIcon", completionHandler: nil)
-            self.selectedColor = "414C58"
-            self.iconImage.image = UIImage(named: "DarkAppIcon")
-        case "D67500":
-            app.setAlternateIconName("OrangeAppIcon", completionHandler: nil)
-            self.selectedColor = "D67500"
-            self.iconImage.image = UIImage(named: "OrangeAppIcon")
-        case "0F0F0F":
-            app.setAlternateIconName("BlackAppIcon", completionHandler: nil)
-            self.selectedColor = "0F0F0F"
-            self.iconImage.image = UIImage(named: "BlackAppIcon")
-        default: ()
-        }
         
-        self.collectionNode.reloadData()
+        if Store.current.isPro {
+            if indexPath.row == 0 {
+                UIApplication.shared.setAlternateIconName(nil, completionHandler: nil)
+            } else {
+                let icon = self.icons[indexPath.row]
+                UIApplication.shared.setAlternateIconName(icon, completionHandler: nil)
+            }
+            
+            self.collectionNode.reloadData()
+        } else {
+            let controler = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.navigationController?.pushViewController(controler, animated: true)
+        }
     }
 
     // MARK: - Private
@@ -143,5 +131,21 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
             self.view.backgroundColor = style.background
             self.collectionNode.backgroundColor = style.background
         })
+    }
+    
+    private func calculateLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0.0
+        layout.minimumLineSpacing = 0.0
+        if self.view.traitCollection.userInterfaceIdiom == .pad {
+            layout.itemSize = CGSize(width: 130.0, height: 130.0)
+        } else {
+            let width = self.view.frame.size.width - self.contentInset * 2
+            let itemSize = width/3
+            layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        }
+        
+        return layout
     }
 }

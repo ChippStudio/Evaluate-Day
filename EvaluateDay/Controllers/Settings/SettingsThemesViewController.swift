@@ -52,38 +52,15 @@ class SettingsThemesViewController: UIViewController, ASTableDataSource, ASTable
     
     // MARK: - ASTableDataSource
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 2
+        return 1
     }
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            if #available(iOS 10.3, *) {
-                if UIApplication.shared.supportsAlternateIcons {
-                    return 1
-                }
-                return 0
-            } else {
-                // Fallback on earlier versions
-                return 0
-            }
-            
-        }
-        
         return Themes.manager.all.count
     }
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let style = Themes.manager.settingsStyle
         let selView = UIView()
         selView.backgroundColor = style.settingsSelectColor
-        if indexPath.section == 0 {
-            return {
-                let node = SettingsBooleanNode(title: Localizations.settings.themes.iconChange, image: nil, isOn: Database.manager.application.settings.changeAppIcon, style: style)
-                node.switchDidLoad = { (switchButton) in
-                    switchButton.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
-                }
-                node.backgroundColor = style.settingsSectionBackground
-                return node
-            }
-        }
         
         let item = Themes.manager.all[indexPath.row]
         return {
@@ -111,34 +88,8 @@ class SettingsThemesViewController: UIViewController, ASTableDataSource, ASTable
         }
         
         Themes.manager.current = newType
-        if Database.manager.application.settings.changeAppIcon {
-            if #available(iOS 10.3, *) {
-                UIApplication.shared.setAlternateIconName(Themes.manager.all[indexPath.row].iconName, completionHandler: nil)
-            }
-        }
         
         sendEvent(.selectTheme, withProperties: ["theme": newType.string])
-    }
-    
-    // MARK: - Action
-    @objc func booleanAction(sender: UISwitch) {
-        if !sender.isOn && Themes.manager.current != Themes.manager.all.first?.type {
-            if #available(iOS 10.3, *) {
-                UIApplication.shared.setAlternateIconName(nil, completionHandler: nil)
-            }
-        } else if sender.isOn {
-            if let iconName = Themes.manager.currentTheme?.iconName {
-                if #available(iOS 10.3, *) {
-                    UIApplication.shared.setAlternateIconName(iconName, completionHandler: nil)
-                }
-            }
-        }
-        
-        try! Database.manager.app.write {
-            Database.manager.application.settings.changeAppIcon = sender.isOn
-        }
-        
-        sendEvent(.setThemeIcon, withProperties: ["value": sender.isOn])
     }
 
     // MARK: - Private

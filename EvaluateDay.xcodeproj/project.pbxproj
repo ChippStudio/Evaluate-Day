@@ -143,6 +143,7 @@
 		B59DA067212018B000A9FCFB /* AnalyticsTimeTravelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */; };
 		B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA06921201F6300A9FCFB /* Time.storyboard */; };
 		B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06B21201F7800A9FCFB /* TimeViewController.swift */; };
+		B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -524,6 +525,7 @@
 		B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTimeTravelNode.swift; sourceTree = "<group>"; };
 		B59DA06921201F6300A9FCFB /* Time.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Time.storyboard; sourceTree = "<group>"; };
 		B59DA06B21201F7800A9FCFB /* TimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
+		B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIconSelectNode.swift; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -1517,6 +1519,7 @@
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
 				B5257D3E1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift */,
 				B562180F1FD5A9D30061AC70 /* SettingsProReviewNode.swift */,
+				B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */,
 				B56218111FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift */,
 				B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */,
 				B5D854C41FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift */,
@@ -2195,6 +2198,7 @@
 				B59318331FFAD803000D8FFE /* ColorMergeSection.swift in Sources */,
 				B5CA2D651FB464C000547EC8 /* ColorDotNode.swift in Sources */,
 				B5A11402200E17C2008DBF02 /* AnalyticsMapNode.swift in Sources */,
+				B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */,
 				B587D6B91FB6B7D1006D62C1 /* SettingsProNode.swift in Sources */,
 				B57B0649201B21C000C4E182 /* GoalMergeSection.swift in Sources */,
 				B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */,

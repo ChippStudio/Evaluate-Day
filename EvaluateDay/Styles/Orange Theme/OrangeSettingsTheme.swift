@@ -132,4 +132,7 @@ struct OrangeSettingsTheme: SettingsStyle {
     // MARK: - InfoNodeStyle
     var infoNodeTintColor: UIColor { return UIColor.paleGrey }
     var infoNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .demiBold) }
+    
+    // MARK: - SettingsIconSelectNodeStyle
+    var settingsIconSelectNodeSelectedColor: UIColor { return UIColor.grapePurple }
 }

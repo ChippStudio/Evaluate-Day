@@ -170,36 +170,9 @@
                     <view key="view" contentMode="scaleToFill" id="jbP-9t-SaY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q1n-bk-MSe">
-                                <rect key="frame" x="87" y="124" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="kgx-94-tS2"/>
-                                    <constraint firstAttribute="width" constant="200" id="tNV-o5-9xV"/>
-                                </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW2-r4-Veb">
-                                <rect key="frame" x="0.0" y="364" width="375" height="80"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="p2e-5S-ixg"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Q1n-bk-MSe" firstAttribute="top" secondItem="reU-ND-KTz" secondAttribute="top" constant="60" id="AzE-Bf-0ej"/>
-                            <constraint firstItem="reU-ND-KTz" firstAttribute="trailing" secondItem="CW2-r4-Veb" secondAttribute="trailing" id="QYQ-aP-0qz"/>
-                            <constraint firstItem="Q1n-bk-MSe" firstAttribute="centerX" secondItem="jbP-9t-SaY" secondAttribute="centerX" id="Ya5-ua-RtB"/>
-                            <constraint firstItem="CW2-r4-Veb" firstAttribute="top" secondItem="Q1n-bk-MSe" secondAttribute="bottom" constant="40" id="tRe-zg-Sm7"/>
-                            <constraint firstItem="CW2-r4-Veb" firstAttribute="leading" secondItem="reU-ND-KTz" secondAttribute="leading" id="tyl-4T-Ifl"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="reU-ND-KTz"/>
                     </view>
-                    <connections>
-                        <outlet property="collectionCover" destination="CW2-r4-Veb" id="bjb-BM-5sY"/>
-                        <outlet property="iconImage" destination="Q1n-bk-MSe" id="RVf-5w-y08"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzE-1P-8Uu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
