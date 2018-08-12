@@ -60,7 +60,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var chartNodeShareTintColor: UIColor { return UIColor.paleGrey }
     var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.paleGrey }
-    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 25.0, weight: .regular) }
+    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.darkBlueGreen }
     var chartNodeValueNegativeColor: UIColor { return UIColor.grapePurple }
     var chartNodeYAxisColor: UIColor { return UIColor.paleGrey }
@@ -103,4 +103,8 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.paleGrey }
     var imageTintColor: UIColor { return UIColor.paleGrey }
+    
+    // MARK: - AnalyticsTimeTravelNodeStyle
+    var analyticsTimeTravelNodeTitleColor: UIColor { return UIColor.grapePurple}
+    var analyticsTimeTravelNodeTitleFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .bold) }
 }

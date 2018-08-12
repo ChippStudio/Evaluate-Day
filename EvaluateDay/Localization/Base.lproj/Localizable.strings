@@ -167,6 +167,7 @@
 "analytics.journal.viewAll" = "View all";
 "analytics.journal.near" = "Nearest entries";
 "analytics.action" = "Analytics";
+"analytics.timeTravel" = "Time Travel";
 
 // MARK: - List
 "list.card.archiveMessage" = "You can`t evaluate day by this card, you data will be save";

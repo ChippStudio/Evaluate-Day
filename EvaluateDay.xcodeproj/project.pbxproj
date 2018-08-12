@@ -140,6 +140,9 @@
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
 		B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA062211D66D500A9FCFB /* Share.storyboard */; };
 		B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA064211D66E100A9FCFB /* ShareViewController.swift */; };
+		B59DA067212018B000A9FCFB /* AnalyticsTimeTravelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */; };
+		B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA06921201F6300A9FCFB /* Time.storyboard */; };
+		B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06B21201F7800A9FCFB /* TimeViewController.swift */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -518,6 +521,9 @@
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		B59DA062211D66D500A9FCFB /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		B59DA064211D66E100A9FCFB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTimeTravelNode.swift; sourceTree = "<group>"; };
+		B59DA06921201F6300A9FCFB /* Time.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Time.storyboard; sourceTree = "<group>"; };
+		B59DA06B21201F7800A9FCFB /* TimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -1049,9 +1055,19 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		B59DA06821201F5800A9FCFB /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				B59DA06921201F6300A9FCFB /* Time.storyboard */,
+				B59DA06B21201F7800A9FCFB /* TimeViewController.swift */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59DA06821201F5800A9FCFB /* Time */,
 				B59DA061211D66C400A9FCFB /* Share */,
 				B55464E22029CEA900923CE3 /* EnriesList */,
 				B5693EF320246EDC00B8879C /* Entry */,
@@ -1488,6 +1504,7 @@
 				B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
+				B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */,
 				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
 				B5257D6A1FEA6E4300AC54DE /* AnalyticsExportNode.swift */,
 				B5257D6C1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift */,
@@ -1808,6 +1825,7 @@
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
 				B5AC0E0E20E4AEF500F13A79 /* BlackAppIcon.png in Resources */,
+				B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */,
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
 				B57F45C920E6716F00672FD6 /* fabric.apikey in Resources */,
@@ -2157,6 +2175,7 @@
 				B55464E62029CED200923CE3 /* EntriesListViewController.swift in Sources */,
 				B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */,
 				B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */,
+				B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */,
 				B5257D601FE93FC800AC54DE /* DarkEvaluateTheme.swift in Sources */,
 				B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */,
 				B55D32742074F67300BD1E75 /* OrangeSlidesControllerTheme.swift in Sources */,
@@ -2316,6 +2335,7 @@
 				B52D26DF20174A0E00332D0A /* HabitCard+Extensions.swift in Sources */,
 				B560DB3F211B575C00378AD8 /* CardSettingsDeleteObject.swift in Sources */,
 				B5257D441FE91C1300AC54DE /* WebViewController.swift in Sources */,
+				B59DA067212018B000A9FCFB /* AnalyticsTimeTravelNode.swift in Sources */,
 				B587D6B31FB59CA2006D62C1 /* LightSettingsTheme.swift in Sources */,
 				B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */,
 				B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */,

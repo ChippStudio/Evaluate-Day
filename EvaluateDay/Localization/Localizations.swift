@@ -1601,6 +1601,9 @@ public struct Localizations {
         /// Base translation: Analytics
         public static var action : String = NSLocalizedString("analytics.action", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        /// Base translation: Time Travel
+        public static var timeTravel : String = NSLocalizedString("analytics.timeTravel", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Analytics
         public static var title : String = NSLocalizedString("analytics.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
@@ -1696,6 +1699,17 @@ public struct Localizations {
             }
         }
 
+        public struct color {
+
+
+            public struct calendar {
+
+                /// Base translation: Colors by days
+                public static var title : String = NSLocalizedString("analytics.color.calendar.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
+        }
+
         public struct journal {
 
             /// Base translation: Number of entries by day
@@ -1707,17 +1721,6 @@ public struct Localizations {
             /// Base translation: View all
             public static var viewAll : String = NSLocalizedString("analytics.journal.viewAll", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        }
-
-        public struct color {
-
-
-            public struct calendar {
-
-                /// Base translation: Colors by days
-                public static var title : String = NSLocalizedString("analytics.color.calendar.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
         }
 
         public struct checkin {

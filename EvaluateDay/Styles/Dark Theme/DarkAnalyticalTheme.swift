@@ -60,7 +60,7 @@ struct DarkAnalyticalTheme: AnalyticalStyle {
     var chartNodeShareTintColor: UIColor { return UIColor.white }
     var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.white }
-    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 25.0, weight: .regular) }
+    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.pewterBlue }
     var chartNodeValueNegativeColor: UIColor { return UIColor.salmon }
     var chartNodeYAxisColor: UIColor { return UIColor.white }
@@ -103,4 +103,8 @@ struct DarkAnalyticalTheme: AnalyticalStyle {
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.white }
     var imageTintColor: UIColor { return UIColor.white }
+    
+    // MARK: - AnalyticsTimeTravelNodeStyle
+    var analyticsTimeTravelNodeTitleColor: UIColor { return UIColor.salmon}
+    var analyticsTimeTravelNodeTitleFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .bold) }
 }

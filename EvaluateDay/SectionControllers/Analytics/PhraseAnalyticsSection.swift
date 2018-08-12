@@ -15,6 +15,7 @@ import Branch
 private enum AnalyticsNodeType {
     case title
     case statistics
+    case time
     case calendar
     case more
     case export
@@ -43,6 +44,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
         if Store.current.isPro {
             self.nodes.append(.statistics)
         }
+        self.nodes.append(.time)
         self.nodes.append(.calendar)
         self.nodes.append(.more)
         if Store.current.isPro {
@@ -105,6 +107,11 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
                 return node
             }
+        case .time:
+            return {
+                let node = AnalyticsTimeTravelNode(style: style)
+                return node
+            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), style: style)
@@ -164,6 +171,10 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 controller.card = self.card
                 parent.pushViewController(controller, animated: true)
             }
+        } else if self.nodes[index] == .time {
+            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
+            controller.card = self.card
+            self.viewController!.present(controller, animated: true, completion: nil)
         }
     }
     

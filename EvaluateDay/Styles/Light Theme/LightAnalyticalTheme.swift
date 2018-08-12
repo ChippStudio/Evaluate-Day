@@ -60,14 +60,14 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var chartNodeShareTintColor: UIColor { return UIColor.gunmetal }
     var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.gunmetal }
-    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 25.0, weight: .regular) }
+    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.viridian }
     var chartNodeValueNegativeColor: UIColor { return UIColor.brownishRed }
     var chartNodeYAxisColor: UIColor { return UIColor.gunmetal }
     var chartNodeYAxisFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var chartNodeXAxisColor: UIColor { return UIColor.gunmetal }
     var chartNodeXAxisFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
-    var chartNodeGridColor: UIColor { return UIColor.gray }
+    var chartNodeGridColor: UIColor { return UIColor.lightGray }
     var analyticsLineChartLineColor: UIColor { return UIColor.gunmetal }
     var analyticsLineChartHightlightPositiveColor: UIColor { return UIColor.viridian }
     var analyticsLineChartHightlightNegativeColor: UIColor { return UIColor.brownishRed }
@@ -103,4 +103,8 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.gunmetal }
     var imageTintColor: UIColor { return UIColor.gunmetal }
+    
+    // MARK: - AnalyticsTimeTravelNodeStyle
+    var analyticsTimeTravelNodeTitleColor: UIColor { return UIColor.brownishRed}
+    var analyticsTimeTravelNodeTitleFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .bold) }
 }

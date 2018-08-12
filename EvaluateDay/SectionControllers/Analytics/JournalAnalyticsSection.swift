@@ -16,6 +16,7 @@ import Charts
 private enum AnalyticsNodeType {
     case title
     case information
+    case time
     case calendar
     case map
     case bar
@@ -46,6 +47,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         if Store.current.isPro {
             self.nodes.append(.information)
         }
+        self.nodes.append(.time)
         self.nodes.append(.map)
         self.nodes.append(.viewAll)
         if Store.current.isPro {
@@ -155,6 +157,11 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
                 return node
             }
+        case .time:
+            return {
+                let node = AnalyticsTimeTravelNode(style: style)
+                return node
+            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), style: style)
@@ -247,10 +254,17 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     override func didSelectItem(at index: Int) {
-        let controller = UIStoryboard(name: Storyboards.entriesList.rawValue, bundle: nil).instantiateInitialViewController() as! EntriesListViewController
-        controller.card = self.card
-        if let nav = self.viewController?.parent as? UINavigationController {
-            nav.pushViewController(controller, animated: true)
+        if self.nodes[index] == .viewAll {
+            let controller = UIStoryboard(name: Storyboards.entriesList.rawValue, bundle: nil).instantiateInitialViewController() as! EntriesListViewController
+            controller.card = self.card
+            
+            if let nav = self.viewController?.parent as? UINavigationController {
+                nav.pushViewController(controller, animated: true)
+            }
+        } else if self.nodes[index] == .time {
+            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
+            controller.card = self.card
+            self.viewController!.present(controller, animated: true, completion: nil)
         }
     }
     

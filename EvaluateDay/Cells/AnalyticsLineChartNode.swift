@@ -86,7 +86,6 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         }
         self.valueAttributes = [NSAttributedStringKey.font: style.chartNodeValueFont, NSAttributedStringKey.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
-        
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.chart = LineChartView()
             self.chart.chartDescription?.text = ""
@@ -104,6 +103,8 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.chart.leftAxis.gridColor = style.chartNodeGridColor
             self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
             self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
+            self.chart.leftAxis.axisMaxLabels = 3
+            
             if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
                 self.chart.leftAxis.labelCount = opt
             }
@@ -147,7 +148,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         let dateAndValue = ASStackLayoutSpec.vertical()
         dateAndValue.children = [self.valueNode, self.date]
         
-        let dateAndValueInsets = UIEdgeInsets(top: 0.0, left: 40.0, bottom: 0.0, right: 0.0)
+        let dateAndValueInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         let dateAndValueInset = ASInsetLayoutSpec(insets: dateAndValueInsets, child: dateAndValue)
         
         let topStack = ASStackLayoutSpec.vertical()
@@ -171,7 +172,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM"
+        dateFormatter.dateFormat = "dd"
         if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
             dateFormatter.dateFormat = opt
         }

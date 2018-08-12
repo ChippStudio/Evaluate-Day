@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: TitleNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle { }
+protocol AnalyticalSectionStyle: TitleNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle, AnalyticsTimeTravelNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {

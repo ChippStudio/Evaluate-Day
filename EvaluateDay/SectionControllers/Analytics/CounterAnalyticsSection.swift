@@ -15,6 +15,7 @@ import Branch
 private enum AnalyticsNodeType {
     case title
     case information
+    case time
     case lineChart
     case barChart
     case export
@@ -41,6 +42,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.time)
         if Store.current.isPro {
             self.nodes.append(.lineChart)
         }
@@ -102,7 +104,11 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
                 return node
             }
-            
+        case .time:
+            return {
+                let node = AnalyticsTimeTravelNode(style: style)
+                return node
+            }
         case .lineChart:
             var data = [ChartDataEntry]()
             let counterCard = self.card.data as! CounterCard
@@ -185,7 +191,11 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     override func didSelectItem(at index: Int) {
-        
+        if self.nodes[index] == .time {
+            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
+            controller.card = self.card
+            self.viewController!.present(controller, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Actions

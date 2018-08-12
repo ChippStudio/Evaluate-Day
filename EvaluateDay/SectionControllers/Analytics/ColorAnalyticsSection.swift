@@ -15,6 +15,7 @@ import Branch
 private enum AnalyticsNodeType {
     case title
     case information
+    case time
     case calendar
     case export
 }
@@ -43,6 +44,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         if Store.current.isPro {
             self.nodes.append(.information)
         }
+        self.nodes.append(.time)
         self.nodes.append(.calendar)
         if Store.current.isPro {
             self.nodes.append(.export)
@@ -74,6 +76,11 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
+                return node
+            }
+        case .time:
+            return {
+                let node = AnalyticsTimeTravelNode(style: style)
                 return node
             }
         case .information:
@@ -137,6 +144,11 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     override func didSelectItem(at index: Int) {
+        if self.nodes[index] == .time {
+            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
+            controller.card = self.card
+            self.viewController!.present(controller, animated: true, completion: nil)
+        }
     }
     
     // MARK: - FSCalendarDelegate
