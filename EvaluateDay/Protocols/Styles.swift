@@ -37,6 +37,9 @@ protocol EvaluableStyle: EvaluableSectionStyle, CardListEmptyViewStyle {
     var barLargeTitleFont: UIFont { get }
     var tableNodeSeparatorColor: UIColor { get }
     var actionSheetTintColor: UIColor { get }
+    var imageInfoDateLabelFont: UIFont { get }
+    var imageInfoCoordinatesFont: UIFont { get }
+    var imageInfoPlaceFont: UIFont { get }
 }
 
 protocol AnalyticalStyle: AnalyticalSectionStyle {

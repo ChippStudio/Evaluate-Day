@@ -24,6 +24,10 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var tableNodeSeparatorColor: UIColor { return UIColor.lightGray }
     var actionSheetTintColor: UIColor { return UIColor.smokyBlack }
     
+    var imageInfoDateLabelFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .bold) }
+    var imageInfoCoordinatesFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
+    var imageInfoPlaceFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.white }
     var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }

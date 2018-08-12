@@ -124,5 +124,12 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
             }, completion: nil)
             return
         }
+        
+        if index != 0 {
+            let photo: PhotoValue = self.photos[index - 1]
+            let controller = UIStoryboard(name: Storyboards.photo.rawValue, bundle: nil).instantiateInitialViewController() as! PhotoViewController
+            controller.photoValue = photo
+            self.viewController!.present(controller, animated: true, completion: nil)
+        }
     }
 }

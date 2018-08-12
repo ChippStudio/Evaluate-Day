@@ -144,6 +144,8 @@
 		B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA06921201F6300A9FCFB /* Time.storyboard */; };
 		B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06B21201F7800A9FCFB /* TimeViewController.swift */; };
 		B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */; };
+		B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */; };
+		B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0722120B91000A9FCFB /* Photo.storyboard */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -526,6 +528,8 @@
 		B59DA06921201F6300A9FCFB /* Time.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Time.storyboard; sourceTree = "<group>"; };
 		B59DA06B21201F7800A9FCFB /* TimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIconSelectNode.swift; sourceTree = "<group>"; };
+		B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		B59DA0722120B91000A9FCFB /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -1066,9 +1070,19 @@
 			path = Time;
 			sourceTree = "<group>";
 		};
+		B59DA06F2120B8C900A9FCFB /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				B59DA0722120B91000A9FCFB /* Photo.storyboard */,
+				B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */,
+			);
+			path = PhotoView;
+			sourceTree = "<group>";
+		};
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59DA06F2120B8C900A9FCFB /* PhotoView */,
 				B59DA06821201F5800A9FCFB /* Time */,
 				B59DA061211D66C400A9FCFB /* Share */,
 				B55464E22029CEA900923CE3 /* EnriesList */,
@@ -1835,6 +1849,7 @@
 				B5A730ED1FF2437C006B6F58 /* closeSettings.wav in Resources */,
 				B5FD38DF1FDC41AC0071B1F0 /* SettingsSplit.storyboard in Resources */,
 				B55464CF2025AA9A00923CE3 /* Weather.xcassets in Resources */,
+				B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */,
 				B5EC88512011EF740056C1C7 /* Phrases.storyboard in Resources */,
 				B5B27E6F1F9DAC7000CB9121 /* Localizable.strings in Resources */,
 				B5AB1E952019D08900BB1A64 /* List.storyboard in Resources */,
@@ -2130,6 +2145,7 @@
 				B5D0C7C220A8539A000F98EF /* BlackShareViewTheme.swift in Sources */,
 				B5BD3B1C200765C70075C75F /* CriterionTenCard.swift in Sources */,
 				B5D854C11FCCBA0200BB4E14 /* SettingsWeekViewController.swift in Sources */,
+				B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */,
 				B5AC0E1A20E4C8F500F13A79 /* OrangeTabControllerTheme.swift in Sources */,
 				B5B7EE442010B6C900BCD41A /* TextValue.swift in Sources */,
 				B5D854E61FD03D0B00BB4E14 /* Permissions.swift in Sources */,

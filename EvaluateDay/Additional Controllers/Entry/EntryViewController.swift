@@ -129,6 +129,9 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 if node.editTextButton != nil {
                     node.editTextButton.addTarget(self, action: #selector(self.editTextButtonAction(sender:)), forControlEvents: .touchUpInside)
                 }
+                if node.imageButton != nil {
+                    node.imageButton.addTarget(self, action: #selector(self.openPhoto(sender:)), forControlEvents: .touchUpInside)
+                }
                 node.selectionStyle = .none
                 return node
             }
@@ -550,6 +553,14 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
         
         self.openPhotoPicker(withType: .photoLibrary)
+    }
+    
+    @objc func openPhoto(sender: ASButtonNode) {
+        if let photo = Database.manager.data.objects(PhotoValue.self).filter("owner=%@", self.textValue.id).first {
+            let controller = UIStoryboard(name: Storyboards.photo.rawValue, bundle: nil).instantiateInitialViewController() as! PhotoViewController
+            controller.photoValue = photo
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     @objc func deletePhotoAction(sender: ASButtonNode) {
