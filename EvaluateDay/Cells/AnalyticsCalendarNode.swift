@@ -90,7 +90,7 @@ class AnalyticsCalendarNode: ASCellNode {
         cell.spacing = 10.0
         cell.children = [shareInset, self.calendarNode]
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 0.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

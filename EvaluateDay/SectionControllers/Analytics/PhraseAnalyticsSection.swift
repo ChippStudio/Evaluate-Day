@@ -119,7 +119,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 50.0
+                node.topInset = 20.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }

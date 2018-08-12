@@ -73,6 +73,9 @@ class AnalyticsMapNode: ASCellNode {
             self.didLoadMap?()
         })
         
+        self.mapNode.clipsToBounds = true
+        self.mapNode.cornerRadius = 10.0
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -94,7 +97,7 @@ class AnalyticsMapNode: ASCellNode {
         let shareInset = ASInsetLayoutSpec(insets: shareInsets, child: titleStack)
         
         let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 10.0
+        cell.spacing = 20.0
         cell.children = [shareInset, self.mapNode]
         
         if self.actionButton != nil && self.actionButtonCover != nil {
@@ -109,7 +112,7 @@ class AnalyticsMapNode: ASCellNode {
             cell.children?.append(buttonInset)
         }
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 0.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

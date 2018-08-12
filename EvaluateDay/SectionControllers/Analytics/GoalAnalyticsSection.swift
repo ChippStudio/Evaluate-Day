@@ -125,7 +125,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
             
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, style: style)
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -151,7 +151,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

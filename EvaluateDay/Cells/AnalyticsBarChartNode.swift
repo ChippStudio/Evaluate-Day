@@ -108,6 +108,8 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             self.chart.leftAxis.gridColor = style.chartNodeGridColor
             self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
             self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
+            self.chart.leftAxis.axisMaxLabels = 3
+            
             if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
                 self.chart.leftAxis.labelCount = opt
             }
@@ -146,23 +148,28 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         titleAndShare.alignItems = .center
         titleAndShare.children = [self.titleNode, self.shareButton]
         
-        let dateAndValue = ASStackLayoutSpec.vertical()
+        let dateAndValue = ASStackLayoutSpec.horizontal()
+        dateAndValue.alignItems = .end
+        dateAndValue.justifyContent = .spaceBetween
         dateAndValue.children = [self.valueNode, self.date]
         
-        let dateAndValueInsets = UIEdgeInsets(top: 0.0, left: leftOffset, bottom: 0.0, right: 0.0)
+        let dateAndValueInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         let dateAndValueInset = ASInsetLayoutSpec(insets: dateAndValueInsets, child: dateAndValue)
         
         let topStack = ASStackLayoutSpec.vertical()
         topStack.children = [titleAndShare, dateAndValueInset]
         
-        let topInsets = UIEdgeInsets(top: self.topOffset, left: 10.0, bottom: 5.0, right: 10.0)
+        let topInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 5.0, right: 10.0)
         let topInset = ASInsetLayoutSpec(insets: topInsets, child: topStack)
         
         self.chartNode.style.preferredSize.height = 200.0
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [topInset, self.chartNode]
         
-        return cell
+        let cellInsets = UIEdgeInsets(top: self.topOffset, left: 0.0, bottom: 20.0, right: 0.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        
+        return cellInset
     }
     
     // MARK: - IAxisValueFormatter

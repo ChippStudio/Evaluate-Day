@@ -26,7 +26,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var titleShareTintColor: UIColor { return UIColor.paleGrey }
     
     // AnalyticsCalendarNodeStyle
-    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var calendarTitleColor: UIColor { return UIColor.paleGrey }
     var calendarFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var calendarWeekdaysColor: UIColor { return UIColor.grapePurple }
@@ -36,7 +36,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var calendarSetColor: UIColor { return UIColor.grapePurple }
     
     // MARK: - AnalyticsMapNodeStyle
-    var mapNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var mapNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var mapNodeTitleColor: UIColor { return UIColor.paleGrey }
     var mapNodeShareTintColor: UIColor { return UIColor.paleGrey }
     var mapActionColor: UIColor { return UIColor.paleGrey }
@@ -58,7 +58,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.paleGrey }
     var chartNodeShareTintColor: UIColor { return UIColor.paleGrey }
-    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.paleGrey }
     var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.darkBlueGreen }
@@ -79,7 +79,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var analyticsExportTintColor: UIColor { return UIColor.paleGrey }
     var analyticsExportHighlightedColor: UIColor { return UIColor.grapePurple }
     var analyticsExportTitleColor: UIColor { return UIColor.paleGrey }
-    var analyticsExportTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular)}
+    var analyticsExportTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular)}
     var analyticsExportActionColor: UIColor { return UIColor.paleGrey }
     var analyticsExportActionFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     
@@ -91,14 +91,14 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     
     // MARK: - SettingsProButtonNodeStyle
     var proButtonTextColor: UIColor { return UIColor.paleGrey }
-    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
     var proButtonCoverColor: UIColor { return UIColor.paleGrey }
     var proButtonSelectedColor: UIColor { return UIColor.grapePurple }
     var proSecondaryTextColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.paleGrey }
-    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
     var settingsSubtitleNodeColor: UIColor { return UIColor.paleGrey }
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.paleGrey }

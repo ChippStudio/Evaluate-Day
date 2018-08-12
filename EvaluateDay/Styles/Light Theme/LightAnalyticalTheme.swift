@@ -26,7 +26,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
     
     // AnalyticsCalendarNodeStyle
-    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var calendarTitleColor: UIColor { return UIColor.gunmetal }
     var calendarFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var calendarWeekdaysColor: UIColor { return UIColor.viridian }
@@ -36,7 +36,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var calendarSetColor: UIColor { return UIColor.brownishRed }
     
     // MARK: - AnalyticsMapNodeStyle
-    var mapNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var mapNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var mapNodeTitleColor: UIColor { return UIColor.gunmetal }
     var mapNodeShareTintColor: UIColor { return UIColor.gunmetal }
     var mapActionColor: UIColor { return UIColor.viridian }
@@ -58,7 +58,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.gunmetal }
     var chartNodeShareTintColor: UIColor { return UIColor.gunmetal }
-    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.gunmetal }
     var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.viridian }
@@ -91,14 +91,14 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     
     // MARK: - SettingsProButtonNodeStyle
     var proButtonTextColor: UIColor { return UIColor.gunmetal }
-    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
     var proButtonCoverColor: UIColor { return UIColor.gunmetal }
     var proButtonSelectedColor: UIColor { return UIColor.brownishRed }
     var proSecondaryTextColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.gunmetal }
-    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var settingsTitleNodeFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
     var settingsSubtitleNodeColor: UIColor { return UIColor.gunmetal }
     var settingsSubtitleNodeFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var disclosureTintColor: UIColor { return UIColor.gunmetal }

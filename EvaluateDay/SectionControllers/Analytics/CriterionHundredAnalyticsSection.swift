@@ -122,12 +122,12 @@ class CriterionHundredAnalyticsSection: ListSectionController, ASSectionControll
             }
             
             var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
-            opt?[.yLineNumber] = 5
+            opt?[.yLineNumber] = 4
             opt?[.positive] = criterionCard.positive
             
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, style: style)
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -146,7 +146,7 @@ class CriterionHundredAnalyticsSection: ListSectionController, ASSectionControll
             }
             
             var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
-            opt?[.yLineNumber] = 5
+            opt?[.yLineNumber] = 4
             opt?[.positive] = criterionCard.positive
             
             return {
@@ -154,7 +154,7 @@ class CriterionHundredAnalyticsSection: ListSectionController, ASSectionControll
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

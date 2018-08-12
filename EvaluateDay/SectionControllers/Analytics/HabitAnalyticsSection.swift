@@ -129,7 +129,7 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 50.0
+                node.topInset = 20.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }
@@ -150,7 +150,7 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

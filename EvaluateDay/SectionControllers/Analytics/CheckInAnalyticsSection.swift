@@ -87,7 +87,7 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .map:
             return {
                 let node = AnalyticsMapNode(title: Localizations.analytics.checkin.map.title.uppercased(), actionTitle: Localizations.analytics.checkin.map.action, style: style)
-                node.topInset = 50.0
+                node.topInset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 node.actionButton!.addTarget(self, action: #selector(self.openMapAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {

@@ -49,9 +49,12 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         }
         self.nodes.append(.time)
         self.nodes.append(.map)
-        self.nodes.append(.viewAll)
         if Store.current.isPro {
             self.nodes.append(.calendar)
+        }
+        self.nodes.append(.viewAll)
+        
+        if Store.current.isPro {
             self.nodes.append(.bar)
             self.nodes.append(.export)
         }
@@ -87,7 +90,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .map:
             return {
                 let node = AnalyticsMapNode(title: Localizations.analytics.journal.near.uppercased(), actionTitle: Localizations.analytics.checkin.map.action, style: style)
-                node.topInset = 50.0
+                node.topInset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 node.actionButton!.addTarget(self, action: #selector(self.openMapAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -169,7 +172,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 50.0
+                node.topInset = 20.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }
@@ -207,7 +210,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
-                node.topOffset = 50.0
+                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -217,6 +220,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .viewAll:
             return {
                 let node = SettingsProButtonNode(title: Localizations.analytics.journal.viewAll, full: false, style: style)
+                node.topInset = 20.0
                 return node
             }
         case .export:
