@@ -13,5 +13,5 @@ struct BlackTabControllerTheme: TabControllerStyle {
     // MARK: - General
     var background: UIColor { return UIColor.black }
     var tabTintColor: UIColor { return UIColor.white }
-    var tabSelectedColor: UIColor { return UIColor.salmon }
+    var tabSelectedColor: UIColor { return UIColor.pewterBlue }
 }

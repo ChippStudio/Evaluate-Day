@@ -23,8 +23,15 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     var userInformationEditColor: UIColor { return UIColor.darkBlueGreen }
     var userInformationEditHighlightedColor: UIColor { return UIColor.grapePurple}
     var userInformationEditFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
-    var userInfomationColor: UIColor { return UIColor.paleGrey }
-    var userInformationFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var userInfomationNameColor: UIColor { return UIColor.paleGrey }
+    var userInformationNameFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
+    var userInfomationEmailColor: UIColor { return UIColor.paleGrey }
+    var userInformationEmailFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var userInfomationBioColor: UIColor { return UIColor.paleGrey }
+    var userInformationBioFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var userInfomationLinkColor: UIColor { return UIColor.paleGrey }
+    var userInformationLinkFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .regular) }
+    var userInformationSeparatorColor: UIColor { return UIColor.lightGray }
     var userInformationPlaceholderColor: UIColor { return UIColor.lightGray }
     var userInformationFacebookButtonFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var userInformationFacebookButtonColor: UIColor { return UIColor.paleGrey }
@@ -34,7 +41,7 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     var userInformationFacebookDisclaimerColor: UIColor { return UIColor.paleGrey }
     
     // AnalyticsCalendarNodeStyle
-    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var calendarTitleColor: UIColor { return UIColor.paleGrey }
     var calendarFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
     var calendarWeekdaysColor: UIColor { return UIColor.grapePurple }
@@ -45,7 +52,7 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.paleGrey }
-    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var statisticTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var statisticSeparatorColor: UIColor { return UIColor.paleGrey }
     var statisticDataColor: UIColor { return UIColor.paleGrey }
     var statisticDataFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
@@ -55,12 +62,12 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     var statisticDataCellBackground: UIColor { return UIColor.pumpkin }
     
     // AnalyticsChartNodeStyle
-    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var chartNodeTitleColor: UIColor { return UIColor.paleGrey }
     var chartNodeShareTintColor: UIColor { return UIColor.paleGrey }
-    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var chartNodeDateFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var chartNodeDateColor: UIColor { return UIColor.paleGrey }
-    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 25.0, weight: .regular) }
+    var chartNodeValueFont: UIFont { return UIFont.avenirNext(size: 64.0, weight: .bold) }
     var chartNodeValuePositiveColor: UIColor { return UIColor.darkBlueGreen }
     var chartNodeValueNegativeColor: UIColor { return UIColor.grapePurple }
     var chartNodeYAxisColor: UIColor { return UIColor.paleGrey }
@@ -77,8 +84,8 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     
     // MARK: - Title Node
     var titleTitleColor: UIColor { return UIColor.paleGrey }
-    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
-    var titleSubtitleColor: UIColor { return UIColor.gray }
+    var titleTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var titleSubtitleColor: UIColor { return UIColor.paleGrey }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.paleGrey }
     

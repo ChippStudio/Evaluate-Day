@@ -13,5 +13,5 @@ struct OrangeTabControllerTheme: TabControllerStyle {
     // MARK: - General
     var background: UIColor { return UIColor.squash }
     var tabTintColor: UIColor { return UIColor.white }
-    var tabSelectedColor: UIColor { return UIColor.paleGrey }
+    var tabSelectedColor: UIColor { return UIColor.darkBlueGreen }
 }
