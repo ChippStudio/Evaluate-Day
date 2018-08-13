@@ -146,6 +146,7 @@
 		B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */; };
 		B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */; };
 		B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0722120B91000A9FCFB /* Photo.storyboard */; };
+		B59DA0752120CB0400A9FCFB /* PhotoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -530,6 +531,7 @@
 		B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIconSelectNode.swift; sourceTree = "<group>"; };
 		B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		B59DA0722120B91000A9FCFB /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
+		B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTransition.swift; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -1180,6 +1182,7 @@
 				B5A1B0E31FBACBBF003D9E81 /* BottomTransition.swift */,
 				B5FD38E21FDC507A0071B1F0 /* SplitSettingsTransition.swift */,
 				B584E0D81FE299C7008093D5 /* WelcomeTransition.swift */,
+				B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -2319,6 +2322,7 @@
 				B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */,
 				B5D0C7BC20A8539A000F98EF /* BlackCardSettingsTheme.swift in Sources */,
 				B5AB1E8E2018CC7200BB1A64 /* ListAnalyticsSection.swift in Sources */,
+				B59DA0752120CB0400A9FCFB /* PhotoTransition.swift in Sources */,
 				B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */,
 				B5B27E8E1F9DC3C900CB9121 /* SettingsViewController.swift in Sources */,
 				B5C7572E1F9DCAA50032199E /* Extensions.swift in Sources */,

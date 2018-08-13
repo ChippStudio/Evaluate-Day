@@ -19,18 +19,26 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var createdLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var backView: UIView!
+    
     private var imageView = UIImageView()
     
     // MARK: - Variables
     var photoValue: PhotoValue!
     
     // MARK: - Override
+    override func awakeFromNib() {
+        self.modalPresentationStyle = .overFullScreen
+        self.transition = PhotoTransition(animationDuration: 0.4)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let style = Themes.manager.evaluateStyle
         
-        self.view.backgroundColor = style.background
+        self.view.backgroundColor = UIColor.clear
+        
+        self.backView.backgroundColor = style.background
         self.closeButtonCover.backgroundColor = style.background
         self.closeButtonCover.layer.masksToBounds = true
         self.closeButtonCover.layer.cornerRadius = 25.0
@@ -88,6 +96,8 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
             self.closeButtonCover.alpha = 1.0
             self.infoCoverView.alpha = 1.0
         }
+        
+        self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesterAction(sender:))))
     }
 
     override func didReceiveMemoryWarning() {
@@ -140,5 +150,24 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         scrollView.minimumZoomScale = min(widthScale, heightScale)
         scrollView.maximumZoomScale = 2.0
         scrollView.zoomScale = self.scrollView.minimumZoomScale
+    }
+    
+    fileprivate var updateProgress: CGFloat = 0.0
+    @objc func panGesterAction(sender: UIPanGestureRecognizer) {
+        
+        self.updateProgress = sender.translation(in: self.view).y / self.view.frame.size.height
+        
+        switch sender.state {
+        case .began:
+            self.transition!.beginInteractiveDismissalTransition(completion: nil)
+        case .changed:
+            self.transition!.updateInteractiveDismissalTransaction(_toProgress: updateProgress)
+        default:
+            if self.updateProgress > 0.5 {
+                self.transition!.finishInteractiveDismissalTransaction()
+            } else {
+                self.transition!.cancelInteractiveDismissalTransaction()
+            }
+        }
     }
 }

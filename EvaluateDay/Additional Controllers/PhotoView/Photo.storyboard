@@ -14,12 +14,16 @@
         <!--Photo View Controller-->
         <scene sceneID="ubC-Dy-3Qj">
             <objects>
-                <viewController id="Xev-iD-nxY" customClass="PhotoViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Xev-iD-nxY" customClass="PhotoViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L9M-sY-4rU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0H0-6z-Yuv">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2D4-DA-ZAt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H0-6z-Yuv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVV-id-TiN">
@@ -82,10 +86,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2D4-DA-ZAt" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="CS8-1E-JSz"/>
                             <constraint firstItem="SVV-id-TiN" firstAttribute="top" secondItem="OzV-86-DsI" secondAttribute="top" constant="10" id="GFf-ae-AaY"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="NVw-OK-LsD"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="O2J-yl-Pe2"/>
+                            <constraint firstItem="2D4-DA-ZAt" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="T2h-6p-27B"/>
                             <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="WFo-1L-NCl" secondAttribute="trailing" id="WZK-3F-xso"/>
+                            <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="2D4-DA-ZAt" secondAttribute="trailing" id="Ykg-YX-EYK"/>
+                            <constraint firstAttribute="bottom" secondItem="2D4-DA-ZAt" secondAttribute="bottom" id="c7X-PU-o5S"/>
                             <constraint firstItem="WFo-1L-NCl" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="dcu-rX-vwT"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="trailing" secondItem="OzV-86-DsI" secondAttribute="trailing" id="eaa-xV-r6K"/>
                             <constraint firstAttribute="bottom" secondItem="WFo-1L-NCl" secondAttribute="bottom" id="gwe-Rm-l3a"/>
@@ -95,6 +103,7 @@
                         <viewLayoutGuide key="safeArea" id="OzV-86-DsI"/>
                     </view>
                     <connections>
+                        <outlet property="backView" destination="2D4-DA-ZAt" id="ztC-Wo-I55"/>
                         <outlet property="closeButton" destination="ZYY-O1-hYz" id="gCg-Un-OKq"/>
                         <outlet property="closeButtonCover" destination="SVV-id-TiN" id="Alk-qw-TUx"/>
                         <outlet property="coordinatesLabel" destination="C36-lf-ZSQ" id="BPn-V4-ass"/>
