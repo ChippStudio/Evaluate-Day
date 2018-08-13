@@ -55,37 +55,48 @@ class EvaluateDayUITests: XCTestCase {
         snapshot("01Evaluate")
         
         let tabBarsQuery = XCUIApplication().tabBars
-        
         tabBarsQuery.buttons["activity"].tap()
         
+        app.collectionViews["activityCollection"].swipeUp()
+
         snapshot("02UsageStatistics")
         tabBarsQuery.buttons["evaluate"].tap()
         
         // Open analitycs
-        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 1).buttons["analytics"].tap()
+        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 0).tap()
         snapshot("03CriterionAnalytics")
-        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
         
-        app.collectionViews["evaluateCollection"].swipeUp()
-        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 0).buttons["analytics"].tap()
-        snapshot("04ColorAnalytics")
+        app.collectionViews["AnalyticsCollection"].children(matching: .cell).element(boundBy: 2).children(matching: .other).element.children(matching: .other).element.tap()
+        snapshot("04TimeTravel")
+        app.buttons["closeButton"].tap()
+        
         XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
         
         XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["newCardButton"].tap()
         snapshot("05Cards")
-        XCUIApplication().tables["cardsTypeList"].children(matching: .cell).element(boundBy: 6).tap()
-        snapshot("06CardSettings")
         
         XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 0).tap()
+        XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["cardSettingsButton"].tap()
+        snapshot("06CardSettings")
         XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        
+        tabBarsQuery.buttons["settings"].tap()
+        XCUIApplication().tables["settingsTableView"].children(matching: .cell).element(boundBy: 3).tap()
+        XCUIApplication().tables["themeTable"].children(matching: .cell).element(boundBy: 1).tap()
+        
+        snapshot("07Themes")
+        
+        XCUIApplication().navigationBars["settingsNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        
+        tabBarsQuery.buttons["evaluate"].tap()
         XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["reorderButton"].tap()
-        snapshot("07Reorder")
+        snapshot("08Reorder")
+        
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element(boundBy: 0).tap()
         
         tabBarsQuery.buttons["settings"].tap()
-        snapshot("08Settings")
-        
-        XCUIApplication().tables["settingsTableView"].children(matching: .cell).element(boundBy: 3).tap()
-        snapshot("09Themes")
+        snapshot("09Settings")
     }
 }

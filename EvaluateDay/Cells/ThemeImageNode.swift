@@ -18,6 +18,8 @@ class ThemeImageNode: ASCellNode {
     init(image: UIImage) {
         super.init()
         
+        self.accessibilityIdentifier = "themeNode"
+        
         self.previewImageNode.image = image
         
         self.automaticallyManagesSubnodes = true

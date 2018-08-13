@@ -71,6 +71,7 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
         
         self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.barTint
+        self.closeButton.accessibilityIdentifier = "closeButton"
         
         self.datePicker.setValue(style.barTint, forKey: "textColor")
         self.datePicker.maximumDate = Date()

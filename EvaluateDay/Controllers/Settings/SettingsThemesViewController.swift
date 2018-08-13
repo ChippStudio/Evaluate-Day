@@ -25,6 +25,7 @@ class SettingsThemesViewController: UIViewController, ASTableDataSource, ASTable
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
         self.tableNode.view.separatorStyle = .none
+        self.tableNode.accessibilityIdentifier = "themeTable"
         self.view.addSubnode(self.tableNode)
         
         // Analytics

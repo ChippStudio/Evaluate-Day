@@ -41,6 +41,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         self.collectionNode.view.alwaysBounceVertical = true
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 100.0, right: 0.0)
+        self.collectionNode.accessibilityIdentifier = "activityCollection"
         self.view.insertSubview(self.collectionNode.view, at: 0)
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)

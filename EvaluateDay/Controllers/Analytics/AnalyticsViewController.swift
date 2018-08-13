@@ -35,6 +35,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode = ASCollectionNode(collectionViewLayout: UICollectionViewFlowLayout())
         self.collectionNode.view.alwaysBounceVertical = true
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
+        self.collectionNode.accessibilityIdentifier = "AnalyticsCollection"
         self.view.addSubnode(self.collectionNode)
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
@@ -43,6 +44,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         
         // Buttons
         self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(openCardSettingsAction(sender:)))
+        self.settingsButton.accessibilityIdentifier = "cardSettingsButton"
         self.navigationItem.rightBarButtonItem = self.settingsButton
         
         // Close button

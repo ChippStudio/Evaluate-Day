@@ -36,6 +36,7 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         
         // Navigation bar
         self.navigationItem.title = Localizations.settings.title
+        self.navigationController?.navigationBar.accessibilityIdentifier = "settingsNavigationBar"
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
