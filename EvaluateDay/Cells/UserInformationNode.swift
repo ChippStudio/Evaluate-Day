@@ -35,8 +35,8 @@ class UserInformationNode: ASCellNode {
     // MARK: - UI
     var editButton = ASButtonNode()
     var userPhoto = ASImageNode()
-    var userName = ASTextNode()
-    var userEmail = ASTextNode()
+    var userName: ASTextNode!
+    var userEmail: ASTextNode!
     var firstSeparator = ASDisplayNode()
     var userBio: ASTextNode!
     var userWeb: ASTextNode!
@@ -55,7 +55,7 @@ class UserInformationNode: ASCellNode {
         
         self.editMode = isEdit
         
-        self.userPhoto.image = #imageLiteral(resourceName: "user")
+        self.userPhoto.image = #imageLiteral(resourceName: "userQA")
         if photo != nil {
             self.userPhoto.image = photo
         } else {
@@ -81,17 +81,16 @@ class UserInformationNode: ASCellNode {
         if !isEdit {
             if name != nil {
                 nameAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationNameColor
+                self.userName = ASTextNode()
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
-            } else {
-                self.userName.attributedText = NSAttributedString(string: Localizations.activity.user.placeholder.name, attributes: nameAttr)
             }
             
             if email != nil {
                 emailAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationEmailColor
+                self.userEmail = ASTextNode()
                 self.userEmail.attributedText = NSAttributedString(string: email!, attributes: emailAttr)
-            } else {
-                self.userEmail.attributedText = NSAttributedString(string: Localizations.activity.user.placeholder.email, attributes: emailAttr)
             }
+            
             if bio != nil {
                 bioAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationBioColor
                 self.userBio = ASTextNode()
@@ -103,6 +102,8 @@ class UserInformationNode: ASCellNode {
                 self.userWeb.attributedText = NSAttributedString(string: web!, attributes: webAttr)
             }
         } else {
+            self.userName = ASTextNode()
+            self.userEmail = ASTextNode()
             if name != nil {
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
             } else {
@@ -172,22 +173,31 @@ class UserInformationNode: ASCellNode {
         let editStackInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -20.0, right: 10.0)
         let editStackInset = ASInsetLayoutSpec(insets: editStackInsets, child: editStack)
         
-        self.userName.style.flexShrink = 1.0
-        self.userEmail.style.flexShrink = 1.0
-        
-        let nameAndEmail = ASStackLayoutSpec.vertical()
-        nameAndEmail.spacing = 10.0
-        nameAndEmail.style.flexShrink = 1.0
-        nameAndEmail.alignItems = .center
-        nameAndEmail.children = [self.userName, self.userEmail]
-        
         self.userPhoto.style.preferredSize = CGSize(width: 130.0, height: 130.0)
         self.userPhoto.cornerRadius = 130/2
         
         let photoAndText = ASStackLayoutSpec.vertical()
         photoAndText.spacing = 20.0
         photoAndText.alignItems = .center
-        photoAndText.children = [self.userPhoto, nameAndEmail]
+        photoAndText.children = [self.userPhoto]
+        
+        if self.userName != nil || self.userEmail != nil {
+            let nameAndEmail = ASStackLayoutSpec.vertical()
+            nameAndEmail.spacing = 10.0
+            nameAndEmail.style.flexShrink = 1.0
+            nameAndEmail.alignItems = .center
+            nameAndEmail.children = []
+            if self.userName != nil {
+                self.userName.style.flexShrink = 1.0
+                nameAndEmail.children?.append(self.userName)
+            }
+            if self.userEmail != nil {
+                self.userEmail.style.flexShrink = 1.0
+                nameAndEmail.children?.append(self.userEmail)
+            }
+            
+            photoAndText.children?.append(nameAndEmail)
+        }
         
         self.firstSeparator.style.preferredSize = CGSize(width: 250.0, height: 0.2)
         

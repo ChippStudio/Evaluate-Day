@@ -12,7 +12,6 @@ import SwiftKeychainWrapper
 
 class WelcomeViewController: UIViewController {
     // MARK: - UI
-    @IBOutlet weak var byLabel: UILabel!
     @IBOutlet weak var chippLogo: UIImageView!
     
     var nextButton = NextButton()
@@ -25,7 +24,6 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.byLabel.alpha = 0.0
         self.chippLogo.alpha = 0.0
         
         self.view.addSubview(self.nextButton)
@@ -60,7 +58,6 @@ class WelcomeViewController: UIViewController {
             })
             
             UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.9, animations: {
-                self.byLabel.alpha = 1.0
                 self.chippLogo.alpha = 1.0
             })
         }) { (_) in
@@ -83,6 +80,10 @@ class WelcomeViewController: UIViewController {
     
     // MARK: - Actions
     private func setDefaultCards() {
+        
+        if !Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).isEmpty {
+            return
+        }
         
         // Add productivity card
         let productivityCard = Card()
