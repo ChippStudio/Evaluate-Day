@@ -129,7 +129,8 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
             section.inset = cardInsets
             section.didSelectPro = { () in
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                self.navigationController?.pushViewController(controller, animated: true)
+                let navController = UINavigationController(rootViewController: controller)
+                self.present(navController, animated: true, completion: nil)
             }
             return section
         }

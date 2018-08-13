@@ -1,67 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CNY-dM-QtA">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CNY-dM-QtA">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Welcome View Controller-->
         <scene sceneID="omX-Ze-Xmj">
             <objects>
                 <viewController id="CNY-dM-QtA" customClass="WelcomeViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X64-yD-heg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-OO-mW3">
-                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MnD-qJ-Enq">
+                                <rect key="frame" x="77" y="298" width="260.33333333333331" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-gv-mJh">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ILo-gv-mJh" secondAttribute="height" multiplier="1:1" id="yuF-gU-V5Y"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVALUATE DAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nxG-SC-OMP">
+                                        <rect key="frame" x="90.000000000000014" y="0.0" width="170.33333333333337" height="70"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" red="0.25490196079999999" green="0.29803921570000003" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="JfD-QS-TmU"/>
-                                    <constraint firstAttribute="height" constant="250" id="W05-7H-bgK"/>
+                                    <constraint firstAttribute="height" constant="70" id="deb-ns-KWR"/>
+                                </constraints>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chipp-logo" translatesAutoresizingMaskIntoConstraints="NO" id="UnW-q8-VEh">
+                                <rect key="frame" x="87" y="438.33333333333331" width="240" height="129.99999999999994"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="1Np-tE-gYp"/>
+                                    <constraint firstAttribute="height" constant="130" id="MlT-up-i6V"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Label]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-k2-N6e">
-                                <rect key="frame" x="113" y="160" width="149.5" height="66"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="48"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Label]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tx4-Ck-549">
-                                <rect key="frame" x="187.5" y="226" width="75" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBW-Lb-wWr">
+                                <rect key="frame" x="194.66666666666666" y="388" width="25" height="30.333333333333314"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="h5p-t5-ldw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6M8-k2-N6e" secondAttribute="trailing" constant="20" id="8g2-pw-8Tk"/>
-                            <constraint firstItem="6M8-k2-N6e" firstAttribute="top" secondItem="h5p-t5-ldw" secondAttribute="top" constant="140" id="H8c-c0-3Kw">
-                                <variation key="heightClass=regular-widthClass=regular" constant="300"/>
-                            </constraint>
-                            <constraint firstItem="6M8-k2-N6e" firstAttribute="centerX" secondItem="h5p-t5-ldw" secondAttribute="centerX" id="Lls-SW-Qfz"/>
-                            <constraint firstItem="tx4-Ck-549" firstAttribute="trailing" secondItem="6M8-k2-N6e" secondAttribute="trailing" id="NEg-Wj-XfW"/>
-                            <constraint firstItem="1ce-OO-mW3" firstAttribute="centerY" secondItem="X64-yD-heg" secondAttribute="centerY" id="Ujs-fx-5M2"/>
-                            <constraint firstItem="1ce-OO-mW3" firstAttribute="centerX" secondItem="X64-yD-heg" secondAttribute="centerX" id="e5J-Eh-KKD"/>
-                            <constraint firstItem="tx4-Ck-549" firstAttribute="top" secondItem="6M8-k2-N6e" secondAttribute="bottom" id="eHY-yn-DGh"/>
-                            <constraint firstItem="6M8-k2-N6e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h5p-t5-ldw" secondAttribute="leading" constant="20" id="ih2-Ar-2OL"/>
+                            <constraint firstItem="dBW-Lb-wWr" firstAttribute="centerX" secondItem="X64-yD-heg" secondAttribute="centerX" id="48h-pV-cmE"/>
+                            <constraint firstItem="dBW-Lb-wWr" firstAttribute="top" secondItem="MnD-qJ-Enq" secondAttribute="bottom" constant="20" id="5Xh-4Z-kAl"/>
+                            <constraint firstItem="MnD-qJ-Enq" firstAttribute="centerX" secondItem="X64-yD-heg" secondAttribute="centerX" id="Pve-l4-0eg"/>
+                            <constraint firstItem="UnW-q8-VEh" firstAttribute="centerX" secondItem="X64-yD-heg" secondAttribute="centerX" id="aIR-8J-vTW"/>
+                            <constraint firstItem="UnW-q8-VEh" firstAttribute="top" secondItem="dBW-Lb-wWr" secondAttribute="bottom" constant="20" id="rSr-qZ-DtS"/>
+                            <constraint firstItem="MnD-qJ-Enq" firstAttribute="bottom" secondItem="X64-yD-heg" secondAttribute="centerY" id="xE9-M6-jdt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h5p-t5-ldw"/>
                     </view>
                     <connections>
-                        <outlet property="appLogo" destination="1ce-OO-mW3" id="ee6-lR-Pif"/>
-                        <outlet property="chippLabel" destination="tx4-Ck-549" id="9Jl-ks-00T"/>
-                        <outlet property="titleLabel" destination="6M8-k2-N6e" id="xxA-3B-PqU"/>
+                        <outlet property="byLabel" destination="dBW-Lb-wWr" id="qtM-PY-hvq"/>
+                        <outlet property="centerConstraint" destination="xE9-M6-jdt" id="FfN-xr-rhc"/>
+                        <outlet property="chippLogo" destination="UnW-q8-VEh" id="8vH-pI-6q9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqN-iZ-Dgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,11 +80,11 @@
             <objects>
                 <viewController storyboardIdentifier="slidesViewController" id="3jT-Az-tNR" customClass="SlidesViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4dd-AZ-GLl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-27-PjV">
-                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                                <rect key="frame" x="187.66666666666666" y="699" width="39" height="37"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.12549019610000001" green="0.50980392159999999" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,7 +107,7 @@
             <objects>
                 <viewController storyboardIdentifier="welcomeLoginViewController" id="0TX-Dr-8ry" customClass="WelcomeLoginViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nLJ-Ik-IAf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.12549019610000001" green="0.50980392159999999" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="pmb-mf-oxY"/>
@@ -115,7 +122,7 @@
             <objects>
                 <viewController storyboardIdentifier="permissionsViewController" id="rKv-I6-XRP" customClass="PermissionsViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K1x-KQ-m3y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="RCA-ua-Nbp"/>
@@ -127,6 +134,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chipp-logo" width="2000" height="699"/>
         <image name="appIcon1024" width="1024" height="1024"/>
     </resources>
 </document>

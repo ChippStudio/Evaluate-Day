@@ -21,8 +21,8 @@ class WelcomePermissionTitleNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .left
         
-        self.title.attributedText = NSAttributedString(string: Localizations.permission.description.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
-        self.subtitle.attributedText = NSAttributedString(string: Localizations.permission.description.subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 16.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.paragraphStyle: center])
+        self.title.attributedText = NSAttributedString(string: Localizations.permission.description.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 40.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
+        self.subtitle.attributedText = NSAttributedString(string: Localizations.permission.description.subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         
         self.automaticallyManagesSubnodes = true
     }

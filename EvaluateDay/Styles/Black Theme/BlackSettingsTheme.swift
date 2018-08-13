@@ -67,16 +67,16 @@ struct BlackSettingsTheme: SettingsStyle {
     
     // MARK: - SettingsProDescriptionNodeStyle
     var proDescriptionTextColor: UIColor { return UIColor.white }
-    var proDescriptionMainTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var proDescriptionListTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proDescriptionMainTextFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
+    var proDescriptionListTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var proDescriptionDotColor: UIColor { return UIColor.salmon }
-    var proDescriptionMoreButtonFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var proDescriptionMoreButtonFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .bold) }
     var proDescriptionMoreButtonColor: UIColor { return UIColor.salmon }
     var proDescriptionMoreButtonHighlightedColor: UIColor { return UIColor.white }
     
     // MARK: - SettingsProButtonNodeStyle
     var proButtonTextColor: UIColor { return UIColor.white }
-    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
     var proButtonCoverColor: UIColor { return UIColor.salmon }
     var proSecondaryTextColor: UIColor { return UIColor.white }
     var proButtonSelectedColor: UIColor { return UIColor.brownishRed }
@@ -106,14 +106,14 @@ struct BlackSettingsTheme: SettingsStyle {
     var proMoreViewControllerCoverColor: UIColor { return UIColor.smokyBlack }
     var proMoreViewControllerCoverAlpha: CGFloat { return 0.7 }
     var proMoreViewControllerButtonsCover: UIColor { return UIColor.white }
-    var proMoreViewControllerButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proMoreViewControllerButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .demiBold) }
     var proMoreViewControllerButtonsColor: UIColor { return UIColor.smokyBlack }
     
     // MARK: - SettingsProDescriptionMoreNodeStyle
     var settingsProDescriptionMoreTitleColor: UIColor { return UIColor.white }
-    var settingsProDescriptionMoreTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .demiBold) }
+    var settingsProDescriptionMoreTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
     var settingsProDescriptionMoreSubtitleColor: UIColor { return UIColor.lightGray }
-    var settingsProDescriptionMoreSubtitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var settingsProDescriptionMoreSubtitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
     var settingsProDescriptionMoreImageTintColor: UIColor { return UIColor.white }
     var settingsProDescriptionMoreSeparatorColor: UIColor { return UIColor.lightGray }
     

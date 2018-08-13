@@ -17,6 +17,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     // MARK: - UI
     var tableNode: ASTableNode!
     var nextButton: NextButton!
+    var closeButton: UIBarButtonItem!
     
     // MARK: - Variable
     var priceString = "..." {
@@ -65,6 +66,11 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             self.nextButton.addTarget(self, action: #selector(nextButtonAction(sender: )), for: .touchUpInside)
             self.nextButton.alpha = 0.0
             self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        } else {
+            if self.navigationController!.viewControllers.first is ProViewController {
+                self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
+                self.navigationItem.leftBarButtonItem = closeButton
+            }
         }
         
         // Feedback
@@ -428,6 +434,10 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     }
     
     // MARK: - Actions
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func openURL(_ url: String) {
         let safari = SFSafariViewController(url: URL(string: url)!)
         safari.preferredControlTintColor = Themes.manager.settingsStyle.safariTintColor

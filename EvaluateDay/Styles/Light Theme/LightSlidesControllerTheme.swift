@@ -11,12 +11,12 @@ import UIKit
 
 struct LightSlidesControllerTheme: SlidesViewControllerStyle {
     // MARK: - General
-    var background: UIColor { return UIColor.white }
+    var background: UIColor { return UIColor.snow }
     var pageIndicatorColor: UIColor { return UIColor.lightGray }
     var currentPageIndicatorColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - WelcomeImageNodeStyle
-    var welcomeImageNodeTextFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .bold) }
+    var welcomeImageNodeTextFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
     
     // MARK: - DescriptionNodeStyle
     var descriptionNodeTextColor: UIColor { return UIColor.gunmetal }

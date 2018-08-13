@@ -208,7 +208,7 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var cardListEmptyTitleColor: UIColor { return UIColor.white }
     var cardListEmptyDescriptionFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .regular) }
     var cardListEmptyDescriptionColor: UIColor { return UIColor.white }
-    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var cardListEmptyNewTintColor: UIColor { return UIColor.white }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.salmon }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.smokyBlack }

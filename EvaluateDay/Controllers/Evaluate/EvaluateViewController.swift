@@ -166,6 +166,12 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             self.navigationItem.setRightBarButtonItems([self.newCardButton, self.reorderCardsButton], animated: true)
         }
         
+        if self.cards.isEmpty {
+            self.collectionNode.view.alwaysBounceVertical = false
+        } else {
+            self.collectionNode.view.alwaysBounceVertical = true
+        }
+        
         return diffableCards
     }
     

@@ -200,11 +200,16 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        guard let controller = self.viewController as? EvaluateViewController else {
+        let node: ASCellNode!
+        
+        if let controller = self.viewController as? EvaluateViewController {
+            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+        } else if let controller = self.viewController as? TimeViewController {
+            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+        } else {
             return
         }
         
-        let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as! CounterNode
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
             UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)

@@ -208,7 +208,7 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var cardListEmptyTitleColor: UIColor { return UIColor.paleGrey }
     var cardListEmptyDescriptionFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .regular) }
     var cardListEmptyDescriptionColor: UIColor { return UIColor.paleGrey }
-    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var cardListEmptyNewTintColor: UIColor { return UIColor.paleGrey }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.grapePurple }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.pumpkin }

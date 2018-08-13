@@ -57,7 +57,7 @@ class CardListEmptyView: UIView {
         }
         
         self.titleLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(30.0)
+            make.top.equalToSuperview().offset(80.0)
             make.bottom.equalTo(self.descriptionLabel.snp.top).offset(-10.0)
             make.leading.equalToSuperview().offset(30.0)
             make.trailing.equalToSuperview().offset(-30.0).priority(750.0)

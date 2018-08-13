@@ -203,11 +203,11 @@ struct LightEvaluateTheme: EvaluableStyle {
     var updateButtonColor: UIColor { return UIColor.viridian }
     
     // MARK: - CardListEmptyViewStyle
-    var cardListEmptyTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .demiBold) }
+    var cardListEmptyTitleFont: UIFont { return UIFont.avenirNext(size: 30.0, weight: .bold) }
     var cardListEmptyTitleColor: UIColor { return UIColor.gunmetal }
-    var cardListEmptyDescriptionFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var cardListEmptyDescriptionFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .regular) }
     var cardListEmptyDescriptionColor: UIColor { return UIColor.gunmetal }
-    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var cardListEmptyNewFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var cardListEmptyNewTintColor: UIColor { return UIColor.gunmetal }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.brownishRed }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.white }

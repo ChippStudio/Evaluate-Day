@@ -12,12 +12,12 @@ import SwiftKeychainWrapper
 
 class WelcomeViewController: UIViewController {
     // MARK: - UI
-    @IBOutlet weak var appLogo: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var chippLabel: UILabel!
+    @IBOutlet weak var byLabel: UILabel!
+    @IBOutlet weak var chippLogo: UIImageView!
     
     var nextButton = NextButton()
     
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
     // MARK: - Variables
     private let slidesViewController = "slidesViewController"
 
@@ -25,21 +25,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set texts
-        self.titleLabel.text = Localizations.general.evaluateday
-        self.titleLabel.textColor = UIColor.gunmetal
-        self.titleLabel.adjustsFontSizeToFitWidth = true
-        
-        self.chippLabel.text = Localizations.welcome.bychippstudio
-        self.chippLabel.textColor = UIColor.gunmetal
-        
-        // Init positions
-        let offset = UIScreen.main.bounds.size.height
-        self.titleLabel.alpha = 0.0
-        self.titleLabel.transform = CGAffineTransform(translationX: 0.0, y: offset)
-        
-        self.chippLabel.alpha = 0.0
-        self.chippLabel.transform = CGAffineTransform(translationX: 0.0, y: offset)
+        self.byLabel.alpha = 0.0
+        self.chippLogo.alpha = 0.0
         
         self.view.addSubview(self.nextButton)
         self.nextButton.snp.makeConstraints { (make) in
@@ -64,24 +51,17 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: .allowUserInteraction, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
-                self.appLogo.alpha = 0.0
-            })
-        }, completion: nil)
+        self.centerConstraint.constant = -150.0
         
         UIView.animateKeyframes(withDuration: 2.0, delay: 0.5, options: .beginFromCurrentState, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 1.0, animations: {
-                self.chippLabel.alpha = 1.0
-                self.titleLabel.alpha = 1.0
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
+                self.view.layoutIfNeeded()
             })
             
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
-                self.titleLabel.transform = CGAffineTransform.identity
-            })
-            
-            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.7, animations: {
-                self.chippLabel.transform = CGAffineTransform.identity
+            UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.9, animations: {
+                self.byLabel.alpha = 1.0
+                self.chippLogo.alpha = 1.0
             })
         }) { (_) in
             self.setCardsFromEvaluateDayTwo(completion: { (done) in

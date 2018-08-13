@@ -66,17 +66,17 @@ struct LightSettingsTheme: SettingsStyle {
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - SettingsProDescriptionNodeStyle
-    var proDescriptionTextColor: UIColor { return UIColor.gunmetal }
-    var proDescriptionMainTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
-    var proDescriptionListTextFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proDescriptionTextColor: UIColor { return UIColor.charcoal }
+    var proDescriptionMainTextFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
+    var proDescriptionListTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var proDescriptionDotColor: UIColor { return UIColor.brownishRed }
-    var proDescriptionMoreButtonFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .regular) }
+    var proDescriptionMoreButtonFont: UIFont { return UIFont.avenirNext(size: 17.0, weight: .bold) }
     var proDescriptionMoreButtonColor: UIColor { return UIColor.brownishRed }
     var proDescriptionMoreButtonHighlightedColor: UIColor { return UIColor.gunmetal }
     
     // MARK: - SettingsProButtonNodeStyle
     var proButtonTextColor: UIColor { return UIColor.white }
-    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var proButtonTextFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .medium) }
     var proButtonCoverColor: UIColor { return UIColor.gunmetal }
     var proSecondaryTextColor: UIColor { return UIColor.gunmetal }
     var proButtonSelectedColor: UIColor { return UIColor.brownishRed }
@@ -106,14 +106,14 @@ struct LightSettingsTheme: SettingsStyle {
     var proMoreViewControllerCoverColor: UIColor { return UIColor.white }
     var proMoreViewControllerCoverAlpha: CGFloat { return 0.7 }
     var proMoreViewControllerButtonsCover: UIColor { return UIColor.gunmetal }
-    var proMoreViewControllerButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
+    var proMoreViewControllerButtonsFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .demiBold) }
     var proMoreViewControllerButtonsColor: UIColor { return UIColor.white }
     
     // MARK: - SettingsProDescriptionMoreNodeStyle
-    var settingsProDescriptionMoreTitleColor: UIColor { return UIColor.gunmetal }
-    var settingsProDescriptionMoreTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .demiBold) }
-    var settingsProDescriptionMoreSubtitleColor: UIColor { return UIColor.lightGray }
-    var settingsProDescriptionMoreSubtitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var settingsProDescriptionMoreTitleColor: UIColor { return UIColor.charcoal }
+    var settingsProDescriptionMoreTitleFont: UIFont { return UIFont.avenirNext(size: 24.0, weight: .bold) }
+    var settingsProDescriptionMoreSubtitleColor: UIColor { return UIColor.charcoal }
+    var settingsProDescriptionMoreSubtitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
     var settingsProDescriptionMoreImageTintColor: UIColor { return UIColor.gunmetal }
     var settingsProDescriptionMoreSeparatorColor: UIColor { return UIColor.lightGray }
     
