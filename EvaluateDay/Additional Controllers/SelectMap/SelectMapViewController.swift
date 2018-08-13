@@ -21,11 +21,11 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
 
     // MARK: - UI
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var baseView: UIVisualEffectView!
-    @IBOutlet weak var closeButtonCover: UIVisualEffectView!
+    @IBOutlet weak var baseView: UIView!
+    @IBOutlet weak var closeButtonCover: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
-    @IBOutlet weak var currentLocationButtonCover: UIVisualEffectView!
+    @IBOutlet weak var currentLocationButtonCover: UIView!
     
     var searchBar: UISearchBar = UISearchBar()
     
@@ -63,14 +63,17 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.baseView.layer.masksToBounds = true
+        self.baseView.layer.cornerRadius = 10.0
+        
         // Close button
         self.closeButtonCover.layer.cornerRadius = 25.0
         self.closeButtonCover.clipsToBounds = true
-        self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         
         self.currentLocationButtonCover.layer.cornerRadius = 25.0
         self.currentLocationButtonCover.clipsToBounds = true
-        self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         
         // set gestures
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.mapViewLongGestureAction(_:)))
@@ -212,13 +215,6 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
                 return view
             }
         }
-//        guard let annotation = annotation as? MapAnnotation else {
-//            return nil
-//        }
-//
-//        let anotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "a")
-//        anotationView.image = #imageLiteral(resourceName: "locationMark").resizedImage(newSize: CGSize(width: 30.0, height: 30.0))
-//        return anotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -256,7 +252,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         UIView.animate(withDuration: 0.5, animations: {
             self.baseView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         }) { (_) in
-            for v in self.baseView.contentView.subviews {
+            for v in self.baseView.subviews {
                 v.removeFromSuperview()
             }
             
@@ -266,7 +262,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             
             // Set views
             let searchView = self.searchView()
-            self.baseView.contentView.addSubview(searchView)
+            self.baseView.addSubview(searchView)
             searchView.snp.makeConstraints({ (make) in
                 make.top.equalToSuperview().offset(10.0)
                 make.trailing.equalToSuperview()
@@ -275,13 +271,13 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             
             if self.isSearchMode {
                 let table = self.searchItemsView()
-                self.baseView.contentView.addSubview(table)
+                self.baseView.addSubview(table)
                 table.snp.makeConstraints({ (make) in
                     make.top.equalTo(searchView.snp.bottom).offset(5.0)
                     make.trailing.equalToSuperview()
                     make.leading.equalToSuperview()
                     if #available(iOS 11.0, *) {
-                        make.bottom.equalTo(self.baseView.contentView.safeAreaLayoutGuide).offset(-10.0)
+                        make.bottom.equalTo(self.baseView.safeAreaLayoutGuide).offset(-10.0)
                     } else {
                         make.bottom.equalToSuperview().offset(-10.0)
                     }
@@ -291,13 +287,13 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
                 })
             } else if self.selectedLocation != nil {
                 let locationView = self.selectPlaceInformation()
-                self.baseView.contentView.addSubview(locationView)
+                self.baseView.addSubview(locationView)
                 locationView.snp.makeConstraints({ (make) in
                     make.top.equalTo(searchView.snp.bottom).offset(5.0)
                     make.trailing.equalToSuperview()
                     make.leading.equalToSuperview()
                     if #available(iOS 11.0, *) {
-                        make.bottom.equalTo(self.baseView.contentView.safeAreaLayoutGuide).offset(-10.0)
+                        make.bottom.equalTo(self.baseView.safeAreaLayoutGuide).offset(-10.0)
                     } else {
                         make.bottom.equalToSuperview().offset(-10.0)
                     }
@@ -305,7 +301,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             } else {
                 searchView.snp.makeConstraints({ (make) in
                     if #available(iOS 11.0, *) {
-                        make.bottom.equalTo(self.baseView.contentView.safeAreaLayoutGuide).offset(-10.0)
+                        make.bottom.equalTo(self.baseView.safeAreaLayoutGuide).offset(-10.0)
                     } else {
                         make.bottom.equalToSuperview().offset(-10.0)
                     }
@@ -353,7 +349,6 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         
         let view = UIView()
         view.backgroundColor = UIColor.clear
-        let trailingOffset: CGFloat = -60.0
         let streetLabel = UILabel()
         streetLabel.text = value.streetString
         streetLabel.textColor = style.tintColor
@@ -363,7 +358,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         streetLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(10.0)
             make.leading.equalToSuperview().offset(10.0)
-            make.trailing.equalToSuperview().offset(trailingOffset)
+            make.trailing.equalToSuperview().offset(-10.0)
         }
         
         let otherAddressLabel = UILabel()
@@ -374,34 +369,31 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         view.addSubview(otherAddressLabel)
         otherAddressLabel.snp.makeConstraints { (make) in
             make.top.equalTo(streetLabel.snp.bottom)
-            make.leading.equalToSuperview().offset(10.0)
-            make.trailing.equalToSuperview().offset(trailingOffset)
+            make.leading.equalToSuperview().offset(30.0)
+            make.trailing.equalToSuperview().offset(-10.0)
         }
         
         let coordinateLabel = UILabel()
         coordinateLabel.text = value.coordinatesString
         coordinateLabel.textColor = style.tintColor
+        coordinateLabel.textAlignment = .right
         coordinateLabel.font = style.checkInDataCoordinatesFont
         coordinateLabel.numberOfLines = 0
         view.addSubview(coordinateLabel)
         coordinateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(otherAddressLabel.snp.bottom)
             make.leading.equalToSuperview().offset(10.0)
-            make.trailing.equalToSuperview().offset(trailingOffset)
+            make.trailing.equalToSuperview().offset(-10.0)
         }
         
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "map").withRenderingMode(.alwaysTemplate), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.imageView?.tintColor = style.tintColor
         button.addTarget(self, action: #selector(self.selectLocationButtonAction(sender:)), for: .touchUpInside)
         view.addSubview(button)
         button.snp.makeConstraints { (make) in
-            make.width.equalTo(40.0)
-            make.height.equalTo(40.0)
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-10.0)
-            make.top.greaterThanOrEqualToSuperview().offset(10.0)
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.top.equalTo(streetLabel)
+            make.bottom.equalTo(coordinateLabel)
         }
         
         if value.realm != nil {
@@ -412,6 +404,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             deleteButton.imageView?.tintColor = style.deleteTintColor
             deleteButton.setTitleColor(style.deleteTintColor, for: .normal)
             deleteButton.setTitleColor(style.tintColor, for: .highlighted)
+            deleteButton.titleLabel?.font = style.checkInDataDeleteFont
             deleteButton.addTarget(self, action: #selector(self.deleteLocationValueAction(sender:)), for: .touchUpInside)
             view.addSubview(deleteButton)
             deleteButton.snp.makeConstraints({ (make) in
@@ -481,12 +474,15 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
             let style = Themes.manager.mapControllerStyle
             
-            self.closeButtonCover.effect = UIBlurEffect(style: style.blurStyle)
-            self.currentLocationButtonCover.effect = UIBlurEffect(style: style.blurStyle)
-            self.baseView.effect = UIBlurEffect(style: style.blurStyle)
+            self.closeButtonCover.backgroundColor = style.background
+            self.currentLocationButtonCover.backgroundColor = style.background
+            self.baseView.backgroundColor = style.background
             
             self.closeButton.imageView?.tintColor = style.tintColor
             self.currentLocationButton.imageView?.tintColor = style.tintColor
+            
+            self.searchBar.tintColor = style.tintColor
+            self.searchBar.textColor = style.tintColor
             
             self.generateInformationView()
         })

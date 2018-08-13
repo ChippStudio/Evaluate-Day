@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q5T-bb-yxy">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q5T-bb-yxy">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,74 +16,60 @@
             <objects>
                 <viewController id="q5T-bb-yxy" customClass="MapViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yIp-Uw-4rr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXE-MG-LKn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </mapView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUn-7P-FKD">
-                                <rect key="frame" x="354" y="30" width="50" height="50"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dLT-US-zFI">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZX-la-9YF">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <connections>
-                                                <action selector="closeButtonAction:" destination="q5T-bb-yxy" eventType="touchUpInside" id="k8v-lc-TR5"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="CZX-la-9YF" firstAttribute="leading" secondItem="dLT-US-zFI" secondAttribute="leading" id="7KX-WK-6uh"/>
-                                        <constraint firstItem="CZX-la-9YF" firstAttribute="top" secondItem="dLT-US-zFI" secondAttribute="top" id="Lga-RK-Alb"/>
-                                        <constraint firstAttribute="bottom" secondItem="CZX-la-9YF" secondAttribute="bottom" id="q0f-L8-XfF"/>
-                                        <constraint firstAttribute="trailing" secondItem="CZX-la-9YF" secondAttribute="trailing" id="sTz-tu-wuc"/>
-                                    </constraints>
-                                </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-EE-ouH">
+                                <rect key="frame" x="0.0" y="406" width="375" height="406"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="33f-83-yqX"/>
-                                    <constraint firstAttribute="width" constant="50" id="nXI-6x-U0z"/>
+                                    <constraint firstAttribute="width" constant="400" id="1NI-fC-Vhm"/>
                                 </constraints>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hj9-1r-SMf">
-                                <rect key="frame" x="0.0" y="536" width="414" height="200"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HlN-bj-mn5">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="2WK-3d-B8v"/>
-                                </constraints>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1NI-fC-Vhm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="1NI-fC-Vhm"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Hj9-1r-SMf" firstAttribute="leading" secondItem="nW6-HA-X6U" secondAttribute="leading" id="5cX-vG-LMW"/>
-                            <constraint firstItem="Hj9-1r-SMf" firstAttribute="bottom" secondItem="yIp-Uw-4rr" secondAttribute="bottom" id="61x-TH-hM5"/>
-                            <constraint firstItem="Hj9-1r-SMf" firstAttribute="trailing" secondItem="nW6-HA-X6U" secondAttribute="trailing" id="6RR-Et-R6Y"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="leading" secondItem="nW6-HA-X6U" secondAttribute="leading" id="Igr-b2-bsF"/>
-                            <constraint firstItem="fUn-7P-FKD" firstAttribute="top" secondItem="nW6-HA-X6U" secondAttribute="top" constant="10" id="Rti-vZ-oCl"/>
+                            <constraint firstItem="2FK-EE-ouH" firstAttribute="top" secondItem="yIp-Uw-4rr" secondAttribute="centerY" id="KFQ-4d-qqI"/>
+                            <constraint firstItem="2FK-EE-ouH" firstAttribute="trailing" secondItem="nW6-HA-X6U" secondAttribute="trailing" id="TKU-ri-I56">
+                                <variation key="widthClass=regular" constant="-40"/>
+                            </constraint>
+                            <constraint firstItem="2FK-EE-ouH" firstAttribute="leading" secondItem="nW6-HA-X6U" secondAttribute="leading" id="W2g-we-UNg"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="bottom" secondItem="yIp-Uw-4rr" secondAttribute="bottom" id="ZVQ-Lc-kfA"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="top" secondItem="yIp-Uw-4rr" secondAttribute="top" id="eFB-7f-dP6"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="trailing" secondItem="nW6-HA-X6U" secondAttribute="trailing" id="gC3-lG-utR"/>
-                            <constraint firstItem="nW6-HA-X6U" firstAttribute="trailing" secondItem="fUn-7P-FKD" secondAttribute="trailing" constant="10" id="us5-qH-Cee"/>
+                            <constraint firstItem="2FK-EE-ouH" firstAttribute="bottom" secondItem="yIp-Uw-4rr" secondAttribute="bottom" id="vhM-kO-h3l">
+                                <variation key="widthClass=regular" constant="-40"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nW6-HA-X6U"/>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="W2g-we-UNg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="baseView" destination="Hj9-1r-SMf" id="UJt-3Q-76I"/>
-                        <outlet property="closeButton" destination="CZX-la-9YF" id="Hf8-cn-gxB"/>
-                        <outlet property="closeButtonCover" destination="fUn-7P-FKD" id="es2-rp-fGv"/>
+                        <outlet property="baseView" destination="2FK-EE-ouH" id="iTJ-eT-2Lm"/>
                         <outlet property="mapView" destination="zXE-MG-LKn" id="8tB-XT-RX0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFt-tS-Mo1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72.799999999999997" y="170.68965517241381"/>
+            <point key="canvasLocation" x="72.463768115942031" y="170.38043478260872"/>
         </scene>
     </scenes>
 </document>

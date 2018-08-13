@@ -165,10 +165,11 @@ protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeS
 }
 
 protocol MapViewControllerStyle {
-    var blurStyle: UIBlurEffectStyle { get }
+    var background: UIColor { get }
     var tintColor: UIColor { get }
     var deleteTintColor: UIColor { get }
     
+    var checkInDataDeleteFont: UIFont { get }
     var checkInDataStreetFont: UIFont { get }
     var checkInDataOtherAddressFont: UIFont { get }
     var checkInDataCoordinatesFont: UIFont { get }

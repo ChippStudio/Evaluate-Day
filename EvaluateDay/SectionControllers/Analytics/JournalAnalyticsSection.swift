@@ -520,6 +520,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     @objc private func openMapAction(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.map.rawValue, bundle: nil).instantiateInitialViewController() as! MapViewController
         controller.card = self.card
+        controller.navTitle = Localizations.analytics.journal.near
         if let nav = self.viewController?.parent as? UINavigationController {
             nav.pushViewController(controller, animated: true)
         }

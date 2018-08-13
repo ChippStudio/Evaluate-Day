@@ -41,7 +41,7 @@ struct OrangeAnalyticalTheme: AnalyticalStyle {
     var mapNodeShareTintColor: UIColor { return UIColor.paleGrey }
     var mapActionColor: UIColor { return UIColor.paleGrey }
     var mapActionHighlightedColor: UIColor { return UIColor.grapePurple }
-    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.paleGrey }

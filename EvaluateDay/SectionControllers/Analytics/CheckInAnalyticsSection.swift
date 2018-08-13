@@ -349,7 +349,10 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     @objc private func openMapAction(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.map.rawValue, bundle: nil).instantiateInitialViewController() as! MapViewController
         controller.card = self.card
-        self.viewController?.present(controller, animated: true, completion: nil)
+        controller.navTitle = Localizations.analytics.checkin.map.title
+        if let nav = self.viewController?.parent as? UINavigationController {
+            nav.pushViewController(controller, animated: true)
+        }
     }
     
     @objc private func shareAction(sender: ASButtonNode) {

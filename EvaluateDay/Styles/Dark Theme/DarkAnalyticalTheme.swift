@@ -41,7 +41,7 @@ struct DarkAnalyticalTheme: AnalyticalStyle {
     var mapNodeShareTintColor: UIColor { return UIColor.white }
     var mapActionColor: UIColor { return UIColor.white }
     var mapActionHighlightedColor: UIColor { return UIColor.salmon }
-    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.white }

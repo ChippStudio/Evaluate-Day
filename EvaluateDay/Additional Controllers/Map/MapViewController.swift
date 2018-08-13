@@ -14,13 +14,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
 
     // MARK: - UI
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var closeButtonCover: UIVisualEffectView!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var baseView: UIVisualEffectView!
+    @IBOutlet weak var baseView: UIView!
     var tableNode: ASTableNode!
     
     // MARK: - Variables
     var card: Card!
+    var navTitle = ""
     
     private var annotations = [MapAnnotation]()
     
@@ -34,27 +33,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
         self.tableNode = ASTableNode(style: .plain)
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
+        self.tableNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
         self.tableNode.backgroundColor = UIColor.clear
-        self.baseView.contentView.addSubnode(self.tableNode)
+        self.baseView.addSubnode(self.tableNode)
         
         self.baseView.alpha = 0.0
-        
-        // Close button
-        self.closeButtonCover.layer.cornerRadius = 25.0
-        self.closeButtonCover.clipsToBounds = true
-        self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.baseView.layer.masksToBounds = true
+        self.baseView.layer.cornerRadius = 10.0
         
         if self.card == nil {
             return
         }
         
         if self.navigationController != nil {
-            
-            self.navigationItem.title = Localizations.analytics.journal.near
-            
-            self.closeButton.alpha = 0.0
-            self.closeButtonCover.alpha = 0.0
-            self.closeButton.isEnabled = false
+            self.navigationItem.title = self.navTitle
         }
         
         if self.card.type == .checkIn {
@@ -85,6 +77,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.observable()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableNode.frame = self.baseView.bounds
+        if self.navigationController != nil {
+            if let tab = self.tabBarController {
+                tab.setTabBarVisible(visible: false, animated: true)
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.navigationController != nil {
+            if let tab = self.tabBarController {
+                tab.setTabBarVisible(visible: true, animated: true)
+            }
+        }
     }
     
     // MARK: - ASTableDataSource
@@ -123,7 +134,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
                 }
                 
                 return {
-                    let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, style: Themes.manager.evaluateStyle)
+                    let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, truncation: true, style: Themes.manager.evaluateStyle)
                     return node
                 }
             }
@@ -222,10 +233,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
         _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
             let style = Themes.manager.mapControllerStyle
             
-            self.closeButtonCover.effect = UIBlurEffect(style: style.blurStyle)
-            self.baseView.effect = UIBlurEffect(style: style.blurStyle)
-            
-            self.closeButton.imageView?.tintColor = style.tintColor
+            self.baseView.backgroundColor = style.background
         })
     }
 }

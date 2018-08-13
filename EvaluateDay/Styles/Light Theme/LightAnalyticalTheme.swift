@@ -41,7 +41,7 @@ struct LightAnalyticalTheme: AnalyticalStyle {
     var mapNodeShareTintColor: UIColor { return UIColor.gunmetal }
     var mapActionColor: UIColor { return UIColor.viridian }
     var mapActionHighlightedColor: UIColor { return UIColor.brownishRed }
-    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var mapActionFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold) }
     
     // AnalyticsColorStatisticNodeStyle
     var statisticTitleColor: UIColor { return UIColor.gunmetal }

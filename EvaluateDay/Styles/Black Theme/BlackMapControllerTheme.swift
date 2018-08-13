@@ -10,11 +10,12 @@ import Foundation
 import UIKit
 
 struct BlackMapControllerTheme: MapViewControllerStyle {
-    var blurStyle: UIBlurEffectStyle { return .dark }
+    var background: UIColor { return UIColor.black }
     var tintColor: UIColor { return UIColor.white }
     var deleteTintColor: UIColor { return UIColor.salmon }
     
-    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .bold)}
-    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
-    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .regular) }
+    var checkInDataDeleteFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .bold) }
+    var checkInDataStreetFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .bold) }
+    var checkInDataOtherAddressFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
+    var checkInDataCoordinatesFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
 }
