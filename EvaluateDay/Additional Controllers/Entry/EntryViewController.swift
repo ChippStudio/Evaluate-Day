@@ -17,6 +17,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     // MARK: - UI
     var tableNode: ASTableNode!
     var deleteButton: UIBarButtonItem!
+    var closeButton: UIBarButtonItem!
     
     // MARK: - Variables
     var textValue: TextValue!
@@ -37,6 +38,12 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         // Delete button
         self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.deleteAction(sender:)))
         self.navigationItem.rightBarButtonItem = deleteButton
+        
+        // Close button
+        if self.navigationController?.viewControllers.first is EntryViewController {
+            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
+            self.navigationItem.leftBarButtonItem = closeButton
+        }
         
         // Lock
         if self.textValue.created.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
@@ -629,8 +636,11 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 
                 self.textValue.isDeleted = true
             }
-            
-            self.navigationController?.popViewController(animated: true)
+            if self.navigationController?.viewControllers.first is EntryViewController {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
         alert.addAction(cancelAction)
@@ -646,6 +656,10 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         self.present(alert, animated: true) {
             alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
         }
+    }
+    
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setNewLocation(location: CLLocation) {

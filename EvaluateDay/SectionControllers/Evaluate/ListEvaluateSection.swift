@@ -109,11 +109,15 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
     
     // MARK: - Actions
     @objc private func openListAction(sender: ASButtonNode) {
+        let controller = UIStoryboard(name: Storyboards.list.rawValue, bundle: nil).instantiateInitialViewController() as! ListViewController
+        controller.card = self.card
+        controller.date = self.date
+        
         if let nav = self.viewController?.parent as? UINavigationController {
-            let controller = UIStoryboard(name: Storyboards.list.rawValue, bundle: nil).instantiateInitialViewController() as! ListViewController
-            controller.card = self.card
-            controller.date = self.date
             nav.pushViewController(controller, animated: true)
+        } else {
+            let nav = UINavigationController(rootViewController: controller)
+            self.viewController?.present(nav, animated: true, completion: nil)
         }
     }
     @objc private func shareAction(sender: ASButtonNode) {

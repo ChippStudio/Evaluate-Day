@@ -109,6 +109,9 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
                     controller.textValue = entry
                     if let nav = self.viewController?.parent as? UINavigationController {
                         nav.pushViewController(controller, animated: true)
+                    } else {
+                        let nav = UINavigationController(rootViewController: controller)
+                        self.viewController?.present(nav, animated: true, completion: nil)
                     }
                 }
             }
@@ -172,6 +175,9 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         controller.textValue = textValue
         if let nav = self.viewController?.parent as? UINavigationController {
             nav.pushViewController(controller, animated: true)
+        } else {
+            let nav = UINavigationController(rootViewController: controller)
+            self.viewController?.present(nav, animated: true, completion: nil)
         }
     }
     @objc private func shareAction(sender: ASButtonNode) {

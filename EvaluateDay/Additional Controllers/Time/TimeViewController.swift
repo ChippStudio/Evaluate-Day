@@ -60,8 +60,14 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
         
         self.view.backgroundColor = style.background
         self.collectionNode.backgroundColor = style.background
+        
         self.closeButtonCover.backgroundColor = style.background
+        self.closeButtonCover.layer.masksToBounds = true
+        self.closeButtonCover.layer.cornerRadius = 25.0
+        
         self.datePickerCover.backgroundColor = style.background
+        self.datePickerCover.layer.masksToBounds = true
+        self.datePickerCover.layer.cornerRadius = 10.0
         
         self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.barTint
@@ -85,6 +91,7 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
         super.viewWillAppear(animated)
         
         self.collectionNode.contentInset = UIEdgeInsets(top: self.closeButtonCover.frame.size.height + 10.0, left: 0.0, bottom: self.datePickerCover.frame.size.height + 10.0, right: 0.0)
+        self.adapter.performUpdates(animated: true, completion: nil)
     }
     
     // MARK: - ListAdapterDataSource

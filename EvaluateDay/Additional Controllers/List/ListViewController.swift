@@ -16,6 +16,7 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
     var tableNode: ASTableNode!
     var newButton: UIBarButtonItem!
     var editButton: UIBarButtonItem!
+    var closeButton: UIBarButtonItem!
     
     // MARK: - Variables
     var card: Card!
@@ -40,6 +41,12 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         self.editButton = UIBarButtonItem(title: Localizations.general.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
         
         self.navigationItem.rightBarButtonItems = [self.newButton, self.editButton]
+        
+        // Close button
+        if self.navigationController?.viewControllers.first is ListViewController {
+            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
+            self.navigationItem.leftBarButtonItem = closeButton
+        }
         
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)
@@ -185,6 +192,10 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
     }
     
     // MARK: - Actions
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func newItemButtonAction(sender: UIBarButtonItem) {
         let controller = TextTopViewController()
         controller.delegate = self
