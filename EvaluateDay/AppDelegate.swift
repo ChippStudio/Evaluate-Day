@@ -85,10 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        // Set qoick acctions
-        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.general.shortcut.evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "app"), userInfo: nil)
-        let newCardItem = UIApplicationShortcutItem(type: ShortcutItems.new.rawValue, localizedTitle: Localizations.general.shortcut.new.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "new"), userInfo: nil)
-        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.general.shortcut.activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "user"), userInfo: nil)
+        // Set quick actions
+        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.general.shortcut.evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "appQA"), userInfo: nil)
+        let newCardItem = UIApplicationShortcutItem(type: ShortcutItems.new.rawValue, localizedTitle: Localizations.general.shortcut.new.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "newQA"), userInfo: nil)
+        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.general.shortcut.activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
         
         UIApplication.shared.shortcutItems = [evaluateItem, newCardItem, activityItem]
         
@@ -239,61 +239,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - Quick actions
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
-        var success = false
+        self.shortcutItem = ShortcutItems(rawValue: shortcutItem.type)
+        self.openFromQuickAction()
         
-        // Transmision to root view controller
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            
-            if let nav = topController as? UINavigationController {
-                if nav.viewControllers.first is EvaluateViewController {
-                    nav.popToRootViewController(animated: false)
-                } else if nav.viewControllers.first is ActivityViewController {
-                    nav.dismiss(animated: false, completion: nil)
-                } else if nav.viewControllers.first is SettingsViewController {
-                    nav.dismiss(animated: false, completion: nil)
-                }
-            } else if let split = topController as? SettingsSplitViewController {
-                split.dismiss(animated: false, completion: nil)
-            }
-        }
-        
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            
-            switch shortcutItem.type {
-            case ShortcutItems.evaluate.rawValue:
-                if let nav = topController as? UINavigationController {
-                    if let ev = nav.topViewController as? EvaluateViewController {
-                        ev.date = Date()
-                        success = true
-                    }
-                }
-            case ShortcutItems.new.rawValue:
-                let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
-                let navController = UINavigationController(rootViewController: controller)
-                navController.modalPresentationStyle = .formSheet
-                success = true
-                self.window!.rootViewController!.present(navController, animated: true, completion: nil)
-            case ShortcutItems.activity.rawValue:
-                let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-                controller.modalPresentationStyle = .formSheet
-                success = true
-                self.window!.rootViewController!.present(controller, animated: true, completion: nil)
-            default:
-                print("unknown shortcut item")
-            }
-        }
-        
-        sendEvent(.openFromShortcut, withProperties: ["type": shortcutItem.type, "success": success])
-        completionHandler(success)
+        sendEvent(.openFromShortcut, withProperties: ["type": shortcutItem.type, "success": true])
+        completionHandler(true)
     }
     
     // MARK: - Actions
+    var shortcutItem: ShortcutItems?
+    func openFromQuickAction() {
+        if self.shortcutItem == nil {
+            return
+        }
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if topController as? PasscodeViewController == nil {
+                
+                switch self.shortcutItem! {
+                case .evaluate:
+                    if let bar = topController as? UITabBarController {
+                        bar.selectedIndex = 0
+                        if let nav = bar.selectedViewController as? UINavigationController {
+                            nav.popToRootViewController(animated: false)
+                        }
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController()!
+                        topController.present(controller, animated: false, completion: nil)
+                    }
+                case .new:
+                    let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
+                    let nav = UINavigationController(rootViewController: controller)
+                    topController.present(nav, animated: false, completion: nil)
+                case .activity:
+                    if let bar = topController as? UITabBarController {
+                        bar.selectedIndex = 1
+                        if let nav = bar.selectedViewController as? UINavigationController {
+                            nav.popToRootViewController(animated: false)
+                        }
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
+                        topController.present(controller, animated: false, completion: nil)
+                    }
+                }
+            } else {
+                return
+            }
+            
+            self.shortcutItem = nil
+        }
+    }
     private var actionID: String?
     private var actionCardID: String?
     func openFromNotification() {
@@ -309,14 +308,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 if topController as? PasscodeViewController == nil {
                     // Open Evaluate day controller
-                    if let navController = topController as? UINavigationController {
-                        if let controller = navController.topViewController as? EvaluateViewController {
-                            controller.date = Date()
-                            controller.scrollToCard(cardID: self.actionCardID!)
-                            self.actionID = nil
-                            self.actionCardID = nil
-                        }
+                    if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.actionCardID!).first {
+                        let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
+                        controller.card = card
+                        topController.present(controller, animated: true, completion: nil)
                     }
+                } else {
+                    return
                 }
             }
         } else if self.actionID! == "Analytics-Action" {
@@ -329,21 +327,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     // Open card analytics view controller
                     if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.actionCardID!).first {
                         // Open Evaluate day controller
-                        if let navController = topController as? UINavigationController {
-                            if let controller = navController.topViewController as? EvaluateViewController {
-                                controller.date = Date()
-                                controller.scrollToCard(cardID: self.actionCardID!)
-                                let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
-                                analytycs.card = card
-                                self.actionID = nil
-                                self.actionCardID = nil
-                                navController.pushViewController(analytycs, animated: true)
-                            }
-                        }
+                        let controller = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
+                        controller.card = card
+                        let navController = UINavigationController(rootViewController: controller)
+                        topController.present(navController, animated: true, completion: nil)
                     }
+                } else {
+                    return
                 }
             }
         }
+        
+        self.actionCardID = nil
+        self.actionID = nil
     }
     
     // MARK: - Controll locations

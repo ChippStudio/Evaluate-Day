@@ -213,6 +213,10 @@ class PasscodeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if let tab = self.tabBarController {
+            tab.setTabBarVisible(visible: false, animated: true)
+        }
+        
         let settings = Database.manager.application.settings!
         
         if !self.firstLoad {
@@ -238,6 +242,15 @@ class PasscodeViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         (UIApplication.shared.delegate as! AppDelegate).openFromNotification()
+        (UIApplication.shared.delegate as! AppDelegate).openFromQuickAction()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let tab = self.tabBarController {
+            tab.setTabBarVisible(visible: true, animated: true)
+        }
     }
     
     // MARK: - Actions

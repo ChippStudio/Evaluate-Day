@@ -15,6 +15,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
 
     // MARK: - UI
     var collectionNode: ASCollectionNode!
+    var closeButton: UIBarButtonItem!
     
     // MARK: - Variables
     var adapter: ListAdapter!
@@ -28,6 +29,11 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         self.navigationController?.navigationBar.accessibilityIdentifier = "activityNavigationBar"
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
+        }
+        
+        if self.tabBarController == nil {
+            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
+            self.navigationItem.leftBarButtonItem = closeButton
         }
         
         // Collection view
@@ -144,19 +150,8 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     }
     
     // MARK: - Action
-    @objc func closeBarButtonAction(sender: UIBarButtonItem) {
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func settingsOpenAction(_ sender: UIButton) {
-        if self.view.traitCollection.userInterfaceIdiom == .phone {
-            let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
-            self.present(controller, animated: true, completion: nil)
-        } else {
-            let controller = UIStoryboard(name: Storyboards.settingsSplit.rawValue, bundle: nil).instantiateInitialViewController()!
-            controller.transition = SplitSettingsTransition(animationDuration: 0.4)
-            self.present(controller, animated: true, completion: nil)
-        }
     }
     
     // MARK: - Private

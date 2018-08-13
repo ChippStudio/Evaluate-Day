@@ -15,6 +15,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
     // MARK: - UI
     var collectionNode: ASCollectionNode!
     var settingsButton: UIBarButtonItem!
+    var closeButton: UIBarButtonItem!
     
     // MARK: - Variable
     var card: Card!
@@ -43,6 +44,12 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         // Buttons
         self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(openCardSettingsAction(sender:)))
         self.navigationItem.rightBarButtonItem = self.settingsButton
+        
+        // Close button
+        if self.navigationController?.viewControllers.first is EntryViewController {
+            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
+            self.navigationItem.leftBarButtonItem = closeButton
+        }
         
         self.observable()
         
@@ -124,6 +131,10 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
         controller.card = self.card
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Private

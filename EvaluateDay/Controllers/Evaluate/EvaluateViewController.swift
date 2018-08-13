@@ -17,6 +17,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - UI
     var newCardButton: UIBarButtonItem!
     var reorderCardsButton: UIBarButtonItem!
+    var closeButton: UIBarButtonItem!
     var collectionNode: ASCollectionNode!
     var emptyView = CardListEmptyView()
     
@@ -62,6 +63,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.newCardButton.accessibilityIdentifier = "newCardButton"
         self.reorderCardsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "reorder").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(reorderCardsAction(sender:)))
         self.reorderCardsButton.accessibilityIdentifier = "reorderButton"
+        
+        if self.tabBarController == nil {
+            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
+            self.navigationItem.leftBarButtonItem = closeButton
+        }
         
         // Collection view
         let layout = UICollectionViewFlowLayout()
@@ -220,6 +226,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     // MARK: - Actions
+    @objc func closeButtonAction(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func newCardButtonAction(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
         self.navigationController?.pushViewController(controller, animated: true)
