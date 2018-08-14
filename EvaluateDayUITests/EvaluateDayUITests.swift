@@ -57,7 +57,7 @@ class EvaluateDayUITests: XCTestCase {
         let tabBarsQuery = XCUIApplication().tabBars
         tabBarsQuery.buttons["activity"].tap()
         
-        app.collectionViews["activityCollection"].swipeUp()
+//        app.collectionViews["activityCollection"].swipeUp()
 
         snapshot("02UsageStatistics")
         tabBarsQuery.buttons["evaluate"].tap()
@@ -83,20 +83,22 @@ class EvaluateDayUITests: XCTestCase {
         XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
         
         tabBarsQuery.buttons["settings"].tap()
+        
+        snapshot("09Settings")
+        
         XCUIApplication().tables["settingsTableView"].children(matching: .cell).element(boundBy: 3).tap()
         XCUIApplication().tables["themeTable"].children(matching: .cell).element(boundBy: 1).tap()
         
         snapshot("07Themes")
         
-        XCUIApplication().navigationBars["settingsNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        if !self.ipad {
+            XCUIApplication().navigationBars["settingsNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
+        }
         
         tabBarsQuery.buttons["evaluate"].tap()
         XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["reorderButton"].tap()
         snapshot("08Reorder")
         
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element(boundBy: 0).tap()
-        
-        tabBarsQuery.buttons["settings"].tap()
-        snapshot("09Settings")
     }
 }

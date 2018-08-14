@@ -14,7 +14,7 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
 
     // MARK: - UI
     var collectionNode: ASCollectionNode!
-    var icons = ["WhiteAppIcon"]
+    let icons = ["WhiteAppIcon", "WhiteAppIcon-Positive", "WhiteAppIcon-Negative", "DarkAppIcon", "DarkAppIcon-Positive", "DarkAppIcon-Negative", "OrangeAppIcon", "OrangeAppIcon-Positive", "OrangeAppIcon-Negative", "BlackAppIcon", "BlackAppIcon-Positive", "BlackAppIcon-Negative"]
     
     // MARK: - Variables
     private let contentInset: CGFloat = 20.0
@@ -28,20 +28,12 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         
         // set table node
         let layout = self.calculateLayout()
-        self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
+         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         self.collectionNode.dataSource = self
         self.collectionNode.delegate = self
         self.collectionNode.view.alwaysBounceVertical = true
         self.collectionNode.contentInset = UIEdgeInsets(top: 20.0, left: self.contentInset, bottom: 0.0, right: self.contentInset)
         self.view.addSubnode(self.collectionNode)
-        
-        if let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? NSDictionary {
-            if let icon = icons["CFBundleAlternateIcons"] as? NSDictionary {
-                for i in icon {
-                    self.icons.append(i.key as! String)
-                }
-            }
-        }
         
         // Analytics
         sendEvent(.openIcons, withProperties: nil)
@@ -87,7 +79,7 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         }
         
         return {
-            let node = SettingsIconSelectNode(icon: UIImage(named: icon), selected: selected, style: style)
+            let node = SettingsIconSelectNode(icon: UIImage(named: icon + "-Preview"), selected: selected, style: style)
             return node
         }
     }

@@ -152,6 +152,20 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            let nav = UINavigationController(rootViewController: controller)
+            topController.present(nav, animated: true, completion: nil)
+        }
+        
+        if self.isPro {
+            return false
+        }
+        
         return true
     }
     
