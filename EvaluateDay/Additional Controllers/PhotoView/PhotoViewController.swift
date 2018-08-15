@@ -14,6 +14,8 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - UI
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var closeButtonCover: UIView!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareButtonCover: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var infoCoverView: UIView!
     @IBOutlet weak var createdLabel: UILabel!
@@ -39,9 +41,14 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         self.view.backgroundColor = UIColor.clear
         
         self.backView.backgroundColor = style.background
+        
         self.closeButtonCover.backgroundColor = style.background
         self.closeButtonCover.layer.masksToBounds = true
         self.closeButtonCover.layer.cornerRadius = 25.0
+        
+        self.shareButtonCover.backgroundColor = style.background
+        self.shareButtonCover.layer.masksToBounds = true
+        self.shareButtonCover.layer.cornerRadius = 25.0
         
         self.infoCoverView.backgroundColor = style.background
         self.infoCoverView.layer.masksToBounds = true
@@ -81,6 +88,9 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         
         self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.barTint
+        
+        self.shareButton.setImage(#imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate), for: .normal)
+        self.shareButton.tintColor = style.barTint
 
         let image = self.photoValue.image
         self.imageView.image = image
@@ -94,6 +104,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapGestureAction(sender:))))
         UIView.animate(withDuration: 0.3) {
             self.closeButtonCover.alpha = 1.0
+            self.shareButtonCover.alpha = 1.0
             self.infoCoverView.alpha = 1.0
         }
         
@@ -125,6 +136,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         
         UIView.animate(withDuration: 0.3) {
             self.closeButtonCover.alpha = 0.0
+            self.shareButtonCover.alpha = 0.0
             self.infoCoverView.alpha = 0.0
         }
     }
@@ -134,9 +146,26 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func shareButtonAction(_ sender: UIButton) {
+        
+        guard let image = self.imageView.image else {
+            return
+        }
+        
+        // Open share controller
+        let shareActivity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        if self.traitCollection.userInterfaceIdiom == .pad {
+            shareActivity.modalPresentationStyle = .popover
+            shareActivity.popoverPresentationController?.sourceRect = self.shareButtonCover.frame
+            shareActivity.popoverPresentationController?.sourceView = self.shareButtonCover
+        }
+        self.present(shareActivity, animated: true, completion: nil)
+    }
+    
     @objc func tapGestureAction(sender: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.3) {
             self.closeButtonCover.alpha = 1.0
+            self.shareButtonCover.alpha = 1.0
             self.infoCoverView.alpha = 1.0
         }
     }

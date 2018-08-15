@@ -47,6 +47,27 @@
                                     <constraint firstItem="ZYY-O1-hYz" firstAttribute="leading" secondItem="SVV-id-TiN" secondAttribute="leading" id="cpT-tV-cbB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2X-WF-DiN">
+                                <rect key="frame" x="80" y="54" width="50" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clR-Tq-E6t">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <state key="normal" image="share"/>
+                                        <connections>
+                                            <action selector="shareButtonAction:" destination="Xev-iD-nxY" eventType="touchUpInside" id="3jA-cm-xY7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="clR-Tq-E6t" secondAttribute="bottom" id="2nv-kV-KXo"/>
+                                    <constraint firstItem="clR-Tq-E6t" firstAttribute="leading" secondItem="d2X-WF-DiN" secondAttribute="leading" id="2vH-2h-jIJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="3bN-vI-ktV"/>
+                                    <constraint firstAttribute="trailing" secondItem="clR-Tq-E6t" secondAttribute="trailing" id="OoD-q8-EtJ"/>
+                                    <constraint firstItem="clR-Tq-E6t" firstAttribute="top" secondItem="d2X-WF-DiN" secondAttribute="top" id="aqo-zr-dDH"/>
+                                    <constraint firstAttribute="height" constant="50" id="okV-9b-eXV"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFo-1L-NCl">
                                 <rect key="frame" x="0.0" y="730" width="375" height="82"/>
                                 <subviews>
@@ -91,8 +112,10 @@
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="NVw-OK-LsD"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="O2J-yl-Pe2"/>
                             <constraint firstItem="2D4-DA-ZAt" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="T2h-6p-27B"/>
+                            <constraint firstItem="d2X-WF-DiN" firstAttribute="top" secondItem="OzV-86-DsI" secondAttribute="top" constant="10" id="WAc-eo-fUW"/>
                             <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="WFo-1L-NCl" secondAttribute="trailing" id="WZK-3F-xso"/>
                             <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="2D4-DA-ZAt" secondAttribute="trailing" id="Ykg-YX-EYK"/>
+                            <constraint firstItem="d2X-WF-DiN" firstAttribute="leading" secondItem="SVV-id-TiN" secondAttribute="trailing" constant="20" id="Zli-Fz-G36"/>
                             <constraint firstAttribute="bottom" secondItem="2D4-DA-ZAt" secondAttribute="bottom" id="c7X-PU-o5S"/>
                             <constraint firstItem="WFo-1L-NCl" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="dcu-rX-vwT"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="trailing" secondItem="OzV-86-DsI" secondAttribute="trailing" id="eaa-xV-r6K"/>
@@ -111,6 +134,8 @@
                         <outlet property="infoCoverView" destination="WFo-1L-NCl" id="AeJ-Pe-aLh"/>
                         <outlet property="placeLabel" destination="UAy-R4-VgP" id="M48-ax-31G"/>
                         <outlet property="scrollView" destination="0H0-6z-Yuv" id="js2-zs-ZuW"/>
+                        <outlet property="shareButton" destination="clR-Tq-E6t" id="cPW-td-YOK"/>
+                        <outlet property="shareButtonCover" destination="d2X-WF-DiN" id="hqb-LG-94v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RpY-md-3KU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,5 +145,6 @@
     </scenes>
     <resources>
         <image name="closeCircle" width="38" height="38"/>
+        <image name="share" width="25" height="17"/>
     </resources>
 </document>

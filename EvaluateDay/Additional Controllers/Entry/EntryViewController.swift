@@ -18,6 +18,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     var tableNode: ASTableNode!
     var deleteButton: UIBarButtonItem!
     var closeButton: UIBarButtonItem!
+    var shareButton: UIBarButtonItem!
     
     // MARK: - Variables
     var textValue: TextValue!
@@ -37,7 +38,8 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         
         // Delete button
         self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.deleteAction(sender:)))
-        self.navigationItem.rightBarButtonItem = deleteButton
+        self.shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(shareAction(sender:)))
+        self.navigationItem.rightBarButtonItems = [self.deleteButton, self.shareButton]
         
         // Close button
         if self.navigationController?.viewControllers.first is EntryViewController {
@@ -660,6 +662,99 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     
     @objc func closeButtonAction(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func shareAction(sender: UIBarButtonItem) {
+        var viewImages = [UIImageView]()
+        
+        // Main entry node
+        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 0)) as? JournalEntryNode {
+            if node.deleteImageButton != nil {
+                node.deleteImageButton.alpha = 0.0
+            }
+            if node.cameraButton != nil {
+                node.cameraButton.alpha = 0.0
+            }
+            if node.selectImageButton != nil {
+                node.selectImageButton.alpha = 0.0
+            }
+            
+            if let nodeImage = node.view.snapshot {
+                viewImages.append(UIImageView(image: nodeImage))
+            }
+            
+            if node.deleteImageButton != nil {
+                node.deleteImageButton.alpha = 1.0
+            }
+            if node.cameraButton != nil {
+                node.cameraButton.alpha = 1.0
+            }
+            if node.selectImageButton != nil {
+                node.selectImageButton.alpha = 1.0
+            }
+        }
+        // Date Node
+        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 1)) {
+            if let nodeImage = node.view.snapshot {
+                viewImages.append(UIImageView(image: nodeImage))
+            }
+        }
+        // Location Node
+        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 1, section: 2)) {
+            if let nodeImage = node.view.snapshot {
+                viewImages.append(UIImageView(image: nodeImage))
+            }
+        }
+        // Weather Node
+        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 3)) {
+            if let nodeImage = node.view.snapshot {
+                viewImages.append(UIImageView(image: nodeImage))
+            }
+        }
+        
+        let imageBackgroundView = UIView()
+        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+        
+        let stack = UIStackView(arrangedSubviews: viewImages)
+        stack.axis = .vertical
+        
+        imageBackgroundView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(imageBackgroundView)
+        imageBackgroundView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        imageBackgroundView.layoutIfNeeded()
+        let imageBackgroundViewImage = imageBackgroundView.snapshot!
+        imageBackgroundView.removeFromSuperview()
+        
+        let sv = ShareView(image: imageBackgroundViewImage)
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
+        sv.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        sv.layoutIfNeeded()
+        let im = sv.snapshot
+        sv.removeFromSuperview()
+        
+        let shareContrroller = UIStoryboard(name: Storyboards.share.rawValue, bundle: nil).instantiateInitialViewController() as! ShareViewController
+        shareContrroller.image = im
+        shareContrroller.canonicalIdentifier = "entryShare"
+        shareContrroller.channel = "Journal"
+        shareContrroller.shareHandler = { () in
+            sendEvent(.shareFromEvaluateDay, withProperties: ["type": self.card.type.string])
+        }
+        
+        self.present(shareContrroller, animated: true, completion: nil)
     }
     
     func setNewLocation(location: CLLocation) {
