@@ -18,6 +18,9 @@ enum Analytics: String {
     // MARK: - General
     case openActivity
     case openCardList
+    case openShareController
+    case openTimeTravel
+    case openPhoto
     case reorderCards
     case openNewCardSelector
     case openEntry
@@ -28,8 +31,6 @@ enum Analytics: String {
     case openAnalytics
     case shareFromEvaluateDay
     case shareFromAnalytics
-    case shareFromCardsList
-    case shareFromCalendar
     case openFromLocalNotification
     case showAppRate
     
@@ -42,7 +43,7 @@ enum Analytics: String {
     case openThemes
     case openIcons
     case selectTheme
-    case setThemeIcon
+    case selectIcon
     case openNotification
     case addNewNotification
     case addCardToNotification

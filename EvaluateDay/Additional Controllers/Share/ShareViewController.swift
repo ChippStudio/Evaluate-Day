@@ -59,6 +59,9 @@ class ShareViewController: UIViewController {
         if self.imageViewWidthConstraint != nil {
             self.imageViewWidthConstraint.constant = maxCollectionWidth
         }
+        
+        // Analytics
+        sendEvent(.openShareController, withProperties: nil)
     }
 
     override func didReceiveMemoryWarning() {

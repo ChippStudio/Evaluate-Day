@@ -75,6 +75,9 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
         
         self.datePicker.setValue(style.barTint, forKey: "textColor")
         self.datePicker.maximumDate = Date()
+        
+        // Analytics
+        sendEvent(.openTimeTravel, withProperties: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -97,6 +97,9 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
             }
             
             self.collectionNode.reloadData()
+            // Analytics
+            sendEvent(.selectIcon, withProperties: ["icon": self.icons[indexPath.row]])
+            
         } else {
             let controler = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
             self.navigationController?.pushViewController(controler, animated: true)

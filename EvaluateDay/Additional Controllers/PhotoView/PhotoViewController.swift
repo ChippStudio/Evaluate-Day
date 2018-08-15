@@ -109,6 +109,9 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesterAction(sender:))))
+        
+        // Analytics
+        sendEvent(.openPhoto, withProperties: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -152,15 +152,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            let nav = UINavigationController(rootViewController: controller)
-            topController.present(nav, animated: true, completion: nil)
-        }
+        
+        self.isNeedOpenDetails = true
+        self.openDetailsController()
         
         if self.isPro {
             return false
@@ -208,6 +202,29 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     }
     
     // MARK: - Actions
+    private var isNeedOpenDetails = false
+    func openDetailsController() {
+        if !self.isNeedOpenDetails {
+            return
+        }
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if topController is PasscodeViewController {
+                return
+            }
+            
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            let nav = UINavigationController(rootViewController: controller)
+            topController.present(nav, animated: true, completion: nil)
+        }
+        
+        self.isNeedOpenDetails = false
+        
+    }
     func activate() {
         if SKPaymentQueue.canMakePayments() {
             let request = SKProductsRequest(productIdentifiers: [self.monthlyProductID, self.annuallyProductID, self.lifetimeProductId])

@@ -220,7 +220,6 @@ class PasscodeViewController: UIViewController {
         let settings = Database.manager.application.settings!
         
         if !self.firstLoad {
-            
             if self.navigationController == nil {
                 if Database.manager.application.lastStopDate.minutes(to: Date()) < settings.passcodeDelay.rawValue {
                     self.dismiss(animated: true, completion: nil)
@@ -233,7 +232,7 @@ class PasscodeViewController: UIViewController {
             }
         }
         
-        if settings.passcode && settings.passcodeBiometric && settings.passcodePromptBiometric && self.navigationController != nil {
+        if settings.passcode && settings.passcodeBiometric && settings.passcodePromptBiometric && self.navigationController == nil {
             self.promtBiometric()
         }
     }
@@ -243,6 +242,7 @@ class PasscodeViewController: UIViewController {
         
         (UIApplication.shared.delegate as! AppDelegate).openFromNotification()
         (UIApplication.shared.delegate as! AppDelegate).openFromQuickAction()
+        Store.current.openDetailsController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

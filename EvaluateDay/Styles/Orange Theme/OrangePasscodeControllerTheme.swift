@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct OrangePasscodeControllerTheme: PasscodeStyle {
-    var background: UIColor { return UIColor.pumpkin }
+    var background: UIColor { return UIColor.squash }
     var messageFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var messageColor: UIColor { return UIColor.paleGrey }
     var dotTintColor: UIColor { return UIColor.paleGrey }

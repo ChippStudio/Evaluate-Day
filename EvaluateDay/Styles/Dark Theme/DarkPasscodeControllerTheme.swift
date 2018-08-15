@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct DarkPasscodeControllerTheme: PasscodeStyle {
-    var background: UIColor { return UIColor.gunmetal }
+    var background: UIColor { return UIColor.charcoal }
     var messageFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
     var messageColor: UIColor { return UIColor.white }
     var dotTintColor: UIColor { return UIColor.white }
