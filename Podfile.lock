@@ -7,21 +7,21 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Branch (0.25.0):
-    - Branch/Core (= 0.25.0)
-  - Branch/Core (0.25.0)
+  - Branch (0.25.3):
+    - Branch/Core (= 0.25.3)
+  - Branch/Core (0.25.3)
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
-  - Crashlytics (3.10.5):
-    - Fabric (~> 1.7.9)
-  - Fabric (1.7.9)
-  - FBSDKCoreKit (4.34.0):
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
+  - Fabric (1.7.11)
+  - FBSDKCoreKit (4.35.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.34.0):
+  - FBSDKLoginKit (4.35.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.34.0):
-    - FBSDKCoreKit (~> 4.34.0)
+  - FBSDKShareKit (4.35.0):
+    - FBSDKCoreKit (~> 4.35.0)
   - FSCalendar (2.7.9)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -47,11 +47,11 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.13):
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
-  - Realm (3.7.4):
-    - Realm/Headers (= 3.7.4)
-  - Realm/Headers (3.7.4)
-  - RealmSwift (3.7.4):
-    - Realm (= 3.7.4)
+  - Realm (3.7.6):
+    - Realm/Headers (= 3.7.6)
+  - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
   - RxSwift (4.2.0)
   - SimulatorStatusMagic (2.2)
   - SnapKit (4.0.0)
@@ -67,9 +67,9 @@ PODS:
     - PINRemoteImage/iOS (= 3.0.0-beta.13)
     - PINRemoteImage/PINCache
     - Texture/Core
-  - YandexMobileMetrica (3.1.2):
-    - YandexMobileMetrica/Static (= 3.1.2)
-  - YandexMobileMetrica/Static (3.1.2)
+  - YandexMobileMetrica (3.2.0):
+    - YandexMobileMetrica/Static (= 3.2.0)
+  - YandexMobileMetrica/Static (3.2.0)
   - YandexMobileMetricaPush (0.6.0):
     - YandexMobileMetricaPush/Static (= 0.6.0)
   - YandexMobileMetricaPush/Static (0.6.0):
@@ -132,13 +132,13 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: 127d29ab0a8866025eece1cf9e950ddb6f7d4070
+  Branch: 9917f91a5381bc88ed8e4f080a18213267cf44e6
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
-  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
-  FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
-  FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
-  FBSDKShareKit: 511d1dfc71204c0a8d69e6c5e3c964dcf0d4f3d9
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
+  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
+  FBSDKShareKit: 2ddbd7e6432023fff957af62e23a3671b84319f7
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
@@ -146,15 +146,15 @@ SPEC CHECKSUMS:
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
-  Realm: a469bb59e33f9926102ccaea4349822c53b9117e
-  RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
+  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
-  YandexMobileMetrica: ff500f48d993433fc9b30ffbf611b7502518aceb
+  YandexMobileMetrica: f18374ee6977a4cd1d0a86298a0df4ad7baf4135
   YandexMobileMetricaPush: 973073e69b63c9c3ec45ccb1fbfecd997538650a
 
 PODFILE CHECKSUM: 3ddfed7afaac52fc59a45cadce28ffa38a64b392
