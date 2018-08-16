@@ -1,4 +1,14 @@
+Den neuen Blick auf die ganze App
 
+-Wir haben das Userinterface vollkommen überarbeitet. Jetzt ist es noch mehr benutzerfreundlich
+-haben neue Icons für die App hinzugefügt. Du kannst sie in Einstellungen wählen
+-das Teilen von Kärtchen und deinen Ergebnissen ist noch einfacher geworden
+-neue Funktion “Zeitwandern”! Probiere die aus!
+-haben auch die Vorschau von großen Bilder hinzugefügt
+-die Leistungsfähigket der App wurde verbessert
 
 Vielen Dank für die Verwendung von Evaluate Day.
+
+Gefallt Dir unsere aktuelle Version? Dann freuen wir uns auf dein Feedback in der App Store
+
 Fragen / Anregungen? Schreiben Sie uns an support@evaluateday.com

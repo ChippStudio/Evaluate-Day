@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 final class Demo {
+    
+    // MARK: - Variables
+    private let startDay = 1
     // MARK: - Init
     private init() {
         
@@ -45,7 +48,7 @@ final class Demo {
         // Make data
         var values = [TextValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = TextValue()
@@ -105,7 +108,7 @@ final class Demo {
         // Make data
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()
@@ -133,7 +136,7 @@ final class Demo {
         // Make data
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()
@@ -160,7 +163,7 @@ final class Demo {
         // Make data
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()
@@ -214,7 +217,7 @@ final class Demo {
         // Make data
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()
@@ -242,7 +245,7 @@ final class Demo {
         // Make data
         var values = [MarkValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 for _ in 0...10.random {
@@ -271,7 +274,7 @@ final class Demo {
         // Make data
         var values = [MarkValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 for _ in 0...3.random {
@@ -330,7 +333,7 @@ final class Demo {
         
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in 0...30 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()

@@ -93,10 +93,9 @@ class ShareViewController: UIViewController {
             
             // Open share controller
             let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            if self.traitCollection.userInterfaceIdiom == .pad {
-                shareActivity.modalPresentationStyle = .popover
-                shareActivity.popoverPresentationController?.sourceRect = self.shareButtonCover.frame
-                shareActivity.popoverPresentationController?.sourceView = self.shareButtonCover
+            if self.view.traitCollection.userInterfaceIdiom == .pad {
+                shareActivity.popoverPresentationController?.sourceRect = self.shareButton.frame
+                shareActivity.popoverPresentationController?.sourceView = self.shareButton
             }
             self.shareHandler?()
             self.present(shareActivity, animated: true, completion: nil)

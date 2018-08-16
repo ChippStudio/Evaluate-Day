@@ -180,7 +180,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         numberFormatter.numberStyle = NumberFormatter.Style.currency
         numberFormatter.locale = self.locale
         
-        return numberFormatter.string(from: self.annuallyPrice)!
+        if let number = numberFormatter.string(from: self.annuallyPrice) {
+            return number
+        }
+        
+        return "😇"
     }
     
     var localizedMonthlyPrice: String {
@@ -189,7 +193,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         numberFormatter.numberStyle = NumberFormatter.Style.currency
         numberFormatter.locale = self.locale
         
-        return numberFormatter.string(from: self.monthlyPrice)!
+        if let number = numberFormatter.string(from: self.monthlyPrice) {
+            return number
+        }
+        
+        return "😇"
     }
     
     var localizedLifetimePrice: String {
@@ -198,7 +206,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         numberFormatter.numberStyle = NumberFormatter.Style.currency
         numberFormatter.locale = self.locale
         
-        return numberFormatter.string(from: self.lifetimePrice)!
+        if let numder = numberFormatter.string(from: self.lifetimePrice) {
+            return numder
+        }
+        
+        return "😇"
     }
     
     // MARK: - Actions
