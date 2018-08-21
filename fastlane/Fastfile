@@ -16,38 +16,20 @@ platform :ios do
   end
 
   desc "Push a new release build to the App Store"
-  lane :release_screenshots do
-    # Get information from info.plist
-    buildVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSBuild")
-    appVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleShortVersionString")
+  # Relese app in the App Store
+  # options = screenshots:make - make new screenshots from UI tests
+  # options = screenshots:skip - don't upload screenshots in the App Store
+  lane :release do |options|
+    #get options
+    skipScreenshots = false
+    if options[:screenshots] == "make"
+      # Make new screenshots
+      screenshots
+    elsif options[:screenshots] == "skip"
+      puts "Skip screenshots on deliver step"
+      skipScreenshots = true
+    end
 
-    # Set information into info.plist
-    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleVersion", value: buildVersion)
-    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSDemo", value: false)
-    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSTest", value: false)
-    set_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSSandbox", value: false)
-
-    # make screenshots
-    snapshot(scheme: "EvaluateDay",
-            reinstall_app: true,
-            stop_after_first_error: true,
-            clear_previous_screenshots: true,)
-    frameit(white: true)
-    sh "python3 screenshots.py"
-
-    # Certificat and sigh
-    cert
-    sigh
-
-    # Build and release
-    gym(scheme: "EvaluateDay") # Build your app - more options available
-    deliver(force: true,
-            app_version: appVersion,
-            screenshots_path: "./fastlane/store_screenshots")
-
-  end
-
-  lane :release do
     # Get information from info.plist
     buildVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSBuild")
     appVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CFBundleShortVersionString")
@@ -66,6 +48,7 @@ platform :ios do
     gym(scheme: "EvaluateDay") # Build your app - more options available
     deliver(force: true,
             app_version: appVersion,
+            skip_screenshots: skipScreenshots,
             screenshots_path: "./fastlane/store_screenshots")
   end
 

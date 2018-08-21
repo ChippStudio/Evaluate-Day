@@ -16,9 +16,9 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios release_screenshots
+### ios edtest
 ```
-fastlane ios release_screenshots
+fastlane ios edtest
 ```
 Push a new release build to the App Store
 ### ios release

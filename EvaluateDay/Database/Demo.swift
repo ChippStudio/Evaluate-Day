@@ -12,7 +12,7 @@ import UIKit
 final class Demo {
     
     // MARK: - Variables
-    private let startDay = 1
+    private let startDay = 0
     // MARK: - Init
     private init() {
         

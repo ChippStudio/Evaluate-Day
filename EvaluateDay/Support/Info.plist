@@ -264,9 +264,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6004</string>
-	<key>CSBuild</key>
 	<string>6025</string>
+	<key>CSBuild</key>
+	<string>6028</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>
