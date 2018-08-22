@@ -39,6 +39,10 @@ class SettingsProDescriptionMoreNode: ASCellNode {
         
         self.separator.backgroundColor = style.settingsProDescriptionMoreSeparatorColor
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityValue = subtitle
+        
         self.automaticallyManagesSubnodes = true
     }
     

@@ -141,8 +141,10 @@ class PasscodeViewController: UIViewController {
                                 var image: UIImage?
                                 if context.biometryType == .faceID {
                                     image = #imageLiteral(resourceName: "faceid").withRenderingMode(.alwaysOriginal)
+                                    button.accessibilityLabel = "Face ID"
                                 } else if context.biometryType == .touchID {
                                     image = #imageLiteral(resourceName: "touchid").withRenderingMode(.alwaysOriginal)
+                                    button.accessibilityLabel = "Touch ID"
                                 }
                                 if image != nil {
                                     button.setImage(image!, for: .normal)

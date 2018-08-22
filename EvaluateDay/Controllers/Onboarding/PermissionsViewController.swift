@@ -38,6 +38,10 @@ class PermissionsViewController: UIViewController, ASTableDataSource, ASTableDel
         self.nextButton.addTarget(self, action: #selector(nextButtonAction(sender: )), for: .touchUpInside)
         self.nextButton.alpha = 0.0
         self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        
+        self.nextButton.isAccessibilityElement = true
+        self.nextButton.accessibilityLabel = Localizations.permission.description.title
+        self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
     }
 
     override func didReceiveMemoryWarning() {

@@ -73,6 +73,10 @@ class WelcomeViewController: UIViewController {
                 UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
                     self.nextButton.alpha = 1.0
                     self.nextButton.transform = CGAffineTransform.identity
+                    
+                    self.nextButton.isAccessibilityElement = true
+                    self.nextButton.accessibilityLabel = Localizations.accessibility.onboarding.welcome.label
+                    self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
                 }, completion: nil)
             })
         }

@@ -109,6 +109,7 @@
                             </button>
                             <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDu-K5-RNR">
                                 <rect key="frame" x="224.5" y="468" width="60" height="60"/>
+                                <accessibility key="accessibilityConfiguration" label="backspace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JtJ-LJ-XK4"/>
                                     <constraint firstAttribute="width" constant="60" id="QCN-QE-fRC"/>

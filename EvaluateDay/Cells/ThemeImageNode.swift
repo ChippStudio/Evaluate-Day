@@ -18,7 +18,9 @@ class ThemeImageNode: ASCellNode {
     init(image: UIImage) {
         super.init()
         
+        self.isAccessibilityElement = true
         self.accessibilityIdentifier = "themeNode"
+        self.accessibilityTraits = UIAccessibilityTraitButton
         
         self.previewImageNode.image = image
         

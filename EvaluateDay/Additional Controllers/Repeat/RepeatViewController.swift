@@ -102,7 +102,7 @@ class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate
         
         return {
             let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
-            node.selectImage.isHidden = !isSelected
+            node.select = isSelected
             node.backgroundColor = style.settingsSectionBackground
             node.selectedBackgroundView = selView
             node.separatorInset = separatorInsets

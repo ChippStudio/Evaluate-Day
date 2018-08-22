@@ -49,6 +49,11 @@ class SettingsProButtonNode: ASCellNode {
             textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.proButtonTextFont, NSAttributedStringKey.foregroundColor: style.proSecondaryTextColor])
         }
         
+        //Accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
         self.automaticallyManagesSubnodes = true
     }
     

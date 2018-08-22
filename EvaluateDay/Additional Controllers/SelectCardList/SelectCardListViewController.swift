@@ -67,6 +67,7 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         let title = self.cards[indexPath.row].title
         let subtitle = self.cards[indexPath.row].subtitle
         let image = Sources.image(forType: self.cards[indexPath.row].type)
+        let type = Sources.title(forType: self.cards[indexPath.row].type)
         
         let selView = UIView()
         selView.backgroundColor = Themes.manager.settingsStyle.settingsSelectColor
@@ -75,6 +76,12 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
             node.shareButton.alpha = 0.0
             node.backgroundColor = Themes.manager.settingsStyle.settingsSectionBackground
             node.selectedBackgroundView = selView
+            
+            node.isAccessibilityElement = true
+            node.accessibilityTraits = UIAccessibilityTraitButton
+            node.accessibilityLabel = "\(title), \(type)"
+            node.accessibilityValue = subtitle
+            
             return node
         }
     }

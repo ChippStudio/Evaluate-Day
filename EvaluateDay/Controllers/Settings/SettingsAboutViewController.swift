@@ -157,6 +157,9 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             
             cell.backgroundColor = style.background
             cell.contentView.backgroundColor = style.background
+            
+            cell.accessibilityTraits = UIAccessibilityTraitButton
+            cell.accessibilityLabel = Localizations.settings.about.share.title
             return cell
             }
         case 1:
@@ -167,19 +170,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             cell.backgroundColor = style.background
             cell.contentView.backgroundColor = style.background
             return cell
-//        case 2: if (indexPath as NSIndexPath).row == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
-//            cell.textLabel?.text = Localizations.settings.about.specialThanks
-//            return cell
-//        } else {
-//            let thanks = self.specialThanks[(indexPath as NSIndexPath).row - 1]
-//            let cell = tableView.dequeueReusableCell(withIdentifier: specialThanksCellID, for: indexPath) as! SettingsAboutSpecialThanksTableViewCell
-//            cell.specialImage.image = UIImage(named: thanks.imageName)
-//            cell.title.text = thanks.name
-//            cell.email.text = thanks.email
-//            cell.descriptionLabel.text = thanks.description
-//            return cell
-//            }
         case 2: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
             cell.textLabel?.text = Localizations.settings.about.openSource
@@ -222,6 +212,9 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             cell.logo.tintColor = style.aboutLogoTint
             cell.backgroundColor = style.background
             cell.contentView.backgroundColor = style.background
+            
+            cell.accessibilityTraits = UIAccessibilityTraitButton
+            cell.accessibilityLabel = "Chipp Studio"
             return cell
         }
     }

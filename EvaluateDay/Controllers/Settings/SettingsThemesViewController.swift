@@ -68,6 +68,7 @@ class SettingsThemesViewController: UIViewController, ASTableDataSource, ASTable
             let node = ThemeImageNode(image: item.previewImage)
             node.backgroundColor = style.settingsSectionBackground
             node.selectionStyle = .none
+            node.accessibilityLabel = item.type.string
             return node
         }
     }

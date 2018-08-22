@@ -64,9 +64,7 @@ class SettingsWeekViewController: UIViewController, ASTableDataSource, ASTableDe
         
         return {
             let node = SettingsSelectNode(title: Locale.current.calendar.standaloneWeekdaySymbols[indexPath.row], subtitle: nil, image: nil, style: style)
-            if indexPath.row != selectedIndex - 1 {
-                node.selectImage.alpha = 0.0
-            }
+            node.select = indexPath.row != selectedIndex - 1 ? false : true
             node.backgroundColor = style.settingsSectionBackground
             node.selectedBackgroundView = selView
             node.separatorInset = separatorInsets
@@ -83,8 +81,8 @@ class SettingsWeekViewController: UIViewController, ASTableDataSource, ASTableDe
         let node = self.tableNode.nodeForRow(at: indexPath) as! SettingsSelectNode
         
         UIView.animate(withDuration: 0.2) {
-            oldNode.selectImage.alpha = 0.0
-            node.selectImage.alpha = 1.0
+            oldNode.select = false
+            node.select = true
         }
         
         try! Database.manager.app.write {

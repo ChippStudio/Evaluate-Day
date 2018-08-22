@@ -46,17 +46,22 @@ class SettingsBooleanNode: ASCellNode {
             return self.switchButton
         }, didLoad: { (_) in
             self.switchDidLoad?(self.switchButton)
+            self.switchButton.isAccessibilityElement = true
+            self.switchButton.accessibilityLabel = title
         })
         self.switcher.backgroundColor = UIColor.clear
         
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsTitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsTitleNodeColor])
+        self.title.isAccessibilityElement = false
         
         if image != nil {
             self.imageNode = ASImageNode()
             self.imageNode.image = image
+            self.imageNode.isAccessibilityElement = false
             self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.imageTintColor)
         }
         
+        //Accessibility
         self.automaticallyManagesSubnodes = true
     }
     

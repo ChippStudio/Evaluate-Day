@@ -118,10 +118,10 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
             let title = cCard.title
             return {
                 let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
-                node.selectImage.alpha = 0.0
+                node.select = false
                 if self.selectedIndex != nil {
                     if newIndex == self.selectedIndex {
-                        node.selectImage.alpha = 1.0
+                        node.select = true
                     }
                 }
                 node.leftInset = 20.0

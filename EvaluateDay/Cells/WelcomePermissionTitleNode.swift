@@ -24,6 +24,10 @@ class WelcomePermissionTitleNode: ASCellNode {
         self.title.attributedText = NSAttributedString(string: Localizations.permission.description.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 40.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         self.subtitle.attributedText = NSAttributedString(string: Localizations.permission.description.subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = Localizations.permission.description.title
+        self.accessibilityValue = Localizations.permission.description.subtitle
+        
         self.automaticallyManagesSubnodes = true
     }
     

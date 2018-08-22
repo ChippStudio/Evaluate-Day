@@ -46,6 +46,7 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
         self.tableNode.accessibilityIdentifier = "settingsTableView"
+        self.tableNode.shouldGroupAccessibilityChildren = true
         self.view.addSubnode(self.tableNode)
         
         self.tableNode.view.tableFooterView = self.footerView

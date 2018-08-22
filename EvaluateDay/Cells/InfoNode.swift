@@ -35,10 +35,14 @@ class InfoNode: ASCellNode {
         
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.foregroundColor: style.infoNodeTintColor, NSAttributedStringKey.font: style.infoNodeTitleFont, NSAttributedStringKey.paragraphStyle: paragraph])
         
+        self.title.isAccessibilityElement = false
+        
         self.infoButton.setImage(#imageLiteral(resourceName: "info").withRenderingMode(.alwaysTemplate), for: .normal)
         self.infoButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.infoNodeTintColor)
         self.infoButton.imageNode.contentMode = .scaleAspectFit
         self.infoButton.addTarget(self, action: #selector(infoButtonAction(sender:)), forControlEvents: .touchUpInside)
+        
+        self.infoButton.accessibilityLabel = title + "info"
         
         self.automaticallyManagesSubnodes = true
     }

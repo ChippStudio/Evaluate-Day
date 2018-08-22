@@ -73,11 +73,7 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
         case 3:
             return {
                 let node = SettingsSelectNode(title: Localizations.cardMerge.mergeByBaseCard, subtitle: nil, image: nil, style: style)
-                if self.byBase {
-                    node.selectImage.alpha = 1.0
-                } else {
-                    node.selectImage.alpha = 0.0
-                }
+                node.select = self.byBase
                 node.leftInset = 20.0
                 node.topInset = 30.0
                 return node
@@ -85,11 +81,7 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
         case 4:
             return {
                 let node = SettingsSelectNode(title: Localizations.cardMerge.mergeByDate, subtitle: nil, image: nil, style: style)
-                if self.byBase {
-                    node.selectImage.alpha = 0.0
-                } else {
-                    node.selectImage.alpha = 1.0
-                }
+                node.select = self.byBase
                 node.leftInset = 20.0
                 return node
             }
@@ -159,10 +151,10 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
             let title = cCard.title
             return {
                 let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
-                node.selectImage.alpha = 0.0
+                node.select = false
                 if self.selectedIndex != nil {
                     if newIndex == self.selectedIndex {
-                        node.selectImage.alpha = 1.0
+                        node.select = false
                     }
                 }
                 node.leftInset = 20.0

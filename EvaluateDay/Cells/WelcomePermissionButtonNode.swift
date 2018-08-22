@@ -38,6 +38,11 @@ class WelcomePermissionButtonNode: ASCellNode {
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 24.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         self.subtitle.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 14.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = "\(title), \(subtitle)"
+        self.accessibilityValue = set ? Localizations.accessibility.onboarding.permissions.authorized : Localizations.accessibility.onboarding.permissions.restricted
+        
         self.automaticallyManagesSubnodes = true
     }
     

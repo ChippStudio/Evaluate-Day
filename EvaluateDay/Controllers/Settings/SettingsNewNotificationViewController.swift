@@ -60,6 +60,7 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.barButtonAccessibilityLabel()
         self.observable()
     }
     
@@ -210,6 +211,8 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
                 }
             }
             
+            self.barButtonAccessibilityLabel()
+            
             let indexPath = IndexPath(row: 0, section: 0)
             self.tableNode.reloadRows(at: [indexPath], with: .fade)
         }
@@ -225,6 +228,8 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             }
         }
         
+        self.barButtonAccessibilityLabel()
+        
         let indexPath = IndexPath(row: 3, section: 0)
         self.tableNode.reloadRows(at: [indexPath], with: .fade)
     }
@@ -238,6 +243,8 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
                 self.notification.date = date
             }
         }
+        
+        self.barButtonAccessibilityLabel()
         
         let indexPath = IndexPath(row: 1, section: 0)
         self.tableNode.reloadRows(at: [indexPath], with: .fade)
@@ -281,6 +288,25 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
     }
     
     // MARK: - Private
+    private func barButtonAccessibilityLabel() {
+        if self.saveButton != nil {
+            var cardString = Localizations.general.none
+            if notification.cardID != nil {
+                if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.notification.cardID!).first {
+                    cardString = card.title
+                }
+            }
+            self.saveButton.accessibilityLabel = Localizations.general.save + ", " + Localizations.accessibility.notification.description(value1: self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
+        } else if self.deleteButton != nil {
+            var cardString = Localizations.general.none
+            if notification.cardID != nil {
+                if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.notification.cardID!).first {
+                    cardString = card.title
+                }
+            }
+            self.deleteButton.accessibilityLabel = Localizations.general.delete + ", " + Localizations.accessibility.notification.description(value1: self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
+        }
+    }
     private func observable() {
         _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
             let style = Themes.manager.settingsStyle

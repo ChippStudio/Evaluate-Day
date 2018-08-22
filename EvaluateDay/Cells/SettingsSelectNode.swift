@@ -14,11 +14,23 @@ class SettingsSelectNode: ASCellNode {
     var title = ASTextNode()
     var subtitle: ASTextNode!
     var imageNode: ASImageNode!
-    var selectImage = ASImageNode()
+    private var selectImage = ASImageNode()
     
     // MARK: - Variable
     var topInset: CGFloat = 10.0
     var leftInset: CGFloat = 15.0
+    
+    var select: Bool = false {
+        didSet {
+            if select == true {
+                self.selectImage.alpha = 1.0
+                self.accessibilityValue = Localizations.accessibility.selected
+            } else {
+                self.selectImage.alpha = 0.0
+                self.accessibilityValue = Localizations.accessibility.unselected
+            }
+        }
+    }
     
     // MARK: - Init
     init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle) {
@@ -38,6 +50,10 @@ class SettingsSelectNode: ASCellNode {
         
         self.selectImage.image = #imageLiteral(resourceName: "done")
         self.selectImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.disclosureTintColor)
+        
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = title
         
         self.automaticallyManagesSubnodes = true
     }

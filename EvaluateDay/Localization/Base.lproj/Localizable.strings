@@ -11,6 +11,7 @@
 "general.action.evaluate" = "Evaluate";
 "general.archive" = "Archive";
 "general.cancel" = "Cancel";
+"general.close" = "Close";
 "general.createDate" = "Created";
 "general.delete" = "Delete";
 "general.discard" = "Discard";
@@ -37,6 +38,16 @@
 "general.shortcut.evaluate.title" = "Evaluate";
 "general.shortcut.new.title" = "Add new card";
 "general.shortcut.activity.title" = "Open Activity";
+
+// MARK: - Accessibility
+"accessibility.selected" = "selected";
+"accessibility.unselected" = "unselected";
+"accessibility.notification.description" = "notification with the message: %@, repeat: %@, at %@, with the card: %@";
+"accessibility.onboarding.welcome.label" = "Welcome to the Evaluate Day app by Chipp Studio.";
+"accessibility.onboarding.hint" = "Double tap to open next screen";
+"accessibility.onboarding.scrollLeft" = "Scroll left to open next page";
+"accessibility.onboarding.permissions.authorized" = "authorized";
+"accessibility.onboarding.permissions.restricted" = "restricted";
 
 // MARK: - Many
 "many.week" = "%li w";
@@ -255,7 +266,7 @@
 "settings.notifications.new.defaultMessage" = "Did you have a nice day? Evaluate...";
 "settings.notifications.new.message" = "Message";
 "settings.notifications.new.optional" = "Optional";
-"settings.notifications.new.repeat.daily" = "Dayly";
+"settings.notifications.new.repeat.daily" = "Daily";
 "settings.notifications.new.repeat.title" = "Repeat";
 "settings.notifications.new.repeat.weekdays" = "Weekdays";
 "settings.notifications.new.selectCard" = "Select card";

@@ -37,6 +37,10 @@ class WelcomeImageNode: ASCellNode {
         self.cover.alpha = 0.8
         self.cover.cornerRadius = 10.0
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = text
+        self.accessibilityHint = Localizations.accessibility.onboarding.scrollLeft
+        
         self.automaticallyManagesSubnodes = true
     }
     

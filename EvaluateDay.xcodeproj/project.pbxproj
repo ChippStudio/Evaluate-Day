@@ -611,9 +611,6 @@
 		B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B5A226C020FCAEA30060538F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226C320FCB5B60060538F /* Store+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Extensions.swift"; sourceTree = "<group>"; };
-		B5A226C820FCF3280060538F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5A226C920FCF3440060538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5A226CA20FCF3460060538F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A226CB20FCFC370060538F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226CC20FCFC3A0060538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226CD20FCFC3D0060538F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -2495,9 +2492,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5B27E721F9DAC8200CB9121 /* Base */,
-				B5A226C820FCF3280060538F /* en */,
-				B5A226C920FCF3440060538F /* ru */,
-				B5A226CA20FCF3460060538F /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

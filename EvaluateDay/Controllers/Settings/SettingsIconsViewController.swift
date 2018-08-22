@@ -80,6 +80,10 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         
         return {
             let node = SettingsIconSelectNode(icon: UIImage(named: icon + "-Preview"), selected: selected, style: style)
+            node.isAccessibilityElement = true
+            node.accessibilityLabel = icon
+            node.accessibilityValue = "\(selected)"
+            node.accessibilityTraits = UIAccessibilityTraitButton
             return node
         }
     }

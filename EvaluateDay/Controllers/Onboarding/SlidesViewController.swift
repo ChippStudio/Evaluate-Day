@@ -54,6 +54,12 @@ class SlidesViewController: UIViewController, ASPagerDelegate, ASPagerDataSource
         self.nextButton.addTarget(self, action: #selector(nextButtonAction(sender: )), for: .touchUpInside)
         self.nextButton.alpha = 0.0
         self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        
+        self.nextButton.isAccessibilityElement = true
+        self.nextButton.accessibilityLabel = "\(Localizations.welcome.cards.last.more.title), \(Localizations.welcome.cards.last.more.description)"
+        self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+        
+        self.pageControl.isAccessibilityElement = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,6 +100,7 @@ class SlidesViewController: UIViewController, ASPagerDelegate, ASPagerDataSource
             }
         }
     }
+    
     // MARK: - ASPagerDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.pageControl.currentPage = self.pagerNode.currentPageIndex

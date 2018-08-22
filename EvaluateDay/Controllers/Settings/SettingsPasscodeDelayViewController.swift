@@ -86,9 +86,7 @@ class SettingsPasscodeDelayViewController: UIViewController, ASTableDataSource, 
         
         return {
             let node = SettingsSelectNode(title: requireString, subtitle: nil, image: nil, style: style)
-            if !selected {
-                node.selectImage.alpha = 0.0
-            }
+            node.select = selected
             node.backgroundColor = style.settingsSectionBackground
             node.selectedBackgroundView = selView
             node.separatorInset = separatorInsets
@@ -104,8 +102,8 @@ class SettingsPasscodeDelayViewController: UIViewController, ASTableDataSource, 
         let node = self.tableNode.nodeForRow(at: indexPath) as! SettingsSelectNode
         
         UIView.animate(withDuration: 0.2) {
-            oldNode.selectImage.alpha = 0.0
-            node.selectImage.alpha = 1.0
+            oldNode.select = false
+            node.select = true
         }
         
         try! Database.manager.app.write {

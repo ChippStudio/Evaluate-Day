@@ -66,6 +66,11 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             self.nextButton.addTarget(self, action: #selector(nextButtonAction(sender: )), for: .touchUpInside)
             self.nextButton.alpha = 0.0
             self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            
+            self.nextButton.isAccessibilityElement = true
+            self.nextButton.accessibilityLabel = Localizations.accessibility.onboarding.welcome.label
+            self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+            
         } else {
             if self.navigationController!.viewControllers.first is ProViewController {
                 self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))

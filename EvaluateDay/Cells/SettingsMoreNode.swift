@@ -55,6 +55,12 @@ class SettingsMoreNode: ASCellNode {
         self.disclosureImage.image = #imageLiteral(resourceName: "disclosure")
         self.disclosureImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.disclosureTintColor)
         
+        //Accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityValue = subtitle
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
         self.automaticallyManagesSubnodes = true
     }
     

@@ -66,10 +66,15 @@ class SettingsProNode: ASCellNode {
             titleString = Localizations.settings.pro.node.ispro.title
             subtitleString = Localizations.settings.pro.node.ispro.subtitle
             titleColor = style.proTitleIsProColor
-        } else {
         }
+        
         self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: style.proTitleFont, NSAttributedStringKey.foregroundColor: titleColor, NSAttributedStringKey.paragraphStyle: center])
         self.subtileNode.attributedText = NSAttributedString(string: subtitleString, attributes: [NSAttributedStringKey.font: style.proSubtitleFont, NSAttributedStringKey.foregroundColor: style.proSubtitleColor, NSAttributedStringKey.paragraphStyle: center])
+        
+        //Accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = "\(titleString), \(subtitleString)"
+        self.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }

@@ -63,6 +63,10 @@ class SettingsProReviewNode: ASCellNode {
         self.infoButton.setImage(#imageLiteral(resourceName: "info").resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.infoButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.proReviewProSubscriptionValidColor)
         
+        //Accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
         self.automaticallyManagesSubnodes = true
     }
     
