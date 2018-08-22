@@ -22,6 +22,7 @@ class PhotoTransition: Transition {
         toViewController.backView.alpha = 0.0
         toViewController.infoCoverView.alpha = 0.0
         toViewController.closeButtonCover.alpha = 0.0
+        toViewController.shareButtonCover.alpha = 0.0
         
         toViewController.scrollView.transform = CGAffineTransform(translationX: 0.0, y: self.containerView.frame.size.height)
         
@@ -31,6 +32,7 @@ class PhotoTransition: Transition {
                 toViewController.backView.alpha = 1.0
                 toViewController.infoCoverView.alpha = 1.0
                 toViewController.closeButtonCover.alpha = 1.0
+                toViewController.shareButtonCover.alpha = 1.0
             })
             
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
@@ -52,6 +54,7 @@ class PhotoTransition: Transition {
                 fromViewController.backView.alpha = 0.0
                 fromViewController.infoCoverView.alpha = 0.0
                 fromViewController.closeButtonCover.alpha = 0.0
+                fromViewController.shareButtonCover.alpha = 0.0
             })
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
                 fromViewController.scrollView.transform = CGAffineTransform(translationX: 0.0, y: self.containerView.frame.height)

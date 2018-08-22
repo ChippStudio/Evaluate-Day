@@ -92,6 +92,9 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
                         }
                     }
                     
+                    //Feedback
+                    Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+                    
                     self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
                         batchContext.reload(self)
                     }, completion: nil)

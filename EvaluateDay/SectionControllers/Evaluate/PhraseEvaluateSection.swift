@@ -141,6 +141,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         if let value = (self.card.data as! PhraseCard).values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
             controller.textView.text = value.text
         }
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     

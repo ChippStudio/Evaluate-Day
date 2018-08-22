@@ -93,6 +93,8 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
             return {
                 let node = ListItemEvaluateNode(text: text, done: false, style: style)
                 node.doneDidPressed = { (cellIndexPath) in
+                    //Feedback
+                    Feedback.player.play(sound: nil, hapticFeedback: false, impact: true, feedbackType: nil)
                     self.didDonePressed(indexPath: cellIndexPath)
                 }
                 return node

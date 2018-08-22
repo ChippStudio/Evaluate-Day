@@ -172,6 +172,9 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
         }
         
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         collectionContext?.performBatch(animated: false, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -194,6 +197,9 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
         }
         
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: false, impact: true, feedbackType: nil)
+        
         collectionContext?.performBatch(animated: false, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -202,6 +208,10 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         let controller = TextTopViewController()
         controller.onlyNumbers = true
         controller.delegate = self
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {

@@ -178,6 +178,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             Database.manager.data.add(value)
         }
         
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -191,6 +194,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         controller.property = ""
         controller.delegate = self
         self.viewController?.present(controller, animated: true, completion: nil)
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
     }
     @objc private func removeLastAction(sender: ASButtonNode) {
         let habitCard = self.card.data as! HabitCard
@@ -199,6 +205,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
                 value.isDeleted = true
             }
         }
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackType.error)
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)

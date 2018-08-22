@@ -82,6 +82,9 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
                         }
                     }
                 }
+                
+                //Feedback
+                Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
             }
             
             if archived {

@@ -194,6 +194,9 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
     
     // MARK: - Actions
     @objc private func allowLocationButtonAction(sender: ASButtonNode) {
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         Permissions.defaults.locationAuthorize {
             self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                 batchContext.reload(self)
@@ -219,11 +222,16 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
                     batchContext.reload(self)
                 }, completion: nil)
             })
+            
+            //Feedback
+            Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         }
     }
     @objc private func selectOnMapAction(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.selectMap.rawValue, bundle: nil).instantiateInitialViewController() as! SelectMapViewController
         controller.delegate = self
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {

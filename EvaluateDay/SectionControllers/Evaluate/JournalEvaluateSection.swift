@@ -172,6 +172,9 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             Database.manager.data.add(textValue, update: true)
         }
         
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         controller.textValue = textValue
         if let nav = self.viewController?.parent as? UINavigationController {
             nav.pushViewController(controller, animated: true)

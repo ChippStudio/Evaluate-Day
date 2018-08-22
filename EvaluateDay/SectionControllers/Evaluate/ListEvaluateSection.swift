@@ -119,6 +119,9 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             let nav = UINavigationController(rootViewController: controller)
             self.viewController?.present(nav, animated: true, completion: nil)
         }
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
         let node: ASCellNode!

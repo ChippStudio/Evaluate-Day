@@ -41,8 +41,10 @@ final class Feedback {
     }
     
     // MARK: - Actions
-    func play(sound soundType: SoundType, hapticFeedback select: Bool = false, impact: Bool = false, feedbackType: UINotificationFeedbackType? = nil) {
-        self.play(sound: soundType)
+    func play(sound soundType: SoundType? = nil, hapticFeedback select: Bool = false, impact: Bool = false, feedbackType: UINotificationFeedbackType? = nil) {
+        if soundType != nil {
+            self.play(sound: soundType!)
+        }
         if select {
             self.select()
         } else if impact {
@@ -53,7 +55,7 @@ final class Feedback {
             }
         }
     }
-    func play(sound type: SoundType) {
+    private func play(sound type: SoundType) {
         if !Database.manager.application.settings.sound {
             return
         }
@@ -71,15 +73,15 @@ final class Feedback {
     }
     
     // MARK: - Haptic Feedback
-    func select() {
+    private func select() {
         self.selectGenerator.prepare()
         self.selectGenerator.selectionChanged()
     }
-    func notify(type: UINotificationFeedbackType) {
+    private func notify(type: UINotificationFeedbackType) {
         self.notificationGenerator.prepare()
         self.notificationGenerator.notificationOccurred(type)
     }
-    func impact() {
+    private func impact() {
         self.impactGenerator.prepare()
         self.impactGenerator.impactOccurred()
     }

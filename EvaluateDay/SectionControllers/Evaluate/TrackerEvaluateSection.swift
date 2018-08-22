@@ -172,6 +172,8 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         try! Database.manager.data.write {
             Database.manager.data.add(value)
         }
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
@@ -181,6 +183,10 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         let controller = TextTopViewController()
         controller.property = ""
         controller.delegate = self
+        
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+        
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func removeLastAction(sender: ASButtonNode) {
@@ -190,6 +196,9 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
                 value.isDeleted = true
             }
         }
+        //Feedback
+        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackType.error)
+        
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
