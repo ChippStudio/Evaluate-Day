@@ -64,8 +64,10 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             previousValue = Float(saveValue.value)
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, style: style)
+            let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -172,12 +174,24 @@ class TenNode: ASCellNode, CardNode {
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        var criterionType = Localizations.accessibility.evaluate.value.criterion.negative
+        if isPositive {
+            criterionType = Localizations.accessibility.evaluate.value.criterion.positive
+        }
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: "\(Int(current))")
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -187,6 +201,7 @@ class TenNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.slider]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

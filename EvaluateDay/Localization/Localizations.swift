@@ -1675,12 +1675,20 @@ public struct Localizations {
 
             public struct value {
 
-                /// Base translation: less
-                public static var less : String = NSLocalizedString("accessibility.evaluate.value.less", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
                 /// Base translation: Current value is %@
                 public static func current(value1 : String) -> String {
                     return String(format: NSLocalizedString("accessibility.evaluate.value.current", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: less
+                public static var less : String = NSLocalizedString("accessibility.evaluate.value.less", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: more
+                public static var more : String = NSLocalizedString("accessibility.evaluate.value.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Previous value is %@
+                public static func previous(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.value.previous", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
                 }
 
                 /// Base translation: %@, marked locations - %i
@@ -1688,12 +1696,9 @@ public struct Localizations {
                     return String(format: NSLocalizedString("accessibility.evaluate.value.checkIn", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
                 }
 
-                /// Base translation: more
-                public static var more : String = NSLocalizedString("accessibility.evaluate.value.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@
-                public static func criterion(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String, _ value5 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.evaluate.value.criterion", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5)
+                /// Base translation: Edit phrase per %@
+                public static func phraseEdit(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.value.phraseEdit", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
                 }
 
 
@@ -1708,6 +1713,39 @@ public struct Localizations {
                     /// Base translation: Double tap to save search
                     public static var search : String = NSLocalizedString("accessibility.evaluate.value.map.search", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+                }
+
+                public struct criterion {
+
+                    /// Base translation: Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@
+                    public static func value(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String, _ value5 : String) -> String {
+                        return String(format: NSLocalizedString("accessibility.evaluate.value.criterion.value", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5)
+                    }
+
+                    /// Base translation: positive
+                    public static var positive : String = NSLocalizedString("accessibility.evaluate.value.criterion.positive", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Double tap to evaluate per %@
+                    public static func hint(value1 : String) -> String {
+                        return String(format: NSLocalizedString("accessibility.evaluate.value.criterion.hint", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                    }
+
+                    /// Base translation: negative
+                    public static var negative : String = NSLocalizedString("accessibility.evaluate.value.criterion.negative", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+
+                    public struct three {
+
+                        /// Base translation: neutral
+                        public static var neutral : String = NSLocalizedString("accessibility.evaluate.value.criterion.three.neutral", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                        /// Base translation: bad
+                        public static var bad : String = NSLocalizedString("accessibility.evaluate.value.criterion.three.bad", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                        /// Base translation: good
+                        public static var good : String = NSLocalizedString("accessibility.evaluate.value.criterion.three.good", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    }
                 }
             }
         }

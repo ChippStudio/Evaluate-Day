@@ -85,6 +85,21 @@ class CriterionThreeEvaluateNode: ASCellNode {
                 self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(goodColor)
             }
             
+            var previousValueString = ""
+            if previousValue == 0 {
+                previousValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                if !positive {
+                    previousValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                }
+            } else if previousValue == 1 {
+                previousValueString = Localizations.accessibility.evaluate.value.criterion.three.neutral
+            } else {
+                previousValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                if !positive {
+                    previousValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                }
+            }
+            
             var components = DateComponents()
             components.day = -1
             
@@ -95,6 +110,12 @@ class CriterionThreeEvaluateNode: ASCellNode {
             self.separator = ASDisplayNode()
             self.separator.backgroundColor = style.criterionThreeEvaluateSeparatorColor
             self.separator.cornerRadius = 2.0
+            
+            // Accessibility
+            self.previousDate.isAccessibilityElement = false
+            self.previousImage.isAccessibilityElement = true
+            self.previousImage.accessibilityLabel = Localizations.accessibility.evaluate.value.previous(value1: previousValueString)
+            self.previousImage.accessibilityValue = formatter.string(from: previousDate)
         }
         
         OperationQueue.main.addOperation {
@@ -107,6 +128,20 @@ class CriterionThreeEvaluateNode: ASCellNode {
             self.topButton.addTarget(self, action: #selector(buttonsAction(sender:)), forControlEvents: .touchUpInside)
             self.middleButton.addTarget(self, action: #selector(buttonsAction(sender:)), forControlEvents: .touchUpInside)
             self.bottomButton.addTarget(self, action: #selector(buttonsAction(sender:)), forControlEvents: .touchUpInside)
+        }
+        
+        // Accessibility
+        self.currentDate.isAccessibilityElement = false
+        self.topButton.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.three.good
+        self.middleButton.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.three.neutral
+        self.bottomButton.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.three.bad
+        self.topButton.accessibilityHint = Localizations.accessibility.evaluate.value.criterion.hint(value1: formatter.string(from: date))
+        self.middleButton.accessibilityHint = Localizations.accessibility.evaluate.value.criterion.hint(value1: formatter.string(from: date))
+        self.bottomButton.accessibilityHint = Localizations.accessibility.evaluate.value.criterion.hint(value1: formatter.string(from: date))
+        
+        if !positive {
+            self.topButton.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.three.bad
+            self.bottomButton.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.three.good
         }
         
         self.automaticallyManagesSubnodes = true

@@ -191,6 +191,6 @@ class CriterionEvaluateNode: ASCellNode {
         let index = String.Index(encodedOffset: 1)
         persent = String(persent[index...])
         
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion(value1: dateFormatter.string(from: self.currentDateNumber), "\(Int(current))", persent, moreLess, "\(Int(self.previousValueNumber))")
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.value(value1: dateFormatter.string(from: self.currentDateNumber), "\(Int(current))", persent, moreLess, "\(Int(self.previousValueNumber))")
     }
 }

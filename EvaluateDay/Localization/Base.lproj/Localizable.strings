@@ -50,8 +50,16 @@
 "accessibility.onboarding.permissions.restricted" = "restricted";
 "accessibility.evaluate.reorder" = "Reorder Cards";
 "accessibility.evaluate.value.current" = "Current value is %@";
-"accessibility.evaluate.value.criterion" = "Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@";
+"accessibility.evaluate.value.previous" = "Previous value is %@";
+"accessibility.evaluate.value.criterion.value" = "Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@";
+"accessibility.evaluate.value.criterion.three.good" = "good";
+"accessibility.evaluate.value.criterion.three.neutral" = "neutral";
+"accessibility.evaluate.value.criterion.three.bad" = "bad";
+"accessibility.evaluate.value.criterion.positive" = "positive";
+"accessibility.evaluate.value.criterion.negative" = "negative";
+"accessibility.evaluate.value.criterion.hint" = "Double tap to evaluate per %@";
 "accessibility.evaluate.value.checkIn" = "%@, marked locations - %i";
+"accessibility.evaluate.value.phraseEdit" = "Edit phrase per %@";
 "accessibility.evaluate.value.map.location" = "Current Location";
 "accessibility.evaluate.value.map.search" = "Double tap to save search";
 "accessibility.evaluate.value.map.locationSelect" = "Double tap to select and save location";

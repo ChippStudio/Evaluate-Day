@@ -41,6 +41,12 @@ class PhraseEvaluateNode: ASCellNode {
         formatter.dateFormat = "dd MMM"
         
         self.date.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.phraseEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.phraseEvaluateDateColor])
+        self.date.isAccessibilityElement = false
+        
+        self.text.accessibilityLabel = text
+        self.text.accessibilityValue = formatter.string(from: date)
+        
+        self.editButton.accessibilityValue = Localizations.accessibility.evaluate.value.phraseEdit(value1: formatter.string(from: date))
         
         self.automaticallyManagesSubnodes = true
     }

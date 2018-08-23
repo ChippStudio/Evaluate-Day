@@ -66,8 +66,10 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             previousValue = saveValue.value
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, style: style)
+            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -180,12 +182,41 @@ class ThreeNode: ASCellNode, CardNode {
     var title: TitleNode!
     var buttons: CriterionThreeEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        var criterionType = Localizations.accessibility.evaluate.value.criterion.negative
+        if isPositive {
+            criterionType = Localizations.accessibility.evaluate.value.criterion.positive
+        }
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
+        var currentValueString = Localizations.general.none
+        if current != nil {
+            if current! == 0 {
+                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                if !isPositive {
+                    currentValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                }
+            } else if current == 1 {
+                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.neutral
+            } else {
+                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                if !isPositive {
+                    currentValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                }
+            }
+        }
+        
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: currentValueString)
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -195,6 +226,7 @@ class ThreeNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.buttons]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

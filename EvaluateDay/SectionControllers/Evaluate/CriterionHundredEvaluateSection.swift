@@ -186,7 +186,11 @@ class HundredNode: ASCellNode, CardNode {
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        var criterionType = Localizations.accessibility.evaluate.value.criterion.negative
+        if isPositive {
+            criterionType = Localizations.accessibility.evaluate.value.criterion.positive
+        }
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
         self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: "\(Int(current))")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         

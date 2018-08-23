@@ -57,8 +57,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             text = value.text
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, style: style)
+            let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, cardType: cardType, style: style)
             
             node.visual(withStyle: style)
             
@@ -188,12 +190,19 @@ class PhraseNode: ASCellNode, CardNode {
     var title: TitleNode!
     var phrase: PhraseEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, text: String, date: Date, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, text: String, date: Date, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.phrase = PhraseEvaluateNode(text: text, date: date, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -203,6 +212,7 @@ class PhraseNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.phrase]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }
