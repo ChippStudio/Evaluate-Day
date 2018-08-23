@@ -45,6 +45,13 @@ class TitleNode: ASCellNode {
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.titleShareTintColor)
         
+        // Accessibility
+        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
+        self.shareButton.accessibilityValue = title
+        
+        self.title.isAccessibilityElement = false
+        self.subtitle.isAccessibilityElement = false
+        
         self.automaticallyManagesSubnodes = true
     }
     

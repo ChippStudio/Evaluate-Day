@@ -61,11 +61,16 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // bar buttons button
         self.newCardButton = UIBarButtonItem(image: #imageLiteral(resourceName: "new").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(newCardButtonAction(sender:)))
         self.newCardButton.accessibilityIdentifier = "newCardButton"
+        self.newCardButton.accessibilityLabel = Localizations.general.shortcut.new.title
+        
         self.reorderCardsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "reorder").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(reorderCardsAction(sender:)))
         self.reorderCardsButton.accessibilityIdentifier = "reorderButton"
+        self.reorderCardsButton.accessibilityLabel = Localizations.accessibility.evaluate.reorder
         
         if self.tabBarController == nil {
             self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
+            self.closeButton.accessibilityLabel = Localizations.general.close
+            self.closeButton.accessibilityValue = Localizations.general.action.evaluate
             self.navigationItem.leftBarButtonItem = closeButton
         }
         

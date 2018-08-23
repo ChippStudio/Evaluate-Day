@@ -65,8 +65,10 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).sorted(byKeyPath: "edited", ascending: false).first {
             previousValue = Float(saveValue.value)
         }
+        
+        let cardType = Sources.title(forType: self.card.type)
         return {
-            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, style: style)
+            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -173,12 +175,24 @@ class HundredNode: ASCellNode, CardNode {
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: "\(Int(current))")
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        
+        self.slider.didSliderLoad = { () in
+            self.slider.slider.accessibilityLabel = title
+        }
         
         self.automaticallyManagesSubnodes = true
     }
@@ -188,6 +202,7 @@ class HundredNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.slider]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

@@ -1667,6 +1667,33 @@ public struct Localizations {
             }
         }
 
+        public struct evaluate {
+
+            /// Base translation: Reorder Cards
+            public static var reorder : String = NSLocalizedString("accessibility.evaluate.reorder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+
+            public struct value {
+
+                /// Base translation: less
+                public static var less : String = NSLocalizedString("accessibility.evaluate.value.less", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Current value is %@
+                public static func current(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.value.current", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: more
+                public static var more : String = NSLocalizedString("accessibility.evaluate.value.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@
+                public static func criterion(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String, _ value5 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.value.criterion", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5)
+                }
+
+            }
+        }
+
         public struct notification {
 
             /// Base translation: notification with the message: %@, repeat: %@, at %@, with the card: %@

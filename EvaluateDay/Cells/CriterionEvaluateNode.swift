@@ -32,12 +32,18 @@ class CriterionEvaluateNode: ASCellNode {
     var separator = ASDisplayNode()
     var persent = ASTextNode()
     
+    var accessibilityNode = ASDisplayNode()
+    
+    var slider: UISlider!
+    
     // MARK: - Variables
     private var valueTextAtributes: [NSAttributedStringKey: Any]
     private var persentTextAttributes: [NSAttributedStringKey: Any]
     private let previousValueNumber: Float
+    private let currentDateNumber: Date
     /// (value: Int)
     var didChangeValue: ((Int) -> Void)?
+    var didSliderLoad: (() -> Void)?
     
     // MARK: - Init
     init(current: Float, previous: Float, date: Date, maxValue: Float, isPositive: Bool, lock: Bool = false, style: CriterionEvaluateNodeStyle) {
@@ -50,6 +56,7 @@ class CriterionEvaluateNode: ASCellNode {
         self.persentTextAttributes = [NSAttributedStringKey.font: style.criterionEvaluatePersentFont, NSAttributedStringKey.foregroundColor: style.criterionEvaluatePersentColor]
         
         self.previousValueNumber = previous
+        self.currentDateNumber = date
         
         super.init()
         
@@ -73,20 +80,32 @@ class CriterionEvaluateNode: ASCellNode {
         self.persent.attributedText = NSAttributedString(string: "\(calculatePercent(value: current))", attributes: self.persentTextAttributes)
         
         self.sliderNode = ASDisplayNode(viewBlock: { () -> UIView in
-            let slider = UISlider()
-            slider.minimumValue = 0.0
-            slider.maximumValue = maxValue
-            slider.setValue(current, animated: true)
-            slider.maximumTrackTintColor = style.criterionEvaluateMaximumTrackColor
+            self.slider = UISlider()
+            self.slider.minimumValue = 0.0
+            self.slider.maximumValue = maxValue
+            self.slider.setValue(current, animated: true)
+            self.slider.maximumTrackTintColor = style.criterionEvaluateMaximumTrackColor
             if isPositive {
-                slider.minimumTrackTintColor = style.criterionEvaluateMinimumPositiveTrackColor
+                self.slider.minimumTrackTintColor = style.criterionEvaluateMinimumPositiveTrackColor
             } else {
-                slider.minimumTrackTintColor = style.criterionEvaluateMinimumNegativeTrackColor
+                self.slider.minimumTrackTintColor = style.criterionEvaluateMinimumNegativeTrackColor
             }
-            slider.isEnabled = !lock
-            slider.addTarget(self, action: #selector(self.sliderAction(sender:)), for: .valueChanged)
-            return slider
+            self.slider.isEnabled = !lock
+            self.slider.addTarget(self, action: #selector(self.sliderAction(sender:)), for: .valueChanged)
+            return self.slider
+        }, didLoad: { (_) in
+            self.didSliderLoad?()
         })
+        
+        // Accessibility
+        self.currentDate.isAccessibilityElement = false
+        self.currentValue.isAccessibilityElement = false
+        self.previousDate.isAccessibilityElement = false
+        self.previousValue.isAccessibilityElement = false
+        self.persent.isAccessibilityElement = false
+        
+        self.accessibilityNode.isAccessibilityElement = true
+        self.setAccessibilityLabel(current: current)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -114,9 +133,11 @@ class CriterionEvaluateNode: ASCellNode {
         dataStack.flexWrap = .wrap
         dataStack.children = [currentValueStack, self.separator, previousValueStack, persentStack]
         
+        let dataStackAccessibility = ASBackgroundLayoutSpec(child: dataStack, background: self.accessibilityNode)
+        
         let cellStack = ASStackLayoutSpec.vertical()
         cellStack.spacing = 40.0
-        cellStack.children = [dataStack, self.sliderNode]
+        cellStack.children = [dataStackAccessibility, self.sliderNode]
         
         let sliderInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 40.0, right: 20.0)
         let sliderInset = ASInsetLayoutSpec(insets: sliderInsets, child: cellStack)
@@ -130,6 +151,7 @@ class CriterionEvaluateNode: ASCellNode {
         self.timer.invalidate()
         self.currentValue.attributedText = NSAttributedString(string: "\(Int(sender.value))", attributes: self.valueTextAtributes)
         self.persent.attributedText = NSAttributedString(string: "\(calculatePercent(value: sender.value))", attributes: self.persentTextAttributes)
+        self.setAccessibilityLabel(current: sender.value)
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.didChangeValue?(Int(sender.value))
         })
@@ -151,5 +173,24 @@ class CriterionEvaluateNode: ASCellNode {
         let persent = calcResult * 100
         
         return "\(arrow)\(Int(persent))%"
+    }
+    
+    private func setAccessibilityLabel(current: Float) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM"
+        
+        var persent = self.calculatePercent(value: current)
+        var moreLess = ""
+        
+        if persent.first! == "▲" {
+            moreLess = Localizations.accessibility.evaluate.value.more
+        } else if persent.first! == "▼" {
+            moreLess = Localizations.accessibility.evaluate.value.less
+        }
+        
+        let index = String.Index(encodedOffset: 1)
+        persent = String(persent[index...])
+        
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion(value1: dateFormatter.string(from: self.currentDateNumber), "\(Int(current))", persent, moreLess, "\(Int(self.previousValueNumber))")
     }
 }

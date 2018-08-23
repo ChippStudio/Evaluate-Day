@@ -15,7 +15,16 @@ class BottomViewController: UIViewController {
     var contentView = UIView()
     
     // MARK: - Variables
-    var closeByTap: Bool = false
+    var closeByTap: Bool = false {
+        didSet {
+            if closeByTap {
+                self.maskView.isAccessibilityElement = true
+                self.maskView.accessibilityLabel = Localizations.general.close
+            } else {
+                self.maskView.isAccessibilityElement = false
+            }
+        }
+    }
     let style = Themes.manager.bottomViewControllerStyle
     
     // MARK: - Init

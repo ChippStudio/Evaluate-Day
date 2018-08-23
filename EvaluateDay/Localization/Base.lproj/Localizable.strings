@@ -48,6 +48,11 @@
 "accessibility.onboarding.scrollLeft" = "Scroll left to open next page";
 "accessibility.onboarding.permissions.authorized" = "authorized";
 "accessibility.onboarding.permissions.restricted" = "restricted";
+"accessibility.evaluate.reorder" = "Reorder Cards";
+"accessibility.evaluate.value.current" = "Current value is %@";
+"accessibility.evaluate.value.criterion" = "Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@";
+"accessibility.evaluate.value.less" = "less";
+"accessibility.evaluate.value.more" = "more";
 
 // MARK: - Many
 "many.week" = "%li w";
