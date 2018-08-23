@@ -183,14 +183,14 @@ class CriterionEvaluateNode: ASCellNode {
         var moreLess = ""
         
         if persent.first! == "▲" {
-            moreLess = Localizations.accessibility.evaluate.value.more
+            moreLess = Localizations.accessibility.more
         } else if persent.first! == "▼" {
-            moreLess = Localizations.accessibility.evaluate.value.less
+            moreLess = Localizations.accessibility.less
         }
         
         let index = String.Index(encodedOffset: 1)
         persent = String(persent[index...])
         
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.value.criterion.value(value1: dateFormatter.string(from: self.currentDateNumber), "\(Int(current))", persent, moreLess, "\(Int(self.previousValueNumber))")
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.criterion.value(value1: dateFormatter.string(from: self.currentDateNumber), "\(Int(current))", persent, moreLess, "\(Int(self.previousValueNumber))")
     }
 }

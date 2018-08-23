@@ -46,7 +46,7 @@ class PhraseEvaluateNode: ASCellNode {
         self.text.accessibilityLabel = text
         self.text.accessibilityValue = formatter.string(from: date)
         
-        self.editButton.accessibilityValue = Localizations.accessibility.evaluate.value.phraseEdit(value1: formatter.string(from: date))
+        self.editButton.accessibilityValue = Localizations.accessibility.evaluate.phraseEdit(value1: formatter.string(from: date))
         
         self.automaticallyManagesSubnodes = true
     }

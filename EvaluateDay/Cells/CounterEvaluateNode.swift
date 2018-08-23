@@ -44,8 +44,10 @@ class CounterEvaluateNode: ASCellNode {
     var previousValue = ASTextNode()
     var separator = ASDisplayNode()
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(value: Double, sumValue: Double?, previousValue: Double, date: Date, style: CounterEvaluateNodeStyle) {
+    init(value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, style: CounterEvaluateNodeStyle) {
         super.init()
         
         // Plus and minus buttons and covers
@@ -83,6 +85,7 @@ class CounterEvaluateNode: ASCellNode {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
             self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: style.counterEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateSumColor])
+            self.sumText!.isAccessibilityElement = false
         }
         
         // counter
@@ -105,6 +108,21 @@ class CounterEvaluateNode: ASCellNode {
         
         self.separator.backgroundColor = style.counterEvaluateSeparatorColor
         self.separator.cornerRadius = 2.0
+        
+        //Accessibility
+        self.currentDate.isAccessibilityElement = false
+        self.counter.isAccessibilityElement = false
+        self.previousValue.isAccessibilityElement = false
+        self.previousDate.isAccessibilityElement = false
+        
+        self.plus.accessibilityLabel = Localizations.accessibility.evaluate.counter.increase(value1: "\(step)")
+        self.minus.accessibilityLabel = Localizations.accessibility.evaluate.counter.decrease(value1: "\(step)")
+        
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.counter.summory(value1: "\(value)", formatter.string(from: date), "\(previousValue)")
+        if sumValue != nil {
+            self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.counter.summorySum(value1: "\(sumValue!)")
+        }
         
         self.automaticallyManagesSubnodes = true
     }
@@ -158,9 +176,11 @@ class CounterEvaluateNode: ASCellNode {
         let valueInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 0.0)
         let valueInset = ASInsetLayoutSpec(insets: valueInsets, child: valuesStack)
         
+        let valueInsetAccessibility = ASBackgroundLayoutSpec(child: valueInset, background: self.accessibilityNode)
+        
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 5.0
-        cell.children = [valueInset, buttons]
+        cell.children = [valueInsetAccessibility, buttons]
         
         let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

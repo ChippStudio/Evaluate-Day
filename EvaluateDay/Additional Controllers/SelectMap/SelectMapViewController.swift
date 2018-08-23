@@ -75,7 +75,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         self.currentLocationButtonCover.layer.cornerRadius = 25.0
         self.currentLocationButtonCover.clipsToBounds = true
         self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.currentLocationButton.accessibilityLabel = Localizations.accessibility.evaluate.value.map.location
+        self.currentLocationButton.accessibilityLabel = Localizations.accessibility.evaluate.map.location
         
         // set gestures
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.mapViewLongGestureAction(_:)))
@@ -128,7 +128,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.numberOfLines = 0
         
         cell.accessibilityTraits = UIAccessibilityTraitButton
-        cell.accessibilityHint = Localizations.accessibility.evaluate.value.map.search
+        cell.accessibilityHint = Localizations.accessibility.evaluate.map.search
         
         return cell
     }
@@ -398,7 +398,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         button.addTarget(self, action: #selector(self.selectLocationButtonAction(sender:)), for: .touchUpInside)
         button.accessibilityLabel = value.streetString
         button.accessibilityValue = value.otherAddressString
-        button.accessibilityHint = Localizations.accessibility.evaluate.value.map.locationSelect
+        button.accessibilityHint = Localizations.accessibility.evaluate.map.locationSelect
         view.addSubview(button)
         button.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview()

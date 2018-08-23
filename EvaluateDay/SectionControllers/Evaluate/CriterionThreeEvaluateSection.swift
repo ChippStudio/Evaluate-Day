@@ -193,29 +193,29 @@ class ThreeNode: ASCellNode, CardNode {
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        var criterionType = Localizations.accessibility.evaluate.value.criterion.negative
+        var criterionType = Localizations.accessibility.evaluate.criterion.negative
         if isPositive {
-            criterionType = Localizations.accessibility.evaluate.value.criterion.positive
+            criterionType = Localizations.accessibility.evaluate.criterion.positive
         }
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
         var currentValueString = Localizations.general.none
         if current != nil {
             if current! == 0 {
-                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                currentValueString = Localizations.accessibility.evaluate.criterion.three.bad
                 if !isPositive {
-                    currentValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                    currentValueString = Localizations.accessibility.evaluate.criterion.three.good
                 }
             } else if current == 1 {
-                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.neutral
+                currentValueString = Localizations.accessibility.evaluate.criterion.three.neutral
             } else {
-                currentValueString = Localizations.accessibility.evaluate.value.criterion.three.good
+                currentValueString = Localizations.accessibility.evaluate.criterion.three.good
                 if !isPositive {
-                    currentValueString = Localizations.accessibility.evaluate.value.criterion.three.bad
+                    currentValueString = Localizations.accessibility.evaluate.criterion.three.bad
                 }
             }
         }
         
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: currentValueString)
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: currentValueString)
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

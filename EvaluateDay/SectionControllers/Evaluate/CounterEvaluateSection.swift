@@ -58,6 +58,8 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             value = currentValue.value
         }
         
+        let step = counterCard.step
+        
         var components = DateComponents()
         components.day = -1
         let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
@@ -71,8 +73,10 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, style: style)
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, cardType: cardType, style: style)
             node.visual(withStyle: style)
             OperationQueue.main.addOperation {
                 node.title.shareButton.view.tag = index
@@ -247,12 +251,20 @@ class CounterNode: ASCellNode, CardNode {
     var title: TitleNode!
     var counter: CounterEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
-        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, style: style)
+        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(value)")
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -262,6 +274,7 @@ class CounterNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.counter]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

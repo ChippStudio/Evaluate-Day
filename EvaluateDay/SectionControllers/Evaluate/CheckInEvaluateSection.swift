@@ -305,7 +305,7 @@ class CheckInNode: ASCellNode, CardNode {
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.checkIn(value1: dateFormatter.string(from: date), datas.count)
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.checkIn(value1: dateFormatter.string(from: date), datas.count)
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

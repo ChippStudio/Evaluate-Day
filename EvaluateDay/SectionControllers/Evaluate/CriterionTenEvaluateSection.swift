@@ -185,12 +185,12 @@ class TenNode: ASCellNode, CardNode {
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        var criterionType = Localizations.accessibility.evaluate.value.criterion.negative
+        var criterionType = Localizations.accessibility.evaluate.criterion.negative
         if isPositive {
-            criterionType = Localizations.accessibility.evaluate.value.criterion.positive
+            criterionType = Localizations.accessibility.evaluate.criterion.positive
         }
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.current(value1: "\(Int(current))")
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(Int(current))")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
