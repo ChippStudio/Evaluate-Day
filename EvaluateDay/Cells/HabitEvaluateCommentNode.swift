@@ -28,6 +28,11 @@ class HabitEvaluateCommentNode: ASCellNode {
         
         self.separator.backgroundColor = style.habitEvaluateCommentTintColor
         
+        // Accessibility
+        self.commentTextNode.isAccessibilityElement = false
+        self.editButton.accessibilityLabel = comment
+        self.editButton.accessibilityHint = Localizations.accessibility.evaluate.habit.commentHint
+        
         self.automaticallyManagesSubnodes = true
     }
     // MARK: - Override

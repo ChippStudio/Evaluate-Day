@@ -78,8 +78,10 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
         let previousValueCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", previousDate.start, previousDate.end, false).count
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, style: style)
+            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -253,8 +255,10 @@ class TrackerNode: ASCellNode, CardNode {
     var mark: HabitEvaluateNode!
     var comments = [HabitEvaluateCommentNode]()
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
@@ -267,6 +271,12 @@ class TrackerNode: ASCellNode, CardNode {
             }
             self.comments.append(newComment)
         }
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(marks)")
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -282,6 +292,7 @@ class TrackerNode: ASCellNode, CardNode {
         
         stack.children!.append(self.mark)
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

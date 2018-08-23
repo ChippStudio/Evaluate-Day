@@ -1726,41 +1726,29 @@ public struct Localizations {
 
         public struct evaluate {
 
-            /// Base translation: Edit phrase per %@
-            public static func phraseEdit(value1 : String) -> String {
-                return String(format: NSLocalizedString("accessibility.evaluate.phraseEdit", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-            }
+            /// Base translation: Reorder Cards
+            public static var reorder : String = NSLocalizedString("accessibility.evaluate.reorder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             /// Base translation: %@, marked locations - %i
             public static func checkIn(value1 : String, _ value2 : Int) -> String {
                 return String(format: NSLocalizedString("accessibility.evaluate.checkIn", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
             }
 
-            /// Base translation: Reorder Cards
-            public static var reorder : String = NSLocalizedString("accessibility.evaluate.reorder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+            /// Base translation: Edit phrase per %@
+            public static func phraseEdit(value1 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.evaluate.phraseEdit", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            }
 
 
-            public struct counter {
+            public struct habit {
 
-                /// Base translation: Decrease counter with step - %@
-                public static func decrease(value1 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.evaluate.counter.decrease", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-                }
-
-                /// Base translation: Sum of counter is - %@
-                public static func summorySum(value1 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.evaluate.counter.summorySum", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-                }
-
-                /// Base translation: Increase counter with step - %@
-                public static func increase(value1 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.evaluate.counter.increase", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-                }
-
-                /// Base translation: Current counter value is - %@ at %@, previous value was - %@
+                /// Base translation: Number of marks is - %@ at %@, previous number was - %@
                 public static func summory(value1 : String, _ value2 : String, _ value3 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.evaluate.counter.summory", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
+                    return String(format: NSLocalizedString("accessibility.evaluate.habit.summory", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
                 }
+
+                /// Base translation: Double tap to edit the comment
+                public static var commentHint : String = NSLocalizedString("accessibility.evaluate.habit.commentHint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
 
@@ -1808,6 +1796,30 @@ public struct Localizations {
                     public static var bad : String = NSLocalizedString("accessibility.evaluate.criterion.three.bad", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                 }
+            }
+
+            public struct counter {
+
+                /// Base translation: Decrease counter with step - %@
+                public static func decrease(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.counter.decrease", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Sum of counter is - %@
+                public static func summorySum(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.counter.summorySum", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Increase counter with step - %@
+                public static func increase(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.counter.increase", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Current counter value is - %@ at %@, previous value was - %@
+                public static func summory(value1 : String, _ value2 : String, _ value3 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.counter.summory", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
+                }
+
             }
         }
     }

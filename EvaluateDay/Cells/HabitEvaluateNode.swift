@@ -37,6 +37,8 @@ class HabitEvaluateNode: ASCellNode {
     
     var deleteButton: ASButtonNode?
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
     init(marks: Int, previousMarks: Int, date: Date, style: HabitEvaluateNodeStyle) {
         super.init()
@@ -80,6 +82,15 @@ class HabitEvaluateNode: ASCellNode {
         
         self.separator.backgroundColor = style.evaluateHabitSeparatorColor
         
+        // Accessibility
+        self.currentDate.isAccessibilityElement = false
+        self.marksCount.isAccessibilityElement = false
+        self.previousDate.isAccessibilityElement = false
+        self.previousMarkCount.isAccessibilityElement = false
+        
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.habit.summory(value1: "\(marks)", formatter.string(from: date), "\(previousMarks)")
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -103,10 +114,12 @@ class HabitEvaluateNode: ASCellNode {
         allMarks.alignItems = .end
         allMarks.children = [currentStack, self.countSeparator, previousStack]
         
+        let allMarksAccessibility = ASBackgroundLayoutSpec(child: allMarks, background: self.accessibilityNode)
+        
         let marksCounter = ASStackLayoutSpec.horizontal()
         marksCounter.justifyContent = .spaceBetween
         marksCounter.spacing = 10.0
-        marksCounter.children = [allMarks]
+        marksCounter.children = [allMarksAccessibility]
         marksCounter.flexWrap = .wrap
         marksCounter.alignItems = .end
         if self.deleteButton != nil {

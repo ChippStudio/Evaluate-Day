@@ -69,6 +69,8 @@
 "accessibility.evaluate.counter.decrease" = "Decrease counter with step - %@";
 "accessibility.evaluate.counter.summory" = "Current counter value is - %@ at %@, previous value was - %@";
 "accessibility.evaluate.counter.summorySum" = "Sum of counter is - %@";
+"accessibility.evaluate.habit.commentHint" = "Double tap to edit the comment";
+"accessibility.evaluate.habit.summory" = "Number of marks is - %@ at %@, previous number was - %@";
 
 // MARK: - Many
 "many.week" = "%li w";
