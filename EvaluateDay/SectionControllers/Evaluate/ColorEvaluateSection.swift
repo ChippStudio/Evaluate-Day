@@ -55,9 +55,17 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         if let value = colorCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
             color = value.text
         }
+        var colorName = ""
+        for c in colorsForSelection {
+            if c.color == color {
+                colorName = c.name
+                break
+            }
+        }
+        let cardType = Sources.title(forType: self.card.type)
         
         return {
-            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, date: self.date, lock: lock, style: style)
+            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -166,12 +174,20 @@ class ColorNode: ASCellNode, CardNode {
     var title: TitleNode!
     var colors: ColorEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, selectedColor: String, date: Date, lock: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock, style: style)
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = colorName
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -181,6 +197,7 @@ class ColorNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.colors]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

@@ -53,7 +53,7 @@ final class Demo {
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = TextValue()
                 value.created = newDate
-                value.text = colorsForSelection[(colorsForSelection.count - 1).random]
+                value.text = colorsForSelection[(colorsForSelection.count - 1).random].color
                 value.owner = card.id
                 values.append(value)
             }

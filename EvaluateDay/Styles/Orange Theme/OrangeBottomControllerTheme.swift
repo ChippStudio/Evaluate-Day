@@ -12,8 +12,9 @@ import UIKit
 struct OrangeBottomControllerTheme: BottomViewControllerStyle {
     
     var maskColor: UIColor { return UIColor.black }
-    var maskAlpha: CGFloat { return 0.7 }
+    var maskAlpha: CGFloat { return 0.75 }
     var bottomViewColor: UIColor { return UIColor.pumpkin }
+    var closeButtonColor: UIColor { return UIColor.white }
     
     // MARK: - ReorderBottomViewControllerStyle
     var reorderCellTextColor: UIColor { return UIColor.paleGrey }

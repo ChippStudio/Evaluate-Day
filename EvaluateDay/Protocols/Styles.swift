@@ -117,6 +117,7 @@ protocol BottomViewControllerStyle: ReorderBottomViewControllerStyle, TimeBottom
     var maskColor: UIColor { get }
     var maskAlpha: CGFloat { get }
     var bottomViewColor: UIColor { get }
+    var closeButtonColor: UIColor { get }
 }
 
 protocol PasscodeStyle {

@@ -34,8 +34,11 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         self.lock = lock
         super.init()
         
-        if let i = colorsForSelection.index(of: self.selectedColor) {
-            self.selectedIndex = IndexPath(row: i, section: 0)
+        for i in 0..<colorsForSelection.count {
+            if colorsForSelection[i].color == self.selectedColor {
+                self.selectedIndex = IndexPath(row: i, section: 0)
+                break
+            }
         }
         
         let layout = UICollectionViewFlowLayout()
@@ -55,6 +58,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         formatter.dateFormat = "dd MMM"
         
         self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.selectedColorDateFont, NSAttributedStringKey.foregroundColor: style.selectedColorDateColor])
+        self.currentDate.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
     }
@@ -94,13 +98,18 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         return {
-            let node = ColorDotNode(color: colorsForSelection[indexPath.row], style: self.colorStyle)
+            let node = ColorDotNode(color: colorsForSelection[indexPath.row].color, style: self.colorStyle)
+            node.isAccessibilityElement = true
+            node.accessibilityLabel = "\(colorsForSelection[indexPath.row].name), \(self.currentDate.attributedText!.string)"
+            node.accessibilityTraits = UIAccessibilityTraitButton
             node.selectionStyle = .none
-            if colorsForSelection[indexPath.row] == self.selectedColor {
+            if colorsForSelection[indexPath.row].color == self.selectedColor {
                 node.colorSelected = true
+                node.accessibilityValue = Localizations.accessibility.selected
                 self.selectedIndex = indexPath
             } else {
                 node.colorSelected = false
+                node.accessibilityValue = Localizations.accessibility.unselected
             }
             return node
         }
@@ -117,12 +126,14 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
             let oldSelectedNode = self.colorCollection.nodeForItem(at: self.selectedIndex) as! ColorDotNode
             
             oldSelectedNode.colorSelected = false
+            oldSelectedNode.accessibilityValue = Localizations.accessibility.unselected
             newSelectedNode.colorSelected = true
+            newSelectedNode.accessibilityValue = Localizations.accessibility.selected
             
             self.selectedIndex = indexPath
             
-            self.selectedColor = colorsForSelection[indexPath.row]
-            self.didSelectColor?(colorsForSelection[indexPath.row])
+            self.selectedColor = colorsForSelection[indexPath.row].color
+            self.didSelectColor?(colorsForSelection[indexPath.row].color)
         }
     }
 }

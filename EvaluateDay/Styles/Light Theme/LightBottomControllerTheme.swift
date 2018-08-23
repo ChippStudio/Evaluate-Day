@@ -12,8 +12,9 @@ import UIKit
 struct LightBottomControllerTheme: BottomViewControllerStyle {
     
     var maskColor: UIColor { return UIColor.black }
-    var maskAlpha: CGFloat { return 0.6 }
+    var maskAlpha: CGFloat { return 0.75 }
     var bottomViewColor: UIColor { return UIColor.white }
+    var closeButtonColor: UIColor { return UIColor.white }
     
     // MARK: - ReorderBottomViewControllerStyle
     var reorderCellTextColor: UIColor { return UIColor.black }

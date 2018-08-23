@@ -13,18 +13,10 @@ class BottomViewController: UIViewController {
     // MARK: - UI
     var maskView = UIView()
     var contentView = UIView()
+    var closeButton: UIButton!
     
     // MARK: - Variables
-    var closeByTap: Bool = false {
-        didSet {
-            if closeByTap {
-                self.maskView.isAccessibilityElement = true
-                self.maskView.accessibilityLabel = Localizations.general.close
-            } else {
-                self.maskView.isAccessibilityElement = false
-            }
-        }
-    }
+    var closeByTap: Bool = false
     let style = Themes.manager.bottomViewControllerStyle
     
     // MARK: - Init
@@ -54,6 +46,24 @@ class BottomViewController: UIViewController {
             make.leading.equalToSuperview()
         }
         
+        self.closeButton = UIButton()
+        self.closeButton.tintColor = style.closeButtonColor
+        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.addTarget(self, action: #selector(self.closeButtonAction(sender:)), for: .touchUpInside)
+        self.view.addSubview(self.closeButton)
+        self.closeButton.accessibilityLabel = Localizations.general.close
+        
+        self.closeButton.snp.makeConstraints { (make) in
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+            make.leading.equalTo(self.view).offset(10.0)
+            if #available(iOS 11.0, *) {
+                make.top.equalTo(self.view.safeAreaLayoutGuide).offset(10.0)
+            } else {
+                make.top.equalTo(self.view).offset(30.0)
+            }
+        }
+        
         self.contentView.backgroundColor = style.bottomViewColor
         self.setConstraints(inTraitCollection: UIApplication.shared.keyWindow!.rootViewController!.view.traitCollection)
         
@@ -76,6 +86,10 @@ class BottomViewController: UIViewController {
         if self.closeByTap {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @objc func closeButtonAction(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Private

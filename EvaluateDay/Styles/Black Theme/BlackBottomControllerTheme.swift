@@ -14,6 +14,7 @@ struct BlackBottomControllerTheme: BottomViewControllerStyle {
     var maskColor: UIColor { return UIColor.black }
     var maskAlpha: CGFloat { return 0.7 }
     var bottomViewColor: UIColor { return UIColor.smokyBlack }
+    var closeButtonColor: UIColor { return UIColor.white }
     
     // MARK: - ReorderBottomViewControllerStyle
     var reorderCellTextColor: UIColor { return UIColor.white }

@@ -89,7 +89,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             for color in colorsForSelection {
                 let colorsCount = colorCard.values.filter("text=%@", color)
                 if colorsCount.count != 0 {
-                    data!.append((color: color, data: "\(colorsCount.count)"))
+                    data!.append((color: color.color, data: "\(colorsCount.count)"))
                 }
             }
             return {

@@ -91,3 +91,29 @@ extension UIColor {
         return UIColor(red: 69.0 / 255.0, green: 102.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
     }
 }
+
+let colorsForSelection = [(color: "FFFFFF", name: "white"),
+                          (color: "C2382B", name: "GOLDEN GATE BRIDGE"),
+                          (color: "D5540B", name: "BURNT ORANGE"),
+                          (color: "FFA822", name: "BRIGHT YELLOW"),
+                          (color: "D6C297", name: "DARK VANILLA"),
+                          (color: "2B3E4F", name: "JAPANESE INDIGO"),
+                          (color: "262626", name: "RAISIN BLACK"),
+                          (color: "8E42AA", name: "PURPUREUS"),
+                          (color: "336271", name: "MYRTLE GREEN"),
+                          (color: "1E80B7", name: "CYAN CORNFLOWER BLUE"),
+                          (color: "21AF65", name: "GREEN"),
+                          (color: "05A086", name: "PAOLO VERONESE GREEN"),
+                          (color: "BDC3C7", name: "SILVER SAND"),
+                          (color: "7F8C8D", name: "MUMMY'S TOMB"),
+                          (color: "2C5037", name: "MUGHAL GREEN"),
+                          (color: "59479F", name: "PLUMP PURPLE"),
+                          (color: "513B2D", name: "DARK LIVER"),
+                          (color: "4F2A4E", name: "PURPLE TAUPE"),
+                          (color: "DB5359", name: "DARK TERRA COTTA"),
+                          (color: "8FB133", name: "YELLOW-GREEN"),
+                          (color: "D55B9C", name: "RASPBERRY PINK"),
+                          (color: "672621", name: "LIVER"),
+                          (color: "8F725F", name: "SHADOW"),
+                          (color: "98ABD3", name: "WILD BLUE YONDER"),
+                          (color: "374B7F", name: "PURPLE NAVY")]

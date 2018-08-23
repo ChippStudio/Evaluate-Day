@@ -11,9 +11,10 @@ import UIKit
 
 struct DarkBottomControllerTheme: BottomViewControllerStyle {
     
-    var maskColor: UIColor { return UIColor.black }
-    var maskAlpha: CGFloat { return 0.7 }
+    var maskColor: UIColor { return UIColor.charcoal }
+    var maskAlpha: CGFloat { return 0.75 }
     var bottomViewColor: UIColor { return UIColor.gunmetal }
+    var closeButtonColor: UIColor { return UIColor.white}
     
     // MARK: - ReorderBottomViewControllerStyle
     var reorderCellTextColor: UIColor { return UIColor.white }

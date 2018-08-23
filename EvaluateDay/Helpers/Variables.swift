@@ -13,7 +13,6 @@ import UIKit
 let maxCollectionWidth: CGFloat = 500.0
 let collectionViewOffset: CGFloat = 20.0
 let collectionViewWidthDevider: CGFloat = 2/3
-let colorsForSelection = ["FFFFFF", "C2382B", "D5540B", "FFA822", "D6C297", "2B3E4F", "262626", "8E42AA", "336271", "1E80B7", "21AF65", "05A086", "BDC3C7", "7F8C8D", "2C5037", "59479F", "513B2D", "4F2A4E", "DB5359", "8FB133", "D55B9C", "672621", "8F725F", "98ABD3", "374B7F"]
 
 // MARK: - In App URLs
 let mainGroup = "group.ee.chippstudio.evaluateday"
