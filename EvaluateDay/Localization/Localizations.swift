@@ -1683,6 +1683,11 @@ public struct Localizations {
                     return String(format: NSLocalizedString("accessibility.evaluate.value.current", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
                 }
 
+                /// Base translation: %@, marked locations - %i
+                public static func checkIn(value1 : String, _ value2 : Int) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.value.checkIn", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
+                }
+
                 /// Base translation: more
                 public static var more : String = NSLocalizedString("accessibility.evaluate.value.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
@@ -1691,6 +1696,19 @@ public struct Localizations {
                     return String(format: NSLocalizedString("accessibility.evaluate.value.criterion", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5)
                 }
 
+
+                public struct map {
+
+                    /// Base translation: Double tap to select and save location
+                    public static var locationSelect : String = NSLocalizedString("accessibility.evaluate.value.map.locationSelect", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Current Location
+                    public static var location : String = NSLocalizedString("accessibility.evaluate.value.map.location", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Double tap to save search
+                    public static var search : String = NSLocalizedString("accessibility.evaluate.value.map.search", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                }
             }
         }
 

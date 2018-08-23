@@ -63,6 +63,7 @@ class CheckInPermissionNode: ASCellNode {
         formatter.dateFormat = "dd MMM"
         
         self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.checkInPermissionDateFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionDateColor])
+        self.currentDate.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
     }

@@ -70,10 +70,12 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         self.closeButtonCover.layer.cornerRadius = 25.0
         self.closeButtonCover.clipsToBounds = true
         self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.accessibilityLabel = Localizations.general.close
         
         self.currentLocationButtonCover.layer.cornerRadius = 25.0
         self.currentLocationButtonCover.clipsToBounds = true
         self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.currentLocationButton.accessibilityLabel = Localizations.accessibility.evaluate.value.map.location
         
         // set gestures
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.mapViewLongGestureAction(_:)))
@@ -124,6 +126,9 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.font = style.checkInDataOtherAddressFont
         cell.detailTextLabel?.textColor = style.tintColor
         cell.detailTextLabel?.numberOfLines = 0
+        
+        cell.accessibilityTraits = UIAccessibilityTraitButton
+        cell.accessibilityHint = Localizations.accessibility.evaluate.value.map.search
         
         return cell
     }
@@ -354,6 +359,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         streetLabel.textColor = style.tintColor
         streetLabel.font = style.checkInDataStreetFont
         streetLabel.numberOfLines = 0
+        streetLabel.isAccessibilityElement = false
         view.addSubview(streetLabel)
         streetLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(10.0)
@@ -366,6 +372,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         otherAddressLabel.textColor = style.tintColor
         otherAddressLabel.font = style.checkInDataOtherAddressFont
         otherAddressLabel.numberOfLines = 0
+        otherAddressLabel.isAccessibilityElement = false
         view.addSubview(otherAddressLabel)
         otherAddressLabel.snp.makeConstraints { (make) in
             make.top.equalTo(streetLabel.snp.bottom)
@@ -379,6 +386,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         coordinateLabel.textAlignment = .right
         coordinateLabel.font = style.checkInDataCoordinatesFont
         coordinateLabel.numberOfLines = 0
+        coordinateLabel.isAccessibilityElement = false
         view.addSubview(coordinateLabel)
         coordinateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(otherAddressLabel.snp.bottom)
@@ -388,6 +396,9 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         
         let button = UIButton()
         button.addTarget(self, action: #selector(self.selectLocationButtonAction(sender:)), for: .touchUpInside)
+        button.accessibilityLabel = value.streetString
+        button.accessibilityValue = value.otherAddressString
+        button.accessibilityHint = Localizations.accessibility.evaluate.value.map.locationSelect
         view.addSubview(button)
         button.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview()
@@ -406,6 +417,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             deleteButton.setTitleColor(style.tintColor, for: .highlighted)
             deleteButton.titleLabel?.font = style.checkInDataDeleteFont
             deleteButton.addTarget(self, action: #selector(self.deleteLocationValueAction(sender:)), for: .touchUpInside)
+            deleteButton.accessibilityValue = "\(value.streetString), \(value.otherAddressString)"
             view.addSubview(deleteButton)
             deleteButton.snp.makeConstraints({ (make) in
                 make.height.equalTo(35.0)

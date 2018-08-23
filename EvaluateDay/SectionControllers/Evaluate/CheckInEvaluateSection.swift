@@ -76,8 +76,10 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             permissions = true
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, style: style)
+            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, cardType: cardType, style: style)
                 node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -276,13 +278,19 @@ class CheckInNode: ASCellNode, CardNode {
     var checkin: CheckInActionNode!
     var permission: CheckInPermissionNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         for data in datas {
             let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index, style: style)
+            dataNode.isAccessibilityElement = true
+            dataNode.accessibilityTraits = UIAccessibilityTraitButton
+            dataNode.accessibilityLabel = data.street
+            dataNode.accessibilityValue = data.otherAddress
             self.datas.append(dataNode)
         }
         
@@ -291,6 +299,14 @@ class CheckInNode: ASCellNode, CardNode {
         } else {
             self.checkin = CheckInActionNode(date: date, style: style)
         }
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.value.checkIn(value1: dateFormatter.string(from: date), datas.count)
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -310,6 +326,7 @@ class CheckInNode: ASCellNode, CardNode {
             stack.children!.append(self.permission)
         }
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

@@ -51,6 +51,10 @@
 "accessibility.evaluate.reorder" = "Reorder Cards";
 "accessibility.evaluate.value.current" = "Current value is %@";
 "accessibility.evaluate.value.criterion" = "Current value at %@ is %@, on %@ %@ than previous value. Previous value is %@";
+"accessibility.evaluate.value.checkIn" = "%@, marked locations - %i";
+"accessibility.evaluate.value.map.location" = "Current Location";
+"accessibility.evaluate.value.map.search" = "Double tap to save search";
+"accessibility.evaluate.value.map.locationSelect" = "Double tap to select and save location";
 "accessibility.evaluate.value.less" = "less";
 "accessibility.evaluate.value.more" = "more";
 
