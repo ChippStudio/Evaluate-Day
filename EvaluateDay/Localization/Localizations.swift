@@ -1740,6 +1740,30 @@ public struct Localizations {
             }
 
 
+            public struct goal {
+
+                /// Base translation: Sum of goal counter is - %@
+                public static func summorySum(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.goal.summorySum", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Current goal counter value is - %@ at %@, previous value was - %@
+                public static func summory(value1 : String, _ value2 : String, _ value3 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.goal.summory", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
+                }
+
+                /// Base translation: Increase goal counter with step - %@
+                public static func increase(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.goal.increase", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Decrease goal counter with step - %@
+                public static func decrease(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.goal.decrease", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+            }
+
             public struct habit {
 
                 /// Base translation: Number of marks is - %@ at %@, previous number was - %@

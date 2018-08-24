@@ -50,8 +50,10 @@ class GoalEvaluateNode: ASCellNode {
     var plusCover = ASDisplayNode()
     var minusCover = ASDisplayNode()
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, style: GoalEvaluateNodeStyle) {
+    init(value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, style: GoalEvaluateNodeStyle) {
         super.init()
         
         // Plus and minus buttons and covers
@@ -92,6 +94,7 @@ class GoalEvaluateNode: ASCellNode {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
             self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateSumColor])
+            self.sumText!.isAccessibilityElement = false
         }
         
         // counter
@@ -115,6 +118,24 @@ class GoalEvaluateNode: ASCellNode {
         
         self.separator.backgroundColor = style.goalEvaluateSeparatorColor
         self.separator.cornerRadius = 2.0
+        
+        // Accessibility
+        self.goalText.isAccessibilityElement = false
+        
+        self.counter.isAccessibilityElement = false
+        self.previousCounter.isAccessibilityElement = false
+        
+        self.currentDate.isAccessibilityElement = false
+        self.previousDate.isAccessibilityElement = false
+        
+        self.plus.accessibilityLabel = Localizations.accessibility.evaluate.goal.increase(value1: "\(step)")
+        self.minus.accessibilityLabel = Localizations.accessibility.evaluate.goal.decrease(value1: "\(step)")
+        
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.goal.summory(value1: "\(value)", formatter.string(from: date), "\(previousValue)")
+        if sumValue != nil {
+            self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.goal.summorySum(value1: "\(sumValue!)")
+        }
         
         self.automaticallyManagesSubnodes = true
     }
@@ -171,9 +192,15 @@ class GoalEvaluateNode: ASCellNode {
         let goalInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 20.0, right: 10.0)
         let goalInset = ASInsetLayoutSpec(insets: goalInsets, child: self.goalText)
         
+        let allStack = ASStackLayoutSpec.vertical()
+        allStack.spacing = 5.0
+        allStack.children = [goalInset, valuesStackInset]
+        
+        let allStackAccessibility = ASBackgroundLayoutSpec(child: allStack, background: self.accessibilityNode)
+        
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 5.0
-        cell.children = [goalInset, valuesStackInset, buttons]
+        cell.children = [allStackAccessibility, buttons]
         
         let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

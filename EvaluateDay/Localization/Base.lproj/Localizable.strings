@@ -80,6 +80,10 @@
 "accessibility.evaluate.list.completed" = "completed";
 "accessibility.evaluate.list.uncompleted" = "uncompleted";
 "accessibility.evaluate.list.checkboxHint" = "Double tap to mark as %@";
+"accessibility.evaluate.goal.summory" = "Current goal counter value is - %@ at %@, previous value was - %@";
+"accessibility.evaluate.goal.summorySum" = "Sum of goal counter is - %@";
+"accessibility.evaluate.goal.increase" = "Increase goal counter with step - %@";
+"accessibility.evaluate.goal.decrease" = "Decrease goal counter with step - %@";
 
 // MARK: - Many
 "many.week" = "%li w";
