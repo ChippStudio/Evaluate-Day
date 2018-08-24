@@ -33,6 +33,8 @@ class ListEvaluateNode: ASCellNode {
     var lifetime = ASTextNode()
     var separator = ASDisplayNode()
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
     init(all: Int, allDone: Int, inDay: Int, date: Date, style: ListEvaluateNodeStyle) {
         super.init()
@@ -68,6 +70,15 @@ class ListEvaluateNode: ASCellNode {
         self.separator.backgroundColor = style.listEvaluateSeparatorColor
         self.separator.cornerRadius = 2.0
         
+        // Accessibility
+        self.dayDone.isAccessibilityElement = false
+        self.allDone.isAccessibilityElement = false
+        self.currentDate.isAccessibilityElement = false
+        self.lifetime.isAccessibilityElement = false
+        
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.list.allDone(value1: formatter.string(from: date), "\(inDay)", "\(all)", "\(dayPercent)", "\(allDone)", "\(all)", "\(allPercent)")
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -100,9 +111,11 @@ class ListEvaluateNode: ASCellNode {
         let textsInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 10.0)
         let textsInset = ASInsetLayoutSpec(insets: textsInsets, child: texts)
         
+        let textsInsetAccessibility = ASBackgroundLayoutSpec(child: textsInset, background: self.accessibilityNode)
+        
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 20.0
-        cell.children = [textsInset, button]
+        cell.children = [textsInsetAccessibility, button]
         
         let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 30.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

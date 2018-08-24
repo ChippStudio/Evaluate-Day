@@ -71,6 +71,15 @@
 "accessibility.evaluate.counter.summorySum" = "Sum of counter is - %@";
 "accessibility.evaluate.habit.commentHint" = "Double tap to edit the comment";
 "accessibility.evaluate.habit.summory" = "Number of marks is - %@ at %@, previous number was - %@";
+"accessibility.evaluate.list.done" = "%@ done - %@";
+"accessibility.evaluate.list.allDone" = "%@ done - %@ of %@ - %@ and per all time done %@ of %@ - %@";
+"accessibility.evaluate.list.editList" = "Edit list";
+"accessibility.evaluate.list.addNew" = "Add new item in list";
+"accessibility.evaluate.list.editItemHint" = "Double tap to edit item";
+"accessibility.evaluate.list.checkbox" = "checkbox";
+"accessibility.evaluate.list.completed" = "completed";
+"accessibility.evaluate.list.uncompleted" = "uncompleted";
+"accessibility.evaluate.list.checkboxHint" = "Double tap to mark as %@";
 
 // MARK: - Many
 "many.week" = "%li w";

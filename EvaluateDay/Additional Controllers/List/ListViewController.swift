@@ -53,6 +53,10 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
         self.view.addSubnode(self.tableNode)
+        
+        // Accessibility
+        self.newButton.accessibilityLabel = Localizations.accessibility.evaluate.list.addNew
+        self.editButton.accessibilityLabel = Localizations.accessibility.evaluate.list.editList
     }
 
     override func didReceiveMemoryWarning() {

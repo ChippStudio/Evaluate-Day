@@ -40,6 +40,19 @@ class ListItemEvaluateNode: ASCellNode {
         
         self.doneButton.addTarget(self, action: #selector(self.buttonAction(sender:)), forControlEvents: .touchUpInside)
         
+        // Accessibility
+        self.text.accessibilityTraits = UIAccessibilityTraitButton
+        self.text.accessibilityHint = Localizations.accessibility.evaluate.list.editItemHint
+        
+        self.doneButton.accessibilityLabel = Localizations.accessibility.evaluate.list.checkbox + ", \(text)"
+        if done {
+            self.doneButton.accessibilityValue = Localizations.accessibility.evaluate.list.completed
+            self.doneButton.accessibilityHint = Localizations.accessibility.evaluate.list.checkboxHint(value1: Localizations.accessibility.evaluate.list.uncompleted)
+        } else {
+            self.doneButton.accessibilityValue = Localizations.accessibility.evaluate.list.uncompleted
+            self.doneButton.accessibilityHint = Localizations.accessibility.evaluate.list.checkboxHint(value1: Localizations.accessibility.evaluate.list.completed)
+        }
+        
         self.automaticallyManagesSubnodes = true
     }
     

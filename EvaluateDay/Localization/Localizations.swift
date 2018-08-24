@@ -1798,6 +1798,43 @@ public struct Localizations {
                 }
             }
 
+            public struct list {
+
+                /// Base translation: Add new item in list
+                public static var addNew : String = NSLocalizedString("accessibility.evaluate.list.addNew", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Double tap to edit item
+                public static var editItemHint : String = NSLocalizedString("accessibility.evaluate.list.editItemHint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Edit list
+                public static var editList : String = NSLocalizedString("accessibility.evaluate.list.editList", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: %@ done - %@ of %@ - %@ and per all time done %@ of %@ - %@
+                public static func allDone(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String, _ value5 : String, _ value6 : String, _ value7 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.list.allDone", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5, value6, value7)
+                }
+
+                /// Base translation: uncompleted
+                public static var uncompleted : String = NSLocalizedString("accessibility.evaluate.list.uncompleted", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Double tap to mark as %@
+                public static func checkboxHint(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.list.checkboxHint", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: completed
+                public static var completed : String = NSLocalizedString("accessibility.evaluate.list.completed", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: checkbox
+                public static var checkbox : String = NSLocalizedString("accessibility.evaluate.list.checkbox", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: %@ done - %@
+                public static func done(value1 : String, _ value2 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.list.done", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
+                }
+
+            }
+
             public struct counter {
 
                 /// Base translation: Decrease counter with step - %@

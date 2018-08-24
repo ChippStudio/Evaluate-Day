@@ -56,8 +56,10 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         let allDone = listCard.values.filter("done=%@", true).count
         let all = listCard.values.count
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, style: style)
+            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -162,12 +164,23 @@ class ListNode: ASCellNode, CardNode {
     var title: TitleNode!
     var list: ListEvaluateNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date, style: style)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.list.done(value1: formatter.string(from: date), "\(inDay)")
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -177,6 +190,7 @@ class ListNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title, self.list]
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }
