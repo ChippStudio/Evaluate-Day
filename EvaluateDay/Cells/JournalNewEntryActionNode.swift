@@ -38,6 +38,9 @@ class JournalNewEntryActionNode: ASCellNode {
         
         self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.foregroundColor: style.journalNewEntryActionDateColor, NSAttributedStringKey.font: style.journalNewEntryActionDateFont])
         
+        self.currentDate.isAccessibilityElement = false
+        self.actionButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.newEntry(value1: formatter.string(from: date))
+        
         self.automaticallyManagesSubnodes = true
     }
     

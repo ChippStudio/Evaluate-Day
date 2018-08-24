@@ -88,8 +88,10 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             entries.append((text: entry.text, metadata: metadata, photo: photo))
         }
         
+        let cardType = Sources.title(forType: self.card.type)
+        
         return {
-            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, style: style)
+            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, cardType: cardType, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -223,8 +225,10 @@ class JournalNode: ASCellNode, CardNode {
     var entries = [JournalEntryNode]()
     var new: JournalNewEntryActionNode!
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], cardType: String, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
@@ -233,6 +237,15 @@ class JournalNode: ASCellNode, CardNode {
             let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true, style: style)
             self.entries.append(newEntry)
         }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.journal.value(value1: formatter.string(from: date), entries.count)
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }
@@ -248,6 +261,7 @@ class JournalNode: ASCellNode, CardNode {
         
         stack.children!.append(new)
         
-        return stack
+        let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
+        return cell
     }
 }

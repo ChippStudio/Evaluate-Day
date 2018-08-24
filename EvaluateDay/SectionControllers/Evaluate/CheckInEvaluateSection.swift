@@ -287,10 +287,6 @@ class CheckInNode: ASCellNode, CardNode {
         self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
         for data in datas {
             let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index, style: style)
-            dataNode.isAccessibilityElement = true
-            dataNode.accessibilityTraits = UIAccessibilityTraitButton
-            dataNode.accessibilityLabel = data.street
-            dataNode.accessibilityValue = data.otherAddress
             self.datas.append(dataNode)
         }
         

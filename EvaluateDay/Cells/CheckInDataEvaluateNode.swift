@@ -58,6 +58,11 @@ class CheckInDataEvaluateNode: ASCellNode {
             self.button.addTarget(self, action: #selector(self.buttonAction(sendar:)), forControlEvents: .touchUpInside)
         }
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = self.street.attributedText!.string
+        self.accessibilityValue = self.otherAddress.attributedText!.string
+        
         self.automaticallyManagesSubnodes = true
     }
     

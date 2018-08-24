@@ -29,6 +29,10 @@ class DateNode: ASCellNode {
         
         self.separator.backgroundColor = style.dateNodeSeparatorColor
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = dateString
+        
         self.automaticallyManagesSubnodes = true
     }
     

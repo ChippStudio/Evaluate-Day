@@ -84,6 +84,16 @@
 "accessibility.evaluate.goal.summorySum" = "Sum of goal counter is - %@";
 "accessibility.evaluate.goal.increase" = "Increase goal counter with step - %@";
 "accessibility.evaluate.goal.decrease" = "Decrease goal counter with step - %@";
+"accessibility.evaluate.journal.value" = "%@, number of entries - %i";
+"accessibility.evaluate.journal.newEntry" = "Add new entry at %@";
+"accessibility.evaluate.journal.entryHint" = "Double tap to edit entry";
+"accessibility.evaluate.journal.entryPhoto" = "Entry with photo";
+"accessibility.evaluate.journal.entry.viewPhoto" = "View photo";
+"accessibility.evaluate.journal.entry.openCamera" = "Open Camera";
+"accessibility.evaluate.journal.entry.openGalery" = "Open Gallery";
+"accessibility.evaluate.journal.entry.deletePhoto" = "Delete Photo";
+"accessibility.evaluate.journal.entry.actionHint" = "Double tap to action";
+"accessibility.evaluate.journal.entry.editTextHint" = "Double tap to edit text";
 
 // MARK: - Many
 "many.week" = "%li w";

@@ -38,6 +38,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         
         // Delete button
         self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.deleteAction(sender:)))
+        self.deleteButton.accessibilityLabel = Localizations.general.delete
         self.shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(shareAction(sender:)))
         self.navigationItem.rightBarButtonItems = [self.deleteButton, self.shareButton]
         
@@ -158,6 +159,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                     let coordinates = loc.coordinatesString
                     return {
                         let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAdress, coordinates: coordinates, style: style)
+                        node.accessibilityTraits = UIAccessibilityTraitNone
                         node.selectionStyle = .none
                         node.leftInset = 30.0
                         return node

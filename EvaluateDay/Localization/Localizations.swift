@@ -1776,6 +1776,48 @@ public struct Localizations {
 
             }
 
+            public struct journal {
+
+                /// Base translation: Double tap to edit entry
+                public static var entryHint : String = NSLocalizedString("accessibility.evaluate.journal.entryHint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: %@, number of entries - %i
+                public static func value(value1 : String, _ value2 : Int) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.journal.value", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
+                }
+
+                /// Base translation: Add new entry at %@
+                public static func newEntry(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.evaluate.journal.newEntry", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Entry with photo
+                public static var entryPhoto : String = NSLocalizedString("accessibility.evaluate.journal.entryPhoto", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+
+                public struct entry {
+
+                    /// Base translation: Double tap to edit text
+                    public static var editTextHint : String = NSLocalizedString("accessibility.evaluate.journal.entry.editTextHint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Open Gallery
+                    public static var openGalery : String = NSLocalizedString("accessibility.evaluate.journal.entry.openGalery", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Open Camera
+                    public static var openCamera : String = NSLocalizedString("accessibility.evaluate.journal.entry.openCamera", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: View photo
+                    public static var viewPhoto : String = NSLocalizedString("accessibility.evaluate.journal.entry.viewPhoto", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Double tap to action
+                    public static var actionHint : String = NSLocalizedString("accessibility.evaluate.journal.entry.actionHint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Delete Photo
+                    public static var deletePhoto : String = NSLocalizedString("accessibility.evaluate.journal.entry.deletePhoto", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                }
+            }
+
             public struct map {
 
                 /// Base translation: Double tap to save search
