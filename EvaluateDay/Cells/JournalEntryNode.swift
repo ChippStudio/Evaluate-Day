@@ -96,13 +96,15 @@ class JournalEntryNode: ASCellNode {
         if index != nil {
             self.button = ASButtonNode()
             self.button.addTarget(self, action: #selector(self.buttonAction(sender:)), forControlEvents: .touchUpInside)
-            
+        }
+        
+        if !editMode {
             self.isAccessibilityElement = true
             self.accessibilityTraits = UIAccessibilityTraitButton
             self.accessibilityLabel = newText
             self.accessibilityValue = metadataString
             if photo != nil {
-               self.accessibilityValue = "\(metadataString), \(Localizations.accessibility.evaluate.journal.entryPhoto)"
+                self.accessibilityValue = "\(metadataString), \(Localizations.accessibility.evaluate.journal.entryPhoto)"
             }
             self.accessibilityHint = Localizations.accessibility.evaluate.journal.entryHint
         }

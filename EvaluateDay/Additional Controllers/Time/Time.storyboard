@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0U-nS-Rhd">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="T0U-nS-Rhd" customClass="TimeViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dHv-ub-RtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5d-rl-SJB">
-                                <rect key="frame" x="10" y="30" width="50" height="50"/>
+                                <rect key="frame" x="10" y="54" width="50" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qi-aP-ObX">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -40,7 +40,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOO-g4-Rwg">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="562" width="375" height="250"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lBp-ky-2Vd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
@@ -55,15 +55,16 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lBp-ky-2Vd" secondAttribute="trailing" id="GdB-4Z-Qtr"/>
-                                    <constraint firstAttribute="bottom" secondItem="lBp-ky-2Vd" secondAttribute="bottom" id="JIA-b9-vmx"/>
+                                    <constraint firstItem="KZP-28-w5R" firstAttribute="bottom" secondItem="lBp-ky-2Vd" secondAttribute="bottom" id="JIA-b9-vmx"/>
                                     <constraint firstItem="lBp-ky-2Vd" firstAttribute="top" secondItem="gOO-g4-Rwg" secondAttribute="top" id="RL9-eh-lKc"/>
                                     <constraint firstItem="lBp-ky-2Vd" firstAttribute="leading" secondItem="gOO-g4-Rwg" secondAttribute="leading" id="tr1-jg-Kym"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="KZP-28-w5R"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gOO-g4-Rwg" firstAttribute="bottom" secondItem="cE0-6s-Xdh" secondAttribute="bottom" id="01S-tV-afY"/>
+                            <constraint firstItem="gOO-g4-Rwg" firstAttribute="bottom" secondItem="dHv-ub-RtO" secondAttribute="bottom" id="01S-tV-afY"/>
                             <constraint firstItem="c5d-rl-SJB" firstAttribute="leading" secondItem="cE0-6s-Xdh" secondAttribute="leading" constant="10" id="bHc-z4-eFt"/>
                             <constraint firstItem="gOO-g4-Rwg" firstAttribute="leading" secondItem="cE0-6s-Xdh" secondAttribute="leading" id="dfp-hN-exj"/>
                             <constraint firstItem="c5d-rl-SJB" firstAttribute="top" secondItem="cE0-6s-Xdh" secondAttribute="top" constant="10" id="h6W-AH-aPS"/>

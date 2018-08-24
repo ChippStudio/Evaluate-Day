@@ -30,6 +30,10 @@ class PhraseListNode: ASCellNode {
         
         self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.phraseListTextFont, NSAttributedStringKey.foregroundColor: style.phraseListTextColor])
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = self.dateNode.attributedText!.string
+        self.accessibilityValue = text
+        
         self.automaticallyManagesSubnodes = true
     }
     

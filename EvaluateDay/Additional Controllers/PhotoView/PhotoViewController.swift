@@ -82,6 +82,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
                         placeString += ", " + country
                     }
                     self.placeLabel.text = placeString
+                    self.infoCoverView.accessibilityValue = placeString
                 }
             }
         }
@@ -109,6 +110,14 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesterAction(sender:))))
+        
+        // Accessibility
+        self.closeButton.accessibilityLabel = Localizations.general.close
+        self.imageView.isAccessibilityElement = true
+        self.imageView.accessibilityTraits = UIAccessibilityTraitImage
+        
+        self.infoCoverView.isAccessibilityElement = true
+        self.infoCoverView.accessibilityLabel = self.createdLabel.text
         
         // Analytics
         sendEvent(.openPhoto, withProperties: nil)
