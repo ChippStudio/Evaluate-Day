@@ -60,6 +60,9 @@ class JournalMergeSection: ListSectionController, ASSectionController, MergeSect
                 node.shareButton.alpha = 0.0
                 node.topInset = 10.0
                 node.leftInset = 20.0
+                node.isAccessibilityElement = true
+                node.accessibilityLabel = title
+                node.accessibilityValue = subtitle
                 return node
             }
         case 2:

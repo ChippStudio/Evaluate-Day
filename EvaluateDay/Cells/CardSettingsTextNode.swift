@@ -41,6 +41,11 @@ class CardSettingsTextNode: ASCellNode {
         
         self.text.attributedText = NSAttributedString(string: textString, attributes: [NSAttributedStringKey.font: style.cardSettingsTextFont, NSAttributedStringKey.foregroundColor: textColor])
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityLabel = title
+        self.accessibilityValue = text
+        
         self.automaticallyManagesSubnodes = true
     }
     

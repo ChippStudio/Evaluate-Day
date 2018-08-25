@@ -41,11 +41,16 @@ class CardSettingsBooleanNode: ASCellNode {
                 switchButton.thumbTintColor = style.settingsBooleanThumbTintColor
             }
             switchButton.addTarget(self, action: #selector(self.switchActionFunction(sender:)), for: .valueChanged)
+            switchButton.isAccessibilityElement = true
+            switchButton.accessibilityLabel = title
             return switchButton
         })
         self.switcher.backgroundColor = UIColor.clear
         
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsBooleanTitleFont, NSAttributedStringKey.foregroundColor: style.settingsBooleanTitle])
+        
+        //Accessibility
+        self.title.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
     }

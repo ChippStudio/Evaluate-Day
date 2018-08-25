@@ -52,7 +52,6 @@ class SettingsBooleanNode: ASCellNode {
         self.switcher.backgroundColor = UIColor.clear
         
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsTitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsTitleNodeColor])
-        self.title.isAccessibilityElement = false
         
         if image != nil {
             self.imageNode = ASImageNode()
@@ -62,6 +61,8 @@ class SettingsBooleanNode: ASCellNode {
         }
         
         //Accessibility
+        self.title.isAccessibilityElement = false
+        
         self.automaticallyManagesSubnodes = true
     }
     
