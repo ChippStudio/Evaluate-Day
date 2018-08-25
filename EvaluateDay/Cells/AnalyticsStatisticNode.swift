@@ -90,6 +90,8 @@ class AnalyticsStatisticNode: ASCellNode, UICollectionViewDataSource, UICollecti
         let stat = self.data[indexPath.row]
         cell.titleLabel.text = stat.title
         cell.dataLabel.text = stat.data
+        cell.accessibilityLabel = stat.title
+        cell.accessibilityValue = stat.data
         return cell
     }
 }
@@ -152,5 +154,7 @@ class StatisticCollectionCell: UICollectionViewCell {
             make.leading.equalToSuperview().offset(20.0)
             make.bottom.equalToSuperview().offset(-20.0)
         }
+        
+        self.isAccessibilityElement = true
     }
 }

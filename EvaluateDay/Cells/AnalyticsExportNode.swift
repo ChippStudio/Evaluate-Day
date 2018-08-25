@@ -55,6 +55,10 @@ class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDeleg
             self.collectionNode.view.showsHorizontalScrollIndicator = false
         }
         
+        // Accessibility
+        self.action.isAccessibilityElement = false
+        self.title.accessibilityValue = action
+        
         self.automaticallyManagesSubnodes = true
     }
     

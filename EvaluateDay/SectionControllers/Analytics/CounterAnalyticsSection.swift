@@ -72,6 +72,8 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
+                node.shareButton.accessibilityLabel = Localizations.accessibility.analytics.shareStat
+                node.shareButton.accessibilityValue = title
                 return node
             }
         case .information:

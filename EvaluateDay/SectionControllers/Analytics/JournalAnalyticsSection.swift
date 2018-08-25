@@ -85,6 +85,10 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 } else {
                     node.shareButton.alpha = 0.0
                 }
+                
+                node.shareButton.accessibilityLabel = Localizations.accessibility.analytics.shareStat
+                node.shareButton.accessibilityValue = title
+                
                 return node
             }
         case .map:

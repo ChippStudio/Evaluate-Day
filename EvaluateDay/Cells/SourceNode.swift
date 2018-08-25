@@ -42,6 +42,14 @@ class SourceNode: ASCellNode {
         self.imageNode.image = image
         self.imageNode.contentMode = .scaleAspectFit
         
+        // Accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityValue = subtitle
+        if !untouchble {
+            self.accessibilityTraits = UIAccessibilityTraitButton
+        }
+        
         self.automaticallyManagesSubnodes = true
     }
     

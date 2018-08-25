@@ -76,6 +76,13 @@ class AnalyticsMapNode: ASCellNode {
         self.mapNode.clipsToBounds = true
         self.mapNode.cornerRadius = 10.0
         
+        // MARK: - Accessibility
+        self.title.isAccessibilityElement = false
+        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
+        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.accessibility.analytics.mapView)"
+        
+        self.mapNode.isAccessibilityElement = true
+        
         self.automaticallyManagesSubnodes = true
     }
     

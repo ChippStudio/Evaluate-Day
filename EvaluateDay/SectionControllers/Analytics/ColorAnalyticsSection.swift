@@ -76,6 +76,10 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
+                
+                node.shareButton.accessibilityLabel = Localizations.accessibility.analytics.shareStat
+                node.shareButton.accessibilityValue = title
+                
                 return node
             }
         case .time:
@@ -87,7 +91,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             self.data = [(color: String, data: String)]()
             let colorCard = self.card.data as! ColorCard
             for color in colorsForSelection {
-                let colorsCount = colorCard.values.filter("text=%@", color)
+                let colorsCount = colorCard.values.filter("text=%@", color.color)
                 if colorsCount.count != 0 {
                     data!.append((color: color.color, data: "\(colorsCount.count)"))
                 }

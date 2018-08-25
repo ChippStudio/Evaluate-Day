@@ -94,6 +94,16 @@
 "accessibility.evaluate.journal.entry.deletePhoto" = "Delete Photo";
 "accessibility.evaluate.journal.entry.actionHint" = "Double tap to action";
 "accessibility.evaluate.journal.entry.editTextHint" = "Double tap to edit text";
+"accessibility.analytics.shareStat" = "Share statistic";
+"accessibility.analytics.lineChart" = "Line Chart";
+"accessibility.analytics.barChart" = "Bar Chart";
+"accessibility.analytics.calendarView" = "Calendar view";
+"accessibility.analytics.mapView" = "Map view";
+"accessibility.analytics.lineChartData" = "Line chart have %@ entries";
+"accessibility.analytics.barChartData" = "Bar chart have %@ entries";
+"accessibility.analytics.export.title" = "Export data to %@ file";
+"accessibility.analytics.export.hint" = "Double tap to export";
+"accessibility.analytics.color" = "Color %@ marked in %@ days";
 
 // MARK: - Many
 "many.week" = "%li w";

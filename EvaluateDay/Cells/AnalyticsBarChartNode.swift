@@ -25,6 +25,8 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     var valueNode = ASTextNode()
     var date = ASTextNode()
     
+    private var dataAndDateAccessibility = ASDisplayNode()
+    
     // MARK: - Variable
     var chartDidLoad: (() -> Void)?
     var topOffset: CGFloat = 0.0
@@ -134,6 +136,21 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             self.chartDidLoad?()
         })
         
+        // Accessibility
+        self.titleNode.isAccessibilityElement = false
+        
+        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
+        self.shareButton.accessibilityValue = "\(self.titleNode.attributedText!.string), \(Localizations.accessibility.analytics.barChart)"
+        
+        self.dataAndDateAccessibility.isAccessibilityElement = true
+        self.dataAndDateAccessibility.accessibilityLabel = "\(self.date.attributedText!.string), \(self.valueNode.attributedText!.string)"
+        if !data.isEmpty {
+            self.dataAndDateAccessibility.accessibilityValue = Localizations.accessibility.analytics.barChartData(value1: "\(data.count)")
+        }
+        
+        self.date.isAccessibilityElement = false
+        self.valueNode.isAccessibilityElement = false
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -156,8 +173,10 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         let dateAndValueInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         let dateAndValueInset = ASInsetLayoutSpec(insets: dateAndValueInsets, child: dateAndValue)
         
+        let dateAndValueAccessibility = ASBackgroundLayoutSpec(child: dateAndValueInset, background: self.dataAndDateAccessibility)
+        
         let topStack = ASStackLayoutSpec.vertical()
-        topStack.children = [titleAndShare, dateAndValueInset]
+        topStack.children = [titleAndShare, dateAndValueAccessibility]
         
         let topInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 5.0, right: 10.0)
         let topInset = ASInsetLayoutSpec(insets: topInsets, child: topStack)

@@ -60,11 +60,19 @@ class AnalyticsCalendarNode: ASCellNode {
             self.calendar.appearance.weekdayTextColor = style.calendarWeekdaysColor
             self.calendar.appearance.titleDefaultColor = style.calendarCurrentMonthColor
             self.calendar.appearance.titlePlaceholderColor = style.calendarOtherMonthColor
-            
             return self.calendar
         }, didLoad: { (_) in
             self.didLoadCalendar?()
         })
+        
+        // Accessibility
+        self.title.isAccessibilityElement = false
+        
+        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
+        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.accessibility.analytics.calendarView)"
+        
+        self.calendarNode.isAccessibilityElement = true
+        self.calendarNode.accessibilityTraits = UIAccessibilityTraitNotEnabled
         
         self.automaticallyManagesSubnodes = true
     }

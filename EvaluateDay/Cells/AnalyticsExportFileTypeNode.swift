@@ -23,14 +23,24 @@ class AnalyticsExportFileTypeNode: ASCellNode {
         
         self.colorStyle = style
         
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityHint = Localizations.accessibility.analytics.export.hint
+        
+        var fileTitle = ""
         switch type {
         case .csv:
             self.imageNode.image = #imageLiteral(resourceName: "csv")
+            fileTitle = "csv"
         case .json:
             self.imageNode.image = #imageLiteral(resourceName: "json")
+            fileTitle = "json"
         case .txt:
             self.imageNode.image = #imageLiteral(resourceName: "txt")
+            fileTitle = "txt"
         }
+        
+        self.accessibilityLabel = Localizations.accessibility.analytics.export.title(value1: fileTitle)
         
         self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(self.colorStyle.analyticsExportTintColor)
         self.imageNode.contentMode = .scaleAspectFit

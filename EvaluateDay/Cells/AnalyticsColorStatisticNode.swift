@@ -89,6 +89,13 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         let stat = self.data[indexPath.row]
         cell.dataLabel.text = stat.data
         cell.color = stat.color
+        
+        cell.isAccessibilityElement = true
+        for c in colorsForSelection {
+            if c.color == stat.color {
+                cell.accessibilityLabel = Localizations.accessibility.analytics.color(value1: c.name, stat.data)
+            }
+        }
         return cell
     }
 }

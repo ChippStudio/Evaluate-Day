@@ -289,6 +289,9 @@ class HabitNode: ASCellNode, CardNode {
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        if negative {
+            self.accessibilityNode.accessibilityLabel! += ", \(Localizations.accessibility.evaluate.criterion.negative)"
+        }
         self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(marks)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
