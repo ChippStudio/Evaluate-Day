@@ -1743,6 +1743,35 @@ public struct Localizations {
             }
         }
 
+        public struct activity {
+
+
+            public struct personalInformation {
+
+                /// Base translation: site
+                public static var site : String = NSLocalizedString("accessibility.activity.personalInformation.site", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Save personal information
+                public static var save : String = NSLocalizedString("accessibility.activity.personalInformation.save", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Edit personal information
+                public static var edit : String = NSLocalizedString("accessibility.activity.personalInformation.edit", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: biography
+                public static var bio : String = NSLocalizedString("accessibility.activity.personalInformation.bio", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Select personal photo
+                public static var image : String = NSLocalizedString("accessibility.activity.personalInformation.image", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: email
+                public static var email : String = NSLocalizedString("accessibility.activity.personalInformation.email", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Name
+                public static var name : String = NSLocalizedString("accessibility.activity.personalInformation.name", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
+        }
+
         public struct onboarding {
 
             /// Base translation: Scroll left to open next page

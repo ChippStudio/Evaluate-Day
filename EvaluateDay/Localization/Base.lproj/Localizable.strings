@@ -104,6 +104,13 @@
 "accessibility.analytics.export.title" = "Export data to %@ file";
 "accessibility.analytics.export.hint" = "Double tap to export";
 "accessibility.analytics.color" = "Color %@ marked in %@ days";
+"accessibility.activity.personalInformation.edit" = "Edit personal information";
+"accessibility.activity.personalInformation.save" = "Save personal information";
+"accessibility.activity.personalInformation.image" = "Select personal photo";
+"accessibility.activity.personalInformation.name" = "Name";
+"accessibility.activity.personalInformation.email" = "email";
+"accessibility.activity.personalInformation.bio" = "biography";
+"accessibility.activity.personalInformation.site" = "site";
 
 // MARK: - Many
 "many.week" = "%li w";

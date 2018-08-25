@@ -61,15 +61,23 @@ class UserInformationNode: ASCellNode {
         } else {
             self.userPhoto.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.userInfomationNameColor)
         }
+        if self.editMode {
+            self.userPhoto.isAccessibilityElement = true
+            self.userPhoto.accessibilityTraits = UIAccessibilityTraitButton
+            self.userPhoto.accessibilityLabel = Localizations.accessibility.activity.personalInformation.image
+        }
         
         var editString = Localizations.general.edit
+        var accessibilityEditLabel = Localizations.accessibility.activity.personalInformation.edit
         if editMode {
             editString = Localizations.general.done
+            accessibilityEditLabel = Localizations.accessibility.activity.personalInformation.save
         }
         let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: style.userInformationEditFont, NSAttributedStringKey.foregroundColor: style.userInformationEditColor])
         let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: style.userInformationEditFont, NSAttributedStringKey.foregroundColor: style.userInformationEditHighlightedColor])
         self.editButton.setAttributedTitle(editAttr, for: .normal)
         self.editButton.setAttributedTitle(editHighlightedAttr, for: .highlighted)
+        self.editButton.accessibilityLabel = accessibilityEditLabel
         
         self.firstSeparator.backgroundColor = style.userInformationSeparatorColor
         
@@ -83,27 +91,33 @@ class UserInformationNode: ASCellNode {
                 nameAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationNameColor
                 self.userName = ASTextNode()
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
+                self.userName.accessibilityValue = Localizations.accessibility.activity.personalInformation.name
             }
             
             if email != nil {
                 emailAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationEmailColor
                 self.userEmail = ASTextNode()
                 self.userEmail.attributedText = NSAttributedString(string: email!, attributes: emailAttr)
+                self.userEmail.accessibilityValue = Localizations.accessibility.activity.personalInformation.email
             }
             
             if bio != nil {
                 bioAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationBioColor
                 self.userBio = ASTextNode()
                 self.userBio.attributedText = NSAttributedString(string: bio!, attributes: bioAttr)
+                self.userBio.accessibilityValue = Localizations.accessibility.activity.personalInformation.bio
             }
             if web != nil {
                 webAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationLinkColor
                 self.userWeb = ASTextNode()
                 self.userWeb.attributedText = NSAttributedString(string: web!, attributes: webAttr)
+                self.userWeb.accessibilityValue = Localizations.accessibility.activity.personalInformation.site
             }
         } else {
             self.userName = ASTextNode()
             self.userEmail = ASTextNode()
+            self.userName.accessibilityValue = Localizations.accessibility.activity.personalInformation.name
+            self.userEmail.accessibilityValue = Localizations.accessibility.activity.personalInformation.email
             if name != nil {
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
             } else {
@@ -118,6 +132,8 @@ class UserInformationNode: ASCellNode {
             
             self.userBio = ASTextNode()
             self.userWeb = ASTextNode()
+            self.userBio.accessibilityValue = Localizations.accessibility.activity.personalInformation.bio
+            self.userWeb.accessibilityValue = Localizations.accessibility.activity.personalInformation.site
             
             if bio != nil {
                 self.userBio.attributedText = NSAttributedString(string: bio!, attributes: bioAttr)
@@ -150,10 +166,12 @@ class UserInformationNode: ASCellNode {
             let facebookHighlightedTitle = NSAttributedString(string: Localizations.activity.user.facebook.action, attributes: facebookAttr)
             self.facebookButton.setAttributedTitle(facebookTitle, for: .normal)
             self.facebookButton.setAttributedTitle(facebookHighlightedTitle, for: .highlighted)
+            self.facebookButton.accessibilityValue = Localizations.activity.user.facebook.disclaimer
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             self.facebookDisclaimer.attributedText = NSAttributedString(string: Localizations.activity.user.facebook.disclaimer, attributes: [NSAttributedStringKey.foregroundColor: style.userInformationFacebookDisclaimerColor, NSAttributedStringKey.font: style.userInformationFacebookDisclaimerFont, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+            self.facebookDisclaimer.isAccessibilityElement = false
         }
         
         self.automaticallyManagesSubnodes = true
