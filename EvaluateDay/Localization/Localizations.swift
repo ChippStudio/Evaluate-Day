@@ -102,8 +102,18 @@ public struct Localizations {
 
         public struct empty {
 
+            /// Base translation: Evaluate: %@
+            public static func openEvaluate(value1 : String) -> String {
+                return String(format: NSLocalizedString("calendar.empty.openEvaluate", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            }
+
             /// Base translation: Share
             public static var share : String = NSLocalizedString("calendar.empty.share", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Open: %@
+            public static func viewEvaluate(value1 : String) -> String {
+                return String(format: NSLocalizedString("calendar.empty.viewEvaluate", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            }
 
 
             public struct futureQuote {
@@ -172,7 +182,7 @@ public struct Localizations {
         /// Base translation: Activity
         public static var activity : String = NSLocalizedString("tabbar.activity", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        /// Base translation: Evaluate
+        /// Base translation: Evaluate Day
         public static var evaluate : String = NSLocalizedString("tabbar.evaluate", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         /// Base translation: Cards
@@ -280,7 +290,7 @@ public struct Localizations {
 
         public struct controller {
 
-            /// Base translation: Select new card type
+            /// Base translation: New type of card
             public static var title : String = NSLocalizedString("new.controller.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
@@ -347,7 +357,7 @@ public struct Localizations {
 
         public struct tracker {
 
-            /// Base translation: 
+            /// Base translation: It can help you track infrequent mundane activities like medication-taking.
             public static var subtitle : String = NSLocalizedString("new.tracker.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             /// Base translation: Tracker
@@ -472,13 +482,13 @@ public struct Localizations {
 
         public struct notification {
 
-            /// Base translation: Go back and Evaluate
+            /// Base translation: The last time the app was launched was 30 days ago. Create a new card or fill in the existing ones. You can also set up additional notifications using the settings menu of the app.
             public static var _30days : String = NSLocalizedString("general.notification.30days", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Go back and Evaluate
+            /// Base translation: Where have you been? 10 days is a long period of time. You need to fill in the cards as often as you can in order to get a profound analysis. Start right now.
             public static var _10days : String = NSLocalizedString("general.notification.10days", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Go back and Evaluate
+            /// Base translation: How did you spend these 3 days? Don't forget to assess them. It will help you control different areas of your life 😉
             public static var _3days : String = NSLocalizedString("general.notification.3days", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
@@ -613,7 +623,7 @@ public struct Localizations {
                 /// Base translation: Detail statistics
                 public static var title : String = NSLocalizedString("activity.analytics.stat.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Start using app
+                /// Base translation: Start using the app
                 public static var firsStartDate : String = NSLocalizedString("activity.analytics.stat.firsStartDate", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                 /// Base translation: Current version
@@ -665,7 +675,7 @@ public struct Localizations {
                 /// Base translation: Update from Facebook
                 public static var action : String = NSLocalizedString("activity.user.facebook.action", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: We not post on your timeline
+                /// Base translation: We never post on Facebook.
                 public static var disclaimer : String = NSLocalizedString("activity.user.facebook.disclaimer", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
@@ -730,16 +740,16 @@ public struct Localizations {
             /// Base translation: Evaluate Day is an elegant and flexible application for tracking any parameters of your life, for keeping journals and conducting analyses of all indicators.
             public static var entryOne : String = NSLocalizedString("demo.journal.entryOne", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Evaluate Day - Journal
+            /// Base translation: Everyday diary
             public static var title : String = NSLocalizedString("demo.journal.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             /// Base translation: EVERYTHING UNDER CONTROL   Create your unique set of cards, sort them however you like and record all the changes every day. You will get an objective picture of your progress; you will clearly understand all changes and will be able to make timely corrections.
             public static var entryTwo : String = NSLocalizedString("demo.journal.entryTwo", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: ANALYTICAL INSTRUMENTS AND EXPORTING   Evaluate Day’s simple instruments make the analytic process easy and convenient. You immediately see changes and can correct your actions. Data gathered using Evaluate Day belong only to you, so you can export them into CSV, TXT or JSON files and analyze them more in detail using any software that is convenient for you.
+            /// Base translation: ANALYTICAL INSTRUMENTS AND EXPORTING  Evaluate Day’s simple instruments make the analytic process easy and convenient. You immediately see changes and can correct your actions. Data gathered using Evaluate Day belong only to you, so you can export them into CSV, TXT or JSON files and analyze them more in detail using any software that is convenient for you.
             public static var entryThree : String = NSLocalizedString("demo.journal.entryThree", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Life diary
+            /// Base translation: All the interesting events of the day
             public static var subtitle : String = NSLocalizedString("demo.journal.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             /// Base translation: USE IT ON ALL iOS DEVICES  Evaluate Day works on iPhone and iPad, so you will be able to record changes in the cards. No matter where you are, create lists or add notes to your journal.
@@ -793,10 +803,10 @@ public struct Localizations {
 
         public struct tracker {
 
-            /// Base translation: Tablets
+            /// Base translation: Medication
             public static var title : String = NSLocalizedString("demo.tracker.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: How many and how offen?
+            /// Base translation: Do I take medication often?
             public static var subtitle : String = NSLocalizedString("demo.tracker.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
@@ -882,7 +892,7 @@ public struct Localizations {
                 /// Base translation: Negative
                 public static var title : String = NSLocalizedString("cardSettings.habit.negative.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Negative habit
+                /// Base translation: The less often you note bad habits, the better.
                 public static var description : String = NSLocalizedString("cardSettings.habit.negative.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
@@ -937,10 +947,10 @@ public struct Localizations {
 
             public struct select {
 
-                /// Base translation: Select a theme
+                /// Base translation: Select a Theme
                 public static var theme : String = NSLocalizedString("settings.themes.select.theme", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Select a icon
+                /// Base translation: Select a Icon
                 public static var icon : String = NSLocalizedString("settings.themes.select.icon", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
@@ -972,7 +982,7 @@ public struct Localizations {
                     /// Base translation: Enable iCloud Sync
                     public static var enable : String = NSLocalizedString("settings.sync.data.cloud.enable", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                    /// Base translation: Delete data from iCloud
+                    /// Base translation: All data from iCloud will be deleted. This will delete data from all synchronized devices. The data stored at this device will remain intact. 
                     public static var deleteDescription : String = NSLocalizedString("settings.sync.data.cloud.deleteDescription", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                     /// Base translation: iCloud
@@ -998,7 +1008,7 @@ public struct Localizations {
                     /// Base translation: Delete all local data
                     public static var delete : String = NSLocalizedString("settings.sync.data.local.delete", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                    /// Base translation: Delete all local data
+                    /// Base translation: All local data will be deleted. This will also delete data from all devices. If you would like to remove data from this device only, please turn off the synchronization first.
                     public static var deleteDescription : String = NSLocalizedString("settings.sync.data.local.deleteDescription", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                     /// Base translation: Local Data
@@ -1041,7 +1051,7 @@ public struct Localizations {
                 /// Base translation: Evaluate Day Feedback
                 public static var subject : String = NSLocalizedString("settings.support.mail.subject", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation:     Evaluate Day Version: %@   Evaluate Day Build: %@   iOS Version: %@
+                /// Base translation: Evaluate Day Version: %@   Evaluate Day Build: %@   iOS Version: %@
                 public static func body(value1 : String, _ value2 : String, _ value3 : String) -> String {
                     return String(format: NSLocalizedString("settings.support.mail.body", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
                 }
@@ -1158,7 +1168,7 @@ public struct Localizations {
 
             public struct share {
 
-                /// Base translation: Try this awesame app 😉
+                /// Base translation: Try this awesome app 😉
                 public static var message : String = NSLocalizedString("settings.about.share.message", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                 /// Base translation: Share Evaluate Day with friends
@@ -1228,6 +1238,11 @@ public struct Localizations {
                     /// Base translation: Trial Available, try %@ for free
                     public static func trial(value1 : String) -> String {
                         return String(format: NSLocalizedString("settings.pro.subscription.introductory.trial", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                    }
+
+                    /// Base translation: %@ discount
+                    public static func discount(value1 : String) -> String {
+                        return String(format: NSLocalizedString("settings.pro.subscription.introductory.discount", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
                     }
 
                     /// Base translation: Try %@ per %@
@@ -1319,7 +1334,7 @@ public struct Localizations {
                         /// Base translation: Unlimited cards
                         public static var title : String = NSLocalizedString("settings.pro.description.more.cards.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                        /// Base translation: Add the necessary number of cards to the application, track or write down everything you need. 
+                        /// Base translation: Add the necessary number of cards to the application, track or write down everything you need.
                         public static var description : String = NSLocalizedString("settings.pro.description.more.cards.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
                     }
@@ -2028,7 +2043,7 @@ public struct Localizations {
                 /// Base translation: You havn`t any cards
                 public static var title : String = NSLocalizedString("list.card.empty.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Cards help to control, evaluate and analyse your life
+                /// Base translation: Cards help to control, evaluate and analyse your life.
                 public static var description : String = NSLocalizedString("list.card.empty.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
@@ -2040,7 +2055,7 @@ public struct Localizations {
 
         public struct location {
 
-            /// Base translation: Unknown Place
+            /// Base translation: Unknown place
             public static var unknown : String = NSLocalizedString("evaluate.location.unknown", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
@@ -2072,7 +2087,7 @@ public struct Localizations {
                 /// Base translation: What`s on your mind?
                 public static var placeholder : String = NSLocalizedString("evaluate.journal.entry.placeholder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Температура %@ (Ощущается как %@),  влажность -  %@, атмосферное давление - %@, скорость ветра - %@, облочность - %@
+                /// Base translation: Temperature %@ (Feels like %@),  humidity -  %@, pressure - %@, wind speed  - %@, cloud cover - %@
                 public static func weather(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String, _ value5 : String, _ value6 : String) -> String {
                     return String(format: NSLocalizedString("evaluate.journal.entry.weather", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4, value5, value6)
                 }
@@ -2120,7 +2135,7 @@ public struct Localizations {
 
         public struct weather {
 
-            /// Base translation: No forecast available
+            /// Base translation: Weather data is not available
             public static var unknown : String = NSLocalizedString("evaluate.weather.unknown", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         }
@@ -2153,13 +2168,13 @@ public struct Localizations {
 
             public struct phrase {
 
-                /// Base translation: About new data
+                /// Base translation: Add cards freely, sort them to your liking. Add a reminder.
                 public static var three : String = NSLocalizedString("default.data.phrase.three", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: About new data
+                /// Base translation: Press the card to open its settings, delete it or connect to any other similar card.
                 public static var two : String = NSLocalizedString("default.data.phrase.two", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: About new data
+                /// Base translation: Cards can help you track different indicators of your day. Find out more about the available types of cards at the "Add a new card" screen. Head to the analytics section to read all the notes.
                 public static var one : String = NSLocalizedString("default.data.phrase.one", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }

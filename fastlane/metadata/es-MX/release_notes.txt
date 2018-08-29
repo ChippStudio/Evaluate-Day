@@ -1,11 +1,13 @@
-The fresh look on the whole app
+The huge update for VoiceOver users. Now Evaluate Day app is fully work with VoiceOver. It's important and hard update for us. If you find mistakes or the uncomfortable place with VoiceOver please will write us on support@evaluateday.com. Our goal is to make Evaluate Day great for VoiceOver users, and hope you will help us.
 
-* We refreshed user interface
-* Added new icons for the app. You can select them from the Settings section.
-* Now, you can share the cards and analytics, easier than early
-* Added new "Time Travel". Try it!
-* We are finally added the opportunity to view large photos
-* Bug fixes and performance improvements
+Big news in the open source area.
+Evaluate Day app is now open source app.
+Find source code on https://github.com/ChippStudio/Evaluate-Day.
+
+And you can help to translate Evaluate Day app in your language.
+Check localization status on http://translate.evaluateday.com
+
+********
 
 Thank you for using Evaluate Day app!
 

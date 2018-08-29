@@ -1,11 +1,10 @@
-Den neuen Blick auf die ganze App
+Ein großes Update für die Nutzer von VoiceOver. Nun wurde die App für die Nutzung der VoiceOver maximal angepasst. Das ist eine wichtige und komplizierte Aktualisierung. Falls Sie einen Fehler finden oder Ihnen etwas auffällt, kontaktieren Sie bitte Uns an support@evaluateday.com. Unser Ziel ist die Nutzung von ViceOver für Sie maximal benutzerfreundlich zu machen. Wir hoffen, dass Sie uns damit auch helfen können.
 
--Wir haben das Userinterface vollkommen überarbeitet. Jetzt ist es noch mehr benutzerfreundlich
--haben neue Icons für die App hinzugefügt. Du kannst sie in Einstellungen wählen
--das Teilen von Kärtchen und deinen Ergebnissen ist noch einfacher geworden
--neue Funktion “Zeitwandern”! Probiere die aus!
--haben auch die Vorschau von großen Bilder hinzugefügt
--die Leistungsfähigket der App wurde verbessert
+Evaluate Day ist nun ein Open Source Projekt. Sie können den Quellcode unter https://github.com/ChippStudio/Evaluate-Day ansehen und zum Beispiel dem Projekt helfen, in Ihrer Sprache zu übersetzen.
+
+Die aktuelle Lokalisierungs-Status können Sie unter http://translate.evaluateday.com überprüfen.
+
+********
 
 Vielen Dank für die Verwendung von Evaluate Day.
 

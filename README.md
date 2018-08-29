@@ -14,6 +14,9 @@ Evaluate Day is now open source iOS app! Download latest release version on [App
 6. Insert keys in secret.swift `let keychainProStart = <KEY>` and let `keychainProDuration = <KEY>`
 7. Run project
 
+## Localization
+Evaluate Day app can speak with you on your language. And you can help us. Check localization status on http://translate.evaluateday.com
+
 ## About Evaluate Day
 
 Evaluate Day is an elegant and flexible application for tracking any parameters of your life, for keeping journals and conducting analyses of all indicators.
