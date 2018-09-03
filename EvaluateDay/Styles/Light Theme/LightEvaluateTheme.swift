@@ -213,4 +213,10 @@ struct LightEvaluateTheme: EvaluableStyle {
     var cardListEmptyNewTintColor: UIColor { return UIColor.gunmetal }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.brownishRed }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.white }
+    
+    // MARK: - DashboardsNodeStyle
+    var dashboardsNodeTitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var dashboardsNodeTitleColor: UIColor { return UIColor.gunmetal }
+    var dashboardsNodeNewColor: UIColor { return UIColor.gunmetal }
+    var dashboardsNodeNewBorderColor: UIColor { return UIColor.white }
 }

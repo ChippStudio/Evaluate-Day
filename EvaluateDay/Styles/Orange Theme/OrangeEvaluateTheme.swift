@@ -214,4 +214,10 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var cardListEmptyNewTintColor: UIColor { return UIColor.paleGrey }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.grapePurple }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.pumpkin }
+    
+    // MARK: - DashboardsNodeStyle
+    var dashboardsNodeTitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var dashboardsNodeTitleColor: UIColor { return UIColor.paleGrey }
+    var dashboardsNodeNewColor: UIColor { return UIColor.paleGrey }
+    var dashboardsNodeNewBorderColor: UIColor { return UIColor.pumpkin }
 }

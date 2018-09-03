@@ -43,6 +43,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
     let proLockObject = ProLock()
+    let dashboardsObject = DashboardsObject()
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -161,6 +162,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
         }
         
+        diffableCards.insert(self.dashboardsObject, at: 0)
+        
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
             diffableCards.insert(self.proLockObject, at: 0)
         }
@@ -205,6 +208,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
                 self.navigationController?.pushViewController(controller, animated: true)
             }
+            return section
+        } else if object as? DashboardsObject != nil {
+            let section = DashboardsSection()
+            section.inset = cardInsets
             return section
         }
         

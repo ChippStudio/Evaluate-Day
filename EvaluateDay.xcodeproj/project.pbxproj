@@ -128,6 +128,9 @@
 		B58DC378213C0EAF0067FD61 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC377213C0EAF0067FD61 /* Dashboard.swift */; };
 		B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */; };
 		B58DC37C213D890A0067FD61 /* Dashboards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58DC37B213D890A0067FD61 /* Dashboards.xcassets */; };
+		B58DC37E213D91D00067FD61 /* DashboardsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC37D213D91D00067FD61 /* DashboardsObject.swift */; };
+		B58DC380213D92640067FD61 /* DashboardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC37F213D92640067FD61 /* DashboardsSection.swift */; };
+		B58DC382213D92D10067FD61 /* DashboardsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC381213D92D10067FD61 /* DashboardsNode.swift */; };
 		B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */; };
 		B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */; };
 		B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318231FF90890000D8FFE /* ColorEditableSection.swift */; };
@@ -536,6 +539,9 @@
 		B58DC377213C0EAF0067FD61 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard+Extensions.swift"; sourceTree = "<group>"; };
 		B58DC37B213D890A0067FD61 /* Dashboards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dashboards.xcassets; sourceTree = "<group>"; };
+		B58DC37D213D91D00067FD61 /* DashboardsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsObject.swift; sourceTree = "<group>"; };
+		B58DC37F213D92640067FD61 /* DashboardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsSection.swift; sourceTree = "<group>"; };
+		B58DC381213D92D10067FD61 /* DashboardsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsNode.swift; sourceTree = "<group>"; };
 		B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredCard.swift; sourceTree = "<group>"; };
 		B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEditableSection.swift; sourceTree = "<group>"; };
 		B59318231FF90890000D8FFE /* ColorEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEditableSection.swift; sourceTree = "<group>"; };
@@ -1021,6 +1027,7 @@
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
+				B58DC37D213D91D00067FD61 /* DashboardsObject.swift */,
 			);
 			path = "Additional Objects";
 			sourceTree = "<group>";
@@ -1625,6 +1632,7 @@
 				B5D9A84B205BC43600F84091 /* UserInformationNode.swift */,
 				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
 				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
+				B58DC381213D92D10067FD61 /* DashboardsNode.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1711,6 +1719,7 @@
 			isa = PBXGroup;
 			children = (
 				B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */,
+				B58DC37F213D92640067FD61 /* DashboardsSection.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2261,6 +2270,7 @@
 				B5A11417200F82ED008DBF02 /* CriterionThreeMergeSection.swift in Sources */,
 				B59F9F50211B30E600A59516 /* CardSettingsNotificationSection.swift in Sources */,
 				B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */,
+				B58DC382213D92D10067FD61 /* DashboardsNode.swift in Sources */,
 				B55D326D2074F67300BD1E75 /* OrangeCardSettingsTheme.swift in Sources */,
 				B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */,
 				B5EC884C2010EF170056C1C7 /* PhraseAnalyticsSection.swift in Sources */,
@@ -2270,6 +2280,7 @@
 				B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */,
 				B59318301FFAD625000D8FFE /* DarkCardMergeTheme.swift in Sources */,
 				B5A1B0E41FBACBBF003D9E81 /* BottomTransition.swift in Sources */,
+				B58DC37E213D91D00067FD61 /* DashboardsObject.swift in Sources */,
 				B5F597721FBD60F30098A071 /* AnalyticsCalendarNode.swift in Sources */,
 				B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */,
 				B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */,
@@ -2443,6 +2454,7 @@
 				B57B0637201B0D1800C4E182 /* GoalCard.swift in Sources */,
 				B5B7EE4C2010BBDD00BCD41A /* PhraseEvaluateSection.swift in Sources */,
 				B55D328C207917B800BD1E75 /* HabitNegativeNode.swift in Sources */,
+				B58DC380213D92640067FD61 /* DashboardsSection.swift in Sources */,
 				B5F597701FBD4E1F0098A071 /* Variables.swift in Sources */,
 				B5EC885B201229590056C1C7 /* CounterEditableSection.swift in Sources */,
 				B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */,

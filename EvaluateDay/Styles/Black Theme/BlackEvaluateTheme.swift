@@ -214,4 +214,10 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var cardListEmptyNewTintColor: UIColor { return UIColor.white }
     var cardListEmptyNewTintHighlightedColor: UIColor { return UIColor.salmon }
     var cardListEmptyNewBackgroundColor: UIColor { return UIColor.smokyBlack }
+    
+    // MARK: - DashboardsNodeStyle
+    var dashboardsNodeTitleFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .regular) }
+    var dashboardsNodeTitleColor: UIColor { return UIColor.white }
+    var dashboardsNodeNewColor: UIColor { return UIColor.white }
+    var dashboardsNodeNewBorderColor: UIColor { return UIColor.smokyBlack }
 }
