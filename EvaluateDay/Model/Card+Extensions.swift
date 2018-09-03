@@ -22,6 +22,7 @@ extension Card: CloudKitSyncable {
         card.order = record.object(forKey: "order") as! Int
         card.archived = record.object(forKey: "archived") as! Bool
         card.archivedDate = record.object(forKey: "archivedDate") as? Date
+        card.dashboard = record.object(forKey: "dashboard") as? String
         if let cardType = CardType(rawValue: record.object(forKey: "type") as! Int) {
             card.type = cardType
         } else {
@@ -80,6 +81,9 @@ extension Card: CloudKitSyncable {
         record.setObject(self.edited as CKRecordValue, forKey: "edited")
         record.setObject(self.order as CKRecordValue, forKey: "order")
         record.setObject(self.archived as CKRecordValue, forKey: "archived")
+        if self.dashboard != nil {
+            record.setObject(self.dashboard! as CKRecordValue, forKey: "dashboard")
+        }
         if self.archivedDate != nil {
             record.setObject(self.archivedDate! as CKRecordValue, forKey: "archivedDate")
         }
@@ -124,4 +128,22 @@ extension Card: CloudKitSyncable {
     }
     
     typealias CloudKitSyncable = Card
+}
+
+extension Card {
+    var dashboardValue: (String, UIImage)? {
+        get {
+            var dashboard: (String, UIImage)?
+            if self.dashboard != nil {
+                if let cardboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.dashboard!).first {
+                    if let image = UIImage(named: cardboard.image) {
+                        dashboard = (cardboard.title, image)
+                    } else {
+                        dashboard = (cardboard.title, #imageLiteral(resourceName: "dashboard-0"))
+                    }
+                }
+            }
+            return dashboard
+        }
+    }
 }

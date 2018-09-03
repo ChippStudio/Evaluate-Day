@@ -59,15 +59,15 @@ class EvaluateDayUITests: XCTestCase {
         
 //        app.collectionViews["activityCollection"].swipeUp()
 
-        snapshot("02UsageStatistics")
+        snapshot("04UsageStatistics")
         tabBarsQuery.buttons["evaluate"].tap()
         
         // Open analitycs
         app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 0).tap()
-        snapshot("03CriterionAnalytics")
+        snapshot("02CriterionAnalytics")
         
         app.collectionViews["AnalyticsCollection"].children(matching: .cell).element(boundBy: 2).children(matching: .other).element.children(matching: .other).element.tap()
-        snapshot("04TimeTravel")
+        snapshot("03TimeTravel")
         app.buttons["closeButton"].tap()
         
         XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()

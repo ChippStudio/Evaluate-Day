@@ -32,7 +32,7 @@ final class Database: NSObject {
     private let dataRealmKey = "Data"
     
     // MARK: - Migrations
-    private let schemaVersion: UInt64 = 3
+    private let schemaVersion: UInt64 = 4
     private var appMigration: MigrationBlock!
     private var dataMigration: MigrationBlock!
     
@@ -62,6 +62,10 @@ final class Database: NSObject {
             if oldSchemaVersion < 3 {
                 migration.enumerateObjects(ofType: HabitCard.className(), { (_, newObject) in
                     newObject!["negative"] = false
+                })
+            } else if oldSchemaVersion < 4 {
+                migration.enumerateObjects(ofType: Card.className(), { (_, newObject) in
+                    newObject!["dashboard"] = nil
                 })
             }
         })

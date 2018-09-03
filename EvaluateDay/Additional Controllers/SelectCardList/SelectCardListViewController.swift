@@ -71,8 +71,10 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         
         let selView = UIView()
         selView.backgroundColor = Themes.manager.settingsStyle.settingsSelectColor
+        
+        let dashboard = self.cards[indexPath.row].dashboardValue
         return {
-            let node = TitleNode(title: title, subtitle: subtitle, image: image, style: Themes.manager.settingsStyle)
+            let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: Themes.manager.settingsStyle)
             node.shareButton.alpha = 0.0
             node.backgroundColor = Themes.manager.settingsStyle.settingsSectionBackground
             node.selectedBackgroundView = selView

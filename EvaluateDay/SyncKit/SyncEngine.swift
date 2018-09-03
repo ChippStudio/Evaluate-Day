@@ -232,6 +232,7 @@ class SyncEngine {
     private func cleanUp() {
         // Get all objects
         let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", true)
+        let dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", true)
         let textes = Database.manager.data.objects(TextValue.self).filter("isDeleted=%@", true)
         let numbers = Database.manager.data.objects(NumberValue.self).filter("isDeleted=%@", true)
         let locations = Database.manager.data.objects(LocationValue.self).filter("isDeleted=%@", true)
@@ -250,7 +251,13 @@ class SyncEngine {
             }
             realm.delete(card)
         }
-        
+        for dashboard in dashboards {
+            // FIXIT: - Debug this part
+            if let card = Database.manager.data.objects(Card.self).filter("dashboard=%@", dashboard.id).first {
+                card.dashboard = nil
+            }
+            realm.delete(dashboard)
+        }
         realm.delete(textes)
         realm.delete(numbers)
         realm.delete(locations)
@@ -265,6 +272,7 @@ class SyncEngine {
         self.tokens.removeAll()
         
         self.registerRealmToken(object: Card())
+        self.registerRealmToken(object: Dashboard())
         self.registerRealmToken(object: TextValue())
         self.registerRealmToken(object: NumberValue())
         self.registerRealmToken(object: LocationValue())
@@ -379,6 +387,7 @@ class SyncEngine {
         
         // Sort records
         var cards = [CKRecord]()
+        var dashboards = [CKRecord]()
         var textValues = [CKRecord]()
         var criterioValues = [CKRecord]()
         var locationValues = [CKRecord]()
@@ -394,6 +403,8 @@ class SyncEngine {
             switch record.recordType {
             case "Card":
                 cards.append(record)
+            case "Dashboard":
+                dashboards.append(record)
             case "TextValue":
                 textValues.append(record)
             case "NumberValue":
@@ -414,6 +425,8 @@ class SyncEngine {
                 let realm = Database.manager.data
                 var obj: Object! = nil
                 if let o = realm.objects(Card.self).filter("id=%@", record.recordName).first {
+                    obj = o
+                } else if let o = realm.objects(Dashboard.self).filter("id=%@", record.recordName).first {
                     obj = o
                 } else if let o = realm.objects(TextValue.self).filter("id=%@", record.recordName).first {
                     obj = o
@@ -442,6 +455,7 @@ class SyncEngine {
                     // save new data in realm
                     /// Cards must be the last
                     print("CARDS - \(cards.count)")
+                    print("DASHBORDS - \(dashboards.count)")
                     print("TEXTES - \(textValues.count)")
                     print("CRITERIA - \(criterioValues.count)")
                     print("LOCATIONS - \(locationValues.count)")
@@ -450,6 +464,7 @@ class SyncEngine {
                     print("WEATHERS - \(weatherValues.count)")
                     
                     var cardsObjects = [Card]()
+                    var dashboardsObjects = [Dashboard]()
                     var textObjects = [TextValue]()
                     var criteriaObjects = [NumberValue]()
                     var locationsObjects = [LocationValue]()
@@ -494,6 +509,11 @@ class SyncEngine {
                             cardsObjects.append(card)
                         }
                     }
+                    for value in dashboards {
+                        if let dashboard = Dashboard.object(record: value) {
+                            dashboardsObjects.append(dashboard)
+                        }
+                    }
                     
                     DispatchQueue.main.async {
                         let realm = Database.manager.data
@@ -513,6 +533,8 @@ class SyncEngine {
                         realm.add(weatherObjects, update: true)
                         
                         realm.add(cardsObjects, update: true)
+                        
+                        realm.add(dashboardsObjects, update: true)
                         
                         try! realm.commitWrite(withoutNotifying: sync.tokens)
                         

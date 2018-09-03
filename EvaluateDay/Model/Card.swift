@@ -21,6 +21,8 @@ class Card: Object {
     @objc dynamic var archivedDate: Date?
     @objc dynamic var typeRaw: Int = 0
     
+    @objc dynamic var dashboard: String?
+    
     @objc dynamic var archived: Bool = false {
         didSet {
             if archived {

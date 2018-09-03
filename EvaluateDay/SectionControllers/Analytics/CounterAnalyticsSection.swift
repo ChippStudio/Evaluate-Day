@@ -65,8 +65,9 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
+            let dashboard = self.card.dashboardValue
             return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+                let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
                 node.topInset = 10.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {

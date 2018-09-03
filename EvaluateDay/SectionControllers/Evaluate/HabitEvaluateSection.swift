@@ -80,9 +80,10 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         let previousValueCount = habitCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", previousDate.start, previousDate.end, false).count
         
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, style: style)
+            let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -268,10 +269,10 @@ class HabitNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
         
         if negative {

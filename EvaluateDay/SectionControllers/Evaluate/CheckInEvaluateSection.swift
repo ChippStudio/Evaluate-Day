@@ -77,9 +77,10 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
         
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, cardType: cardType, style: style)
+            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, cardType: cardType, dashboard: board, style: style)
                 node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -281,10 +282,10 @@ class CheckInNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         for data in datas {
             let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index, style: style)
             self.datas.append(dataNode)

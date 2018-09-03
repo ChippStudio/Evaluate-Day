@@ -65,10 +65,11 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
         case .title:
             let title = self.card.title
             let subtitle = self.card.subtitle
+            let dashboard = self.card.dashboardValue
             let image = Sources.image(forType: self.card.type)
             let isPro = Store.current.isPro
             return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+                let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
                 node.topInset = 10.0
                 if !isPro {
                     node.shareButton.alpha = 0.0

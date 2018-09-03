@@ -76,9 +76,10 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         
         let cardType = Sources.title(forType: self.card.type)
         let step = goalCard.step
+        let board = self.card.dashboardValue
         
         return {
-            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, step: step, cardType: cardType, style: style)
+            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, step: step, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -259,10 +260,10 @@ class GoalNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.goal = GoalEvaluateNode(value: value, previousValue: previousValue, date: date, goalValue: goalValue, sumValue: sumValue, step: step, style: style)
         
         // Accessibility

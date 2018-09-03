@@ -64,6 +64,8 @@ struct BlackSettingsTheme: SettingsStyle {
     var titleSubtitleColor: UIColor { return UIColor.gray }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.white }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.white }
     
     // MARK: - SettingsProDescriptionNodeStyle
     var proDescriptionTextColor: UIColor { return UIColor.white }

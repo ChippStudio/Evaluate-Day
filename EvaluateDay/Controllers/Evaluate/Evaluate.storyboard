@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qkd-jA-J9H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qkd-jA-J9H">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,8 +21,19 @@
                         <viewLayoutGuide key="safeArea" id="KtH-Jv-gew"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="d2Z-iO-5po"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="dIy-Vb-w8G" id="ZUZ-aR-F3F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSS-Ih-Y6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="dIy-Vb-w8G">
+                    <connections>
+                        <outlet property="delegate" destination="NbK-I1-tVQ" id="9BX-qZ-dQo"/>
+                        <outlet property="searchContentsController" destination="NbK-I1-tVQ" id="nuL-s5-M4s"/>
+                        <outlet property="searchResultsDataSource" destination="NbK-I1-tVQ" id="AXj-hK-KI9"/>
+                        <outlet property="searchResultsDelegate" destination="NbK-I1-tVQ" id="g89-np-1af"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="516" y="158.77061469265368"/>
         </scene>

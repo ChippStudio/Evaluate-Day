@@ -125,6 +125,9 @@
 		B587D6BF1FB6D5E1006D62C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6BE1FB6D5E1006D62C1 /* Colors.swift */; };
 		B587D6C81FB96D11006D62C1 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B587D6C71FB96D11006D62C1 /* Icons.xcassets */; };
 		B587D6CD1FB96FA3006D62C1 /* PresentFutureEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6CC1FB96FA3006D62C1 /* PresentFutureEmptyView.swift */; };
+		B58DC378213C0EAF0067FD61 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC377213C0EAF0067FD61 /* Dashboard.swift */; };
+		B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */; };
+		B58DC37C213D890A0067FD61 /* Dashboards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58DC37B213D890A0067FD61 /* Dashboards.xcassets */; };
 		B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */; };
 		B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */; };
 		B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318231FF90890000D8FFE /* ColorEditableSection.swift */; };
@@ -530,6 +533,9 @@
 		B587D6BE1FB6D5E1006D62C1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B587D6C71FB96D11006D62C1 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		B587D6CC1FB96FA3006D62C1 /* PresentFutureEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentFutureEmptyView.swift; sourceTree = "<group>"; };
+		B58DC377213C0EAF0067FD61 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard+Extensions.swift"; sourceTree = "<group>"; };
+		B58DC37B213D890A0067FD61 /* Dashboards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dashboards.xcassets; sourceTree = "<group>"; };
 		B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredCard.swift; sourceTree = "<group>"; };
 		B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEditableSection.swift; sourceTree = "<group>"; };
 		B59318231FF90890000D8FFE /* ColorEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEditableSection.swift; sourceTree = "<group>"; };
@@ -1343,6 +1349,7 @@
 			children = (
 				B5C757291F9DCA160032199E /* App.swift */,
 				B5C7572B1F9DCA300032199E /* Card.swift */,
+				B58DC377213C0EAF0067FD61 /* Dashboard.swift */,
 				B5C7573C1F9DF8870032199E /* ColorCard.swift */,
 				B5BD3B2F2007A50A0075C75F /* CheckInCard.swift */,
 				B5B7EE472010B7C300BCD41A /* PhraseCard.swift */,
@@ -1362,6 +1369,7 @@
 				B5FFDD4A201B8416008D0365 /* WeatherValue.swift */,
 				B5FFDD4C201B8429008D0365 /* PhotoValue.swift */,
 				B5DE2CAC2000EAA900EFBCA5 /* Card+Extensions.swift */,
+				B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */,
 				B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */,
 				B5BD3B312007A65E0075C75F /* CheckInCard+Extensions.swift */,
 				B5B7EE492010B8E400BCD41A /* PhraseCard+Extensions.swift */,
@@ -1404,6 +1412,7 @@
 				B587D6C71FB96D11006D62C1 /* Icons.xcassets */,
 				B5BD494D2116FAEB004872B0 /* Images.xcassets */,
 				B55464CE2025AA9A00923CE3 /* Weather.xcassets */,
+				B58DC37B213D890A0067FD61 /* Dashboards.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1902,6 +1911,7 @@
 				B5A730EB1FF2437C006B6F58 /* saveNewCard.wav in Resources */,
 				B5A730EA1FF2437C006B6F58 /* openAnalytics.wav in Resources */,
 				B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */,
+				B58DC37C213D890A0067FD61 /* Dashboards.xcassets in Resources */,
 				B5A730F01FF2437C006B6F58 /* evaluateButton.wav in Resources */,
 				B593182A1FFAD4FF000D8FFE /* CardMerge.storyboard in Resources */,
 				B5A730EC1FF2437C006B6F58 /* evaluateCard.wav in Resources */,
@@ -2388,6 +2398,7 @@
 				B56218051FD5672D0061AC70 /* ProViewController.swift in Sources */,
 				B5D854BB1FCCB8C500BB4E14 /* SettingsThemesViewController.swift in Sources */,
 				B55D326C2074F67300BD1E75 /* OrangeShareViewTheme.swift in Sources */,
+				B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */,
 				B5D9A85720612EEB00F84091 /* ActivityPhotoNode.swift in Sources */,
 				B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */,
 				B5A11407200E3120008DBF02 /* MapViewController.swift in Sources */,
@@ -2421,6 +2432,7 @@
 				B5DE2CA31FFFC8EB00EFBCA5 /* SyncEngine.swift in Sources */,
 				B5AB1E902018CCEE00BB1A64 /* ListMergeSection.swift in Sources */,
 				B52D26DD201745CF00332D0A /* HabitCard.swift in Sources */,
+				B58DC378213C0EAF0067FD61 /* Dashboard.swift in Sources */,
 				B5EC8863201348AB0056C1C7 /* CounterEvaluateSection.swift in Sources */,
 				B5BD3B2020076BAD0075C75F /* CriterionTenEvaluateSection.swift in Sources */,
 				B5AC0E0320E23BBB00F13A79 /* SettingsIconsViewController.swift in Sources */,

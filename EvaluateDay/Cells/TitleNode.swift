@@ -15,6 +15,8 @@ protocol TitleNodeStyle {
     var titleSubtitleColor: UIColor { get }
     var titleSubtitleFont: UIFont { get }
     var titleShareTintColor: UIColor { get }
+    var titleDashboardFont: UIFont { get }
+    var titleDashboardColor: UIColor { get }
 }
 
 class TitleNode: ASCellNode {
@@ -24,13 +26,15 @@ class TitleNode: ASCellNode {
     var subtitle: ASTextNode = ASTextNode()
     var previewImage: ASImageNode = ASImageNode()
     var shareButton: ASButtonNode = ASButtonNode()
+    var dashboardImage: ASImageNode!
+    var dashboardTitle: ASTextNode!
     
     // MARK: - Variable
     var topInset: CGFloat = 10.0
     var leftInset: CGFloat = 0.0
 
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, style: TitleNodeStyle) {
+    init(title: String, subtitle: String, image: UIImage, dashboard: (title: String, image: UIImage)?, style: TitleNodeStyle) {
         super.init()
         
         let paragraph = NSMutableParagraphStyle()
@@ -44,6 +48,16 @@ class TitleNode: ASCellNode {
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.titleShareTintColor)
+        
+        if dashboard != nil {
+            self.dashboardImage = ASImageNode()
+            self.dashboardImage.image = dashboard?.image
+            self.dashboardImage.clipsToBounds = true
+            self.dashboardImage.cornerRadius = 15.0
+            
+            self.dashboardTitle = ASTextNode()
+            self.dashboardTitle.attributedText = NSAttributedString(string: dashboard!.title, attributes: [NSAttributedStringKey.font: style.titleDashboardFont, NSAttributedStringKey.foregroundColor: style.titleDashboardColor])
+        }
         
         // Accessibility
         self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
@@ -84,6 +98,20 @@ class TitleNode: ASCellNode {
         
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [topLineInset, subtitleInset]
+        
+        if self.dashboardTitle != nil && self.dashboardImage != nil {
+            self.dashboardImage.style.preferredSize = CGSize(width: 30.0, height: 30.0)
+            
+            let dashboard = ASStackLayoutSpec.horizontal()
+            dashboard.spacing = 5.0
+            dashboard.alignItems = .center
+            dashboard.children = [self.dashboardImage, self.dashboardTitle]
+            
+            let dashboardInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 10.0, right: 10.0)
+            let dashboardInset = ASInsetLayoutSpec(insets: dashboardInsets, child: dashboard)
+            
+            cell.children?.append(dashboardInset)
+        }
         
         let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 0.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

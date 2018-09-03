@@ -71,7 +71,7 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
         }
         if index == 0 {
             return {
-                let node = TitleNode(title: Localizations.activity.gallery.title, subtitle: subtitle, image: #imageLiteral(resourceName: "gallery"), style: style)
+                let node = TitleNode(title: Localizations.activity.gallery.title, subtitle: subtitle, image: #imageLiteral(resourceName: "gallery"), dashboard: nil, style: style)
                 node.shareButton.alpha = 0.0
                 node.topInset = 50.0
                 return node

@@ -199,6 +199,8 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "demo.phrase.dayTwo" = "Лакончиные инструменты Evaluate Day делают процесс аналитики простым и удобным.";
 "demo.tracker.subtitle" = "Часто ли я принимаю лекарства?";
 "demo.tracker.title" = "Лекарства";
+"demo.dashboard.work" = "Work";
+"demo.dashboard.workout" = "Workout";
 "evaluate.checkin.permission.buttonTitle" = "Разрешить доступ к местоположению";
 "evaluate.checkin.permission.description" = "Для отметки в определенном месте вы должны разрешить Evaluate Day использовать информацию о вашем местоположении.";
 "evaluate.checkin.quickCheckin" = "Быстрая отметка";

@@ -13,6 +13,7 @@ final class Demo {
     
     // MARK: - Variables
     private let startDay = 0
+    private var dashboards: (work: String, workout: String)!
     // MARK: - Init
     private init() {
         
@@ -21,6 +22,7 @@ final class Demo {
     // MARK: - Action
     static func make() {
         let demo = Demo()
+        demo.makeDashboards()
         demo.makeHundredCriterion()
         demo.makePhrases()
         demo.makeColors()
@@ -37,6 +39,23 @@ final class Demo {
     }
     
     // MARK: - Private actions
+    private func makeDashboards() {
+        let work = Dashboard()
+        work.title = Localizations.demo.dashboard.work
+        work.image = "dashboard-31"
+        
+        let workout = Dashboard()
+        workout.title = Localizations.demo.dashboard.workout
+        workout.image = "dashboard-19"
+        workout.order = 1
+        
+        try! Database.manager.data.write {
+            Database.manager.data.add(work)
+            Database.manager.data.add(workout)
+        }
+        
+        self.dashboards = (work.id, workout.id)
+    }
     private func makeColors() {
         // Make cards
         let card = Card()
@@ -104,6 +123,7 @@ final class Demo {
         card.subtitle = Localizations.demo.criterion.hundred.subtitle
         card.type = .criterionHundred
         card.order = Database.manager.data.objects(Card.self).count
+        card.dashboard = self.dashboards.work
         
         // Make data
         var values = [NumberValue]()
@@ -132,6 +152,7 @@ final class Demo {
         card.type = .criterionTen
         card.order = Database.manager.data.objects(Card.self).count
         (card.data as! CriterionTenCard).positive = false
+        card.dashboard = self.dashboards.work
         
         // Make data
         var values = [NumberValue]()
@@ -159,6 +180,7 @@ final class Demo {
         card.subtitle = Localizations.demo.criterion.three.subtitle
         card.type = .criterionThree
         card.order = Database.manager.data.objects(Card.self).count
+        card.dashboard = self.dashboards.work
         
         // Make data
         var values = [NumberValue]()
@@ -213,6 +235,7 @@ final class Demo {
         card.subtitle = Localizations.demo.counter.subtitle
         card.type = .counter
         card.order = Database.manager.data.objects(Card.self).count
+        card.dashboard = self.dashboards.work
         
         // Make data
         var values = [NumberValue]()
@@ -270,6 +293,7 @@ final class Demo {
         card.subtitle = Localizations.demo.tracker.subtitle
         card.type = .tracker
         card.order = Database.manager.data.objects(Card.self).count
+        card.dashboard = self.dashboards.workout
         
         // Make data
         var values = [MarkValue]()
@@ -328,6 +352,7 @@ final class Demo {
         card.subtitle = Localizations.demo.goal.subtitle
         card.type = .goal
         card.order = Database.manager.data.objects(Card.self).count
+        card.dashboard = self.dashboards.workout
         let goalCard = card.data as! GoalCard
         goalCard.goalValue = 80
         

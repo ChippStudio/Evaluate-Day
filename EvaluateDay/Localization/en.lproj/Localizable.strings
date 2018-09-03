@@ -199,6 +199,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "demo.phrase.dayTwo" = "Evaluate Day’s simple instruments make the analytic process easy and convenient.";
 "demo.tracker.subtitle" = "Do I take medication often?";
 "demo.tracker.title" = "Medication";
+"demo.dashboard.work" = "Work";
+"demo.dashboard.workout" = "Workout";
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";
 "evaluate.checkin.permission.description" = "For check in you must allow Evaluate Day use your location information";
 "evaluate.checkin.quickCheckin" = "Quick Check In";

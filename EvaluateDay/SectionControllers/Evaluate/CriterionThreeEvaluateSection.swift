@@ -67,9 +67,10 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
         }
         
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, style: style)
+            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -185,10 +186,10 @@ class ThreeNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive, style: style)
         
         // Accessibility

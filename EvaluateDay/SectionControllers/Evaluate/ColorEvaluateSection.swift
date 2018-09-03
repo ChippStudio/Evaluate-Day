@@ -63,9 +63,10 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             }
         }
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, cardType: cardType, style: style)
+            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -177,10 +178,10 @@ class ColorNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock, style: style)
         
         // Accessibility

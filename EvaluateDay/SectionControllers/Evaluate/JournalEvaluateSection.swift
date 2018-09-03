@@ -89,9 +89,10 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
         
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, cardType: cardType, style: style)
+            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
@@ -228,10 +229,10 @@ class JournalNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.new = JournalNewEntryActionNode(date: date, style: style)
         for (i, entry) in entries.enumerated() {
             let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true, style: style)

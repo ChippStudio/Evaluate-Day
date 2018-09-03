@@ -66,8 +66,9 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
             let isPro = Store.current.isPro
+            let board = self.card.dashboardValue
             return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+                let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
                 node.topInset = 10.0
                 if !isPro {
                     node.shareButton.alpha = 0.0

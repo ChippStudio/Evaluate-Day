@@ -58,9 +58,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         }
         
         let cardType = Sources.title(forType: self.card.type)
+        let board = self.card.dashboardValue
         
         return {
-            let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, cardType: cardType, style: style)
+            let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, cardType: cardType, dashboard: board, style: style)
             
             node.visual(withStyle: style)
             
@@ -193,10 +194,10 @@ class PhraseNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, text: String, date: Date, cardType: String, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, text: String, date: Date, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
         self.phrase = PhraseEvaluateNode(text: text, date: date, style: style)
         
         // Accessibility

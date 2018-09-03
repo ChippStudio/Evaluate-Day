@@ -64,6 +64,8 @@ struct OrangeSettingsTheme: SettingsStyle {
     var titleSubtitleColor: UIColor { return UIColor.paleGrey }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.paleGrey }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.paleGrey }
     
     // MARK: - SettingsProDescriptionNodeStyle
     var proDescriptionTextColor: UIColor { return UIColor.paleGrey }

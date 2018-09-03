@@ -199,6 +199,8 @@
 "demo.phrase.dayTwo" = "Die einfachen Instrumente von Evaluate Day machen den Analyseprozess einfach und bequem.";
 "demo.tracker.subtitle" = "Nehme ich oft Medikamente ein?";
 "demo.tracker.title" = "Medikamente";
+"demo.dashboard.work" = "Work";
+"demo.dashboard.workout" = "Workout";
 "evaluate.checkin.permission.buttonTitle" = "Zugriff auf den Standort zulassen";
 "evaluate.checkin.permission.description" = "Für den Check-in müssen Sie die Nutzung Ihrer Standortinformationen zulassen";
 "evaluate.checkin.quickCheckin" = "Schneller Check-In";

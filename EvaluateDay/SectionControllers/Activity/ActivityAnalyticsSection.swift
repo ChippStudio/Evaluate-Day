@@ -70,7 +70,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             let subtitle = Localizations.activity.analytics.stat.subtitle
             let image = Sources.image(forType: .evaluate)
             return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image, style: style)
+                let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: nil, style: style)
                 node.topInset = 10.0
                 if self.isPro {
                     node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)

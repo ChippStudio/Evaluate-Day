@@ -811,6 +811,16 @@ public struct Localizations {
 
         }
 
+        public struct dashboard {
+
+            /// Base translation: Work
+            public static var work : String = NSLocalizedString("demo.dashboard.work", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Workout
+            public static var workout : String = NSLocalizedString("demo.dashboard.workout", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        }
+
         public struct list {
 
             /// Base translation: Steps needed to put together a printer
