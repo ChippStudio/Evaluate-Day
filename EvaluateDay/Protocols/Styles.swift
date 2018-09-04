@@ -59,6 +59,15 @@ protocol NewCardStyle: SourceNodeStyle {
     var barLargeTitleFont: UIFont { get }
 }
 
+protocol DashboardSettingsStyle: DashboardTitleNodeStyle {
+    var background: UIColor { get }
+    var barColor: UIColor { get }
+    var barTint: UIColor { get }
+    var barTitleFont: UIFont { get }
+    var barLargeTitleFont: UIFont { get }
+    var tableSeparatorColor: UIColor { get }
+}
+
 protocol CardSettingsStyle: EditableSectionStyle {
     var background: UIColor { get }
     var barColor: UIColor { get }

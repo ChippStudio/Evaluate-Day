@@ -227,6 +227,10 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 
 // MARK: - Dashboard
 "dashboard.title" = "Dashboard";
+"dashboard.icons" = "Icons";
+"dashboard.selectTitle" = "Title";
+"dashboard.titlePlaceholder" = "";
+"dashboard.deleteMessage" = "";
 
 // MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";

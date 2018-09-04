@@ -26,9 +26,10 @@ class DashboardsNode: ASCellNode {
     
     // MARK: - Variables
     var collectionDidLoad: (() -> Void)?
+    var cellHeight: CGFloat = 95.0
     
     // MARK: - Init
-    override init() {
+    init(cellSize: CGSize = CGSize(width: 70.0, height: 95.0)) {
         super.init()
         
         self.collectionNode = ASDisplayNode(viewBlock: { () -> UIView in
@@ -36,13 +37,16 @@ class DashboardsNode: ASCellNode {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 20.0
             layout.sectionInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-            layout.itemSize = CGSize(width: 70.0, height: 95.0)
+            layout.itemSize = cellSize
             
             self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
             self.collectionView.backgroundColor = UIColor.clear
             self.collectionView.alwaysBounceHorizontal = true
+            self.collectionView.showsHorizontalScrollIndicator = false
+            self.collectionView.showsVerticalScrollIndicator = false
             self.collectionView.register(DashboardCell.classForCoder(), forCellWithReuseIdentifier: "dashboard")
             self.collectionView.register(DashboardNewCell.classForCoder(), forCellWithReuseIdentifier: "newDashboard")
+            self.collectionView.register(DashboardIconCell.classForCoder(), forCellWithReuseIdentifier: "dashboardIcon")
             
             return self.collectionView
         }, didLoad: { (_) in
@@ -54,7 +58,7 @@ class DashboardsNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.collectionNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 95.0)
+        self.collectionNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: cellHeight)
         
         let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: self.collectionNode)
@@ -174,6 +178,37 @@ class DashboardNewCell: UICollectionViewCell {
         self.addNew.snp.makeConstraints { (make) in
             make.width.equalTo(30.0)
             make.height.equalTo(30.0)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+}
+
+class DashboardIconCell: UICollectionViewCell {
+    // MARK: - UI
+    var imageView: UIImageView = UIImageView()
+    // MARK: - Override
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initSubviews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initSubviews()
+    }
+    
+    // MARK: - Init subviews
+    fileprivate func initSubviews() {
+        // Custom initialization
+        self.imageView.clipsToBounds = true
+        self.imageView.layer.cornerRadius = 35.0
+        self.imageView.contentMode = .scaleAspectFill
+        
+        self.contentView.addSubview(self.imageView)
+        self.imageView.snp.makeConstraints { (make) in
+            make.height.equalTo(70.0)
+            make.width.equalTo(70.0)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }

@@ -20,10 +20,13 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
     // MARK: - Variables
     var dashboards: Results<Dashboard>!
     var selectDashboard: ((_ dashboard: String) -> Void)?
+    var collectionView: UICollectionView!
     
     private var nodes = [DashboardsSectionNodeType]()
+    private var realmToken: NotificationToken!
     
     init(isCardSettings: Bool) {
+        super.init()
         self.dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
         
         if isCardSettings {
@@ -34,6 +37,18 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
         } else {
             self.nodes.append(.dashboards)
         }
+        
+        self.realmToken = self.dashboards.observe({ (c) in
+            switch c {
+            case .initial(_):()
+            case .update(_, deletions: _, insertions: _, modifications: _):
+                if self.collectionView != nil {
+                    self.collectionView.reloadData()
+                }
+            case .error(let error):
+                print("ERROR - \(error.localizedDescription)")
+            }
+        })
     }
     
     // MARK: - Override
@@ -53,6 +68,7 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
             return {
                 let node = DashboardsNode()
                 node.collectionDidLoad = { () in
+                    self.collectionView = node.collectionView
                     node.collectionView.dataSource = self
                     node.collectionView.delegate = self
                 }
@@ -146,6 +162,14 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
         if indexPath.section == 0 {
             self.selectDashboard?(self.dashboards[indexPath.row].id)
             collectionView.reloadData()
+        }
+        
+        if indexPath.section == 1 {
+            if let nav = self.viewController?.parent as? UINavigationController {
+                let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
+                controller.dashboard = Dashboard()
+                nav.pushViewController(controller, animated: true)
+            }
         }
     }
 }

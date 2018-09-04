@@ -321,6 +321,13 @@
 		B5D0C7C720A8539A000F98EF /* BlackBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */; };
 		B5D0C7C820A8539A000F98EF /* BlackSlidesControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */; };
 		B5D11DAE206261B100D559BF /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D11DAD206261B100D559BF /* LoadView.swift */; };
+		B5D3FB8B213E3695004DFF78 /* Dashboards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */; };
+		B5D3FB8D213E36A8004DFF78 /* DashboardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */; };
+		B5D3FB8F213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB8E213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift */; };
+		B5D3FB91213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB90213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift */; };
+		B5D3FB93213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */; };
+		B5D3FB95213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB94213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift */; };
+		B5D3FB97213E9CCD004DFF78 /* DashboardTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */; };
 		B5D854BB1FCCB8C500BB4E14 /* SettingsThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BA1FCCB8C500BB4E14 /* SettingsThemesViewController.swift */; };
 		B5D854BD1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BC1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift */; };
 		B5D854BF1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BE1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift */; };
@@ -740,6 +747,13 @@
 		B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackBottomControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSlidesControllerTheme.swift; sourceTree = "<group>"; };
 		B5D11DAD206261B100D559BF /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
+		B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboards.storyboard; sourceTree = "<group>"; };
+		B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsViewController.swift; sourceTree = "<group>"; };
+		B5D3FB8E213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIghtDashboardSettingsTheme.swift; sourceTree = "<group>"; };
+		B5D3FB90213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkDashboardSettingsTheme.swift; sourceTree = "<group>"; };
+		B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeDashboardSettingsTheme.swift; sourceTree = "<group>"; };
+		B5D3FB94213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackDashboardSettingsTheme.swift; sourceTree = "<group>"; };
+		B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTitleNode.swift; sourceTree = "<group>"; };
 		B5D51C531FA4825800A316AC /* EvaluateDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EvaluateDay.entitlements; sourceTree = "<group>"; };
 		B5D854BA1FCCB8C500BB4E14 /* SettingsThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsThemesViewController.swift; sourceTree = "<group>"; };
 		B5D854BC1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
@@ -898,6 +912,7 @@
 				B5257D541FE93FC800AC54DE /* DarkEvaluateTheme.swift */,
 				B5257D4E1FE93FC800AC54DE /* DarkAnalyticalTheme.swift */,
 				B5257D4D1FE93FC800AC54DE /* DarkNewCardTheme.swift */,
+				B5D3FB90213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift */,
 				B5257D4B1FE93FC800AC54DE /* DarkCardSettingsTheme.swift */,
 				B593182F1FFAD625000D8FFE /* DarkCardMergeTheme.swift */,
 				B5257D511FE93FC800AC54DE /* DarkSettingsTheme.swift */,
@@ -958,6 +973,7 @@
 				B55D32642074F67300BD1E75 /* OrangeEvaluateTheme.swift */,
 				B55D325C2074F67300BD1E75 /* OrangeAnalyticalTheme.swift */,
 				B55D325D2074F67300BD1E75 /* OrangeNewCardTheme.swift */,
+				B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */,
 				B55D325F2074F67300BD1E75 /* OrangeCardSettingsTheme.swift */,
 				B55D325B2074F67300BD1E75 /* OrangeCardMergeTheme.swift */,
 				B55D32682074F67300BD1E75 /* OrangeSettingsTheme.swift */,
@@ -1165,6 +1181,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5D3FB89213E367B004DFF78 /* Dashboards */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
 				B59DA06821201F5800A9FCFB /* Time */,
 				B59DA061211D66C400A9FCFB /* Share */,
@@ -1633,6 +1650,7 @@
 				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
 				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
 				B58DC381213D92D10067FD61 /* DashboardsNode.swift */,
+				B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1664,6 +1682,7 @@
 				B5D0C7AF20A8539A000F98EF /* BlackEvaluateTheme.swift */,
 				B5D0C7B120A8539A000F98EF /* BlackAnalyticalTheme.swift */,
 				B5D0C7B620A8539A000F98EF /* BlackNewCardTheme.swift */,
+				B5D3FB94213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift */,
 				B5D0C7AE20A8539A000F98EF /* BlackCardSettingsTheme.swift */,
 				B5D0C7B020A8539A000F98EF /* BlackCardMergeTheme.swift */,
 				B5D0C7B520A8539A000F98EF /* BlackSettingsTheme.swift */,
@@ -1676,6 +1695,15 @@
 				B5D0C7B320A8539A000F98EF /* BlackEntryViewControllerTheme.swift */,
 			);
 			path = "Black Theme";
+			sourceTree = "<group>";
+		};
+		B5D3FB89213E367B004DFF78 /* Dashboards */ = {
+			isa = PBXGroup;
+			children = (
+				B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */,
+				B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */,
+			);
+			path = Dashboards;
 			sourceTree = "<group>";
 		};
 		B5D854C81FCDAA5D00BB4E14 /* Passcode */ = {
@@ -1759,6 +1787,7 @@
 				B5A0D0001FB2C2AA002B1636 /* LightEvaluateTheme.swift */,
 				B5CA2D581FB43A9300547EC8 /* LightAnalyticalTheme.swift */,
 				B5E75E841FA09FF300DBF6D5 /* LightNewCardTheme.swift */,
+				B5D3FB8E213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift */,
 				B570C3F91FAC38F800B12309 /* LightCardSettingsTheme.swift */,
 				B593182D1FFAD5E1000D8FFE /* LightCardMergeTheme.swift */,
 				B587D6B21FB59CA2006D62C1 /* LightSettingsTheme.swift */,
@@ -1970,6 +1999,7 @@
 				B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */,
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
+				B5D3FB8B213E3695004DFF78 /* Dashboards.storyboard in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
 				B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */,
@@ -2168,6 +2198,7 @@
 			files = (
 				B55464DB2028615000923CE3 /* JournalAnalyticsSection.swift in Sources */,
 				B5D854CE1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift in Sources */,
+				B5D3FB8D213E36A8004DFF78 /* DashboardsViewController.swift in Sources */,
 				B5D0C7C120A8539A000F98EF /* BlackEntryViewControllerTheme.swift in Sources */,
 				B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */,
 				B5EC88532011EF850056C1C7 /* PhrasesViewController.swift in Sources */,
@@ -2199,6 +2230,7 @@
 				B5AC0E1820E4C8B500F13A79 /* DarkTabControllerTheme.swift in Sources */,
 				B55D3280207902C300BD1E75 /* TrackerCard.swift in Sources */,
 				B5AB1E8C2018CB1300BB1A64 /* ListEvaluateSection.swift in Sources */,
+				B5D3FB8F213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift in Sources */,
 				B5E772221FA0819D002FA03F /* SourceNode.swift in Sources */,
 				B5B7EE3E20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift in Sources */,
 				B5BD3B1E2007676F0075C75F /* CriterionTenCard+Extensions.swift in Sources */,
@@ -2245,6 +2277,7 @@
 				B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */,
 				B5B27E911F9DC43200CB9121 /* AnalyticsViewController.swift in Sources */,
 				B5535AF01FF10BB200D2AE25 /* Analytics.swift in Sources */,
+				B5D3FB91213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift in Sources */,
 				B52D26F1201765AC00332D0A /* HabitEvaluateCommentNode.swift in Sources */,
 				B5A9D5AE20220540006DFB32 /* JournalEditableSection.swift in Sources */,
 				B56218101FD5A9D30061AC70 /* SettingsProReviewNode.swift in Sources */,
@@ -2354,6 +2387,7 @@
 				B5D854C31FCCBA4F00BB4E14 /* SettingsAboutViewController.swift in Sources */,
 				B5D854EF1FD07B8400BB4E14 /* TimeBottomViewController.swift in Sources */,
 				B5BD3B3C2008B8B80075C75F /* CheckInMergeSection.swift in Sources */,
+				B5D3FB97213E9CCD004DFF78 /* DashboardTitleNode.swift in Sources */,
 				B5257D6D1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift in Sources */,
 				B57B064B201B224200C4E182 /* GoalAnalyticsSection.swift in Sources */,
 				B59318271FFA4AA7000D8FFE /* DiffCard.swift in Sources */,
@@ -2363,6 +2397,7 @@
 				B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */,
 				B5A1B0E21FBAC7D8003D9E81 /* TopTransition.swift in Sources */,
 				B584E0D11FE27177008093D5 /* SlidesViewController.swift in Sources */,
+				B5D3FB95213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift in Sources */,
 				B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */,
 				B5A2619B1FBBFEA1008EB017 /* UnarchiveNode.swift in Sources */,
 				B55464D92028607500923CE3 /* JournalMergeSection.swift in Sources */,
@@ -2412,6 +2447,7 @@
 				B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */,
 				B5D9A85720612EEB00F84091 /* ActivityPhotoNode.swift in Sources */,
 				B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */,
+				B5D3FB93213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift in Sources */,
 				B5A11407200E3120008DBF02 /* MapViewController.swift in Sources */,
 				B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */,
 				B5CA2D591FB43A9300547EC8 /* LightAnalyticalTheme.swift in Sources */,

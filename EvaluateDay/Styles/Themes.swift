@@ -151,6 +151,20 @@ final class Themes: NSObject {
         return LightCardMergeTheme()
     }
     
+    var dashboardSettingsStyle: DashboardSettingsStyle {
+        if self.current == .light {
+            return LightDashboardSettingsTheme()
+        } else if self.current == .dark {
+            return DarkDashboardSettingsTheme()
+        } else if self.current == .orange {
+            return OrangeDashboardSettingsTheme()
+        } else if self.current == .black {
+            return BlackDashboardSettingsTheme()
+        }
+        
+        return LightDashboardSettingsTheme()
+    }
+    
     var settingsStyle: SettingsStyle {
         if self.current == .light {
             return LightSettingsTheme()

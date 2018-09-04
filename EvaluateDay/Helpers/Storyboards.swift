@@ -33,4 +33,5 @@ enum Storyboards: String {
     case share = "Share"
     case time = "Time"
     case photo = "Photo"
+    case dashboards = "Dashboards"
 }

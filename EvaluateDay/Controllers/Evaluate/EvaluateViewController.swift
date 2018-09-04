@@ -131,8 +131,13 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             switch c {
             case .initial(_):
                 self.adapter.performUpdates(animated: true, completion: nil)
-            case .update(_, deletions: let deleted, insertions: let inserted, modifications: _):
-                if inserted.count != 0 || deleted.count != 0 {
+                if let section = self.adapter.sectionController(for: self.dashboardsObject) as? DashboardsSection {
+                    if section.collectionView != nil {
+                        section.collectionView.reloadData()
+                    }
+                }
+            case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
+                if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
                     self.adapter.performUpdates(animated: true, completion: nil)
                 }
             case .error(let error):
@@ -249,12 +254,23 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             return nil
         }
         
-        previewingContext.sourceRect = targetCell.frame
-        
         if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
+            previewingContext.sourceRect = targetCell.frame
             let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             settings.card = section.card
             return settings
+        } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
+            guard let dashIndexPath = section.collectionView.indexPathForItem(at: location), let dashTargetCell = section.collectionView.visibleCells.first(where: { $0.frame.contains(location) }) else {
+                return nil
+            }
+            
+            if dashIndexPath.section == 1 {
+                return nil
+            }
+            previewingContext.sourceRect = dashTargetCell.frame
+            let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
+            controller.dashboard = section.dashboards[dashIndexPath.row]
+            return controller
         }
         
         return nil
@@ -301,6 +317,18 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 settings.card = section.card
                 self.navigationController?.pushViewController(settings, animated: true)
             }
+        } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
+            guard let dashIndexPath = section.collectionView.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
+                return
+            }
+            
+            if dashIndexPath.section == 1 {
+                return
+            }
+            
+            let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
+            controller.dashboard = section.dashboards[dashIndexPath.row]
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     

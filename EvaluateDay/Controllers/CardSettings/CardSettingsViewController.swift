@@ -185,12 +185,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func deleteButtonAction(sender: UIBarButtonItem) {
-    }
-        
-    @objc func mergeButtonAction(sender: UIBarButtonItem) {
-    }
-    
     // MARK: - Private
     private func observable() {
         _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in

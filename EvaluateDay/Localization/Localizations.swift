@@ -489,8 +489,20 @@ public struct Localizations {
 
     public struct dashboard {
 
+        /// Base translation: 
+        public static var deleteMessage : String = NSLocalizedString("dashboard.deleteMessage", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Dashboard
         public static var title : String = NSLocalizedString("dashboard.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Title
+        public static var selectTitle : String = NSLocalizedString("dashboard.selectTitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Icons
+        public static var icons : String = NSLocalizedString("dashboard.icons", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: 
+        public static var titlePlaceholder : String = NSLocalizedString("dashboard.titlePlaceholder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
     }
 
