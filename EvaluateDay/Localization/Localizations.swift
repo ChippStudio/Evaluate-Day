@@ -17,54 +17,22 @@ import Foundation
 public struct Localizations {
 
 
-    public struct welcome {
-
-        /// Base translation: by Chipp Studio
-        public static var bychippstudio : String = NSLocalizedString("welcome.bychippstudio", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    public struct _default {
 
 
-        public struct cards {
-
-            /// Base translation: The more often and more carefully you will do it...
-            public static var third : String = NSLocalizedString("welcome.cards.third", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: ...the more accurate analysis you will get
-            public static var fourth : String = NSLocalizedString("welcome.cards.fourth", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: Add a new card for each action or problem
-            public static var first : String = NSLocalizedString("welcome.cards.first", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: Track and record all changes
-            public static var second : String = NSLocalizedString("welcome.cards.second", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+        public struct data {
 
 
-            public struct last {
+            public struct phrase {
 
-                /// Base translation: You`re all set!
-                public static var title : String = NSLocalizedString("welcome.cards.last.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                /// Base translation: Add cards freely, sort them to your liking. Add a reminder.
+                public static var three : String = NSLocalizedString("default.data.phrase.three", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Enjoy.
-                public static var description : String = NSLocalizedString("welcome.cards.last.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                /// Base translation: Press the card to open its settings, delete it or connect to any other similar card.
+                public static var two : String = NSLocalizedString("default.data.phrase.two", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-
-                public struct more {
-
-                    /// Base translation: One more thing...
-                    public static var title : String = NSLocalizedString("welcome.cards.last.more.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                    /// Base translation: Next.
-                    public static var description : String = NSLocalizedString("welcome.cards.last.more.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                }
-            }
-
-            public struct pro {
-
-                /// Base translation: Thank You for your support 😍👍👇🔓
-                public static var title : String = NSLocalizedString("welcome.cards.pro.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Thanks to you, we developed a new and improved version of Evaluate Day - we've added new cards, synchronization and much more. Your subscription will be valid until
-                public static var description : String = NSLocalizedString("welcome.cards.pro.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                /// Base translation: Cards can help you track different indicators of your day. Find out more about the available types of cards at the "Add a new card" screen. Head to the analytics section to read all the notes.
+                public static var one : String = NSLocalizedString("default.data.phrase.one", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
         }
@@ -517,6 +485,13 @@ public struct Localizations {
 
             }
         }
+    }
+
+    public struct dashboard {
+
+        /// Base translation: Dashboard
+        public static var title : String = NSLocalizedString("dashboard.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
     }
 
     public struct share {
@@ -2170,22 +2145,54 @@ public struct Localizations {
         }
     }
 
-    public struct _default {
+    public struct welcome {
+
+        /// Base translation: by Chipp Studio
+        public static var bychippstudio : String = NSLocalizedString("welcome.bychippstudio", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
 
-        public struct data {
+        public struct cards {
+
+            /// Base translation: The more often and more carefully you will do it...
+            public static var third : String = NSLocalizedString("welcome.cards.third", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: ...the more accurate analysis you will get
+            public static var fourth : String = NSLocalizedString("welcome.cards.fourth", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Add a new card for each action or problem
+            public static var first : String = NSLocalizedString("welcome.cards.first", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Track and record all changes
+            public static var second : String = NSLocalizedString("welcome.cards.second", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
 
-            public struct phrase {
+            public struct last {
 
-                /// Base translation: Add cards freely, sort them to your liking. Add a reminder.
-                public static var three : String = NSLocalizedString("default.data.phrase.three", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                /// Base translation: You`re all set!
+                public static var title : String = NSLocalizedString("welcome.cards.last.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Press the card to open its settings, delete it or connect to any other similar card.
-                public static var two : String = NSLocalizedString("default.data.phrase.two", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                /// Base translation: Enjoy.
+                public static var description : String = NSLocalizedString("welcome.cards.last.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Cards can help you track different indicators of your day. Find out more about the available types of cards at the "Add a new card" screen. Head to the analytics section to read all the notes.
-                public static var one : String = NSLocalizedString("default.data.phrase.one", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                public struct more {
+
+                    /// Base translation: One more thing...
+                    public static var title : String = NSLocalizedString("welcome.cards.last.more.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                    /// Base translation: Next.
+                    public static var description : String = NSLocalizedString("welcome.cards.last.more.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                }
+            }
+
+            public struct pro {
+
+                /// Base translation: Thank You for your support 😍👍👇🔓
+                public static var title : String = NSLocalizedString("welcome.cards.pro.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Thanks to you, we developed a new and improved version of Evaluate Day - we've added new cards, synchronization and much more. Your subscription will be valid until
+                public static var description : String = NSLocalizedString("welcome.cards.pro.description", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
         }

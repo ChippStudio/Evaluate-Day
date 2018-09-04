@@ -14,6 +14,9 @@ protocol DashboardsNodeStyle {
     var dashboardsNodeTitleColor: UIColor { get }
     var dashboardsNodeNewColor: UIColor { get }
     var dashboardsNodeNewBorderColor: UIColor { get }
+    var dashboardsNodeCountColor: UIColor { get }
+    var dashboardsNodeCountTextColor: UIColor { get }
+    var dashboardsNodeCountTextFont: UIFont { get }
 }
 
 class DashboardsNode: ASCellNode {
@@ -31,8 +34,7 @@ class DashboardsNode: ASCellNode {
         self.collectionNode = ASDisplayNode(viewBlock: { () -> UIView in
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 15.0
-            layout.minimumInteritemSpacing = 15.0
+            layout.minimumLineSpacing = 20.0
             layout.sectionInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
             layout.itemSize = CGSize(width: 70.0, height: 95.0)
             
@@ -65,6 +67,8 @@ class DashboardCell: UICollectionViewCell {
     // MARK: - UI
     var titleLabel = UILabel()
     var imageView = UIImageView()
+    var countCover = UIView()
+    var countLabel = UILabel()
     
     // MARK: - Override
     override init(frame: CGRect) {
@@ -102,6 +106,27 @@ class DashboardCell: UICollectionViewCell {
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        self.countCover.backgroundColor = style.dashboardsNodeCountColor
+        self.countCover.layer.masksToBounds = true
+        self.countCover.layer.cornerRadius = 10.0
+        self.contentView.addSubview(self.countCover)
+        self.countCover.snp.makeConstraints { (make) in
+            make.height.equalTo(20.0)
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(self.imageView.snp.bottom)
+            make.width.greaterThanOrEqualTo(self.countCover.snp.height)
+        }
+        
+        self.countLabel.textColor = style.dashboardsNodeCountTextColor
+        self.countLabel.font = style.dashboardsNodeCountTextFont
+        self.countLabel.textAlignment = .center
+        self.countCover.addSubview(self.countLabel)
+        self.countLabel.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
             make.trailing.equalToSuperview()
             make.leading.equalToSuperview()
         }

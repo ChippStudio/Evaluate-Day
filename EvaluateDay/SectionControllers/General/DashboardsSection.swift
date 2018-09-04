@@ -10,27 +10,62 @@ import UIKit
 import AsyncDisplayKit
 import RealmSwift
 
+private enum DashboardsSectionNodeType {
+    case sectionTitle
+    case dashboards
+    case separator
+}
+
 class DashboardsSection: ListSectionController, ASSectionController, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - Variables
     var dashboards: Results<Dashboard>!
+    var selectDashboard: ((_ dashboard: String) -> Void)?
     
-    override init() {
+    private var nodes = [DashboardsSectionNodeType]()
+    
+    init(isCardSettings: Bool) {
         self.dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
+        
+        if isCardSettings {
+            self.nodes.append(.sectionTitle)
+            self.nodes.append(.separator)
+            self.nodes.append(.dashboards)
+            self.nodes.append(.separator)
+        } else {
+            self.nodes.append(.dashboards)
+        }
     }
     
     // MARK: - Override
     override func numberOfItems() -> Int {
-        return 1
+        return self.nodes.count
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        return {
-            let node = DashboardsNode()
-            node.collectionDidLoad = { () in
-                node.collectionView.dataSource = self
-                node.collectionView.delegate = self
+        let style = Themes.manager.cardSettingsStyle
+        switch self.nodes[index] {
+        case .sectionTitle:
+            return {
+                let node = CardSettingsSectionTitleNode(title: Localizations.dashboard.title, style: style)
+                return node
             }
-            return node
+        case .dashboards:
+            return {
+                let node = DashboardsNode()
+                node.collectionDidLoad = { () in
+                    node.collectionView.dataSource = self
+                    node.collectionView.delegate = self
+                }
+                return node
+            }
+        case .separator:
+            return {
+                let separator = SeparatorNode(style: style)
+                if index != 1 && index != self.nodes.count - 1 {
+                    separator.leftInset = 20.0
+                }
+                return separator
+            }
         }
     }
     
@@ -78,15 +113,39 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dashboard", for: indexPath) as! DashboardCell
             let dashboard = self.dashboards[indexPath.row]
             cell.titleLabel.text = dashboard.title
+            var dashboardImage: UIImage
             if let image = UIImage(named: dashboard.image) {
-                cell.imageView.image = image
+                dashboardImage = image
             } else {
-                cell.imageView.image = #imageLiteral(resourceName: "dashboard-0")
+                dashboardImage = #imageLiteral(resourceName: "dashboard-0")
             }
+            cell.imageView.image = dashboardImage
+            if let controller = self.viewController as? EvaluateViewController {
+                if controller.selectedDashboard != nil {
+                    if controller.selectedDashboard! != dashboard.id {
+                        cell.imageView.image = dashboardImage.noir
+                    }
+                }
+            } else if let controller = self.viewController as? CardSettingsViewController {
+                if controller.card.dashboard != nil {
+                    if controller.card.dashboard! != dashboard.id {
+                        cell.imageView.image = dashboardImage.noir
+                    }
+                }
+            }
+            let cards = Database.manager.data.objects(Card.self).filter("dashboard=%@ AND isDeleted=%@", dashboard.id, false)
+            cell.countLabel.text = "\(cards.count)"
             return cell
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newDashboard", for: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            self.selectDashboard?(self.dashboards[indexPath.row].id)
+            collectionView.reloadData()
+        }
     }
 }

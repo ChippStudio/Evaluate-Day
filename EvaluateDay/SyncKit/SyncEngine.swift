@@ -252,7 +252,7 @@ class SyncEngine {
             realm.delete(card)
         }
         for dashboard in dashboards {
-            // FIXIT: - Debug this part
+            // FIXME: - Debug this part
             if let card = Database.manager.data.objects(Card.self).filter("dashboard=%@", dashboard.id).first {
                 card.dashboard = nil
             }

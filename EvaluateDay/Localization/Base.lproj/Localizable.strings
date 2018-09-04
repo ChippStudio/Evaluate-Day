@@ -225,6 +225,9 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "demo.dashboard.work" = "Work";
 "demo.dashboard.workout" = "Workout";
 
+// MARK: - Dashboard
+"dashboard.title" = "Dashboard";
+
 // MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";
 "evaluate.checkin.permission.description" = "For check in you must allow Evaluate Day use your location information";

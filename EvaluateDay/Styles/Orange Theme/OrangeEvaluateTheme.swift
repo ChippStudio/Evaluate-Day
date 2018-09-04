@@ -220,4 +220,7 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var dashboardsNodeTitleColor: UIColor { return UIColor.paleGrey }
     var dashboardsNodeNewColor: UIColor { return UIColor.paleGrey }
     var dashboardsNodeNewBorderColor: UIColor { return UIColor.pumpkin }
+    var dashboardsNodeCountColor: UIColor { return UIColor.grapePurple }
+    var dashboardsNodeCountTextColor: UIColor { return UIColor.white }
+    var dashboardsNodeCountTextFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .demiBold) }
 }

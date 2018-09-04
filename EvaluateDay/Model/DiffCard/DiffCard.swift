@@ -17,6 +17,7 @@ class DiffCard: NSObject {
     let created: Date
     let edited: Date
     let order: Int
+    let dashboard: String?
     let archivedDate: Date?
     let archived: Bool
     let type: CardType
@@ -57,6 +58,7 @@ class DiffCard: NSObject {
         self.created = card.created
         self.edited = card.edited
         self.order = card.order
+        self.dashboard = card.dashboard
         self.archivedDate = card.archivedDate
         self.archived = card.archived
         self.type = card.type
@@ -197,7 +199,7 @@ extension DiffCard: ListDiffable {
             if object.date != self.date {
                 return false
             }
-            if object.title != self.title || object.subtitle != self.subtitle || object.created != self.created || object.order != self.order || object.archivedDate != self.archivedDate || object.archived != self.archived || object.type != self.type {
+            if object.title != self.title || object.subtitle != self.subtitle || object.created != self.created || object.order != self.order || object.dashboard != self.dashboard || object.archivedDate != self.archivedDate || object.archived != self.archived || object.type != self.type {
                 return false
             }
             // Control specific card objects {

@@ -220,4 +220,7 @@ struct DarkEvaluateTheme: EvaluableStyle {
     var dashboardsNodeTitleColor: UIColor { return UIColor.white }
     var dashboardsNodeNewColor: UIColor { return UIColor.white }
     var dashboardsNodeNewBorderColor: UIColor { return UIColor.gunmetal }
+    var dashboardsNodeCountColor: UIColor { return UIColor.salmon }
+    var dashboardsNodeCountTextColor: UIColor { return UIColor.white }
+    var dashboardsNodeCountTextFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .demiBold) }
 }

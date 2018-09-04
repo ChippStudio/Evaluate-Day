@@ -44,6 +44,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var adapter: ListAdapter!
     let proLockObject = ProLock()
     let dashboardsObject = DashboardsObject()
+    var selectedDashboard: String? {
+        didSet {
+            self.adapter.performUpdates(animated: true, completion: nil)
+        }
+    }
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -157,8 +162,17 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         var diffableCards = [ListDiffable]()
         if self.date < Date() {
             for c in self.cards {
-                let diffCard = DiffCard(card: c)
-                diffableCards.append(diffCard)
+                if self.selectedDashboard != nil {
+                    if c.dashboard != nil {
+                        if c.dashboard! == self.selectedDashboard! {
+                            let diffCard = DiffCard(card: c)
+                            diffableCards.append(diffCard)
+                        }
+                    }
+                } else {
+                    let diffCard = DiffCard(card: c)
+                    diffableCards.append(diffCard)
+                }
             }
         }
         
@@ -210,8 +224,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
             return section
         } else if object as? DashboardsObject != nil {
-            let section = DashboardsSection()
+            let section = DashboardsSection(isCardSettings: false)
             section.inset = cardInsets
+            section.selectDashboard = { (dashboardId) in
+                if self.selectedDashboard == dashboardId {
+                    self.selectedDashboard = nil
+                } else {
+                    self.selectedDashboard = dashboardId
+                }
+            }
             return section
         }
         

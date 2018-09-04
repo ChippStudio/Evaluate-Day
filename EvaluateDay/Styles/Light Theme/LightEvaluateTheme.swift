@@ -219,4 +219,7 @@ struct LightEvaluateTheme: EvaluableStyle {
     var dashboardsNodeTitleColor: UIColor { return UIColor.gunmetal }
     var dashboardsNodeNewColor: UIColor { return UIColor.gunmetal }
     var dashboardsNodeNewBorderColor: UIColor { return UIColor.white }
+    var dashboardsNodeCountColor: UIColor { return UIColor.brownishRed }
+    var dashboardsNodeCountTextColor: UIColor { return UIColor.white }
+    var dashboardsNodeCountTextFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .demiBold) }
 }
