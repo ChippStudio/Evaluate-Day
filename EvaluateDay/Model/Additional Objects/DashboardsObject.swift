@@ -10,7 +10,12 @@ import UIKit
 import IGListKit
 
 class DashboardsObject: NSObject {
-    let id = UUID.id
+    let id: String = UUID.id
+    let dashboardsCount: Int
+    
+    override init() {
+        self.dashboardsCount = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false).count
+    }
 }
 
 extension DashboardsObject: ListDiffable {
@@ -19,6 +24,11 @@ extension DashboardsObject: ListDiffable {
     }
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        return true
+        if let object = object as? DashboardsObject {
+            if self.dashboardsCount == object.dashboardsCount {
+                return true
+            }
+        }
+        return false
     }
 }

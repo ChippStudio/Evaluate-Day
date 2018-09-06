@@ -328,6 +328,9 @@
 		B5D3FB93213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */; };
 		B5D3FB95213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB94213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift */; };
 		B5D3FB97213E9CCD004DFF78 /* DashboardTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */; };
+		B5D3FB992140FD0A004DFF78 /* DashboardsNoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB982140FD0A004DFF78 /* DashboardsNoneNode.swift */; };
+		B5D3FB9B21410A55004DFF78 /* EvaluateEmptyCardObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */; };
+		B5D3FB9D21410AC8004DFF78 /* EvaluateEmptyCardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB9C21410AC8004DFF78 /* EvaluateEmptyCardSection.swift */; };
 		B5D854BB1FCCB8C500BB4E14 /* SettingsThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BA1FCCB8C500BB4E14 /* SettingsThemesViewController.swift */; };
 		B5D854BD1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BC1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift */; };
 		B5D854BF1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854BE1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift */; };
@@ -754,6 +757,9 @@
 		B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeDashboardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D3FB94213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackDashboardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTitleNode.swift; sourceTree = "<group>"; };
+		B5D3FB982140FD0A004DFF78 /* DashboardsNoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsNoneNode.swift; sourceTree = "<group>"; };
+		B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateEmptyCardObject.swift; sourceTree = "<group>"; };
+		B5D3FB9C21410AC8004DFF78 /* EvaluateEmptyCardSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateEmptyCardSection.swift; sourceTree = "<group>"; };
 		B5D51C531FA4825800A316AC /* EvaluateDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EvaluateDay.entitlements; sourceTree = "<group>"; };
 		B5D854BA1FCCB8C500BB4E14 /* SettingsThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsThemesViewController.swift; sourceTree = "<group>"; };
 		B5D854BC1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
@@ -1044,6 +1050,7 @@
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
 				B58DC37D213D91D00067FD61 /* DashboardsObject.swift */,
+				B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */,
 			);
 			path = "Additional Objects";
 			sourceTree = "<group>";
@@ -1259,6 +1266,7 @@
 				B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */,
 				B5A9D5AF2022062D006DFB32 /* JournalEvaluateSection.swift */,
 				B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */,
+				B5D3FB9C21410AC8004DFF78 /* EvaluateEmptyCardSection.swift */,
 			);
 			path = Evaluate;
 			sourceTree = "<group>";
@@ -1651,6 +1659,7 @@
 				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
 				B58DC381213D92D10067FD61 /* DashboardsNode.swift */,
 				B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */,
+				B5D3FB982140FD0A004DFF78 /* DashboardsNoneNode.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2208,9 +2217,11 @@
 				B5AB1E842018BFE600BB1A64 /* ListEditableSection.swift in Sources */,
 				B5BD3B2C200793350075C75F /* LocationValue.swift in Sources */,
 				B584E0DD1FE2A5BD008093D5 /* WelcomeBecomeProNode.swift in Sources */,
+				B5D3FB992140FD0A004DFF78 /* DashboardsNoneNode.swift in Sources */,
 				B5D0C7BD20A8539A000F98EF /* BlackEvaluateTheme.swift in Sources */,
 				B55D32762074F67300BD1E75 /* OrangeSettingsTheme.swift in Sources */,
 				B587D6CD1FB96FA3006D62C1 /* PresentFutureEmptyView.swift in Sources */,
+				B5D3FB9D21410AC8004DFF78 /* EvaluateEmptyCardSection.swift in Sources */,
 				B52D26E120174E7800332D0A /* HabitEditableSection.swift in Sources */,
 				B55464CD2025974400923CE3 /* PhotoNode.swift in Sources */,
 				B5AB1E7E2018A2CC00BB1A64 /* MarkValue+Extensions.swift in Sources */,
@@ -2514,6 +2525,7 @@
 				B5BD3B322007A65E0075C75F /* CheckInCard+Extensions.swift in Sources */,
 				B5257D611FE93FC800AC54DE /* DarkBottomControllerTheme.swift in Sources */,
 				B55D32712074F67300BD1E75 /* OrangeMapControllerTheme.swift in Sources */,
+				B5D3FB9B21410A55004DFF78 /* EvaluateEmptyCardObject.swift in Sources */,
 				B587D6B71FB6B10B006D62C1 /* SettingsBooleanNode.swift in Sources */,
 				B5257D5F1FE93FC800AC54DE /* DarkTopControllerTheme.swift in Sources */,
 				B5693EF720246EFB00B8879C /* EntryViewController.swift in Sources */,

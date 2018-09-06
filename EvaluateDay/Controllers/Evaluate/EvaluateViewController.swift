@@ -43,7 +43,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
     let proLockObject = ProLock()
-    let dashboardsObject = DashboardsObject()
+    var dashboardsObject = DashboardsObject()
     var selectedDashboard: String? {
         didSet {
             self.adapter.performUpdates(animated: true, completion: nil)
@@ -181,7 +181,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
         }
         
-        diffableCards.insert(self.dashboardsObject, at: 0)
+        if !self.cards.isEmpty {
+            if diffableCards.isEmpty {
+                // Add emty card for dashboard
+                diffableCards.append(EvaluateEmptyCardObject())
+            }
+            
+            self.dashboardsObject = DashboardsObject()
+            diffableCards.insert(self.dashboardsObject, at: 0)
+        }
         
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
             diffableCards.insert(self.proLockObject, at: 0)
@@ -220,7 +228,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 }
             }
             return controller
-        } else if object as? ProLock != nil {
+        } else if object is ProLock {
             let section = ProLockSection()
             section.inset = cardInsets
             section.didSelectPro = { () in
@@ -228,7 +236,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             return section
-        } else if object as? DashboardsObject != nil {
+        } else if object is DashboardsObject {
             let section = DashboardsSection(isCardSettings: false)
             section.inset = cardInsets
             section.selectDashboard = { (dashboardId) in
@@ -238,6 +246,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                     self.selectedDashboard = dashboardId
                 }
             }
+            return section
+        } else if object is EvaluateEmptyCardObject {
+            let section = EvaluateEmptyCardSection()
+            section.inset = cardInsets
             return section
         }
         

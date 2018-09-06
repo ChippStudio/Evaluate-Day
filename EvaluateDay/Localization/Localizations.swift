@@ -489,8 +489,8 @@ public struct Localizations {
 
     public struct dashboard {
 
-        /// Base translation: 
-        public static var deleteMessage : String = NSLocalizedString("dashboard.deleteMessage", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+        /// Base translation: Make a new dashboard. Just tap here.
+        public static var addNew : String = NSLocalizedString("dashboard.addNew", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         /// Base translation: Dashboard
         public static var title : String = NSLocalizedString("dashboard.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
@@ -498,12 +498,25 @@ public struct Localizations {
         /// Base translation: Title
         public static var selectTitle : String = NSLocalizedString("dashboard.selectTitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        /// Base translation: Dashboard Title
+        public static var titlePlaceholder : String = NSLocalizedString("dashboard.titlePlaceholder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: This action deletes the only dashboard. Cards will not be deleted. You can delete or archive card from card settings.
+        public static var deleteMessage : String = NSLocalizedString("dashboard.deleteMessage", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Icons
         public static var icons : String = NSLocalizedString("dashboard.icons", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        /// Base translation: 
-        public static var titlePlaceholder : String = NSLocalizedString("dashboard.titlePlaceholder", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        public struct empty {
+
+            /// Base translation: You have not card in dashboard yet. Add card in card settings.
+            public static var subtitle : String = NSLocalizedString("dashboard.empty.subtitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: The dashboard is empty
+            public static var title : String = NSLocalizedString("dashboard.empty.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        }
     }
 
     public struct share {

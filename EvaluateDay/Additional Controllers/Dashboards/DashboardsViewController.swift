@@ -153,7 +153,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
             Database.manager.data.add(self.dashboard)
         }
         
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func deleteButtonAction(sender: UIBarButtonItem) {
@@ -177,7 +177,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
             
             if let nav = self.parent as? UINavigationController {
-                nav.popToRootViewController(animated: true)
+                nav.popViewController(animated: true)
             }
         }
         

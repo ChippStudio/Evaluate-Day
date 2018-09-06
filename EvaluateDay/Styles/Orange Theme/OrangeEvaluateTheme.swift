@@ -223,4 +223,11 @@ struct OrangeEvaluateTheme: EvaluableStyle {
     var dashboardsNodeCountColor: UIColor { return UIColor.grapePurple }
     var dashboardsNodeCountTextColor: UIColor { return UIColor.white }
     var dashboardsNodeCountTextFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .demiBold) }
+    
+    // MARK: - DashboardsNoneNodeStyle
+    var dashboardsNoneNodeTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var dashboardsNoneNodeTitleColor: UIColor { return UIColor.paleGrey }
+    var dashboardsNoneNodeSubtitleFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .medium) }
+    var dashboardsNoneNodeSubtitleColor: UIColor { return UIColor.paleGrey }
+    var dashboardsNoneNodeTintColor: UIColor { return UIColor.paleGrey }
 }

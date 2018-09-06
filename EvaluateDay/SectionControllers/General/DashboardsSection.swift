@@ -14,6 +14,7 @@ private enum DashboardsSectionNodeType {
     case sectionTitle
     case dashboards
     case separator
+    case none
 }
 
 class DashboardsSection: ListSectionController, ASSectionController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -32,10 +33,18 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
         if isCardSettings {
             self.nodes.append(.sectionTitle)
             self.nodes.append(.separator)
-            self.nodes.append(.dashboards)
+            if self.dashboards.count != 0 {
+                self.nodes.append(.dashboards)
+            } else {
+                self.nodes.append(.none)
+            }
             self.nodes.append(.separator)
         } else {
-            self.nodes.append(.dashboards)
+            if self.dashboards.count != 0 {
+                self.nodes.append(.dashboards)
+            } else {
+                self.nodes.append(.none)
+            }
         }
         
         self.realmToken = self.dashboards.observe({ (c) in
@@ -82,6 +91,11 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
                 }
                 return separator
             }
+        case .none:
+            return {
+                let node = DashboardsNoneNode(style: Themes.manager.evaluateStyle)
+                return node
+            }
         }
     }
     
@@ -108,7 +122,13 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
     }
     
     override func didSelectItem(at index: Int) {
-        
+        if self.dashboards.count == 0 {
+            if let nav = self.viewController?.parent as? UINavigationController {
+                let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
+                controller.dashboard = Dashboard()
+                nav.pushViewController(controller, animated: true)
+            }
+        }
     }
     
     // MARK: - UICollectionViewDataSource

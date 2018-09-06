@@ -229,8 +229,11 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "dashboard.title" = "Dashboard";
 "dashboard.icons" = "Icons";
 "dashboard.selectTitle" = "Title";
-"dashboard.titlePlaceholder" = "";
-"dashboard.deleteMessage" = "";
+"dashboard.titlePlaceholder" = "Dashboard Title";
+"dashboard.deleteMessage" = "This action deletes the only dashboard. Cards will not be deleted. You can delete or archive card from card settings.";
+"dashboard.addNew" = "Make a new dashboard. Just tap here.";
+"dashboard.empty.title" = "The dashboard is empty";
+"dashboard.empty.subtitle" = "You have not card in dashboard yet. Add card in card settings.";
 
 // MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";
