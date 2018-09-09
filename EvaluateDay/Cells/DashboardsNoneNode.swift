@@ -35,6 +35,11 @@ class DashboardsNoneNode: ASCellNode {
         
         self.subtitle.attributedText = NSAttributedString(string: Localizations.dashboard.addNew, attributes: [NSAttributedStringKey.font: style.dashboardsNoneNodeSubtitleFont, NSAttributedStringKey.foregroundColor: style.dashboardsNoneNodeSubtitleColor])
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = Localizations.dashboard.title
+        self.accessibilityValue = Localizations.dashboard.addNew
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
         self.automaticallyManagesSubnodes = true
     }
     

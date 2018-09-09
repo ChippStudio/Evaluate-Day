@@ -74,6 +74,8 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
                 return node
             }
         case .dashboards:
+            
+            let count = self.dashboards.count
             return {
                 let node = DashboardsNode()
                 node.collectionDidLoad = { () in
@@ -81,6 +83,7 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
                     node.collectionView.dataSource = self
                     node.collectionView.delegate = self
                 }
+                node.accessibilityNode.accessibilityLabel = Localizations.accessibility.dashboard.dashboards(value1: "\(count)")
                 return node
             }
         case .separator:
@@ -156,25 +159,37 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
                 dashboardImage = #imageLiteral(resourceName: "dashboard-0")
             }
             cell.imageView.image = dashboardImage
+            cell.accessibilityTraits = UIAccessibilityTraitButton
             if let controller = self.viewController as? EvaluateViewController {
                 if controller.selectedDashboard != nil {
                     if controller.selectedDashboard! != dashboard.id {
                         cell.imageView.image = dashboardImage.noir
+                    } else {
+                        cell.accessibilityTraits |= UIAccessibilityTraitSelected
                     }
                 }
             } else if let controller = self.viewController as? CardSettingsViewController {
                 if controller.card.dashboard != nil {
                     if controller.card.dashboard! != dashboard.id {
                         cell.imageView.image = dashboardImage.noir
+                    } else {
+                        cell.accessibilityTraits |= UIAccessibilityTraitSelected
                     }
                 }
             }
             let cards = Database.manager.data.objects(Card.self).filter("dashboard=%@ AND isDeleted=%@", dashboard.id, false)
             cell.countLabel.text = "\(cards.count)"
+            
+            cell.isAccessibilityElement = true
+            cell.accessibilityLabel = Localizations.accessibility.dashboard.override(value1: dashboard.title, "\(cards.count)")
+            cell.accessibilityTraits |= UIAccessibilityTraitButton
             return cell
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newDashboard", for: indexPath)
+        cell.isAccessibilityElement = true
+        cell.accessibilityLabel = Localizations.accessibility.dashboard.new
+        cell.accessibilityTraits = UIAccessibilityTraitButton
         return cell
     }
     

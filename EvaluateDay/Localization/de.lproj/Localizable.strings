@@ -1,3 +1,4 @@
+// MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "Biografie";
 "accessibility.activity.personalInformation.edit" = "Persönliche Daten bearbeiten";
 "accessibility.activity.personalInformation.email" = "E-Mail";
@@ -69,6 +70,12 @@
 "accessibility.previous" = "Der vorherige Wert ist %@";
 "accessibility.selected" = "ausgewählt";
 "accessibility.unselected" = "nicht ausgewählt";
+"accessibility.dashboard.dashboards" = "Dashboard - %@";
+"accessibility.dashboard.override" = "%@, Kärtchen - %@";
+"accessibility.dashboard.new" = "neues Dashboard hinzufügen";
+"accessibility.dashboard.saveTitle" = "Speichere den neuen Titel für dein Dashboard";
+
+// MARK: - Activity
 "activity.analytics.barchart.title" = "Statistik der Sitzungen";
 "activity.analytics.stat.alldays" = "Tage";
 "activity.analytics.stat.archived" = "Archiviert";
@@ -90,6 +97,8 @@
 "activity.user.placeholder.email" = "E-Mail einrichten";
 "activity.user.placeholder.name" = "Legen Sie den vollständigen Namen fest";
 "activity.user.placeholder.web" = "Deine Website";
+
+// MARK: - Analytics
 "analytics.action" = "Analysen";
 "analytics.chart.bar.criterion.title" = "Alle Daten";
 "analytics.chart.line.criterion.title" = "Daten von allen Zeiten";
@@ -125,6 +134,8 @@
 "analytics.timeTravel" = "Zeitreise";
 "analytics.title" = "Analysen";
 "analytics.tracker.calendar.title" = "Tage, für die ein Tracker markiert wurde";
+
+// MARK: - Calendar
 "calendar.checkin.noTitle" = "Du warst noch nirgendswo";
 "calendar.checkin.title" = "Marken - %@";
 "calendar.counter.sum" = "%@ (an diesem Tag: %@ )";
@@ -137,6 +148,8 @@
 "calendar.list.info" = "Gesamt %@ (an diesem Tag %@ ( %@ )). Erledigt %@";
 "calendar.openEvaluate" = "Bewerten";
 "calendar.viewEvaluate" = "Öffnen";
+
+// MARK: - Card Merge
 "cardMerge.action" = "Zusammenführen";
 "cardMerge.baseCard" = "Basiskarte";
 "cardMerge.disclaimer" = "Zusammenführen kann nicht rückgängig gemacht werden.";
@@ -146,6 +159,8 @@
 "cardMerge.mustSelect" = "Sie müssen eine andere Karte auswählen";
 "cardMerge.selectCard" = "Wähle eine andere Karte aus";
 "cardMerge.title" = "Karten zusammenführen";
+
+// MARK: - Card Settings
 "cardSettings.counter.start" = "Ursprünglicher Wert";
 "cardSettings.counter.step" = "Schritt";
 "cardSettings.counter.sum.title" = "Gesamtwerte für die Tage";
@@ -161,10 +176,14 @@
 "cardSettings.textPlaceholder" = "Tippen, um neu einzugeben";
 "cardSettings.title" = "Titel";
 "cardSettings.untitle" = "Ohne Titel %@";
+
+// MARK: - Defaults
 "default.data.phrase.one" = "Mit Karten können Sie verschiedene Indikatoren Ihres Tages verfolgen. Auf dem Bildschirm \"Neue Karte hinzufügen\" erfahren Sie mehr über die verfügbaren Kartentypen. \
  Gehen Sie zum Bereich Analytics, um alle Notizen zu lesen.";
 "default.data.phrase.three" = "Fügen Sie Karten frei hinzu, sortieren Sie sie nach Ihren Wünschen. Fügen Sie eine Erinnerung hinzu.";
 "default.data.phrase.two" = "Drücken Sie die Karte, um ihre Einstellungen zu öffnen, löschen Sie sie oder verbinden Sie sie mit einer anderen ähnlichen Karte.";
+
+// MARK: - Demo
 "demo.counter.subtitle" = "Tassen Kaffee ☕️";
 "demo.counter.title" = "Kaffee ☕️";
 "demo.criterion.hundred.subtitle" = "War dein Tag produktiv?";
@@ -199,8 +218,20 @@
 "demo.phrase.dayTwo" = "Die einfachen Instrumente von Evaluate Day machen den Analyseprozess einfach und bequem.";
 "demo.tracker.subtitle" = "Nehme ich oft Medikamente ein?";
 "demo.tracker.title" = "Medikamente";
-"demo.dashboard.work" = "Work";
+"demo.dashboard.work" = "Arbeit";
 "demo.dashboard.workout" = "Workout";
+
+// MARK: - Dashboard
+"dashboard.title" = "Dashboard";
+"dashboard.icons" = "Ikonen";
+"dashboard.selectTitle" = "Titel";
+"dashboard.titlePlaceholder" = "Dashboard Titel";
+"dashboard.deleteMessage" = "Diese Aktion löscht das einzige Dashboard. Karten werden nicht gelöscht. Sie können die Karte aus den Karteneinstellungen löschen oder archivieren.";
+"dashboard.addNew" = "Erstellen Sie ein neues Dashboard. Tippen Sie einfach hier.";
+"dashboard.empty.title" = "Das Dashboard ist leer";
+"dashboard.empty.subtitle" = "Sie haben noch keine Karte im Dashboard. Karte in Karteneinstellungen hinzufügen";
+
+// MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Zugriff auf den Standort zulassen";
 "evaluate.checkin.permission.description" = "Für den Check-in müssen Sie die Nutzung Ihrer Standortinformationen zulassen";
 "evaluate.checkin.quickCheckin" = "Schneller Check-In";
@@ -221,6 +252,8 @@
 "evaluate.list.open" = "Liste öffnen";
 "evaluate.location.unknown" = "Unbekannter Ort";
 "evaluate.weather.unknown" = "Wetterdaten sind nicht verfügbar";
+
+// MARK: - General
 "general.action.analytics" = "Analytics öffnen";
 "general.action.evaluate" = "Bewerten";
 "general.and" = "und";
@@ -252,6 +285,8 @@
 "general.unarchive" = "Entpacken";
 "general.untitled" = "Ohne Titel";
 "general.version" = "Version: %@ (%@)";
+
+// MARK: - List
 "list.card.archiveMessage" = "Sie können den Tag nicht mit diesem Kärtchen auswerten, Ihre Daten werden gespeichert";
 "list.card.archiveNotDelete" = "Sie können dieses Kärtchen archivieren";
 "list.card.deleteMessage" = "Sie können diese Aktion nicht rückgängig machen";
@@ -259,15 +294,21 @@
 "list.card.empty.title" = "Du hast keine Karten";
 "list.card.unarchiveMessage" = "Sie können Tage mit diesem Kärtchen auswerten";
 "list.title" = "Alle Ihre Kärtchen";
+
+// MARK: - Many
 "many.day" = "%li d";
 "many.month" = "%li m";
 "many.week" = "%li w";
 "many.year" = "%li y";
+
+// MARK: - Message
 "messages.data.cloud.deleteAll.error" = "Fehler";
 "messages.data.cloud.deleteAll.subtitle" = "Erledigt";
 "messages.data.cloud.deleteAll.title" = "Alle iCloud-Daten wurden gelöscht";
 "messages.data.local.deleteAll.subtitle" = "Erledigt";
 "messages.data.local.deleteAll.title" = "Alle lokalen Daten gelöscht";
+
+// MARK: - New
 "new.cards.action" = "Neue Karte hinzufügen";
 "new.cards.limit.message" = "Sie können nur %i Karten hinzufügen.";
 "new.checkin.subtitle" = "Checken Sie in den Orte ein, die Sie während des Tages besuchen";
@@ -275,7 +316,7 @@
 "new.color.subtitle" = "Wählen Sie die Farbe des Tages";
 "new.color.title" = "Farbe";
 "new.controller.title" = "Neuer Karten-Typ";
-"new.counter.subtitle" = "Zähler zum Hinzufügen oder Subtrahieren eines einzelnen Werts, während ihres \
+"new.counter.subtitle" = "Zähler zum Hinzufügen oder Subtrahieren eines einzelnen Werts, während ihres 
 Fortschritts";
 "new.counter.title" = "Zähler";
 "new.criterionHundred.subtitle" = "Hilft bei der Auswertung und Analyse verschiedener Kriterien, die mit Sensoren nicht verfolgt werden können. Bewertung auf einer 100-Punkte-Skala.";
@@ -296,6 +337,8 @@ Fortschritts";
 "new.phrase.title" = "Ein kurzer Satz";
 "new.tracker.subtitle" = "Es kann Ihnen helfen, seltene alltägliche Aktivitäten wie Medikamenteneinnahme zu verfolgen.";
 "new.tracker.title" = "Tracker";
+
+// MARK: - Permissions
 "permission.camera.description" = "Erfassen Sie interessante Momente direkt aus der App";
 "permission.camera.title" = "Kamera";
 "permission.description.subtitle" = "Die volle Funktionalität von Evaluate Day erfordert einige Berechtigungen.";
@@ -306,6 +349,8 @@ Fortschritts";
 "permission.notification.title" = "Benachrichtigungen";
 "permission.photos.description" = "Importieren und speichern Sie Bilder in die Galerie";
 "permission.photos.title" = "Fotos";
+
+// MARK: - Settings
 "settings.about.legal.forecast" = "Wetter Powered by Dark Sky";
 "settings.about.legal.title" = "Legal";
 "settings.about.openSource" = "Open Source";
@@ -399,9 +444,7 @@ Fortschritts";
 "settings.pro.subscription.title.monthly" = "Monatliches Abonnement";
 "settings.pro.title" = "Abonnement";
 "settings.support.faq" = "FAQ";
-"settings.support.mail.body" = "Evaluate Day Version: %@ \
- Evaluate Day Build: %@ \
- iOS Version: %@";
+"settings.support.mail.body" = "Evaluate Day Version: %@ \n Evaluate Day Build: %@ \n iOS Version: %@";
 "settings.support.mail.subject" = "Evaluate Day Feedback";
 "settings.support.mailError.message" = "Dieses Gerät ist nicht zum Senden von E-Mails konfiguriert.";
 "settings.support.mailError.title" = "E-Mail-Fehler";
@@ -425,15 +468,23 @@ Fortschritts";
 "settings.themes.select.theme" = "Wähle ein Thema";
 "settings.themes.title" = "Themen";
 "settings.title" = "die Einstellungen";
+
+// MARK: - Share
 "share.description" = "Geteilt mit der Evaluate Day App";
 "share.link.title" = "Testes Sie Evaluate Day";
+
+// MARK: - Tab Bar
 "tabbar.activity" = "Aktivität";
 "tabbar.cards" = "Kärtchen";
 "tabbar.evaluate" = "Evaluate Day";
 "tabbar.settings" = "Einstellungen";
+
+// MARK: - Update
 "update.button" = "jetzt downloaden";
 "update.subtitle" = "In der neuen Version haben wir neue Arten von Kärtchen hinzugefügt, bitte laden Sie eine neue Version aus dem App Store herunter";
 "update.title" = "Bitte aktualisieren Sie Ihre Version von Evaluate Day";
+
+// MARK: - Welcome
 "welcome.bychippstudio" = "by Chipp Studio";
 "welcome.cards.first" = "Fügen Sie für jede Aktion oder jedes Problem eine neue Karte hinzu";
 "welcome.cards.fourth" = "... die genauere Analyse erhalten Sie";

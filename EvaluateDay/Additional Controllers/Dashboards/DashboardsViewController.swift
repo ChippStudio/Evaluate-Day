@@ -35,6 +35,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
             self.navigationItem.title! += " (\(self.dashboard.title))"
             
             self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(deleteButtonAction(sender:)))
+            self.deleteButton.accessibilityLabel = Localizations.general.delete
             self.navigationItem.rightBarButtonItem = deleteButton
         }
         
@@ -126,11 +127,16 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dashboardIcon", for: indexPath) as! DashboardIconCell
         let icon = "dashboard-\(indexPath.row)"
+        cell.isAccessibilityElement = true
+        cell.accessibilityTraits = UIAccessibilityTraitButton
+        cell.accessibilityValue = icon
         if self.dashboard.image == icon {
             cell.imageView.image = UIImage(named: icon)
+            cell.accessibilityTraits |= UIAccessibilityTraitSelected
         } else {
             cell.imageView.image = UIImage(named: icon)?.noir
         }
+        
         return cell
     }
     

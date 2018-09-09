@@ -1690,111 +1690,47 @@ public struct Localizations {
 
     public struct accessibility {
 
+        /// Base translation: more
+        public static var more : String = NSLocalizedString("accessibility.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Current value is %@
         public static func current(value1 : String) -> String {
             return String(format: NSLocalizedString("accessibility.current", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
         }
-
-        /// Base translation: less
-        public static var less : String = NSLocalizedString("accessibility.less", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: more
-        public static var more : String = NSLocalizedString("accessibility.more", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: selected
-        public static var selected : String = NSLocalizedString("accessibility.selected", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         /// Base translation: Previous value is %@
         public static func previous(value1 : String) -> String {
             return String(format: NSLocalizedString("accessibility.previous", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
         }
 
+        /// Base translation: less
+        public static var less : String = NSLocalizedString("accessibility.less", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: selected
+        public static var selected : String = NSLocalizedString("accessibility.selected", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: unselected
         public static var unselected : String = NSLocalizedString("accessibility.unselected", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
 
-        public struct notification {
+        public struct dashboard {
 
-            /// Base translation: notification with the message: %@, repeat: %@, at %@, with the card: %@
-            public static func description(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String) -> String {
-                return String(format: NSLocalizedString("accessibility.notification.description", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4)
+            /// Base translation: %@, cards - %@
+            public static func override(value1 : String, _ value2 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.dashboard.override", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
             }
 
-        }
+            /// Base translation: Add new dasboard
+            public static var new : String = NSLocalizedString("accessibility.dashboard.new", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        public struct analytics {
-
-            /// Base translation: Bar chart have %@ entries
-            public static func barChartData(value1 : String) -> String {
-                return String(format: NSLocalizedString("accessibility.analytics.barChartData", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            /// Base translation: Dashboards - %@
+            public static func dashboards(value1 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.dashboard.dashboards", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
             }
 
-            /// Base translation: Calendar view
-            public static var calendarView : String = NSLocalizedString("accessibility.analytics.calendarView", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+            /// Base translation: Save new title for dashboard
+            public static var saveTitle : String = NSLocalizedString("accessibility.dashboard.saveTitle", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Bar Chart
-            public static var barChart : String = NSLocalizedString("accessibility.analytics.barChart", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: Color %@ marked in %@ days
-            public static func color(value1 : String, _ value2 : String) -> String {
-                return String(format: NSLocalizedString("accessibility.analytics.color", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
-            }
-
-            /// Base translation: Line chart have %@ entries
-            public static func lineChartData(value1 : String) -> String {
-                return String(format: NSLocalizedString("accessibility.analytics.lineChartData", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-            }
-
-            /// Base translation: Share statistic
-            public static var shareStat : String = NSLocalizedString("accessibility.analytics.shareStat", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: Line Chart
-            public static var lineChart : String = NSLocalizedString("accessibility.analytics.lineChart", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            /// Base translation: Map view
-            public static var mapView : String = NSLocalizedString("accessibility.analytics.mapView", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-
-            public struct export {
-
-                /// Base translation: Export data to %@ file
-                public static func title(value1 : String) -> String {
-                    return String(format: NSLocalizedString("accessibility.analytics.export.title", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
-                }
-
-                /// Base translation: Double tap to export
-                public static var hint : String = NSLocalizedString("accessibility.analytics.export.hint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
-        }
-
-        public struct activity {
-
-
-            public struct personalInformation {
-
-                /// Base translation: site
-                public static var site : String = NSLocalizedString("accessibility.activity.personalInformation.site", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Save personal information
-                public static var save : String = NSLocalizedString("accessibility.activity.personalInformation.save", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Edit personal information
-                public static var edit : String = NSLocalizedString("accessibility.activity.personalInformation.edit", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: biography
-                public static var bio : String = NSLocalizedString("accessibility.activity.personalInformation.bio", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Select personal photo
-                public static var image : String = NSLocalizedString("accessibility.activity.personalInformation.image", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: email
-                public static var email : String = NSLocalizedString("accessibility.activity.personalInformation.email", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-                /// Base translation: Name
-                public static var name : String = NSLocalizedString("accessibility.activity.personalInformation.name", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
         }
 
         public struct onboarding {
@@ -1822,6 +1758,15 @@ public struct Localizations {
                 public static var restricted : String = NSLocalizedString("accessibility.onboarding.permissions.restricted", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
+        }
+
+        public struct notification {
+
+            /// Base translation: notification with the message: %@, repeat: %@, at %@, with the card: %@
+            public static func description(value1 : String, _ value2 : String, _ value3 : String, _ value4 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.notification.description", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3, value4)
+            }
+
         }
 
         public struct evaluate {
@@ -2022,6 +1967,81 @@ public struct Localizations {
                 public static func summory(value1 : String, _ value2 : String, _ value3 : String) -> String {
                     return String(format: NSLocalizedString("accessibility.evaluate.counter.summory", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2, value3)
                 }
+
+            }
+        }
+
+        public struct activity {
+
+
+            public struct personalInformation {
+
+                /// Base translation: site
+                public static var site : String = NSLocalizedString("accessibility.activity.personalInformation.site", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Save personal information
+                public static var save : String = NSLocalizedString("accessibility.activity.personalInformation.save", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Edit personal information
+                public static var edit : String = NSLocalizedString("accessibility.activity.personalInformation.edit", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: biography
+                public static var bio : String = NSLocalizedString("accessibility.activity.personalInformation.bio", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Select personal photo
+                public static var image : String = NSLocalizedString("accessibility.activity.personalInformation.image", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: email
+                public static var email : String = NSLocalizedString("accessibility.activity.personalInformation.email", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+                /// Base translation: Name
+                public static var name : String = NSLocalizedString("accessibility.activity.personalInformation.name", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
+        }
+
+        public struct analytics {
+
+            /// Base translation: Bar chart have %@ entries
+            public static func barChartData(value1 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.analytics.barChartData", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            }
+
+            /// Base translation: Calendar view
+            public static var calendarView : String = NSLocalizedString("accessibility.analytics.calendarView", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Bar Chart
+            public static var barChart : String = NSLocalizedString("accessibility.analytics.barChart", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Color %@ marked in %@ days
+            public static func color(value1 : String, _ value2 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.analytics.color", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1, value2)
+            }
+
+            /// Base translation: Line chart have %@ entries
+            public static func lineChartData(value1 : String) -> String {
+                return String(format: NSLocalizedString("accessibility.analytics.lineChartData", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+            }
+
+            /// Base translation: Share statistic
+            public static var shareStat : String = NSLocalizedString("accessibility.analytics.shareStat", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Line Chart
+            public static var lineChart : String = NSLocalizedString("accessibility.analytics.lineChart", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            /// Base translation: Map view
+            public static var mapView : String = NSLocalizedString("accessibility.analytics.mapView", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+
+            public struct export {
+
+                /// Base translation: Export data to %@ file
+                public static func title(value1 : String) -> String {
+                    return String(format: NSLocalizedString("accessibility.analytics.export.title", tableName: nil, bundle: Bundle.main, value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Double tap to export
+                public static var hint : String = NSLocalizedString("accessibility.analytics.export.hint", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
             }
         }

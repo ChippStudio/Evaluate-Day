@@ -1,3 +1,4 @@
+// MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "биография";
 "accessibility.activity.personalInformation.edit" = "Изменить личную информацию";
 "accessibility.activity.personalInformation.email" = "email";
@@ -69,6 +70,12 @@
 "accessibility.previous" = "Предыдущее значение %@";
 "accessibility.selected" = "выбран";
 "accessibility.unselected" = "не выбран";
+"accessibility.dashboard.dashboards" = "Дашборды - %@";
+"accessibility.dashboard.override" = "%@, карточки - %@";
+"accessibility.dashboard.new" = "Добавить новый дашбор";
+"accessibility.dashboard.saveTitle" = "Созранить название для дашборда";
+
+// MARK: - Activity
 "activity.analytics.barchart.title" = "Статистика запусков";
 "activity.analytics.stat.alldays" = "Дней";
 "activity.analytics.stat.archived" = "Архивировано";
@@ -90,6 +97,8 @@
 "activity.user.placeholder.email" = "Ваш электронный адрес";
 "activity.user.placeholder.name" = "Укажите полное имя";
 "activity.user.placeholder.web" = "Ваш веб-сайт";
+
+// MARK: - Analytics
 "analytics.action" = "Аналитика";
 "analytics.chart.bar.criterion.title" = "Все данные";
 "analytics.chart.line.criterion.title" = "Данные за все время";
@@ -125,6 +134,8 @@
 "analytics.timeTravel" = "Путешествие во времени";
 "analytics.title" = "Аналитика";
 "analytics.tracker.calendar.title" = "Дни, в которые был отмечен трекер";
+
+// MARK: - Calendar
 "calendar.checkin.noTitle" = "Вы нигде не были";
 "calendar.checkin.title" = "Отметок - %@";
 "calendar.counter.sum" = "%@ (в этот день: %@ )";
@@ -137,6 +148,8 @@
 "calendar.list.info" = "Всего %@ (за этот день %@ (%@)). Выполненно %@";
 "calendar.openEvaluate" = "Оценить";
 "calendar.viewEvaluate" = "Открыть";
+
+// MARK: - Card Merge
 "cardMerge.action" = "Объединить";
 "cardMerge.baseCard" = "Базовая карточка";
 "cardMerge.disclaimer" = "Вы не можете отменить объединение карточек";
@@ -146,6 +159,8 @@
 "cardMerge.mustSelect" = "Вы должны выбрать другую карточку";
 "cardMerge.selectCard" = "Выбирите другую карточку";
 "cardMerge.title" = "Объединить карточки";
+
+// MARK: - Card Settings
 "cardSettings.counter.start" = "Начальное значение";
 "cardSettings.counter.step" = "Шаг";
 "cardSettings.counter.sum.title" = "Суммировать значения за дни";
@@ -161,10 +176,14 @@
 "cardSettings.textPlaceholder" = "Нажмите, чтобы ввести новый";
 "cardSettings.title" = "Название";
 "cardSettings.untitle" = "%@ без названия";
+
+// MARK: - Defaults
 "default.data.phrase.one" = "Карточки помогают следить за различными показателями дня. Ознакомьтесь с видами карточек на экране добавление новой карточки.\
 Перейдите в раздел аналитики, что бы прочитать все заметки.";
 "default.data.phrase.three" = "Свободно добавляйте карточки, сортируйте их как Вам удобно. Добавьте напоминание.";
 "default.data.phrase.two" = "Нажмите на карточку, что бы перейти к ее настройкам, удалить или соединить с другой похожей карточкой.";
+
+// MARK: - Demo
 "demo.counter.subtitle" = "Чашек кофе ☕️";
 "demo.counter.title" = "Кофе ☕️";
 "demo.criterion.hundred.subtitle" = "Был ли ваш день продуктивным?";
@@ -199,8 +218,20 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "demo.phrase.dayTwo" = "Лакончиные инструменты Evaluate Day делают процесс аналитики простым и удобным.";
 "demo.tracker.subtitle" = "Часто ли я принимаю лекарства?";
 "demo.tracker.title" = "Лекарства";
-"demo.dashboard.work" = "Work";
-"demo.dashboard.workout" = "Workout";
+"demo.dashboard.work" = "Работа";
+"demo.dashboard.workout" = "Тренировки";
+
+// MARK: - Dashboard
+"dashboard.title" = "Дашборд";
+"dashboard.icons" = "Иконки";
+"dashboard.selectTitle" = "Название";
+"dashboard.titlePlaceholder" = "Название Дашборда";
+"dashboard.deleteMessage" = "Это действие удалит только дашборд. Карточки не будут удаленны. Вы можете удалить или архивировать их в настройках карточки.";
+"dashboard.addNew" = "Создайте новый дашборд. Просто нажмите сюда.";
+"dashboard.empty.title" = "Дашборд пуст";
+"dashboard.empty.subtitle" = "У Вас еще нет карточек в этом дашборде. Добавте новую в настройках карточек.";
+
+// MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Разрешить доступ к местоположению";
 "evaluate.checkin.permission.description" = "Для отметки в определенном месте вы должны разрешить Evaluate Day использовать информацию о вашем местоположении.";
 "evaluate.checkin.quickCheckin" = "Быстрая отметка";
@@ -221,6 +252,8 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "evaluate.list.open" = "Открыть список";
 "evaluate.location.unknown" = "Неизвестное место";
 "evaluate.weather.unknown" = "Данные о погоде недоступны";
+
+// MARK: - General
 "general.action.analytics" = "Открыть аналитику";
 "general.action.evaluate" = "Оценить";
 "general.and" = "и";
@@ -252,6 +285,8 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "general.unarchive" = "Разархивировать";
 "general.untitled" = "Без названия";
 "general.version" = "Версия: %@ ( %@ )";
+
+// MARK: - List
 "list.card.archiveMessage" = "Вы не сможете оценивать день по этой карточке, данные будут сохранены";
 "list.card.archiveNotDelete" = "Вы можете архивировать карточку";
 "list.card.deleteMessage" = "Вы не можете отменить это действие";
@@ -259,15 +294,21 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "list.card.empty.title" = "У вас нет никаких карточек";
 "list.card.unarchiveMessage" = "Вы можете оценивать дни с помощью этой карточки";
 "list.title" = "Все ваши карточки";
+
+// MARK: - Many
 "many.day" = "%li d";
 "many.month" = "%li m";
 "many.week" = "%li w";
 "many.year" = "%li y";
+
+// MARK: - Message
 "messages.data.cloud.deleteAll.error" = "Ошибка";
 "messages.data.cloud.deleteAll.subtitle" = "Готово";
 "messages.data.cloud.deleteAll.title" = "Все данные iCloud удалены";
 "messages.data.local.deleteAll.subtitle" = "Готово";
 "messages.data.local.deleteAll.title" = "Все локальные данные удалены";
+
+// MARK: - New
 "new.cards.action" = "Добавить новую";
 "new.cards.limit.message" = "Вы можете добавить только %i карточек";
 "new.checkin.subtitle" = "Отмечайтесь в местах, которые посещаете в течении дня";
@@ -295,6 +336,8 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "new.phrase.title" = "Фраза";
 "new.tracker.subtitle" = "Помогает отслеживать не частые, однообразные действия. Такие, как прием лекарств.";
 "new.tracker.title" = "Трекер";
+
+// MARK: - Permissions
 "permission.camera.description" = "Запечатлите интересные моменты прямо из приложения";
 "permission.camera.title" = "Камера";
 "permission.description.subtitle" = "Для полноценной работы Evaluate Day необходимы некоторые разрешения.";
@@ -305,6 +348,8 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "permission.notification.title" = "Уведомления";
 "permission.photos.description" = "Импортируйте и сохраняйте изображения в Фотопоток";
 "permission.photos.title" = "Фотографии";
+
+// MARK: - Settings
 "settings.about.legal.forecast" = "Weather Powered by Dark Sky";
 "settings.about.legal.title" = "Legal";
 "settings.about.openSource" = "Открытый исходный код";
@@ -398,11 +443,7 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "settings.pro.subscription.title.monthly" = "Месячная подписка";
 "settings.pro.title" = "Подписка";
 "settings.support.faq" = "FAQ";
-"settings.support.mail.body" = "\
- \
- Evaluate Day Version: %@ \
- Evaluate Day Build: %@ \
- iOS Version: %@";
+"settings.support.mail.body" = "\n \n Evaluate Day Version: %@ \n Evaluate Day Build: %@ \n iOS Version: %@";
 "settings.support.mail.subject" = "Evaluate Day Feedback";
 "settings.support.mailError.message" = "Это устройство не настроено для отправки почты.";
 "settings.support.mailError.title" = "Ошибка почты";
@@ -426,15 +467,23 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "settings.themes.select.theme" = "Выбрать тему";
 "settings.themes.title" = "Темы";
 "settings.title" = "Настройки";
+
+// MARK: - Share
 "share.description" = "Shared with Evaluate Day app";
 "share.link.title" = "Попробуйте оценить день";
+
+// MARK: - Tab Bar
 "tabbar.activity" = "Активность";
 "tabbar.cards" = "Карточки";
 "tabbar.evaluate" = "Evaluate Day";
 "tabbar.settings" = "Настройки";
+
+// MARK: - Update
 "update.button" = "Скачать сейчас";
 "update.subtitle" = "В новой версии мы добавили новый тип карточки, пожалуйста, скачайте новую версию из App Store";
 "update.title" = "Пожалуйста, обновите вашу версию Evaluate Day";
+
+// MARK: - Welcome
 "welcome.bychippstudio" = "by Chipp Studio";
 "welcome.cards.first" = "На каждое действие или проблему добавьте новую карточку";
 "welcome.cards.fourth" = "...тем более точный анализ вы получите";

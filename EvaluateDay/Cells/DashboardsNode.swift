@@ -24,6 +24,8 @@ class DashboardsNode: ASCellNode {
     var collectionNode: ASDisplayNode!
     var collectionView: UICollectionView!
     
+    var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Variables
     var collectionDidLoad: (() -> Void)?
     var cellHeight: CGFloat = 95.0
@@ -53,6 +55,8 @@ class DashboardsNode: ASCellNode {
             self.collectionDidLoad?()
         })
         
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
         self.automaticallyManagesSubnodes = true
     }
     
@@ -63,7 +67,8 @@ class DashboardsNode: ASCellNode {
         let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: self.collectionNode)
         
-        return cellInset
+        let cell = ASBackgroundLayoutSpec(child: cellInset, background: self.accessibilityNode)
+        return cell
     }
 }
 
@@ -134,6 +139,8 @@ class DashboardCell: UICollectionViewCell {
             make.trailing.equalToSuperview()
             make.leading.equalToSuperview()
         }
+        
+        self.isAccessibilityElement = true
     }
 }
 
@@ -181,6 +188,8 @@ class DashboardNewCell: UICollectionViewCell {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        self.isAccessibilityElement = true
     }
 }
 

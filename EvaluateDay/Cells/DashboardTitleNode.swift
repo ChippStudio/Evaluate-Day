@@ -33,6 +33,7 @@ class DashboardTitleNode: ASCellNode, UITextFieldDelegate {
         self.buttonCover.backgroundColor = style.dashbordTitleNodeButtonColor
         self.button.setImage(#imageLiteral(resourceName: "disclosure").withRenderingMode(.alwaysTemplate), for: .normal)
         self.button.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dashbordTitleNodeButtonTint)
+        self.button.accessibilityLabel = Localizations.accessibility.dashboard.saveTitle
         
         self.textFieldNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.textField = UITextField()

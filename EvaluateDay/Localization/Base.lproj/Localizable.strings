@@ -78,6 +78,10 @@
 "accessibility.previous" = "Previous value is %@";
 "accessibility.selected" = "selected";
 "accessibility.unselected" = "unselected";
+"accessibility.dashboard.dashboards" = "Dashboards - %@";
+"accessibility.dashboard.override" = "%@, cards - %@";
+"accessibility.dashboard.new" = "Add new dasboard";
+"accessibility.dashboard.saveTitle" = "Save new title for dashboard";
 
 // MARK: - Activity
 "activity.analytics.barchart.title" = "Statistics of launches";

@@ -88,8 +88,8 @@ struct OrangeActivityControllerTheme: ActivityControllerStyle {
     var titleSubtitleColor: UIColor { return UIColor.paleGrey }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.paleGrey }
-    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
-    var titleDashboardColor: UIColor { return UIColor.paleGrey }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.darkBlueGreen }
     
     // MARK: - SettingsMoreNodeStyle
     var settingsTitleNodeColor: UIColor { return UIColor.paleGrey }

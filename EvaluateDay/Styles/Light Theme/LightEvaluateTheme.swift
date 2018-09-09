@@ -34,8 +34,8 @@ struct LightEvaluateTheme: EvaluableStyle {
     var titleSubtitleColor: UIColor { return UIColor.gunmetal }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.gunmetal }
-    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
-    var titleDashboardColor: UIColor { return UIColor.charcoal }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.viridian }
     
     // MARK: - Color Evaluate node
     var selectedColor: UIColor { return UIColor.brownishRed }

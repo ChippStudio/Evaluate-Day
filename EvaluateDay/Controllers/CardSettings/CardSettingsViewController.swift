@@ -118,15 +118,15 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
             }
         } else if object is CardSettingsNotificationObject {
             let controller = CardSettingsNotificationSection(card: self.card)
-            controller.inset = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 0.0, right: 0.0)
+            controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 0.0, right: 0.0)
             return controller
         } else if object is CardSettingsDeleteObject {
             let controller = CardSettingsDeleteSection(card: self.card)
-            controller.inset = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 30.0, right: 0.0)
+            controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 30.0, right: 0.0)
             return controller
         } else if object is DashboardsObject {
             let controller = DashboardsSection(isCardSettings: true)
-            controller.inset = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 30.0, right: 0.0)
+            controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 30.0, right: 0.0)
             controller.selectDashboard = { (dashboardId) in
                 var newDashboard: String?
                 if self.card.dashboard != nil {

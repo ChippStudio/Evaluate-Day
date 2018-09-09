@@ -1,3 +1,4 @@
+// MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "biography";
 "accessibility.activity.personalInformation.edit" = "Edit personal information";
 "accessibility.activity.personalInformation.email" = "email";
@@ -69,6 +70,12 @@
 "accessibility.previous" = "Previous value is %@";
 "accessibility.selected" = "selected";
 "accessibility.unselected" = "unselected";
+"accessibility.dashboard.dashboards" = "Dashboards - %@";
+"accessibility.dashboard.override" = "%@, cards - %@";
+"accessibility.dashboard.new" = "Add new dasboard";
+"accessibility.dashboard.saveTitle" = "Save new title for dashboard";
+
+// MARK: - Activity
 "activity.analytics.barchart.title" = "Statistics of launches";
 "activity.analytics.stat.alldays" = "Days";
 "activity.analytics.stat.archived" = "Archived";
@@ -90,6 +97,8 @@
 "activity.user.placeholder.email" = "Set email";
 "activity.user.placeholder.name" = "Set full name";
 "activity.user.placeholder.web" = "Your web site";
+
+// MARK: - Analytics
 "analytics.action" = "Analytics";
 "analytics.chart.bar.criterion.title" = "All data";
 "analytics.chart.line.criterion.title" = "Data by all time";
@@ -125,6 +134,8 @@
 "analytics.timeTravel" = "Time Travel";
 "analytics.title" = "Analytics";
 "analytics.tracker.calendar.title" = "Days for which a tracker was marked";
+
+// MARK: - Calendar
 "calendar.checkin.noTitle" = "You haven't been anywhere yet";
 "calendar.checkin.title" = "Marks - %@";
 "calendar.counter.sum" = "%@ (in this day: %@)";
@@ -137,6 +148,8 @@
 "calendar.list.info" = "Total %@ (in this day %@ (%@)). Done %@";
 "calendar.openEvaluate" = "Evaluate";
 "calendar.viewEvaluate" = "Open";
+
+// MARK: - Card Merge
 "cardMerge.action" = "Merge";
 "cardMerge.baseCard" = "Base Card";
 "cardMerge.disclaimer" = "You can`t UNDO merge";
@@ -146,6 +159,8 @@
 "cardMerge.mustSelect" = "You must select other card";
 "cardMerge.selectCard" = "Select other card";
 "cardMerge.title" = "Merge Cards";
+
+// MARK: - Card Settings
 "cardSettings.counter.start" = "Initial value";
 "cardSettings.counter.step" = "Step";
 "cardSettings.counter.sum.title" = "Total values ​​for the days";
@@ -161,10 +176,14 @@
 "cardSettings.textPlaceholder" = "Tap to enter new";
 "cardSettings.title" = "Title";
 "cardSettings.untitle" = "Untitled %@";
+
+// MARK: - Defaults
 "default.data.phrase.one" = "Cards can help you track different indicators of your day. Find out more about the available types of cards at the \"Add a new card\" screen.\
 Head to the analytics section to read all the notes.";
 "default.data.phrase.three" = "Add cards freely, sort them to your liking. Add a reminder.";
 "default.data.phrase.two" = "Press the card to open its settings, delete it or connect to any other similar card.";
+
+// MARK: - Demo
 "demo.counter.subtitle" = "Cups of coffee ☕️";
 "demo.counter.title" = "Coffee ☕️";
 "demo.criterion.hundred.subtitle" = "Was your day productive?";
@@ -201,6 +220,18 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "demo.tracker.title" = "Medication";
 "demo.dashboard.work" = "Work";
 "demo.dashboard.workout" = "Workout";
+
+// MARK: - Dashboard
+"dashboard.title" = "Dashboard";
+"dashboard.icons" = "Icons";
+"dashboard.selectTitle" = "Title";
+"dashboard.titlePlaceholder" = "Dashboard Title";
+"dashboard.deleteMessage" = "This action deletes the only dashboard. Cards will not be deleted. You can delete or archive card from card settings.";
+"dashboard.addNew" = "Make a new dashboard. Just tap here.";
+"dashboard.empty.title" = "The dashboard is empty";
+"dashboard.empty.subtitle" = "You have not card in dashboard yet. Add card in card settings.";
+
+// MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";
 "evaluate.checkin.permission.description" = "For check in you must allow Evaluate Day use your location information";
 "evaluate.checkin.quickCheckin" = "Quick Check In";
@@ -221,6 +252,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "evaluate.list.open" = "Open list";
 "evaluate.location.unknown" = "Unknown place";
 "evaluate.weather.unknown" = "Weather data is not available";
+
+// MARK: - General
 "general.action.analytics" = "Open Analytics";
 "general.action.evaluate" = "Evaluate";
 "general.and" = "and";
@@ -252,6 +285,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "general.unarchive" = "Unarchive";
 "general.untitled" = "Untitled";
 "general.version" = "Version: %@ (%@)";
+
+// MARK: - List
 "list.card.archiveMessage" = "You can`t evaluate day by this card, you data will be save";
 "list.card.archiveNotDelete" = "You can archive card";
 "list.card.deleteMessage" = "You can`t UNDO this action";
@@ -259,15 +294,21 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "list.card.empty.title" = "You havn`t any cards";
 "list.card.unarchiveMessage" = "You can evaluate days by this card";
 "list.title" = "All your card";
+
+// MARK: - Many
 "many.day" = "%li d";
 "many.month" = "%li m";
 "many.week" = "%li w";
 "many.year" = "%li y";
+
+// MARK: - Message
 "messages.data.cloud.deleteAll.error" = "Error";
 "messages.data.cloud.deleteAll.subtitle" = "Done";
 "messages.data.cloud.deleteAll.title" = "All iCloud data deleted";
 "messages.data.local.deleteAll.subtitle" = "Done";
 "messages.data.local.deleteAll.title" = "All local data deleted";
+
+// MARK: - New
 "new.cards.action" = "Add new";
 "new.cards.limit.message" = "You can add only %i cards";
 "new.checkin.subtitle" = "Check in the places that you visit during the day";
@@ -295,6 +336,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "new.phrase.title" = "Phrase";
 "new.tracker.subtitle" = "It can help you track infrequent mundane activities like medication-taking.";
 "new.tracker.title" = "Tracker";
+
+// MARK: - Permissions
 "permission.camera.description" = "Capture interesting moments right from the app";
 "permission.camera.title" = "Camera";
 "permission.description.subtitle" = "Full functionality of Evaluate Day requires some permissions.";
@@ -305,6 +348,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "permission.notification.title" = "Notifications";
 "permission.photos.description" = "Import and save images into the Photos";
 "permission.photos.title" = "Photos";
+
+// MARK: - Settings
 "settings.about.legal.forecast" = "Weather Powered by Dark Sky";
 "settings.about.legal.title" = "Legal";
 "settings.about.openSource" = "Open Source";
@@ -352,8 +397,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.pro.description.more.activity.title" = "Full activity";
 "settings.pro.description.more.analytics.description" = "Complete analytics for each card. Everything you need in one place";
 "settings.pro.description.more.analytics.title" = "Analytics";
-"settings.pro.description.more.cards.description" = "Add the necessary number of cards to the application, track or write down everything you need.\
-";
+"settings.pro.description.more.cards.description" = "Add the necessary number of cards to the application, track or write down everything you need.";
 "settings.pro.description.more.cards.title" = "Unlimited cards";
 "settings.pro.description.more.export.description" = "Export card data to the format you need (csv, json or txt)";
 "settings.pro.description.more.export.title" = "Export";
@@ -399,11 +443,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.pro.subscription.title.monthly" = "Monthly subscription";
 "settings.pro.title" = "Subscription";
 "settings.support.faq" = "FAQ";
-"settings.support.mail.body" = "\
- \
- Evaluate Day Version: %@ \
- Evaluate Day Build: %@ \
- iOS Version: %@";
+"settings.support.mail.body" = "Evaluate Day Version: %@ \n Evaluate Day Build: %@ \n iOS Version: %@";
 "settings.support.mail.subject" = "Evaluate Day Feedback";
 "settings.support.mailError.message" = "This device is not configured to send mail.";
 "settings.support.mailError.title" = "Mail Error";
@@ -427,15 +467,23 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.themes.select.theme" = "Select a Theme";
 "settings.themes.title" = "Themes";
 "settings.title" = "Settings";
+
+// MARK: - Share
 "share.description" = "Shared with Evaluate Day app";
 "share.link.title" = "Try Evaluate Day";
+
+// MARK: - Tab Bar
 "tabbar.activity" = "Activity";
 "tabbar.cards" = "Cards";
 "tabbar.evaluate" = "Evaluate Day";
 "tabbar.settings" = "Settings";
+
+// MARK: - Update
 "update.button" = "Download now";
 "update.subtitle" = "In new version we add new type of cards, please download new version from App Store";
 "update.title" = "Please update your version of Evaluate Day";
+
+// MARK: - Welcome
 "welcome.bychippstudio" = "by Chipp Studio";
 "welcome.cards.first" = "Add a new card for each action or problem";
 "welcome.cards.fourth" = "...the more accurate analysis you will get";

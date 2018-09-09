@@ -272,6 +272,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             settings.card = section.card
             return settings
         } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
+            if section.dashboards.count == 0 {
+                return nil
+            }
             guard let dashIndexPath = section.collectionView.indexPathForItem(at: location), let dashTargetCell = section.collectionView.visibleCells.first(where: { $0.frame.contains(location) }) else {
                 return nil
             }

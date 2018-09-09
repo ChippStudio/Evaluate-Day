@@ -34,8 +34,8 @@ struct BlackEvaluateTheme: EvaluableStyle {
     var titleSubtitleColor: UIColor { return UIColor.white }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.white }
-    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
-    var titleDashboardColor: UIColor { return UIColor.white }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.pewterBlue }
     
     // MARK: - Color Evaluate node
     var selectedColor: UIColor { return UIColor.salmon }

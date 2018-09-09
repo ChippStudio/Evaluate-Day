@@ -37,6 +37,16 @@ class TitleNode: ASCellNode {
     init(title: String, subtitle: String, image: UIImage, dashboard: (title: String, image: UIImage)?, style: TitleNodeStyle) {
         super.init()
         
+        if dashboard != nil {
+            self.dashboardImage = ASImageNode()
+            self.dashboardImage.image = dashboard?.image
+            self.dashboardImage.clipsToBounds = true
+            self.dashboardImage.cornerRadius = 15.0
+            
+            self.dashboardTitle = ASTextNode()
+            self.dashboardTitle.attributedText = NSAttributedString(string: dashboard!.title, attributes: [NSAttributedStringKey.font: style.titleDashboardFont, NSAttributedStringKey.foregroundColor: style.titleDashboardColor])
+        }
+        
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineSpacing = -10.0
         
@@ -54,6 +64,7 @@ class TitleNode: ASCellNode {
             self.dashboardImage.image = dashboard?.image
             self.dashboardImage.clipsToBounds = true
             self.dashboardImage.cornerRadius = 15.0
+            self.dashboardImage.zPosition = -1.0
             
             self.dashboardTitle = ASTextNode()
             self.dashboardTitle.attributedText = NSAttributedString(string: dashboard!.title, attributes: [NSAttributedStringKey.font: style.titleDashboardFont, NSAttributedStringKey.foregroundColor: style.titleDashboardColor])
@@ -93,7 +104,7 @@ class TitleNode: ASCellNode {
         let topLineInset = ASInsetLayoutSpec(insets: topLineInsets, child: topLine)
         topLineInset.style.flexShrink = 1.0
         
-        let subtitleInsets = UIEdgeInsets(top: -10.0, left: 30.0, bottom: 10.0, right: 10.0)
+        let subtitleInsets = UIEdgeInsets(top: -10.0, left: 35.0, bottom: 10.0, right: 10.0)
         let subtitleInset = ASInsetLayoutSpec(insets: subtitleInsets, child: self.subtitle)
         
         let cell = ASStackLayoutSpec.vertical()
@@ -102,12 +113,15 @@ class TitleNode: ASCellNode {
         if self.dashboardTitle != nil && self.dashboardImage != nil {
             self.dashboardImage.style.preferredSize = CGSize(width: 30.0, height: 30.0)
             
-            let dashboard = ASStackLayoutSpec.horizontal()
-            dashboard.spacing = 5.0
-            dashboard.alignItems = .center
-            dashboard.children = [self.dashboardImage, self.dashboardTitle]
+            let dashboardTitleInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            let dashboardTitleInset = ASInsetLayoutSpec(insets: dashboardTitleInsets, child: self.dashboardTitle)
             
-            let dashboardInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 10.0, right: 10.0)
+            let dashboard = ASStackLayoutSpec.horizontal()
+            dashboard.spacing = 2.0
+            dashboard.alignItems = .end
+            dashboard.children = [self.dashboardImage, dashboardTitleInset]
+            
+            let dashboardInsets = UIEdgeInsets(top: -20.0, left: 2.0, bottom: 10.0, right: 10.0)
             let dashboardInset = ASInsetLayoutSpec(insets: dashboardInsets, child: dashboard)
             
             cell.children?.append(dashboardInset)
