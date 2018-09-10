@@ -23,7 +23,10 @@ class AnalyticsTimeTravelNode: ASCellNode {
     init(style: AnalyticsTimeTravelNodeStyle) {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: Localizations.analytics.timeTravel, attributes: [NSAttributedStringKey.font: style.analyticsTimeTravelNodeTitleFont, NSAttributedStringKey.foregroundColor: style.analyticsTimeTravelNodeTitleColor])
+        let parahraph = NSMutableParagraphStyle()
+        parahraph.alignment = .center
+        
+        self.title.attributedText = NSAttributedString(string: Localizations.analytics.timeTravel, attributes: [NSAttributedStringKey.font: style.analyticsTimeTravelNodeTitleFont, NSAttributedStringKey.foregroundColor: style.analyticsTimeTravelNodeTitleColor, NSAttributedStringKey.paragraphStyle: parahraph])
         
         self.image.image = #imageLiteral(resourceName: "timeTravel")
         self.image.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.analyticsTimeTravelNodeTitleColor)
@@ -40,9 +43,13 @@ class AnalyticsTimeTravelNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.image.style.preferredSize = CGSize(width: 30.0, height: 30.0)
         
+        self.title.style.flexShrink = 1.0
+        
         let cell = ASStackLayoutSpec.horizontal()
         cell.spacing = 20.0
+        cell.alignItems = .center
         cell.justifyContent = .center
+        cell.style.flexShrink = 1.0
         cell.children = [self.title, self.image]
         
         let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 40.0, right: 0.0)

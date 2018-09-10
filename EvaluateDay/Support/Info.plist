@@ -264,11 +264,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6258</string>
-	<key>CSBuild</key>
 	<string>6449</string>
+	<key>CSBuild</key>
+	<string>6453</string>
 	<key>CSDemo</key>
-	<true/>
+	<false/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>
