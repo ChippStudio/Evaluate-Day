@@ -355,12 +355,24 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         }
         
         if Database.manager.app.objects(AppUsage.self).count % 10 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
-            if #available(iOS 10.3, *) {
-                sendEvent(.showAppRate, withProperties: nil)
-                SKStoreReviewController.requestReview()
-            } else {
-                // Fallback on earlier versions
+            let alert = UIAlertController(title: Localizations.general.like, message: nil, preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: Localizations.general.yes, style: .default) { (_) in
+                if #available(iOS 10.3, *) {
+                    sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: true)])
+                    SKStoreReviewController.requestReview()
+                } else {
+                    // Fallback on earlier versions
+                }
             }
+            
+            let noAction = UIAlertAction(title: Localizations.general.no, style: .default) { (_) in
+                sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: false)])
+            }
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

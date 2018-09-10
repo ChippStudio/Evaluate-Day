@@ -362,14 +362,17 @@ public struct Localizations {
 
     public struct general {
 
-        /// Base translation: Edit
-        public static var edit : String = NSLocalizedString("general.edit", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
         /// Base translation: Created
         public static var createDate : String = NSLocalizedString("general.createDate", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        /// Base translation: Edit
+        public static var edit : String = NSLocalizedString("general.edit", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Discard
         public static var discard : String = NSLocalizedString("general.discard", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Lifetime
+        public static var lifetime : String = NSLocalizedString("general.lifetime", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         /// Base translation: Untitled
         public static var untitled : String = NSLocalizedString("general.untitled", tableName: nil, bundle: Bundle.main, value: "", comment: "")
@@ -397,6 +400,12 @@ public struct Localizations {
         /// Base translation: and
         public static var and : String = NSLocalizedString("general.and", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
+        /// Base translation: Yes
+        public static var yes : String = NSLocalizedString("general.yes", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: No
+        public static var no : String = NSLocalizedString("general.no", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
         /// Base translation: Done
         public static var done : String = NSLocalizedString("general.done", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
@@ -412,30 +421,45 @@ public struct Localizations {
         /// Base translation: Are you sure?
         public static var sureQuestion : String = NSLocalizedString("general.sureQuestion", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        /// Base translation: Cancel
-        public static var cancel : String = NSLocalizedString("general.cancel", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: Delete
-        public static var delete : String = NSLocalizedString("general.delete", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-        /// Base translation: Lifetime
-        public static var lifetime : String = NSLocalizedString("general.lifetime", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+        /// Base translation: Skip
+        public static var skip : String = NSLocalizedString("general.skip", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
         /// Base translation: Save
         public static var save : String = NSLocalizedString("general.save", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-        /// Base translation: Skip
-        public static var skip : String = NSLocalizedString("general.skip", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+        /// Base translation: Do you like Evaluate Day?
+        public static var like : String = NSLocalizedString("general.like", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Delete
+        public static var delete : String = NSLocalizedString("general.delete", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+        /// Base translation: Cancel
+        public static var cancel : String = NSLocalizedString("general.cancel", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
 
-        public struct photo {
+        public struct shortcut {
 
-            /// Base translation: Take photo
-            public static var take : String = NSLocalizedString("general.photo.take", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            /// Base translation: Select photo
-            public static var select : String = NSLocalizedString("general.photo.select", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+            public struct activity {
 
+                /// Base translation: Open Activity
+                public static var title : String = NSLocalizedString("general.shortcut.activity.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
+
+            public struct evaluate {
+
+                /// Base translation: Evaluate
+                public static var title : String = NSLocalizedString("general.shortcut.evaluate.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
+
+            public struct new {
+
+                /// Base translation: Add new card
+                public static var title : String = NSLocalizedString("general.shortcut.new.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+
+            }
         }
 
         public struct action {
@@ -461,29 +485,14 @@ public struct Localizations {
 
         }
 
-        public struct shortcut {
+        public struct photo {
 
+            /// Base translation: Take photo
+            public static var take : String = NSLocalizedString("general.photo.take", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-            public struct activity {
+            /// Base translation: Select photo
+            public static var select : String = NSLocalizedString("general.photo.select", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 
-                /// Base translation: Open Activity
-                public static var title : String = NSLocalizedString("general.shortcut.activity.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
-
-            public struct evaluate {
-
-                /// Base translation: Evaluate
-                public static var title : String = NSLocalizedString("general.shortcut.evaluate.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
-
-            public struct new {
-
-                /// Base translation: Add new card
-                public static var title : String = NSLocalizedString("general.shortcut.new.title", tableName: nil, bundle: Bundle.main, value: "", comment: "")
-
-            }
         }
     }
 

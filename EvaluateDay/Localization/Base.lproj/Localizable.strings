@@ -293,6 +293,9 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "general.unarchive" = "Unarchive";
 "general.untitled" = "Untitled";
 "general.version" = "Version: %@ (%@)";
+"general.yes" = "Yes";
+"general.no" = "No";
+"general.like" = "Do you like Evaluate Day?";
 
 // MARK: - List
 "list.card.archiveMessage" = "You can`t evaluate day by this card, you data will be save";

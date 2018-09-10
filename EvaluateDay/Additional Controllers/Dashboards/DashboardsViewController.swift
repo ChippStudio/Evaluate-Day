@@ -159,6 +159,8 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
             Database.manager.data.add(self.dashboard)
         }
         
+        sendEvent(.newDashboard, withProperties: nil)
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -181,6 +183,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
             }
             
             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
+            sendEvent(.deleteDashboard, withProperties: nil)
             
             if let nav = self.parent as? UINavigationController {
                 nav.popViewController(animated: true)

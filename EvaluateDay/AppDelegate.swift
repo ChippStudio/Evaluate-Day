@@ -345,12 +345,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - Controll locations
     private func setUserInformation() {
         let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
+        let dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
         let starts = Database.manager.data.objects(AppUsage.self)
         let voiceOver = UIAccessibilityIsVoiceOverRunning()
         let identify = AMPIdentify()
         identify.set("Pro", value: NSNumber(value: Store.current.isPro))
         identify.set("VoiceOver", value: NSNumber(value: voiceOver))
         identify.set("Cards", value: NSNumber(value: cards.count))
+        identify.set("Dashboards", value: NSNumber(value: dashboards.count))
         identify.set("App Starts", value: NSNumber(value: starts.count))
         Amplitude.instance().identify(identify)
     }

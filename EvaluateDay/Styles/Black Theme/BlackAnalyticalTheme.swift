@@ -24,8 +24,8 @@ struct BlackAnalyticalTheme: AnalyticalStyle {
     var titleSubtitleColor: UIColor { return UIColor.white }
     var titleSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }
     var titleShareTintColor: UIColor { return UIColor.white }
-    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .medium) }
-    var titleDashboardColor: UIColor { return UIColor.white }
+    var titleDashboardFont: UIFont { return UIFont.avenirNext(size: 14.0, weight: .medium) }
+    var titleDashboardColor: UIColor { return UIColor.pewterBlue }
     
     // AnalyticsCalendarNodeStyle
     var calendarTitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .regular) }

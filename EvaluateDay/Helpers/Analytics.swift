@@ -33,6 +33,8 @@ enum Analytics: String {
     case shareFromAnalytics
     case openFromLocalNotification
     case showAppRate
+    case newDashboard
+    case deleteDashboard
     
     // MARK: - Settings
     case openSettings
