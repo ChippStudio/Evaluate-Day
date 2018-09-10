@@ -8,8 +8,6 @@
 
 import UIKit
 import CloudKit
-import Fabric
-import Crashlytics
 import UserNotifications
 import YandexMobileMetrica
 import YandexMobileMetricaPush
@@ -34,18 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                   "sendAnaliticsPurchaceDate": Date().timeIntervalSince1970])
         
         if !UserDefaults.standard.bool(forKey: "demo") && !UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
-        
-            // Init Fabric
-            do {
-                if let url = Bundle.main.url(forResource: "fabric.apikey", withExtension: nil) {
-                    let key = try String(contentsOf: url, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
-                    Crashlytics.start(withAPIKey: key)
-                    Branch.getInstance(branchApiKey)
-                }
-            } catch {
-                NSLog("Could not retrieve Crashlytics API key. Check that fabric.apikey exists, contains your Crashlytics API key, and is a member of the target")
-            }
-            
             // Init App Metrica
             YMMYandexMetrica.activate(with: YMMYandexMetricaConfiguration(apiKey: yandexMetricaApiKey)!)
             let delegate = YMPYandexMetricaPush.userNotificationCenterDelegate()

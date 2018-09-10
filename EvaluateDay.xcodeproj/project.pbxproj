@@ -1852,7 +1852,6 @@
 				B5B27E521F9DA66000CB9121 /* Frameworks */,
 				B5B27E531F9DA66000CB9121 /* Resources */,
 				FBBDFC70680E9F12BFBE8F12 /* [CP] Embed Pods Frameworks */,
-				B5B27E6A1F9DA95300CB9121 /* Fabric */,
 				B5B27E731F9DAD5900CB9121 /* SwiftLint */,
 				B5B27E741F9DAE3A00CB9121 /* Build Number */,
 				B5B27E751F9DAE7900CB9121 /* Localization */,
@@ -2072,20 +2071,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EvaluateDayUITests/Pods-EvaluateDayUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B5B27E6A1F9DA95300CB9121 /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "FABRIC_APIKEY_FILE=\"${SRCROOT}/EvaluateDay/Support/Secret/fabric.apikey\"\nFABRIC_BUILDSECRET_FILE=\"${SRCROOT}/EvaluateDay/Support/Secret/fabric.buildsecret\"\n\nif test ! -f \"$FABRIC_APIKEY_FILE\" -o ! -f \"$FABRIC_BUILDSECRET_FILE\"; then\necho \"This build wants to upload dSYM files to Crashlytics.\"\necho \"Uploading is possible only if a Fabric API key and a Fabric build secret are\"\necho \"available. This build is failing because at least one of these pieces of\"\necho \"information is missing.\"\necho \"\"\necho \"To fix the problem, create the following files and store the API key and\"\necho \"build secret, respectively, within those files:\"\necho \"\"\necho \"  $FABRIC_APIKEY_FILE\"\necho \"  $FABRIC_BUILDSECRET_FILE\"\necho \"\"\necho \"If you forked the project then you must register with Crashlytics and\"\necho \"get your own API key and build secret.\"\n\n# Let the build fail\nexit 1\nfi\n\nFABRIC_APIKEY=$(cat \"$FABRIC_APIKEY_FILE\")\nif test $? -ne 0; then\necho \"Cannot read $FABRIC_APIKEY_FILE\"\nexit 1\nfi\n\nFABRIC_BUILDSECRET=$(cat \"$FABRIC_BUILDSECRET_FILE\")\nif test $? -ne 0; then\necho \"Cannot read $FABRIC_BUILDSECRET_FILE\"\nexit 1\nfi\n\n\necho \"Uploading dSYM files to Crashlytics\"\n\"${PODS_ROOT}/Fabric/run\" \"$FABRIC_APIKEY\" \"$FABRIC_BUILDSECRET\"";
 		};
 		B5B27E731F9DAD5900CB9121 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

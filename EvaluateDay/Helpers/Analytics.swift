@@ -9,7 +9,6 @@
 import Foundation
 import Amplitude_iOS
 import YandexMobileMetrica
-import Crashlytics
 import FBSDKCoreKit
 import FBSDKShareKit
 
@@ -94,12 +93,10 @@ func sendEvent(_ category: Analytics, withProperties properties: [String: Any]?)
     if properties == nil {
         Amplitude.instance().logEvent(category.rawValue)
         YMMYandexMetrica.reportEvent(category.rawValue, onFailure: nil)
-        Answers.logCustomEvent(withName: category.rawValue)
         FBSDKAppEvents.logEvent(category.rawValue)
     } else {
         Amplitude.instance().logEvent(category.rawValue, withEventProperties: properties)
         YMMYandexMetrica.reportEvent(category.rawValue, parameters: properties, onFailure: nil)
-        Answers.logCustomEvent(withName: category.rawValue, customAttributes: properties)
         FBSDKAppEvents.logEvent(category.rawValue, parameters: properties)
     }
 }
@@ -115,7 +112,6 @@ func purchase(item: String?, trial: Bool, lifetime: Bool, receipt: Data) {
     }
     
     let price: NSNumber = NSNumber(value: 1.0)
-    let decimalPrice: NSDecimalNumber = NSDecimalNumber(value: 1.0)
     var identifire: String = "Evaluate Day Pro - "
     
     if item == Store.current.monthlyProductID {
@@ -127,9 +123,6 @@ func purchase(item: String?, trial: Bool, lifetime: Bool, receipt: Data) {
     } else {
         return
     }
-    
-    // Answers
-    Answers.logPurchase(withPrice: decimalPrice, currency: "EUR", success: NSNumber(value: true), itemName: identifire, itemType: "Subscription", itemId: item, customAttributes: ["trial": trial, "lifetime": lifetime])
     
     // Amplitude
     let revenue = AMPRevenue()
