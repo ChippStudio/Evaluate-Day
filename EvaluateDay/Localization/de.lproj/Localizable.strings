@@ -1,3 +1,7 @@
+"general.yes" = "Ja";
+"general.no" = "Nein";
+"general.like" = "Gefällt Dir Evaluate Day?";
+
 // MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "Biografie";
 "accessibility.activity.personalInformation.edit" = "Persönliche Daten bearbeiten";
@@ -285,7 +289,6 @@
 "general.unarchive" = "Entpacken";
 "general.untitled" = "Ohne Titel";
 "general.version" = "Version: %@ (%@)";
-
 // MARK: - List
 "list.card.archiveMessage" = "Sie können den Tag nicht mit diesem Kärtchen auswerten, Ihre Daten werden gespeichert";
 "list.card.archiveNotDelete" = "Sie können dieses Kärtchen archivieren";

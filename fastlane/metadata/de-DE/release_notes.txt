@@ -1,8 +1,8 @@
-Ein großes Update für die Nutzer von VoiceOver. Nun wurde die App für die Nutzung der VoiceOver maximal angepasst. Das ist eine wichtige und komplizierte Aktualisierung. Falls Sie einen Fehler finden oder Ihnen etwas auffällt, kontaktieren Sie bitte Uns an support@evaluateday.com. Unser Ziel ist die Nutzung von ViceOver für Sie maximal benutzerfreundlich zu machen. Wir hoffen, dass Sie uns damit auch helfen können.
+NEU:
+  - Jetzt können Sie Karten in praktische Dashboards laden.
 
-Evaluate Day ist nun ein Open Source Projekt. Sie können den Quellcode unter https://github.com/ChippStudio/Evaluate-Day ansehen und zum Beispiel dem Projekt helfen, in Ihrer Sprache zu übersetzen.
-
-Die aktuelle Lokalisierungs-Status können Sie unter http://translate.evaluateday.com überprüfen.
+KORRIGIERT:
+  - Ubiquitous Verbesserung der Stabilität.
 
 ********
 

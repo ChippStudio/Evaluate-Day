@@ -1,3 +1,7 @@
+"general.yes" = "Да";
+"general.no" = "Нет";
+"general.like" = "Вам нравится Evaluate Day?";
+
 // MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "биография";
 "accessibility.activity.personalInformation.edit" = "Изменить личную информацию";
@@ -285,7 +289,6 @@ Evaluate Day работает на iPhone, iPad, так что вы сможет
 "general.unarchive" = "Разархивировать";
 "general.untitled" = "Без названия";
 "general.version" = "Версия: %@ ( %@ )";
-
 // MARK: - List
 "list.card.archiveMessage" = "Вы не сможете оценивать день по этой карточке, данные будут сохранены";
 "list.card.archiveNotDelete" = "Вы можете архивировать карточку";

@@ -1,3 +1,7 @@
+"general.yes" = "Yes";
+"general.no" = "No";
+"general.like" = "Do you like Evaluate Day?";
+
 // MARK: - Accessibility
 "accessibility.activity.personalInformation.bio" = "biography";
 "accessibility.activity.personalInformation.edit" = "Edit personal information";
@@ -285,7 +289,6 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "general.unarchive" = "Unarchive";
 "general.untitled" = "Untitled";
 "general.version" = "Version: %@ (%@)";
-
 // MARK: - List
 "list.card.archiveMessage" = "You can`t evaluate day by this card, you data will be save";
 "list.card.archiveNotDelete" = "You can archive card";
