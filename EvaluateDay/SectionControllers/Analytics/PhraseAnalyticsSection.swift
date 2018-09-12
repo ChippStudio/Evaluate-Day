@@ -120,7 +120,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), isPro: false, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), isPro: true, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

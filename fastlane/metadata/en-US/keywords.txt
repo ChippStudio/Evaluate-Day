@@ -1,1 +1,1 @@
-timehop,timepage,striiv,action,wunderlist,routine,free,share,habitminder,task,ritual,habitica,asana
+activity,timepage,striiv,action,wunderlist,routine,habitminder,task,ritual,habitica,asana,mental

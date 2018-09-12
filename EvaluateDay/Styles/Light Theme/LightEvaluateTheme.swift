@@ -224,9 +224,9 @@ struct LightEvaluateTheme: EvaluableStyle {
     var dashboardsNodeCountTextFont: UIFont { return UIFont.avenirNext(size: 10.0, weight: .demiBold) }
     
     // MARK: - DashboardsNoneNodeStyle
-    var dashboardsNoneNodeTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
+    var dashboardsNoneNodeTitleFont: UIFont { return UIFont.avenirNext(size: 22.0, weight: .demiBold) }
     var dashboardsNoneNodeTitleColor: UIColor { return UIColor.charcoal }
-    var dashboardsNoneNodeSubtitleFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .medium) }
+    var dashboardsNoneNodeSubtitleFont: UIFont { return UIFont.avenirNext(size: 16.0, weight: .medium) }
     var dashboardsNoneNodeSubtitleColor: UIColor { return UIColor.charcoal }
     var dashboardsNoneNodeTintColor: UIColor { return UIColor.charcoal }
 }

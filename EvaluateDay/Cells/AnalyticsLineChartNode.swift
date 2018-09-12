@@ -107,6 +107,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
                 self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
                 self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
                 self.chart.leftAxis.axisMaxLabels = 3
+                self.chart.doubleTapToZoomEnabled = false
                 
                 if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
                     self.chart.leftAxis.labelCount = opt
