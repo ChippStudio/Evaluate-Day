@@ -41,15 +41,11 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         }
         
         self.nodes.append(.title)
-        if Store.current.isPro {
-            self.nodes.append(.information)
-        }
+        self.nodes.append(.information)
         self.nodes.append(.time)
         self.nodes.append(.map)
-        if Store.current.isPro {
-            self.nodes.append(.calendar)
-            self.nodes.append(.export)
-        }
+        self.nodes.append(.calendar)
+        self.nodes.append(.export)
     }
     
     // MARK: - Override
@@ -70,13 +66,9 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
                 node.topInset = 10.0
-                if isPro {
-                    node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                    OperationQueue.main.addOperation {
-                        node.shareButton.view.tag = index
-                    }
-                } else {
-                    node.shareButton.alpha = 0.0
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
                 }
                 node.shareButton.accessibilityLabel = Localizations.accessibility.analytics.shareStat
                 node.shareButton.accessibilityValue = title
@@ -109,40 +101,46 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let checkInCard = self.card.data as! CheckInCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.analytics.statistics.checkins + ":", data: "\(checkInCard.values.count)"))
-            
-            var max: CLLocationDistance = 0.0
-            var min: CLLocationDistance = 50000000.0
-            
-            var maxString: String?
-            var minString: String?
-            
-            for v in checkInCard.values {
-                if v.distance > max {
-                    max = v.distance
-                    maxString = v.distanceString
+            if isPro {
+                self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.analytics.statistics.checkins + ":", data: "\(checkInCard.values.count)"))
+                
+                var max: CLLocationDistance = 0.0
+                var min: CLLocationDistance = 50000000.0
+                
+                var maxString: String?
+                var minString: String?
+                
+                for v in checkInCard.values {
+                    if v.distance > max {
+                        max = v.distance
+                        maxString = v.distanceString
+                    }
+                    if v.distance < min {
+                        min = v.distance
+                        minString = v.distanceString
+                    }
                 }
-                if v.distance < min {
-                    min = v.distance
-                    minString = v.distanceString
+                
+                if maxString != nil {
+                    self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: maxString!))
                 }
+                if minString != nil {
+                    self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: minString!))
+                }
+            } else {
+                self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.analytics.statistics.checkins + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
             }
-            
-            if maxString != nil {
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: maxString!))
-            }
-            if minString != nil {
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: minString!))
-            }
-            
             return {
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
                 return node
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.checkin.calendar.title.uppercased(), style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.analytics.checkin.calendar.title.uppercased(), isPro: isPro, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -158,7 +156,14 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
-                    self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    if isPro {
+                        self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        if let nav = self.viewController?.parent as? UINavigationController {
+                            nav.pushViewController(controller, animated: true)
+                        }
+                    }
                 }
                 return node
             }
@@ -192,6 +197,13 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
             controller.card = self.card
             self.viewController!.present(controller, animated: true, completion: nil)
+        } else if self.nodes[index] == .calendar {
+            if !Store.current.isPro {
+                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                if let nav = self.viewController?.parent as? UINavigationController {
+                    nav.pushViewController(controller, animated: true)
+                }
+            }
         }
     }
     

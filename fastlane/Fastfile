@@ -24,6 +24,7 @@ platform :ios do
     skipScreenshots = false
     if options[:screenshots] == "make"
       # Make new screenshots
+      puts "Make new screenshots on deliver step"
       screenshots
     elsif options[:screenshots] == "skip"
       puts "Skip screenshots on deliver step"

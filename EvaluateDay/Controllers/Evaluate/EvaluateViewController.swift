@@ -354,9 +354,16 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             return
         }
         
-        if Database.manager.app.objects(AppUsage.self).count % 10 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
+        if Database.manager.application.isAlreadyRateThisVersion {
+            return
+        }
+        
+        if Database.manager.app.objects(AppUsage.self).count % 20 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
             let alert = UIAlertController(title: Localizations.general.like, message: nil, preferredStyle: .alert)
             let yesAction = UIAlertAction(title: Localizations.general.yes, style: .default) { (_) in
+                try! Database.manager.app.write {
+                    Database.manager.application.isAlreadyRateThisVersion = true
+                }
                 if #available(iOS 10.3, *) {
                     sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: true)])
                     SKStoreReviewController.requestReview()
@@ -366,6 +373,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
             
             let noAction = UIAlertAction(title: Localizations.general.no, style: .default) { (_) in
+                try! Database.manager.app.write {
+                    Database.manager.application.isAlreadyRateThisVersion = true
+                }
                 sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: false)])
             }
             

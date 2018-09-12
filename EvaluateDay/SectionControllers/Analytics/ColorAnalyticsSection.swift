@@ -41,14 +41,10 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         }
         
         self.nodes.append(.title)
-        if Store.current.isPro {
-            self.nodes.append(.information)
-        }
+        self.nodes.append(.information)
         self.nodes.append(.time)
         self.nodes.append(.calendar)
-        if Store.current.isPro {
-            self.nodes.append(.export)
-        }
+        self.nodes.append(.export)
     }
     
     // MARK: - Override
@@ -59,21 +55,17 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
+        let isPro = Store.current.isPro
         switch nodeType {
         case .title:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
-            let isPro = Store.current.isPro
             let board = self.card.dashboardValue
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
                 node.topInset = 10.0
-                if isPro {
-                    node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                } else {
-                    node.shareButton.alpha = 0.0
-                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
@@ -94,7 +86,11 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             for color in colorsForSelection {
                 let colorsCount = colorCard.values.filter("text=%@", color.color)
                 if colorsCount.count != 0 {
-                    data!.append((color: color.color, data: "\(colorsCount.count)"))
+                    if isPro {
+                        data!.append((color: color.color, data: "\(colorsCount.count)"))
+                    } else {
+                        data!.append((color: color.color, data: proPlaceholder))
+                    }
                 }
             }
             return {
@@ -103,7 +99,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.color.calendar.title.uppercased(), style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.analytics.color.calendar.title.uppercased(), isPro: true, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -119,7 +115,14 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
-                    self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    if isPro {
+                        self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        if let nav = self.viewController?.parent as? UINavigationController {
+                            nav.pushViewController(controller, animated: true)
+                        }
+                    }
                 }
                 return node
             }

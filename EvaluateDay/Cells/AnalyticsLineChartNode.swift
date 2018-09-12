@@ -43,7 +43,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     var chartValueSelected: ((_ node: AnalyticsLineChartNode, _ chartView: ChartViewBase, _ entry: ChartDataEntry, _ highlight: Highlight) -> String)?
     
     // MARK: - Init
-    init(title: String, data: [ChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?, style: AnalyticsLineChartNodeStyle) {
+    init(title: String, data: [ChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?, isPro: Bool, style: AnalyticsLineChartNodeStyle) {
         super.init()
         
         self.options = options
@@ -88,52 +88,56 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         }
         self.valueAttributes = [NSAttributedStringKey.font: style.chartNodeValueFont, NSAttributedStringKey.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
-        self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
-            self.chart = LineChartView()
-            self.chart.chartDescription?.text = ""
-            self.chart.legend.enabled = false
-            self.chart.scaleYEnabled = false
-            self.chart.clipValuesToContentEnabled = true
-            self.chart.xAxis.labelPosition = .bottom
-            self.chart.xAxis.drawAxisLineEnabled = false
-            self.chart.xAxis.drawGridLinesEnabled = false
-            self.chart.xAxis.valueFormatter = self
-            self.chart.xAxis.labelFont = style.chartNodeXAxisFont
-            self.chart.xAxis.labelTextColor = style.chartNodeXAxisColor
-            self.chart.rightAxis.enabled = false
-            self.chart.leftAxis.drawAxisLineEnabled = false
-            self.chart.leftAxis.gridColor = style.chartNodeGridColor
-            self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
-            self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
-            self.chart.leftAxis.axisMaxLabels = 3
-            
-            if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
-                self.chart.leftAxis.labelCount = opt
-            }
-            self.chart.delegate = self
-            
-            let dataSet = LineChartDataSet(values: data, label: nil)
-            dataSet.lineWidth = 2.0
-            dataSet.circleRadius = 2.0
-            dataSet.drawCircleHoleEnabled = false
-            dataSet.drawCirclesEnabled = false
-            dataSet.drawValuesEnabled = false
-            dataSet.drawHorizontalHighlightIndicatorEnabled = false
-            dataSet.setColor(style.analyticsLineChartLineColor)
-            dataSet.mode = .horizontalBezier
-            var highlightColor = style.analyticsLineChartHightlightPositiveColor
-            if !positive {
-                highlightColor = style.analyticsLineChartHightlightNegativeColor
-            }
-            dataSet.highlightColor = highlightColor
-            dataSet.highlightLineWidth = 1.0
-            
-            self.chart.data = LineChartData(dataSet: dataSet)
-            
-            return self.chart
-        }, didLoad: { (_) in
-            self.chartDidLoad?()
-        })
+        if isPro {
+            self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
+                self.chart = LineChartView()
+                self.chart.chartDescription?.text = ""
+                self.chart.legend.enabled = false
+                self.chart.scaleYEnabled = false
+                self.chart.clipValuesToContentEnabled = true
+                self.chart.xAxis.labelPosition = .bottom
+                self.chart.xAxis.drawAxisLineEnabled = false
+                self.chart.xAxis.drawGridLinesEnabled = false
+                self.chart.xAxis.valueFormatter = self
+                self.chart.xAxis.labelFont = style.chartNodeXAxisFont
+                self.chart.xAxis.labelTextColor = style.chartNodeXAxisColor
+                self.chart.rightAxis.enabled = false
+                self.chart.leftAxis.drawAxisLineEnabled = false
+                self.chart.leftAxis.gridColor = style.chartNodeGridColor
+                self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
+                self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
+                self.chart.leftAxis.axisMaxLabels = 3
+                
+                if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
+                    self.chart.leftAxis.labelCount = opt
+                }
+                self.chart.delegate = self
+                
+                let dataSet = LineChartDataSet(values: data, label: nil)
+                dataSet.lineWidth = 2.0
+                dataSet.circleRadius = 2.0
+                dataSet.drawCircleHoleEnabled = false
+                dataSet.drawCirclesEnabled = false
+                dataSet.drawValuesEnabled = false
+                dataSet.drawHorizontalHighlightIndicatorEnabled = false
+                dataSet.setColor(style.analyticsLineChartLineColor)
+                dataSet.mode = .horizontalBezier
+                var highlightColor = style.analyticsLineChartHightlightPositiveColor
+                if !positive {
+                    highlightColor = style.analyticsLineChartHightlightNegativeColor
+                }
+                dataSet.highlightColor = highlightColor
+                dataSet.highlightLineWidth = 1.0
+                
+                self.chart.data = LineChartData(dataSet: dataSet)
+                
+                return self.chart
+            }, didLoad: { (_) in
+                self.chartDidLoad?()
+            })
+        } else {
+            self.chartNode = SettingsProNode(pro: false, style: Themes.manager.settingsStyle)
+        }
         
         // Accessibility
         self.titleNode.isAccessibilityElement = false

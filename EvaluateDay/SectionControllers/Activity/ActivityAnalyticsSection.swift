@@ -100,7 +100,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             opt?[.yLineNumber] = 5
             opt?[.positive] = true
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.activity.analytics.barchart.title + "\n(\(distance))", data: data, options: opt, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.activity.analytics.barchart.title + "\n(\(distance))", data: data, options: opt, isPro: true, style: style)
                 //node.leftOffset = 0.0
                 node.chartStringForValue = { (node, value, axis) in
                     return ""

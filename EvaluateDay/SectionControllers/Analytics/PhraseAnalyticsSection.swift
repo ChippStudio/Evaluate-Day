@@ -41,15 +41,11 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
         }
         
         self.nodes.append(.title)
-        if Store.current.isPro {
-            self.nodes.append(.statistics)
-        }
+        self.nodes.append(.statistics)
         self.nodes.append(.time)
         self.nodes.append(.calendar)
         self.nodes.append(.more)
-        if Store.current.isPro {
-            self.nodes.append(.export)
-        }
+        self.nodes.append(.export)
     }
     
     // MARK: - Override
@@ -60,21 +56,17 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
+        let isPro = Store.current.isPro
         switch nodeType {
         case .title:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
-            let isPro = Store.current.isPro
             let board = self.card.dashboardValue
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
                 node.topInset = 10.0
-                if isPro {
-                    node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                } else {
-                    node.shareButton.alpha = 0.0
-                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
@@ -84,28 +76,39 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             }
         case .statistics:
             self.data = [(title: String, data: String)]()
-            // Set statistics information
-            var max: Int = 0
-            var min: Int = 100000000
-            var average: Double = 0.0
-            var sum = 0
-            let phraseCard = self.card.data as! PhraseCard
-            for t in phraseCard.values {
-                let c = t.characters
-                if c > max {
-                    max = c
+            if isPro {
+                // Set statistics information
+                var max: Int = 0
+                var min: Int = 100000000
+                var average: Double = 0.0
+                var sum = 0
+                let phraseCard = self.card.data as! PhraseCard
+                for t in phraseCard.values {
+                    let c = t.characters
+                    if c > max {
+                        max = c
+                    }
+                    if c < min {
+                        min = c
+                    }
+                    sum += c
                 }
-                if c < min {
-                    min = c
-                }
-                sum += c
+                average = Double(sum) / Double(phraseCard.values.count)
+                self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(phraseCard.values.count)"))
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(max)"))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(min)"))
+                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(average)"))
+                self.data!.append((title: Localizations.analytics.statistics.sum + ":", data: "\(sum)"))
+            } else {
+                // Set statistics information
+                self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.sum + ":", data: proPlaceholder))
             }
-            average = Double(sum) / Double(phraseCard.values.count)
-            self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(phraseCard.values.count)"))
-            self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(max)"))
-            self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(min)"))
-            self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(average)"))
-            self.data!.append((title: Localizations.analytics.statistics.sum + ":", data: "\(sum)"))
             return {
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
                 return node
@@ -117,7 +120,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), isPro: false, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -133,7 +136,14 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
-                    self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    if isPro {
+                        self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        if let nav = self.viewController?.parent as? UINavigationController {
+                            nav.pushViewController(controller, animated: true)
+                        }
+                    }
                 }
                 return node
             }
@@ -178,6 +188,13 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
             controller.card = self.card
             self.viewController!.present(controller, animated: true, completion: nil)
+        } else if self.nodes[index] == .calendar {
+            if !Store.current.isPro {
+                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                if let nav = self.viewController?.parent as? UINavigationController {
+                    nav.pushViewController(controller, animated: true)
+                }
+            }
         }
     }
     

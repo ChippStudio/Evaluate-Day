@@ -46,11 +46,15 @@ class DashboardsNoneNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.imageView.style.preferredSize = CGSize(width: 45.0, height: 45.0)
         
+        self.subtitle.style.flexShrink = 1.0
+        
         let subtitleInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
         let subtitleInset = ASInsetLayoutSpec(insets: subtitleInsets, child: self.subtitle)
+        subtitleInset.style.flexShrink = 1.0
         
         let text = ASStackLayoutSpec.vertical()
         text.children = [self.title, subtitleInset]
+        text.style.flexShrink = 1.0
         
         let cell = ASStackLayoutSpec.horizontal()
         cell.alignItems = .center

@@ -33,7 +33,7 @@ class AnalyticsCalendarNode: ASCellNode {
     var didLoadCalendar: (() -> Void)?
     
     // MARK: - Unit
-    init(title: String, style: AnalyticsCalendarNodeStyle) {
+    init(title: String, isPro: Bool, style: AnalyticsCalendarNodeStyle) {
         super.init()
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -44,27 +44,30 @@ class AnalyticsCalendarNode: ASCellNode {
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.calendarShareTintColor)
         
-        self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
-            self.calendar = FSCalendar()
-            self.calendar.clipsToBounds = true
-            self.calendar.allowsSelection = false
-            self.calendar.today = nil
-            self.calendar.backgroundColor = UIColor.clear
-            self.calendar.firstWeekday = UInt(Database.manager.application.settings.weekStart)
-            self.calendar.appearance.titleFont = style.calendarFont
-            self.calendar.appearance.weekdayFont = style.calendarFont
-            self.calendar.appearance.subtitleFont = style.calendarFont
-            self.calendar.appearance.headerTitleFont = style.calendarFont
-            self.calendar.appearance.headerTitleColor = style.calendarWeekdaysColor
-            
-            self.calendar.appearance.weekdayTextColor = style.calendarWeekdaysColor
-            self.calendar.appearance.titleDefaultColor = style.calendarCurrentMonthColor
-            self.calendar.appearance.titlePlaceholderColor = style.calendarOtherMonthColor
-            return self.calendar
-        }, didLoad: { (_) in
-            self.didLoadCalendar?()
-        })
-        
+        if isPro {
+            self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
+                self.calendar = FSCalendar()
+                self.calendar.clipsToBounds = true
+                self.calendar.allowsSelection = false
+                self.calendar.today = nil
+                self.calendar.backgroundColor = UIColor.clear
+                self.calendar.firstWeekday = UInt(Database.manager.application.settings.weekStart)
+                self.calendar.appearance.titleFont = style.calendarFont
+                self.calendar.appearance.weekdayFont = style.calendarFont
+                self.calendar.appearance.subtitleFont = style.calendarFont
+                self.calendar.appearance.headerTitleFont = style.calendarFont
+                self.calendar.appearance.headerTitleColor = style.calendarWeekdaysColor
+                
+                self.calendar.appearance.weekdayTextColor = style.calendarWeekdaysColor
+                self.calendar.appearance.titleDefaultColor = style.calendarCurrentMonthColor
+                self.calendar.appearance.titlePlaceholderColor = style.calendarOtherMonthColor
+                return self.calendar
+            }, didLoad: { (_) in
+                self.didLoadCalendar?()
+            })
+        } else {
+            self.calendarNode = SettingsProNode(pro: false, style: Themes.manager.settingsStyle)
+        }
         // Accessibility
         self.title.isAccessibilityElement = false
         
@@ -79,7 +82,6 @@ class AnalyticsCalendarNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
         self.calendarNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 250.0)
         self.shareButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
         
@@ -96,6 +98,7 @@ class AnalyticsCalendarNode: ASCellNode {
         
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 10.0
+        cell.justifyContent = .center
         cell.children = [shareInset, self.calendarNode]
         
         let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 20.0, right: 0.0)

@@ -43,13 +43,9 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
         self.nodes.append(.title)
         self.nodes.append(.information)
         self.nodes.append(.time)
-        if Store.current.isPro {
-            self.nodes.append(.lineChart)
-        }
+        self.nodes.append(.lineChart)
         self.nodes.append(.barChart)
-        if Store.current.isPro {
-            self.nodes.append(.export)
-        }
+        self.nodes.append(.export)
     }
     
     // MARK: - Override
@@ -60,21 +56,17 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
+        let isPro = Store.current.isPro
         switch nodeType {
         case .title:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
-            let isPro = Store.current.isPro
             let board = self.card.dashboardValue
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
                 node.topInset = 10.0
-                if !isPro {
-                    node.shareButton.alpha = 0.0
-                } else {
-                    node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
@@ -88,23 +80,29 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
             self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(criterion.values.count)"))
             
-            var minimum: Double = 3
-            var maximum: Double = 0
-            var sum: Double = 0
-            for v in criterion.values {
-                if v.value > maximum {
-                    maximum = v.value
-                }
-                if v.value < minimum {
-                    minimum = v.value
+            if isPro {
+                var minimum: Double = 3
+                var maximum: Double = 0
+                var sum: Double = 0
+                for v in criterion.values {
+                    if v.value > maximum {
+                        maximum = v.value
+                    }
+                    if v.value < minimum {
+                        minimum = v.value
+                    }
+                    
+                    sum += v.value
                 }
                 
-                sum += v.value
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
+                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(criterion.values.count))"))
+            } else {
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
             }
-            
-            self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
-            self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
-            self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(criterion.values.count))"))
             
             return {
                 let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
@@ -129,7 +127,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             opt?[.positive] = criterionCard.positive
             
             return {
-                let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, style: style)
+                let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, isPro: isPro, style: style)
                 node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -153,7 +151,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             opt?[.positive] = criterionCard.positive
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, isPro: true, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -169,7 +167,14 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
-                    self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    if isPro {
+                        self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        if let nav = self.viewController?.parent as? UINavigationController {
+                            nav.pushViewController(controller, animated: true)
+                        }
+                    }
                 }
                 return node
             }
@@ -203,6 +208,13 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
             controller.card = self.card
             self.viewController!.present(controller, animated: true, completion: nil)
+        } else if self.nodes[index] == .lineChart {
+            if !Store.current.isPro {
+                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                if let nav = self.viewController?.parent as? UINavigationController {
+                    nav.pushViewController(controller, animated: true)
+                }
+            }
         }
     }
     

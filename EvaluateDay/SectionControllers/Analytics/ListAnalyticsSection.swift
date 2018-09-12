@@ -43,14 +43,10 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
         self.groupValues()
         
         self.nodes.append(.title)
-        if Store.current.isPro {
-            self.nodes.append(.information)
-        }
+        self.nodes.append(.information)
         self.nodes.append(.time)
         self.nodes.append(.barChart)
-        if Store.current.isPro {
-            self.nodes.append(.export)
-        }
+        self.nodes.append(.export)
     }
     
     // MARK: - Override
@@ -61,21 +57,17 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
+        let isPro = Store.current.isPro
         switch nodeType {
         case .title:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let dashboard = self.card.dashboardValue
             let image = Sources.image(forType: self.card.type)
-            let isPro = Store.current.isPro
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
                 node.topInset = 10.0
-                if !isPro {
-                    node.shareButton.alpha = 0.0
-                } else {
-                    node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
@@ -92,30 +84,41 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
             self.data = [(title: String, data: String)]()
 
             self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.analytics.list.items + ":", data: "\(listCard.values.count)"))
-            self.data!.append((title: Localizations.analytics.list.itemsDone + ":", data: "\(allDone)"))
-            self.data!.append((title: Localizations.analytics.list.percent + ":", data: String(format: "%.0f", allPercent) + " %"))
-            self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(self.groupedData.count)"))
+            
+            if isPro {
+                self.data!.append((title: Localizations.analytics.list.items + ":", data: "\(listCard.values.count)"))
+                self.data!.append((title: Localizations.analytics.list.itemsDone + ":", data: "\(allDone)"))
+                self.data!.append((title: Localizations.analytics.list.percent + ":", data: String(format: "%.0f", allPercent) + " %"))
+                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(self.groupedData.count)"))
 
-            var maximum = 0
-            var minimum = 1000000000
-            var sum = 0
+                var maximum = 0
+                var minimum = 1000000000
+                var sum = 0
 
-            for i in self.groupedData {
-                if i.count > maximum {
-                    maximum = i.count
+                for i in self.groupedData {
+                    if i.count > maximum {
+                        maximum = i.count
+                    }
+                    if i.count < minimum {
+                        minimum = i.count
+                    }
+
+                    sum += i.count
                 }
-                if i.count < minimum {
-                    minimum = i.count
+
+                if maximum != 0 && minimum != 1000000000 {
+                    self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
+                    self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
+                    self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(self.groupedData.count))"))
                 }
-
-                sum += i.count
-            }
-
-            if maximum != 0 && minimum != 1000000000 {
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(self.groupedData.count))"))
+            } else {
+                self.data!.append((title: Localizations.analytics.list.items + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.list.itemsDone + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.list.percent + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
             }
 
             return {
@@ -138,7 +141,7 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
             opt?[.yLineNumber] = 5
 
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, isPro: true, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -154,7 +157,14 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
-                    self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    if isPro {
+                        self.export(withType: type, indexPath: cellIndexPath, index: index)
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        if let nav = self.viewController?.parent as? UINavigationController {
+                            nav.pushViewController(controller, animated: true)
+                        }
+                    }
                 }
                 return node
             }
