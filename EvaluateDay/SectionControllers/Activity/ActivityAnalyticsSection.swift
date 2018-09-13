@@ -127,13 +127,18 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             
             self.data!.append((title: Localizations.activity.analytics.stat.cards, data: "\(cards.count)"))
             self.data!.append((title: Localizations.activity.analytics.stat.archived, data: "\(archived.count)"))
+            self.data!.append((title: Localizations.activity.analytics.stat.version, data: "\(fullVersion)"))
             if isPro {
                 self.data!.append((title: Localizations.activity.analytics.stat.alldays, data: "\(days)"))
                 self.data!.append((title: Localizations.activity.analytics.stat.firsStartDate, data: "\(firstStart)"))
                 self.data!.append((title: Localizations.activity.analytics.stat.updateDate, data: "\(updateDate)"))
                 self.data!.append((title: Localizations.activity.analytics.stat.totalStarts, data: "\(totalStarts)"))
+            } else {
+                self.data!.append((title: Localizations.activity.analytics.stat.alldays, data: proPlaceholder))
+                self.data!.append((title: Localizations.activity.analytics.stat.firsStartDate, data: proPlaceholder))
+                self.data!.append((title: Localizations.activity.analytics.stat.updateDate, data: proPlaceholder))
+                self.data!.append((title: Localizations.activity.analytics.stat.totalStarts, data: proPlaceholder))
             }
-            self.data!.append((title: Localizations.activity.analytics.stat.version, data: "\(fullVersion)"))
             
             return {
                 let node = AnalyticsStatisticNode(title: Localizations.activity.analytics.stat.description, data: self.data!, style: style)

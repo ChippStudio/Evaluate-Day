@@ -1877,12 +1877,13 @@
 				TargetAttributes = {
 					B516B48720055A2D003A93D9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B5B27E541F9DA66000CB9121;
 					};
 					B5B27E541F9DA66000CB9121 = {
 						CreatedOnToolsVersion = 9.0.1;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {

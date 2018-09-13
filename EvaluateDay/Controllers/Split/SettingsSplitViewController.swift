@@ -52,7 +52,7 @@ class SettingsSplitViewController: UIViewController, UINavigationControllerDeleg
         super.viewDidLoad()
         
         // Set controllers
-        self.mainController = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+        self.mainController = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController() as? UINavigationController
         self.sideController = UINavigationController(rootViewController: UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateViewController(withIdentifier: "aboutSegue"))
         if #available(iOS 11.0, *) {
             self.sideController.navigationBar.prefersLargeTitles = true
