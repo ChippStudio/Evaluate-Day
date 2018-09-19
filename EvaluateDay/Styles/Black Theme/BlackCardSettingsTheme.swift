@@ -16,6 +16,8 @@ struct BlackCardSettingsTheme: CardSettingsStyle {
     var barTint: UIColor { return UIColor.white }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var tableSectionHeaderColor: UIColor { return UIColor.pewterBlue }
+    var tableSectionHeaderFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var dangerZoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var dangerZoneDeleteColor: UIColor { return UIColor.salmon }
     var dangerZoneMergeColor: UIColor { return UIColor.white }

@@ -16,6 +16,8 @@ struct OrangeCardSettingsTheme: CardSettingsStyle {
     var barTint: UIColor { return UIColor.paleGrey }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var tableSectionHeaderColor: UIColor { return UIColor.darkBlueGreen }
+    var tableSectionHeaderFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var dangerZoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var dangerZoneDeleteColor: UIColor { return UIColor.grapePurple }
     var dangerZoneMergeColor: UIColor { return UIColor.paleGrey }

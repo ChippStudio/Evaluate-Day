@@ -72,6 +72,9 @@ class Card: Object {
             case .journal:
                 self.journalData = JournalCard()
                 self.journalData!.card = self
+            case .health:
+                self.healthData = HealthCard()
+                self.healthData!.card = self
             default:()
             }
         }
@@ -97,6 +100,7 @@ class Card: Object {
     @objc private dynamic var listData: ListCard?
     @objc private dynamic var goalData: GoalCard?
     @objc private dynamic var journalData: JournalCard?
+    @objc private dynamic var healthData: HealthCard?
     
     // Specific card object
     var data: Evaluable {
@@ -231,7 +235,16 @@ class Card: Object {
             }
             
             return self.data
+        case .health:
+            if self.healthData != nil {
+                return self.healthData!
+            }
             
+            try! Database.manager.data.write {
+                self.type = .health
+            }
+            
+            return self.data
         default:
             let update = Update()
             update.card = self
@@ -259,7 +272,8 @@ enum CardType: Int {
     case goal // In App
     case journal // In App
     case evaluate // General for app image
-    case tracker
+    case tracker // In App
+    case health
     
     var string: String {
         get {
@@ -292,6 +306,8 @@ enum CardType: Int {
                 return "Journal"
             case .tracker:
                 return "Tracker"
+            case .health:
+                return "Health"
             }
         }
     }

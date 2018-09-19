@@ -16,6 +16,8 @@ struct LightCardSettingsTheme: CardSettingsStyle {
     var barTint: UIColor { return UIColor.viridian }
     var barTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var barLargeTitleFont: UIFont { return UIFont.avenirNext(size: largeTitleFontSize, weight: .demiBold) }
+    var tableSectionHeaderColor: UIColor { return UIColor.viridian }
+    var tableSectionHeaderFont: UIFont { return UIFont.avenirNext(size: 18.0, weight: .regular) }
     var dangerZoneFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .demiBold) }
     var dangerZoneDeleteColor: UIColor { return UIColor.brownishRed }
     var dangerZoneMergeColor: UIColor { return UIColor.gunmetal }

@@ -184,6 +184,8 @@
 "cardSettings.textPlaceholder" = "Tap to enter new";
 "cardSettings.title" = "Title";
 "cardSettings.untitle" = "Untitled %@";
+"cardSettings.health.metrics" = "Metrics";
+"cardSettings.health.appleMetrics" = "Apple Health Metrics";
 
 // MARK: - Defaults
 "default.data.phrase.one" = "Cards can help you track different indicators of your day. Find out more about the available types of cards at the \"Add a new card\" screen.\
@@ -347,6 +349,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "new.phrase.title" = "Phrase";
 "new.tracker.subtitle" = "It can help you track infrequent mundane activities like medication-taking.";
 "new.tracker.title" = "Tracker";
+"new.health.title" = "Health";
+"new.health.subtitle" = "Track one or more health metrics from Apple Health";
 
 // MARK: - Permissions
 "permission.camera.description" = "Capture interesting moments right from the app";
@@ -506,3 +510,34 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "welcome.cards.pro.title" = "Thank You for your support 😍👍👇🔓";
 "welcome.cards.second" = "Track and record all changes";
 "welcome.cards.third" = "The more often and more carefully you will do it...";
+
+// MARK: - Health
+"health.category.fitness" = "Fitness";
+"health.category.nutrition" = "Nutrition";
+"health.category.sleep" = "Sleep";
+"health.category.mindfulness" = "Mindfulness";
+"health.category.body" = "Body Measurements";
+
+"health.id.HKQuantityTypeIdentifierStepCount" = "Steps";
+"health.id.HKQuantityTypeIdentifierDistanceWalkingRunning" = "Walking and Running Distance";
+"health.id.HKQuantityTypeIdentifierDistanceCycling" = "Cycling Distance";
+"health.id.HKQuantityTypeIdentifierFlightsClimbed" = "Flight Climbed";
+"health.id.HKQuantityTypeIdentifierActiveEnergyBurned" = "Active Energy";
+"health.id.HKQuantityTypeIdentifierBasalEnergyBurned" = "Resting Energy";
+"health.id.HKQuantityTypeIdentifierAppleExerciseTime" = "Workouts";
+"health.id.HKQuantityTypeIdentifierDistanceSwimming" = "Swimming Distance";
+"health.id.HKQuantityTypeIdentifierSwimmingStrokeCount" = "Swimming Strokes";
+"health.id.HKQuantityTypeIdentifierDistanceWheelchair" = "Wheelchair Distance";
+"health.id.HKQuantityTypeIdentifierNikeFuel" = "Nike Fuel";
+"health.id.HKQuantityTypeIdentifierBodyFatPercentage" = "Body Fat Percentage";
+"health.id.HKQuantityTypeIdentifierBodyMassIndex" = "Body Mass Index";
+"health.id.HKQuantityTypeIdentifierBodyMass" = "Weight";
+"health.id.HKQuantityTypeIdentifierLeanBodyMass" = "Lean Body Mass";
+"health.id.HKQuantityTypeIdentifierDietaryCaffeine" = "Caffeine";
+"health.id.HKQuantityTypeIdentifierDietaryWater" = "Water";
+"health.id.HKQuantityTypeIdentifierDietaryEnergyConsumed" = "Dietary Energy";
+"health.id.HKQuantityTypeIdentifierDietarySugar" = "Sugar";
+"health.id.HKQuantityTypeIdentifierDietaryFatTotal" = "Total Fat";
+"health.id.HKQuantityTypeIdentifierDietaryProtein" = "Protein";
+"health.id.HKCategoryTypeIdentifierSleepAnalysis" = "Sleep";
+"health.id.HKCategoryTypeIdentifierMindfulSession" = "Mindful Minutes";

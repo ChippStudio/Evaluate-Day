@@ -120,8 +120,10 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
         
         self.nodes.append(.sectionTitle)
         self.nodes.append(.separator)
-        self.nodes.append(.merge)
-        self.nodes.append(.separator)
+        if self.card.data as? Mergeable != nil {
+            self.nodes.append(.merge)
+            self.nodes.append(.separator)
+        }
         self.nodes.append(.archive)
         self.nodes.append(.separator)
         self.nodes.append(.delete)

@@ -21,9 +21,9 @@ let mediaFolder = "media"
 // MARK: - URLs
 let appURLString = "https://itunes.apple.com/app/id1319180010"
 let subscriptionManageURL = "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"
-let privacyURLString = "http://evaluateday.com/privacy"
-let eulaURLString = "http://evaluateday.com/terms"
-let appSiteURLString = "http://evaluateday.com"
+let privacyURLString = "https://evaluateday.com/privacy"
+let eulaURLString = "https://evaluateday.com/terms"
+let appSiteURLString = "https://evaluateday.com"
 
 // MARK: - Mails
 let feedbackMail = "support@evaluateday.com"
@@ -35,8 +35,8 @@ let proPlaceholder = "🇪🇪❤️\n👆🔒"
 let largeTitleFontSize: CGFloat = 28.0
 
 // MARK: - Limits
-let cardsLimit: Int = 3
-let pastDaysLimit: Int = 3
+let cardsLimit: Int = 6
+let pastDaysLimit: Int = 2
 
 // MARK: - Cards
 let cardInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)

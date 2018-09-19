@@ -41,6 +41,12 @@ class DiffCard: NSObject {
     // MARK: - Habit
     var multiple: Bool!
     
+    // MARK: - Health
+    var healthGoal: Double!
+    var healthType: String!
+    var healthUnit: String!
+    var healthDeviceName: String!
+    
     // MARK: - Values
     var textes = [(text: String, created: Date, isDeleted: Bool)]()
     var locations = [(latitude: Double, longitude: Double, created: Date, isDeleted: Bool)]()
@@ -48,6 +54,7 @@ class DiffCard: NSObject {
     var markValues = [(text: String, done: Bool, order: Int, doneDate: Date, created: Date, isDeleted: Bool)]()
     var weatherValues = [(latitude: Double, longitude: Double, temperature: Double, created: Date, isDeleted: Bool)]()
     var photoValues = [(latitude: Double, longitude: Double, created: Date, isDeleted: Bool)]()
+    var healthValues = [(value: Double, hkValue: String?, created: Date, isDeleted: Bool)]()
 
     // MARK: - Init
     init(card: Card) {
@@ -180,6 +187,18 @@ class DiffCard: NSObject {
                     for p in c.photos {
                         self.photoValues.append((latitude: p.latitude, longitude: p.longitude, created: p.created, isDeleted: p.isDeleted))
                     }
+                }
+            }
+        case .health:
+            let healthCard = card.data as! HealthCard
+            self.healthGoal = healthCard.goal
+            self.healthType = healthCard.type
+            self.healthUnit = healthCard.unit
+            self.healthDeviceName = healthCard.deviceName
+            if card.realm != nil {
+                let sortedValues = healthCard.values.sorted(byKeyPath: "created", ascending: false)
+                for c in sortedValues {
+                    self.healthValues.append((value: c.value, hkValue: c.hkValue, created: c.created, isDeleted: c.isDeleted))
                 }
             }
         default:
@@ -349,6 +368,21 @@ extension DiffCard: ListDiffable {
                     for (i, l) in object.weatherValues.enumerated() {
                         let selfWeather = self.weatherValues[i]
                         if l.latitude != selfWeather.latitude || l.longitude != selfWeather.longitude || l.temperature != selfWeather.temperature || l.created != selfWeather.created || l.isDeleted != selfWeather.isDeleted {
+                            return false
+                        }
+                    }
+                }
+            case .health:
+                if object.healthGoal != self.healthGoal || object.healthType != self.healthType || object.healthDeviceName != self.healthDeviceName || object.healthUnit != self.healthUnit {
+                    return false
+                }
+                
+                if object.healthValues.count != self.healthValues.count {
+                    return false
+                } else {
+                    for (i, c) in object.healthValues.enumerated() {
+                        let selfValue = self.healthValues[i]
+                        if c.value != selfValue.value || c.hkValue != selfValue.hkValue || c.created != selfValue.created || c.isDeleted != selfValue.isDeleted {
                             return false
                         }
                     }

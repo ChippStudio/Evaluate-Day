@@ -74,6 +74,8 @@ protocol CardSettingsStyle: EditableSectionStyle {
     var barTint: UIColor { get }
     var barTitleFont: UIFont { get }
     var barLargeTitleFont: UIFont { get }
+    var tableSectionHeaderColor: UIColor { get }
+    var tableSectionHeaderFont: UIFont { get }
     var dangerZoneFont: UIFont { get }
     var dangerZoneDeleteColor: UIColor { get }
     var dangerZoneMergeColor: UIColor { get }

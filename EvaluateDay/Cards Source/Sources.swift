@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 final class Sources: NSObject {
 
@@ -48,6 +49,8 @@ final class Sources: NSObject {
             return #imageLiteral(resourceName: "journal")
         case .tracker:
             return #imageLiteral(resourceName: "tracker")
+        case .health:
+            return #imageLiteral(resourceName: "health")
         default:
             return #imageLiteral(resourceName: "update")
         }
@@ -79,6 +82,8 @@ final class Sources: NSObject {
             return Localizations.new.journal.title
         case .tracker:
             return Localizations.new.tracker.title
+        case .health:
+            return Localizations.new.health.title
         default:
             return "none"
         }
@@ -100,5 +105,8 @@ final class Sources: NSObject {
         self.cards.append(Source(type: .list, title: Localizations.new.list.title, subtitle: Localizations.new.list.subtitle, image: Sources.image(forType: .list)))
         self.cards.append(Source(type: .goal, title: Localizations.new.goal.title, subtitle: Localizations.new.goal.subtitle, image: Sources.image(forType: .goal)))
         self.cards.append(Source(type: .journal, title: Localizations.new.journal.title, subtitle: Localizations.new.journal.subtitle, image: Sources.image(forType: .journal)))
+        if HKHealthStore.isHealthDataAvailable() {
+            self.cards.append(Source(type: .health, title: Localizations.new.health.title, subtitle: Localizations.new.health.subtitle, image: Sources.image(forType: .health)))
+        }
     }
 }

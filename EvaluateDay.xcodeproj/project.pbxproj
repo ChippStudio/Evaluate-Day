@@ -42,6 +42,15 @@
 		B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */; };
 		B52D26F1201765AC00332D0A /* HabitEvaluateCommentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */; };
 		B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536110A1FF8ED4C007A1290 /* Syncable.swift */; };
+		B53977D6214A8D8A002EAAFA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53977D5214A8D8A002EAAFA /* HealthKit.framework */; };
+		B53977D8214A93F6002EAAFA /* HealthValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53977D7214A93F6002EAAFA /* HealthValue.swift */; };
+		B53977DA214B9C9F002EAAFA /* HealthValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53977D9214B9C9F002EAAFA /* HealthValue+Extensions.swift */; };
+		B53977DC214B9E3F002EAAFA /* HealthCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53977DB214B9E3F002EAAFA /* HealthCard.swift */; };
+		B53977DE214BC2EA002EAAFA /* HealthCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53977DD214BC2EA002EAAFA /* HealthCard+Extensions.swift */; };
+		B53977E0214BC7B2002EAAFA /* HealthEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53977DF214BC7B2002EAAFA /* HealthEditableSection.swift */; };
+		B539783E214F9197002EAAFA /* HealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539783D214F9197002EAAFA /* HealthViewController.swift */; };
+		B5397840214F91A1002EAAFA /* Health.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B539783F214F91A1002EAAFA /* Health.storyboard */; };
+		B5397842214F923E002EAAFA /* HealthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5397841214F923E002EAAFA /* HealthSource.swift */; };
 		B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53E5F462053F66300B50B60 /* Activity.storyboard */; };
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
@@ -97,6 +106,7 @@
 		B5693EF2202462F100B8879C /* JournalNewEntryActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */; };
 		B5693EF520246EE900B8879C /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5693EF420246EE900B8879C /* Entry.storyboard */; };
 		B5693EF720246EFB00B8879C /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5693EF620246EFB00B8879C /* EntryViewController.swift */; };
+		B56CF54421502B3C000A5CFE /* HealthSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CF54321502B3C000A5CFE /* HealthSources.swift */; };
 		B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */; };
 		B570C3FA1FAC38F800B12309 /* LightCardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570C3F91FAC38F800B12309 /* LightCardSettingsTheme.swift */; };
 		B5729EDB2003935D00481D6F /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5729EDA2003935D00481D6F /* NextButton.swift */; };
@@ -372,6 +382,7 @@
 		B5DED79D1FCB04A8002DD956 /* UpdateEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */; };
 		B5DED79F1FCB0578002DD956 /* UpdateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DED79E1FCB0578002DD956 /* UpdateNode.swift */; };
 		B5DED7A31FCC607D002DD956 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DED7A21FCC607D002DD956 /* SettingsFooterView.swift */; };
+		B5E255B621527C9D00F97A3B /* HealthEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E255B521527C9D00F97A3B /* HealthEvaluateSection.swift */; };
 		B5E75E851FA09FF400DBF6D5 /* LightNewCardTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E75E841FA09FF300DBF6D5 /* LightNewCardTheme.swift */; };
 		B5E75E871FA0A0C500DBF6D5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E75E861FA0A0C500DBF6D5 /* Theme.swift */; };
 		B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E75E891FA0A28100DBF6D5 /* Database.swift */; };
@@ -462,6 +473,15 @@
 		B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluateNode.swift; sourceTree = "<group>"; };
 		B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluateCommentNode.swift; sourceTree = "<group>"; };
 		B536110A1FF8ED4C007A1290 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
+		B53977D5214A8D8A002EAAFA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		B53977D7214A93F6002EAAFA /* HealthValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthValue.swift; sourceTree = "<group>"; };
+		B53977D9214B9C9F002EAAFA /* HealthValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthValue+Extensions.swift"; sourceTree = "<group>"; };
+		B53977DB214B9E3F002EAAFA /* HealthCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCard.swift; sourceTree = "<group>"; };
+		B53977DD214BC2EA002EAAFA /* HealthCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthCard+Extensions.swift"; sourceTree = "<group>"; };
+		B53977DF214BC7B2002EAAFA /* HealthEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthEditableSection.swift; sourceTree = "<group>"; };
+		B539783D214F9197002EAAFA /* HealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewController.swift; sourceTree = "<group>"; };
+		B539783F214F91A1002EAAFA /* Health.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Health.storyboard; sourceTree = "<group>"; };
+		B5397841214F923E002EAAFA /* HealthSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSource.swift; sourceTree = "<group>"; };
 		B53E5F462053F66300B50B60 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
@@ -517,6 +537,7 @@
 		B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalNewEntryActionNode.swift; sourceTree = "<group>"; };
 		B5693EF420246EE900B8879C /* Entry.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
 		B5693EF620246EFB00B8879C /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		B56CF54321502B3C000A5CFE /* HealthSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSources.swift; sourceTree = "<group>"; };
 		B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsTextNode.swift; sourceTree = "<group>"; };
 		B570C3F91FAC38F800B12309 /* LightCardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightCardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5729EDA2003935D00481D6F /* NextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
@@ -637,9 +658,6 @@
 		B5A226CC20FCFC3A0060538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226CD20FCFC3D0060538F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveNode.swift; sourceTree = "<group>"; };
-		B5A4511D21367C5200AA2A9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5A4511E21367C5200AA2A9C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5A4511F21367C5400AA2A9C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A730E11FF2437B006B6F58 /* deleteCard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteCard.wav; sourceTree = "<group>"; };
 		B5A730E21FF2437B006B6F58 /* openAnalytics.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = openAnalytics.wav; sourceTree = "<group>"; };
 		B5A730E31FF2437B006B6F58 /* saveNewCard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = saveNewCard.wav; sourceTree = "<group>"; };
@@ -802,6 +820,7 @@
 		B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEvaluateSection.swift; sourceTree = "<group>"; };
 		B5DED79E1FCB0578002DD956 /* UpdateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNode.swift; sourceTree = "<group>"; };
 		B5DED7A21FCC607D002DD956 /* SettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
+		B5E255B521527C9D00F97A3B /* HealthEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthEvaluateSection.swift; sourceTree = "<group>"; };
 		B5E75E841FA09FF300DBF6D5 /* LightNewCardTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightNewCardTheme.swift; sourceTree = "<group>"; };
 		B5E75E861FA0A0C500DBF6D5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B5E75E891FA0A28100DBF6D5 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -852,6 +871,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5A730F21FF244A0006B6F58 /* CloudKit.framework in Frameworks */,
+				B53977D6214A8D8A002EAAFA /* HealthKit.framework in Frameworks */,
 				F7C7283007B287248892BFBA /* Pods_EvaluateDay.framework in Frameworks */,
 				B5D854DD1FCFF91F00BB4E14 /* StoreKit.framework in Frameworks */,
 			);
@@ -863,6 +883,7 @@
 		0F69078EF98D2D49F54BDE79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B53977D5214A8D8A002EAAFA /* HealthKit.framework */,
 				B5A730F11FF244A0006B6F58 /* CloudKit.framework */,
 				B5D854DC1FCFF91F00BB4E14 /* StoreKit.framework */,
 				1A05D43F1B23052DFBB9BF53 /* Pods_EvaluateDay.framework */,
@@ -951,6 +972,15 @@
 				B59DA07D21229EBF00A9FCFB /* WhiteAppIcon.png */,
 			);
 			path = AppIcons;
+			sourceTree = "<group>";
+		};
+		B539783C214F915E002EAAFA /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				B539783F214F91A1002EAAFA /* Health.storyboard */,
+				B539783D214F9197002EAAFA /* HealthViewController.swift */,
+			);
+			path = Health;
 			sourceTree = "<group>";
 		};
 		B53E5F452053F65200B50B60 /* Activity */ = {
@@ -1188,6 +1218,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B539783C214F915E002EAAFA /* Health */,
 				B5D3FB89213E367B004DFF78 /* Dashboards */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
 				B59DA06821201F5800A9FCFB /* Time */,
@@ -1244,6 +1275,7 @@
 				B5AB1E832018BFE600BB1A64 /* ListEditableSection.swift */,
 				B57B063A201B114700C4E182 /* GoalEditableSection.swift */,
 				B5A9D5AD20220540006DFB32 /* JournalEditableSection.swift */,
+				B53977DF214BC7B2002EAAFA /* HealthEditableSection.swift */,
 				B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */,
 				B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */,
 			);
@@ -1265,6 +1297,7 @@
 				B5AB1E8B2018CB1300BB1A64 /* ListEvaluateSection.swift */,
 				B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */,
 				B5A9D5AF2022062D006DFB32 /* JournalEvaluateSection.swift */,
+				B5E255B521527C9D00F97A3B /* HealthEvaluateSection.swift */,
 				B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */,
 				B5D3FB9C21410AC8004DFF78 /* EvaluateEmptyCardSection.swift */,
 			);
@@ -1394,12 +1427,14 @@
 				B5AB1E7F2018A40900BB1A64 /* ListCard.swift */,
 				B57B0636201B0D1800C4E182 /* GoalCard.swift */,
 				B5A9D5A5201F00F8006DFB32 /* JournalCard.swift */,
+				B53977DB214B9E3F002EAAFA /* HealthCard.swift */,
 				B5B7EE432010B6C900BCD41A /* TextValue.swift */,
 				B5BD3B2B200793350075C75F /* LocationValue.swift */,
 				B5DE2CAA2000DDA300EFBCA5 /* NumberValue.swift */,
 				B5AB1E7B2018A21500BB1A64 /* MarkValue.swift */,
 				B5FFDD4A201B8416008D0365 /* WeatherValue.swift */,
 				B5FFDD4C201B8429008D0365 /* PhotoValue.swift */,
+				B53977D7214A93F6002EAAFA /* HealthValue.swift */,
 				B5DE2CAC2000EAA900EFBCA5 /* Card+Extensions.swift */,
 				B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */,
 				B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */,
@@ -1414,12 +1449,14 @@
 				B5AB1E812018A4E100BB1A64 /* ListCard+Extensions.swift */,
 				B57B0638201B0F2900C4E182 /* GoalCard+Extensions.swift */,
 				B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */,
+				B53977DD214BC2EA002EAAFA /* HealthCard+Extensions.swift */,
 				B5B7EE452010B70800BCD41A /* TextValue+Extensions.swift */,
 				B5BD3B2D2007A0390075C75F /* LocationValue+Extensions.swift */,
 				B5DE2CB22001003B00EFBCA5 /* NumberValue+Extensions.swift */,
 				B5AB1E7D2018A2CC00BB1A64 /* MarkValue+Extensions.swift */,
 				B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */,
 				B5A9D5AB2021FDA0006DFB32 /* PhotoValue+Extensions.swift */,
+				B53977D9214B9C9F002EAAFA /* HealthValue+Extensions.swift */,
 				B59318251FFA4A8C000D8FFE /* DiffCard */,
 				B584E0C61FDFC648008093D5 /* Additional Objects */,
 			);
@@ -1784,6 +1821,8 @@
 			children = (
 				B5E7721B1FA07E46002FA03F /* Sources.swift */,
 				B5E7721D1FA07E59002FA03F /* Source.swift */,
+				B56CF54321502B3C000A5CFE /* HealthSources.swift */,
+				B5397841214F923E002EAAFA /* HealthSource.swift */,
 			);
 			path = "Cards Source";
 			sourceTree = "<group>";
@@ -1892,6 +1931,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -1990,6 +2032,7 @@
 				B55464CF2025AA9A00923CE3 /* Weather.xcassets in Resources */,
 				B59DA09E2122A2DC00A9FCFB /* WhiteAppIcon-Positive-Preview.png in Resources */,
 				B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */,
+				B5397840214F91A1002EAAFA /* Health.storyboard in Resources */,
 				B5EC88512011EF740056C1C7 /* Phrases.storyboard in Resources */,
 				B5B27E6F1F9DAC7000CB9121 /* Localizable.strings in Resources */,
 				B59DA08C21229EC100A9FCFB /* BlackAppIcon-Positive.png in Resources */,
@@ -2210,6 +2253,7 @@
 				B5D3FB9D21410AC8004DFF78 /* EvaluateEmptyCardSection.swift in Sources */,
 				B52D26E120174E7800332D0A /* HabitEditableSection.swift in Sources */,
 				B55464CD2025974400923CE3 /* PhotoNode.swift in Sources */,
+				B539783E214F9197002EAAFA /* HealthViewController.swift in Sources */,
 				B5AB1E7E2018A2CC00BB1A64 /* MarkValue+Extensions.swift in Sources */,
 				B5C757311F9DE2B40032199E /* Cards.swift in Sources */,
 				B55D32822079042800BD1E75 /* TrackerCard+Extensions.swift in Sources */,
@@ -2218,6 +2262,7 @@
 				B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */,
 				B5C757421F9F33660032199E /* ColorEvaluateNode.swift in Sources */,
 				B5C7573D1F9DF8870032199E /* ColorCard.swift in Sources */,
+				B53977DC214B9E3F002EAAFA /* HealthCard.swift in Sources */,
 				B5A0CFE51FAF90BC002B1636 /* TextTopViewController.swift in Sources */,
 				B587D6BD1FB6D5D8006D62C1 /* Fonts.swift in Sources */,
 				B5A1140D200F79E6008DBF02 /* CriterionThreeEvaluateSection.swift in Sources */,
@@ -2241,7 +2286,9 @@
 				B55464D12025C48300923CE3 /* TextNode.swift in Sources */,
 				B5A11400200D4B14008DBF02 /* MapAnnotation.swift in Sources */,
 				B55464842024917700923CE3 /* LightEntryControllerTheme.swift in Sources */,
+				B5397842214F923E002EAAFA /* HealthSource.swift in Sources */,
 				B5DED79F1FCB0578002DD956 /* UpdateNode.swift in Sources */,
+				B53977D8214A93F6002EAAFA /* HealthValue.swift in Sources */,
 				B5D854D41FCF08C300BB4E14 /* ThemeImageNode.swift in Sources */,
 				B562180A1FD56A6C0061AC70 /* SettingsProButtonNode.swift in Sources */,
 				B5BD3B422009116C0075C75F /* CheckInDataEvaluateNode.swift in Sources */,
@@ -2262,6 +2309,7 @@
 				B55D32692074F67300BD1E75 /* OrangeCardMergeTheme.swift in Sources */,
 				B570C3FA1FAC38F800B12309 /* LightCardSettingsTheme.swift in Sources */,
 				B5D854E81FD041C500BB4E14 /* SettingsNotificationNode.swift in Sources */,
+				B53977DE214BC2EA002EAAFA /* HealthCard+Extensions.swift in Sources */,
 				B5A11411200F8111008DBF02 /* CriterionThreeAnalyticsSection.swift in Sources */,
 				B5DE2CAD2000EAA900EFBCA5 /* Card+Extensions.swift in Sources */,
 				B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */,
@@ -2281,6 +2329,7 @@
 				B5B27E591F9DA66000CB9121 /* AppDelegate.swift in Sources */,
 				B5EC883E2010BE630056C1C7 /* PhraseEditableSection.swift in Sources */,
 				B5EC885720121E5E0056C1C7 /* CounterCard.swift in Sources */,
+				B53977E0214BC7B2002EAAFA /* HealthEditableSection.swift in Sources */,
 				B5DE2CA11FFF969300EFBCA5 /* BigDescriptionNode.swift in Sources */,
 				B5D0C7C220A8539A000F98EF /* BlackShareViewTheme.swift in Sources */,
 				B5BD3B1C200765C70075C75F /* CriterionTenCard.swift in Sources */,
@@ -2409,6 +2458,7 @@
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
 				B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */,
+				B53977DA214B9C9F002EAAFA /* HealthValue+Extensions.swift in Sources */,
 				B5D0C7BB20A8539A000F98EF /* BlackTopControllerTheme.swift in Sources */,
 				B5AB1E992019DA8300BB1A64 /* ListItemEvaluateNode.swift in Sources */,
 				B587D6B51FB5D157006D62C1 /* SettingsMoreNode.swift in Sources */,
@@ -2454,6 +2504,7 @@
 				B5C757261F9DC9890032199E /* WelcomeViewController.swift in Sources */,
 				B5D854CC1FCDAA8300BB4E14 /* PasscodeViewController.swift in Sources */,
 				B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */,
+				B56CF54421502B3C000A5CFE /* HealthSources.swift in Sources */,
 				B5FD38E71FDD66FD0071B1F0 /* LightShareViewTheme.swift in Sources */,
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,
 				B52D26E720175FB800332D0A /* HabitEvaluateSection.swift in Sources */,
@@ -2495,6 +2546,7 @@
 				B5D854BD1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift in Sources */,
 				B5A0CFE31FAF8DDA002B1636 /* TopViewController.swift in Sources */,
 				B5A9D5A6201F00F8006DFB32 /* JournalCard.swift in Sources */,
+				B5E255B621527C9D00F97A3B /* HealthEvaluateSection.swift in Sources */,
 				B5D854BF1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift in Sources */,
 				B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */,
 				B55D328A20790B4400BD1E75 /* TrackerMergeSection.swift in Sources */,
@@ -2553,9 +2605,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5B27E721F9DAC8200CB9121 /* Base */,
-				B5A4511D21367C5200AA2A9C /* en */,
-				B5A4511E21367C5200AA2A9C /* de */,
-				B5A4511F21367C5400AA2A9C /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

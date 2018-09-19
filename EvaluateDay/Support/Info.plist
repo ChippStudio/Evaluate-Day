@@ -266,9 +266,9 @@
 	<key>CFBundleVersion</key>
 	<string>6502</string>
 	<key>CSBuild</key>
-	<string>6569</string>
+	<string>6621</string>
 	<key>CSDemo</key>
-	<false/>
+	<true/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>
@@ -317,6 +317,10 @@
 	<string>Make photos right from the application without distracting from keeping your day</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Unlock Evaluate Day</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Attach data from Apple Health to your card</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Share health data from the card to the Apple Health</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Mark the locations where you evaluate your day</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
