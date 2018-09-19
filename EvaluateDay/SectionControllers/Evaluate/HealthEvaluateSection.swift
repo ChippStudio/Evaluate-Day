@@ -37,20 +37,20 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.evaluateStyle
         
-        var lock = false
-        if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
-            lock = true
-        }
-        
-        if self.card.archived {
-            lock = true
-        }
+//        var lock = false
+//        if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
+//            lock = true
+//        }
+//
+//        if self.card.archived {
+//            lock = true
+//        }
         
         let title = self.card.title
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
         let archived = self.card.archived
-        let healthCard = self.card.data as! HealthCard
+//        let healthCard = self.card.data as! HealthCard
         let cardType = Sources.title(forType: self.card.type)
         let board = self.card.dashboardValue
         

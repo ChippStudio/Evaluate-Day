@@ -117,7 +117,6 @@
 		B57B0645201B18B900C4E182 /* GoalEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */; };
 		B57B0649201B21C000C4E182 /* GoalMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B0648201B21C000C4E182 /* GoalMergeSection.swift */; };
 		B57B064B201B224200C4E182 /* GoalAnalyticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B064A201B224200C4E182 /* GoalAnalyticsSection.swift */; };
-		B57F45C920E6716F00672FD6 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = B57F45C820E6716F00672FD6 /* fabric.apikey */; };
 		B57F45CC20E675D900672FD6 /* secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57F45CB20E675D900672FD6 /* secret.swift */; };
 		B584E0CF1FE01CCF008093D5 /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584E0CE1FE01CCF008093D5 /* Demo.swift */; };
 		B584E0D11FE27177008093D5 /* SlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584E0D01FE27177008093D5 /* SlidesViewController.swift */; };
@@ -548,8 +547,6 @@
 		B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEvaluateSection.swift; sourceTree = "<group>"; };
 		B57B0648201B21C000C4E182 /* GoalMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalMergeSection.swift; sourceTree = "<group>"; };
 		B57B064A201B224200C4E182 /* GoalAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAnalyticsSection.swift; sourceTree = "<group>"; };
-		B57F45C820E6716F00672FD6 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
-		B57F45CA20E6717800672FD6 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = "<group>"; };
 		B57F45CB20E675D900672FD6 /* secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secret.swift; sourceTree = "<group>"; };
 		B584E0CE1FE01CCF008093D5 /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
 		B584E0D01FE27177008093D5 /* SlidesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidesViewController.swift; sourceTree = "<group>"; };
@@ -1062,8 +1059,6 @@
 		B57F45C720E66EF500672FD6 /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				B57F45C820E6716F00672FD6 /* fabric.apikey */,
-				B57F45CA20E6717800672FD6 /* fabric.buildsecret */,
 				B57F45CB20E675D900672FD6 /* secret.swift */,
 			);
 			path = Secret;
@@ -2023,7 +2018,6 @@
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
 				B59DA08A21229EC100A9FCFB /* BlackAppIcon-Negative.png in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
-				B57F45C920E6716F00672FD6 /* fabric.apikey in Resources */,
 				B59DA09F2122A2DC00A9FCFB /* BlackAppIcon-Positive-Preview.png in Resources */,
 				B59DA08421229EC100A9FCFB /* BlackAppIcon.png in Resources */,
 				B59DA0A02122A2DC00A9FCFB /* BlackAppIcon-Negative-Preview.png in Resources */,

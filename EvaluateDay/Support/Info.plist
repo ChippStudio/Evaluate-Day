@@ -266,36 +266,13 @@
 	<key>CFBundleVersion</key>
 	<string>6502</string>
 	<key>CSBuild</key>
-	<string>6621</string>
+	<string>6622</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>
 	<false/>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string></string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>branch_key</key>
-					<string></string>
-				</dict>
-				<key>KitName</key>
-				<string>Branch</string>
-			</dict>
-		</array>
-	</dict>
 	<key>FacebookAppID</key>
 	<string>184140535498012</string>
 	<key>FacebookDisplayName</key>
