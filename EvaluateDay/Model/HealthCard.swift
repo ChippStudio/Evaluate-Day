@@ -13,9 +13,6 @@ class HealthCard: Object {
     // MARK: - General
     @objc dynamic var goal: Double = 0.0
     @objc dynamic var type: String = ""
-    @objc dynamic var unit: String = ""
-    @objc dynamic var deviceName: String = ""
-    @objc dynamic var isCreateOnCurrentDevice: Bool = false
     
     // MARK: - Value
     var values: Results<HealthValue> {
@@ -24,4 +21,14 @@ class HealthCard: Object {
     
     // MARK: - Card
     @objc dynamic var card: Card!
+    
+    // MARK: - Source type
+    var source: HealthSource? {
+        get {
+            guard let healthType = HealthType(rawValue: self.type) else {
+                return nil
+            }
+            return HealthSource.init(type: healthType)
+        }
+    }
 }

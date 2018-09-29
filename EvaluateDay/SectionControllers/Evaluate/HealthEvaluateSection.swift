@@ -10,6 +10,7 @@ import UIKit
 import IGListKit
 import AsyncDisplayKit
 import Branch
+import HealthKit
 
 class HealthEvaluateSection: ListSectionController, ASSectionController, EvaluableSection {
     // MARK: - Variables
@@ -27,6 +28,8 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
         } else {
             self.card = card
         }
+        
+        self.getHealthData()
     }
     
     // MARK: - Override
@@ -133,6 +136,62 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+    }
+    
+    private func getHealthData() {
+        let healthCard = self.card.data as! HealthCard
+        
+        guard let sourceObject = healthCard.source else {
+            return
+        }
+        
+        guard let unit = sourceObject.unit,
+                let queryType = sourceObject.queryType,
+                let sampleType = sourceObject.objectType else {
+            return
+        }
+        
+        // Get data from health kit
+        let predicate = HKQuery.predicateForSamples(withStart: Date().start, end: Date().end, options: .strictEndDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let limit = 1
+        
+        var query: HKQuery!
+        
+        switch queryType {
+        case .sample:
+            query = HKSampleQuery(sampleType: sampleType as! HKSampleType, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
+                OperationQueue.main.addOperation {
+                    if samples == nil {
+                        return
+                    }
+                    
+                    for sample in samples! {
+                        if let s = sample as? HKQuantitySample {
+                            print("Sample Start date - \(sample.startDate) : Sample End Date - \(sample.endDate)")
+                            if #available(iOS 12.0, *) {
+                                print("Quantity Count - \(s.count)")
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            print("Quantity - \(s.quantity.doubleValue(for: HKUnit.count()))")
+                        }
+                    }
+                }
+            }
+        case .statistics:
+            query = HKStatisticsQuery(quantityType: sampleType as! HKQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (query, stat, error) in
+                if stat == nil {
+                    return
+                }
+                if let quantity = stat!.sumQuantity() {
+                    print("Sample Start date - \(stat!.startDate) : Sample End Date - \(stat!.endDate)")
+                    print("Quantity - \(quantity.doubleValue(for: unit))")
+                }
+            }
+        }
+        
+        HKHealthStore().execute(query)
     }
 }
 

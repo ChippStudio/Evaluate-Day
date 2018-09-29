@@ -65,10 +65,13 @@ class HealthViewController: UIViewController, ASTableDelegate, ASTableDataSource
         if let healthCardController = self.navigationController?.viewControllers[self.navigationController!.viewControllers.count - 2] as? CardSettingsViewController {
             if let dataHealth = healthCardController.card.data as? HealthCard {
                 let item = self.sources[indexPath.section].sources[indexPath.row]
+                if item.objectType == nil {
+                    return
+                }
                 
-                HKHealthStore().requestAuthorization(toShare: [item.type as! HKSampleType], read: [item.type]) { (_, _) in
+                HKHealthStore().requestAuthorization(toShare: [item.objectType as! HKSampleType], read: [item.objectType!]) { (_, _) in
                     OperationQueue.main.addOperation {
-                        dataHealth.type = item.type.identifier
+                        dataHealth.type = item.type.rawValue
                         self.navigationController?.popViewController(animated: true)
                     }
                 }

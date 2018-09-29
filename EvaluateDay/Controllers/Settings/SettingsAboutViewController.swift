@@ -49,7 +49,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         self.openSource.append(OpenSource(title: "SnapKit", URL: "https://github.com/SnapKit/SnapKit"))
         self.openSource.append(OpenSource(title: "Realm", URL: "https://realm.io"))
         self.openSource.append(OpenSource(title: "RxSwift", URL: "https://github.com/ReactiveX/RxSwift"))
-        self.openSource.append(OpenSource(title: "Fabric", URL: "https://fabric.io"))
         self.openSource.append(OpenSource(title: "Texture", URL: "http://texturegroup.org/"))
         self.openSource.append(OpenSource(title: "SwiftyJSON", URL: "https://github.com/SwiftyJSON/SwiftyJSON"))
         self.openSource.append(OpenSource(title: "Alamofire", URL: "https://github.com/Alamofire/Alamofire"))

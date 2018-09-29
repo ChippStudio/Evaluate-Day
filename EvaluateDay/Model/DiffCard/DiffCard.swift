@@ -193,8 +193,6 @@ class DiffCard: NSObject {
             let healthCard = card.data as! HealthCard
             self.healthGoal = healthCard.goal
             self.healthType = healthCard.type
-            self.healthUnit = healthCard.unit
-            self.healthDeviceName = healthCard.deviceName
             if card.realm != nil {
                 let sortedValues = healthCard.values.sorted(byKeyPath: "created", ascending: false)
                 for c in sortedValues {

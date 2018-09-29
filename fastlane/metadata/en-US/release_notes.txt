@@ -1,13 +1,1 @@
-NEW:
- - Now you can group your cards into dashboards.
 
-FIXED:
- - Overall stability improvements.
-
-********
-
-Thank you for using Evaluate Day app!
-
-Like update? We would be happy to see your review at the App Store!
-
-Questions / Suggestions? Write to us at support@evaluateday.com

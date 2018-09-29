@@ -750,6 +750,9 @@
 		B5CA2D5D1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredAnalyticsSection.swift; sourceTree = "<group>"; };
 		B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDotNode.swift; sourceTree = "<group>"; };
 		B5CA2D661FB55FA600547EC8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		B5CEE228215F83A500F6CF29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5CEE229215F83A600F6CF29 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5CEE22A215F83A700F6CF29 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5D0C7AD20A8539A000F98EF /* BlackTopControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackTopControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7AE20A8539A000F98EF /* BlackCardSettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackCardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D0C7AF20A8539A000F98EF /* BlackEvaluateTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackEvaluateTheme.swift; sourceTree = "<group>"; };
@@ -2599,6 +2602,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5B27E721F9DAC8200CB9121 /* Base */,
+				B5CEE228215F83A500F6CF29 /* en */,
+				B5CEE229215F83A600F6CF29 /* ru */,
+				B5CEE22A215F83A700F6CF29 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

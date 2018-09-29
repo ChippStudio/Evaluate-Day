@@ -53,7 +53,7 @@ extension HealthCard: Evaluable {
             let date = DateFormatter.localizedString(from: c.created, dateStyle: .medium, timeStyle: .medium)
             let edited = DateFormatter.localizedString(from: c.edited, dateStyle: .medium, timeStyle: .medium)
             
-            newLine = "\(self.card.title), \(date), \(c.created.timeIntervalSince1970), \(edited), \(c.edited.timeIntervalSince1970), \(c.value), \(self.type), \(self.deviceName), \(self.goal)\n"
+            newLine = "\(self.card.title), \(date), \(c.created.timeIntervalSince1970), \(edited), \(c.edited.timeIntervalSince1970), \(c.value), \(self.type), \(self.goal)\n"
             
             txtText.append(newLine)
         }

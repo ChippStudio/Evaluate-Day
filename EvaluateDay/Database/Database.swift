@@ -32,7 +32,7 @@ final class Database: NSObject {
     private let dataRealmKey = "Data"
     
     // MARK: - Migrations
-    private let schemaVersion: UInt64 = 6 // In App Store - 4
+    private let schemaVersion: UInt64 = 5 // In App Store - 4
     private var appMigration: MigrationBlock!
     private var dataMigration: MigrationBlock!
     

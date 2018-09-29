@@ -55,85 +55,131 @@ class HealthSources: NSObject {
         self.sources.removeAll()
         
         if let h = HKObjectType.quantityType(forIdentifier: .stepCount) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .distanceCycling) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .flightsClimbed) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .basalEnergyBurned) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .distanceSwimming) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .swimmingStrokeCount) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .distanceWheelchair) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .nikeFuel) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
     }
     
     private func setNutriationSources() {
         if let h = HKObjectType.quantityType(forIdentifier: .dietaryCaffeine) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .dietaryWater) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .dietarySugar) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .dietaryFatTotal) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .dietaryProtein) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
     }
     
     private func setSleepSources() {
         if let h = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
     }
     
     private func setMindfulnessSouerces() {
         if let h = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
     }
     
     private func setBodySources() {
         if let h = HKObjectType.quantityType(forIdentifier: .bodyFatPercentage) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .bodyMassIndex) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .bodyMass) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
         if let h = HKObjectType.quantityType(forIdentifier: .leanBodyMass) {
-            self.sources.append(HealthSource(type: h))
+            if let type = HealthType(rawValue: h.identifier) {
+                self.sources.append(HealthSource(type: type))
+            }
         }
     }
 }

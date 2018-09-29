@@ -56,6 +56,9 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
             self.preferredContentSize = CGSize(width: 360.0, height: 600.0)
         }
         
+        self.setSettings()
+        self.observable()
+        
         // Analytics
         sendEvent(.openSettings, withProperties: nil)
     }
@@ -73,8 +76,8 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setSettings()
-        self.observable()
+//        self.setSettings()
+//        self.observable()
     }
     
     // MARK: - Navigation
