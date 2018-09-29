@@ -1,1 +1,1 @@
-timestamp,remind,checklist,life,rabbit,planner,to do,todo,organize,moves,move,period,moovit,morning
+goal,tracking,keeper,habitica,bull,good,simple,planner,bad,workout,water,striiv,drink,drinking,log

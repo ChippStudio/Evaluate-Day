@@ -1,1 +1,1 @@
-activity,timepage,striiv,action,wunderlist,routine,habitminder,task,ritual,habitica,asana,mental
+planner,to,do,checklist,reminder,check,list,action,routine,tasker,habitbull,habitminder,free,task,h
