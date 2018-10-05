@@ -1,1 +1,1 @@
-reminder,productive,daily,motivation,habitica,setting,routine,tasker,bull,planner,breaker,action
+reminder,productive,daily,motivation,habitica,routine,tasker,bull,planner,breaker,action,plank,plan

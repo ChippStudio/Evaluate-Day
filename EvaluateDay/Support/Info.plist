@@ -245,7 +245,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.4</string>
+	<string>3.2.5</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -264,11 +264,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6502</string>
+	<string>6655</string>
 	<key>CSBuild</key>
-	<string>6654</string>
+	<string>6659</string>
 	<key>CSDemo</key>
-	<false/>
+	<true/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>

@@ -331,19 +331,19 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
                 settings.card = section.card
                 self.navigationController?.pushViewController(settings, animated: true)
+            } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
+                guard let dashIndexPath = section.collectionView.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
+                    return
+                }
+                
+                if dashIndexPath.section == 1 {
+                    return
+                }
+                
+                let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
+                controller.dashboard = section.dashboards[dashIndexPath.row]
+                self.navigationController?.pushViewController(controller, animated: true)
             }
-        } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
-            guard let dashIndexPath = section.collectionView.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
-                return
-            }
-            
-            if dashIndexPath.section == 1 {
-                return
-            }
-            
-            let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
-            controller.dashboard = section.dashboards[dashIndexPath.row]
-            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     
