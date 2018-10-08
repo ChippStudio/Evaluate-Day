@@ -15,6 +15,7 @@ disabled_rules: # rule identifiers to exclude from running
     - empty_enum_arguments
     - class_delegate_protocol
     - weak_delegate
+    - identifier_name
 excluded:
     - Pods
     - EvaluateDay/Localization/LaurineGenerator.swift
