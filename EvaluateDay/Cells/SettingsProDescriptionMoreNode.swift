@@ -23,7 +23,7 @@ class SettingsProDescriptionMoreNode: ASCellNode {
     var image = ASImageNode()
     var title = ASTextNode()
     var subtitle = ASTextNode()
-    var separator = ASDisplayNode()
+    var backView = ASDisplayNode()
     
     // MARK: - Init
     init(image: UIImage, title: String, subtitle: String, style: SettingsProDescriptionMoreNodeStyle) {
@@ -37,7 +37,9 @@ class SettingsProDescriptionMoreNode: ASCellNode {
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsProDescriptionMoreTitleFont, NSAttributedStringKey.foregroundColor: style.settingsProDescriptionMoreTitleColor])
         self.subtitle.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: style.settingsProDescriptionMoreSubtitleFont, NSAttributedStringKey.foregroundColor: style.settingsProDescriptionMoreSubtitleColor])
         
-        self.separator.backgroundColor = style.settingsProDescriptionMoreSeparatorColor
+        self.backView.backgroundColor = UIColor.lightGray
+        self.backView.cornerRadius = 30.0
+        self.backView.alpha = 0.1
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = title
@@ -48,32 +50,26 @@ class SettingsProDescriptionMoreNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let text = ASStackLayoutSpec.vertical()
-        text.style.flexShrink = 1.0
-        text.children = [self.title, self.subtitle]
+        self.image.style.preferredSize = CGSize(width: 60.0, height: 60.0)
+        self.subtitle.style.flexShrink = 1.0
         
-        let textInsets = UIEdgeInsets(top: -5.0, left: 0.0, bottom: 0.0, right: 0.0)
-        let textInset = ASInsetLayoutSpec(insets: textInsets, child: text)
-        textInset.style.flexShrink = 1.0
+        let description = ASStackLayoutSpec.horizontal()
+        description.spacing = 10.0
+        description.alignItems = .start
+        description.children = [self.image, self.subtitle]
         
-        self.image.style.preferredSize = CGSize(width: 25.0, height: 25.0)
+        let content = ASStackLayoutSpec.vertical()
+        content.spacing = 10.0
+        content.children = [self.title, description]
         
-        let content = ASStackLayoutSpec.horizontal()
-        content.spacing = 20.0
-        content.alignItems = .start
-        content.children = [self.image, textInset]
-        
-        let contentInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
-        self.separator.style.preferredSize.height = 0.3
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.backView)
         
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
-        let separatorInset = ASInsetLayoutSpec(insets: separatorInsets, child: self.separator)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 20.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.children = [contentInset, separatorInset]
-        
-        return cell
+        return cellInset
     }
 }

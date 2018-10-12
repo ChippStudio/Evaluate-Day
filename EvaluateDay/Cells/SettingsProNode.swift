@@ -94,7 +94,7 @@ class SettingsProNode: ASCellNode {
         cell.spacing = 15.0
         cell.children = [icons, text]
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+        let cellInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

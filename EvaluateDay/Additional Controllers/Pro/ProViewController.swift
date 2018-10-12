@@ -193,14 +193,39 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             switch indexPath.row {
             case 0:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.lifetime(value1: Store.current.localizedLifetimePrice), full: true, style: style)
-                    node.selectionStyle = .none
+                    let node = InfoNode(title: Localizations.settings.pro.subscription.title.anuualy, style: style)
+                    node.topInset = 20.0
+                    node.infoSelected = { () in
+                        let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+                        let topController = controller.topViewController as! WebViewController
+                        topController.html = Bundle.main.path(forResource: "annualy", ofType: "html")
+                        self.present(controller, animated: true, completion: nil)
+                    }
                     return node
                 }
             case 1:
                 return {
+                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.annualy(value1: Store.current.localizedAnnualyPrice), full: true, style: style)
+                    node.selectionStyle = .none
+                    node.cover.backgroundColor = UIColor.squash
+                    return node
+                }
+            case 2:
+                if #available(iOS 11.2, *) {
+                    return {
+                        let node = DescriptionNode(text: Store.current.annualy.introductory, alignment: .center, style: style)
+                        return node
+                    }
+                } else {
+                    // Fallback on earlier versions
+                    // Without introductory price
+                    return {
+                        return DescriptionNode(text: "", alignment: .center, style: style)
+                    }
+                }
+            case 3:
+                return {
                     let node = InfoNode(title: Localizations.settings.pro.subscription.title.monthly, style: style)
-                    node.topInset = 20.0
                     node.infoSelected = { () in
                         let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
                         let topController = controller.topViewController as! WebViewController
@@ -209,13 +234,13 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     }
                     return node
                 }
-            case 2:
+            case 4:
                 return {
                     let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.monthly(value1: Store.current.localizedMonthlyPrice), full: true, style: style)
                     node.selectionStyle = .none
                     return node
                 }
-            case 3:
+            case 5:
                 if #available(iOS 11.2, *) {
                     return {
                         let node = DescriptionNode(text: Store.current.mouthly.introductory, alignment: .center, style: style)
@@ -229,36 +254,11 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                         return node
                     }
                 }
-            case 4:
+            case 6:
                 return {
-                    let node = InfoNode(title: Localizations.settings.pro.subscription.title.anuualy, style: style)
-                    node.topInset = 20.0
-                    node.infoSelected = { () in
-                        let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
-                        let topController = controller.topViewController as! WebViewController
-                        topController.html = Bundle.main.path(forResource: "annualy", ofType: "html")
-                        self.present(controller, animated: true, completion: nil)
-                    }
-                    return node
-                }
-            case 5:
-                return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.annualy(value1: Store.current.localizedAnnualyPrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.lifetime(value1: Store.current.localizedLifetimePrice), full: true, style: style)
                     node.selectionStyle = .none
                     return node
-                }
-            case 6:
-                if #available(iOS 11.2, *) {
-                    return {
-                        let node = DescriptionNode(text: Store.current.annualy.introductory, alignment: .center, style: style)
-                        return node
-                    }
-                } else {
-                    // Fallback on earlier versions
-                    // Without introductory price
-                    return {
-                        return DescriptionNode(text: "", alignment: .center, style: style)
-                    }
                 }
             case 7:
                 return {
@@ -336,7 +336,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         
         if indexPath.section == 1 {
             // Make Payment
-            if indexPath.row == 0 {
+            if indexPath.row == 6 {
                 //Lifetime
                 self.showLoadView()
                 Store.current.payment(product: Store.current.lifetime, completion: { (_, error) in
@@ -351,7 +351,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     self.tableNode.reloadData()
                 })
             }
-            if indexPath.row == 2 {
+            if indexPath.row == 4 {
                 // Mouthly
                 self.showLoadView()
                 Store.current.payment(product: Store.current.mouthly, completion: { (_, error) in
@@ -365,7 +365,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     (UIApplication.shared.delegate as! AppDelegate).syncEngine.startSync()
                     self.tableNode.reloadData()
                 })
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 1 {
                 // Annualy
                 self.showLoadView()
                 Store.current.payment(product: Store.current.annualy, completion: { (_, error) in

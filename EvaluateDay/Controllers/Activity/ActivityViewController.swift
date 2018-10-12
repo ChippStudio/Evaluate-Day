@@ -82,7 +82,9 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         var diffableCards = [ListDiffable]()
         
         diffableCards.append(self.userObject)
-        diffableCards.append(self.proLock)
+        if !Store.current.isPro {
+            diffableCards.append(self.proLock)
+        }
         diffableCards.append(self.analyticsObject)
         diffableCards.append(self.photoObject)
         return diffableCards

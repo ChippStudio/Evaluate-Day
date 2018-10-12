@@ -22,12 +22,8 @@ class ProMoreViewController: UIViewController, ASTableDataSource, ASTableDelegat
     // MARK: - UI
     var tableNode: ASTableNode!
     @IBOutlet weak var cover: UIView!
-    @IBOutlet weak var monthlyButtonCover: UIView!
     @IBOutlet weak var annualyButtonCover: UIView!
-    @IBOutlet weak var lifetimeBittonCover: UIView!
-    @IBOutlet weak var monthlyButton: UIButton!
     @IBOutlet weak var annualyButton: UIButton!
-    @IBOutlet weak var lifetimeButton: UIButton!
     
     // MARK: - Variables
     var items = [(image: UIImage, title: String, subtitle: String)]()
@@ -49,17 +45,11 @@ class ProMoreViewController: UIViewController, ASTableDataSource, ASTableDelegat
         self.items.append((image: #imageLiteral(resourceName: "sandClockB"), title: Localizations.settings.pro.description.more.past.title, subtitle: Localizations.settings.pro.description.more.past.description))
         self.items.append((image: #imageLiteral(resourceName: "app"), title: Localizations.settings.pro.description.more.future.title, subtitle: Localizations.settings.pro.description.more.future.description))
         
-        // Buttons
-        self.monthlyButtonCover.layer.masksToBounds = true
-        self.monthlyButtonCover.layer.cornerRadius = 5.0
+        // Button
         self.annualyButtonCover.layer.masksToBounds = true
         self.annualyButtonCover.layer.cornerRadius = 5.0
-        self.lifetimeBittonCover.layer.masksToBounds = true
-        self.lifetimeBittonCover.layer.cornerRadius = 5.0
         
         self.annualyButton.setTitle(Localizations.settings.pro.subscription.buy.annualy(value1: Store.current.localizedAnnualyPrice), for: .normal)
-        self.monthlyButton.setTitle(Localizations.settings.pro.subscription.buy.monthly(value1: Store.current.localizedMonthlyPrice), for: .normal)
-        self.lifetimeButton.setTitle(Localizations.settings.pro.subscription.buy.lifetime(value1: Store.current.localizedLifetimePrice), for: .normal)
         
         // set table node
         self.tableNode = ASTableNode(style: .plain)
@@ -103,55 +93,27 @@ class ProMoreViewController: UIViewController, ASTableDataSource, ASTableDelegat
         let item = self.items[indexPath.row]
         return {
             let node = SettingsProDescriptionMoreNode(image: item.image, title: item.title, subtitle: item.subtitle, style: Themes.manager.settingsStyle)
+            if indexPath.row % 2 == 0 {
+                node.backView.backgroundColor = UIColor.white
+            }
             return node
         }
     }
     
     // MARK: - Actions
     @IBAction func subscriptionButtonAction(_ sender: UIButton) {
-        // Tag 0 = montly button
-        // Tag 1 = annualy button
-        // Tag 2 = lifitime button
-        if sender.tag == 0 {
-            self.showLoadView()
-            Store.current.payment(product: Store.current.mouthly, completion: { (_, error) in
-                if error != nil {
-                    print(error!.localizedDescription)
-                    self.hideLoadView()
-                    return
-                }
-                // Success Payment
+        self.showLoadView()
+        Store.current.payment(product: Store.current.annualy, completion: { (_, error) in
+            if error != nil {
+                print(error!.localizedDescription)
                 self.hideLoadView()
-                (UIApplication.shared.delegate as! AppDelegate).syncEngine.startSync()
-                self.navigationController?.popViewController(animated: true)
-            })
-        } else if sender.tag == 1 {
-            self.showLoadView()
-            Store.current.payment(product: Store.current.annualy, completion: { (_, error) in
-                if error != nil {
-                    print(error!.localizedDescription)
-                    self.hideLoadView()
-                    return
-                }
-                // Success Payment
-                self.hideLoadView()
-                (UIApplication.shared.delegate as! AppDelegate).syncEngine.startSync()
-                self.navigationController?.popViewController(animated: true)
-            })
-        } else if sender.tag == 2 {
-            self.showLoadView()
-            Store.current.payment(product: Store.current.lifetime, completion: { (_, error) in
-                if error != nil {
-                    print(error!.localizedDescription)
-                    self.hideLoadView()
-                    return
-                }
-                // Success Payment
-                self.hideLoadView()
-                (UIApplication.shared.delegate as! AppDelegate).syncEngine.startSync()
-                self.navigationController?.popViewController(animated: true)
-            })
-        }
+                return
+            }
+            // Success Payment
+            self.hideLoadView()
+            (UIApplication.shared.delegate as! AppDelegate).syncEngine.startSync()
+            self.navigationController?.popViewController(animated: true)
+        })
     }
     
     // MARK: - Private actions
@@ -212,17 +174,11 @@ class ProMoreViewController: UIViewController, ASTableDataSource, ASTableDelegat
             self.cover.backgroundColor = style.proMoreViewControllerCoverColor
             self.cover.alpha = style.proMoreViewControllerCoverAlpha
             
-            self.monthlyButtonCover.backgroundColor = style.proMoreViewControllerButtonsCover
             self.annualyButtonCover.backgroundColor = style.proMoreViewControllerButtonsCover
-            self.lifetimeBittonCover.backgroundColor = style.proMoreViewControllerButtonsCover
             
-            self.monthlyButton.setTitleColor(style.proMoreViewControllerButtonsColor, for: .normal)
             self.annualyButton.setTitleColor(style.proMoreViewControllerButtonsColor, for: .normal)
-            self.lifetimeButton.setTitleColor(style.proMoreViewControllerButtonsColor, for: .normal)
             
-            self.monthlyButton.titleLabel?.font = style.proMoreViewControllerButtonsFont
             self.annualyButton.titleLabel?.font = style.proMoreViewControllerButtonsFont
-            self.lifetimeButton.titleLabel?.font = style.proMoreViewControllerButtonsFont
             
             // Backgrounds
             self.view.backgroundColor = style.background

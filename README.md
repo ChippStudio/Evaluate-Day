@@ -40,7 +40,7 @@ Create your unique set of cards, sort them however you like and record all the c
 
 Do you have any ideas for new cards or do you know how to improve Evaluate Day? Write us at info@evaluateday.com or open GitHub issue.
 
-## Licanse
+## License
 
 ```
 Copyright (c) 2018 Konstantin Tsistjakov <konstantin@chippstudio.ee> & Chipp Studio
