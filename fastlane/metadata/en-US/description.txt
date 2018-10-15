@@ -4,7 +4,7 @@ STIMULATE YOUR DAY WITH:
 - Customized dashboard
 - Your productivity criteria rate (100, 10, or 3 point scales)
 - Multiple life data tracking
-- Recurrent list of actions with countable and uncountable data (e.g. water drunk per day or sum data over all time like – savings)
+- Recurrent list of actions with countable and uncountable data (e.g. water drink per day or sum data over all time like – savings)
 - Clean and user-friendly interface
 - Continual monitoring and reminders of your habits
 - Localization data review
@@ -13,7 +13,7 @@ STIMULATE YOUR DAY WITH:
 - Simple and quick process for adding data
 
 TRACK LIFE PARAMETERS!
-Evaluate day has created a unique set of cards in order to understand your life changes and track them in figures clearly. You can sort and customize your cards the way it works better for you to see an objective picture.
+Evaluate Day has created a unique set of cards in order to understand your life changes and track them in figures clearly. You can sort and customize your cards the way it works better for you to see an objective picture.
 For example, you can track how much water you drink a day, or places you have visited during a week, or medications taken during a set period of time.
 
 ANALYZE YOUR DATA!
@@ -35,8 +35,8 @@ We'd love to answer your questions or just hear what you think about Evaluate Da
 
 FIND US ONLINE AT:
 Ideas and proposals: hello@evaluateday.com
-Facebook: www.facebook.com/evaluateday/
-Instagram: www.instagram.com/evaluatedayapp/
+Facebook: https://facebook.com/evaluateday/
+Instagram: https://instagram.com/evaluatedayapp/
 Website: https://evaluateday.com
 
 Privacy Policy: http://evaluateday.com/privacy/
