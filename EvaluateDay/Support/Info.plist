@@ -264,13 +264,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6659</string>
-	<key>CSBuild</key>
 	<string>6749</string>
+	<key>CSBuild</key>
+	<string>6758</string>
 	<key>CSDemo</key>
 	<false/>
 	<key>CSSandbox</key>
-	<false/>
+	<true/>
 	<key>CSTest</key>
 	<false/>
 	<key>FacebookAppID</key>

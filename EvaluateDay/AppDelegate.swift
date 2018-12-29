@@ -17,6 +17,7 @@ import Amplitude_iOS
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
+import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -42,6 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Init Amplitude
             Amplitude.instance().trackingSessionEvents = true
             Amplitude.instance().initializeApiKey(amplitudaApiKey)
+            
+            // Init Flurry
+            Flurry.startSession(flurryApiKey, with: FlurrySessionBuilder.init().withCrashReporting(true).withLogLevel(FlurryLogLevelAll))
             
             // Init Facebook
             FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

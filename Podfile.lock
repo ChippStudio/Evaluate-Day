@@ -19,6 +19,9 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.36.0):
     - FBSDKCoreKit (~> 4.36.0)
+  - Flurry-iOS-SDK/FlurryAds (9.0.0):
+    - Flurry-iOS-SDK/FlurrySDK (~> 9.0.0)
+  - Flurry-iOS-SDK/FlurrySDK (9.0.0)
   - FSCalendar (2.7.9)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -80,6 +83,8 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Flurry-iOS-SDK/FlurryAds
+  - Flurry-iOS-SDK/FlurrySDK
   - FSCalendar
   - NotificationBannerSwift
   - RealmSwift
@@ -103,6 +108,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+    - Flurry-iOS-SDK
     - FSCalendar
     - IGListKit
     - MarqueeLabel
@@ -130,6 +136,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
   FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
   FBSDKShareKit: 7090fdd55c39b03941efddb64c83a64ff6b3949f
+  Flurry-iOS-SDK: 58e48e417fee667154e4d240040b270b3734d28a
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
@@ -148,6 +155,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: 415e4e8a7a23121a3d086958a655f444dd340edb
   YandexMobileMetricaPush: 43d7c6bbaeee637418a8d3c287af93df1fb512d5
 
-PODFILE CHECKSUM: 1f891219312ea35893e366e61a5208354c551416
+PODFILE CHECKSUM: 69d53e8ab35d936f4239118456f10130abb5afdd
 
 COCOAPODS: 1.5.0

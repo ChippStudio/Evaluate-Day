@@ -11,6 +11,7 @@ import Amplitude_iOS
 import YandexMobileMetrica
 import FBSDKCoreKit
 import FBSDKShareKit
+import Flurry_iOS_SDK
 
 enum Analytics: String {
     

@@ -120,9 +120,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 }
                 
                 if isPro {
-                    self.paymentHandler?(transactions.first, nil)
+                    self.restoreHandler?(transactions, nil)
                 } else {
-                    self.paymentHandler?(nil, ReceiptValidateError.fail)
+                    self.restoreHandler?(nil, ReceiptValidateError.fail)
                 }
             })
         case .deferred: ()

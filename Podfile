@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 target 'EvaluateDay' do
 
-  platform :ios, '10.0'
+  platform :ios, '10.3'
 
   pod 'SnapKit'
   pod 'RealmSwift'
@@ -24,9 +24,14 @@ target 'EvaluateDay' do
   pod 'FBSDKShareKit'
   pod 'Branch'
   pod 'NotificationBannerSwift'
+  pod 'Flurry-iOS-SDK/FlurrySDK'
+  pod 'Flurry-iOS-SDK/FlurryAds'
 
 end
 
 target 'EvaluateDayUITests' do
+    
+    platform :ios, '10.3'
+    
     pod 'SimulatorStatusMagic'
 end

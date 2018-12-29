@@ -95,7 +95,7 @@ final class Sources: NSObject {
         
         self.cards.append(Source(type: .color, title: Localizations.new.color.title, subtitle: Localizations.new.color.subtitle, image: Sources.image(forType: .color)))
         self.cards.append(Source(type: .checkIn, title: Localizations.new.checkin.title, subtitle: Localizations.new.checkin.subtitle, image: Sources.image(forType: .checkIn)))
-        self.cards.append(Source(type: .phrase, title: Localizations.new.phrase.title, subtitle: Localizations.new.checkin.subtitle, image: Sources.image(forType: .phrase)))
+        self.cards.append(Source(type: .phrase, title: Localizations.new.phrase.title, subtitle: Localizations.new.phrase.subtitle, image: Sources.image(forType: .phrase)))
         self.cards.append(Source(type: .criterionHundred, title: Localizations.new.criterionHundred.title, subtitle: Localizations.new.criterionHundred.subtitle, image: Sources.image(forType: .criterionHundred)))
         self.cards.append(Source(type: .criterionTen, title: Localizations.new.criterionTen.title, subtitle: Localizations.new.criterionTen.subtitle, image: Sources.image(forType: .criterionTen)))
         self.cards.append(Source(type: .criterionThree, title: Localizations.new.criterionThree.title, subtitle: Localizations.new.criterionThree.subtitle, image: Sources.image(forType: .criterionThree)))
