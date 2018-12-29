@@ -70,7 +70,7 @@ class DashboardsSection: ListSectionController, ASSectionController, UICollectio
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.dashboard.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.collection.title, style: style)
                 return node
             }
         case .dashboards:

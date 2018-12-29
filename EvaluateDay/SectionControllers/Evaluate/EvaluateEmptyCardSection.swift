@@ -19,7 +19,7 @@ class EvaluateEmptyCardSection: ListSectionController, ASSectionController {
         let style = Themes.manager.evaluateStyle
         
         return {
-            let node = EvaluateEmptyCardNode(title: Localizations.dashboard.empty.title, subtitle: Localizations.dashboard.empty.subtitle, image: #imageLiteral(resourceName: "emptyCard"), style: style)
+            let node = EvaluateEmptyCardNode(title: Localizations.collection.empty.title, subtitle: Localizations.collection.empty.subtitle, image: #imageLiteral(resourceName: "emptyCard"), style: style)
             node.visual(withStyle: style)
             node.title.shareButton.alpha = 0.0
             node.title.shareButton.isEnabled = false

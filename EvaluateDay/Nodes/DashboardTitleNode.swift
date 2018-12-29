@@ -39,7 +39,7 @@ class DashboardTitleNode: ASCellNode, UITextFieldDelegate {
             self.textField = UITextField()
             self.textField.textColor = style.dashbordTitleNodeTitleColor
             self.textField.font = style.dashbordTitleNodeTitleFont
-            self.textField.placeholder = Localizations.dashboard.titlePlaceholder
+            self.textField.placeholder = Localizations.collection.titlePlaceholder
             
             self.textField.returnKeyType = .done
             self.textField.autocapitalizationType = .words

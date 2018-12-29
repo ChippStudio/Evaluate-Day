@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Set view controller
         if Database.manager.application.isShowWelcome {
-            self.window?.rootViewController = UIStoryboard(name: Storyboards.tab.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.window?.rootViewController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
             self.window?.makeKeyAndVisible()
         } else {
             self.window?.rootViewController = UIStoryboard(name: Storyboards.onboarding.rawValue, bundle: nil).instantiateInitialViewController()!

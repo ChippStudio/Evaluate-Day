@@ -9,7 +9,8 @@
 import Foundation
 
 enum Storyboards: String {
-    case tab = "Tab"
+    case split = "SplitController"
+    case collection = "Collection"
     case activity = "Activity"
     case evaluate = "Evaluate"
     case analytics = "Analytics"
@@ -17,7 +18,6 @@ enum Storyboards: String {
     case cardSettings = "CardSettings"
     case cardMerge = "CardMerge"
     case settings = "Settings"
-    case settingsSplit = "SettingsSplit"
     case passcode = "Passcode"
     case repeatList = "Repeat"
     case selectCardList = "SelectCardList"

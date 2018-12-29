@@ -385,30 +385,11 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
     }
     
     private func openController(id: String) {
-        if self.splitSettingsController == nil {
-            self.performSegue(withIdentifier: id, sender: self)
-        } else {
-            let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateViewController(withIdentifier: id)
-            let navigation = UINavigationController(rootViewController: controller)
-            if #available(iOS 11.0, *) {
-                navigation.navigationBar.prefersLargeTitles = true
-                navigation.navigationItem.largeTitleDisplayMode = .automatic
-            }
-            self.splitSettingsController!.push(sideController: navigation)
-        }
+        self.performSegue(withIdentifier: id, sender: self)
     }
     
     private func openController(controller: UIViewController) {
-        if self.splitSettingsController == nil {
-            self.navigationController?.pushViewController(controller, animated: true)
-        } else {
-            let navigation = UINavigationController(rootViewController: controller)
-            if #available(iOS 11.0, *) {
-                navigation.navigationBar.prefersLargeTitles = true
-                navigation.navigationItem.largeTitleDisplayMode = .automatic
-            }
-            self.splitSettingsController!.push(sideController: navigation)
-        }
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     private enum MainSettingsAction: SettingsAction {

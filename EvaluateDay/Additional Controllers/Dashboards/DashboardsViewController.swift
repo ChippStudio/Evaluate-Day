@@ -26,7 +26,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = Localizations.dashboard.title
+        self.navigationItem.title = Localizations.collection.title
         
         if self.dashboard.realm == nil {
             self.saveButton = UIBarButtonItem(title: Localizations.general.save, style: .plain, target: self, action: #selector(saveButtonAction(sender:)))
@@ -44,8 +44,8 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
         self.tableNode.delegate = self
         self.view.addSubnode(self.tableNode)
         
-        self.nodes.append((title: Localizations.dashboard.selectTitle, nodes: [.title]))
-        self.nodes.append((title: Localizations.dashboard.icons, nodes: [DashboardSettingsNodeType.icons]))
+        self.nodes.append((title: Localizations.collection.selectTitle, nodes: [.title]))
+        self.nodes.append((title: Localizations.collection.icons, nodes: [DashboardSettingsNodeType.icons]))
         
         self.observable()
     }
@@ -165,7 +165,7 @@ class DashboardsViewController: UIViewController, ASTableDataSource, ASTableDele
     }
     
     @objc func deleteButtonAction(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.dashboard.deleteMessage, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.collection.deleteMessage, preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
