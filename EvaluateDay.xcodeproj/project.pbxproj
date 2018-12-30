@@ -238,6 +238,12 @@
 		B5A5915021D8D6720026FD84 /* DateSelectorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5914F21D8D6720026FD84 /* DateSelectorNode.swift */; };
 		B5A5915321D8D6C40026FD84 /* DateShowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5915221D8D6C40026FD84 /* DateShowNode.swift */; };
 		B5A5915521D8D6D30026FD84 /* DateButtonsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5915421D8D6D30026FD84 /* DateButtonsNode.swift */; };
+		B5A5916021D8FB620026FD84 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A5915E21D8FB620026FD84 /* Media.xcassets */; };
+		B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A5915F21D8FB620026FD84 /* Cards.xcassets */; };
+		B5A5916321D8FBEC0026FD84 /* CollectionActionsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */; };
+		B5A5916521D8FC0E0026FD84 /* CollectionActionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5916421D8FC0E0026FD84 /* CollectionActionsSection.swift */; };
+		B5A5916721D8FC8F0026FD84 /* CollectionActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5916621D8FC8F0026FD84 /* CollectionActionNode.swift */; };
+		B5A5916921D92ABC0026FD84 /* CollectionActionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5916821D92ABC0026FD84 /* CollectionActionButtonNode.swift */; };
 		B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5A730E11FF2437B006B6F58 /* deleteCard.wav */; };
 		B5A730EA1FF2437C006B6F58 /* openAnalytics.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5A730E21FF2437B006B6F58 /* openAnalytics.wav */; };
 		B5A730EB1FF2437C006B6F58 /* saveNewCard.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5A730E31FF2437B006B6F58 /* saveNewCard.wav */; };
@@ -682,6 +688,12 @@
 		B5A5914F21D8D6720026FD84 /* DateSelectorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorNode.swift; sourceTree = "<group>"; };
 		B5A5915221D8D6C40026FD84 /* DateShowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShowNode.swift; sourceTree = "<group>"; };
 		B5A5915421D8D6D30026FD84 /* DateButtonsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateButtonsNode.swift; sourceTree = "<group>"; };
+		B5A5915E21D8FB620026FD84 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		B5A5915F21D8FB620026FD84 /* Cards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Cards.xcassets; sourceTree = "<group>"; };
+		B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActionsObject.swift; sourceTree = "<group>"; };
+		B5A5916421D8FC0E0026FD84 /* CollectionActionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionActionsSection.swift; sourceTree = "<group>"; };
+		B5A5916621D8FC8F0026FD84 /* CollectionActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionActionNode.swift; sourceTree = "<group>"; };
+		B5A5916821D92ABC0026FD84 /* CollectionActionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionActionButtonNode.swift; sourceTree = "<group>"; };
 		B5A730E11FF2437B006B6F58 /* deleteCard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteCard.wav; sourceTree = "<group>"; };
 		B5A730E21FF2437B006B6F58 /* openAnalytics.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = openAnalytics.wav; sourceTree = "<group>"; };
 		B5A730E31FF2437B006B6F58 /* saveNewCard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = saveNewCard.wav; sourceTree = "<group>"; };
@@ -1099,6 +1111,7 @@
 				B58DC37D213D91D00067FD61 /* DashboardsObject.swift */,
 				B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */,
 				B5899B1421D7BD8000CF123B /* CollectionCardsObject.swift */,
+				B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */,
 				B5899B1E21D7CFD100CF123B /* DateObject.swift */,
 			);
 			path = "Additional Objects";
@@ -1131,6 +1144,7 @@
 			isa = PBXGroup;
 			children = (
 				B5899B1621D7BE0400CF123B /* CollectionCardsSection.swift */,
+				B5A5916421D8FC0E0026FD84 /* CollectionActionsSection.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -1380,6 +1394,8 @@
 				B5A5915221D8D6C40026FD84 /* DateShowNode.swift */,
 				B5A5915421D8D6D30026FD84 /* DateButtonsNode.swift */,
 				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
+				B5A5916621D8FC8F0026FD84 /* CollectionActionNode.swift */,
+				B5A5916821D92ABC0026FD84 /* CollectionActionButtonNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1524,6 +1540,8 @@
 				B5BD494D2116FAEB004872B0 /* Images.xcassets */,
 				B55464CE2025AA9A00923CE3 /* Weather.xcassets */,
 				B58DC37B213D890A0067FD61 /* Dashboards.xcassets */,
+				B5A5915F21D8FB620026FD84 /* Cards.xcassets */,
+				B5A5915E21D8FB620026FD84 /* Media.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -2060,6 +2078,7 @@
 				B5B27EA01F9DC5AC00CB9121 /* CardSettings.storyboard in Resources */,
 				B5A730EE1FF2437C006B6F58 /* openPro.wav in Resources */,
 				B5B27E8C1F9DC3BC00CB9121 /* Settings.storyboard in Resources */,
+				B5A5916021D8FB620026FD84 /* Media.xcassets in Resources */,
 				B5693EF520246EE900B8879C /* Entry.storyboard in Resources */,
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
@@ -2094,6 +2113,7 @@
 				B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */,
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
+				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
 				B5D3FB8B213E3695004DFF78 /* Dashboards.storyboard in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
@@ -2304,6 +2324,7 @@
 				B5AB1E7E2018A2CC00BB1A64 /* MarkValue+Extensions.swift in Sources */,
 				B5C757311F9DE2B40032199E /* Cards.swift in Sources */,
 				B55D32822079042800BD1E75 /* TrackerCard+Extensions.swift in Sources */,
+				B5A5916721D8FC8F0026FD84 /* CollectionActionNode.swift in Sources */,
 				B5BD3B24200772090075C75F /* CriterionTenAnalyticsSection.swift in Sources */,
 				B5CA2D5C1FB43CD100547EC8 /* ColorAnalyticsSection.swift in Sources */,
 				B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */,
@@ -2329,6 +2350,7 @@
 				B562180E1FD57E5C0061AC70 /* Store.swift in Sources */,
 				B554648A2024A7D200923CE3 /* WeatherNode.swift in Sources */,
 				B5F5977A1FBDBD080098A071 /* AnalyticsBarChartNode.swift in Sources */,
+				B5A5916321D8FBEC0026FD84 /* CollectionActionsObject.swift in Sources */,
 				B5B27E7F1F9DC21600CB9121 /* Storyboards.swift in Sources */,
 				B55464D12025C48300923CE3 /* TextNode.swift in Sources */,
 				B5A11400200D4B14008DBF02 /* MapAnnotation.swift in Sources */,
@@ -2441,6 +2463,7 @@
 				B55D32742074F67300BD1E75 /* OrangeSlidesControllerTheme.swift in Sources */,
 				B55D326F2074F67300BD1E75 /* OrangeTopControllerTheme.swift in Sources */,
 				B5D854C71FCD859900BB4E14 /* SettingsSelectNode.swift in Sources */,
+				B5A5916921D92ABC0026FD84 /* CollectionActionButtonNode.swift in Sources */,
 				B5A226C420FCB5B60060538F /* Store+Extensions.swift in Sources */,
 				B5A0CFF51FB1A891002B1636 /* LightBottomControllerTheme.swift in Sources */,
 				B5FFDD4B201B8416008D0365 /* WeatherValue.swift in Sources */,
@@ -2552,6 +2575,7 @@
 				B5D3FB93213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift in Sources */,
 				B5A11407200E3120008DBF02 /* MapViewController.swift in Sources */,
 				B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */,
+				B5A5916521D8FC0E0026FD84 /* CollectionActionsSection.swift in Sources */,
 				B5CA2D591FB43A9300547EC8 /* LightAnalyticalTheme.swift in Sources */,
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
 				B5BD3B492009ED660075C75F /* LightMapControllerTheme.swift in Sources */,

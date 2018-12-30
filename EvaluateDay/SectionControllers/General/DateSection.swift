@@ -70,15 +70,6 @@ class DateSection: ListSectionController, ASSectionController {
         default:
             return {
                 let separator = SeparatorNode()
-                var topInset: CGFloat = 0.0
-                var buttonInset: CGFloat = 0.0
-                if index == 0 {
-                    topInset = 35.0
-                }
-                if index == 3 {
-                    buttonInset = 35.0
-                }
-                separator.insets = UIEdgeInsets(top: topInset, left: 20.0, bottom: buttonInset, right: 20.0)
                 return separator
             }
         }
@@ -118,9 +109,9 @@ class DateSection: ListSectionController, ASSectionController {
             if let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 2, section: self.section)) as? DateButtonsNode {
                 UIView.animate(withDuration: 0.2) {
                     if self.isEdit {
-                        node.arrowImage.view.transform = CGAffineTransform.identity
-                    } else {
                         node.arrowImage.view.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                    } else {
+                        node.arrowImage.view.transform = CGAffineTransform.identity
                     }
                 }
             }

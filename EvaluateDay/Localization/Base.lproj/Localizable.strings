@@ -238,7 +238,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "collection.selectTitle" = "Title";
 "collection.titlePlaceholder" = "Collection Title";
 "collection.deleteMessage" = "This action deletes the only collection. Cards will not be deleted. You can delete or archive card from card settings.";
-"collection.addNew" = "Make a new collection. Just tap here.";
+"collection.addNew" = "New Collection";
 "collection.empty.title" = "The collection is empty";
 "collection.empty.subtitle" = "You have not card in collection yet. Add card in card settings.";
 

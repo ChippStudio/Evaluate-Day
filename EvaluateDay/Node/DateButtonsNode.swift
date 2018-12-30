@@ -47,12 +47,10 @@ class DateButtonsNode: ASCellNode {
         self.todayButton.addTarget(self, action: #selector(self.todayEndAction(sender:)), forControlEvents: .touchUpInside)
         self.todayButton.addTarget(self, action: #selector(self.todayEndAction(sender:)), forControlEvents: .touchCancel)
         
-        self.arrowImage.image = UIImage(named: "up")?.increaseSize(by: 10.0)
+        self.arrowImage.image = UIImage(named: "down")?.resizedImage(newSize: CGSize(width: 22.0, height: 12.0))
         self.arrowImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         self.arrowImage.contentMode = .scaleAspectFit
-        OperationQueue.main.addOperation {
-            self.arrowImage.view.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        }
+        
         self.arrowCover.backgroundColor = UIColor.main
         self.arrowCover.cornerRadius = 15.0
         self.arrowButton.addTarget(self, action: #selector(self.arrowInitialAction(sender:)), forControlEvents: .touchDown)

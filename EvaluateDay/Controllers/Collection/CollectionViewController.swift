@@ -28,6 +28,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     // MARK: - Objects
     private let cardsObject = CollectionCardsObject()
     private var dateObject = DateObject(date: Date())
+    private let actionObject = CollectionActionsObject()
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -97,6 +98,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
         
         diffableCards.append(self.cardsObject)
         diffableCards.append(self.dateObject)
+        diffableCards.append(self.actionObject)
         
         return diffableCards
     }
@@ -104,9 +106,17 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
         if object is CollectionCardsObject {
-            return CollectionCardsSection()
+            let section = CollectionCardsSection()
+            section.inset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 35.0, right: 0.0)
+            return section
         } else if let object = object as? DateObject {
-            return DateSection(date: object.date)
+            let section = DateSection(date: object.date)
+            section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
+            return section
+        } else if object is CollectionActionsObject {
+            let section = CollectionActionsSection()
+            section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
+            return section
         }
         
         return ListSectionController()

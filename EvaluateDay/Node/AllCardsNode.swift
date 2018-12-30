@@ -51,7 +51,7 @@ class AllCardsNode: ASCellNode {
         
         let cell = ASBackgroundLayoutSpec(child: itemInset, background: self.cover)
         
-        let cellInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 35.0, right: 20.0)
+        let cellInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
