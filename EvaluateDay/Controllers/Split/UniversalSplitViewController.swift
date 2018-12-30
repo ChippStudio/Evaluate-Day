@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-let mainControllerWidth: CGFloat = 360.0
+let mainControllerWidth: CGFloat = 380.0
 
 enum UniversalSplitControllerStateRules {
     case `default`

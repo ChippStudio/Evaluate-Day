@@ -70,6 +70,7 @@ class DateSection: ListSectionController, ASSectionController {
         default:
             return {
                 let separator = SeparatorNode()
+                separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
                 return separator
             }
         }

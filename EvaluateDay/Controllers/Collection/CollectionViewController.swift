@@ -18,7 +18,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     
     // MARK: - Variables
     var adapter: ListAdapter!
-    var date: Date! {
+    var date: Date = Date() {
         didSet {
             self.dateObject = DateObject(date: self.date)
             self.adapter.performUpdates(animated: true, completion: nil)
@@ -47,6 +47,18 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode.accessibilityIdentifier = "collectionCollection"
         self.view.addSubnode(self.collectionNode)
         
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.view.safeAreaLayoutGuide)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            } else {
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+        }
+        
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
         adapter.dataSource = self
@@ -58,11 +70,11 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
         self.updateAppearance(animated: false)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.collectionNode.frame = self.view.bounds
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//        self.collectionNode.frame = self.view.bounds
+//    }
     
     override func updateAppearance(animated: Bool) {
         super.updateAppearance(animated: animated)
@@ -75,20 +87,17 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
             self.navigationController?.navigationBar.tintColor = UIColor.main
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
-//            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "collections")?.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)), style: .plain, target: nil, action: nil)
             
             // Backgrounds
             self.navigationController!.view.backgroundColor = UIColor.background
             self.view.backgroundColor = UIColor.background
-//            self.collectionNode.backgroundColor = UIColor.background
-            
-            // Empty view
-//            self.emptyView.style = style
+            self.collectionNode.backgroundColor = UIColor.background
             
             // Collection View
-//            self.adapter.performUpdates(animated: true, completion: { (_) in
-//                self.collectionNode.reloadData()
-//            })
+            self.adapter.performUpdates(animated: true, completion: { (_) in
+                self.collectionNode.reloadData()
+            })
         }
     }
     
@@ -106,7 +115,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
         if object is CollectionCardsObject {
-            let section = CollectionCardsSection()
+            let section = CollectionCardsSection(date: self.date)
             section.inset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 35.0, right: 0.0)
             return section
         } else if let object = object as? DateObject {

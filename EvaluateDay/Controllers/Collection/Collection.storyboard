@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dgP-H4-bCJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EkI-Z7-dO9" sceneMemberID="viewController">
+                <navigationController id="EkI-Z7-dO9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Mjh-Eq-8KP">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>

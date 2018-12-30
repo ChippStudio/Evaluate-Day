@@ -75,14 +75,13 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         let crd = DiffCard(card: self.card)
-        let das = DashboardsObject()
         if self.card.realm != nil {
             let not = CardSettingsNotificationObject(card: self.card)
             let del = CardSettingsDeleteObject()
-            return [crd, das, not, del]
+            return [crd, not, del]
         }
         
-        return [crd, das]
+        return [crd]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -123,28 +122,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         } else if object is CardSettingsDeleteObject {
             let controller = CardSettingsDeleteSection(card: self.card)
             controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 30.0, right: 0.0)
-            return controller
-        } else if object is DashboardsObject {
-            let controller = DashboardsSection(isCardSettings: true)
-            controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 30.0, right: 0.0)
-            controller.selectDashboard = { (dashboardId) in
-                var newDashboard: String?
-                if self.card.dashboard != nil {
-                    if self.card.dashboard! != dashboardId {
-                        newDashboard = dashboardId
-                    }
-                } else {
-                    newDashboard = dashboardId
-                }
-                
-                if self.card.realm == nil {
-                    self.card.dashboard = newDashboard
-                } else {
-                    try! Database.manager.data.write {
-                        self.card.dashboard = newDashboard
-                    }
-                }
-            }
             return controller
         }
         

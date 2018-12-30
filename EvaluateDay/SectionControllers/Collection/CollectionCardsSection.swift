@@ -10,6 +10,16 @@ import UIKit
 import AsyncDisplayKit
 
 class CollectionCardsSection: ListSectionController, ASSectionController {
+    // MARK: - Variables
+    var date: Date = Date()
+    
+    // MARK: - Init
+    init(date: Date) {
+        super.init()
+        
+        self.date = date
+    }
+    
     // MARK: - Override
     override func numberOfItems() -> Int {
         return 2
@@ -53,5 +63,11 @@ class CollectionCardsSection: ListSectionController, ASSectionController {
     }
     
     override func didSelectItem(at index: Int) {
+        if index == 1 {
+            if let nav = self.viewController?.navigationController {
+                let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                nav.pushViewController(controller, animated: true)
+            }
+        }
     }
 }

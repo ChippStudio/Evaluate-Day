@@ -13,7 +13,8 @@ class SplitController: UniversalSplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.background
+        self.closeButtonImage = UIImage(named: "close")?.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
         self.insertMainViewController(UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController)
     }
 }

@@ -58,5 +58,24 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
     }
     
     override func didSelectItem(at index: Int) {
+        if index == 0 {
+            if let split = self.viewController?.universalSplitController as? SplitController {
+                let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
+                split.pushSideViewController(controller)
+            }
+        } else if index == 1 {
+            if let split = self.viewController?.universalSplitController as? SplitController {
+                let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
+                split.pushSideViewController(controller)
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    @objc func newCollectionAction(sender: ASButtonNode) {
+        if let split = self.viewController?.universalSplitController as? SplitController {
+            let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
+            split.pushSideViewController(controller)
+        }
     }
 }

@@ -10,12 +10,12 @@ import UIKit
 import AsyncDisplayKit
 import FBSDKLoginKit
 import RealmSwift
+import SnapKit
 
 class ActivityViewController: UIViewController, ListAdapterDataSource {
 
     // MARK: - UI
     var collectionNode: ASCollectionNode!
-    var closeButton: UIBarButtonItem!
     
     // MARK: - Variables
     var adapter: ListAdapter!
@@ -31,11 +31,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
         
-        if self.tabBarController == nil {
-            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
-            self.navigationItem.leftBarButtonItem = closeButton
-        }
-        
         // Collection view
         let layout = UICollectionViewFlowLayout()
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
@@ -43,6 +38,13 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 100.0, right: 0.0)
         self.collectionNode.accessibilityIdentifier = "activityCollection"
         self.view.insertSubview(self.collectionNode.view, at: 0)
+        
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.leading.equalTo(self.view)
+            make.trailing.equalTo(self.view)
+        }
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
@@ -65,11 +67,11 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.collectionNode.frame = self.view.bounds
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//        self.collectionNode.frame = self.view.bounds
+//    }
     
     // MARK: - Objects
     let userObject = ActivityUserObject()
@@ -150,11 +152,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
-    }
-    
-    // MARK: - Action
-    @objc func closeButtonAction(sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Private

@@ -150,8 +150,6 @@
 		B58DC378213C0EAF0067FD61 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC377213C0EAF0067FD61 /* Dashboard.swift */; };
 		B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */; };
 		B58DC37C213D890A0067FD61 /* Dashboards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58DC37B213D890A0067FD61 /* Dashboards.xcassets */; };
-		B58DC37E213D91D00067FD61 /* DashboardsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC37D213D91D00067FD61 /* DashboardsObject.swift */; };
-		B58DC380213D92640067FD61 /* DashboardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC37F213D92640067FD61 /* DashboardsSection.swift */; };
 		B58DC382213D92D10067FD61 /* DashboardsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DC381213D92D10067FD61 /* DashboardsNode.swift */; };
 		B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */; };
 		B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */; };
@@ -350,8 +348,6 @@
 		B5D0C7C720A8539A000F98EF /* BlackBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */; };
 		B5D0C7C820A8539A000F98EF /* BlackSlidesControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */; };
 		B5D11DAE206261B100D559BF /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D11DAD206261B100D559BF /* LoadView.swift */; };
-		B5D3FB8B213E3695004DFF78 /* Dashboards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */; };
-		B5D3FB8D213E36A8004DFF78 /* DashboardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */; };
 		B5D3FB8F213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB8E213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift */; };
 		B5D3FB91213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB90213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift */; };
 		B5D3FB93213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */; };
@@ -597,8 +593,6 @@
 		B58DC377213C0EAF0067FD61 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard+Extensions.swift"; sourceTree = "<group>"; };
 		B58DC37B213D890A0067FD61 /* Dashboards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dashboards.xcassets; sourceTree = "<group>"; };
-		B58DC37D213D91D00067FD61 /* DashboardsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsObject.swift; sourceTree = "<group>"; };
-		B58DC37F213D92640067FD61 /* DashboardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsSection.swift; sourceTree = "<group>"; };
 		B58DC381213D92D10067FD61 /* DashboardsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsNode.swift; sourceTree = "<group>"; };
 		B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredCard.swift; sourceTree = "<group>"; };
 		B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEditableSection.swift; sourceTree = "<group>"; };
@@ -802,8 +796,6 @@
 		B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackBottomControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSlidesControllerTheme.swift; sourceTree = "<group>"; };
 		B5D11DAD206261B100D559BF /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
-		B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboards.storyboard; sourceTree = "<group>"; };
-		B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardsViewController.swift; sourceTree = "<group>"; };
 		B5D3FB8E213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIghtDashboardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D3FB90213E3DD4004DFF78 /* DarkDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkDashboardSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D3FB92213E3DE8004DFF78 /* OrangeDashboardSettingsTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeDashboardSettingsTheme.swift; sourceTree = "<group>"; };
@@ -1108,7 +1100,6 @@
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
-				B58DC37D213D91D00067FD61 /* DashboardsObject.swift */,
 				B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */,
 				B5899B1421D7BD8000CF123B /* CollectionCardsObject.swift */,
 				B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */,
@@ -1270,7 +1261,6 @@
 			isa = PBXGroup;
 			children = (
 				B539783C214F915E002EAAFA /* Health */,
-				B5D3FB89213E367B004DFF78 /* Dashboards */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
 				B59DA06821201F5800A9FCFB /* Time */,
 				B59DA061211D66C400A9FCFB /* Share */,
@@ -1803,15 +1793,6 @@
 			path = "Black Theme";
 			sourceTree = "<group>";
 		};
-		B5D3FB89213E367B004DFF78 /* Dashboards */ = {
-			isa = PBXGroup;
-			children = (
-				B5D3FB8A213E3695004DFF78 /* Dashboards.storyboard */,
-				B5D3FB8C213E36A8004DFF78 /* DashboardsViewController.swift */,
-			);
-			path = Dashboards;
-			sourceTree = "<group>";
-		};
 		B5D854C81FCDAA5D00BB4E14 /* Passcode */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,7 +1834,6 @@
 			isa = PBXGroup;
 			children = (
 				B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */,
-				B58DC37F213D92640067FD61 /* DashboardsSection.swift */,
 				B5899B2021D7D10000CF123B /* DateSection.swift */,
 			);
 			path = General;
@@ -2114,7 +2094,6 @@
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
 				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
-				B5D3FB8B213E3695004DFF78 /* Dashboards.storyboard in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
 				B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */,
@@ -2301,7 +2280,6 @@
 			files = (
 				B55464DB2028615000923CE3 /* JournalAnalyticsSection.swift in Sources */,
 				B5D854CE1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift in Sources */,
-				B5D3FB8D213E36A8004DFF78 /* DashboardsViewController.swift in Sources */,
 				B5899B1B21D7C19900CF123B /* CardsListDotNode.swift in Sources */,
 				B5D0C7C120A8539A000F98EF /* BlackEntryViewControllerTheme.swift in Sources */,
 				B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */,
@@ -2429,7 +2407,6 @@
 				B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */,
 				B59318301FFAD625000D8FFE /* DarkCardMergeTheme.swift in Sources */,
 				B5A1B0E41FBACBBF003D9E81 /* BottomTransition.swift in Sources */,
-				B58DC37E213D91D00067FD61 /* DashboardsObject.swift in Sources */,
 				B5F597721FBD60F30098A071 /* AnalyticsCalendarNode.swift in Sources */,
 				B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */,
 				B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */,
@@ -2618,7 +2595,6 @@
 				B57B0637201B0D1800C4E182 /* GoalCard.swift in Sources */,
 				B5B7EE4C2010BBDD00BCD41A /* PhraseEvaluateSection.swift in Sources */,
 				B55D328C207917B800BD1E75 /* HabitNegativeNode.swift in Sources */,
-				B58DC380213D92640067FD61 /* DashboardsSection.swift in Sources */,
 				B5F597701FBD4E1F0098A071 /* Variables.swift in Sources */,
 				B5EC885B201229590056C1C7 /* CounterEditableSection.swift in Sources */,
 				B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */,

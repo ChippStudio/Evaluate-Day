@@ -17,7 +17,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - UI
     var newCardButton: UIBarButtonItem!
     var reorderCardsButton: UIBarButtonItem!
-    var closeButton: UIBarButtonItem!
     var collectionNode: ASCollectionNode!
     var emptyView = CardListEmptyView()
     
@@ -42,13 +41,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var cards: Results<Card>!
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
-    let proLockObject = ProLock()
-    var dashboardsObject = DashboardsObject()
     var selectedDashboard: String? {
         didSet {
             self.adapter.performUpdates(animated: true, completion: nil)
         }
     }
+    
+    // MARK: - Objects
+    private let proLockObject = ProLock()
+    private let dateObject = DateObject(date: Date())
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -60,6 +61,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Navigation bar
         self.navigationItem.title = DateFormatter.localizedString(from: self.date, dateStyle: .medium, timeStyle: .none)
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -73,19 +75,23 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.reorderCardsButton.accessibilityIdentifier = "reorderButton"
         self.reorderCardsButton.accessibilityLabel = Localizations.accessibility.evaluate.reorder
         
-        if self.tabBarController == nil {
-            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
-            self.closeButton.accessibilityLabel = Localizations.general.close
-            self.closeButton.accessibilityValue = Localizations.general.action.evaluate
-            self.navigationItem.leftBarButtonItem = closeButton
-        }
-        
         // Collection view
         let layout = UICollectionViewFlowLayout()
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         self.collectionNode.view.alwaysBounceVertical = true
         self.collectionNode.accessibilityIdentifier = "evaluateCollection"
         self.view.addSubnode(self.collectionNode)
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.view.safeAreaLayoutGuide)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            } else {
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+        }
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
@@ -93,9 +99,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         
         // Empty view
         self.emptyView.newButton.addTarget(self, action: #selector(self.newCardButtonAction(sender:)), for: .touchUpInside)
-        
-        // Themes Set
-        self.observable()
         
         // Force Touch
         if self.traitCollection.forceTouchCapability == .available {
@@ -118,10 +121,22 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
 
-        self.collectionNode.frame = self.view.bounds
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            self.collectionNode.backgroundColor = UIColor.background
+            
+            // Collection View
+            self.adapter.performUpdates(animated: true, completion: { (_) in
+                self.collectionNode.reloadData()
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,11 +146,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             switch c {
             case .initial(_):
                 self.adapter.performUpdates(animated: true, completion: nil)
-                if let section = self.adapter.sectionController(for: self.dashboardsObject) as? DashboardsSection {
-                    if section.collectionView != nil {
-                        section.collectionView.reloadData()
-                    }
-                }
             case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
                 if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
                     self.adapter.performUpdates(animated: true, completion: nil)
@@ -144,6 +154,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 print("ERROR - \(error.localizedDescription)")
             }
         })
+        self.updateAppearance(animated: false)
         self.date = Date()
     }
     
@@ -165,6 +176,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         var diffableCards = [ListDiffable]()
+        diffableCards.append(self.dateObject)
         if self.date < Date() {
             for c in self.cards {
                 if self.selectedDashboard != nil {
@@ -186,9 +198,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 // Add emty card for dashboard
                 diffableCards.append(EvaluateEmptyCardObject())
             }
-            
-            self.dashboardsObject = DashboardsObject()
-            diffableCards.insert(self.dashboardsObject, at: 0)
         }
         
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
@@ -236,20 +245,13 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             return section
-        } else if object is DashboardsObject {
-            let section = DashboardsSection(isCardSettings: false)
-            section.inset = cardInsets
-            section.selectDashboard = { (dashboardId) in
-                if self.selectedDashboard == dashboardId {
-                    self.selectedDashboard = nil
-                } else {
-                    self.selectedDashboard = dashboardId
-                }
-            }
-            return section
         } else if object is EvaluateEmptyCardObject {
             let section = EvaluateEmptyCardSection()
             section.inset = cardInsets
+            return section
+        } else if let object = object as? DateObject {
+            let section = DateSection(date: object.date)
+            section.inset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 20.0, right: 0.0)
             return section
         }
         
@@ -271,21 +273,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             settings.card = section.card
             return settings
-        } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
-            if section.dashboards.count == 0 {
-                return nil
-            }
-            guard let dashIndexPath = section.collectionView.indexPathForItem(at: location), let dashTargetCell = section.collectionView.visibleCells.first(where: { $0.frame.contains(location) }) else {
-                return nil
-            }
-            
-            if dashIndexPath.section == 1 {
-                return nil
-            }
-            previewingContext.sourceRect = dashTargetCell.frame
-            let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
-            controller.dashboard = section.dashboards[dashIndexPath.row]
-            return controller
         }
         
         return nil
@@ -296,9 +283,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     // MARK: - Actions
-    @objc func closeButtonAction(sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @objc func newCardButtonAction(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
@@ -331,18 +315,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
                 settings.card = section.card
                 self.navigationController?.pushViewController(settings, animated: true)
-            } else if let section = self.adapter.sectionController(forSection: indexPath.section) as? DashboardsSection {
-                guard let dashIndexPath = section.collectionView.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
-                    return
-                }
-                
-                if dashIndexPath.section == 1 {
-                    return
-                }
-                
-                let controller = UIStoryboard(name: Storyboards.dashboards.rawValue, bundle: nil).instantiateInitialViewController() as! DashboardsViewController
-                controller.dashboard = section.dashboards[dashIndexPath.row]
-                self.navigationController?.pushViewController(controller, animated: true)
             }
         }
     }
@@ -384,39 +356,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             
             self.present(alert, animated: true, completion: nil)
         }
-    }
-    
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.evaluateStyle
-            
-            // Status bar
-            UIApplication.shared.statusBarStyle = style.statusBarStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.navigationController!.view.backgroundColor = style.background
-            self.view.backgroundColor = style.background
-            self.collectionNode.backgroundColor = style.background
-            
-            // Empty view
-            self.emptyView.style = style
-            
-            // Collection View
-            self.adapter.performUpdates(animated: true, completion: { (_) in
-                self.collectionNode.reloadData()
-            })
-        })
     }
     
     @objc private func makeCardSnapshot(sender: UILongPressGestureRecognizer) {
