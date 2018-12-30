@@ -79,9 +79,9 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
             }
         case .separator:
             return {
-                let separator = SeparatorNode(style: style)
+                let separator = SeparatorNode()
                 if index != 1 && index != self.nodes.count - 1 {
-                    separator.leftInset = 20.0
+                    separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
                 }
                 return separator
             }

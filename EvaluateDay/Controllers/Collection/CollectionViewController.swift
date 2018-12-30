@@ -18,9 +18,16 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     
     // MARK: - Variables
     var adapter: ListAdapter!
+    var date: Date! {
+        didSet {
+            self.dateObject = DateObject(date: self.date)
+            self.adapter.performUpdates(animated: true, completion: nil)
+        }
+    }
     
     // MARK: - Objects
     private let cardsObject = CollectionCardsObject()
+    private var dateObject = DateObject(date: Date())
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -89,6 +96,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
         var diffableCards = [ListDiffable]()
         
         diffableCards.append(self.cardsObject)
+        diffableCards.append(self.dateObject)
         
         return diffableCards
     }
@@ -97,6 +105,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
         
         if object is CollectionCardsObject {
             return CollectionCardsSection()
+        } else if let object = object as? DateObject {
+            return DateSection(date: object.date)
         }
         
         return ListSectionController()

@@ -231,7 +231,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "demo.dashboard.work" = "Work";
 "demo.dashboard.workout" = "Workout";
 
-// MARK: - Dashboard
+// MARK: - Collection
 "collection.title" = "Collections";
 "collection.allcards" = "All Cards";
 "collection.icons" = "Icons";
@@ -279,6 +279,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "general.evaluateday" = "Evaluate Day";
 "general.last7" = "Last 7 days";
 "general.lifetime" = "Lifetime";
+"general.today" = "Today";
 "general.more" = "More";
 "general.none" = "None";
 "general.notification.10days" = "Where have you been? 10 days is a long period of time. You need to fill in the cards as often as you can in order to get a profound analysis. Start right now.";

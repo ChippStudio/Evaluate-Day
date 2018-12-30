@@ -9,24 +9,19 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol SeparatorNodeStyle {
-    var separatorNodeColor: UIColor { get }
-}
-
 class SeparatorNode: ASCellNode {
 
     // MARK: - UI
     var separator = ASDisplayNode()
     
     // MARK: - Variables
-    var leftInset: CGFloat = 0.0
-    var bottomInset: CGFloat = 0.0
+    var insets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     
     // MARK: - Init
-    init(style: SeparatorNodeStyle) {
+    override init() {
         super.init()
         
-        self.separator.backgroundColor = style.separatorNodeColor
+        self.separator.backgroundColor = UIColor.tint
         
         self.automaticallyManagesSubnodes = true
     }
@@ -34,8 +29,8 @@ class SeparatorNode: ASCellNode {
     // MARK: - Layout
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.separator.style.preferredSize.height = 0.2
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: self.leftInset, bottom: bottomInset, right: 0.0)
+        self.separator.style.preferredSize.height = 1.0
+        let separatorInsets = self.insets
         let separatorInset = ASInsetLayoutSpec(insets: separatorInsets, child: self.separator)
         return separatorInset
     }

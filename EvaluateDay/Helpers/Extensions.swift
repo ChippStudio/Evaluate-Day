@@ -126,6 +126,17 @@ extension Date {
         
         return 0
     }
+    
+    var isToday: Bool {
+        get {
+            let now = Date()
+            if now >= self.start && now <= self.end {
+                return true
+            }
+            
+            return false
+        }
+    }
 }
 
 // MARK: - UIView
