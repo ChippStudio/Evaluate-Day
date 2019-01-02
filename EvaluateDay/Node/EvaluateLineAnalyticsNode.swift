@@ -43,7 +43,12 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
         self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         
-        self.standart.backgroundColor = UIColor.main
+        self.button.addTarget(self, action: #selector(self.analyticsInitialAction(sender:)), forControlEvents: .touchDown)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.standart.backgroundColor = UIColor.clear
         self.standart.style.preferredSize = CGSize(width: 5.0, height: 50.0)
         
         self.lines.insert(self.standart, at: 0)
@@ -75,6 +80,19 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         let cellButton = ASOverlayLayoutSpec(child: cellInset, overlay: self.button)
         
         return cellButton
+    }
+    
+    // MARK: - Actions
+    @objc func analyticsInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func analyticsEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.main
+        }
     }
     
 }

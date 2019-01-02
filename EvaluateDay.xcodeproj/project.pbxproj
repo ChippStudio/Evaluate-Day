@@ -56,6 +56,7 @@
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
 		B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */; };
 		B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */; };
+		B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DD21DD0123005A93CE /* ShareNode.swift */; };
 		B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */; };
 		B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */; };
 		B5535AEC1FEFF7A500D2AE25 /* Store+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */; };
@@ -500,6 +501,7 @@
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateLineAnalyticsNode.swift; sourceTree = "<group>"; };
+		B54535DD21DD0123005A93CE /* ShareNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareNode.swift; sourceTree = "<group>"; };
 		B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CriterionHundredCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Enums.swift"; sourceTree = "<group>"; };
@@ -1380,6 +1382,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
+				B54535DD21DD0123005A93CE /* ShareNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */,
 				B5899B1821D7BF6C00CF123B /* CardsListNode.swift */,
@@ -2320,6 +2323,7 @@
 				B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */,
 				B5AC0E1820E4C8B500F13A79 /* DarkTabControllerTheme.swift in Sources */,
 				B55D3280207902C300BD1E75 /* TrackerCard.swift in Sources */,
+				B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */,
 				B5AB1E8C2018CB1300BB1A64 /* ListEvaluateSection.swift in Sources */,
 				B5D3FB8F213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift in Sources */,
 				B5E772221FA0819D002FA03F /* SourceNode.swift in Sources */,

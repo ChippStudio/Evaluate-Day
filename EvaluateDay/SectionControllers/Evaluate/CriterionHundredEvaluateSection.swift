@@ -76,8 +76,10 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
             }
         }
         
+        let board = self.card.dashboardValue?.1
+        
         return {
-            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values)
+            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
@@ -174,11 +176,12 @@ class HundredNode: ASCellNode, CardNode {
     var slider: CriterionEvaluateNode!
     var separator: SeparatorNode!
     var analytics: EvaluateLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float]) {
+    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionHundred))
@@ -186,6 +189,7 @@ class HundredNode: ASCellNode, CardNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: 100.0)
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
@@ -207,7 +211,7 @@ class HundredNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.slider, self.analytics, self.separator]
+        stack.children = [self.title, self.slider, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell
