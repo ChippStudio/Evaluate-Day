@@ -35,7 +35,6 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
         
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
@@ -49,7 +48,7 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         let title = self.card.title
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
+//        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionHundredCard
         var value: Float = 0.0
@@ -66,11 +65,20 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
             previousValue = Float(saveValue.value)
         }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var values = [Float]()
+        for i in 1...7 {
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).sorted(byKeyPath: "edited", ascending: false).first {
+                values.insert(Float(saveValue.value), at: 0)
+            } else {
+                values.insert(0.0, at: 0)
+            }
+        }
+        
         return {
-            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
-            
+            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values)
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
                     if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -88,10 +96,6 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
                         }
                     }
                 }
-            }
-            
-            if archived {
-                node.backgroundColor = style.cardArchiveColor
             }
             
             return node
@@ -122,14 +126,13 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
         
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
     @objc private func shareAction(sender: ASButtonNode) {
         let node: ASCellNode!
         
@@ -170,17 +173,19 @@ class HundredNode: ASCellNode, CardNode {
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
     var separator: SeparatorNode!
+    var analytics: EvaluateLineAnalyticsNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float]) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionHundred))
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock)
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: 100.0)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
@@ -188,7 +193,7 @@ class HundredNode: ASCellNode, CardNode {
         if isPositive {
             criterionType = Localizations.accessibility.evaluate.criterion.positive
         }
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionHundred)), \(criterionType)"
         self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(Int(current))")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -202,7 +207,7 @@ class HundredNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.slider, self.separator]
+        stack.children = [self.title, self.slider, self.analytics, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

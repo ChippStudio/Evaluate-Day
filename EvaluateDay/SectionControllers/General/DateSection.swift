@@ -114,7 +114,7 @@ class DateSection: ListSectionController, ASSectionController {
         
         self.isEdit = !self.isEdit
         
-        if let controller = self.viewController as? CollectionViewController {
+        if let controller = self.viewController as? DateSectionProtocol {
             if let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 2, section: self.section)) as? DateButtonsNode {
                 UIView.animate(withDuration: 0.2) {
                     if self.isEdit {
@@ -129,7 +129,7 @@ class DateSection: ListSectionController, ASSectionController {
     
     @objc func todayButtonTouch(sender: ASButtonNode) {
         self.date = Date()
-        if let controller = self.viewController as? CollectionViewController {
+        if let controller = self.viewController as? DateSectionProtocol {
             if let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 1, section: self.section)) as? DateSelectorNode {
                 node.datePicker.setDate(self.date, animated: true)
             }
