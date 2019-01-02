@@ -1378,6 +1378,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
+				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5899B1821D7BF6C00CF123B /* CardsListNode.swift */,
 				B5899B1A21D7C19900CF123B /* CardsListDotNode.swift */,
 				B5899B1C21D7C80500CF123B /* AllCardsNode.swift */,
@@ -1696,7 +1697,6 @@
 				B5AB1E912018CDD100BB1A64 /* ListEvaluateNode.swift */,
 				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
 				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
-				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
 				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,

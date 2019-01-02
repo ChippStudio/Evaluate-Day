@@ -169,6 +169,7 @@ class HundredNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
+    var separator: SeparatorNode!
     
     private var accessibilityNode = ASDisplayNode()
     
@@ -177,7 +178,9 @@ class HundredNode: ASCellNode, CardNode {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock, style: style)
+        self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock)
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
@@ -199,7 +202,7 @@ class HundredNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.slider]
+        stack.children = [self.title, self.slider, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

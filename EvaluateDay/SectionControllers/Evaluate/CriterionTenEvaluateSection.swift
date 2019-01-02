@@ -177,7 +177,7 @@ class TenNode: ASCellNode, CardNode {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock, style: style)
+        self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

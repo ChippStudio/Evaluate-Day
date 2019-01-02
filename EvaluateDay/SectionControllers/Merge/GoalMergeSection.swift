@@ -57,7 +57,6 @@ class GoalMergeSection: ListSectionController, ASSectionController, MergeSection
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
-            let board = self.card.dashboardValue
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image)
                 node.isAccessibilityElement = true
