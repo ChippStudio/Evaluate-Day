@@ -13,7 +13,8 @@ import RealmSwift
 import Branch
 import StoreKit
 
-class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewControllerPreviewingDelegate {
+class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewControllerPreviewingDelegate, DateSectionProtocol {
+    
     // MARK: - UI
     var newCardButton: UIBarButtonItem!
     var reorderCardsButton: UIBarButtonItem!
@@ -23,7 +24,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - Variable
     var date: Date = Date() {
         didSet {
-            self.navigationItem.title = DateFormatter.localizedString(from: self.date, dateStyle: .medium, timeStyle: .none)
+            if self.adapter == nil {
+                return
+            }
             self.adapter.performUpdates(animated: true) { (done) in
                 if done {
                     for c in self.cards {
@@ -41,8 +44,21 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var cards: Results<Card>!
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
-    var selectedDashboard: String? {
+    var selectedDashboard: String! {
         didSet {
+            
+            if self.adapter == nil {
+                return
+            }
+            self.adapter.performUpdates(animated: true, completion: nil)
+        }
+    }
+    var cardType: CardType! {
+        didSet {
+            self.navigationItem.title = Sources.title(forType: cardType)
+            if self.adapter == nil {
+                return
+            }
             self.adapter.performUpdates(animated: true, completion: nil)
         }
     }
@@ -59,7 +75,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
         
         // Navigation bar
-        self.navigationItem.title = DateFormatter.localizedString(from: self.date, dateStyle: .medium, timeStyle: .none)
+        self.navigationItem.title = Localizations.collection.allcards
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
@@ -131,11 +147,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             // Backgrounds
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
-            
-            // Collection View
-            self.adapter.performUpdates(animated: true, completion: { (_) in
-                self.collectionNode.reloadData()
-            })
         }
     }
     
@@ -155,7 +166,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
         })
         self.updateAppearance(animated: false)
-        self.date = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -185,6 +195,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                             let diffCard = DiffCard(card: c)
                             diffableCards.append(diffCard)
                         }
+                    }
+                } else if self.cardType != nil {
+                    if c.type == self.cardType {
+                        let diffCard = DiffCard(card: c)
+                        diffableCards.append(diffCard)
                     }
                 } else {
                     let diffCard = DiffCard(card: c)

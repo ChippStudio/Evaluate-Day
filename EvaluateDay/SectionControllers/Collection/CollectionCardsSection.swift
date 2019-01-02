@@ -9,7 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class CollectionCardsSection: ListSectionController, ASSectionController {
+class CollectionCardsSection: ListSectionController, ASSectionController, ASCollectionDelegate {
     // MARK: - Variables
     var date: Date = Date()
     
@@ -30,6 +30,7 @@ class CollectionCardsSection: ListSectionController, ASSectionController {
         if index == 0 {
             return {
                 let node = CardsListNode()
+                node.cardsCollection.delegate = self
                 return node
             }
         }
@@ -68,6 +69,16 @@ class CollectionCardsSection: ListSectionController, ASSectionController {
                 let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                 nav.pushViewController(controller, animated: true)
             }
+        }
+    }
+    
+    // MARK: - ASCollectionDelegate
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let item = Sources().cards[indexPath.row]
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+            controller.cardType = item.type
+            nav.pushViewController(controller, animated: true)
         }
     }
 }

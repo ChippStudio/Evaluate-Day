@@ -9,12 +9,20 @@
 import UIKit
 import AsyncDisplayKit
 
+protocol DateSectionProtocol {
+    var collectionNode: ASCollectionNode! { get set }
+    var date: Date { get set }
+}
+
 class DateSection: ListSectionController, ASSectionController {
     
     // MARK: - Variables
     var date = Date() {
         didSet {
-            if let controller = self.viewController as? CollectionViewController {
+            if var controller = self.viewController as? DateSectionProtocol {
+                
+                controller.date = self.date
+                
                 if let node = controller.collectionNode.nodeForItem(at: IndexPath(row: 2, section: self.section)) as? DateButtonsNode {
                     node.date = date
                 }

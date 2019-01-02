@@ -70,7 +70,6 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         let board = self.card.dashboardValue
         return {
             let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
             
             OperationQueue.main.addOperation {
                 node.title.shareButton.view.tag = index

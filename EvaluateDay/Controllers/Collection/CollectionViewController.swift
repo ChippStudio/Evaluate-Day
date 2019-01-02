@@ -11,8 +11,8 @@ import AsyncDisplayKit
 import IGListKit
 import RealmSwift
 
-class CollectionViewController: UIViewController, ListAdapterDataSource {
-
+class CollectionViewController: UIViewController, ListAdapterDataSource, DateSectionProtocol {
+    
     // MARK: - UI
     var collectionNode: ASCollectionNode!
     
@@ -20,8 +20,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     var adapter: ListAdapter!
     var date: Date = Date() {
         didSet {
-            self.dateObject = DateObject(date: self.date)
-            self.adapter.performUpdates(animated: true, completion: nil)
+            self.dateObject.date = self.date
         }
     }
     
@@ -66,15 +65,9 @@ class CollectionViewController: UIViewController, ListAdapterDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.updateAppearance(animated: false)
+        self.adapter.performUpdates(animated: true, completion: nil)
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        self.collectionNode.frame = self.view.bounds
-//    }
     
     override func updateAppearance(animated: Bool) {
         super.updateAppearance(animated: animated)

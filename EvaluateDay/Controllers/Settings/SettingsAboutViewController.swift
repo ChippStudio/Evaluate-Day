@@ -314,7 +314,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: - SFSafariViewControllerDelegate
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        UIApplication.shared.statusBarStyle = Themes.manager.settingsStyle.statusBarStyle
     }
     
     // MARK: - Actions
@@ -340,7 +339,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         let safari = SFSafariViewController(url: URL(string: url)!)
         safari.preferredControlTintColor = Themes.manager.settingsStyle.safariTintColor
         safari.delegate = self
-        UIApplication.shared.statusBarStyle = .default
         self.present(safari, animated: true, completion: nil)
     }
     

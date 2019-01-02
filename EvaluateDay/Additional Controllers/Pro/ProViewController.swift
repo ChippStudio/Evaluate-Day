@@ -397,7 +397,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     mailView.setMessageBody(Localizations.settings.support.mail.body(value1: build, version, iosVersion), isHTML: false)
                     mailView.setToRecipients([feedbackMail])
                     self.present(mailView, animated: true, completion: {
-                        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
                     })
                 } else {
                     let alert = UIAlertController(title: Localizations.settings.support.mailError.title, message: Localizations.settings.support.mailError.message, preferredStyle: .alert)
@@ -427,7 +426,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     
     // MARK: - MFMailComposeViewControllerDelegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Swift.Error?) {
-        UIApplication.shared.statusBarStyle = Themes.manager.settingsStyle.statusBarStyle
         if error != nil {
             print(error!.localizedDescription)
         }
@@ -435,7 +433,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     }
     // MARK: - SFSafariViewControllerDelegate
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        UIApplication.shared.statusBarStyle = Themes.manager.settingsStyle.statusBarStyle
     }
     
     // MARK: - Actions
@@ -447,7 +444,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         let safari = SFSafariViewController(url: URL(string: url)!)
         safari.preferredControlTintColor = Themes.manager.settingsStyle.safariTintColor
         safari.delegate = self
-        UIApplication.shared.statusBarStyle = .default
         self.present(safari, animated: true, completion: nil)
     }
     
