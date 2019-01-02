@@ -64,12 +64,7 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, cardType: cardType, dashboard: board, style: style)
             
             node.visual(withStyle: style)
-            
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
+
             if !lock {
                 node.phrase.editButton.addTarget(self, action: #selector(self.editTextAction(sender:)), forControlEvents: .touchUpInside)
             }
@@ -197,7 +192,7 @@ class PhraseNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, text: String, date: Date, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.phrase = PhraseEvaluateNode(text: text, date: date, style: style)
         
         // Accessibility

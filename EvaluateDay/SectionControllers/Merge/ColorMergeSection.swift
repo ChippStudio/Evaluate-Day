@@ -57,12 +57,8 @@ class ColorMergeSection: ListSectionController, ASSectionController, MergeSectio
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
-            let board = self.card.dashboardValue
             return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
-                node.shareButton.alpha = 0.0
-                node.topInset = 10.0
-                node.leftInset = 20.0
+                let node = TitleNode(title: title, subtitle: subtitle, image: image)
                 node.isAccessibilityElement = true
                 node.accessibilityLabel = title
                 node.accessibilityValue = subtitle

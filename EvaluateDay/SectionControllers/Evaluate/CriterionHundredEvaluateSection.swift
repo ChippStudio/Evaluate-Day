@@ -71,11 +71,6 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         return {
             let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
                     if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -113,8 +108,8 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -181,7 +176,7 @@ class HundredNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock, style: style)
         
         // Accessibility

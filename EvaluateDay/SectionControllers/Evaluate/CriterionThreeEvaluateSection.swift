@@ -73,11 +73,6 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             node.buttons.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
                     if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -189,7 +184,7 @@ class ThreeNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive, style: style)
         
         // Accessibility

@@ -69,11 +69,6 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             node.colors.didSelectColor = { (color) in
                 if colorCard.realm != nil {
                     if let value = colorCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -181,7 +176,7 @@ class ColorNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock, style: style)
         
         // Accessibility

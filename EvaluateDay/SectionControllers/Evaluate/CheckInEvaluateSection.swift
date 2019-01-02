@@ -83,11 +83,6 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, cardType: cardType, dashboard: board, style: style)
                 node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             for data in node.datas {
                 data.didSelectItem = { (i) in
                     if self.lock {
@@ -285,7 +280,7 @@ class CheckInNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         for data in datas {
             let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index, style: style)
             self.datas.append(dataNode)

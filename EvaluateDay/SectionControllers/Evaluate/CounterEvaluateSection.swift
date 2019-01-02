@@ -79,10 +79,6 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         return {
             let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             if !lock {
                 node.counter.plus.addTarget(self, action: #selector(self.plusButtonAction(sender:)), forControlEvents: .touchUpInside)
@@ -258,7 +254,7 @@ class CounterNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step, style: style)
         
         // Accessibility

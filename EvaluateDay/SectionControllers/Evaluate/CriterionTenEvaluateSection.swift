@@ -70,12 +70,7 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         return {
             let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
-            
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
+        
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
                     if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -181,7 +176,7 @@ class TenNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock, style: style)
         
         // Accessibility

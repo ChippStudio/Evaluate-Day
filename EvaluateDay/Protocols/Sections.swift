@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Activity
-protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsBarChartNodeStyle, TitleNodeStyle, SettingsMoreNodeStyle { }
+protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsBarChartNodeStyle, SettingsMoreNodeStyle { }
 
 // MARK: - Evaluable
 protocol EvaluableSection {
@@ -21,7 +21,7 @@ protocol EvaluableSection {
     // MARK: - Handlers
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
-protocol EvaluableSectionStyle: TitleNodeStyle, ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, HabitNegativeNodeStyle, DashboardsNodeStyle, DashboardsNoneNodeStyle { }
+protocol EvaluableSectionStyle: ColorEvaluateNodeStyle, CriterionEvaluateNodeStyle, UpdateNodeStyle, CheckInDataEvaluateNodeStyle, CheckInPermissionNodeStyle, CheckInActionNodeStyle, CriterionThreeEvaluateNodeStyle, PhraseEvaluateNodeStyle, CounterEvaluateNodeStyle, HabitEvaluateCommentNodeStyle, HabitEvaluateNodeStyle, ListEvaluateNodeStyle, ListItemEvaluateNodeStyle, GoalEvaluateNodeStyle, JournalNewEntryActionNodeStyle, JournalEntryNodeStyle, HabitNegativeNodeStyle, DashboardsNodeStyle, DashboardsNoneNodeStyle { }
 
 // MARK: - Analytical
 protocol AnalyticalSection {
@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: TitleNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle, AnalyticsTimeTravelNodeStyle { }
+protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle, AnalyticsTimeTravelNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {
@@ -53,4 +53,4 @@ protocol MergeSection {
     var mergeDone: (() -> Void)? { get set }
 }
 
-protocol MergeSectionStyle: BigDescriptionNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle, TitleNodeStyle, SettingsProButtonNodeStyle { }
+protocol MergeSectionStyle: BigDescriptionNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle { }

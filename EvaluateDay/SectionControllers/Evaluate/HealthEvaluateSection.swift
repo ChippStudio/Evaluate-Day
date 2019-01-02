@@ -61,11 +61,6 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
             let node = HealthNode(title: title, subtitle: subtitle, image: image, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             if archived {
                 node.backgroundColor = style.cardArchiveColor
             }
@@ -205,7 +200,7 @@ class HealthNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

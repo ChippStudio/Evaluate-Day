@@ -85,12 +85,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         return {
             let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
-            
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
+        
             if !lock {
                 node.mark.markButton.addTarget(self, action: #selector(self.markAction(sender:)), forControlEvents: .touchUpInside)
                 node.mark.markAndCommentButton.addTarget(self, action: #selector(self.markAndCommentAction(sender:)), forControlEvents: .touchUpInside)
@@ -272,7 +267,7 @@ class HabitNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
         
         if negative {

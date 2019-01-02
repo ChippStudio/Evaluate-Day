@@ -90,7 +90,7 @@ protocol CardMergeStyle: MergeSectionStyle {
     var barLargeTitleFont: UIFont { get }
 }
 
-protocol SettingsStyle: SettingsMoreNodeStyle, SettingsBooleanNodeStyle, SettingsProNodeStyle, SettingsNotificationNodeStyle, TitleNodeStyle, SettingsProButtonNodeStyle, SettingsProDescriptionNodeStyle, SettingsProReviewNodeStyle, PrivacyAndEulaNodeStyle, DescriptionNodeStyle, InfoNodeStyle, SettingsProDescriptionMoreNodeStyle, ProMoreViewControllerStyle, SettingsIconSelectNodeStyle {
+protocol SettingsStyle: SettingsMoreNodeStyle, SettingsBooleanNodeStyle, SettingsProNodeStyle, SettingsNotificationNodeStyle, SettingsProButtonNodeStyle, SettingsProDescriptionNodeStyle, SettingsProReviewNodeStyle, PrivacyAndEulaNodeStyle, DescriptionNodeStyle, InfoNodeStyle, SettingsProDescriptionMoreNodeStyle, ProMoreViewControllerStyle, SettingsIconSelectNodeStyle {
     var background: UIColor { get }
     var statusBarStyle: UIStatusBarStyle { get }
     var barColor: UIColor { get }

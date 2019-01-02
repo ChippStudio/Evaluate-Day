@@ -63,11 +63,6 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             if !lock {
                 node.list.openListButton.addTarget(self, action: #selector(self.openListAction(sender:)), forControlEvents: .touchUpInside)
             }
@@ -171,7 +166,7 @@ class ListNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date, style: style)
         
         let formatter = DateFormatter()

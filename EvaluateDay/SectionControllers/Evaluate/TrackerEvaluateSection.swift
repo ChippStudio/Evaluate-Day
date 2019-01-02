@@ -85,11 +85,6 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
             
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
             if !lock {
                 node.mark.markButton.addTarget(self, action: #selector(self.markAction(sender:)), forControlEvents: .touchUpInside)
                 node.mark.markAndCommentButton.addTarget(self, action: #selector(self.markAndCommentAction(sender:)), forControlEvents: .touchUpInside)
@@ -262,7 +257,7 @@ class TrackerNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
         
         for (i, comment) in comments.enumerated() {

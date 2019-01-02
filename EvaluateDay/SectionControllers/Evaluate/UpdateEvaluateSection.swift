@@ -39,8 +39,6 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
         return {
             let node = UpdateCardNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
             node.visual(withStyle: style)
-            node.title.shareButton.alpha = 0.0
-            node.title.shareButton.isEnabled = false
             
             return node
         }
@@ -82,7 +80,7 @@ class UpdateCardNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.update = UpdateNode(style: style)
         
         self.automaticallyManagesSubnodes = true

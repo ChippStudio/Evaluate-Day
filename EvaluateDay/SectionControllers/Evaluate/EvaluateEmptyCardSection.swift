@@ -21,8 +21,6 @@ class EvaluateEmptyCardSection: ListSectionController, ASSectionController {
         return {
             let node = EvaluateEmptyCardNode(title: Localizations.collection.empty.title, subtitle: Localizations.collection.empty.subtitle, image: #imageLiteral(resourceName: "emptyCard"), style: style)
             node.visual(withStyle: style)
-            node.title.shareButton.alpha = 0.0
-            node.title.shareButton.isEnabled = false
             
             return node
         }
@@ -63,7 +61,7 @@ class EvaluateEmptyCardNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: nil, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         
         self.automaticallyManagesSubnodes = true
     }

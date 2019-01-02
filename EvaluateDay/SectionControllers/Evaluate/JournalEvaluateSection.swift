@@ -94,12 +94,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         return {
             let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, cardType: cardType, dashboard: board, style: style)
             node.visual(withStyle: style)
-            
-            OperationQueue.main.addOperation {
-                node.title.shareButton.view.tag = index
-            }
-            node.title.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
-            
+        
             if !lock {
                 node.new.actionButton.addTarget(self, action: #selector(self.makeNewEntry(sender:)), forControlEvents: .touchUpInside)
             }
@@ -232,7 +227,7 @@ class JournalNode: ASCellNode, CardNode {
     init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image, dashboard: dashboard, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.new = JournalNewEntryActionNode(date: date, style: style)
         for (i, entry) in entries.enumerated() {
             let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true, style: style)

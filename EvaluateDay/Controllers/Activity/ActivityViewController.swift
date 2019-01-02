@@ -127,17 +127,17 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             section.shareHandler = { (indexPath, items) in
                 
                 let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                if self.traitCollection.userInterfaceIdiom == .pad {
-                    shareActivity.modalPresentationStyle = .popover
-                    if let node = self.collectionNode.nodeForItem(at: indexPath) as? TitleNode {
-                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                        shareActivity.popoverPresentationController?.sourceView = node.view
-                    } else {
-                        let node = self.collectionNode.nodeForItem(at: indexPath) as! AnalyticsBarChartNode
-                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-                        shareActivity.popoverPresentationController?.sourceView = node.view
-                    }
-                }
+//                if self.traitCollection.userInterfaceIdiom == .pad {
+//                    shareActivity.modalPresentationStyle = .popover
+//                    if let node = self.collectionNode.nodeForItem(at: indexPath) as? TitleNode {
+//                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
+//                        shareActivity.popoverPresentationController?.sourceView = node.view
+//                    } else {
+//                        let node = self.collectionNode.nodeForItem(at: indexPath) as! AnalyticsBarChartNode
+//                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
+//                        shareActivity.popoverPresentationController?.sourceView = node.view
+//                    }
+//                }
                 sendEvent(.shareFromEvaluateDay, withProperties: ["type": "activity"])
                 self.present(shareActivity, animated: true, completion: nil)
             }
