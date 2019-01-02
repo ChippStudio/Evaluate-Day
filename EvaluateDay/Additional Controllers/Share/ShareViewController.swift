@@ -39,7 +39,7 @@ class ShareViewController: UIViewController {
         
         self.view.backgroundColor = style.shareControllerBackground
         
-        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.shareControllerCloseTintColor
         self.closeButton.accessibilityLabel = Localizations.general.close
         self.closeButtonCover.layer.masksToBounds = true

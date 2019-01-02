@@ -9,16 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol CriterionThreeEvaluateNodeStyle {
-    var criterionThreeEvaluatePositiveColor: UIColor { get }
-    var criterionThreeEvaluateNeutralColor: UIColor { get }
-    var criterionThreeEvaluateNegativeColor: UIColor { get }
-    var criterionThreeEvaluateUnsetColor: UIColor { get }
-    var criterionThreeEvaluateSeparatorColor: UIColor { get }
-    var criterionThreeEvaluateDateColor: UIColor { get }
-    var criterionThreeEvaluateDateFont: UIFont { get }
-}
-
 class CriterionThreeEvaluateNode: ASCellNode {
     // MARK: - UI
     var topButton = ASButtonNode()
@@ -27,63 +17,50 @@ class CriterionThreeEvaluateNode: ASCellNode {
     var currentDate = ASTextNode()
     var previousDate: ASTextNode!
     var previousImage: ASImageNode!
-    var separator: ASDisplayNode!
-    
-    // MARK: - Variables
-    private var goodColor: UIColor!
-    private var neutralColor: UIColor!
-    private var badColor: UIColor!
+    var cover = ASDisplayNode()
     
     var didChangeValue: ((_ value: Int) -> Void)?
     
     // MARK: - Init
-    init(value: Double?, previousValue: Double?, date: Date, lock: Bool, positive: Bool, style: CriterionThreeEvaluateNodeStyle) {
+    init(value: Double?, previousValue: Double?, date: Date, lock: Bool, positive: Bool) {
         super.init()
+        
+        self.cover.backgroundColor = positive ? UIColor.positive : UIColor.negative
+        self.cover.cornerRadius = 10.0
         
         self.topButton.setImage(#imageLiteral(resourceName: "good").resizedImage(newSize: CGSize(width: 50.0, height: 50.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.middleButton.setImage(#imageLiteral(resourceName: "neutral").resizedImage(newSize: CGSize(width: 50.0, height: 50.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.bottomButton.setImage(#imageLiteral(resourceName: "bad").resizedImage(newSize: CGSize(width: 50.0, height: 50.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         
-        self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.criterionThreeEvaluateUnsetColor)
-        self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.criterionThreeEvaluateUnsetColor)
-        self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.criterionThreeEvaluateUnsetColor)
+        self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        
+        if value != nil {
+            if value == 0 {
+                self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.selected)
+            } else if value == 1 {
+                self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.selected)
+            } else if value == 2 {
+                self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.selected)
+            }
+        }
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.criterionThreeEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.criterionThreeEvaluateDateColor])
-        
-        goodColor = style.criterionThreeEvaluatePositiveColor
-        neutralColor = style.criterionThreeEvaluateNeutralColor
-        badColor = style.criterionThreeEvaluateNegativeColor
-        
-        if !positive {
-            goodColor = style.criterionThreeEvaluateNegativeColor
-            badColor = style.criterionThreeEvaluatePositiveColor
-        }
-        
-        if value != nil {
-            if value == 0 {
-                self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(badColor)
-            } else if value == 1 {
-                self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(neutralColor)
-            } else if value == 2 {
-                self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(goodColor)
-            }
-        }
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         if let previousValue = previousValue {
             self.previousImage = ASImageNode()
             if previousValue == 0 {
                 self.previousImage.image = #imageLiteral(resourceName: "bad")
-                self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(badColor)
             } else if previousValue == 1 {
                 self.previousImage.image = #imageLiteral(resourceName: "neutral")
-                self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(neutralColor)
             } else if previousValue == 2 {
                 self.previousImage.image = #imageLiteral(resourceName: "good")
-                self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(goodColor)
             }
+            self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
             
             var previousValueString = ""
             if previousValue == 0 {
@@ -105,11 +82,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
             
             let previousDate = Calendar.current.date(byAdding: components, to: date)!
             self.previousDate = ASTextNode()
-            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: style.criterionThreeEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.criterionThreeEvaluateDateColor])
-            
-            self.separator = ASDisplayNode()
-            self.separator.backgroundColor = style.criterionThreeEvaluateSeparatorColor
-            self.separator.cornerRadius = 2.0
+            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
             
             // Accessibility
             self.previousDate.isAccessibilityElement = false
@@ -154,32 +127,36 @@ class CriterionThreeEvaluateNode: ASCellNode {
         self.bottomButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
         
         let buttons = ASStackLayoutSpec.horizontal()
-        buttons.spacing = 20
+        buttons.spacing = 10
         buttons.children = [self.topButton, self.middleButton, self.bottomButton]
         
         let currentStack = ASStackLayoutSpec.vertical()
-        currentStack.spacing = 15
+        currentStack.spacing = 5
         currentStack.alignItems = .end
         currentStack.children = [buttons, self.currentDate]
         
-        let cell = ASStackLayoutSpec.horizontal()
-        cell.spacing = 20.0
-        cell.children = [currentStack]
+        let content = ASStackLayoutSpec.horizontal()
+        content.spacing = 30.0
+        content.justifyContent = .spaceBetween
+        content.children = [currentStack]
         
         if self.previousDate != nil {
             self.previousImage.style.preferredSize = CGSize(width: 50.0, height: 50.0)
-            self.separator.style.preferredSize.width = 4.0
             
             let previousStack = ASStackLayoutSpec.vertical()
-            previousStack.spacing = 15.0
+            previousStack.spacing = 5.0
             previousStack.alignItems = .end
             previousStack.children = [self.previousImage, self.previousDate]
             
-            cell.children?.append(self.separator)
-            cell.children?.append(previousStack)
+            content.children?.append(previousStack)
         }
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

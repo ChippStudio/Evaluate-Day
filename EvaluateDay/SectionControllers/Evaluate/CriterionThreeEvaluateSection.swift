@@ -47,7 +47,6 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
         
         let title = self.card.title
         let subtitle = self.card.subtitle
-        let image = Sources.image(forType: self.card.type)
         let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionThreeCard
@@ -66,12 +65,22 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             previousValue = saveValue.value
         }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var values = [Float]()
+        for i in 1...7 {
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).sorted(byKeyPath: "edited", ascending: false).first {
+                values.insert(Float(saveValue.value), at: 0)
+            } else {
+                values.insert(0.0, at: 0)
+            }
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = ThreeNode(title: title, subtitle: subtitle, image: image, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = ThreeNode(title: title, subtitle: subtitle, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             node.buttons.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
@@ -116,8 +125,8 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -130,14 +139,12 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
     @objc private func shareAction(sender: ASButtonNode) {
         let node: ASCellNode!
         
@@ -177,15 +184,22 @@ class ThreeNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var buttons: CriterionThreeEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionThree))
+        self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive)
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: 3.0)
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
@@ -193,7 +207,7 @@ class ThreeNode: ASCellNode, CardNode {
         if isPositive {
             criterionType = Localizations.accessibility.evaluate.criterion.positive
         }
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionThree)), \(criterionType)"
         var currentValueString = Localizations.general.none
         if current != nil {
             if current! == 0 {
@@ -220,7 +234,7 @@ class ThreeNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.buttons]
+        stack.children = [self.title, self.buttons, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

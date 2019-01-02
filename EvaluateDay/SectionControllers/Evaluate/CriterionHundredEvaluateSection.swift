@@ -47,7 +47,6 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         
         let title = self.card.title
         let subtitle = self.card.subtitle
-        let image = Sources.image(forType: self.card.type)
 //        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionHundredCard
@@ -79,8 +78,9 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         let board = self.card.dashboardValue?.1
         
         return {
-            let node = HundredNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
+            let node = HundredNode(title: title, subtitle: subtitle, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
                     if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -181,7 +181,7 @@ class HundredNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
+    init(title: String, subtitle: String, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionHundred))

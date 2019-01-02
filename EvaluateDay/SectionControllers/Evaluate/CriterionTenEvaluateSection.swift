@@ -35,8 +35,6 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
-
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
             lock = true
@@ -47,8 +45,7 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         
         let title = self.card.title
         let subtitle = self.card.subtitle
-        let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
+//        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionTenCard
         var value: Float = 0.0
@@ -63,13 +60,23 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", previousDate.start, previousDate.end).sorted(byKeyPath: "edited", ascending: false).first {
             previousValue = Float(saveValue.value)
         }
+        var values = [Float]()
+        for i in 1...7 {
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if let saveValue = criterionCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).sorted(byKeyPath: "edited", ascending: false).first {
+                values.insert(Float(saveValue.value), at: 0)
+            } else {
+                values.insert(0.0, at: 0)
+            }
+        }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = TenNode(title: title, subtitle: subtitle, image: image, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = TenNode(title: title, subtitle: subtitle, current: value, previous: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
         
             node.slider.didChangeValue = { newCurrentValue in
                 if criterionCard.realm != nil {
@@ -90,10 +97,6 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
                 }
             }
             
-            if archived {
-                node.backgroundColor = style.cardArchiveColor
-            }
-            
             return node
         }
         
@@ -108,8 +111,8 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -122,14 +125,12 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
     @objc private func shareAction(sender: ASButtonNode) {
         let node: ASCellNode!
         
@@ -169,15 +170,22 @@ class TenNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var slider: CriterionEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionTen))
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 10.0, isPositive: isPositive, lock: lock)
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: 10.0)
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
@@ -185,7 +193,7 @@ class TenNode: ASCellNode, CardNode {
         if isPositive {
             criterionType = Localizations.accessibility.evaluate.criterion.positive
         }
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType), \(criterionType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionTen)), \(criterionType)"
         self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(Int(current))")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -195,7 +203,7 @@ class TenNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.slider]
+        stack.children = [self.title, self.slider, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

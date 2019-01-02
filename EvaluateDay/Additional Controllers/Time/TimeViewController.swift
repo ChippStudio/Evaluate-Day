@@ -69,7 +69,7 @@ class TimeViewController: UIViewController, ListAdapterDataSource {
         self.datePickerCover.layer.masksToBounds = true
         self.datePickerCover.layer.cornerRadius = 10.0
         
-        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.barTint
         self.closeButton.accessibilityIdentifier = "closeButton"
         self.closeButton.accessibilityLabel = Localizations.general.close
