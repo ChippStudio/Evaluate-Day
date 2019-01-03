@@ -263,6 +263,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "evaluate.list.open" = "Open list";
 "evaluate.location.unknown" = "Unknown place";
 "evaluate.weather.unknown" = "Weather data is not available";
+"evaluate.phrase.empty" = "What is on your mind? Tap to edit.";
 
 // MARK: - General
 "general.action.analytics" = "Open Analytics";

@@ -36,7 +36,6 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
             lock = true
@@ -48,30 +47,40 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         
         let title = self.card.title
         let subtitle = self.card.subtitle
-        let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         let phraseCard = self.card.data as! PhraseCard
-        var text = ""
+        var text = Localizations.evaluate.phrase.empty
         if let value = phraseCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
             text = value.text
         }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var values = [Bool]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if phraseCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
+                values.insert(true, at: 0)
+            } else {
+                values.insert(false, at: 0)
+            }
+        }
+        
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = PhraseNode(title: title, subtitle: subtitle, image: image, text: text, date: self.date, cardType: cardType, dashboard: board, style: style)
+            let node = PhraseNode(title: title, subtitle: subtitle, text: text, date: self.date, values: values, dashboard: board)
             
-            node.visual(withStyle: style)
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
 
             if !lock {
                 node.phrase.editButton.addTarget(self, action: #selector(self.editTextAction(sender:)), forControlEvents: .touchUpInside)
             }
             
-            if archived {
-                node.backgroundColor = style.cardArchiveColor
-            }
+//            if archived {
+//                node.backgroundColor = style.cardArchiveColor
+//            }
             
             return node
         }
@@ -86,8 +95,8 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -100,11 +109,6 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - TextTopViewControllerDelegate
@@ -133,6 +137,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
+    
     @objc private func editTextAction(sender: ASButtonNode) {
         let controller = TextTopViewController()
         controller.delegate = self
@@ -185,19 +193,27 @@ class PhraseNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var phrase: PhraseEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateDotsAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, text: String, date: Date, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, text: String, date: Date, values: [Bool], dashboard: UIImage?) {
         super.init()
         
-        self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.phrase = PhraseEvaluateNode(text: text, date: date, style: style)
+        self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .phrase))
+        self.phrase = PhraseEvaluateNode(text: text, date: date)
+        self.analytics = EvaluateDotsAnalyticsNode(values: values)
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .phrase))"
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
@@ -206,7 +222,7 @@ class PhraseNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.phrase]
+        stack.children = [self.title, self.phrase, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

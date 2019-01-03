@@ -51,6 +51,7 @@
 		B539783E214F9197002EAAFA /* HealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539783D214F9197002EAAFA /* HealthViewController.swift */; };
 		B5397840214F91A1002EAAFA /* Health.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B539783F214F91A1002EAAFA /* Health.storyboard */; };
 		B5397842214F923E002EAAFA /* HealthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5397841214F923E002EAAFA /* HealthSource.swift */; };
+		B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */; };
 		B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53E5F462053F66300B50B60 /* Activity.storyboard */; };
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
@@ -496,6 +497,7 @@
 		B539783D214F9197002EAAFA /* HealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewController.swift; sourceTree = "<group>"; };
 		B539783F214F91A1002EAAFA /* Health.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Health.storyboard; sourceTree = "<group>"; };
 		B5397841214F923E002EAAFA /* HealthSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSource.swift; sourceTree = "<group>"; };
+		B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDotsAnalyticsNode.swift; sourceTree = "<group>"; };
 		B53E5F462053F66300B50B60 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
@@ -1383,8 +1385,10 @@
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
+				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */,
+				B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */,
 				B5899B1821D7BF6C00CF123B /* CardsListNode.swift */,
 				B5899B1A21D7C19900CF123B /* CardsListDotNode.swift */,
 				B5899B1C21D7C80500CF123B /* AllCardsNode.swift */,
@@ -1696,7 +1700,6 @@
 				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
 				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,
 				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
-				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
 				B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */,
 				B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */,
@@ -2393,6 +2396,7 @@
 				B5D854E61FD03D0B00BB4E14 /* Permissions.swift in Sources */,
 				B5D0C7C320A8539A000F98EF /* BlackSettingsTheme.swift in Sources */,
 				B5C757401F9F32B10032199E /* TitleNode.swift in Sources */,
+				B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */,
 				B5899B2121D7D10000CF123B /* DateSection.swift in Sources */,
 				B57B0639201B0F2900C4E182 /* GoalCard+Extensions.swift in Sources */,
 				B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */,
