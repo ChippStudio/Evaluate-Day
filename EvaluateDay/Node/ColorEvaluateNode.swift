@@ -28,7 +28,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         self.lock = lock
         super.init()
         
-        self.cover.backgroundColor = UIColor.main
+        self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
         for i in 0..<colorsForSelection.count {
@@ -54,7 +54,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.currentDate.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true

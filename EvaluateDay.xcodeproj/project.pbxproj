@@ -67,8 +67,6 @@
 		B5535AEC1FEFF7A500D2AE25 /* Store+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */; };
 		B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AED1FF00AF700D2AE25 /* Feedback.swift */; };
 		B5535AF01FF10BB200D2AE25 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AEF1FF10BB200D2AE25 /* Analytics.swift */; };
-		B55464842024917700923CE3 /* LightEntryControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55464832024917700923CE3 /* LightEntryControllerTheme.swift */; };
-		B5546486202491CB00923CE3 /* DarkEntryViewControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5546485202491CB00923CE3 /* DarkEntryViewControllerTheme.swift */; };
 		B55464882024A7BE00923CE3 /* DateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55464872024A7BE00923CE3 /* DateNode.swift */; };
 		B554648A2024A7D200923CE3 /* WeatherNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55464892024A7D200923CE3 /* WeatherNode.swift */; };
 		B55464CD2025974400923CE3 /* PhotoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55464CC2025974400923CE3 /* PhotoNode.swift */; };
@@ -88,7 +86,6 @@
 		B55D326F2074F67300BD1E75 /* OrangeTopControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32612074F67300BD1E75 /* OrangeTopControllerTheme.swift */; };
 		B55D32702074F67300BD1E75 /* OrangeBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32622074F67300BD1E75 /* OrangeBottomControllerTheme.swift */; };
 		B55D32722074F67300BD1E75 /* OrangeEvaluateTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32642074F67300BD1E75 /* OrangeEvaluateTheme.swift */; };
-		B55D32732074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */; };
 		B55D32742074F67300BD1E75 /* OrangeSlidesControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */; };
 		B55D32752074F67300BD1E75 /* OrangeActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32672074F67300BD1E75 /* OrangeActivityControllerTheme.swift */; };
 		B55D32762074F67300BD1E75 /* OrangeSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32682074F67300BD1E75 /* OrangeSettingsTheme.swift */; };
@@ -342,7 +339,6 @@
 		B5D0C7BE20A8539A000F98EF /* BlackCardMergeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B020A8539A000F98EF /* BlackCardMergeTheme.swift */; };
 		B5D0C7BF20A8539A000F98EF /* BlackAnalyticalTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B120A8539A000F98EF /* BlackAnalyticalTheme.swift */; };
 		B5D0C7C020A8539A000F98EF /* BlackPasscodeControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B220A8539A000F98EF /* BlackPasscodeControllerTheme.swift */; };
-		B5D0C7C120A8539A000F98EF /* BlackEntryViewControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B320A8539A000F98EF /* BlackEntryViewControllerTheme.swift */; };
 		B5D0C7C220A8539A000F98EF /* BlackShareViewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */; };
 		B5D0C7C320A8539A000F98EF /* BlackSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B520A8539A000F98EF /* BlackSettingsTheme.swift */; };
 		B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B620A8539A000F98EF /* BlackNewCardTheme.swift */; };
@@ -512,8 +508,6 @@
 		B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Enums.swift"; sourceTree = "<group>"; };
 		B5535AED1FF00AF700D2AE25 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		B5535AEF1FF10BB200D2AE25 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
-		B55464832024917700923CE3 /* LightEntryControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightEntryControllerTheme.swift; sourceTree = "<group>"; };
-		B5546485202491CB00923CE3 /* DarkEntryViewControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkEntryViewControllerTheme.swift; sourceTree = "<group>"; };
 		B55464872024A7BE00923CE3 /* DateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateNode.swift; sourceTree = "<group>"; };
 		B55464892024A7D200923CE3 /* WeatherNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNode.swift; sourceTree = "<group>"; };
 		B55464CC2025974400923CE3 /* PhotoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNode.swift; sourceTree = "<group>"; };
@@ -533,7 +527,6 @@
 		B55D32612074F67300BD1E75 /* OrangeTopControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeTopControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32622074F67300BD1E75 /* OrangeBottomControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeBottomControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32642074F67300BD1E75 /* OrangeEvaluateTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeEvaluateTheme.swift; sourceTree = "<group>"; };
-		B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeEntryViewControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeSlidesControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32672074F67300BD1E75 /* OrangeActivityControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32682074F67300BD1E75 /* OrangeSettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeSettingsTheme.swift; sourceTree = "<group>"; };
@@ -792,7 +785,6 @@
 		B5D0C7B020A8539A000F98EF /* BlackCardMergeTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackCardMergeTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B120A8539A000F98EF /* BlackAnalyticalTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackAnalyticalTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B220A8539A000F98EF /* BlackPasscodeControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackPasscodeControllerTheme.swift; sourceTree = "<group>"; };
-		B5D0C7B320A8539A000F98EF /* BlackEntryViewControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackEntryViewControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackShareViewTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B520A8539A000F98EF /* BlackSettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B620A8539A000F98EF /* BlackNewCardTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackNewCardTheme.swift; sourceTree = "<group>"; };
@@ -975,7 +967,6 @@
 				B5257D501FE93FC800AC54DE /* DarkPasscodeControllerTheme.swift */,
 				B5257D4C1FE93FC800AC54DE /* DarkShareViewTheme.swift */,
 				B5257D561FE93FC800AC54DE /* DarkSlidesControllerTheme.swift */,
-				B5546485202491CB00923CE3 /* DarkEntryViewControllerTheme.swift */,
 			);
 			path = "Dark Theme";
 			sourceTree = "<group>";
@@ -1044,7 +1035,6 @@
 				B55D32602074F67300BD1E75 /* OrangePasscodeControllerTheme.swift */,
 				B55D325E2074F67300BD1E75 /* OrangeShareViewTheme.swift */,
 				B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */,
-				B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */,
 			);
 			path = "Orange Theme";
 			sourceTree = "<group>";
@@ -1385,6 +1375,8 @@
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
+				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
+				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
 				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,
 				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
 				B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */,
@@ -1707,8 +1699,6 @@
 				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
-				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
-				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
 				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
 				B55464872024A7BE00923CE3 /* DateNode.swift */,
 				B55464892024A7D200923CE3 /* WeatherNode.swift */,
@@ -1795,7 +1785,6 @@
 				B5D0C7B220A8539A000F98EF /* BlackPasscodeControllerTheme.swift */,
 				B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */,
 				B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */,
-				B5D0C7B320A8539A000F98EF /* BlackEntryViewControllerTheme.swift */,
 			);
 			path = "Black Theme";
 			sourceTree = "<group>";
@@ -1893,7 +1882,6 @@
 				B5D854CD1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift */,
 				B5FD38E61FDD66FD0071B1F0 /* LightShareViewTheme.swift */,
 				B584E0E01FE2B2F7008093D5 /* LightSlidesControllerTheme.swift */,
-				B55464832024917700923CE3 /* LightEntryControllerTheme.swift */,
 			);
 			path = "Light Theme";
 			sourceTree = "<group>";
@@ -2289,7 +2277,6 @@
 				B55464DB2028615000923CE3 /* JournalAnalyticsSection.swift in Sources */,
 				B5D854CE1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift in Sources */,
 				B5899B1B21D7C19900CF123B /* CardsListDotNode.swift in Sources */,
-				B5D0C7C120A8539A000F98EF /* BlackEntryViewControllerTheme.swift in Sources */,
 				B5479FC521E78A400002E7D7 /* Images.swift in Sources */,
 				B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */,
 				B5EC88532011EF850056C1C7 /* PhrasesViewController.swift in Sources */,
@@ -2342,7 +2329,6 @@
 				B5B27E7F1F9DC21600CB9121 /* Storyboards.swift in Sources */,
 				B55464D12025C48300923CE3 /* TextNode.swift in Sources */,
 				B5A11400200D4B14008DBF02 /* MapAnnotation.swift in Sources */,
-				B55464842024917700923CE3 /* LightEntryControllerTheme.swift in Sources */,
 				B5397842214F923E002EAAFA /* HealthSource.swift in Sources */,
 				B5DED79F1FCB0578002DD956 /* UpdateNode.swift in Sources */,
 				B53977D8214A93F6002EAAFA /* HealthValue.swift in Sources */,
@@ -2362,7 +2348,6 @@
 				B52D26D9201718C000332D0A /* CounterMergeSection.swift in Sources */,
 				B5A9D5AC2021FDA0006DFB32 /* PhotoValue+Extensions.swift in Sources */,
 				B5BD3B2A200774C50075C75F /* CriterionTenMergeSection.swift in Sources */,
-				B55D32732074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift in Sources */,
 				B55D32692074F67300BD1E75 /* OrangeCardMergeTheme.swift in Sources */,
 				B570C3FA1FAC38F800B12309 /* LightCardSettingsTheme.swift in Sources */,
 				B5D854E81FD041C500BB4E14 /* SettingsNotificationNode.swift in Sources */,
@@ -2616,7 +2601,6 @@
 				B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */,
 				B55D328A20790B4400BD1E75 /* TrackerMergeSection.swift in Sources */,
 				B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */,
-				B5546486202491CB00923CE3 /* DarkEntryViewControllerTheme.swift in Sources */,
 				B55D32752074F67300BD1E75 /* OrangeActivityControllerTheme.swift in Sources */,
 				B55464D3202743FF00923CE3 /* JournalEntryNode.swift in Sources */,
 				B52D26DF20174A0E00332D0A /* HabitCard+Extensions.swift in Sources */,

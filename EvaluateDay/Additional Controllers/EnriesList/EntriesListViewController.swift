@@ -22,6 +22,7 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.title = self.card.title
         
         self.groupNodes()
@@ -50,7 +51,22 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            self.tableNode.backgroundColor = UIColor.background
+            
+            // Table node
+//            self.tableNode.view.separatorColor = style.tableNodeSeparatorColor
+        }
     }
     
     // MARK: - ASTableDataSource
@@ -86,7 +102,7 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         }
         
         return {
-            let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, style: Themes.manager.evaluateStyle)
+            let node = JournalEntryNode(text: text, metadata: metadata, photo: photo)
             return node
         }
     }
@@ -108,9 +124,8 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.entryControllerStyle
-        header.textLabel?.textColor = style.tableSectionHeaderColor
-        header.textLabel!.font = style.tableSectionHeaderFont
+        header.textLabel?.textColor = UIColor.text
+        header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     // MARK: - Private
@@ -135,28 +150,5 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
                 self.nodes.append(data)
             }
         }
-    }
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.evaluateStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.tableNodeSeparatorColor
-        })
     }
 }

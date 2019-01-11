@@ -87,7 +87,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.barTint
         
         self.shareButton.setImage(#imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate), for: .normal)

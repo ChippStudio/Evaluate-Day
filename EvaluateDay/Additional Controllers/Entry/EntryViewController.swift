@@ -32,6 +32,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
         }
@@ -65,7 +66,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         self.view.addSubnode(self.tableNode)
         self.tableNode.view.keyboardDismissMode = .interactive
         
-        self.observable()
+        self.updateAppearance(animated: false)
         
         if self.textValue.location == nil {
             self.quickCheckIn(sender: ASButtonNode())
@@ -90,6 +91,19 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            self.tableNode.backgroundColor = UIColor.clear
+            
+            self.tableNode.reloadData()
+        }
     }
     
     // MARK: - ASTableDataSource
@@ -120,13 +134,12 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
     }
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.entryControllerStyle
         switch indexPath.section {
         case 0:
             let text = self.textValue.text
             let photo = self.textValue.photos.first?.image
             return {
-                let node = JournalEntryNode(text: text, metadata: [], photo: photo, editMode: !self.lock, style: style)
+                let node = JournalEntryNode(text: text, metadata: [], photo: photo, editMode: !self.lock)
                 if node.selectImageButton != nil {
                     node.selectImageButton.addTarget(self, action: #selector(self.photoAction(sender:)), forControlEvents: .touchUpInside)
                 }
@@ -148,7 +161,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         case 1:
             let date = self.textValue.created
             return {
-                let node = DateNode(date: date, style: style)
+                let node = DateNode(date: date)
                 return node
             }
         case 2:
@@ -229,7 +242,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 icon = #imageLiteral(resourceName: "clear-day")
             }
             return {
-                let node = WeatherNode(icon: icon, text: text, data: data, style: style)
+                let node = WeatherNode(icon: icon, text: text, data: data)
                 node.selectionStyle = .none
                 return node
             }
@@ -808,29 +821,5 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
         
         print("Save image to camera roll ok")
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.entryControllerStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = UIColor.clear
-            
-            self.tableNode.reloadData()
-        })
     }
 }

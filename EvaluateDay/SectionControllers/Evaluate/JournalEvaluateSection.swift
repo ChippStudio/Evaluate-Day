@@ -88,13 +88,22 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             entries.append((text: entry.text, metadata: metadata, photo: photo))
         }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var entriesCount = [Int]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            let c = (self.card.data as! JournalCard).values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+            entriesCount.insert(c, at: 0)
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
-        
+            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, values: entriesCount, dashboard: board, style: style)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+            
             if !lock {
                 node.new.actionButton.addTarget(self, action: #selector(self.makeNewEntry(sender:)), forControlEvents: .touchUpInside)
             }
@@ -131,8 +140,8 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -145,14 +154,14 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
         
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
+    
     @objc private func makeNewEntry(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.entry.rawValue, bundle: nil).instantiateInitialViewController() as! EntryViewController
         controller.card = self.card
@@ -220,26 +229,36 @@ class JournalNode: ASCellNode, CardNode {
     var title: TitleNode!
     var entries = [JournalEntryNode]()
     var new: JournalNewEntryActionNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateDashedLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], values: [Int], dashboard: UIImage?, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.new = JournalNewEntryActionNode(date: date, style: style)
+        self.new = JournalNewEntryActionNode(date: date)
         for (i, entry) in entries.enumerated() {
-            let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true, style: style)
+            let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true)
             self.entries.append(newEntry)
         }
+        
+        self.analytics = EvaluateDashedLineAnalyticsNode(values: values)
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .journal))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Journal.value(formatter.string(from: date), entries.count)
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -256,6 +275,9 @@ class JournalNode: ASCellNode, CardNode {
         }
         
         stack.children!.append(new)
+        stack.children!.append(self.analytics)
+        stack.children!.append(self.share)
+        stack.children!.append(self.separator)
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

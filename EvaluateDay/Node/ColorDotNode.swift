@@ -35,6 +35,8 @@ class ColorDotNode: ASCellNode {
         self.done.image = #imageLiteral(resourceName: "done")
     
         if colorString == "FFFFFF" {
+            self.dot.borderColor = UIColor.main.cgColor
+            self.dot.borderWidth = 0.5
             self.done.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.selected)
         } else {
             self.done.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)

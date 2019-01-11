@@ -247,18 +247,4 @@ final class Themes: NSObject {
         
         return LightSlidesControllerTheme()
     }
-    
-    var entryControllerStyle: EntryViewControllerStyle {
-        if self.current == .light {
-            return LightEntryViewControllerTheme()
-        } else if self.current == .dark {
-            return DarkEntryViewControllerTheme()
-        } else if self.current == .orange {
-            return OrangeEntryViewControllerTheme()
-        } else if self.current == .black {
-            return BlackEntryViewControllerTheme()
-        }
-        
-        return LightEntryViewControllerTheme()
-    }
 }

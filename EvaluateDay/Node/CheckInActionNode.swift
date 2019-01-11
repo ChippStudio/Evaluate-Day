@@ -26,7 +26,7 @@ class CheckInActionNode: ASCellNode {
     init(date: Date) {
         super.init()
         
-        self.cover.backgroundColor = UIColor.main
+        self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
         self.mapButtonCover.backgroundColor = UIColor.tint
@@ -35,20 +35,20 @@ class CheckInActionNode: ASCellNode {
         self.checkInButtonCover.backgroundColor = UIColor.tint
         self.checkInButtonCover.cornerRadius = 20.0
         
-        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         self.checkInButton.setAttributedTitle(checkInTitleString, for: .normal)
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         
-        self.separatorNode.backgroundColor = UIColor.tint
+        self.separatorNode.backgroundColor = UIColor.main
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.currentDate.isAccessibilityElement = false
         
         // Buttons Action
@@ -69,7 +69,7 @@ class CheckInActionNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.separatorNode.style.preferredSize = CGSize(width: 200.0, height: 1.0)
         
-        let checkInButtonInsets = UIEdgeInsets(top: 10.0, left: 30.0, bottom: 10.0, right: 30.0)
+        let checkInButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
         let checkInButtonInset = ASInsetLayoutSpec(insets: checkInButtonInsets, child: self.checkInButton)
         let fullCheckInButton = ASBackgroundLayoutSpec(child: checkInButtonInset, background: self.checkInButtonCover)
         
@@ -80,7 +80,7 @@ class CheckInActionNode: ASCellNode {
         separatorStack.justifyContent = .center
         separatorStack.children = [self.separatorNode]
         
-        let mapButtonInsets = UIEdgeInsets(top: 10.0, left: 30.0, bottom: 10.0, right: 30.0)
+        let mapButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
         let mapButtonInset = ASInsetLayoutSpec(insets: mapButtonInsets, child: self.mapButton)
         let fullMapButton = ASBackgroundLayoutSpec(child: mapButtonInset, background: self.mapButtonCover)
         

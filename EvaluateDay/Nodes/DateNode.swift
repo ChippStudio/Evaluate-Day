@@ -9,25 +9,20 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol DateNodeStyle {
-    var dateNodeFont: UIFont { get }
-    var dateFontColor: UIColor { get }
-    var dateNodeSeparatorColor: UIColor { get }
-}
-
 class DateNode: ASCellNode {
     // MARK: - UI
     var dateNode = ASTextNode()
-    var separator = ASDisplayNode()
+    var cover = ASDisplayNode()
     
     // MARK: - Init
-    init(date: Date, style: DateNodeStyle) {
+    init(date: Date) {
         super.init()
         
-        let dateString = DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .medium)
-        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: style.dateNodeFont, NSAttributedStringKey.foregroundColor: style.dateFontColor])
+        self.cover.backgroundColor = UIColor.main
+        self.cover.cornerRadius = 10.0
         
-        self.separator.backgroundColor = style.dateNodeSeparatorColor
+        let dateString = DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .medium)
+        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
@@ -39,15 +34,18 @@ class DateNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.separator.style.preferredSize = CGSize(width: 200.0, height: 0.5)
-        
         self.dateNode.style.flexShrink = 1.0
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 30.0
-        cell.children = [self.dateNode, self.separator]
+        let content = ASStackLayoutSpec.vertical()
+        content.spacing = 30.0
+        content.children = [self.dateNode]
         
-        let cellInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

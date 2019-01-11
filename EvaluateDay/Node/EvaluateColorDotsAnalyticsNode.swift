@@ -15,6 +15,7 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
     var dots = [ASDisplayNode]()
     var cover = ASDisplayNode()
     var disclosure = ASImageNode()
+    var analytics = ASImageNode()
     var button = ASButtonNode()
     
     // MARK: - Init
@@ -44,6 +45,9 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         self.disclosure.image = Images.Media.disclosure.image.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
         self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         
+        self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
+        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -53,10 +57,15 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         dotsStack.spacing = 10.0
         dotsStack.children = self.dots
         
+        let analyticsStack = ASStackLayoutSpec.horizontal()
+        analyticsStack.spacing = 5
+        analyticsStack.alignItems = .center
+        analyticsStack.children = [self.analytics, self.disclosure]
+        
         let content = ASStackLayoutSpec.horizontal()
         content.spacing = 10.0
         content.justifyContent = .spaceBetween
-        content.children = [dotsStack, self.disclosure]
+        content.children = [dotsStack, analyticsStack]
         
         let dotsInsets = UIEdgeInsets(top: 22.0, left: 10.0, bottom: 22.0, right: 10.0)
         let dotsInset = ASInsetLayoutSpec(insets: dotsInsets, child: content)

@@ -143,7 +143,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
                 }
                 
                 return {
-                    let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, truncation: true, style: Themes.manager.evaluateStyle)
+                    let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, truncation: true)
                     return node
                 }
             }

@@ -34,12 +34,14 @@ internal enum Images {
   }
   internal enum Media {
     internal static let activity = ImageAsset(name: "activity")
+    internal static let analytics = ImageAsset(name: "analytics")
     internal static let close = ImageAsset(name: "close")
     internal static let collections = ImageAsset(name: "collections")
     internal static let currentLocation = ImageAsset(name: "currentLocation")
     internal static let delete = ImageAsset(name: "delete")
     internal static let disclosure = ImageAsset(name: "disclosure")
     internal static let down = ImageAsset(name: "down")
+    internal static let imagePlaceholder = ImageAsset(name: "imagePlaceholder")
     internal static let settings = ImageAsset(name: "settings")
     internal static let share = ImageAsset(name: "share")
     internal static let up = ImageAsset(name: "up")

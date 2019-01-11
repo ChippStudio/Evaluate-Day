@@ -15,6 +15,7 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
     var lines = [[ASDisplayNode]]()
     var cover = ASDisplayNode()
     var disclosure = ASImageNode()
+    var analytics = ASImageNode()
     var standart = ASDisplayNode()
     var button = ASButtonNode()
     
@@ -54,6 +55,9 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
         self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         
+        self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
+        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        
         self.button.addTarget(self, action: #selector(self.analyticsInitialAction(sender:)), forControlEvents: .touchDown)
         self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpOutside)
         self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpInside)
@@ -82,10 +86,15 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
         linesStack.children = dashedLines
         linesStack.children?.insert(self.standart, at: 0)
         
+        let analyticsStack = ASStackLayoutSpec.horizontal()
+        analyticsStack.spacing = 5
+        analyticsStack.alignItems = .center
+        analyticsStack.children = [self.analytics, self.disclosure]
+        
         let content = ASStackLayoutSpec.horizontal()
         content.justifyContent = .spaceBetween
         content.alignItems = .center
-        content.children = [linesStack, self.disclosure]
+        content.children = [linesStack, analyticsStack]
         
         let contentInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)

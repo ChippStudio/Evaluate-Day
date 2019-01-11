@@ -9,21 +9,11 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol JournalEntryNodeStyle {
-    var journalNodeTextFont: UIFont { get }
-    var journalNodeTextColor: UIColor { get }
-    var journalNodeMetadataFont: UIFont { get }
-    var journalNodeMetadataColor: UIColor { get }
-    var journalNodeTextCoverColor: UIColor { get }
-    var journalNodeImagePlaceHolderTintColor: UIColor { get }
-}
-
 class JournalEntryNode: ASCellNode {
     // MARK: - UI
     var imageNode: ASImageNode!
     var textPreview = ASTextNode()
     var metadataNode = ASTextNode()
-    var separator = ASDisplayNode()
     var textCover = ASDisplayNode()
     
     var imageButton: ASButtonNode!
@@ -31,6 +21,8 @@ class JournalEntryNode: ASCellNode {
     var selectImageButton: ASButtonNode!
     var cameraButton: ASButtonNode!
     var deleteImageButton: ASButtonNode!
+    
+    var cover = ASDisplayNode()
     
     private var button: ASButtonNode!
     
@@ -41,8 +33,11 @@ class JournalEntryNode: ASCellNode {
     private var index: Int = 0
     
     // MARK: - Init
-    init(text: String, metadata: [String], photo: UIImage?, index: Int? = nil, truncation: Bool = false, editMode: Bool = false, style: JournalEntryNodeStyle) {
+    init(text: String, metadata: [String], photo: UIImage?, index: Int? = nil, truncation: Bool = false, editMode: Bool = false) {
         super.init()
+        
+        self.cover.backgroundColor = UIColor.main
+        self.cover.cornerRadius = 10.0
         
         if index != nil {
             self.index = index!
@@ -73,12 +68,12 @@ class JournalEntryNode: ASCellNode {
             self.imageNode.image = #imageLiteral(resourceName: "imagePlaceholder")
             self.imageNode.contentMode = .scaleAspectFit
             self.imageNode.alpha = 0.7
-            self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.journalNodeImagePlaceHolderTintColor)
+            self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
             self.imageNode.clipsToBounds = true
             self.imageNode.cornerRadius = 5.0
         }
         
-        self.textPreview.attributedText = NSAttributedString(string: newText, attributes: [NSAttributedStringKey.font: style.journalNodeTextFont, NSAttributedStringKey.foregroundColor: style.journalNodeTextColor])
+        self.textPreview.attributedText = NSAttributedString(string: newText, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         var metadataString = ""
         for (i, m) in metadata.enumerated() {
@@ -89,9 +84,7 @@ class JournalEntryNode: ASCellNode {
             metadataString += m
         }
         
-        self.metadataNode.attributedText = NSAttributedString(string: metadataString, attributes: [NSAttributedStringKey.font: style.journalNodeMetadataFont, NSAttributedStringKey.foregroundColor: style.journalNodeMetadataColor])
-        
-        self.separator.backgroundColor = style.journalNodeMetadataColor
+        self.metadataNode.attributedText = NSAttributedString(string: metadataString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         if index != nil {
             self.button = ASButtonNode()
@@ -109,7 +102,7 @@ class JournalEntryNode: ASCellNode {
             self.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.entryHint
         }
         
-        self.textCover.backgroundColor = style.journalNodeTextCoverColor
+        self.textCover.backgroundColor = UIColor.main
         self.textCover.cornerRadius = 5.0
         self.textCover.alpha = 0.8
         
@@ -136,7 +129,7 @@ class JournalEntryNode: ASCellNode {
             
             if photo != nil {
                 self.deleteImageButton = ASButtonNode()
-                self.deleteImageButton.setImage(#imageLiteral(resourceName: "delete").increaseSize(by: -5.0), for: .normal)
+                self.deleteImageButton.setImage(Images.Media.delete.image.resizedImage(newSize: CGSize(width: 25.0, height: 25.0)), for: .normal)
                 self.deleteImageButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.deletePhoto
                 self.deleteImageButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             }
@@ -164,16 +157,14 @@ class JournalEntryNode: ASCellNode {
             coverInset = ASInsetLayoutSpec(insets: coverInsets, child: editTextBackButton)
         }
         
-        self.separator.style.preferredSize = CGSize(width: 200.0, height: 1.0)
-        
         let meta = ASStackLayoutSpec.vertical()
         meta.spacing = 5.0
         meta.alignItems = .end
-        meta.children = [self.metadataNode, self.separator]
+        meta.children = [self.metadataNode]
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 5.0
-        cell.children = [coverInset, meta]
+        let content = ASStackLayoutSpec.vertical()
+        content.spacing = 5.0
+        content.children = [coverInset, meta]
         
         if self.selectImageButton != nil {
             self.selectImageButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
@@ -186,7 +177,7 @@ class JournalEntryNode: ASCellNode {
         if self.imageNode != nil {
             self.imageNode.style.preferredSize = CGSize(width: 140.0, height: 80.0)
             if self.imageButton == nil {
-                cell.children?.insert(self.imageNode, at: 0)
+                content.children?.insert(self.imageNode, at: 0)
             } else {
                 let imageBackButton = ASOverlayLayoutSpec(child: self.imageNode, overlay: self.imageButton)
                 imageBackButton.style.preferredSize = CGSize(width: 140.0, height: 80.0)
@@ -198,11 +189,16 @@ class JournalEntryNode: ASCellNode {
                 if self.deleteImageButton != nil {
                     buttonsStack.children?.append(self.deleteImageButton)
                 }
-                cell.children?.insert(buttonsStack, at: 0)
+                content.children?.insert(buttonsStack, at: 0)
             }
         }
         
-        let cellInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         if self.button != nil {
