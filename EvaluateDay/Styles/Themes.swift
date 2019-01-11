@@ -247,19 +247,6 @@ final class Themes: NSObject {
         
         return LightSlidesControllerTheme()
     }
-    var mapControllerStyle: MapViewControllerStyle {
-        if self.current == .light {
-            return LightMapControllerTheme()
-        } else if self.current == .dark {
-            return DarkMapControllerTheme()
-        } else if self.current == .orange {
-            return OrangeMapControllerTheme()
-        } else if self.current == .black {
-            return BlackMapControllerTheme()
-        }
-        
-        return LightMapControllerTheme()
-    }
     
     var entryControllerStyle: EntryViewControllerStyle {
         if self.current == .light {

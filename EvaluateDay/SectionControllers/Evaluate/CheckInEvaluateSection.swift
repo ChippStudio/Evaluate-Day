@@ -76,12 +76,21 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             permissions = true
         }
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var chekins = [Int]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            let c = (self.card.data as! CheckInCard).values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+            chekins.insert(c, at: 0)
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, cardType: cardType, dashboard: board, style: style)
-                node.visual(withStyle: style)
+            let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, dashboard: board, values: chekins)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             for data in node.datas {
                 data.didSelectItem = { (i) in
@@ -126,8 +135,8 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -140,12 +149,9 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
         
-        self.didSelectItem?(self.section, self.card)
     }
+    
     // MARK: - SelectMapViewControllerDelegate
     func selectLocation(controller: SelectMapViewController, locationValue value: LocationValue?) {
         guard let value = value else {
@@ -191,6 +197,10 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
+    
     @objc private func allowLocationButtonAction(sender: ASButtonNode) {
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
@@ -273,28 +283,38 @@ class CheckInNode: ASCellNode, CardNode {
     var datas = [CheckInDataEvaluateNode]()
     var checkin: CheckInActionNode!
     var permission: CheckInPermissionNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateDashedLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, dashboard: UIImage?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         for data in datas {
-            let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index, style: style)
+            let dataNode = CheckInDataEvaluateNode(street: data.street, otherAddress: data.otherAddress, coordinates: data.coordinates, index: data.index)
             self.datas.append(dataNode)
         }
         
         if permissions {
-            self.permission = CheckInPermissionNode(date: date, style: style)
+            self.permission = CheckInPermissionNode(date: date)
         } else {
-            self.checkin = CheckInActionNode(date: date, style: style)
+            self.checkin = CheckInActionNode(date: date)
         }
+        
+        self.analytics = EvaluateDashedLineAnalyticsNode(values: values)
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .checkIn))"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.checkIn(dateFormatter.string(from: date), datas.count)
@@ -317,6 +337,10 @@ class CheckInNode: ASCellNode, CardNode {
         } else if self.permission != nil {
             stack.children!.append(self.permission)
         }
+        
+        stack.children!.append(self.analytics)
+        stack.children!.append(self.share)
+        stack.children!.append(self.separator)
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

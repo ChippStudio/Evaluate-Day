@@ -38,6 +38,10 @@ extension UIColor {
     @nonobjc class var negative: UIColor {
         return UIColor(red: 150.0 / 255.0, green: 106.0 / 255.0, blue: 106.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var delete: UIColor {
+        return UIColor(red: 130.0 / 255.0, green: 32.0 / 255.0, blue: 32.0 / 255.0, alpha: 1.0)
+    }
 }
 
 // MARK: - UIView

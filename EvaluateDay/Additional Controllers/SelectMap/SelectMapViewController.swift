@@ -69,12 +69,12 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         // Close button
         self.closeButtonCover.layer.cornerRadius = 25.0
         self.closeButtonCover.clipsToBounds = true
-        self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.accessibilityLabel = Localizations.General.close
         
         self.currentLocationButtonCover.layer.cornerRadius = 25.0
         self.currentLocationButtonCover.clipsToBounds = true
-        self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.currentLocationButton.setImage(Images.Media.currentLocation.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.currentLocationButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Map.location
         
         // set gestures
@@ -99,7 +99,27 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            
+            self.closeButtonCover.backgroundColor = UIColor.main
+            self.currentLocationButtonCover.backgroundColor = UIColor.main
+            self.baseView.backgroundColor = UIColor.background
+            
+            self.closeButton.imageView?.tintColor = UIColor.tint
+            self.currentLocationButton.imageView?.tintColor = UIColor.tint
+            
+            self.searchBar.tintColor = UIColor.text
+            self.searchBar.textColor = UIColor.text
+            
+            self.generateInformationView()
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -112,19 +132,18 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         let item = self.searchResult[indexPath.row]
-        let style = Themes.manager.mapControllerStyle
         
         cell.contentView.backgroundColor = UIColor.clear
         cell.backgroundColor = UIColor.clear
         
         cell.textLabel?.text = item.name
-        cell.textLabel?.font = style.checkInDataStreetFont
-        cell.textLabel?.textColor = style.tintColor
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.textLabel?.textColor = UIColor.text
         cell.textLabel?.numberOfLines = 0
         
         cell.detailTextLabel?.text = "\(item.placemark.coordinate.latitude), \(item.placemark.coordinate.longitude)"
-        cell.detailTextLabel?.font = style.checkInDataOtherAddressFont
-        cell.detailTextLabel?.textColor = style.tintColor
+        cell.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        cell.detailTextLabel?.textColor = UIColor.text
         cell.detailTextLabel?.numberOfLines = 0
         
         cell.accessibilityTraits = UIAccessibilityTraitButton
@@ -326,7 +345,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         let view = UIView()
         view.backgroundColor = UIColor.clear
         searchBar.searchBarStyle = .minimal
-        searchBar.barTintColor = Themes.manager.mapControllerStyle.tintColor
+        searchBar.barTintColor = UIColor.text
         searchBar.delegate = self
         if self.isSearchMode {
             searchBar.becomeFirstResponder()
@@ -350,14 +369,13 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         guard let value = self.selectedLocation else {
             return UIView()
         }
-        let style = Themes.manager.mapControllerStyle
         
         let view = UIView()
         view.backgroundColor = UIColor.clear
         let streetLabel = UILabel()
         streetLabel.text = value.streetString
-        streetLabel.textColor = style.tintColor
-        streetLabel.font = style.checkInDataStreetFont
+        streetLabel.textColor = UIColor.text
+        streetLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         streetLabel.numberOfLines = 0
         streetLabel.isAccessibilityElement = false
         view.addSubview(streetLabel)
@@ -369,8 +387,8 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         
         let otherAddressLabel = UILabel()
         otherAddressLabel.text = value.otherAddressString
-        otherAddressLabel.textColor = style.tintColor
-        otherAddressLabel.font = style.checkInDataOtherAddressFont
+        otherAddressLabel.textColor = UIColor.text
+        otherAddressLabel.font = UIFont.preferredFont(forTextStyle: .body)
         otherAddressLabel.numberOfLines = 0
         otherAddressLabel.isAccessibilityElement = false
         view.addSubview(otherAddressLabel)
@@ -382,9 +400,9 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         
         let coordinateLabel = UILabel()
         coordinateLabel.text = value.coordinatesString
-        coordinateLabel.textColor = style.tintColor
+        coordinateLabel.textColor = UIColor.text
         coordinateLabel.textAlignment = .right
-        coordinateLabel.font = style.checkInDataCoordinatesFont
+        coordinateLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
         coordinateLabel.numberOfLines = 0
         coordinateLabel.isAccessibilityElement = false
         view.addSubview(coordinateLabel)
@@ -409,13 +427,13 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         
         if value.realm != nil {
             let deleteButton = UIButton()
-            deleteButton.setImage(#imageLiteral(resourceName: "delete").withRenderingMode(.alwaysTemplate), for: .normal)
+            deleteButton.setImage(Images.Media.delete.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
             deleteButton.setTitle(" " + Localizations.General.delete, for: .normal)
             deleteButton.imageView?.contentMode = .scaleAspectFit
-            deleteButton.imageView?.tintColor = style.deleteTintColor
-            deleteButton.setTitleColor(style.deleteTintColor, for: .normal)
-            deleteButton.setTitleColor(style.tintColor, for: .highlighted)
-            deleteButton.titleLabel?.font = style.checkInDataDeleteFont
+            deleteButton.imageView?.tintColor = UIColor.delete
+            deleteButton.setTitleColor(UIColor.delete, for: .normal)
+            deleteButton.setTitleColor(UIColor.selected, for: .highlighted)
+            deleteButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
             deleteButton.addTarget(self, action: #selector(self.deleteLocationValueAction(sender:)), for: .touchUpInside)
             deleteButton.accessibilityValue = "\(value.streetString), \(value.otherAddressString)"
             view.addSubview(deleteButton)
@@ -479,24 +497,5 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             })
         default: ()
         }
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.mapControllerStyle
-            
-            self.closeButtonCover.backgroundColor = style.background
-            self.currentLocationButtonCover.backgroundColor = style.background
-            self.baseView.backgroundColor = style.background
-            
-            self.closeButton.imageView?.tintColor = style.tintColor
-            self.currentLocationButton.imageView?.tintColor = style.tintColor
-            
-            self.searchBar.tintColor = style.tintColor
-            self.searchBar.textColor = style.tintColor
-            
-            self.generateInformationView()
-        })
     }
 }

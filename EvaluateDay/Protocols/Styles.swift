@@ -142,7 +142,7 @@ protocol PasscodeStyle {
     var buttonSubColor: UIColor { get }
 }
 
-protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle, CheckInActionNodeStyle, CheckInPermissionNodeStyle, CheckInDataEvaluateNodeStyle, WeatherNodeStyle, JournalEntryNodeStyle {
+protocol EntryViewControllerStyle: TextNodeStyle, ActionNodeStyle, DateNodeStyle, WeatherNodeStyle, JournalEntryNodeStyle {
     var background: UIColor { get }
     var barColor: UIColor { get }
     var barTint: UIColor { get }
@@ -174,15 +174,4 @@ protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeS
     var background: UIColor { get }
     var pageIndicatorColor: UIColor { get }
     var currentPageIndicatorColor: UIColor { get }
-}
-
-protocol MapViewControllerStyle {
-    var background: UIColor { get }
-    var tintColor: UIColor { get }
-    var deleteTintColor: UIColor { get }
-    
-    var checkInDataDeleteFont: UIFont { get }
-    var checkInDataStreetFont: UIFont { get }
-    var checkInDataOtherAddressFont: UIFont { get }
-    var checkInDataCoordinatesFont: UIFont { get }
 }

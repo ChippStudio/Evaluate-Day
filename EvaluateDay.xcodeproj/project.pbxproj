@@ -57,6 +57,7 @@
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
 		B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */; };
+		B53E706F21E927F200E19A62 /* EvaluateDashedLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E706E21E927F100E19A62 /* EvaluateDashedLineAnalyticsNode.swift */; };
 		B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */; };
 		B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DD21DD0123005A93CE /* ShareNode.swift */; };
 		B5479FC521E78A400002E7D7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5479FC421E78A400002E7D7 /* Images.swift */; };
@@ -86,7 +87,6 @@
 		B55D326E2074F67300BD1E75 /* OrangePasscodeControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32602074F67300BD1E75 /* OrangePasscodeControllerTheme.swift */; };
 		B55D326F2074F67300BD1E75 /* OrangeTopControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32612074F67300BD1E75 /* OrangeTopControllerTheme.swift */; };
 		B55D32702074F67300BD1E75 /* OrangeBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32622074F67300BD1E75 /* OrangeBottomControllerTheme.swift */; };
-		B55D32712074F67300BD1E75 /* OrangeMapControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32632074F67300BD1E75 /* OrangeMapControllerTheme.swift */; };
 		B55D32722074F67300BD1E75 /* OrangeEvaluateTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32642074F67300BD1E75 /* OrangeEvaluateTheme.swift */; };
 		B55D32732074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */; };
 		B55D32742074F67300BD1E75 /* OrangeSlidesControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */; };
@@ -318,8 +318,6 @@
 		B5BD3B422009116C0075C75F /* CheckInDataEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */; };
 		B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BD3B442009E8B60075C75F /* SelectMap.storyboard */; };
 		B5BD3B472009E8C70075C75F /* SelectMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B462009E8C70075C75F /* SelectMapViewController.swift */; };
-		B5BD3B492009ED660075C75F /* LightMapControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B482009ED660075C75F /* LightMapControllerTheme.swift */; };
-		B5BD3B4B2009EE370075C75F /* DarkMapControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B4A2009EE370075C75F /* DarkMapControllerTheme.swift */; };
 		B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */; };
 		B5BD3B4F2009F98D0075C75F /* CheckInPermissionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */; };
 		B5BD494E2116FAEB004872B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5BD494D2116FAEB004872B0 /* Images.xcassets */; };
@@ -348,7 +346,6 @@
 		B5D0C7C220A8539A000F98EF /* BlackShareViewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */; };
 		B5D0C7C320A8539A000F98EF /* BlackSettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B520A8539A000F98EF /* BlackSettingsTheme.swift */; };
 		B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B620A8539A000F98EF /* BlackNewCardTheme.swift */; };
-		B5D0C7C520A8539A000F98EF /* BlackMapControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B720A8539A000F98EF /* BlackMapControllerTheme.swift */; };
 		B5D0C7C620A8539A000F98EF /* BlackActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B820A8539A000F98EF /* BlackActivityControllerTheme.swift */; };
 		B5D0C7C720A8539A000F98EF /* BlackBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */; };
 		B5D0C7C820A8539A000F98EF /* BlackSlidesControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */; };
@@ -505,6 +502,7 @@
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkActivityControllerTheme.swift; sourceTree = "<group>"; };
+		B53E706E21E927F100E19A62 /* EvaluateDashedLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDashedLineAnalyticsNode.swift; sourceTree = "<group>"; };
 		B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateLineAnalyticsNode.swift; sourceTree = "<group>"; };
 		B54535DD21DD0123005A93CE /* ShareNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareNode.swift; sourceTree = "<group>"; };
 		B5479FC421E78A400002E7D7 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -534,7 +532,6 @@
 		B55D32602074F67300BD1E75 /* OrangePasscodeControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangePasscodeControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32612074F67300BD1E75 /* OrangeTopControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeTopControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32622074F67300BD1E75 /* OrangeBottomControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeBottomControllerTheme.swift; sourceTree = "<group>"; };
-		B55D32632074F67300BD1E75 /* OrangeMapControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeMapControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32642074F67300BD1E75 /* OrangeEvaluateTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeEvaluateTheme.swift; sourceTree = "<group>"; };
 		B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeEntryViewControllerTheme.swift; sourceTree = "<group>"; };
 		B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeSlidesControllerTheme.swift; sourceTree = "<group>"; };
@@ -771,8 +768,6 @@
 		B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInDataEvaluateNode.swift; sourceTree = "<group>"; };
 		B5BD3B442009E8B60075C75F /* SelectMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectMap.storyboard; sourceTree = "<group>"; };
 		B5BD3B462009E8C70075C75F /* SelectMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMapViewController.swift; sourceTree = "<group>"; };
-		B5BD3B482009ED660075C75F /* LightMapControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightMapControllerTheme.swift; sourceTree = "<group>"; };
-		B5BD3B4A2009EE370075C75F /* DarkMapControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMapControllerTheme.swift; sourceTree = "<group>"; };
 		B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInActionNode.swift; sourceTree = "<group>"; };
 		B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInPermissionNode.swift; sourceTree = "<group>"; };
 		B5BD494D2116FAEB004872B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -801,7 +796,6 @@
 		B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackShareViewTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B520A8539A000F98EF /* BlackSettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSettingsTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B620A8539A000F98EF /* BlackNewCardTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackNewCardTheme.swift; sourceTree = "<group>"; };
-		B5D0C7B720A8539A000F98EF /* BlackMapControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackMapControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B820A8539A000F98EF /* BlackActivityControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7B920A8539A000F98EF /* BlackBottomControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackBottomControllerTheme.swift; sourceTree = "<group>"; };
 		B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSlidesControllerTheme.swift; sourceTree = "<group>"; };
@@ -981,7 +975,6 @@
 				B5257D501FE93FC800AC54DE /* DarkPasscodeControllerTheme.swift */,
 				B5257D4C1FE93FC800AC54DE /* DarkShareViewTheme.swift */,
 				B5257D561FE93FC800AC54DE /* DarkSlidesControllerTheme.swift */,
-				B5BD3B4A2009EE370075C75F /* DarkMapControllerTheme.swift */,
 				B5546485202491CB00923CE3 /* DarkEntryViewControllerTheme.swift */,
 			);
 			path = "Dark Theme";
@@ -1051,7 +1044,6 @@
 				B55D32602074F67300BD1E75 /* OrangePasscodeControllerTheme.swift */,
 				B55D325E2074F67300BD1E75 /* OrangeShareViewTheme.swift */,
 				B55D32662074F67300BD1E75 /* OrangeSlidesControllerTheme.swift */,
-				B55D32632074F67300BD1E75 /* OrangeMapControllerTheme.swift */,
 				B55D32652074F67300BD1E75 /* OrangeEntryViewControllerTheme.swift */,
 			);
 			path = "Orange Theme";
@@ -1393,9 +1385,13 @@
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
+				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,
+				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
+				B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */,
 				B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */,
 				B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */,
 				B52781AF21E742340030C1AF /* EvaluateColorDotsAnalyticsNode.swift */,
+				B53E706E21E927F100E19A62 /* EvaluateDashedLineAnalyticsNode.swift */,
 				B5899B1821D7BF6C00CF123B /* CardsListNode.swift */,
 				B5899B1A21D7C19900CF123B /* CardsListDotNode.swift */,
 				B5899B1C21D7C80500CF123B /* AllCardsNode.swift */,
@@ -1702,9 +1698,6 @@
 			isa = PBXGroup;
 			children = (
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
-				B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */,
-				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
-				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,
 				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
 				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
 				B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */,
@@ -1802,7 +1795,6 @@
 				B5D0C7B220A8539A000F98EF /* BlackPasscodeControllerTheme.swift */,
 				B5D0C7B420A8539A000F98EF /* BlackShareViewTheme.swift */,
 				B5D0C7BA20A8539A000F98EF /* BlackSlidesControllerTheme.swift */,
-				B5D0C7B720A8539A000F98EF /* BlackMapControllerTheme.swift */,
 				B5D0C7B320A8539A000F98EF /* BlackEntryViewControllerTheme.swift */,
 			);
 			path = "Black Theme";
@@ -1901,7 +1893,6 @@
 				B5D854CD1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift */,
 				B5FD38E61FDD66FD0071B1F0 /* LightShareViewTheme.swift */,
 				B584E0E01FE2B2F7008093D5 /* LightSlidesControllerTheme.swift */,
-				B5BD3B482009ED660075C75F /* LightMapControllerTheme.swift */,
 				B55464832024917700923CE3 /* LightEntryControllerTheme.swift */,
 			);
 			path = "Light Theme";
@@ -2526,7 +2517,6 @@
 				B5A1B0DE1FB9ADF0003D9E81 /* Transition.swift in Sources */,
 				B5D11DAE206261B100D559BF /* LoadView.swift in Sources */,
 				B5F597741FBD70B40098A071 /* AnalyticsColorStatisticNode.swift in Sources */,
-				B5D0C7C520A8539A000F98EF /* BlackMapControllerTheme.swift in Sources */,
 				B5DE2CB720010EC700EFBCA5 /* ErrorHandler.swift in Sources */,
 				B5B7EE462010B70800BCD41A /* TextValue+Extensions.swift in Sources */,
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
@@ -2540,7 +2530,6 @@
 				B5A0CFFB1FB1CD91002B1636 /* CriterionHundredListNode.swift in Sources */,
 				B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */,
 				B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */,
-				B5BD3B4B2009EE370075C75F /* DarkMapControllerTheme.swift in Sources */,
 				B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */,
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,
 				B55D326A2074F67300BD1E75 /* OrangeAnalyticalTheme.swift in Sources */,
@@ -2576,7 +2565,6 @@
 				B5A5916521D8FC0E0026FD84 /* CollectionActionsSection.swift in Sources */,
 				B5CA2D591FB43A9300547EC8 /* LightAnalyticalTheme.swift in Sources */,
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
-				B5BD3B492009ED660075C75F /* LightMapControllerTheme.swift in Sources */,
 				B55D326E2074F67300BD1E75 /* OrangePasscodeControllerTheme.swift in Sources */,
 				B5C757261F9DC9890032199E /* WelcomeViewController.swift in Sources */,
 				B5D854CC1FCDAA8300BB4E14 /* PasscodeViewController.swift in Sources */,
@@ -2638,9 +2626,9 @@
 				B587D6B31FB59CA2006D62C1 /* LightSettingsTheme.swift in Sources */,
 				B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */,
 				B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */,
+				B53E706F21E927F200E19A62 /* EvaluateDashedLineAnalyticsNode.swift in Sources */,
 				B5BD3B322007A65E0075C75F /* CheckInCard+Extensions.swift in Sources */,
 				B5257D611FE93FC800AC54DE /* DarkBottomControllerTheme.swift in Sources */,
-				B55D32712074F67300BD1E75 /* OrangeMapControllerTheme.swift in Sources */,
 				B5D3FB9B21410A55004DFF78 /* EvaluateEmptyCardObject.swift in Sources */,
 				B587D6B71FB6B10B006D62C1 /* SettingsBooleanNode.swift in Sources */,
 				B5257D5F1FE93FC800AC54DE /* DarkTopControllerTheme.swift in Sources */,

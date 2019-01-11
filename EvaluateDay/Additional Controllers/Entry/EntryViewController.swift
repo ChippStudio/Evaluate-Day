@@ -158,7 +158,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                     let otherAdress = loc.otherAddressString
                     let coordinates = loc.coordinatesString
                     return {
-                        let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAdress, coordinates: coordinates, style: style)
+                        let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAdress, coordinates: coordinates)
                         node.accessibilityTraits = UIAccessibilityTraitNone
                         node.selectionStyle = .none
                         node.leftInset = 30.0
@@ -170,12 +170,11 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             if Permissions.defaults.locationStatus == .authorizedWhenInUse {
                 let date = self.textValue.created
                 return {
-                    let node = CheckInActionNode(date: date, style: style)
+                    let node = CheckInActionNode(date: date)
                     if !self.lock {
                         node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
                         node.checkInButton.addTarget(self, action: #selector(self.quickCheckIn(sender:)), forControlEvents: .touchUpInside)
                     }
-                    node.leftInset = 30.0
                     node.selectionStyle = .none
                     node.currentDate.attributedText = NSAttributedString(string: "")
                     return node
@@ -183,7 +182,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             } else {
                 let date = self.textValue.created
                 return {
-                    let node = CheckInPermissionNode(date: date, style: style)
+                    let node = CheckInPermissionNode(date: date)
                     if !self.lock {
                         node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
                         node.permissionButton.addTarget(self, action: #selector(self.allowLocation(sender:)), forControlEvents: .touchUpInside)

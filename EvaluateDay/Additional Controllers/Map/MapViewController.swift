@@ -76,7 +76,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,6 +98,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
         }
     }
     
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            self.baseView.backgroundColor = UIColor.background
+        }
+    }
+    
     // MARK: - ASTableDataSource
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return 1
@@ -113,7 +122,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
             let otherAddress = value.otherAddressString
             let coordinates = value.coordinatesString
             return {
-                let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAddress, coordinates: coordinates, style: Themes.manager.evaluateStyle)
+                let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAddress, coordinates: coordinates)
                 node.selectionStyle = .none
                 return node
             }
@@ -226,14 +235,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
     // MARK: - Actions
     @IBAction func closeButtonAction(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.mapControllerStyle
-            
-            self.baseView.backgroundColor = style.background
-        })
     }
 }
