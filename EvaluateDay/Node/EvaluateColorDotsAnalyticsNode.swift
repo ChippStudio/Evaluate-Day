@@ -15,11 +15,72 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
     var dots = [ASDisplayNode]()
     var cover = ASDisplayNode()
     var disclosure = ASImageNode()
+    var button = ASButtonNode()
     
     // MARK: - Init
     init(colors: [String]) {
         super.init()
         
+        for c in colors {
+            let l = ASDisplayNode()
+            l.style.preferredSize = CGSize(width: 16.0, height: 16.0)
+            if c.isEmpty {
+                l.backgroundColor = UIColor.clear
+            } else {
+                l.backgroundColor = c.color
+            }
+            l.cornerRadius = 8.0
+            self.dots.append(l)
+        }
+        
+        self.cover.backgroundColor = UIColor.main
+        self.cover.cornerRadius = 10.0
+        
+        self.button.addTarget(self, action: #selector(self.analyticsInitialAction(sender:)), forControlEvents: .touchDown)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.disclosure.image = Images.Media.disclosure.image.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
+        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        
         self.automaticallyManagesSubnodes = true
+    }
+    
+    // MARK: - Override
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let dotsStack = ASStackLayoutSpec.horizontal()
+        dotsStack.spacing = 10.0
+        dotsStack.children = self.dots
+        
+        let content = ASStackLayoutSpec.horizontal()
+        content.spacing = 10.0
+        content.justifyContent = .spaceBetween
+        content.children = [dotsStack, self.disclosure]
+        
+        let dotsInsets = UIEdgeInsets(top: 22.0, left: 10.0, bottom: 22.0, right: 10.0)
+        let dotsInset = ASInsetLayoutSpec(insets: dotsInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: dotsInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        
+        let buttonStack = ASOverlayLayoutSpec(child: cellInset, overlay: self.button)
+        
+        return buttonStack
+    }
+    
+    // MARK: - Actions
+    @objc func analyticsInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func analyticsEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.main
+        }
     }
 }

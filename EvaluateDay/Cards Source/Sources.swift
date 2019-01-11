@@ -26,29 +26,29 @@ final class Sources: NSObject {
         case .evaluate:
             return #imageLiteral(resourceName: "appIcon_white")
         case .color:
-            return Asset.Cards.color.image
+            return Images.Cards.color.image
         case .checkIn:
-            return #imageLiteral(resourceName: "checkin")
+            return Images.Cards.checkin.image
         case .phrase:
-            return #imageLiteral(resourceName: "phrase")
+            return Images.Cards.phrase.image
         case .criterionHundred:
-            return #imageLiteral(resourceName: "criterionHundred")
+            return Images.Cards.criterionHundred.image
         case .criterionTen:
-            return #imageLiteral(resourceName: "criterionTen")
+            return Images.Cards.criterionTen.image
         case .criterionThree:
-            return #imageLiteral(resourceName: "criterionThree")
+            return Images.Cards.criterionThree.image
         case .counter:
-            return #imageLiteral(resourceName: "counter")
+            return Images.Cards.counter.image
         case .habit:
-            return #imageLiteral(resourceName: "habit")
+            return Images.Cards.habit.image
         case .list:
-            return #imageLiteral(resourceName: "listSource")
+            return Images.Cards.listSource.image
         case .goal:
-            return #imageLiteral(resourceName: "goal")
+            return Images.Cards.goal.image
         case .journal:
-            return #imageLiteral(resourceName: "journal")
+            return Images.Cards.journal.image
         case .tracker:
-            return #imageLiteral(resourceName: "tracker")
+            return Images.Cards.tracker.image
         case .health:
             return #imageLiteral(resourceName: "health")
         default:

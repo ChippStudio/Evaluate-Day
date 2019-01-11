@@ -46,7 +46,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var adapter: ListAdapter!
     var selectedDashboard: String! {
         didSet {
-            
             if self.adapter == nil {
                 return
             }
@@ -75,7 +74,17 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
         
         // Navigation bar
-        self.navigationItem.title = Localizations.Collection.allcards
+        if self.cardType != nil {
+            self.navigationItem.title = Sources.title(forType: cardType)
+        } else if self.selectedDashboard != nil {
+            if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.selectedDashboard!).first {
+                self.navigationItem.title = dashboard.title
+            } else {
+                self.navigationItem.title = Localizations.Collection.titlePlaceholder
+            }
+        } else {
+            self.navigationItem.title = Localizations.Collection.allcards
+        }
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {

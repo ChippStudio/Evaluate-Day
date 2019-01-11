@@ -10,7 +10,8 @@ xcassets:
     - EvaluateDay/Images/Media.xcassets
     - EvaluateDay/Images/Weather.xcassets
     - EvaluateDay/Images/Cards.xcassets
-    - EvaluateDay/Images/Dashboards.xcassets
   outputs:
     - templateName: swift4
       output: EvaluateDay/Images/Images.swift
+      params:
+        enumName: Images

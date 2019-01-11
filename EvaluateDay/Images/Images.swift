@@ -17,7 +17,7 @@
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-internal enum Asset {
+internal enum Images {
   internal enum Cards {
     internal static let checkin = ImageAsset(name: "checkin")
     internal static let color = ImageAsset(name: "color")
@@ -31,43 +31,6 @@ internal enum Asset {
     internal static let listSource = ImageAsset(name: "listSource")
     internal static let phrase = ImageAsset(name: "phrase")
     internal static let tracker = ImageAsset(name: "tracker")
-  }
-  internal enum Dashboards {
-    internal static let dashboard0 = ImageAsset(name: "dashboard-0")
-    internal static let dashboard1 = ImageAsset(name: "dashboard-1")
-    internal static let dashboard10 = ImageAsset(name: "dashboard-10")
-    internal static let dashboard11 = ImageAsset(name: "dashboard-11")
-    internal static let dashboard12 = ImageAsset(name: "dashboard-12")
-    internal static let dashboard13 = ImageAsset(name: "dashboard-13")
-    internal static let dashboard14 = ImageAsset(name: "dashboard-14")
-    internal static let dashboard15 = ImageAsset(name: "dashboard-15")
-    internal static let dashboard16 = ImageAsset(name: "dashboard-16")
-    internal static let dashboard17 = ImageAsset(name: "dashboard-17")
-    internal static let dashboard18 = ImageAsset(name: "dashboard-18")
-    internal static let dashboard19 = ImageAsset(name: "dashboard-19")
-    internal static let dashboard2 = ImageAsset(name: "dashboard-2")
-    internal static let dashboard20 = ImageAsset(name: "dashboard-20")
-    internal static let dashboard21 = ImageAsset(name: "dashboard-21")
-    internal static let dashboard22 = ImageAsset(name: "dashboard-22")
-    internal static let dashboard23 = ImageAsset(name: "dashboard-23")
-    internal static let dashboard24 = ImageAsset(name: "dashboard-24")
-    internal static let dashboard25 = ImageAsset(name: "dashboard-25")
-    internal static let dashboard26 = ImageAsset(name: "dashboard-26")
-    internal static let dashboard27 = ImageAsset(name: "dashboard-27")
-    internal static let dashboard28 = ImageAsset(name: "dashboard-28")
-    internal static let dashboard29 = ImageAsset(name: "dashboard-29")
-    internal static let dashboard3 = ImageAsset(name: "dashboard-3")
-    internal static let dashboard30 = ImageAsset(name: "dashboard-30")
-    internal static let dashboard31 = ImageAsset(name: "dashboard-31")
-    internal static let dashboard32 = ImageAsset(name: "dashboard-32")
-    internal static let dashboard33 = ImageAsset(name: "dashboard-33")
-    internal static let dashboard34 = ImageAsset(name: "dashboard-34")
-    internal static let dashboard4 = ImageAsset(name: "dashboard-4")
-    internal static let dashboard5 = ImageAsset(name: "dashboard-5")
-    internal static let dashboard6 = ImageAsset(name: "dashboard-6")
-    internal static let dashboard7 = ImageAsset(name: "dashboard-7")
-    internal static let dashboard8 = ImageAsset(name: "dashboard-8")
-    internal static let dashboard9 = ImageAsset(name: "dashboard-9")
   }
   internal enum Media {
     internal static let activity = ImageAsset(name: "activity")

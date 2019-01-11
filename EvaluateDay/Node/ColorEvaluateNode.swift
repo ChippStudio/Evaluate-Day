@@ -9,30 +9,27 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol ColorEvaluateNodeStyle {
-    var selectedColor: UIColor { get }
-    var selectedColorDateColor: UIColor { get }
-    var selectedColorDateFont: UIFont { get }
-}
 class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegate {
 
     // MARK: - UI
     var colorCollection: ASCollectionNode!
     var currentDate = ASTextNode()
+    var cover = ASDisplayNode()
     
     // MARK: - Variable
     var didSelectColor: ((String) -> Void)?
     var selectedColor: String
     private var lock: Bool
     private var selectedIndex: IndexPath = IndexPath(row: 0, section: 0)
-    private var colorStyle: ColorEvaluateNodeStyle
     
     // MARK: - Init
-    init(selectedColor: String, date: Date, lock: Bool = false, style: ColorEvaluateNodeStyle) {
+    init(selectedColor: String, date: Date, lock: Bool = false) {
         self.selectedColor = selectedColor
-        self.colorStyle = style
         self.lock = lock
         super.init()
+        
+        self.cover.backgroundColor = UIColor.main
+        self.cover.cornerRadius = 10.0
         
         for i in 0..<colorsForSelection.count {
             if colorsForSelection[i].color == self.selectedColor {
@@ -49,7 +46,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         self.colorCollection.dataSource = self
         self.colorCollection.delegate = self
         self.colorCollection.backgroundColor = UIColor.clear
-        self.colorCollection.contentInset = UIEdgeInsets(top: 0.0, left: 40.0, bottom: 0.0, right: 20.0)
+        self.colorCollection.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         OperationQueue.main.addOperation {
             self.colorCollection.view.showsHorizontalScrollIndicator = false
         }
@@ -57,7 +54,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.selectedColorDateFont, NSAttributedStringKey.foregroundColor: style.selectedColorDateColor])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
         self.currentDate.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
@@ -76,12 +73,17 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         let dateInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 10.0)
         let dateInset = ASInsetLayoutSpec(insets: dateInsets, child: self.currentDate)
         
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 15.0
-        cell.alignItems = .end
-        cell.children = [self.colorCollection, dateInset]
+        let content = ASStackLayoutSpec.vertical()
+        content.spacing = 15.0
+        content.alignItems = .end
+        content.children = [self.colorCollection, dateInset]
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 30.0, right: 0.0)
+        let contentInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 10.0, right: 0.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
@@ -98,7 +100,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         return {
-            let node = ColorDotNode(color: colorsForSelection[indexPath.row].color, style: self.colorStyle)
+            let node = ColorDotNode(color: colorsForSelection[indexPath.row].color)
             node.isAccessibilityElement = true
             node.accessibilityLabel = "\(colorsForSelection[indexPath.row].name), \(self.currentDate.attributedText!.string)"
             node.accessibilityTraits = UIAccessibilityTraitButton

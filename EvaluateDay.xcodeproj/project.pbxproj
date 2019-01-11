@@ -1391,6 +1391,8 @@
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
 				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
+				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
+				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
 				B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */,
 				B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */,
 				B52781AF21E742340030C1AF /* EvaluateColorDotsAnalyticsNode.swift */,
@@ -1700,8 +1702,6 @@
 			isa = PBXGroup;
 			children = (
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
-				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
-				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
 				B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */,
 				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
 				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,

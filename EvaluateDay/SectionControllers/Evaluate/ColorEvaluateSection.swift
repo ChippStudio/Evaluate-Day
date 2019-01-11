@@ -62,12 +62,24 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
                 break
             }
         }
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var colors = [String]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if let color = colorCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+                colors.insert(color.text, at: 0)
+            } else {
+                colors.insert("", at: 0)
+            }
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, colors: colors, dashboard: board)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             node.colors.didSelectColor = { (color) in
                 if colorCard.realm != nil {
@@ -108,8 +120,8 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -122,14 +134,12 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
     @objc private func shareAction(sender: ASButtonNode) {
         let node: ASCellNode!
         
@@ -169,19 +179,27 @@ class ColorNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var colors: ColorEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateColorDotsAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, colors: [String], dashboard: UIImage?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock, style: style)
+        self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock)
+        self.analytics = EvaluateColorDotsAnalyticsNode(colors: colors)
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .color))"
         self.accessibilityNode.accessibilityValue = colorName
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -191,7 +209,7 @@ class ColorNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.colors]
+        stack.children = [self.title, self.colors, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell
