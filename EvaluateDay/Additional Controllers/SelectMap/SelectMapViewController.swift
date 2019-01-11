@@ -70,12 +70,12 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         self.closeButtonCover.layer.cornerRadius = 25.0
         self.closeButtonCover.clipsToBounds = true
         self.closeButton.setImage(#imageLiteral(resourceName: "closeCircle").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.closeButton.accessibilityLabel = Localizations.general.close
+        self.closeButton.accessibilityLabel = Localizations.General.close
         
         self.currentLocationButtonCover.layer.cornerRadius = 25.0
         self.currentLocationButtonCover.clipsToBounds = true
         self.currentLocationButton.setImage(#imageLiteral(resourceName: "currentLocation").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.currentLocationButton.accessibilityLabel = Localizations.accessibility.evaluate.map.location
+        self.currentLocationButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Map.location
         
         // set gestures
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.mapViewLongGestureAction(_:)))
@@ -128,7 +128,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.numberOfLines = 0
         
         cell.accessibilityTraits = UIAccessibilityTraitButton
-        cell.accessibilityHint = Localizations.accessibility.evaluate.map.search
+        cell.accessibilityHint = Localizations.Accessibility.Evaluate.Map.search
         
         return cell
     }
@@ -398,7 +398,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         button.addTarget(self, action: #selector(self.selectLocationButtonAction(sender:)), for: .touchUpInside)
         button.accessibilityLabel = value.streetString
         button.accessibilityValue = value.otherAddressString
-        button.accessibilityHint = Localizations.accessibility.evaluate.map.locationSelect
+        button.accessibilityHint = Localizations.Accessibility.Evaluate.Map.locationSelect
         view.addSubview(button)
         button.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview()
@@ -410,7 +410,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         if value.realm != nil {
             let deleteButton = UIButton()
             deleteButton.setImage(#imageLiteral(resourceName: "delete").withRenderingMode(.alwaysTemplate), for: .normal)
-            deleteButton.setTitle(" " + Localizations.general.delete, for: .normal)
+            deleteButton.setTitle(" " + Localizations.General.delete, for: .normal)
             deleteButton.imageView?.contentMode = .scaleAspectFit
             deleteButton.imageView?.tintColor = style.deleteTintColor
             deleteButton.setTitleColor(style.deleteTintColor, for: .normal)

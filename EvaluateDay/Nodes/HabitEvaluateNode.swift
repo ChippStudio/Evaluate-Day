@@ -60,13 +60,13 @@ class HabitEvaluateNode: ASCellNode {
         self.countSeparator.backgroundColor = style.evaluateHabitSeparatorColor
         self.countSeparator.cornerRadius = 2.0
         
-        let markButtonString = NSAttributedString(string: Localizations.evaluate.habit.mark, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitMarksColor])
-        let markCommentButtonString = NSAttributedString(string: Localizations.evaluate.habit.markAndComment, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitMarksColor])
-        let deleteCommentString = NSAttributedString(string: Localizations.evaluate.habit.removeLast, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitDeleteColor])
+        let markButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitMarksColor])
+        let markCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitMarksColor])
+        let deleteCommentString = NSAttributedString(string: Localizations.Evaluate.Habit.removeLast, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitDeleteColor])
         
-        let markHighlightedButtonString = NSAttributedString(string: Localizations.evaluate.habit.mark, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
-        let markHighlightedCommentButtonString = NSAttributedString(string: Localizations.evaluate.habit.markAndComment, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
-        let deleteHighlightedCommentString = NSAttributedString(string: Localizations.evaluate.habit.removeLast, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
+        let markHighlightedButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
+        let markHighlightedCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
+        let deleteHighlightedCommentString = NSAttributedString(string: Localizations.Evaluate.Habit.removeLast, attributes: [NSAttributedStringKey.font: style.evaluateHabitButtonsFont, NSAttributedStringKey.foregroundColor: style.evaluateHabitHighlightedColor])
         
         self.markButton.setAttributedTitle(markButtonString, for: .normal)
         self.markButton.setAttributedTitle(markHighlightedButtonString, for: .highlighted)
@@ -89,7 +89,7 @@ class HabitEvaluateNode: ASCellNode {
         self.previousMarkCount.isAccessibilityElement = false
         
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.habit.summory(value1: "\(marks)", formatter.string(from: date), "\(previousMarks)")
+        self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Evaluate.Habit.summory("\(marks)", formatter.string(from: date), "\(previousMarks)")
         
         self.automaticallyManagesSubnodes = true
     }

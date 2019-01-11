@@ -23,7 +23,7 @@ class HealthViewController: UIViewController, ASTableDelegate, ASTableDataSource
         super.viewDidLoad()
         
         // Navigation Bar
-        self.navigationItem.title = Localizations.cardSettings.health.appleMetrics
+        self.navigationItem.title = Localizations.CardSettings.Health.appleMetrics
         
         // Set health source data
         self.setHealthSourceData()

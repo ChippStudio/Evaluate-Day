@@ -19,12 +19,12 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
         
         if index == 0 {
             return {
-                let node = CollectionActionNode(title: Localizations.settings.title, image: UIImage(named: "settings"), isMarked: false)
+                let node = CollectionActionNode(title: Localizations.Settings.title, image: UIImage(named: "settings"), isMarked: false)
                 return node
             }
         } else if index == 1 {
             return {
-                let node = CollectionActionNode(title: Localizations.activity.title, image: UIImage(named: "activity"), isMarked: false)
+                let node = CollectionActionNode(title: Localizations.Activity.title, image: UIImage(named: "activity"), isMarked: false)
                 return node
             }
         }

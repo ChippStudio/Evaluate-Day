@@ -75,8 +75,8 @@ class WelcomeViewController: UIViewController {
                     self.nextButton.transform = CGAffineTransform.identity
                     
                     self.nextButton.isAccessibilityElement = true
-                    self.nextButton.accessibilityLabel = Localizations.accessibility.onboarding.welcome.label
-                    self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+                    self.nextButton.accessibilityLabel = Localizations.Accessibility.Onboarding.Welcome.label
+                    self.nextButton.accessibilityHint = Localizations.Accessibility.Onboarding.hint
                 }, completion: nil)
             })
         }
@@ -92,14 +92,14 @@ class WelcomeViewController: UIViewController {
         // Add productivity card
         let productivityCard = Card()
         productivityCard.type = .criterionHundred
-        productivityCard.title = Localizations.demo.criterion.hundred.title
-        productivityCard.subtitle = Localizations.demo.criterion.hundred.subtitle
+        productivityCard.title = Localizations.Demo.Criterion.Hundred.title
+        productivityCard.subtitle = Localizations.Demo.Criterion.Hundred.subtitle
         productivityCard.order = Database.manager.data.objects(Card.self).count
         
         // Add phrase card
         let phraseCard = Card()
-        phraseCard.title = Localizations.new.phrase.title
-        phraseCard.subtitle = Localizations.new.phrase.subtitle
+        phraseCard.title = Localizations.New.Phrase.title
+        phraseCard.subtitle = Localizations.New.Phrase.subtitle
         phraseCard.type = .phrase
         phraseCard.order = Database.manager.data.objects(Card.self).count
         
@@ -119,8 +119,8 @@ class WelcomeViewController: UIViewController {
         
         // Add counter card
         let counterCard = Card()
-        counterCard.title = Localizations.demo.counter.title
-        counterCard.subtitle = Localizations.demo.counter.subtitle
+        counterCard.title = Localizations.Demo.Counter.title
+        counterCard.subtitle = Localizations.Demo.Counter.subtitle
         counterCard.type = .counter
         counterCard.order = Database.manager.data.objects(Card.self).count
         
@@ -194,22 +194,22 @@ class WelcomeViewController: UIViewController {
                 let order = Database.manager.data.objects(Card.self).count
                 // Set color card
                 let colorCard = Card()
-                colorCard.title = Localizations.new.color.title
-                colorCard.subtitle = Localizations.new.color.subtitle
+                colorCard.title = Localizations.New.Color.title
+                colorCard.subtitle = Localizations.New.Color.subtitle
                 colorCard.type = .color
                 colorCard.order = order
                 
                 // Set checkin card
                 let checkInCard = Card()
-                checkInCard.title = Localizations.new.checkin.title
-                checkInCard.subtitle = Localizations.new.checkin.subtitle
+                checkInCard.title = Localizations.New.Checkin.title
+                checkInCard.subtitle = Localizations.New.Checkin.subtitle
                 checkInCard.type = .checkIn
                 checkInCard.order = order + 1
                 
                 // Set phrase card
                 let phraseCard = Card()
-                phraseCard.title = Localizations.new.phrase.title
-                phraseCard.subtitle = Localizations.new.phrase.subtitle
+                phraseCard.title = Localizations.New.Phrase.title
+                phraseCard.subtitle = Localizations.New.Phrase.subtitle
                 phraseCard.type = .phrase
                 phraseCard.order = order + 2
                 

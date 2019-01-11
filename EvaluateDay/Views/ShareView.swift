@@ -37,7 +37,7 @@ class ShareView: UIView {
         let style = Themes.manager.shareViewStyle
         
         self.title = UILabel()
-        self.title.text = Localizations.general.evaluateday.uppercased()
+        self.title.text = Localizations.General.evaluateday.uppercased()
         self.title.font = style.shareViewTitleFont
         self.title.textColor = style.shareViewTitleColor
         self.title.textAlignment = .center

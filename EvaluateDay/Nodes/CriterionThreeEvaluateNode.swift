@@ -64,16 +64,16 @@ class CriterionThreeEvaluateNode: ASCellNode {
             
             var previousValueString = ""
             if previousValue == 0 {
-                previousValueString = Localizations.accessibility.evaluate.criterion.three.bad
+                previousValueString = Localizations.Accessibility.Evaluate.Criterion.Three.bad
                 if !positive {
-                    previousValueString = Localizations.accessibility.evaluate.criterion.three.good
+                    previousValueString = Localizations.Accessibility.Evaluate.Criterion.Three.good
                 }
             } else if previousValue == 1 {
-                previousValueString = Localizations.accessibility.evaluate.criterion.three.neutral
+                previousValueString = Localizations.Accessibility.Evaluate.Criterion.Three.neutral
             } else {
-                previousValueString = Localizations.accessibility.evaluate.criterion.three.good
+                previousValueString = Localizations.Accessibility.Evaluate.Criterion.Three.good
                 if !positive {
-                    previousValueString = Localizations.accessibility.evaluate.criterion.three.bad
+                    previousValueString = Localizations.Accessibility.Evaluate.Criterion.Three.bad
                 }
             }
             
@@ -87,7 +87,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
             // Accessibility
             self.previousDate.isAccessibilityElement = false
             self.previousImage.isAccessibilityElement = true
-            self.previousImage.accessibilityLabel = Localizations.accessibility.previous(value1: previousValueString)
+            self.previousImage.accessibilityLabel = Localizations.Accessibility.previous(previousValueString)
             self.previousImage.accessibilityValue = formatter.string(from: previousDate)
         }
         
@@ -105,16 +105,16 @@ class CriterionThreeEvaluateNode: ASCellNode {
         
         // Accessibility
         self.currentDate.isAccessibilityElement = false
-        self.topButton.accessibilityLabel = Localizations.accessibility.evaluate.criterion.three.good
-        self.middleButton.accessibilityLabel = Localizations.accessibility.evaluate.criterion.three.neutral
-        self.bottomButton.accessibilityLabel = Localizations.accessibility.evaluate.criterion.three.bad
-        self.topButton.accessibilityHint = Localizations.accessibility.evaluate.criterion.hint(value1: formatter.string(from: date))
-        self.middleButton.accessibilityHint = Localizations.accessibility.evaluate.criterion.hint(value1: formatter.string(from: date))
-        self.bottomButton.accessibilityHint = Localizations.accessibility.evaluate.criterion.hint(value1: formatter.string(from: date))
+        self.topButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Criterion.Three.good
+        self.middleButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Criterion.Three.neutral
+        self.bottomButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Criterion.Three.bad
+        self.topButton.accessibilityHint = Localizations.Accessibility.Evaluate.Criterion.hint(formatter.string(from: date))
+        self.middleButton.accessibilityHint = Localizations.Accessibility.Evaluate.Criterion.hint(formatter.string(from: date))
+        self.bottomButton.accessibilityHint = Localizations.Accessibility.Evaluate.Criterion.hint(formatter.string(from: date))
         
         if !positive {
-            self.topButton.accessibilityLabel = Localizations.accessibility.evaluate.criterion.three.bad
-            self.bottomButton.accessibilityLabel = Localizations.accessibility.evaluate.criterion.three.good
+            self.topButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Criterion.Three.bad
+            self.bottomButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Criterion.Three.good
         }
         
         self.automaticallyManagesSubnodes = true

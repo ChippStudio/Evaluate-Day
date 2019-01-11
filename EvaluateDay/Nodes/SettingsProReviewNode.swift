@@ -41,23 +41,23 @@ class SettingsProReviewNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .center
         
-        self.proTitle.attributedText = NSAttributedString(string: Localizations.settings.pro.review.title.uppercased(), attributes: [NSAttributedStringKey.font: style.proReviewProTitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProTitleColor, NSAttributedStringKey.paragraphStyle: center])
-        self.proSubtitle.attributedText = NSAttributedString(string: Localizations.settings.pro.review.subtitle, attributes: [NSAttributedStringKey.font: style.proReviewProSubtitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubtitleColor, NSAttributedStringKey.paragraphStyle: center])
+        self.proTitle.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.title.uppercased(), attributes: [NSAttributedStringKey.font: style.proReviewProTitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProTitleColor, NSAttributedStringKey.paragraphStyle: center])
+        self.proSubtitle.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.subtitle, attributes: [NSAttributedStringKey.font: style.proReviewProSubtitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubtitleColor, NSAttributedStringKey.paragraphStyle: center])
         self.emojiLabel.attributedText = NSAttributedString(string: "🇪🇪❤️👇🔓", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: style.proReviewProEmojiSize), NSAttributedStringKey.paragraphStyle: center])
-        self.subscriptionTitle.attributedText = NSAttributedString(string: Localizations.settings.pro.review.subscription.title.uppercased(), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionTitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionTitleColor, NSAttributedStringKey.paragraphStyle: center])
+        self.subscriptionTitle.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Subscription.title.uppercased(), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionTitleFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionTitleColor, NSAttributedStringKey.paragraphStyle: center])
         
         var timeStyle = DateFormatter.Style.none
         if Bundle.main.object(forInfoDictionaryKey: "CSSandbox") as! Bool {
             timeStyle = DateFormatter.Style.medium
         }
         if Store.current.valid != nil {
-            self.subscriptionValid.attributedText = NSAttributedString(string: Localizations.settings.pro.review.subscription.subtitle(value1: DateFormatter.localizedString(from: Store.current.valid!, dateStyle: .medium, timeStyle: timeStyle)), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionValidFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionValidColor, NSAttributedStringKey.paragraphStyle: center])
+            self.subscriptionValid.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Subscription.subtitle(DateFormatter.localizedString(from: Store.current.valid!, dateStyle: .medium, timeStyle: timeStyle)), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionValidFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionValidColor, NSAttributedStringKey.paragraphStyle: center])
             if subscribe {
                 self.descriptionLabel = ASTextNode()
-                self.descriptionLabel.attributedText = NSAttributedString(string: Localizations.settings.pro.review.subscription.description, attributes: [NSAttributedStringKey.font: style.proReviewProDescriptionLabelFont, NSAttributedStringKey.foregroundColor: style.proReviewProDescriptionLabelColor, NSAttributedStringKey.paragraphStyle: center])
+                self.descriptionLabel.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Subscription.description, attributes: [NSAttributedStringKey.font: style.proReviewProDescriptionLabelFont, NSAttributedStringKey.foregroundColor: style.proReviewProDescriptionLabelColor, NSAttributedStringKey.paragraphStyle: center])
             }
         } else {
-            self.subscriptionValid.attributedText = NSAttributedString(string: Localizations.settings.pro.review.subscription.subtitle(value1: Localizations.general.lifetime), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionValidFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionValidColor, NSAttributedStringKey.paragraphStyle: center])
+            self.subscriptionValid.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Subscription.subtitle(Localizations.General.lifetime), attributes: [NSAttributedStringKey.font: style.proReviewProSubscriptionValidFont, NSAttributedStringKey.foregroundColor: style.proReviewProSubscriptionValidColor, NSAttributedStringKey.paragraphStyle: center])
         }
         
         self.infoButton.setImage(#imageLiteral(resourceName: "info").resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate), for: .normal)

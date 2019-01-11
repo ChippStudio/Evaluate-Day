@@ -26,7 +26,7 @@ class AnalyticsTimeTravelNode: ASCellNode {
         let parahraph = NSMutableParagraphStyle()
         parahraph.alignment = .center
         
-        self.title.attributedText = NSAttributedString(string: Localizations.analytics.timeTravel, attributes: [NSAttributedStringKey.font: style.analyticsTimeTravelNodeTitleFont, NSAttributedStringKey.foregroundColor: style.analyticsTimeTravelNodeTitleColor, NSAttributedStringKey.paragraphStyle: parahraph])
+        self.title.attributedText = NSAttributedString(string: Localizations.Analytics.timeTravel, attributes: [NSAttributedStringKey.font: style.analyticsTimeTravelNodeTitleFont, NSAttributedStringKey.foregroundColor: style.analyticsTimeTravelNodeTitleColor, NSAttributedStringKey.paragraphStyle: parahraph])
         
         self.image.image = #imageLiteral(resourceName: "timeTravel")
         self.image.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.analyticsTimeTravelNodeTitleColor)
@@ -34,7 +34,7 @@ class AnalyticsTimeTravelNode: ASCellNode {
         // Accessibility
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
-        self.accessibilityLabel = Localizations.analytics.timeTravel
+        self.accessibilityLabel = Localizations.Analytics.timeTravel
         
         self.automaticallyManagesSubnodes = true
     }

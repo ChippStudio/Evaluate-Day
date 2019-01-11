@@ -27,8 +27,8 @@ class JournalNewEntryActionNode: ASCellNode {
     init(date: Date, style: JournalNewEntryActionNodeStyle) {
         super.init()
         
-        let actionTitle = NSAttributedString(string: Localizations.evaluate.journal.newEntry, attributes: [NSAttributedStringKey.font: style.journalNewEntryActionButtonFont, NSAttributedStringKey.foregroundColor: style.journalNewEntryActionButtonColor])
-        let actionHighlightedTitle = NSAttributedString(string: Localizations.evaluate.journal.newEntry, attributes: [NSAttributedStringKey.font: style.journalNewEntryActionButtonFont, NSAttributedStringKey.foregroundColor: style.journalNewEntryActionButtonHighlightedColor])
+        let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: style.journalNewEntryActionButtonFont, NSAttributedStringKey.foregroundColor: style.journalNewEntryActionButtonColor])
+        let actionHighlightedTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: style.journalNewEntryActionButtonFont, NSAttributedStringKey.foregroundColor: style.journalNewEntryActionButtonHighlightedColor])
         
         self.actionButton.setAttributedTitle(actionTitle, for: .normal)
         self.actionButton.setAttributedTitle(actionHighlightedTitle, for: .highlighted)
@@ -39,7 +39,7 @@ class JournalNewEntryActionNode: ASCellNode {
         self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.foregroundColor: style.journalNewEntryActionDateColor, NSAttributedStringKey.font: style.journalNewEntryActionDateFont])
         
         self.currentDate.isAccessibilityElement = false
-        self.actionButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.newEntry(value1: formatter.string(from: date))
+        self.actionButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.newEntry(formatter.string(from: date))
         
         self.automaticallyManagesSubnodes = true
     }

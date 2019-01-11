@@ -21,12 +21,12 @@ class WelcomePermissionTitleNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .left
         
-        self.title.attributedText = NSAttributedString(string: Localizations.permission.description.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 40.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
-        self.subtitle.attributedText = NSAttributedString(string: Localizations.permission.description.subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
+        self.title.attributedText = NSAttributedString(string: Localizations.Permission.Description.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 40.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
+        self.subtitle.attributedText = NSAttributedString(string: Localizations.Permission.Description.subtitle, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         
         self.isAccessibilityElement = true
-        self.accessibilityLabel = Localizations.permission.description.title
-        self.accessibilityValue = Localizations.permission.description.subtitle
+        self.accessibilityLabel = Localizations.Permission.Description.title
+        self.accessibilityValue = Localizations.Permission.Description.subtitle
         
         self.automaticallyManagesSubnodes = true
     }

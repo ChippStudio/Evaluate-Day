@@ -29,7 +29,7 @@ class HabitNegativeNode: ASCellNode {
         self.coverNode.backgroundColor = style.habitNegativeCoverColor
         self.coverNode.alpha = style.habitNegativeCoverAlpha
         
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.evaluate.habit.negative, attributes: [NSAttributedStringKey.font: style.habitNegativeDescriptionFont, NSAttributedStringKey.foregroundColor: style.habitNegativeDescriptionColor])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Habit.negative, attributes: [NSAttributedStringKey.font: style.habitNegativeDescriptionFont, NSAttributedStringKey.foregroundColor: style.habitNegativeDescriptionColor])
         
         self.automaticallyManagesSubnodes = true
     }

@@ -48,7 +48,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
         switch index {
         case 0:
             return {
-                let node = BigDescriptionNode(text: Localizations.cardMerge.baseCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left, style: style)
                 node.topInset = 40.0
                 return node
             }
@@ -65,7 +65,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
             }
         case 2:
             return {
-                let node = BigDescriptionNode(text: Localizations.cardMerge.selectCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left, style: style)
                 node.topInset = 50.0
                 return node
             }
@@ -75,12 +75,12 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
                 full = true
             }
             return {
-                let node = SettingsProButtonNode(title: Localizations.cardMerge.action, full: full, style: style)
+                let node = SettingsProButtonNode(title: Localizations.CardMerge.action, full: full, style: style)
                 node.topInset = 50.0
                 node.didPressed = { () in
                     if self.selectedIndex == nil {
-                        let alert = UIAlertController(title: nil, message: Localizations.cardMerge.mustSelect, preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: Localizations.general.ok, style: .default, handler: nil)
+                        let alert = UIAlertController(title: nil, message: Localizations.CardMerge.mustSelect, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil)
                         alert.addAction(okAction)
                         
                         alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
@@ -110,7 +110,7 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
             }
         case self.nodes + self.otherCards.count + 1:
             return {
-                let node = DescriptionNode(text: Localizations.cardMerge.disclaimer, alignment: .center, style: style)
+                let node = DescriptionNode(text: Localizations.CardMerge.disclaimer, alignment: .center, style: style)
                 return node
             }
         default:

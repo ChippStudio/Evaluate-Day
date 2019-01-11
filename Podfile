@@ -23,9 +23,9 @@ target 'EvaluateDay' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'Branch'
-  pod 'NotificationBannerSwift'
   pod 'Flurry-iOS-SDK/FlurrySDK'
   pod 'Flurry-iOS-SDK/FlurryAds'
+  pod 'SwiftGen'
 
 end
 

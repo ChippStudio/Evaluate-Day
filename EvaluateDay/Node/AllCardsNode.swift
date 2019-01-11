@@ -31,7 +31,7 @@ class AllCardsNode: ASCellNode {
         self.disclosure.contentMode = .scaleAspectFit
         self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         
-        self.textNode.attributedText = NSAttributedString(string: Localizations.collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.automaticallyManagesSubnodes = true
     }

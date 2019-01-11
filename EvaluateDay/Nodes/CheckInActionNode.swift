@@ -35,11 +35,11 @@ class CheckInActionNode: ASCellNode {
     init(date: Date, style: CheckInActionNodeStyle) {
         super.init()
         
-        let checkInTitleString = NSAttributedString(string: Localizations.evaluate.checkin.quickCheckin, attributes: [NSAttributedStringKey.font: style.checkInActionCheckInButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionCheckInButtonColor])
-        let checkInTitleHighligtedString = NSAttributedString(string: Localizations.evaluate.checkin.quickCheckin, attributes: [NSAttributedStringKey.font: style.checkInActionCheckInButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionCheckInButtonHighlightColor])
+        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: style.checkInActionCheckInButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionCheckInButtonColor])
+        let checkInTitleHighligtedString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: style.checkInActionCheckInButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionCheckInButtonHighlightColor])
         
-        let mapTitleString = NSAttributedString(string: Localizations.evaluate.checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInActionMapButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionMapButtonColor])
-        let mapTitleHighligtedString = NSAttributedString(string: Localizations.evaluate.checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInActionMapButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionMapButtonHighlightColor])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInActionMapButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionMapButtonColor])
+        let mapTitleHighligtedString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInActionMapButtonFont, NSAttributedStringKey.foregroundColor: style.checkInActionMapButtonHighlightColor])
         
         self.checkInButton.setAttributedTitle(checkInTitleString, for: .normal)
         self.checkInButton.setAttributedTitle(checkInTitleHighligtedString, for: .highlighted)

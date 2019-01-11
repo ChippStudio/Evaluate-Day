@@ -34,7 +34,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         super.viewDidLoad()
         
         // Set navigation item
-        self.navigationItem.title = Localizations.settings.pro.title.uppercased()
+        self.navigationItem.title = Localizations.Settings.Pro.title.uppercased()
         
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)
@@ -68,8 +68,8 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             
             self.nextButton.isAccessibilityElement = true
-            self.nextButton.accessibilityLabel = Localizations.accessibility.onboarding.welcome.label
-            self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+            self.nextButton.accessibilityLabel = Localizations.Accessibility.Onboarding.Welcome.label
+            self.nextButton.accessibilityHint = Localizations.Accessibility.Onboarding.hint
             
         } else {
             if self.navigationController!.viewControllers.first is ProViewController {
@@ -157,7 +157,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     }
                 } else {
                     return {
-                        let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.manage, full: false, style: style)
+                        let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.manage, full: false, style: style)
                         return node
                     }
                 }
@@ -193,7 +193,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             switch indexPath.row {
             case 0:
                 return {
-                    let node = InfoNode(title: Localizations.settings.pro.subscription.title.anuualy, style: style)
+                    let node = InfoNode(title: Localizations.Settings.Pro.Subscription.Title.anuualy, style: style)
                     node.topInset = 20.0
                     node.infoSelected = { () in
                         let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
@@ -205,7 +205,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 1:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.annualy(value1: Store.current.localizedAnnualyPrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.annualy(Store.current.localizedAnnualyPrice), full: true, style: style)
                     node.selectionStyle = .none
                     node.cover.backgroundColor = UIColor.squash
                     return node
@@ -225,7 +225,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 3:
                 return {
-                    let node = InfoNode(title: Localizations.settings.pro.subscription.title.monthly, style: style)
+                    let node = InfoNode(title: Localizations.Settings.Pro.Subscription.Title.monthly, style: style)
                     node.infoSelected = { () in
                         let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
                         let topController = controller.topViewController as! WebViewController
@@ -236,7 +236,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 4:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.monthly(value1: Store.current.localizedMonthlyPrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.monthly(Store.current.localizedMonthlyPrice), full: true, style: style)
                     node.selectionStyle = .none
                     return node
                 }
@@ -256,19 +256,19 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 6:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.subscription.buy.lifetime(value1: Store.current.localizedLifetimePrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.lifetime(Store.current.localizedLifetimePrice), full: true, style: style)
                     node.selectionStyle = .none
                     return node
                 }
             case 7:
                 return {
-                    let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.cancel, alignment: .left, style: style)
+                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.cancel, alignment: .left, style: style)
                     node.topInset = 30.0
                     return node
                 }
             case 8:
                 return {
-                    let node = DescriptionNode(text: Localizations.settings.pro.subscription.description.iTunes, alignment: .left, style: style)
+                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.iTunes, alignment: .left, style: style)
                     node.topInset = 20.0
                     return node
                 }
@@ -282,14 +282,14 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         if indexPath.section == 2 {
             if indexPath.row == 0 {
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.settings.pro.questions, full: false, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.questions, full: false, style: style)
                     node.selectionStyle = .none
                     return node
                 }
             }
             
             return {
-                let node = SettingsProButtonNode(title: Localizations.settings.pro.restore, full: false, style: style)
+                let node = SettingsProButtonNode(title: Localizations.Settings.Pro.restore, full: false, style: style)
                 node.selectionStyle = .none
                 return node
             }
@@ -386,7 +386,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     let mailView = MFMailComposeViewController()
                     mailView.mailComposeDelegate = self
                     mailView.navigationBar.tintColor = Themes.manager.settingsStyle.safariTintColor
-                    mailView.setSubject(Localizations.settings.support.mail.subject + "Pro")
+                    mailView.setSubject(Localizations.Settings.Support.Mail.subject + "Pro")
                     var pro = 0
                     if Database.manager.application.user.pro {
                         pro = 1
@@ -394,14 +394,14 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String + "(\(pro))"
                     let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
                     let iosVersion = UIDevice.current.systemVersion
-                    mailView.setMessageBody(Localizations.settings.support.mail.body(value1: build, version, iosVersion), isHTML: false)
+                    mailView.setMessageBody(Localizations.Settings.Support.Mail.body(build, version, iosVersion), isHTML: false)
                     mailView.setToRecipients([feedbackMail])
                     self.present(mailView, animated: true, completion: {
                     })
                 } else {
-                    let alert = UIAlertController(title: Localizations.settings.support.mailError.title, message: Localizations.settings.support.mailError.message, preferredStyle: .alert)
+                    let alert = UIAlertController(title: Localizations.Settings.Support.MailError.title, message: Localizations.Settings.Support.MailError.message, preferredStyle: .alert)
                     
-                    let okAction = UIAlertAction(title: Localizations.general.ok, style: .default, handler: nil)
+                    let okAction = UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil)
                     alert.addAction(okAction)
                     
                     alert.view.tintColor = Themes.manager.settingsStyle.safariTintColor

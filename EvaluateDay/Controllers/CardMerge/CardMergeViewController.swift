@@ -24,7 +24,7 @@ class CardMergeViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         
         // Navigation item
-        self.navigationItem.title = Localizations.cardMerge.title + ": " + Sources.title(forType: self.card.type)
+        self.navigationItem.title = Localizations.CardMerge.title + ": " + Sources.title(forType: self.card.type)
 
         // Collection view
         self.collectionNode = ASCollectionNode(collectionViewLayout: UICollectionViewFlowLayout())

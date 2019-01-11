@@ -76,15 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         // Set quick actions
-        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.general.shortcut.evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "appQA"), userInfo: nil)
-        let newCardItem = UIApplicationShortcutItem(type: ShortcutItems.new.rawValue, localizedTitle: Localizations.general.shortcut.new.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "newQA"), userInfo: nil)
-        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.general.shortcut.activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
+        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.General.Shortcut.Evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "appQA"), userInfo: nil)
+        let newCardItem = UIApplicationShortcutItem(type: ShortcutItems.new.rawValue, localizedTitle: Localizations.General.Shortcut.New.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "newQA"), userInfo: nil)
+        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.General.Shortcut.Activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
         
         UIApplication.shared.shortcutItems = [evaluateItem, newCardItem, activityItem]
         
         // Set Notification Categories
-        let evaluateAction = UNNotificationAction(identifier: "Evaluate-Action", title: Localizations.general.action.evaluate, options: .foreground)
-        let analyticsAction = UNNotificationAction(identifier: "Analytics-Action", title: Localizations.general.action.analytics, options: .foreground)
+        let evaluateAction = UNNotificationAction(identifier: "Evaluate-Action", title: Localizations.General.Action.evaluate, options: .foreground)
+        let analyticsAction = UNNotificationAction(identifier: "Analytics-Action", title: Localizations.General.Action.analytics, options: .foreground)
         let evaluateCategory = UNNotificationCategory(identifier: "EvaluateCategory-ID", actions: [evaluateAction, analyticsAction], intentIdentifiers: [], options: .allowInCarPlay)
         UNUserNotificationCenter.current().setNotificationCategories([evaluateCategory])
         
@@ -413,11 +413,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let content = UNMutableNotificationContent()
             switch id {
             case days3Id:
-                content.body = Localizations.general.notification._3days
+                content.body = Localizations.General.Notification._3days
             case days10Id:
-                content.body = Localizations.general.notification._10days
+                content.body = Localizations.General.Notification._10days
             case days30Id:
-                content.body = Localizations.general.notification._30days
+                content.body = Localizations.General.Notification._30days
             default: ()
             }
             content.sound = UNNotificationSound(named: "EvaluatePush.wav")

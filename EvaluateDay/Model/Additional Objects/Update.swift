@@ -28,7 +28,7 @@ extension Update: Evaluable {
     }
     
     func textExport() -> String {
-        return Localizations.update.subtitle
+        return Localizations.Update.subtitle
     }
 }
 

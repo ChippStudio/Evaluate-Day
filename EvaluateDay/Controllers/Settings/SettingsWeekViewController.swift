@@ -19,7 +19,7 @@ class SettingsWeekViewController: UIViewController, ASTableDataSource, ASTableDe
         super.viewDidLoad()
 
         // Navigation bar
-        self.navigationItem.title = Localizations.settings.general.week
+        self.navigationItem.title = Localizations.Settings.General.week
         
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)

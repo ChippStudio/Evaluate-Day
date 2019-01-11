@@ -27,12 +27,12 @@ class WelcomeLastSlideNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .center
         
-        var titleString = Localizations.welcome.cards.last.title
-        var subtitleString = Localizations.welcome.cards.last.description
+        var titleString = Localizations.Welcome.Cards.Last.title
+        var subtitleString = Localizations.Welcome.Cards.Last.description
         
         if isFirst {
-            titleString = Localizations.welcome.cards.last.more.title
-            subtitleString = Localizations.welcome.cards.last.more.description
+            titleString = Localizations.Welcome.Cards.Last.More.title
+            subtitleString = Localizations.Welcome.Cards.Last.More.description
         }
         
         self.title.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: style.welcomeLastTitleFont, NSAttributedStringKey.foregroundColor: style.welcomeLastTitleColor, NSAttributedStringKey.paragraphStyle: center])

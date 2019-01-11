@@ -31,7 +31,7 @@ class HabitEvaluateCommentNode: ASCellNode {
         // Accessibility
         self.commentTextNode.isAccessibilityElement = false
         self.editButton.accessibilityLabel = comment
-        self.editButton.accessibilityHint = Localizations.accessibility.evaluate.habit.commentHint
+        self.editButton.accessibilityHint = Localizations.Accessibility.Evaluate.Habit.commentHint
         
         self.automaticallyManagesSubnodes = true
     }

@@ -41,7 +41,7 @@ class ShareViewController: UIViewController {
         
         self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.tintColor = style.shareControllerCloseTintColor
-        self.closeButton.accessibilityLabel = Localizations.general.close
+        self.closeButton.accessibilityLabel = Localizations.General.close
         self.closeButtonCover.layer.masksToBounds = true
         self.closeButtonCover.layer.cornerRadius = 25.0
         self.closeButtonCover.backgroundColor = style.shareControllerBackground
@@ -49,7 +49,7 @@ class ShareViewController: UIViewController {
         self.shareImageView.contentMode = .scaleAspectFit
         self.shareImageView.image = self.image
         
-        self.shareButton.setTitle(Localizations.calendar.empty.share, for: .normal)
+        self.shareButton.setTitle(Localizations.Calendar.Empty.share, for: .normal)
         self.shareButton.setTitleColor(style.shareControllerShareButtonTextColor, for: .normal)
         self.shareButton.setTitleColor(style.shareControllerShareButtonTextHighlightedColor, for: .highlighted)
         self.shareButton.titleLabel?.font = style.shareControllerShareButtonTextFont
@@ -77,8 +77,8 @@ class ShareViewController: UIViewController {
         items.append(self.image)
         // Make universal Branch Link
         let linkObject = BranchUniversalObject(canonicalIdentifier: self.canonicalIdentifier)
-        linkObject.title = Localizations.share.link.title
-        linkObject.contentDescription = Localizations.share.description
+        linkObject.title = Localizations.Share.Link.title
+        linkObject.contentDescription = Localizations.Share.description
         
         let linkProperties = BranchLinkProperties()
         linkProperties.feature = self.feature

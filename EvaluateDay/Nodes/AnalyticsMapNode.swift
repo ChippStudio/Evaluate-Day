@@ -78,8 +78,8 @@ class AnalyticsMapNode: ASCellNode {
         
         // MARK: - Accessibility
         self.title.isAccessibilityElement = false
-        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
-        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.accessibility.analytics.mapView)"
+        self.shareButton.accessibilityLabel = Localizations.Calendar.Empty.share
+        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.Accessibility.Analytics.mapView)"
         
         self.mapNode.isAccessibilityElement = true
         

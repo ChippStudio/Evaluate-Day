@@ -40,7 +40,7 @@ class PhraseEvaluateNode: ASCellNode {
         self.editButton.addTarget(self, action: #selector(self.editEndAction(sender:)), forControlEvents: .touchUpInside)
         self.editButton.addTarget(self, action: #selector(self.editEndAction(sender:)), forControlEvents: .touchCancel)
         
-        self.editButton.accessibilityValue = Localizations.accessibility.evaluate.phraseEdit(value1: formatter.string(from: date))
+        self.editButton.accessibilityValue = Localizations.Accessibility.Evaluate.phraseEdit(formatter.string(from: date))
         
         self.automaticallyManagesSubnodes = true
     }

@@ -57,14 +57,14 @@ class SettingsProNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .center
         
-        var titleString = Localizations.settings.pro.node.title
+        var titleString = Localizations.Settings.Pro.Node.title
         var titleColor = style.proTitleColor
         
-        var subtitleString = Localizations.settings.pro.node.subtitle
+        var subtitleString = Localizations.Settings.Pro.Node.subtitle
         
         if pro {
-            titleString = Localizations.settings.pro.node.ispro.title
-            subtitleString = Localizations.settings.pro.node.ispro.subtitle
+            titleString = Localizations.Settings.Pro.Node.Ispro.title
+            subtitleString = Localizations.Settings.Pro.Node.Ispro.subtitle
             titleColor = style.proTitleIsProColor
         }
         

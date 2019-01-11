@@ -45,8 +45,8 @@ class CardListEmptyView: UIView {
         self.titleLabel.numberOfLines = 0
         self.descriptionLabel.numberOfLines = 0
         
-        self.titleLabel.text = Localizations.list.card.empty.title
-        self.descriptionLabel.text = Localizations.list.card.empty.description
+        self.titleLabel.text = Localizations.List.Card.Empty.title
+        self.descriptionLabel.text = Localizations.List.Card.Empty.description
         
         self.addSubview(self.titleLabel)
         self.addSubview(self.descriptionLabel)
@@ -68,7 +68,7 @@ class CardListEmptyView: UIView {
         self.newImage.image = #imageLiteral(resourceName: "new").withRenderingMode(.alwaysTemplate)
         self.newImage.contentMode = .scaleAspectFit
         
-        self.newLabel.text = Localizations.new.cards.action
+        self.newLabel.text = Localizations.New.Cards.action
         
         self.addSubview(newCover)
         self.newCover.addSubview(self.newImage)

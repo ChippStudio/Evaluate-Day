@@ -34,7 +34,7 @@ class WebViewController: UIViewController {
 
         // Set close button
         self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
-        self.closeButton.accessibilityLabel = Localizations.general.close
+        self.closeButton.accessibilityLabel = Localizations.General.close
         self.navigationItem.setRightBarButton(self.closeButton, animated: false)
         
         // web view

@@ -60,14 +60,14 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let item = self.nodes[index]
         let style = Themes.manager.activityControlerStyle
-        var distance = Localizations.general.last7
+        var distance = Localizations.General.last7
         if isPro {
-            distance = Localizations.general.lifetime
+            distance = Localizations.General.lifetime
         }
         switch item {
         case .title:
-            let title = Localizations.activity.analytics.stat.title
-            let subtitle = Localizations.activity.analytics.stat.subtitle
+            let title = Localizations.Activity.Analytics.Stat.title
+            let subtitle = Localizations.Activity.Analytics.Stat.subtitle
             let image = Sources.image(forType: .evaluate)
             return {
                 let node = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -91,7 +91,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             opt?[.yLineNumber] = 5
             opt?[.positive] = true
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.activity.analytics.barchart.title + "\n(\(distance))", data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Activity.Analytics.Barchart.title + "\n(\(distance))", data: data, options: opt, isPro: true, style: style)
                 //node.leftOffset = 0.0
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
@@ -116,23 +116,23 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             let fullVersion = "\(build) (\(version))"
             let totalStarts = Database.manager.app.objects(AppUsage.self).count
             
-            self.data!.append((title: Localizations.activity.analytics.stat.cards, data: "\(cards.count)"))
-            self.data!.append((title: Localizations.activity.analytics.stat.archived, data: "\(archived.count)"))
-            self.data!.append((title: Localizations.activity.analytics.stat.version, data: "\(fullVersion)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.cards, data: "\(cards.count)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: "\(archived.count)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.version, data: "\(fullVersion)"))
             if isPro {
-                self.data!.append((title: Localizations.activity.analytics.stat.alldays, data: "\(days)"))
-                self.data!.append((title: Localizations.activity.analytics.stat.firsStartDate, data: "\(firstStart)"))
-                self.data!.append((title: Localizations.activity.analytics.stat.updateDate, data: "\(updateDate)"))
-                self.data!.append((title: Localizations.activity.analytics.stat.totalStarts, data: "\(totalStarts)"))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.alldays, data: "\(days)"))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.firsStartDate, data: "\(firstStart)"))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.updateDate, data: "\(updateDate)"))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.totalStarts, data: "\(totalStarts)"))
             } else {
-                self.data!.append((title: Localizations.activity.analytics.stat.alldays, data: proPlaceholder))
-                self.data!.append((title: Localizations.activity.analytics.stat.firsStartDate, data: proPlaceholder))
-                self.data!.append((title: Localizations.activity.analytics.stat.updateDate, data: proPlaceholder))
-                self.data!.append((title: Localizations.activity.analytics.stat.totalStarts, data: proPlaceholder))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.alldays, data: proPlaceholder))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.firsStartDate, data: proPlaceholder))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.updateDate, data: proPlaceholder))
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.totalStarts, data: proPlaceholder))
             }
             
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.activity.analytics.stat.description, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(title: Localizations.Activity.Analytics.Stat.description, data: self.data!, style: style)
                 // node.leftOffset = 10.0
                 return node
             }

@@ -41,7 +41,7 @@ class UnarchiveNode: ASCellNode {
             self.dotDivider.cornerRadius = 5.0
         }
         
-        let title = NSAttributedString(string: Localizations.general.unarchive, attributes: [NSAttributedStringKey.font: style.unarchiveButtonFont, NSAttributedStringKey.foregroundColor: style.unarchiveButtonColor])
+        let title = NSAttributedString(string: Localizations.General.unarchive, attributes: [NSAttributedStringKey.font: style.unarchiveButtonFont, NSAttributedStringKey.foregroundColor: style.unarchiveButtonColor])
         
         self.unarchiveButton.setAttributedTitle(title, for: .normal)
         

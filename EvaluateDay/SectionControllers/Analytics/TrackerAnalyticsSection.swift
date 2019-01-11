@@ -75,10 +75,10 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             let trackerCard = self.card.data as! TrackerCard
             self.data = [(title: String, data: String)]()
             
-            self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
             if isPro {
-                self.data!.append((title: Localizations.analytics.habit.marks + ":", data: "\(trackerCard.values.count)"))
-                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(self.groupedData.count)"))
+                self.data!.append((title: Localizations.Analytics.Habit.marks + ":", data: "\(trackerCard.values.count)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(self.groupedData.count)"))
                 
                 var maximum = 0
                 var minimum = 1000000000
@@ -96,19 +96,19 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 
                 if maximum != 0 && minimum != 1000000000 {
-                    self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
-                    self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
-                    self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(self.groupedData.count))"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(self.groupedData.count))"))
                 }
             } else {
-                self.data!.append((title: Localizations.analytics.habit.marks + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.days + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Habit.marks + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
                 return node
             }
         case .time:
@@ -118,7 +118,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.tracker.calendar.title.uppercased(), isPro: true, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Tracker.Calendar.title.uppercased(), isPro: true, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -140,7 +140,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt, isPro: true, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -153,7 +153,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .export:
             return {
-                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
+                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
                     if isPro {

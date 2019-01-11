@@ -26,7 +26,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.analytics.title + ": " + Sources.title(forType: self.card.type)
+        self.navigationItem.title = Localizations.Analytics.title + ": " + Sources.title(forType: self.card.type)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -45,7 +45,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         // Buttons
         self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(openCardSettingsAction(sender:)))
         self.settingsButton.accessibilityIdentifier = "cardSettingsButton"
-        self.settingsButton.accessibilityLabel = Localizations.tabbar.settings
+        self.settingsButton.accessibilityLabel = Localizations.Tabbar.settings
         self.settingsButton.accessibilityValue = self.card.title
         self.navigationItem.rightBarButtonItem = self.settingsButton
         

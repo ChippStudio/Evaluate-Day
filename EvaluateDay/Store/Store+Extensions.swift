@@ -20,15 +20,15 @@ extension SKProduct {
                 var trialDuration = ""
                 switch intro.subscriptionPeriod.unit {
                 case .day:
-                    trialDuration = Localizations.many.day(value1: intro.subscriptionPeriod.numberOfUnits)
+                    trialDuration = Localizations.Many.day(intro.subscriptionPeriod.numberOfUnits)
                 case .week:
-                    trialDuration = Localizations.many.week(value1: intro.subscriptionPeriod.numberOfUnits)
+                    trialDuration = Localizations.Many.week(intro.subscriptionPeriod.numberOfUnits)
                 case .month:
-                    trialDuration = Localizations.many.month(value1: intro.subscriptionPeriod.numberOfUnits)
+                    trialDuration = Localizations.Many.month(intro.subscriptionPeriod.numberOfUnits)
                 case .year:
-                    trialDuration = Localizations.many.year(value1: intro.subscriptionPeriod.numberOfUnits)
+                    trialDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
                 }
-                descriptionString = Localizations.settings.pro.subscription.introductory.trial(value1: trialDuration)
+                descriptionString = Localizations.Settings.Pro.Subscription.Introductory.trial(trialDuration)
             case.payAsYouGo:
                 var introDuration = ""
                 var oneTime = ""
@@ -42,20 +42,20 @@ extension SKProduct {
                 
                 switch intro.subscriptionPeriod.unit {
                 case .day:
-                    introDuration = Localizations.many.day(value1: intro.subscriptionPeriod.numberOfUnits)
-                    oneTime = Localizations.many.day(value1: 0)
+                    introDuration = Localizations.Many.day(intro.subscriptionPeriod.numberOfUnits)
+                    oneTime = Localizations.Many.day(0)
                 case .week:
-                    introDuration = Localizations.many.week(value1: intro.subscriptionPeriod.numberOfUnits)
-                    oneTime = Localizations.many.week(value1: 0)
+                    introDuration = Localizations.Many.week(intro.subscriptionPeriod.numberOfUnits)
+                    oneTime = Localizations.Many.week(0)
                 case .month:
-                    introDuration = Localizations.many.month(value1: intro.subscriptionPeriod.numberOfUnits)
-                    oneTime = Localizations.many.month(value1: 0)
+                    introDuration = Localizations.Many.month(intro.subscriptionPeriod.numberOfUnits)
+                    oneTime = Localizations.Many.month(0)
                 case .year:
-                    introDuration = Localizations.many.year(value1: intro.subscriptionPeriod.numberOfUnits)
-                    oneTime = Localizations.many.year(value1: 0)
+                    introDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
+                    oneTime = Localizations.Many.year(0)
                 }
                 priceString = "\(price) / \(oneTime)"
-                descriptionString = Localizations.settings.pro.subscription.introductory.start(value1: introDuration, priceString)
+                descriptionString = Localizations.Settings.Pro.Subscription.Introductory.start(introDuration, priceString)
             case .payUpFront:
                 var introDuration = ""
                 var priceString = ""
@@ -68,16 +68,16 @@ extension SKProduct {
                 
                 switch intro.subscriptionPeriod.unit {
                 case .day:
-                    introDuration = Localizations.many.day(value1: intro.subscriptionPeriod.numberOfUnits)
+                    introDuration = Localizations.Many.day(intro.subscriptionPeriod.numberOfUnits)
                 case .week:
-                    introDuration = Localizations.many.week(value1: intro.subscriptionPeriod.numberOfUnits)
+                    introDuration = Localizations.Many.week(intro.subscriptionPeriod.numberOfUnits)
                 case .month:
-                    introDuration = Localizations.many.month(value1: intro.subscriptionPeriod.numberOfUnits)
+                    introDuration = Localizations.Many.month(intro.subscriptionPeriod.numberOfUnits)
                 case .year:
-                    introDuration = Localizations.many.year(value1: intro.subscriptionPeriod.numberOfUnits)
+                    introDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
                 }
                 priceString = "\(price)"
-                descriptionString = Localizations.settings.pro.subscription.introductory.start(value1: introDuration, priceString)
+                descriptionString = Localizations.Settings.Pro.Subscription.Introductory.start(introDuration, priceString)
             }
         }
         

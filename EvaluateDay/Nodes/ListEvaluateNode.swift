@@ -39,8 +39,8 @@ class ListEvaluateNode: ASCellNode {
     init(all: Int, allDone: Int, inDay: Int, date: Date, style: ListEvaluateNodeStyle) {
         super.init()
         
-        let openTitle = NSAttributedString(string: Localizations.evaluate.list.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonColor])
-        let openHighlightedTitle = NSAttributedString(string: Localizations.evaluate.list.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonHighlightedColor])
+        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonColor])
+        let openHighlightedTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonHighlightedColor])
         
         self.openListButton.setAttributedTitle(openTitle, for: .normal)
         self.openListButton.setAttributedTitle(openHighlightedTitle, for: .highlighted)
@@ -65,7 +65,7 @@ class ListEvaluateNode: ASCellNode {
         formatter.dateFormat = "dd MMM"
         
         self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.listEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDateColor])
-        self.lifetime.attributedText = NSAttributedString(string: Localizations.general.lifetime, attributes: [NSAttributedStringKey.font: style.listEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDateColor])
+        self.lifetime.attributedText = NSAttributedString(string: Localizations.General.lifetime, attributes: [NSAttributedStringKey.font: style.listEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDateColor])
         
         self.separator.backgroundColor = style.listEvaluateSeparatorColor
         self.separator.cornerRadius = 2.0
@@ -77,7 +77,7 @@ class ListEvaluateNode: ASCellNode {
         self.lifetime.isAccessibilityElement = false
         
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.list.allDone(value1: formatter.string(from: date), "\(inDay)", "\(all)", "\(dayPercent)", "\(allDone)", "\(all)", "\(allPercent)")
+        self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Evaluate.List.allDone(formatter.string(from: date), "\(inDay)", "\(all)", "\(dayPercent)", "\(allDone)", "\(all)", "\(allPercent)")
         
         self.automaticallyManagesSubnodes = true
     }

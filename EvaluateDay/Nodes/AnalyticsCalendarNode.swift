@@ -71,8 +71,8 @@ class AnalyticsCalendarNode: ASCellNode {
         // Accessibility
         self.title.isAccessibilityElement = false
         
-        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
-        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.accessibility.analytics.calendarView)"
+        self.shareButton.accessibilityLabel = Localizations.Calendar.Empty.share
+        self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.Accessibility.Analytics.calendarView)"
         
         self.calendarNode.isAccessibilityElement = true
         self.calendarNode.accessibilityTraits = UIAccessibilityTraitNotEnabled

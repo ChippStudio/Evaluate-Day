@@ -25,7 +25,7 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
         super.viewDidLoad()
         
         // Set navigation item
-        self.navigationItem.title = Localizations.settings.passcode.title
+        self.navigationItem.title = Localizations.Settings.Passcode.title
         
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)
@@ -173,22 +173,22 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
         var passcodeSection = SettingsSection(items: [])
         
         let pass = Database.manager.application.settings.passcode
-        let passcodeItem = SettingItem(title: Localizations.settings.passcode.title, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": pass, "action": BooleanAction.passcode.rawValue])
+        let passcodeItem = SettingItem(title: Localizations.Settings.Passcode.title, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": pass, "action": BooleanAction.passcode.rawValue])
         passcodeSection.items.append(passcodeItem)
         
         if pass {
             var requireString = ""
             switch Database.manager.application.settings.passcodeDelay {
             case .immediately:
-                requireString = Localizations.settings.passcode.delay.immediately
+                requireString = Localizations.Settings.Passcode.Delay.immediately
             case .one:
-                requireString = Localizations.settings.passcode.delay._1m
+                requireString = Localizations.Settings.Passcode.Delay._1m
             case .hour:
-                requireString = Localizations.settings.passcode.delay._1h
+                requireString = Localizations.Settings.Passcode.Delay._1h
             default:
-                requireString = Localizations.settings.passcode.delay.minutes(value1: "\(Database.manager.application.settings.passcodeDelay.rawValue)")
+                requireString = Localizations.Settings.Passcode.Delay.minutes("\(Database.manager.application.settings.passcodeDelay.rawValue)")
             }
-            let requireItem = SettingItem(title: Localizations.settings.passcode.require, type: .more, action: PasscodeSettingsAction.delay, subtitle: requireString)
+            let requireItem = SettingItem(title: Localizations.Settings.Passcode.require, type: .more, action: PasscodeSettingsAction.delay, subtitle: requireString)
             passcodeSection.items.append(requireItem)
             
             var error: NSError?
@@ -198,15 +198,15 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
                 var promptBiometricString: String = ""
                 if #available(iOS 11.0, *) {
                     if context.biometryType == .faceID {
-                        biometricString = Localizations.settings.passcode.faceID.title
-                        promptBiometricString = Localizations.settings.passcode.faceID.prompt
+                        biometricString = Localizations.Settings.Passcode.FaceID.title
+                        promptBiometricString = Localizations.Settings.Passcode.FaceID.prompt
                     } else if context.biometryType == .touchID {
-                        biometricString = Localizations.settings.passcode.touchID.title
-                        promptBiometricString = Localizations.settings.passcode.touchID.prompt
+                        biometricString = Localizations.Settings.Passcode.TouchID.title
+                        promptBiometricString = Localizations.Settings.Passcode.TouchID.prompt
                     }
                 } else {
-                    biometricString = Localizations.settings.passcode.touchID.title
-                    promptBiometricString = Localizations.settings.passcode.touchID.prompt
+                    biometricString = Localizations.Settings.Passcode.TouchID.title
+                    promptBiometricString = Localizations.Settings.Passcode.TouchID.prompt
                 }
                 
                 let biometricItem = SettingItem(title: biometricString, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": Database.manager.application.settings.passcodeBiometric, "action": BooleanAction.biometrics.rawValue])

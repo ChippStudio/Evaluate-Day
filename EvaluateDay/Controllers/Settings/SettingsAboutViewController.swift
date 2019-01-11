@@ -43,7 +43,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.settings.about.title
+        self.navigationItem.title = Localizations.Settings.About.title
         
         //set open sources libraries
         self.openSource.append(OpenSource(title: "SnapKit", URL: "https://github.com/SnapKit/SnapKit"))
@@ -62,7 +62,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         self.openSource.append(OpenSource(title: "Branch", URL: "https://branch.io"))
         
         //set legal
-        self.legals.append(Legal(title: Localizations.settings.about.legal.forecast, URL: "https://darksky.net"))
+        self.legals.append(Legal(title: Localizations.Settings.About.Legal.forecast, URL: "https://darksky.net"))
         
         //set special thanks
         
@@ -116,10 +116,10 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: topTitleCellID, for: indexPath) as! SettingsAboutTitleTableViewCell
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
             let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-            cell.title.text = Localizations.general.evaluateday
+            cell.title.text = Localizations.General.evaluateday
             cell.title.font = style.aboutAppTitleFont
             cell.title.textColor = style.aboutTintColor
-            cell.subtitle.text = Localizations.general.version(value1: build, version)
+            cell.subtitle.text = Localizations.General.version(build, version)
             cell.subtitle.textColor = style.aboutTintColor
             cell.subtitle.font = style.aboutVersionFont
             cell.backgroundColor = style.background
@@ -147,7 +147,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: shareCellID, for: indexPath) as! SettingsAboutShareTableViewCell
-            cell.title.text = Localizations.settings.about.share.title
+            cell.title.text = Localizations.Settings.About.Share.title
             cell.title.font = style.aboutShareFont
             cell.title.textColor = style.aboutTintColor
             
@@ -158,12 +158,12 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             cell.contentView.backgroundColor = style.background
             
             cell.accessibilityTraits = UIAccessibilityTraitButton
-            cell.accessibilityLabel = Localizations.settings.about.share.title
+            cell.accessibilityLabel = Localizations.Settings.About.Share.title
             return cell
             }
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
-            cell.textLabel?.text = Localizations.settings.about.rate
+            cell.textLabel?.text = Localizations.Settings.About.rate
             cell.textLabel?.font = style.aboutSectionTitleFont
             cell.textLabel?.textColor = style.aboutTintColor
             cell.backgroundColor = style.background
@@ -171,7 +171,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             return cell
         case 2: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
-            cell.textLabel?.text = Localizations.settings.about.openSource
+            cell.textLabel?.text = Localizations.Settings.About.openSource
             cell.textLabel?.font = style.aboutSectionTitleFont
             cell.textLabel?.textColor = style.aboutTintColor
             cell.backgroundColor = style.background
@@ -189,7 +189,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             }
         case 3: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
-            cell.textLabel?.text = Localizations.settings.about.legal.title
+            cell.textLabel?.text = Localizations.Settings.About.Legal.title
             cell.textLabel?.font = style.aboutSectionTitleFont
             cell.textLabel?.textColor = style.aboutTintColor
             cell.backgroundColor = style.background
@@ -233,8 +233,8 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
                 
                 // Make universal Branch Link
                 let linkObject = BranchUniversalObject(canonicalIdentifier: "appShare")
-                linkObject.title = Localizations.share.link.title
-                linkObject.contentDescription = Localizations.share.description
+                linkObject.title = Localizations.Share.Link.title
+                linkObject.contentDescription = Localizations.Share.description
                 
                 let linkProperties = BranchLinkProperties()
                 linkProperties.feature = "Application Share"
@@ -247,7 +247,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
                     }
                     
                     let rect = tableView.convert(tableView.rectForRow(at: indexPath), to: tableView.superview)
-                    let shareActivity = UIActivityViewController(activityItems: [link!, hashTag, Localizations.settings.about.share.message], applicationActivities: nil)
+                    let shareActivity = UIActivityViewController(activityItems: [link!, hashTag, Localizations.Settings.About.Share.message], applicationActivities: nil)
                     if self.traitCollection.userInterfaceIdiom == .pad {
                         shareActivity.modalPresentationStyle = UIModalPresentationStyle.popover
                         shareActivity.popoverPresentationController?.sourceView = self.view

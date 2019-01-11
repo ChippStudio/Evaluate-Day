@@ -162,7 +162,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     @objc func nameTapAction(sender: UITapGestureRecognizer) {
         let textController = TextTopViewController()
         textController.textView.text = Database.manager.application.user.name
-        textController.title = Localizations.activity.user.placeholder.name
+        textController.title = Localizations.Activity.User.Placeholder.name
         textController.property = "name"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
@@ -171,7 +171,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     @objc func emailTapAction(sender: UITapGestureRecognizer) {
         let textController = TextTopViewController()
         textController.textView.text = Database.manager.application.user.email
-        textController.title = Localizations.activity.user.placeholder.email
+        textController.title = Localizations.Activity.User.Placeholder.email
         textController.property = "email"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
@@ -180,7 +180,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     @objc func bioTapAction(sender: UITapGestureRecognizer) {
         let textController = TextTopViewController()
         textController.textView.text = Database.manager.application.user.bio
-        textController.title = Localizations.activity.user.placeholder.bio
+        textController.title = Localizations.Activity.User.Placeholder.bio
         textController.property = "bio"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
@@ -189,7 +189,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     @objc func webTapAction(sender: UITapGestureRecognizer) {
         let textController = TextTopViewController()
         textController.textView.text = Database.manager.application.user.web
-        textController.title = Localizations.activity.user.placeholder.web
+        textController.title = Localizations.Activity.User.Placeholder.web
         textController.property = "web"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
@@ -197,8 +197,8 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     
     @objc func photoTapAction(sender: UITapGestureRecognizer) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancel = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let takePhoto = UIAlertAction(title: Localizations.general.photo.take, style: .default) { (_) in
+        let cancel = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+        let takePhoto = UIAlertAction(title: Localizations.General.Photo.take, style: .default) { (_) in
             if Permissions.defaults.cameraStatus != .authorized {
                 Permissions.defaults.cameraAutorize(completion: {
                     self.openPhotoPicker(withType: .camera)
@@ -207,7 +207,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
             }
             self.openPhotoPicker(withType: .camera)
         }
-        let selectPhoto = UIAlertAction(title: Localizations.general.photo.select, style: .default) { (_) in
+        let selectPhoto = UIAlertAction(title: Localizations.General.Photo.select, style: .default) { (_) in
             if Permissions.defaults.photoStatus != .authorized {
                 Permissions.defaults.photoAutorize(completion: {
                     self.openPhotoPicker(withType: .photoLibrary)

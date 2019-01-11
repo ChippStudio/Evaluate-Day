@@ -33,7 +33,7 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         
         self.data = data
         
-        self.titleNode.attributedText = NSAttributedString(string: Localizations.analytics.statistics.color.title.uppercased(), attributes: [NSAttributedStringKey.foregroundColor: style.statisticTitleColor, NSAttributedStringKey.font: style.statisticTitleFont])
+        self.titleNode.attributedText = NSAttributedString(string: Localizations.Analytics.Statistics.Color.title.uppercased(), attributes: [NSAttributedStringKey.foregroundColor: style.statisticTitleColor, NSAttributedStringKey.font: style.statisticTitleFont])
         
         self.stats = ASDisplayNode(viewBlock: { () -> UIView in
             let layout = UICollectionViewFlowLayout()
@@ -93,7 +93,7 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         cell.isAccessibilityElement = true
         for c in colorsForSelection {
             if c.color == stat.color {
-                cell.accessibilityLabel = Localizations.accessibility.analytics.color(value1: c.name, stat.data)
+                cell.accessibilityLabel = Localizations.Accessibility.Analytics.color(c.name, stat.data)
             }
         }
         return cell

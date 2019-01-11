@@ -36,16 +36,16 @@ class DashboardsNoneNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.title.attributedText = NSAttributedString(string: Localizations.collection.title, attributes: [NSAttributedStringKey.font: style.dashboardsNoneNodeTitleFont, NSAttributedStringKey.foregroundColor: style.dashboardsNoneNodeTitleColor])
+        self.title.attributedText = NSAttributedString(string: Localizations.Collection.title, attributes: [NSAttributedStringKey.font: style.dashboardsNoneNodeTitleFont, NSAttributedStringKey.foregroundColor: style.dashboardsNoneNodeTitleColor])
         
-        self.subtitle.attributedText = NSAttributedString(string: Localizations.collection.addNew, attributes: [NSAttributedStringKey.font: style.dashboardsNoneNodeSubtitleFont, NSAttributedStringKey.foregroundColor: style.dashboardsNoneNodeSubtitleColor, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.subtitle.attributedText = NSAttributedString(string: Localizations.Collection.addNew, attributes: [NSAttributedStringKey.font: style.dashboardsNoneNodeSubtitleFont, NSAttributedStringKey.foregroundColor: style.dashboardsNoneNodeSubtitleColor, NSAttributedStringKey.paragraphStyle: paragraph])
         
         self.rightNode.backgroundColor = style.dashboardsNoneNodeTintColor
         self.leftNode.backgroundColor = style.dashboardsNoneNodeTintColor
         
         self.isAccessibilityElement = true
-        self.accessibilityLabel = Localizations.collection.title
-        self.accessibilityValue = Localizations.collection.addNew
+        self.accessibilityLabel = Localizations.Collection.title
+        self.accessibilityValue = Localizations.Collection.addNew
         self.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

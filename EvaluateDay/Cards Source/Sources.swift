@@ -26,7 +26,7 @@ final class Sources: NSObject {
         case .evaluate:
             return #imageLiteral(resourceName: "appIcon_white")
         case .color:
-            return #imageLiteral(resourceName: "color")
+            return Asset.Cards.color.image
         case .checkIn:
             return #imageLiteral(resourceName: "checkin")
         case .phrase:
@@ -59,31 +59,31 @@ final class Sources: NSObject {
     static func title(forType type: CardType) -> String {
         switch type {
         case .color:
-            return Localizations.new.color.title
+            return Localizations.New.Color.title
         case .checkIn:
-            return Localizations.new.checkin.title
+            return Localizations.New.Checkin.title
         case .phrase:
-            return Localizations.new.phrase.title
+            return Localizations.New.Phrase.title
         case .criterionHundred:
-            return Localizations.new.criterionHundred.title
+            return Localizations.New.CriterionHundred.title
         case .criterionTen:
-            return Localizations.new.criterionTen.title
+            return Localizations.New.CriterionTen.title
         case .criterionThree:
-            return Localizations.new.criterionThree.title
+            return Localizations.New.CriterionThree.title
         case .counter:
-            return Localizations.new.counter.title
+            return Localizations.New.Counter.title
         case .habit:
-            return Localizations.new.habit.title
+            return Localizations.New.Habit.title
         case .list:
-            return Localizations.new.list.title
+            return Localizations.New.List.title
         case .goal:
-            return Localizations.new.goal.title
+            return Localizations.New.Goal.title
         case .journal:
-            return Localizations.new.journal.title
+            return Localizations.New.Journal.title
         case .tracker:
-            return Localizations.new.tracker.title
+            return Localizations.New.Tracker.title
         case .health:
-            return Localizations.new.health.title
+            return Localizations.New.Health.title
         default:
             return "none"
         }
@@ -93,18 +93,18 @@ final class Sources: NSObject {
     private func setSources() {
         self.cards.removeAll()
         
-        self.cards.append(Source(type: .color, title: Localizations.new.color.title, subtitle: Localizations.new.color.subtitle, image: Sources.image(forType: .color)))
-        self.cards.append(Source(type: .checkIn, title: Localizations.new.checkin.title, subtitle: Localizations.new.checkin.subtitle, image: Sources.image(forType: .checkIn)))
-        self.cards.append(Source(type: .phrase, title: Localizations.new.phrase.title, subtitle: Localizations.new.phrase.subtitle, image: Sources.image(forType: .phrase)))
-        self.cards.append(Source(type: .criterionHundred, title: Localizations.new.criterionHundred.title, subtitle: Localizations.new.criterionHundred.subtitle, image: Sources.image(forType: .criterionHundred)))
-        self.cards.append(Source(type: .criterionTen, title: Localizations.new.criterionTen.title, subtitle: Localizations.new.criterionTen.subtitle, image: Sources.image(forType: .criterionTen)))
-        self.cards.append(Source(type: .criterionThree, title: Localizations.new.criterionThree.title, subtitle: Localizations.new.criterionThree.subtitle, image: Sources.image(forType: .criterionThree)))
-        self.cards.append(Source(type: .counter, title: Localizations.new.counter.title, subtitle: Localizations.new.counter.subtitle, image: Sources.image(forType: .counter)))
-        self.cards.append(Source(type: .habit, title: Localizations.new.habit.title, subtitle: Localizations.new.habit.subtitle, image: Sources.image(forType: .habit)))
-        self.cards.append(Source(type: .tracker, title: Localizations.new.tracker.title, subtitle: Localizations.new.tracker.subtitle, image: Sources.image(forType: .tracker)))
-        self.cards.append(Source(type: .list, title: Localizations.new.list.title, subtitle: Localizations.new.list.subtitle, image: Sources.image(forType: .list)))
-        self.cards.append(Source(type: .goal, title: Localizations.new.goal.title, subtitle: Localizations.new.goal.subtitle, image: Sources.image(forType: .goal)))
-        self.cards.append(Source(type: .journal, title: Localizations.new.journal.title, subtitle: Localizations.new.journal.subtitle, image: Sources.image(forType: .journal)))
+        self.cards.append(Source(type: .color, title: Localizations.New.Color.title, subtitle: Localizations.New.Color.subtitle, image: Sources.image(forType: .color)))
+        self.cards.append(Source(type: .checkIn, title: Localizations.New.Checkin.title, subtitle: Localizations.New.Checkin.subtitle, image: Sources.image(forType: .checkIn)))
+        self.cards.append(Source(type: .phrase, title: Localizations.New.Phrase.title, subtitle: Localizations.New.Phrase.subtitle, image: Sources.image(forType: .phrase)))
+        self.cards.append(Source(type: .criterionHundred, title: Localizations.New.CriterionHundred.title, subtitle: Localizations.New.CriterionHundred.subtitle, image: Sources.image(forType: .criterionHundred)))
+        self.cards.append(Source(type: .criterionTen, title: Localizations.New.CriterionTen.title, subtitle: Localizations.New.CriterionTen.subtitle, image: Sources.image(forType: .criterionTen)))
+        self.cards.append(Source(type: .criterionThree, title: Localizations.New.CriterionThree.title, subtitle: Localizations.New.CriterionThree.subtitle, image: Sources.image(forType: .criterionThree)))
+        self.cards.append(Source(type: .counter, title: Localizations.New.Counter.title, subtitle: Localizations.New.Counter.subtitle, image: Sources.image(forType: .counter)))
+        self.cards.append(Source(type: .habit, title: Localizations.New.Habit.title, subtitle: Localizations.New.Habit.subtitle, image: Sources.image(forType: .habit)))
+        self.cards.append(Source(type: .tracker, title: Localizations.New.Tracker.title, subtitle: Localizations.New.Tracker.subtitle, image: Sources.image(forType: .tracker)))
+        self.cards.append(Source(type: .list, title: Localizations.New.List.title, subtitle: Localizations.New.List.subtitle, image: Sources.image(forType: .list)))
+        self.cards.append(Source(type: .goal, title: Localizations.New.Goal.title, subtitle: Localizations.New.Goal.subtitle, image: Sources.image(forType: .goal)))
+        self.cards.append(Source(type: .journal, title: Localizations.New.Journal.title, subtitle: Localizations.New.Journal.subtitle, image: Sources.image(forType: .journal)))
 //        if HKHealthStore.isHealthDataAvailable() {
 //            self.cards.append(Source(type: .health, title: Localizations.new.health.title, subtitle: Localizations.new.health.subtitle, image: Sources.image(forType: .health)))
 //        }

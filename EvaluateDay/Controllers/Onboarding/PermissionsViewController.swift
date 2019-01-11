@@ -40,8 +40,8 @@ class PermissionsViewController: UIViewController, ASTableDataSource, ASTableDel
         self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         
         self.nextButton.isAccessibilityElement = true
-        self.nextButton.accessibilityLabel = Localizations.permission.description.title
-        self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+        self.nextButton.accessibilityLabel = Localizations.Permission.Description.title
+        self.nextButton.accessibilityHint = Localizations.Accessibility.Onboarding.hint
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,32 +92,32 @@ class PermissionsViewController: UIViewController, ASTableDataSource, ASTableDel
         var set = false
         var image = #imageLiteral(resourceName: "done")
         if indexPath.row == 0 {
-            title = Localizations.permission.notification.title
-            subtitle = Localizations.permission.notification.description
+            title = Localizations.Permission.Notification.title
+            subtitle = Localizations.Permission.Notification.description
             if Permissions.defaults.notificationStatus == .authorized {
                 set = true
             } else {
                 image = #imageLiteral(resourceName: "notification")
             }
         } else if indexPath.row == 1 {
-            title = Localizations.permission.location.title
-            subtitle = Localizations.permission.location.description
+            title = Localizations.Permission.Location.title
+            subtitle = Localizations.Permission.Location.description
             if Permissions.defaults.locationStatus == .authorizedWhenInUse {
                 set = true
             } else {
                 image = #imageLiteral(resourceName: "location")
             }
         } else if indexPath.row == 2 {
-            title = Localizations.permission.camera.title
-            subtitle = Localizations.permission.camera.description
+            title = Localizations.Permission.Camera.title
+            subtitle = Localizations.Permission.Camera.description
             if Permissions.defaults.cameraStatus == .authorized {
                 set = true
             } else {
                 image = #imageLiteral(resourceName: "cameraRoll")
             }
         } else if indexPath.row == 3 {
-            title = Localizations.permission.photos.title
-            subtitle = Localizations.permission.photos.description
+            title = Localizations.Permission.Photos.title
+            subtitle = Localizations.Permission.Photos.description
             if Permissions.defaults.photoStatus == .authorized {
                 set = true
             } else {

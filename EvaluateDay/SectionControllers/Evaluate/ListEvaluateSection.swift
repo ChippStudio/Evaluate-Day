@@ -175,7 +175,7 @@ class ListNode: ASCellNode, CardNode {
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.list.done(value1: formatter.string(from: date), "\(inDay)")
+        self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.List.done(formatter.string(from: date), "\(inDay)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

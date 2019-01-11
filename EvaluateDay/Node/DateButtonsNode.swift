@@ -39,7 +39,7 @@ class DateButtonsNode: ASCellNode {
     init(date: Date) {
         super.init()
         
-        self.todayText.attributedText = NSAttributedString(string: Localizations.general.today, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.todayText.attributedText = NSAttributedString(string: Localizations.General.today, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
         self.todayCover.backgroundColor = UIColor.main
         self.todayCover.cornerRadius = 15.0
         self.todayButton.addTarget(self, action: #selector(self.todayInitialAction(sender:)), forControlEvents: .touchDown)

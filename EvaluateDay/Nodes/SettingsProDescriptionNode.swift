@@ -27,16 +27,16 @@ class SettingsProDescriptionNode: ASCellNode {
     var moreButton = ASButtonNode()
     
     // MARK: - Variable
-    let list = [Localizations.settings.pro.description.first, Localizations.settings.pro.description.second, Localizations.settings.pro.description.third, Localizations.settings.pro.description.fourth]
+    let list = [Localizations.Settings.Pro.Description.first, Localizations.Settings.Pro.Description.second, Localizations.Settings.Pro.Description.third, Localizations.Settings.Pro.Description.fourth]
     var moreDidSelected: (() -> Void)?
     
     // MARK: - Init
     init(style: SettingsProDescriptionNodeStyle) {
         super.init()
         
-        descriptionNode.attributedText = NSAttributedString(string: Localizations.settings.pro.description.title, attributes: [NSAttributedStringKey.font: style.proDescriptionMainTextFont, NSAttributedStringKey.foregroundColor: style.proDescriptionTextColor])
+        descriptionNode.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Description.title, attributes: [NSAttributedStringKey.font: style.proDescriptionMainTextFont, NSAttributedStringKey.foregroundColor: style.proDescriptionTextColor])
         
-        let buttonTitle = NSAttributedString(string: Localizations.settings.pro.description.more.title, attributes: [NSAttributedStringKey.font: style.proDescriptionMoreButtonFont, NSAttributedStringKey.foregroundColor: style.proDescriptionMoreButtonColor])
+        let buttonTitle = NSAttributedString(string: Localizations.Settings.Pro.Description.More.title, attributes: [NSAttributedStringKey.font: style.proDescriptionMoreButtonFont, NSAttributedStringKey.foregroundColor: style.proDescriptionMoreButtonColor])
         
         self.moreButton.setAttributedTitle(buttonTitle, for: .normal)
         

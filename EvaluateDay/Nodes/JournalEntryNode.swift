@@ -50,7 +50,7 @@ class JournalEntryNode: ASCellNode {
         
         var newText = text
         if newText.isEmpty {
-            newText = Localizations.evaluate.journal.entry.placeholder
+            newText = Localizations.Evaluate.Journal.Entry.placeholder
         }
         
         if truncation {
@@ -104,9 +104,9 @@ class JournalEntryNode: ASCellNode {
             self.accessibilityLabel = newText
             self.accessibilityValue = metadataString
             if photo != nil {
-                self.accessibilityValue = "\(metadataString), \(Localizations.accessibility.evaluate.journal.entryPhoto)"
+                self.accessibilityValue = "\(metadataString), \(Localizations.Accessibility.Evaluate.Journal.entryPhoto)"
             }
-            self.accessibilityHint = Localizations.accessibility.evaluate.journal.entryHint
+            self.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.entryHint
         }
         
         self.textCover.backgroundColor = style.journalNodeTextCoverColor
@@ -116,29 +116,29 @@ class JournalEntryNode: ASCellNode {
         // Buttons
         if editMode {
             self.imageButton = ASButtonNode()
-            self.imageButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.entry.viewPhoto
-            self.imageButton.accessibilityHint = Localizations.accessibility.evaluate.journal.entry.actionHint
+            self.imageButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.viewPhoto
+            self.imageButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             
             self.editTextButton = ASButtonNode()
             self.textPreview.isAccessibilityElement = false
             self.editTextButton.accessibilityLabel = newText
-            self.editTextButton.accessibilityHint = Localizations.accessibility.evaluate.journal.entry.actionHint
+            self.editTextButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             
             self.selectImageButton = ASButtonNode()
             self.selectImageButton.setImage(#imageLiteral(resourceName: "selectPhoto").resizedImage(newSize: CGSize(width: 25.0, height: 25.0)), for: .normal)
-            self.selectImageButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.entry.openGalery
-            self.selectImageButton.accessibilityHint = Localizations.accessibility.evaluate.journal.entry.actionHint
+            self.selectImageButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.openGalery
+            self.selectImageButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             
             self.cameraButton = ASButtonNode()
             self.cameraButton.setImage(#imageLiteral(resourceName: "camera").resizedImage(newSize: CGSize(width: 25.0, height: 25.0)), for: .normal)
-            self.cameraButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.entry.openCamera
-            self.cameraButton.accessibilityHint = Localizations.accessibility.evaluate.journal.entry.actionHint
+            self.cameraButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.openCamera
+            self.cameraButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             
             if photo != nil {
                 self.deleteImageButton = ASButtonNode()
                 self.deleteImageButton.setImage(#imageLiteral(resourceName: "delete").increaseSize(by: -5.0), for: .normal)
-                self.deleteImageButton.accessibilityLabel = Localizations.accessibility.evaluate.journal.entry.deletePhoto
-                self.deleteImageButton.accessibilityHint = Localizations.accessibility.evaluate.journal.entry.actionHint
+                self.deleteImageButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.deletePhoto
+                self.deleteImageButton.accessibilityHint = Localizations.Accessibility.Evaluate.Journal.Entry.actionHint
             }
         }
         

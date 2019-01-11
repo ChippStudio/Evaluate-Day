@@ -34,7 +34,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.collection.title
+        self.navigationItem.title = Localizations.Collection.title
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }

@@ -271,7 +271,7 @@ class TrackerNode: ASCellNode, CardNode {
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(marks)")
+        self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(marks)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

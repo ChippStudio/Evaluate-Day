@@ -42,7 +42,7 @@ class SettingsFooterView: UIView {
         }
         
         self.appTitle.textAlignment = .center
-        self.appTitle.text = Localizations.general.evaluateday
+        self.appTitle.text = Localizations.General.evaluateday
         self.addSubview(self.appTitle)
         self.appTitle.snp.makeConstraints { (make) in
             make.top.equalTo(self.appIcon.snp.bottom).offset(10.0)
@@ -52,7 +52,7 @@ class SettingsFooterView: UIView {
         self.appVersion.textAlignment = .center
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        self.appVersion.text = Localizations.general.version(value1: build, version)
+        self.appVersion.text = Localizations.General.version(build, version)
         self.addSubview(self.appVersion)
         self.appVersion.snp.makeConstraints { (make) in
             make.top.equalTo(self.appTitle.snp.bottom)

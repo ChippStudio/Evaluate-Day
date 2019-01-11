@@ -26,11 +26,11 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.settings.notifications.new.title
+        self.navigationItem.title = Localizations.Settings.Notifications.New.title
         
         if self.notification.realm == nil {
-            self.notification.message = Localizations.settings.notifications.new.defaultMessage
-            self.saveButton = UIBarButtonItem(title: Localizations.general.save, style: .plain, target: self, action: #selector(saveAction(sender:)))
+            self.notification.message = Localizations.Settings.Notifications.New.defaultMessage
+            self.saveButton = UIBarButtonItem(title: Localizations.General.save, style: .plain, target: self, action: #selector(saveAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.saveButton
         } else {
             self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(deleteAction(sender:)))
@@ -129,27 +129,27 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         
         switch indexPath.row {
         case 0:
-            title = Localizations.settings.notifications.new.message + ":"
+            title = Localizations.Settings.Notifications.New.message + ":"
             subtitle = self.notification.message
         case 1:
-            title = Localizations.settings.notifications.new.time
+            title = Localizations.Settings.Notifications.New.time
             subtitle = DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short)
         case 2:
-            title = Localizations.settings.notifications.new._repeat.title
+            title = Localizations.Settings.Notifications.New.Repeat.title
             subtitle = self.notification.localizedString
         default:
-            title = Localizations.settings.notifications.new.card
+            title = Localizations.Settings.Notifications.New.card
             if self.notification.cardID != nil {
                 if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.notification.cardID!).first {
                     subtitle = card.title
                 } else {
-                    subtitle = Localizations.settings.notifications.new.optional
+                    subtitle = Localizations.Settings.Notifications.New.optional
                 }
             } else {
                 if self.card != nil {
                     subtitle = self.card.title
                 } else {
-                    subtitle = Localizations.settings.notifications.new.optional
+                    subtitle = Localizations.Settings.Notifications.New.optional
                 }
             }
         }
@@ -171,8 +171,8 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         switch indexPath.row {
         case 0:
             let controller = TextTopViewController()
-            controller.titleLabel.text = Localizations.settings.notifications.new.message
-            if self.notification.message != Localizations.settings.notifications.new.defaultMessage {
+            controller.titleLabel.text = Localizations.Settings.Notifications.New.message
+            if self.notification.message != Localizations.Settings.Notifications.New.defaultMessage {
                 controller.textView.text = self.notification.message
             }
             controller.delegate = self
@@ -290,21 +290,21 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
     // MARK: - Private
     private func barButtonAccessibilityLabel() {
         if self.saveButton != nil {
-            var cardString = Localizations.general.none
+            var cardString = Localizations.General.none
             if notification.cardID != nil {
                 if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.notification.cardID!).first {
                     cardString = card.title
                 }
             }
-            self.saveButton.accessibilityLabel = Localizations.general.save + ", " + Localizations.accessibility.notification.description(value1: self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
+            self.saveButton.accessibilityLabel = Localizations.General.save + ", " + Localizations.Accessibility.Notification.description(self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
         } else if self.deleteButton != nil {
-            var cardString = Localizations.general.none
+            var cardString = Localizations.General.none
             if notification.cardID != nil {
                 if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.notification.cardID!).first {
                     cardString = card.title
                 }
             }
-            self.deleteButton.accessibilityLabel = Localizations.general.delete + ", " + Localizations.accessibility.notification.description(value1: self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
+            self.deleteButton.accessibilityLabel = Localizations.General.delete + ", " + Localizations.Accessibility.Notification.description(self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
         }
     }
     private func observable() {

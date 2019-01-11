@@ -75,7 +75,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
         
         // Navigation bar
-        self.navigationItem.title = Localizations.collection.allcards
+        self.navigationItem.title = Localizations.Collection.allcards
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
@@ -85,11 +85,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // bar buttons button
         self.newCardButton = UIBarButtonItem(image: #imageLiteral(resourceName: "new").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(newCardButtonAction(sender:)))
         self.newCardButton.accessibilityIdentifier = "newCardButton"
-        self.newCardButton.accessibilityLabel = Localizations.general.shortcut.new.title
+        self.newCardButton.accessibilityLabel = Localizations.General.Shortcut.New.title
         
         self.reorderCardsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "reorder").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(reorderCardsAction(sender:)))
         self.reorderCardsButton.accessibilityIdentifier = "reorderButton"
-        self.reorderCardsButton.accessibilityLabel = Localizations.accessibility.evaluate.reorder
+        self.reorderCardsButton.accessibilityLabel = Localizations.Accessibility.Evaluate.reorder
         
         // Collection view
         let layout = UICollectionViewFlowLayout()
@@ -346,8 +346,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         }
         
         if Database.manager.app.objects(AppUsage.self).count % 20 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
-            let alert = UIAlertController(title: Localizations.general.like, message: nil, preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: Localizations.general.yes, style: .default) { (_) in
+            let alert = UIAlertController(title: Localizations.General.like, message: nil, preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: Localizations.General.yes, style: .default) { (_) in
                 try! Database.manager.app.write {
                     Database.manager.application.isAlreadyRateThisVersion = true
                 }
@@ -359,7 +359,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 }
             }
             
-            let noAction = UIAlertAction(title: Localizations.general.no, style: .default) { (_) in
+            let noAction = UIAlertAction(title: Localizations.General.no, style: .default) { (_) in
                 try! Database.manager.app.write {
                     Database.manager.application.isAlreadyRateThisVersion = true
                 }

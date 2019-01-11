@@ -39,7 +39,7 @@ class WelcomeImageNode: ASCellNode {
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = text
-        self.accessibilityHint = Localizations.accessibility.onboarding.scrollLeft
+        self.accessibilityHint = Localizations.Accessibility.Onboarding.scrollLeft
         
         self.automaticallyManagesSubnodes = true
     }

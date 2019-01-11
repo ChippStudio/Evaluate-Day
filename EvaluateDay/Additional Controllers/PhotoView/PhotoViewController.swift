@@ -56,7 +56,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         
         self.createdLabel.textColor = style.barTint
         self.createdLabel.font = style.imageInfoDateLabelFont
-        self.createdLabel.text = Localizations.general.createDate + ": " + DateFormatter.localizedString(from: self.photoValue.created, dateStyle: .medium, timeStyle: .medium)
+        self.createdLabel.text = Localizations.General.createDate + ": " + DateFormatter.localizedString(from: self.photoValue.created, dateStyle: .medium, timeStyle: .medium)
         
         if self.photoValue.latitude != 0.0 && self.photoValue.longitude != 0.0 {
             self.coordinatesLabel.textColor = style.barTint
@@ -112,7 +112,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesterAction(sender:))))
         
         // Accessibility
-        self.closeButton.accessibilityLabel = Localizations.general.close
+        self.closeButton.accessibilityLabel = Localizations.General.close
         self.imageView.isAccessibilityElement = true
         self.imageView.accessibilityTraits = UIAccessibilityTraitImage
         

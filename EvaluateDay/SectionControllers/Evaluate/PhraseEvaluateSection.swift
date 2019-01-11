@@ -49,7 +49,7 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         let subtitle = self.card.subtitle
         
         let phraseCard = self.card.data as! PhraseCard
-        var text = Localizations.evaluate.phrase.empty
+        var text = Localizations.Evaluate.Phrase.empty
         if let value = phraseCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
             text = value.text
         }

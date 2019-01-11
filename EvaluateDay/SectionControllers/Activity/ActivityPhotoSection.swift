@@ -67,18 +67,18 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
         let style = Themes.manager.activityControlerStyle
         var subtitle = ""
         if !self.isPro {
-            subtitle = Localizations.activity.gallery.subtitle
+            subtitle = Localizations.Activity.Gallery.subtitle
         }
         if index == 0 {
             return {
-                let node = TitleNode(title: Localizations.activity.gallery.title, subtitle: subtitle, image: #imageLiteral(resourceName: "gallery"))
+                let node = TitleNode(title: Localizations.Activity.Gallery.title, subtitle: subtitle, image: #imageLiteral(resourceName: "gallery"))
                 return node
             }
         }
         
         if !self.isFullGalery && index == 7 {
             return {
-                let node = SettingsMoreNode(title: Localizations.activity.gallery.allPhotos, subtitle: nil, image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.Activity.Gallery.allPhotos, subtitle: nil, image: nil, style: style)
                 OperationQueue.main.addOperation {
                     node.disclosureImage.view.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
                 }

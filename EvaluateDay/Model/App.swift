@@ -102,14 +102,14 @@ class LocalNotification: Object {
     var localizedString: String {
         get {
             if self.repeatNotification == "0000000" {
-                return Localizations.settings.sync.never
+                return Localizations.Settings.Sync.never
             }
             if self.repeatNotification == "1111111" {
-                return Localizations.settings.notifications.new._repeat.daily
+                return Localizations.Settings.Notifications.New.Repeat.daily
             } else {
                 // Return Days
                 if self.repeatNotification == "0111110" {
-                    return Localizations.settings.notifications.new._repeat.weekdays
+                    return Localizations.Settings.Notifications.New.Repeat.weekdays
                 }
                 
                 var localizedString = ""

@@ -40,12 +40,12 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         
         // Bar buttons
         if self.card.realm == nil {
-            self.saveButton = UIBarButtonItem(title: Localizations.general.save, style: .plain, target: self, action: #selector(saveButtonAction(sender:)))
+            self.saveButton = UIBarButtonItem(title: Localizations.General.save, style: .plain, target: self, action: #selector(saveButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.saveButton
         }
         
         // MARK: - Navigation Item
-        self.navigationItem.title = Localizations.settings.title + ": " + Sources.title(forType: self.card.type)
+        self.navigationItem.title = Localizations.Settings.title + ": " + Sources.title(forType: self.card.type)
         
         self.observable()
     }
@@ -148,7 +148,7 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     // MARK: - Actions
     @objc func saveButtonAction(sender: UIBarButtonItem) {
         if !(self.card.data as! Editable).canSave {
-            self.card.title = Localizations.cardSettings.untitle(value1: Sources.title(forType: self.card.type))
+            self.card.title = Localizations.CardSettings.untitle(Sources.title(forType: self.card.type))
         }
         
         try! Database.manager.data.write {

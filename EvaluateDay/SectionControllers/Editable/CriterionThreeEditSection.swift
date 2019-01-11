@@ -60,18 +60,18 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title, style: style)
                 return node
             }
         case .title:
-            let title = Localizations.cardSettings.title
+            let title = Localizations.CardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
                 return node
             }
         case .subtitles:
-            let subtitle = Localizations.cardSettings.subtitle
+            let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
@@ -86,7 +86,7 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
                 return separator
             }
         case .positiveBool:
-            let title = Localizations.cardSettings.criterion.feater.title
+            let title = Localizations.CardSettings.Criterion.Feater.title
             let isOn = (self.card.data as! CriterionThreeCard).positive
             return {
                 let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
@@ -97,7 +97,7 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
             }
         case .positiveDescription:
             return {
-                let node = DescriptionNode(text: Localizations.cardSettings.criterion.feater.description, alignment: .left, style: style)
+                let node = DescriptionNode(text: Localizations.CardSettings.Criterion.Feater.description, alignment: .left, style: style)
                 node.topInset = 10.0
                 return node
             }
@@ -121,9 +121,9 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
     
     override func didSelectItem(at index: Int) {
         if self.nodes[index] == .title {
-            self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
+            self.setTextHandler?(Localizations.CardSettings.title, "title", self.card.title)
         } else if self.nodes[index] == .subtitles {
-            self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
+            self.setTextHandler?(Localizations.CardSettings.subtitle, "subtitle", self.card.subtitle)
         }
     }
 }

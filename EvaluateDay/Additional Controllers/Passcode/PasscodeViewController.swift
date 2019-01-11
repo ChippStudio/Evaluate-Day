@@ -71,7 +71,7 @@ class PasscodeViewController: UIViewController {
                     } else {
                         if self.tempPasscode == nil {
                             self.tempPasscode = passcode
-                            self.messageLabel.text = Localizations.settings.passcode.reenter
+                            self.messageLabel.text = Localizations.Settings.Passcode.reenter
                             self.passcode = ""
                             for v in self.view.subviews {
                                 if v as? UIButton == nil && v as? UILabel == nil {
@@ -93,7 +93,7 @@ class PasscodeViewController: UIViewController {
                                 }
                             } else {
                                 self.tempPasscode = nil
-                                self.messageLabel.text = Localizations.settings.passcode.enter.new
+                                self.messageLabel.text = Localizations.Settings.Passcode.Enter.new
                                 self.passcode = ""
                                 for v in self.view.subviews {
                                     if v as? UIButton == nil && v as? UILabel == nil {
@@ -119,7 +119,7 @@ class PasscodeViewController: UIViewController {
         
         // Navigation item
         if self.navigationController != nil {
-            self.navigationItem.title = Localizations.settings.passcode.title
+            self.navigationItem.title = Localizations.Settings.Passcode.title
         }
         
         let style = Themes.manager.passcodeControllerStyle
@@ -181,12 +181,12 @@ class PasscodeViewController: UIViewController {
                 // Set label
                 if self.navigationController != nil {
                     if Database.manager.application.settings.passcode {
-                        label.text = Localizations.settings.passcode.enter.old
+                        label.text = Localizations.Settings.Passcode.Enter.old
                     } else {
-                        label.text = Localizations.settings.passcode.enter.new
+                        label.text = Localizations.Settings.Passcode.Enter.new
                     }
                 } else {
-                    label.text = Localizations.settings.passcode.unlock(value1: Localizations.general.evaluateday)
+                    label.text = Localizations.Settings.Passcode.unlock(Localizations.General.evaluateday)
                 }
                 label.textColor = style.messageColor
                 label.font = style.messageFont
@@ -308,7 +308,7 @@ class PasscodeViewController: UIViewController {
         var authError: NSError?
         let context = LAContext()
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: Localizations.settings.passcode.unlock(value1: Localizations.general.evaluateday), reply: { (done, _) in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: Localizations.Settings.Passcode.unlock(Localizations.General.evaluateday), reply: { (done, _) in
                 if done {
                     OperationQueue.main.addOperation {
                         if let pass = KeychainWrapper.standard.string(forKey: self.passcodeKey) {

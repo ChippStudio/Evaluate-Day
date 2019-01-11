@@ -25,7 +25,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.activity.title
+        self.navigationItem.title = Localizations.Activity.title
         self.navigationController?.navigationBar.accessibilityIdentifier = "activityNavigationBar"
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic

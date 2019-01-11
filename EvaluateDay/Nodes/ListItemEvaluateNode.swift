@@ -42,15 +42,15 @@ class ListItemEvaluateNode: ASCellNode {
         
         // Accessibility
         self.text.accessibilityTraits = UIAccessibilityTraitButton
-        self.text.accessibilityHint = Localizations.accessibility.evaluate.list.editItemHint
+        self.text.accessibilityHint = Localizations.Accessibility.Evaluate.List.editItemHint
         
-        self.doneButton.accessibilityLabel = Localizations.accessibility.evaluate.list.checkbox + ", \(text)"
+        self.doneButton.accessibilityLabel = Localizations.Accessibility.Evaluate.List.checkbox + ", \(text)"
         if done {
-            self.doneButton.accessibilityValue = Localizations.accessibility.evaluate.list.completed
-            self.doneButton.accessibilityHint = Localizations.accessibility.evaluate.list.checkboxHint(value1: Localizations.accessibility.evaluate.list.uncompleted)
+            self.doneButton.accessibilityValue = Localizations.Accessibility.Evaluate.List.completed
+            self.doneButton.accessibilityHint = Localizations.Accessibility.Evaluate.List.checkboxHint(Localizations.Accessibility.Evaluate.List.uncompleted)
         } else {
-            self.doneButton.accessibilityValue = Localizations.accessibility.evaluate.list.uncompleted
-            self.doneButton.accessibilityHint = Localizations.accessibility.evaluate.list.checkboxHint(value1: Localizations.accessibility.evaluate.list.completed)
+            self.doneButton.accessibilityValue = Localizations.Accessibility.Evaluate.List.uncompleted
+            self.doneButton.accessibilityHint = Localizations.Accessibility.Evaluate.List.checkboxHint(Localizations.Accessibility.Evaluate.List.completed)
         }
         
         self.automaticallyManagesSubnodes = true

@@ -67,7 +67,7 @@ class PresentFutureEmptyView: UIView {
         self.shareImage.image = #imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate)
         self.shareImage.contentMode = .scaleAspectFit
         
-        self.shareLabel.text = Localizations.calendar.empty.share
+        self.shareLabel.text = Localizations.Calendar.Empty.share
         
         self.addSubview(shareCover)
         self.shareCover.addSubview(self.shareImage)

@@ -38,7 +38,7 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         
         // bar buttons
         self.newButton = UIBarButtonItem(image: #imageLiteral(resourceName: "new").resizedImage(newSize: CGSize(width: 25.0, height: 25.0)), style: .plain, target: self, action: #selector(self.newItemButtonAction(sender:)))
-        self.editButton = UIBarButtonItem(title: Localizations.general.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
+        self.editButton = UIBarButtonItem(title: Localizations.General.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
         
         self.navigationItem.rightBarButtonItems = [self.newButton, self.editButton]
         
@@ -55,8 +55,8 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         self.view.addSubnode(self.tableNode)
         
         // Accessibility
-        self.newButton.accessibilityLabel = Localizations.accessibility.evaluate.list.addNew
-        self.editButton.accessibilityLabel = Localizations.accessibility.evaluate.list.editList
+        self.newButton.accessibilityLabel = Localizations.Accessibility.Evaluate.List.addNew
+        self.editButton.accessibilityLabel = Localizations.Accessibility.Evaluate.List.editList
     }
 
     override func didReceiveMemoryWarning() {
@@ -212,10 +212,10 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
     @objc func editButtonAction(sender: UIBarButtonItem) {
         if self.tableNode.view.isEditing {
             self.tableNode.view.setEditing(false, animated: true)
-            self.editButton.title = Localizations.general.edit
+            self.editButton.title = Localizations.General.edit
         } else {
             self.tableNode.view.setEditing(true, animated: true)
-            self.editButton.title = Localizations.general.done
+            self.editButton.title = Localizations.General.done
         }
     }
     

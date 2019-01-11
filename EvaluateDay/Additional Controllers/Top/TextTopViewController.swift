@@ -177,12 +177,12 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         cancelButton.setTitleColor(style.buttonsColor, for: .normal)
         cancelButton.titleLabel?.font = style.buttonsFont
         cancelButton.addTarget(self, action: #selector(cancelButtonAction(sender:)), for: .touchUpInside)
-        cancelButton.setTitle(Localizations.general.cancel, for: .normal)
+        cancelButton.setTitle(Localizations.General.cancel, for: .normal)
         
         saveButton.setTitleColor(style.buttonsColor, for: .normal)
         saveButton.titleLabel?.font = style.buttonsFont
         saveButton.addTarget(self, action: #selector(saveButtonAction(sender:)), for: .touchUpInside)
-        saveButton.setTitle(Localizations.general.save, for: .normal)
+        saveButton.setTitle(Localizations.General.save, for: .normal)
         
         keyboardView.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { (make) in

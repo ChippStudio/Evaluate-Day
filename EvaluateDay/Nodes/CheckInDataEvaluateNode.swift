@@ -42,7 +42,7 @@ class CheckInDataEvaluateNode: ASCellNode {
         }
         
         if street.isEmpty && otherAddress.isEmpty {
-            self.street.attributedText = NSAttributedString(string: Localizations.evaluate.location.unknown, attributes: [NSAttributedStringKey.font: style.checkInDataStreetFont, NSAttributedStringKey.foregroundColor: style.checkInDataStreetColor])
+            self.street.attributedText = NSAttributedString(string: Localizations.Evaluate.Location.unknown, attributes: [NSAttributedStringKey.font: style.checkInDataStreetFont, NSAttributedStringKey.foregroundColor: style.checkInDataStreetColor])
         } else {
             self.street.attributedText = NSAttributedString(string: street, attributes: [NSAttributedStringKey.font: style.checkInDataStreetFont, NSAttributedStringKey.foregroundColor: style.checkInDataStreetColor])
             self.otherAddress.attributedText = NSAttributedString(string: otherAddress, attributes: [NSAttributedStringKey.font: style.checkInDataOtherAddressFont, NSAttributedStringKey.foregroundColor: style.checkInDataOtherAddressColor])

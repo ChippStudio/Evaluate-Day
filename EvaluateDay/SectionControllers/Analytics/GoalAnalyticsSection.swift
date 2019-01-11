@@ -69,8 +69,8 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
         case .information:
             let goalCard = self.card.data as! GoalCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(goalCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(goalCard.values.count)"))
             
             if isPro {
                 var minimum: Double = 3
@@ -87,24 +87,24 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
                     sum += v.value
                 }
                 
-                self.data!.append((title: Localizations.cardSettings.goal.goal, data: "\(goalCard.goalValue)"))
+                self.data!.append((title: Localizations.CardSettings.Goal.goal, data: "\(goalCard.goalValue)"))
                 if goalCard.isSum {
-                    self.data!.append((title: Localizations.analytics.statistics.sum, data: "\(sum + goalCard.startValue)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + goalCard.startValue)"))
                 }
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(goalCard.values.count))"))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(goalCard.values.count))"))
             } else {
-                self.data!.append((title: Localizations.cardSettings.goal.goal, data: proPlaceholder))
+                self.data!.append((title: Localizations.CardSettings.Goal.goal, data: proPlaceholder))
                 if goalCard.isSum {
-                    self.data!.append((title: Localizations.analytics.statistics.sum, data: proPlaceholder))
+                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
                 }
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
                 return node
             }
         case .time:
@@ -125,7 +125,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, isPro: isPro, style: style)
+                let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt, isPro: isPro, style: style)
                 node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -148,7 +148,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt, isPro: true, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -161,7 +161,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
             }
         case .export:
             return {
-                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
+                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
                     if isPro {

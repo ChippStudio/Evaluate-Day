@@ -40,7 +40,7 @@ class SettingsNotificationNode: ASCellNode {
         
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
-        self.accessibilityLabel = Localizations.accessibility.notification.description(value1: message, localizedRepeat, time, card)
+        self.accessibilityLabel = Localizations.Accessibility.Notification.description(message, localizedRepeat, time, card)
         
         self.automaticallyManagesSubnodes = true
     }

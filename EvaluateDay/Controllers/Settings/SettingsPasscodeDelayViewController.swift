@@ -68,13 +68,13 @@ class SettingsPasscodeDelayViewController: UIViewController, ASTableDataSource, 
         var requireString = ""
         switch item {
         case .immediately:
-            requireString = Localizations.settings.passcode.delay.immediately
+            requireString = Localizations.Settings.Passcode.Delay.immediately
         case .one:
-            requireString = Localizations.settings.passcode.delay._1m
+            requireString = Localizations.Settings.Passcode.Delay._1m
         case .hour:
-            requireString = Localizations.settings.passcode.delay._1h
+            requireString = Localizations.Settings.Passcode.Delay._1h
         default:
-            requireString = Localizations.settings.passcode.delay.minutes(value1: "\(item.rawValue)")
+            requireString = Localizations.Settings.Passcode.Delay.minutes("\(item.rawValue)")
         }
         
         let style = Themes.manager.settingsStyle

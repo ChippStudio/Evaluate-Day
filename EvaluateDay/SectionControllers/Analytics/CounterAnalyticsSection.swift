@@ -69,8 +69,8 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let counterCard = self.card.data as! CounterCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.analytics.statistics.days + ":", data: "\(counterCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(counterCard.values.count)"))
             
             if isPro {
                 var minimum: Double = 3
@@ -87,21 +87,21 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                     sum += v.value
                 }
                 if counterCard.isSum {
-                    self.data!.append((title: Localizations.analytics.statistics.sum, data: "\(sum + counterCard.startValue)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + counterCard.startValue)"))
                 }
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: "\(maximum)"))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: "\(minimum)"))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: "\(Float(sum)/Float(counterCard.values.count))"))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(counterCard.values.count))"))
             } else {
                 if counterCard.isSum {
-                    self.data!.append((title: Localizations.analytics.statistics.sum, data: proPlaceholder))
+                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
                 }
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
                 return node
             }
         case .time:
@@ -122,7 +122,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsLineChartNode(title: Localizations.analytics.chart.line.criterion.title, data: data, options: opt, isPro: isPro, style: style)
+                let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt, isPro: isPro, style: style)
                 node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -145,7 +145,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.chart.bar.criterion.title, data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt, isPro: true, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -158,7 +158,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .export:
             return {
-                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
+                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
                     if isPro {

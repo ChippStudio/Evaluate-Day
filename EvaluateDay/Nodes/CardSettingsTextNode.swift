@@ -36,7 +36,7 @@ class CardSettingsTextNode: ASCellNode {
         var textString = text
         if text == "" {
             textColor = style.cardSettingsTextPlaceholder
-            textString = Localizations.cardSettings.textPlaceholder
+            textString = Localizations.CardSettings.textPlaceholder
         }
         
         self.text.attributedText = NSAttributedString(string: textString, attributes: [NSAttributedStringKey.font: style.cardSettingsTextFont, NSAttributedStringKey.foregroundColor: textColor])

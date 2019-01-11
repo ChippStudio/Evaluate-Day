@@ -29,10 +29,10 @@ class SlidesViewController: UIViewController, ASPagerDelegate, ASPagerDataSource
         if !Database.manager.application.isShowWelcome && Database.manager.application.user.pro {
             self.sliders.append((nil, "pro"))
         }
-        self.sliders.append((#imageLiteral(resourceName: "sldFirst"), Localizations.welcome.cards.first))
-        self.sliders.append((#imageLiteral(resourceName: "sldSecond"), Localizations.welcome.cards.second))
-        self.sliders.append((#imageLiteral(resourceName: "sldThird"), Localizations.welcome.cards.third))
-        self.sliders.append((#imageLiteral(resourceName: "sldFourth"), Localizations.welcome.cards.fourth))
+        self.sliders.append((#imageLiteral(resourceName: "sldFirst"), Localizations.Welcome.Cards.first))
+        self.sliders.append((#imageLiteral(resourceName: "sldSecond"), Localizations.Welcome.Cards.second))
+        self.sliders.append((#imageLiteral(resourceName: "sldThird"), Localizations.Welcome.Cards.third))
+        self.sliders.append((#imageLiteral(resourceName: "sldFourth"), Localizations.Welcome.Cards.fourth))
         self.sliders.append((nil, "last"))
         
         // Set pager node
@@ -56,8 +56,8 @@ class SlidesViewController: UIViewController, ASPagerDelegate, ASPagerDataSource
         self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         
         self.nextButton.isAccessibilityElement = true
-        self.nextButton.accessibilityLabel = "\(Localizations.welcome.cards.last.more.title), \(Localizations.welcome.cards.last.more.description)"
-        self.nextButton.accessibilityHint = Localizations.accessibility.onboarding.hint
+        self.nextButton.accessibilityLabel = "\(Localizations.Welcome.Cards.Last.More.title), \(Localizations.Welcome.Cards.Last.More.description)"
+        self.nextButton.accessibilityHint = Localizations.Accessibility.Onboarding.hint
         
         self.pageControl.isAccessibilityElement = false
     }

@@ -25,7 +25,7 @@ class AnalyticsExportFileTypeNode: ASCellNode {
         
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
-        self.accessibilityHint = Localizations.accessibility.analytics.export.hint
+        self.accessibilityHint = Localizations.Accessibility.Analytics.Export.hint
         
         var fileTitle = ""
         switch type {
@@ -40,7 +40,7 @@ class AnalyticsExportFileTypeNode: ASCellNode {
             fileTitle = "txt"
         }
         
-        self.accessibilityLabel = Localizations.accessibility.analytics.export.title(value1: fileTitle)
+        self.accessibilityLabel = Localizations.Accessibility.Analytics.Export.title(fileTitle)
         
         self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(self.colorStyle.analyticsExportTintColor)
         self.imageNode.contentMode = .scaleAspectFit

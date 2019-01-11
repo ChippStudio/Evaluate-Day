@@ -24,10 +24,10 @@ class SettingsSelectNode: ASCellNode {
         didSet {
             if select == true {
                 self.selectImage.alpha = 1.0
-                self.accessibilityValue = Localizations.accessibility.selected
+                self.accessibilityValue = Localizations.Accessibility.selected
             } else {
                 self.selectImage.alpha = 0.0
-                self.accessibilityValue = Localizations.accessibility.unselected
+                self.accessibilityValue = Localizations.Accessibility.unselected
             }
         }
     }

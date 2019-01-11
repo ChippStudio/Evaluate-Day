@@ -24,7 +24,7 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         super.viewDidLoad()
 
         // Set navigation Item
-        self.navigationItem.title = Localizations.settings.themes.select.icon
+        self.navigationItem.title = Localizations.Settings.Themes.Select.icon
         
         // set table node
         let layout = self.calculateLayout()

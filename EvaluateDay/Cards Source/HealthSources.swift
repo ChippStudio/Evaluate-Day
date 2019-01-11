@@ -33,19 +33,19 @@ class HealthSources: NSObject {
         
         switch self.category {
         case .fitness:
-            self.title = Localizations.health.category.fitness
+            self.title = Localizations.Health.Category.fitness
             self.setFitnessSources()
         case .nutrition:
-            self.title = Localizations.health.category.nutrition
+            self.title = Localizations.Health.Category.nutrition
             self.setNutriationSources()
         case .sleep:
-            self.title = Localizations.health.category.sleep
+            self.title = Localizations.Health.Category.sleep
             self.setSleepSources()
         case .mindfulness:
-            self.title = Localizations.health.category.mindfulness
+            self.title = Localizations.Health.Category.mindfulness
             self.setMindfulnessSouerces()
         case .body:
-            self.title = Localizations.health.category.body
+            self.title = Localizations.Health.Category.body
             self.setBodySources()
         }
     }

@@ -38,7 +38,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         
         // Delete button
         self.deleteButton = UIBarButtonItem(image: #imageLiteral(resourceName: "delete").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.deleteAction(sender:)))
-        self.deleteButton.accessibilityLabel = Localizations.general.delete
+        self.deleteButton.accessibilityLabel = Localizations.General.delete
         self.shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(shareAction(sender:)))
         self.navigationItem.rightBarButtonItems = [self.deleteButton, self.shareButton]
         
@@ -222,11 +222,11 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             let cc = String(format: "%.1f", w.cloudCover * 100) + " %"
             data.append(cc)
             
-            var text = Localizations.evaluate.journal.entry.weather(value1: temperature, apparentTemperature, humidity, pressure, windSpeed, cc)
+            var text = Localizations.Evaluate.Journal.Entry.weather(temperature, apparentTemperature, humidity, pressure, windSpeed, cc)
             
             if w.pressure == 0.0 && w.humidity == 0.0 {
                 data.removeAll()
-                text = Localizations.evaluate.weather.unknown
+                text = Localizations.Evaluate.Weather.unknown
                 icon = #imageLiteral(resourceName: "clear-day")
             }
             return {
@@ -392,29 +392,29 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 var partTitle = ""
                 var message = ""
                 if date != nil {
-                    partTitle = Localizations.evaluate.journal.entry.photo.date
+                    partTitle = Localizations.Evaluate.Journal.Entry.Photo.date
                     message = DateFormatter.localizedString(from: date!, dateStyle: .medium, timeStyle: .short)
                 }
                 if partTitle != "" {
-                    partTitle += " \(Localizations.general.and) "
+                    partTitle += " \(Localizations.General.and) "
                 }
                 if loc != nil {
-                    partTitle += Localizations.evaluate.journal.entry.photo.location
+                    partTitle += Localizations.Evaluate.Journal.Entry.Photo.location
                 }
                 
-                let title = Localizations.evaluate.journal.entry.photo.question(value1: partTitle)
+                let title = Localizations.Evaluate.Journal.Entry.Photo.question(partTitle)
                 
                 let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 
-                let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-                let dateAction = UIAlertAction(title: Localizations.evaluate.journal.entry.photo.date, style: .default, handler: { (_) in
+                let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+                let dateAction = UIAlertAction(title: Localizations.Evaluate.Journal.Entry.Photo.date, style: .default, handler: { (_) in
                     
                     self.setNewDate(date: date!)
                 })
-                let locationAction = UIAlertAction(title: Localizations.evaluate.journal.entry.photo.location, style: .default, handler: { (_) in
+                let locationAction = UIAlertAction(title: Localizations.Evaluate.Journal.Entry.Photo.location, style: .default, handler: { (_) in
                     self.setNewLocation(location: loc!)
                 })
-                let bothAction = UIAlertAction(title: Localizations.evaluate.journal.entry.photo.useBoth, style: .default, handler: { (_) in
+                let bothAction = UIAlertAction(title: Localizations.Evaluate.Journal.Entry.Photo.useBoth, style: .default, handler: { (_) in
                     
                     self.setNewLocation(location: loc!)
                     self.setNewDate(date: date!)
@@ -619,9 +619,9 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     }
     
     @objc func deleteAction(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
+        let alert = UIAlertController(title: Localizations.General.sureQuestion, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
             if self.textValue.location != nil {
                 try! Database.manager.data.write {
                     self.textValue.location!.isDeleted = true

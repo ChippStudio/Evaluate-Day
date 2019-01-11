@@ -68,8 +68,8 @@ class CounterEvaluateNode: ASCellNode {
         self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusAttributes), for: .normal)
         self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusHighlightedAttributes), for: .highlighted)
         
-        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.evaluate.counter.customValue, attributes: customAttributes), for: .normal)
-        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.evaluate.counter.customValue, attributes: customHighlightedAttributes), for: .highlighted)
+        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customAttributes), for: .normal)
+        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customHighlightedAttributes), for: .highlighted)
         
         self.plusCover.borderWidth = 1.0
         self.plusCover.borderColor = style.counterEvaluatePlusColor.cgColor
@@ -115,13 +115,13 @@ class CounterEvaluateNode: ASCellNode {
         self.previousValue.isAccessibilityElement = false
         self.previousDate.isAccessibilityElement = false
         
-        self.plus.accessibilityLabel = Localizations.accessibility.evaluate.counter.increase(value1: "\(step)")
-        self.minus.accessibilityLabel = Localizations.accessibility.evaluate.counter.decrease(value1: "\(step)")
+        self.plus.accessibilityLabel = Localizations.Accessibility.Evaluate.Counter.increase("\(step)")
+        self.minus.accessibilityLabel = Localizations.Accessibility.Evaluate.Counter.decrease("\(step)")
         
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.counter.summory(value1: "\(value)", formatter.string(from: date), "\(previousValue)")
+        self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Evaluate.Counter.summory("\(value)", formatter.string(from: date), "\(previousValue)")
         if sumValue != nil {
-            self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.counter.summorySum(value1: "\(sumValue!)")
+            self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Counter.summorySum("\(sumValue!)")
         }
         
         self.automaticallyManagesSubnodes = true

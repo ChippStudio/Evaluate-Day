@@ -33,14 +33,14 @@ class UpdateNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .left
         
-        self.titleNode.attributedText = NSAttributedString(string: Localizations.update.title, attributes: [NSAttributedStringKey.font: style.updateTitleFont, NSAttributedStringKey.foregroundColor: style.updateTitleColor, NSAttributedStringKey.paragraphStyle: center])
-        self.subtitleNode.attributedText = NSAttributedString(string: Localizations.update.subtitle, attributes: [NSAttributedStringKey.font: style.updateSubtitleFont, NSAttributedStringKey.foregroundColor: style.updateSubtitleColor, NSAttributedStringKey.paragraphStyle: center])
+        self.titleNode.attributedText = NSAttributedString(string: Localizations.Update.title, attributes: [NSAttributedStringKey.font: style.updateTitleFont, NSAttributedStringKey.foregroundColor: style.updateTitleColor, NSAttributedStringKey.paragraphStyle: center])
+        self.subtitleNode.attributedText = NSAttributedString(string: Localizations.Update.subtitle, attributes: [NSAttributedStringKey.font: style.updateSubtitleFont, NSAttributedStringKey.foregroundColor: style.updateSubtitleColor, NSAttributedStringKey.paragraphStyle: center])
         
         self.updateButton.borderWidth = 1.0
         self.updateButton.borderColor = style.updateButtonBorderColor.cgColor
         self.updateButton.cornerRadius = 5.0
         
-        let buttonTitle = NSAttributedString(string: Localizations.update.button, attributes: [NSAttributedStringKey.font: style.updateButtonFont, NSAttributedStringKey.foregroundColor: style.updateButtonColor, NSAttributedStringKey.paragraphStyle: center])
+        let buttonTitle = NSAttributedString(string: Localizations.Update.button, attributes: [NSAttributedStringKey.font: style.updateButtonFont, NSAttributedStringKey.foregroundColor: style.updateButtonColor, NSAttributedStringKey.paragraphStyle: center])
         self.updateButton.setAttributedTitle(buttonTitle, for: .normal)
         self.updateButton.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         self.updateButton.addTarget(self, action: #selector(updateButtonAction(sender:)), forControlEvents: .touchUpInside)

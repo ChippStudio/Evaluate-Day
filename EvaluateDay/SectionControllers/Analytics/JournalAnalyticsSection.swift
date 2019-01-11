@@ -74,7 +74,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .map:
             return {
-                let node = AnalyticsMapNode(title: Localizations.analytics.journal.near.uppercased(), actionTitle: Localizations.analytics.checkin.map.action, style: style)
+                let node = AnalyticsMapNode(title: Localizations.Analytics.Journal.near.uppercased(), actionTitle: Localizations.Analytics.Checkin.Map.action, style: style)
                 node.topInset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 node.actionButton!.addTarget(self, action: #selector(self.openMapAction(sender:)), forControlEvents: .touchUpInside)
@@ -96,8 +96,8 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let journalCard = self.card.data as! JournalCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.general.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.analytics.statistics.entries + ":", data: "\(journalCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.entries + ":", data: "\(journalCard.values.count)"))
             
             if isPro {
                 var max: CLLocationDistance = 0.0
@@ -132,25 +132,25 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 
                 if maxString != nil {
-                    self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: maxString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: maxString!))
                 }
                 if minString != nil {
-                    self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: minString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: minString!))
                 }
-                self.data!.append((title: Localizations.analytics.statistics.characters.total, data: "\(sum)"))
-                self.data!.append((title: Localizations.analytics.statistics.characters.max, data: "\(maxCh)"))
-                self.data!.append((title: Localizations.analytics.statistics.characters.min, data: "\(minCh)"))
-                self.data!.append((title: Localizations.analytics.statistics.characters.average, data: String(format: "%.2f", Double(sum)/Double(journalCard.values.count))))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: "\(sum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: "\(maxCh)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: "\(minCh)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: String(format: "%.2f", Double(sum)/Double(journalCard.values.count))))
             } else {
-                self.data!.append((title: Localizations.analytics.statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.characters.total, data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.characters.max, data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.characters.min, data: proPlaceholder))
-                self.data!.append((title: Localizations.analytics.statistics.characters.average, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.analytics.statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
                 return node
             }
         case .time:
@@ -160,7 +160,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.phrase.calendar.title.uppercased(), isPro: isPro, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Phrase.Calendar.title.uppercased(), isPro: isPro, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -199,7 +199,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
             let opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.analytics.journal.barEntries, data: data, options: opt, isPro: isPro, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Journal.barEntries, data: data, options: opt, isPro: isPro, style: style)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
@@ -212,13 +212,13 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .viewAll:
             return {
-                let node = SettingsProButtonNode(title: Localizations.analytics.journal.viewAll, full: false, style: style)
+                let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll, full: false, style: style)
                 node.topInset = 20.0
                 return node
             }
         case .export:
             return {
-                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
+                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
                     if isPro {
@@ -534,7 +534,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     @objc private func openMapAction(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.map.rawValue, bundle: nil).instantiateInitialViewController() as! MapViewController
         controller.card = self.card
-        controller.navTitle = Localizations.analytics.journal.near
+        controller.navTitle = Localizations.Analytics.Journal.near
         if let nav = self.viewController?.parent as? UINavigationController {
             nav.pushViewController(controller, animated: true)
         }

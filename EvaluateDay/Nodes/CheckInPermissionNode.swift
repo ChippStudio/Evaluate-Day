@@ -37,10 +37,10 @@ class CheckInPermissionNode: ASCellNode {
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.evaluate.checkin.permission.description, attributes: [NSAttributedStringKey.font: style.checkInPermissionDescriptionFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionDescriptionColor, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedStringKey.font: style.checkInPermissionDescriptionFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionDescriptionColor, NSAttributedStringKey.paragraphStyle: paragraph])
         
-        let buttonTitleString = NSAttributedString(string: Localizations.evaluate.checkin.permission.buttonTitle, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonColor])
-        let buttonHighlightedTitleString = NSAttributedString(string: Localizations.evaluate.checkin.permission.buttonTitle, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonHighlightColor])
+        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonColor])
+        let buttonHighlightedTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonHighlightColor])
         
         self.permissionButton.setAttributedTitle(buttonTitleString, for: .normal)
         self.permissionButton.setAttributedTitle(buttonHighlightedTitleString, for: .highlighted)
@@ -49,8 +49,8 @@ class CheckInPermissionNode: ASCellNode {
         self.permissionCover.borderColor = style.checkInPermissionButtonColor.cgColor
         self.permissionCover.borderWidth = 1.0
         
-        let mapTitleString = NSAttributedString(string: Localizations.evaluate.checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonColor])
-        let mapHighlightedTitleString = NSAttributedString(string: Localizations.evaluate.checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonHighlightColor])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonColor])
+        let mapHighlightedTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: style.checkInPermissionButtonFont, NSAttributedStringKey.foregroundColor: style.checkInPermissionButtonHighlightColor])
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         self.mapButton.setAttributedTitle(mapHighlightedTitleString, for: .highlighted)

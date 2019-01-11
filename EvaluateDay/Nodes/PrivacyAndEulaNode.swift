@@ -33,13 +33,13 @@ class PrivacyAndEulaNode: ASCellNode {
         super.init()
         
         // Description
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.settings.pro.privacy.description, attributes: [NSAttributedStringKey.font: style.descriptionTextFont, NSAttributedStringKey.foregroundColor: style.descriptionTextColor])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Privacy.description, attributes: [NSAttributedStringKey.font: style.descriptionTextFont, NSAttributedStringKey.foregroundColor: style.descriptionTextColor])
         
         // Buttons
-        let privacy = NSAttributedString(string: Localizations.settings.pro.privacy.privacy, attributes: [NSAttributedStringKey.font: style.privacyButtonTextFont, NSAttributedStringKey.foregroundColor: style.privacyButtonTextColor])
+        let privacy = NSAttributedString(string: Localizations.Settings.Pro.Privacy.privacy, attributes: [NSAttributedStringKey.font: style.privacyButtonTextFont, NSAttributedStringKey.foregroundColor: style.privacyButtonTextColor])
         self.privacyButton.setAttributedTitle(privacy, for: .normal)
         
-        let eula = NSAttributedString(string: Localizations.settings.pro.privacy.eula, attributes: [NSAttributedStringKey.font: style.eulaButtonTextFont, NSAttributedStringKey.foregroundColor: style.eulaButtonTextColor])
+        let eula = NSAttributedString(string: Localizations.Settings.Pro.Privacy.eula, attributes: [NSAttributedStringKey.font: style.eulaButtonTextFont, NSAttributedStringKey.foregroundColor: style.eulaButtonTextColor])
         self.eulaButton.setAttributedTitle(eula, for: .normal)
         
         self.privacyButton.addTarget(self, action: #selector(privacyButtonAction(sender:)), forControlEvents: .touchUpInside)

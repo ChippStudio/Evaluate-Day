@@ -41,7 +41,7 @@ class WelcomePermissionButtonNode: ASCellNode {
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
         self.accessibilityLabel = "\(title), \(subtitle)"
-        self.accessibilityValue = set ? Localizations.accessibility.onboarding.permissions.authorized : Localizations.accessibility.onboarding.permissions.restricted
+        self.accessibilityValue = set ? Localizations.Accessibility.Onboarding.Permissions.authorized : Localizations.Accessibility.Onboarding.Permissions.restricted
         
         self.automaticallyManagesSubnodes = true
     }

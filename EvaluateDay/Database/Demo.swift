@@ -41,11 +41,11 @@ final class Demo {
     // MARK: - Private actions
     private func makeDashboards() {
         let work = Dashboard()
-        work.title = Localizations.demo.dashboard.work
+        work.title = Localizations.Demo.Dashboard.work
         work.image = "dashboard-31"
         
         let workout = Dashboard()
-        workout.title = Localizations.demo.dashboard.workout
+        workout.title = Localizations.Demo.Dashboard.workout
         workout.image = "dashboard-19"
         workout.order = 1
         
@@ -59,8 +59,8 @@ final class Demo {
     private func makeColors() {
         // Make cards
         let card = Card()
-        card.title = Localizations.new.color.title
-        card.subtitle = Localizations.new.color.subtitle
+        card.title = Localizations.New.Color.title
+        card.subtitle = Localizations.New.Color.subtitle
         card.type = .color
         card.order = Database.manager.data.objects(Card.self).count
         
@@ -87,8 +87,8 @@ final class Demo {
     private func makeCheckIn() {
         // Make cards
         let card = Card()
-        card.title = Localizations.new.checkin.title
-        card.subtitle = Localizations.new.checkin.subtitle
+        card.title = Localizations.New.Checkin.title
+        card.subtitle = Localizations.New.Checkin.subtitle
         card.type = .checkIn
         card.order = Database.manager.data.objects(Card.self).count
         
@@ -119,8 +119,8 @@ final class Demo {
     private func makeHundredCriterion() {
         // Make cards
         let card = Card()
-        card.title = Localizations.demo.criterion.hundred.title
-        card.subtitle = Localizations.demo.criterion.hundred.subtitle
+        card.title = Localizations.Demo.Criterion.Hundred.title
+        card.subtitle = Localizations.Demo.Criterion.Hundred.subtitle
         card.type = .criterionHundred
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.work
@@ -147,8 +147,8 @@ final class Demo {
     private func makeTenCriterion() {
         // Make cards
         let card = Card()
-        card.title = Localizations.demo.criterion.ten.title
-        card.subtitle = Localizations.demo.criterion.ten.subtitle
+        card.title = Localizations.Demo.Criterion.Ten.title
+        card.subtitle = Localizations.Demo.Criterion.Ten.subtitle
         card.type = .criterionTen
         card.order = Database.manager.data.objects(Card.self).count
         (card.data as! CriterionTenCard).positive = false
@@ -176,8 +176,8 @@ final class Demo {
     private func makeThreeCriterion() {
         // Make cards
         let card = Card()
-        card.title = Localizations.demo.criterion.three.title
-        card.subtitle = Localizations.demo.criterion.three.subtitle
+        card.title = Localizations.Demo.Criterion.Three.title
+        card.subtitle = Localizations.Demo.Criterion.Three.subtitle
         card.type = .criterionThree
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.work
@@ -204,8 +204,8 @@ final class Demo {
     
     private func makePhrases() {
         let card = Card()
-        card.title = Localizations.new.phrase.title
-        card.subtitle = Localizations.new.phrase.subtitle
+        card.title = Localizations.New.Phrase.title
+        card.subtitle = Localizations.New.Phrase.subtitle
         card.type = .phrase
         card.order = Database.manager.data.objects(Card.self).count
         
@@ -231,8 +231,8 @@ final class Demo {
     
     private func makeCounter() {
         let card = Card()
-        card.title = Localizations.demo.counter.title
-        card.subtitle = Localizations.demo.counter.subtitle
+        card.title = Localizations.Demo.Counter.title
+        card.subtitle = Localizations.Demo.Counter.subtitle
         card.type = .counter
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.work
@@ -259,8 +259,8 @@ final class Demo {
     
     private func makeHabit() {
         let card = Card()
-        card.title = Localizations.demo.habit.title
-        card.subtitle = Localizations.demo.habit.subtitle
+        card.title = Localizations.Demo.Habit.title
+        card.subtitle = Localizations.Demo.Habit.subtitle
         card.type = .habit
         card.order = Database.manager.data.objects(Card.self).count
         (card.data as! HabitCard).multiple = true
@@ -289,8 +289,8 @@ final class Demo {
     
     private func makeTracker() {
         let card = Card()
-        card.title = Localizations.demo.tracker.title
-        card.subtitle = Localizations.demo.tracker.subtitle
+        card.title = Localizations.Demo.Tracker.title
+        card.subtitle = Localizations.Demo.Tracker.subtitle
         card.type = .tracker
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.workout
@@ -319,12 +319,12 @@ final class Demo {
     
     private func  makeList() {
         let card = Card()
-        card.title = Localizations.demo.list.title
-        card.subtitle = Localizations.demo.list.subtitle
+        card.title = Localizations.Demo.List.title
+        card.subtitle = Localizations.Demo.List.subtitle
         card.type = .list
         card.order = Database.manager.data.objects(Card.self).count
         
-        let items = [Localizations.demo.list.steps.first, Localizations.demo.list.steps.second, Localizations.demo.list.steps.third, Localizations.demo.list.steps.fourth, Localizations.demo.list.steps.fifth]
+        let items = [Localizations.Demo.List.Steps.first, Localizations.Demo.List.Steps.second, Localizations.Demo.List.Steps.third, Localizations.Demo.List.Steps.fourth, Localizations.Demo.List.Steps.fifth]
         
         var values = [MarkValue]()
         for (i, s) in items.enumerated() {
@@ -348,8 +348,8 @@ final class Demo {
     
     private func makeGoal() {
         let card = Card()
-        card.title = Localizations.demo.goal.title
-        card.subtitle = Localizations.demo.goal.subtitle
+        card.title = Localizations.Demo.Goal.title
+        card.subtitle = Localizations.Demo.Goal.subtitle
         card.type = .goal
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.workout
@@ -377,8 +377,8 @@ final class Demo {
     
     private func makeJournal() {
         let card = Card()
-        card.title = Localizations.demo.journal.title
-        card.subtitle = Localizations.demo.journal.subtitle
+        card.title = Localizations.Demo.Journal.title
+        card.subtitle = Localizations.Demo.Journal.subtitle
         card.type = .journal
         card.order = Database.manager.data.objects(Card.self).count
         

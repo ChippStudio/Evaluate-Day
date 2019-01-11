@@ -32,24 +32,24 @@ class ProMoreViewController: UIViewController, ASTableDataSource, ASTableDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = Localizations.settings.pro.description.more.title
+        self.navigationItem.title = Localizations.Settings.Pro.Description.More.title
         
         // Set items
-        self.items.append((image: #imageLiteral(resourceName: "passcode"), title: Localizations.settings.pro.description.more.passcode.title, subtitle: Localizations.settings.pro.description.more.passcode.description))
-        self.items.append((image: #imageLiteral(resourceName: "listB"), title: Localizations.settings.pro.description.more.cards.title, subtitle: Localizations.settings.pro.description.more.cards.description))
-        self.items.append((image: #imageLiteral(resourceName: "analyticsB"), title: Localizations.settings.pro.description.more.analytics.title, subtitle: Localizations.settings.pro.description.more.analytics.description))
-        self.items.append((image: #imageLiteral(resourceName: "activityB"), title: Localizations.settings.pro.description.more.activity.title, subtitle: Localizations.settings.pro.description.more.activity.description))
-        self.items.append((image: #imageLiteral(resourceName: "sync"), title: Localizations.settings.pro.description.more.sync.title, subtitle: Localizations.settings.pro.description.more.sync.description))
-        self.items.append((image: #imageLiteral(resourceName: "themes"), title: Localizations.settings.pro.description.more.themes.title, subtitle: Localizations.settings.pro.description.more.themes.description))
-        self.items.append((image: #imageLiteral(resourceName: "export"), title: Localizations.settings.pro.description.more.export.title, subtitle: Localizations.settings.pro.description.more.export.description))
-        self.items.append((image: #imageLiteral(resourceName: "sandClockB"), title: Localizations.settings.pro.description.more.past.title, subtitle: Localizations.settings.pro.description.more.past.description))
-        self.items.append((image: #imageLiteral(resourceName: "app"), title: Localizations.settings.pro.description.more.future.title, subtitle: Localizations.settings.pro.description.more.future.description))
+        self.items.append((image: #imageLiteral(resourceName: "passcode"), title: Localizations.Settings.Pro.Description.More.Passcode.title, subtitle: Localizations.Settings.Pro.Description.More.Passcode.description))
+        self.items.append((image: #imageLiteral(resourceName: "listB"), title: Localizations.Settings.Pro.Description.More.Cards.title, subtitle: Localizations.Settings.Pro.Description.More.Cards.description))
+        self.items.append((image: #imageLiteral(resourceName: "analyticsB"), title: Localizations.Settings.Pro.Description.More.Analytics.title, subtitle: Localizations.Settings.Pro.Description.More.Analytics.description))
+        self.items.append((image: #imageLiteral(resourceName: "activityB"), title: Localizations.Settings.Pro.Description.More.Activity.title, subtitle: Localizations.Settings.Pro.Description.More.Activity.description))
+        self.items.append((image: #imageLiteral(resourceName: "sync"), title: Localizations.Settings.Pro.Description.More.Sync.title, subtitle: Localizations.Settings.Pro.Description.More.Sync.description))
+        self.items.append((image: #imageLiteral(resourceName: "themes"), title: Localizations.Settings.Pro.Description.More.Themes.title, subtitle: Localizations.Settings.Pro.Description.More.Themes.description))
+        self.items.append((image: #imageLiteral(resourceName: "export"), title: Localizations.Settings.Pro.Description.More.Export.title, subtitle: Localizations.Settings.Pro.Description.More.Export.description))
+        self.items.append((image: #imageLiteral(resourceName: "sandClockB"), title: Localizations.Settings.Pro.Description.More.Past.title, subtitle: Localizations.Settings.Pro.Description.More.Past.description))
+        self.items.append((image: #imageLiteral(resourceName: "app"), title: Localizations.Settings.Pro.Description.More.Future.title, subtitle: Localizations.Settings.Pro.Description.More.Future.description))
         
         // Button
         self.annualyButtonCover.layer.masksToBounds = true
         self.annualyButtonCover.layer.cornerRadius = 5.0
         
-        self.annualyButton.setTitle(Localizations.settings.pro.subscription.buy.annualy(value1: Store.current.localizedAnnualyPrice), for: .normal)
+        self.annualyButton.setTitle(Localizations.Settings.Pro.Subscription.Buy.annualy(Store.current.localizedAnnualyPrice), for: .normal)
         
         // set table node
         self.tableNode = ASTableNode(style: .plain)

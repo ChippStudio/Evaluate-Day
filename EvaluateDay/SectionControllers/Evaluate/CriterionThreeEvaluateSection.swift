@@ -203,29 +203,29 @@ class ThreeNode: ASCellNode, CardNode {
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        var criterionType = Localizations.accessibility.evaluate.criterion.negative
+        var criterionType = Localizations.Accessibility.Evaluate.Criterion.negative
         if isPositive {
-            criterionType = Localizations.accessibility.evaluate.criterion.positive
+            criterionType = Localizations.Accessibility.Evaluate.Criterion.positive
         }
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionThree)), \(criterionType)"
-        var currentValueString = Localizations.general.none
+        var currentValueString = Localizations.General.none
         if current != nil {
             if current! == 0 {
-                currentValueString = Localizations.accessibility.evaluate.criterion.three.bad
+                currentValueString = Localizations.Accessibility.Evaluate.Criterion.Three.bad
                 if !isPositive {
-                    currentValueString = Localizations.accessibility.evaluate.criterion.three.good
+                    currentValueString = Localizations.Accessibility.Evaluate.Criterion.Three.good
                 }
             } else if current == 1 {
-                currentValueString = Localizations.accessibility.evaluate.criterion.three.neutral
+                currentValueString = Localizations.Accessibility.Evaluate.Criterion.Three.neutral
             } else {
-                currentValueString = Localizations.accessibility.evaluate.criterion.three.good
+                currentValueString = Localizations.Accessibility.Evaluate.Criterion.Three.good
                 if !isPositive {
-                    currentValueString = Localizations.accessibility.evaluate.criterion.three.bad
+                    currentValueString = Localizations.Accessibility.Evaluate.Criterion.Three.bad
                 }
             }
         }
         
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: currentValueString)
+        self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current(currentValueString)
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

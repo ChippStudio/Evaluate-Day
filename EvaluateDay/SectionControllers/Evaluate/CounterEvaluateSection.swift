@@ -260,7 +260,7 @@ class CounterNode: ASCellNode, CardNode {
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.current(value1: "\(value)")
+        self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(value)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

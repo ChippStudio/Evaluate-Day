@@ -22,7 +22,7 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         // Navigation bar
-        self.navigationItem.title = Localizations.new.controller.title
+        self.navigationItem.title = Localizations.New.Controller.title
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -93,7 +93,7 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
             }
             
             return {
-                let node = DescriptionNode(text: Localizations.new.cards.limit.message(value1: cardsLimit), alignment: .right, style: Themes.manager.settingsStyle)
+                let node = DescriptionNode(text: Localizations.New.Cards.Limit.message(cardsLimit), alignment: .right, style: Themes.manager.settingsStyle)
                 node.topInset = 10.0
                 return node
             }

@@ -53,18 +53,18 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.settings.general.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title, style: style)
                 return node
             }
         case .title:
-            let title = Localizations.cardSettings.title
+            let title = Localizations.CardSettings.title
             let text = self.card.title
             return {
                 let node = CardSettingsTextNode(title: title, text: text, style: style)
                 return node
             }
         case .subtitles:
-            let subtitle = Localizations.cardSettings.subtitle
+            let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
@@ -81,18 +81,18 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
         case .goal:
             let goal = (self.card.data as! HealthCard).goal
             return {
-                let node = SettingsMoreNode(title: Localizations.cardSettings.goal.goal, subtitle: "\(goal)", image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Goal.goal, subtitle: "\(goal)", image: nil, style: style)
                 node.leftInset = 20.0
                 return node
             }
         case .type:
             let type = (self.card.data as! HealthCard).type
-            var typeString = Localizations.general.none
+            var typeString = Localizations.General.none
             if !type.isEmpty {
                 typeString = NSLocalizedString("health.id.\(type)", comment: "health type")
             }
             return {
-                let node = SettingsMoreNode(title: Localizations.cardSettings.health.metrics, subtitle: typeString, image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Health.metrics, subtitle: typeString, image: nil, style: style)
                 node.leftInset = 20.0
                 return node
             }
@@ -116,9 +116,9 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
     
     override func didSelectItem(at index: Int) {
         if self.nodes[index] == .title {
-            self.setTextHandler?(Localizations.cardSettings.title, "title", self.card.title)
+            self.setTextHandler?(Localizations.CardSettings.title, "title", self.card.title)
         } else if self.nodes[index] == .subtitles {
-            self.setTextHandler?(Localizations.cardSettings.subtitle, "subtitle", self.card.subtitle)
+            self.setTextHandler?(Localizations.CardSettings.subtitle, "subtitle", self.card.subtitle)
         } else if self.nodes[index] == .type {
             let healthCard = self.card.data as! HealthCard
             if self.card.realm == nil || healthCard.type.isEmpty {
@@ -132,7 +132,7 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
             controller.onlyNumbers = true
             controller.property = "goal"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.cardSettings.goal.goal
+            controller.titleLabel.text = Localizations.CardSettings.Goal.goal
             self.viewController?.present(controller, animated: true, completion: nil)
         }
     }

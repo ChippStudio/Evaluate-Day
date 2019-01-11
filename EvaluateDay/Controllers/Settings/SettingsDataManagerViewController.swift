@@ -9,7 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 import CloudKit
-import NotificationBannerSwift
 
 class SettingsDataManagerViewController: UIViewController, ASTableDataSource, ASTableDelegate {
 
@@ -24,7 +23,7 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         super.viewDidLoad()
         
         // Set navigation Item
-        self.navigationItem.title = Localizations.settings.sync.data.title
+        self.navigationItem.title = Localizations.Settings.Sync.Data.title
         
         // set table node
         self.tableNode = ASTableNode(style: .grouped)
@@ -113,10 +112,10 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! DataManagerSettingsAction {
         case .deleteCloud:
-            let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.settings.sync.data.cloud.deleteDescription, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Settings.Sync.Data.Cloud.deleteDescription, preferredStyle: .actionSheet)
             
-            let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-            let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
+            let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
                 let container = CKContainer.default()
                 container.privateCloudDatabase.fetchAllRecordZones(completionHandler: { (zones, error) in
                     guard let zones = zones, error == nil else {
@@ -129,8 +128,9 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                     deletionOperation.modifyRecordZonesCompletionBlock = { _, deletedZones, error in
                         guard error == nil else {
                             print(error!.localizedDescription)
-                            let message = NotificationBanner(title: Localizations.messages.data.cloud.deleteAll.error, subtitle: error!.localizedDescription, leftView: nil, rightView: nil, style: .danger, colors: nil)
-                            message.show()
+                            let alert = UIAlertController(title: Localizations.Messages.Data.Cloud.DeleteAll.error, message: error!.localizedDescription, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
                             return
                         }
                         
@@ -144,8 +144,11 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                             }
                             (UIApplication.shared.delegate as! AppDelegate).syncEngine.stopSync()
                             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
-                            let message = NotificationBanner(title: Localizations.messages.data.cloud.deleteAll.title, subtitle: Localizations.messages.data.cloud.deleteAll.subtitle, leftView: nil, rightView: nil, style: .success, colors: nil)
-                            message.show()
+                    
+                            let alert = UIAlertController(title: Localizations.Messages.Data.Cloud.DeleteAll.title, message: Localizations.Messages.Data.Cloud.DeleteAll.subtitle, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                            
                         }
                     }
                     
@@ -169,10 +172,10 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                 alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
             }
         case .deleteLocal:
-            let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.settings.sync.data.local.deleteDescription, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Settings.Sync.Data.Local.deleteDescription, preferredStyle: .actionSheet)
         
-            let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-            let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
+            let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
                 let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
                 for card in cards {
                     sendEvent(.deleteCard, withProperties: ["type": card.type.string])
@@ -184,8 +187,10 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                 
                 Feedback.player.play(sound: .deleteCard, feedbackType: .success)
                 sendEvent(.deleteAllCards, withProperties: nil)
-                let message = NotificationBanner(title: Localizations.messages.data.local.deleteAll.title, subtitle: Localizations.messages.data.local.deleteAll.subtitle, leftView: nil, rightView: nil, style: .success, colors: nil)
-                message.show()
+                
+                let alert = UIAlertController(title: Localizations.Messages.Data.Local.DeleteAll.title, message: Localizations.Messages.Data.Local.DeleteAll.subtitle, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         
             alert.addAction(deleteAction)
@@ -218,7 +223,7 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                 txtText.append("\n\n")
                 var archived = ""
                 if card.archived {
-                    archived = "(\(Localizations.activity.analytics.stat.archived))"
+                    archived = "(\(Localizations.Activity.Analytics.Stat.archived))"
                 }
                 txtText.append(card.title + archived + "\n")
                 let cardText = card.data.textExport()
@@ -296,17 +301,17 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         self.settings.removeAll()
         
         // iCloud
-        let enableSync = SettingItem(title: Localizations.settings.sync.data.cloud.enable, type: .boolean, action: DataManagerSettingsAction.bool, options: ["isOn": Database.manager.application.settings.enableSync, "action": BooleanAction.enableSync.rawValue])
-        let deleteCloudData = SettingItem(title: Localizations.settings.sync.data.cloud.delete, type: .more, action: DataManagerSettingsAction.deleteCloud)
-        let cloudSection = SettingsSection(items: [enableSync, deleteCloudData], header: Localizations.settings.sync.data.cloud.header, footer: nil)
+        let enableSync = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.enable, type: .boolean, action: DataManagerSettingsAction.bool, options: ["isOn": Database.manager.application.settings.enableSync, "action": BooleanAction.enableSync.rawValue])
+        let deleteCloudData = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.delete, type: .more, action: DataManagerSettingsAction.deleteCloud)
+        let cloudSection = SettingsSection(items: [enableSync, deleteCloudData], header: Localizations.Settings.Sync.Data.Cloud.header, footer: nil)
         
         // Local
-        let deleteLocal = SettingItem(title: Localizations.settings.sync.data.local.delete, type: .more, action: DataManagerSettingsAction.deleteLocal)
-        let localSection = SettingsSection(items: [deleteLocal], header: Localizations.settings.sync.data.local.header, footer: nil)
+        let deleteLocal = SettingItem(title: Localizations.Settings.Sync.Data.Local.delete, type: .more, action: DataManagerSettingsAction.deleteLocal)
+        let localSection = SettingsSection(items: [deleteLocal], header: Localizations.Settings.Sync.Data.Local.header, footer: nil)
         
         // Export
-        let exportAll = SettingItem(title: Localizations.settings.sync.data.export.export, type: .more, action: DataManagerSettingsAction.export)
-        let exportSection = SettingsSection(items: [exportAll], header: Localizations.settings.sync.data.export.header, footer: nil)
+        let exportAll = SettingItem(title: Localizations.Settings.Sync.Data.Export.export, type: .more, action: DataManagerSettingsAction.export)
+        let exportSection = SettingsSection(items: [exportAll], header: Localizations.Settings.Sync.Data.Export.header, footer: nil)
         
         // Analytics
         

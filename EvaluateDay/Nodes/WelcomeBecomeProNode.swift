@@ -31,8 +31,8 @@ class WelcomeBecomeProNode: ASCellNode {
             self.dateLabel.attributedText = NSAttributedString(string: DateFormatter.localizedString(from: Store.current.valid!, dateStyle: .medium, timeStyle: .none), attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 26.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.viridian, NSAttributedStringKey.paragraphStyle: center])
         }
         
-        self.titleLabel.attributedText = NSAttributedString(string: Localizations.welcome.cards.pro.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 24.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
-        self.descriptionLabel.attributedText = NSAttributedString(string: Localizations.welcome.cards.pro.description, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
+        self.titleLabel.attributedText = NSAttributedString(string: Localizations.Welcome.Cards.Pro.title, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 24.0, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
+        self.descriptionLabel.attributedText = NSAttributedString(string: Localizations.Welcome.Cards.Pro.description, attributes: [NSAttributedStringKey.font: UIFont.avenirNext(size: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.gunmetal, NSAttributedStringKey.paragraphStyle: center])
         
         self.automaticallyManagesSubnodes = true
     }

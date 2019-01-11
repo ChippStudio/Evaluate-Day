@@ -19,7 +19,7 @@ class EvaluateEmptyCardSection: ListSectionController, ASSectionController {
         let style = Themes.manager.evaluateStyle
         
         return {
-            let node = EvaluateEmptyCardNode(title: Localizations.collection.empty.title, subtitle: Localizations.collection.empty.subtitle, image: #imageLiteral(resourceName: "emptyCard"), style: style)
+            let node = EvaluateEmptyCardNode(title: Localizations.Collection.Empty.title, subtitle: Localizations.Collection.Empty.subtitle, image: #imageLiteral(resourceName: "emptyCard"), style: style)
             node.visual(withStyle: style)
             
             return node

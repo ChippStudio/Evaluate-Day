@@ -25,7 +25,7 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
         super.viewDidLoad()
         
         // Set navigation item
-        self.navigationItem.title = Localizations.settings.notifications.title
+        self.navigationItem.title = Localizations.Settings.Notifications.title
         
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)
@@ -240,12 +240,12 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
     private func setSettings() {
         self.settings.removeAll()
         
-        let addNewItem = SettingItem(title: Localizations.settings.notifications.add, type: .more, action: NotificationSettingsAction.new)
+        let addNewItem = SettingItem(title: Localizations.Settings.Notifications.add, type: .more, action: NotificationSettingsAction.new)
         let addNewSection = SettingsSection(items: [addNewItem])
         self.settings.append(addNewSection)
         
         if Permissions.defaults.notificationStatus == .authorized {
-            var notificationsSection = SettingsSection(items: [], header: Localizations.settings.notifications.title, footer: nil)
+            var notificationsSection = SettingsSection(items: [], header: Localizations.Settings.Notifications.title, footer: nil)
             
             for n in Database.manager.application.notifications {
                 var cardTitle = ""

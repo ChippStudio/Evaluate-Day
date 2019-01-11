@@ -55,9 +55,9 @@ let dayLocations: [(longitude: Double, latitude: Double, area: String, locality:
     (longitude: 25.5586324, latitude: 58.3562108, area: "Viljandimaa", locality: "Viljandi", country: "Estonia", name: "49")]
 
 // MARK: - Demo phrases
-let demoPhrases = [Localizations.demo.phrase.dayOne, Localizations.demo.phrase.dayTwo, Localizations.demo.phrase.dayThree, Localizations.demo.phrase.dayFour]
-let defaultPhrases = [Localizations._default.data.phrase.one, Localizations._default.data.phrase.two, Localizations._default.data.phrase.three, Localizations.demo.phrase.dayOne, Localizations.demo.phrase.dayTwo, Localizations.demo.phrase.dayThree, Localizations.demo.phrase.dayFour]
+let demoPhrases = [Localizations.Demo.Phrase.dayOne, Localizations.Demo.Phrase.dayTwo, Localizations.Demo.Phrase.dayThree, Localizations.Demo.Phrase.dayFour]
+let defaultPhrases = [Localizations.Default.Data.Phrase.one, Localizations.Default.Data.Phrase.two, Localizations.Default.Data.Phrase.three, Localizations.Demo.Phrase.dayOne, Localizations.Demo.Phrase.dayTwo, Localizations.Demo.Phrase.dayThree, Localizations.Demo.Phrase.dayFour]
 
 // MARK: - Demo journals
-let demoEntry = [Localizations.demo.journal.entryOne, Localizations.demo.journal.entryTwo, Localizations.demo.journal.entryThree, Localizations.demo.journal.entryFour]
+let demoEntry = [Localizations.Demo.Journal.entryOne, Localizations.Demo.Journal.entryTwo, Localizations.Demo.Journal.entryThree, Localizations.Demo.Journal.entryFour]
 let demoPhotos = [#imageLiteral(resourceName: "sldFirst"), #imageLiteral(resourceName: "sldSecond"), #imageLiteral(resourceName: "sldThird"), #imageLiteral(resourceName: "sldFourth")]

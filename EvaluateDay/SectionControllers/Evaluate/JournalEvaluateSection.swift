@@ -240,7 +240,7 @@ class JournalNode: ASCellNode, CardNode {
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
-        self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.journal.value(value1: formatter.string(from: date), entries.count)
+        self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Journal.value(formatter.string(from: date), entries.count)
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true

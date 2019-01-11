@@ -34,7 +34,7 @@ class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = Localizations.settings.notifications.new._repeat.title
+        self.navigationItem.title = Localizations.Settings.Notifications.New.Repeat.title
 
         // Set table node
         self.tableNode = ASTableNode(style: .grouped)

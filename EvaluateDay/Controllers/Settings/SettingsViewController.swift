@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.settings.title
+        self.navigationItem.title = Localizations.Settings.title
         self.navigationController?.navigationBar.accessibilityIdentifier = "settingsNavigationBar"
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
@@ -245,7 +245,7 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
             let mailView = MFMailComposeViewController()
             mailView.mailComposeDelegate = self
             mailView.navigationBar.tintColor = Themes.manager.settingsStyle.safariTintColor
-            mailView.setSubject(Localizations.settings.support.mail.subject)
+            mailView.setSubject(Localizations.Settings.Support.Mail.subject)
             var pro = 0
             if Database.manager.application.user.pro {
                 pro = 1
@@ -253,14 +253,14 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String + "(\(pro))"
             let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
             let iosVersion = UIDevice.current.systemVersion
-            mailView.setMessageBody(Localizations.settings.support.mail.body(value1: build, version, iosVersion), isHTML: false)
+            mailView.setMessageBody(Localizations.Settings.Support.Mail.body(build, version, iosVersion), isHTML: false)
             mailView.setToRecipients([feedbackMail])
             self.present(mailView, animated: true, completion: {
             })
         } else {
-            let alert = UIAlertController(title: Localizations.settings.support.mailError.title, message: Localizations.settings.support.mailError.message, preferredStyle: .alert)
+            let alert = UIAlertController(title: Localizations.Settings.Support.MailError.title, message: Localizations.Settings.Support.MailError.message, preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: Localizations.general.ok, style: .default, handler: nil)
+            let okAction = UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil)
             alert.addAction(okAction)
             
             alert.view.tintColor = Themes.manager.settingsStyle.safariTintColor
@@ -331,48 +331,48 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         self.settings.append(proSection)
         
         // SYNC
-        var syncString = Localizations.settings.sync.never
+        var syncString = Localizations.Settings.Sync.never
         if Database.manager.application.sync.lastSyncDate != nil {
             syncString = DateFormatter.localizedString(from: Database.manager.application.sync.lastSyncDate!, dateStyle: .short, timeStyle: .short)
         }
-        let lastSyncItem = SettingItem(title: Localizations.settings.sync.last, type: .more, action: MainSettingsAction.sync, subtitle: syncString, image: #imageLiteral(resourceName: "sync"))
-        let syncDataManage = SettingItem(title: Localizations.settings.sync.data.title, type: .more, action: MainSettingsAction.syncData, image: #imageLiteral(resourceName: "data"))
-        let syncSection = SettingsSection(items: [lastSyncItem, syncDataManage], header: Localizations.settings.sync.title, footer: nil)
+        let lastSyncItem = SettingItem(title: Localizations.Settings.Sync.last, type: .more, action: MainSettingsAction.sync, subtitle: syncString, image: #imageLiteral(resourceName: "sync"))
+        let syncDataManage = SettingItem(title: Localizations.Settings.Sync.Data.title, type: .more, action: MainSettingsAction.syncData, image: #imageLiteral(resourceName: "data"))
+        let syncSection = SettingsSection(items: [lastSyncItem, syncDataManage], header: Localizations.Settings.Sync.title, footer: nil)
         self.settings.append(syncSection)
         
         // Themes
-        let themesItem = SettingItem(title: Localizations.settings.themes.select.theme, type: .more, action: MainSettingsAction.themes, image: #imageLiteral(resourceName: "themes"))
-        let selectIcon = SettingItem(title: Localizations.settings.themes.select.icon, type: .more, action: MainSettingsAction.icons, image: #imageLiteral(resourceName: "app"))
+        let themesItem = SettingItem(title: Localizations.Settings.Themes.Select.theme, type: .more, action: MainSettingsAction.themes, image: #imageLiteral(resourceName: "themes"))
+        let selectIcon = SettingItem(title: Localizations.Settings.Themes.Select.icon, type: .more, action: MainSettingsAction.icons, image: #imageLiteral(resourceName: "app"))
         var items = [themesItem]
         if #available(iOS 10.3, *) {
             if UIApplication.shared.supportsAlternateIcons {
                 items.append(selectIcon)
             }
         }
-        let themeSection = SettingsSection(items: items, header: Localizations.settings.themes.title, footer: nil)
+        let themeSection = SettingsSection(items: items, header: Localizations.Settings.Themes.title, footer: nil)
         self.settings.append(themeSection)
         
         // General
-        let notificationItem = SettingItem(title: Localizations.settings.notifications.title, type: .more, action: MainSettingsAction.notification, subtitle: "\(Database.manager.application.notifications.count)", image: #imageLiteral(resourceName: "notification"))
-        let weekItem = SettingItem(title: Localizations.settings.general.week, type: .more, action: MainSettingsAction.week, subtitle: nil, image: #imageLiteral(resourceName: "week"))
-        let photoItem = SettingItem(title: Localizations.settings.general.photos, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "cameraRoll"), options: ["isOn": Database.manager.application.settings.cameraRoll, "action": BooleanAction.photo.rawValue])
-        let celsiousItem = SettingItem(title: Localizations.settings.general.celsius, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "celsius"), options: ["isOn": Database.manager.application.settings.celsius, "action": BooleanAction.celcius.rawValue])
-        let soundItem = SettingItem(title: Localizations.settings.general.sounds, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "sound"), options: ["isOn": Database.manager.application.settings.sound, "action": BooleanAction.sound.rawValue])
-        let passcodeItem = SettingItem(title: Localizations.settings.passcode.title, type: .more, action: MainSettingsAction.passcode, subtitle: nil, image: #imageLiteral(resourceName: "passcode"), options: nil)
-        let generalSection = SettingsSection(items: [notificationItem, passcodeItem, weekItem, photoItem, celsiousItem, soundItem], header: Localizations.settings.general.title, footer: nil)
+        let notificationItem = SettingItem(title: Localizations.Settings.Notifications.title, type: .more, action: MainSettingsAction.notification, subtitle: "\(Database.manager.application.notifications.count)", image: #imageLiteral(resourceName: "notification"))
+        let weekItem = SettingItem(title: Localizations.Settings.General.week, type: .more, action: MainSettingsAction.week, subtitle: nil, image: #imageLiteral(resourceName: "week"))
+        let photoItem = SettingItem(title: Localizations.Settings.General.photos, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "cameraRoll"), options: ["isOn": Database.manager.application.settings.cameraRoll, "action": BooleanAction.photo.rawValue])
+        let celsiousItem = SettingItem(title: Localizations.Settings.General.celsius, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "celsius"), options: ["isOn": Database.manager.application.settings.celsius, "action": BooleanAction.celcius.rawValue])
+        let soundItem = SettingItem(title: Localizations.Settings.General.sounds, type: .boolean, action: MainSettingsAction.bool, image: #imageLiteral(resourceName: "sound"), options: ["isOn": Database.manager.application.settings.sound, "action": BooleanAction.sound.rawValue])
+        let passcodeItem = SettingItem(title: Localizations.Settings.Passcode.title, type: .more, action: MainSettingsAction.passcode, subtitle: nil, image: #imageLiteral(resourceName: "passcode"), options: nil)
+        let generalSection = SettingsSection(items: [notificationItem, passcodeItem, weekItem, photoItem, celsiousItem, soundItem], header: Localizations.Settings.General.title, footer: nil)
         self.settings.append(generalSection)
         
         // Support
-        let faqItem = SettingItem(title: Localizations.settings.support.faq, type: .more, action: MainSettingsAction.faq, subtitle: nil, image: #imageLiteral(resourceName: "faq"), options: nil)
-        let supportItem = SettingItem(title: Localizations.settings.support.title, type: .more, action: MainSettingsAction.support, subtitle: nil, image: #imageLiteral(resourceName: "support"), options: nil)
-        let supportSection = SettingsSection(items: [faqItem, supportItem], header: Localizations.settings.support.title, footer: nil)
+        let faqItem = SettingItem(title: Localizations.Settings.Support.faq, type: .more, action: MainSettingsAction.faq, subtitle: nil, image: #imageLiteral(resourceName: "faq"), options: nil)
+        let supportItem = SettingItem(title: Localizations.Settings.Support.title, type: .more, action: MainSettingsAction.support, subtitle: nil, image: #imageLiteral(resourceName: "support"), options: nil)
+        let supportSection = SettingsSection(items: [faqItem, supportItem], header: Localizations.Settings.Support.title, footer: nil)
         self.settings.append(supportSection)
         
         // About
-        let aboutItem = SettingItem(title: Localizations.settings.about.title, type: .more, action: MainSettingsAction.about, subtitle: nil, image: #imageLiteral(resourceName: "app"), options: nil)
-        let rateItem = SettingItem(title: Localizations.settings.about.rate, type: .more, action: MainSettingsAction.rate, subtitle: "⭐️⭐️⭐️⭐️⭐️", image: #imageLiteral(resourceName: "appStore"), options: nil)
-        let welcomeItem = SettingItem(title: Localizations.settings.about.welcome, type: .more, action: MainSettingsAction.welcome, subtitle: nil, image: #imageLiteral(resourceName: "cards"), options: nil)
-        let evaluateDaySection = SettingsSection(items: [aboutItem, rateItem, welcomeItem], header: Localizations.general.evaluateday, footer: nil)
+        let aboutItem = SettingItem(title: Localizations.Settings.About.title, type: .more, action: MainSettingsAction.about, subtitle: nil, image: #imageLiteral(resourceName: "app"), options: nil)
+        let rateItem = SettingItem(title: Localizations.Settings.About.rate, type: .more, action: MainSettingsAction.rate, subtitle: "⭐️⭐️⭐️⭐️⭐️", image: #imageLiteral(resourceName: "appStore"), options: nil)
+        let welcomeItem = SettingItem(title: Localizations.Settings.About.welcome, type: .more, action: MainSettingsAction.welcome, subtitle: nil, image: #imageLiteral(resourceName: "cards"), options: nil)
+        let evaluateDaySection = SettingsSection(items: [aboutItem, rateItem, welcomeItem], header: Localizations.General.evaluateday, footer: nil)
         self.settings.append(evaluateDaySection)
         
         OperationQueue.main.addOperation {

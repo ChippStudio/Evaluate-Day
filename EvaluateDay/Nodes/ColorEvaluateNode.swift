@@ -105,11 +105,11 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
             node.selectionStyle = .none
             if colorsForSelection[indexPath.row].color == self.selectedColor {
                 node.colorSelected = true
-                node.accessibilityValue = Localizations.accessibility.selected
+                node.accessibilityValue = Localizations.Accessibility.selected
                 self.selectedIndex = indexPath
             } else {
                 node.colorSelected = false
-                node.accessibilityValue = Localizations.accessibility.unselected
+                node.accessibilityValue = Localizations.Accessibility.unselected
             }
             return node
         }
@@ -126,9 +126,9 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
             let oldSelectedNode = self.colorCollection.nodeForItem(at: self.selectedIndex) as! ColorDotNode
             
             oldSelectedNode.colorSelected = false
-            oldSelectedNode.accessibilityValue = Localizations.accessibility.unselected
+            oldSelectedNode.accessibilityValue = Localizations.Accessibility.unselected
             newSelectedNode.colorSelected = true
-            newSelectedNode.accessibilityValue = Localizations.accessibility.selected
+            newSelectedNode.accessibilityValue = Localizations.Accessibility.selected
             
             self.selectedIndex = indexPath
             

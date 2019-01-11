@@ -18,7 +18,7 @@ class SettingsThemesViewController: UIViewController, ASTableDataSource, ASTable
         super.viewDidLoad()
         
         // Set navigation Item
-        self.navigationItem.title = Localizations.settings.themes.select.theme
+        self.navigationItem.title = Localizations.Settings.Themes.Select.theme
         
         // set table node
         self.tableNode = ASTableNode(style: .grouped)

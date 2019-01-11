@@ -45,7 +45,7 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         switch nodes[index].node {
         case .new:
             return {
-                let node = SettingsMoreNode(title: Localizations.settings.notifications.add, subtitle: nil, image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.Settings.Notifications.add, subtitle: nil, image: nil, style: style)
                 node.leftInset = 20.0
                 return node
             }
@@ -59,7 +59,7 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
             }
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.settings.notifications.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.Notifications.title, style: style)
                 return node
             }
         case .notification:

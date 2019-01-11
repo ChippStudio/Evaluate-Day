@@ -74,8 +74,8 @@ class GoalEvaluateNode: ASCellNode {
         self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusAttributes), for: .normal)
         self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusHighlightedAttributes), for: .highlighted)
         
-        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.evaluate.counter.customValue, attributes: customAttributes), for: .normal)
-        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.evaluate.counter.customValue, attributes: customHighlightedAttributes), for: .highlighted)
+        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customAttributes), for: .normal)
+        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customHighlightedAttributes), for: .highlighted)
         
         self.plusCover.borderWidth = 1.0
         self.plusCover.borderColor = style.goalEvaluatePlusColor.cgColor
@@ -87,7 +87,7 @@ class GoalEvaluateNode: ASCellNode {
         self.customValueButtonCover.borderColor = style.goalEvaluateCustomValueColor.cgColor
         
         let goalString = String(format: "%.2f", goalValue)
-        self.goalText.attributedText = NSAttributedString(string: Localizations.cardSettings.goal.goal + " - \(goalString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateGoalFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateGoalColor])
+        self.goalText.attributedText = NSAttributedString(string: Localizations.CardSettings.Goal.goal + " - \(goalString)", attributes: [NSAttributedStringKey.font: style.goalEvaluateGoalFont, NSAttributedStringKey.foregroundColor: style.goalEvaluateGoalColor])
         
         // Sum title if needed
         if sumValue != nil {
@@ -128,13 +128,13 @@ class GoalEvaluateNode: ASCellNode {
         self.currentDate.isAccessibilityElement = false
         self.previousDate.isAccessibilityElement = false
         
-        self.plus.accessibilityLabel = Localizations.accessibility.evaluate.goal.increase(value1: "\(step)")
-        self.minus.accessibilityLabel = Localizations.accessibility.evaluate.goal.decrease(value1: "\(step)")
+        self.plus.accessibilityLabel = Localizations.Accessibility.Evaluate.Goal.increase("\(step)")
+        self.minus.accessibilityLabel = Localizations.Accessibility.Evaluate.Goal.decrease("\(step)")
         
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = Localizations.accessibility.evaluate.goal.summory(value1: "\(value)", formatter.string(from: date), "\(previousValue)")
+        self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Evaluate.Goal.summory("\(value)", formatter.string(from: date), "\(previousValue)")
         if sumValue != nil {
-            self.accessibilityNode.accessibilityValue = Localizations.accessibility.evaluate.goal.summorySum(value1: "\(sumValue!)")
+            self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Goal.summorySum("\(sumValue!)")
         }
         
         self.automaticallyManagesSubnodes = true

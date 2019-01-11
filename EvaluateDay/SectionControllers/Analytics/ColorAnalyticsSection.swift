@@ -90,7 +90,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.analytics.color.calendar.title.uppercased(), isPro: true, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Color.Calendar.title.uppercased(), isPro: true, style: style)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -103,7 +103,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
         case .export:
             return {
-                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.analytics.export.title.uppercased(), action: Localizations.analytics.export.action.uppercased(), style: style)
+                let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased(), style: style)
                 node.topOffset = 50.0
                 node.didSelectType = { (type, cellIndexPath, index) in
                     if isPro {

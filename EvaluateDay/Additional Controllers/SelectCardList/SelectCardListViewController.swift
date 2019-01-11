@@ -27,7 +27,7 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         super.viewDidLoad()
         
         // Navigation item
-        self.navigationItem.title = Localizations.settings.notifications.new.selectCard
+        self.navigationItem.title = Localizations.Settings.Notifications.New.selectCard
         
         // set cards
         self.cards = Database.manager.data.objects(Card.self).sorted(byKeyPath: "order")

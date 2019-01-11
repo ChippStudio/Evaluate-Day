@@ -52,26 +52,26 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             }
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.cardSettings.dangerZone, style: style)
-                node.title.attributedText = NSAttributedString(string: Localizations.cardSettings.dangerZone.uppercased(), attributes: [NSAttributedStringKey.font: style.cardSettingsSectionTitleFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
+                let node = CardSettingsSectionTitleNode(title: Localizations.CardSettings.dangerZone, style: style)
+                node.title.attributedText = NSAttributedString(string: Localizations.CardSettings.dangerZone.uppercased(), attributes: [NSAttributedStringKey.font: style.cardSettingsSectionTitleFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
                 return node
             }
         case .delete:
             return {
-                let node = SettingsMoreNode(title: Localizations.general.delete, subtitle: nil, image: #imageLiteral(resourceName: "delete"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
+                let node = SettingsMoreNode(title: Localizations.General.delete, subtitle: nil, image: #imageLiteral(resourceName: "delete"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
                 node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneDeleteColor)
                 return node
             }
         case .merge:
             return {
-                let node = SettingsMoreNode(title: Localizations.cardMerge.action, subtitle: nil, image: #imageLiteral(resourceName: "merge"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneMergeColor])
+                let node = SettingsMoreNode(title: Localizations.CardMerge.action, subtitle: nil, image: #imageLiteral(resourceName: "merge"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneMergeColor])
                 node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneMergeColor)
                 return node
             }
         case .archive:
-            var archiveString = Localizations.general.archive
+            var archiveString = Localizations.General.archive
             if self.card.archived {
-                archiveString = Localizations.general.unarchive
+                archiveString = Localizations.General.unarchive
             }
             return {
                 let node = SettingsMoreNode(title: archiveString, subtitle: nil, image: #imageLiteral(resourceName: "archive"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneArchiveColor])
@@ -131,16 +131,16 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
     }
     
     private func deleteCard(index: Int) {
-        var message = Localizations.list.card.deleteMessage
+        var message = Localizations.List.Card.deleteMessage
         if !card.archived {
-            message += "\n\n \(Localizations.list.card.archiveNotDelete) \n\n"
-            message += Localizations.list.card.archiveMessage
+            message += "\n\n \(Localizations.List.Card.archiveNotDelete) \n\n"
+            message += Localizations.List.Card.archiveMessage
         }
         
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Localizations.General.sureQuestion, message: message, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: Localizations.general.delete, style: .destructive) { (_) in
+        let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
             // Delete card
             sendEvent(.deleteCard, withProperties: ["type": self.card.type.string])
             try! Database.manager.data.write {
@@ -155,7 +155,7 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             }
         }
         
-        let archiveAction = UIAlertAction(title: Localizations.general.archive, style: .default) { (_) in
+        let archiveAction = UIAlertAction(title: Localizations.General.archive, style: .default) { (_) in
             // Archive card
             sendEvent(.archiveCard, withProperties: ["type": self.card.type.string])
             
@@ -193,10 +193,10 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
     }
     
     private func unarchiveCard(index: Int) {
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.list.card.unarchiveMessage, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.List.Card.unarchiveMessage, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let unarchiveAction = UIAlertAction(title: Localizations.general.unarchive, style: .default) { (_) in
+        let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+        let unarchiveAction = UIAlertAction(title: Localizations.General.unarchive, style: .default) { (_) in
             // Unarchive card
             try! Database.manager.data.write {
                 self.card.archived = false
@@ -229,10 +229,10 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
     }
     
     private func archiveCard(index: Int) {
-        let alert = UIAlertController(title: Localizations.general.sureQuestion, message: Localizations.list.card.archiveMessage, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.List.Card.archiveMessage, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: Localizations.general.cancel, style: .cancel, handler: nil)
-        let archiveAction = UIAlertAction(title: Localizations.general.archive, style: .default) { (_) in
+        let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
+        let archiveAction = UIAlertAction(title: Localizations.General.archive, style: .default) { (_) in
             // Unarchive card
             try! Database.manager.data.write {
                 self.card.archived = true

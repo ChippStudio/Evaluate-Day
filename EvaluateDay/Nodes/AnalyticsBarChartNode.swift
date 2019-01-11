@@ -68,7 +68,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.chartNodeShareTintColor)
         
         var dateString = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
-        var lastValueString = Localizations.general.none
+        var lastValueString = Localizations.General.none
         if let lastValue = data.last {
             if let date = lastValue.data as? Date {
                 dateString = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
@@ -143,13 +143,13 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         // Accessibility
         self.titleNode.isAccessibilityElement = false
         
-        self.shareButton.accessibilityLabel = Localizations.calendar.empty.share
-        self.shareButton.accessibilityValue = "\(self.titleNode.attributedText!.string), \(Localizations.accessibility.analytics.barChart)"
+        self.shareButton.accessibilityLabel = Localizations.Calendar.Empty.share
+        self.shareButton.accessibilityValue = "\(self.titleNode.attributedText!.string), \(Localizations.Accessibility.Analytics.barChart)"
         
         self.dataAndDateAccessibility.isAccessibilityElement = true
         self.dataAndDateAccessibility.accessibilityLabel = "\(self.date.attributedText!.string), \(self.valueNode.attributedText!.string)"
         if !data.isEmpty {
-            self.dataAndDateAccessibility.accessibilityValue = Localizations.accessibility.analytics.barChartData(value1: "\(data.count)")
+            self.dataAndDateAccessibility.accessibilityValue = Localizations.Accessibility.Analytics.barChartData("\(data.count)")
         }
         
         self.date.isAccessibilityElement = false
