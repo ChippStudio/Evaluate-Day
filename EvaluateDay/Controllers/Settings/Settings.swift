@@ -12,7 +12,6 @@ import UIKit
 enum SettingsItemType {
     case more
     case boolean
-    case pro
     case notification
 }
 

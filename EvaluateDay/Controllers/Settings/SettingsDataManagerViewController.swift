@@ -90,15 +90,6 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                 node.separatorInset = separatorInsets
                 return node
             }
-        case .pro:
-            let pro = Database.manager.application.user.pro
-            return {
-                let node = SettingsProNode(pro: pro, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
         case .notification:
             return {
                 return ASCellNode()

@@ -11,14 +11,18 @@ import AsyncDisplayKit
 import SafariServices
 import MessageUI
 
-class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelegate, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     var footerView = SettingsFooterView()
     
     // MARK: - Variables
     var settings = [SettingsSection]()
+    
+    // MARK: - Cells
+    private var moreCell = "moreCell"
+    private var booleanCell = "booleanCell"
     
     // MARK: - Segues
     private let userSegue = "userSegue"
@@ -35,30 +39,23 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         super.viewDidLoad()
         
         // Navigation bar
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.title = Localizations.Settings.title
         self.navigationController?.navigationBar.accessibilityIdentifier = "settingsNavigationBar"
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
         
-        // Set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.tableNode.accessibilityIdentifier = "settingsTableView"
-        self.tableNode.shouldGroupAccessibilityChildren = true
-        self.tableNode.view.separatorStyle = .none
-        self.view.addSubnode(self.tableNode)
-        
-        self.tableNode.view.tableFooterView = self.footerView
-        self.tableNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 70.0, right: 0.0)
+        // Set table view
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.tableFooterView = self.footerView
+        self.tableView.accessibilityIdentifier = "settingsTableView"
         
         if self.popoverPresentationController != nil {
             self.preferredContentSize = CGSize(width: 360.0, height: 600.0)
         }
         
         self.setSettings()
-        self.observable()
         
         // Analytics
         sendEvent(.openSettings, withProperties: nil)
@@ -69,16 +66,35 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.tableNode.frame = self.view.bounds
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.setSettings()
-//        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
+            
+            self.footerView.backgroundColor = UIColor.background
+            self.footerView.appIcon.tintColor = UIColor.main
+            self.footerView.appTitle.textColor = UIColor.text
+            self.footerView.appVersion.textColor = UIColor.text
+            self.footerView.appTitle.font = UIFont.preferredFont(forTextStyle: .title2)
+            self.footerView.appVersion.font = UIFont.preferredFont(forTextStyle: .body)
+        }
     }
     
     // MARK: - Navigation
@@ -86,61 +102,51 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.settings.count
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.settings[section].items.count
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let style = Themes.manager.settingsStyle
         let item = self.settings[indexPath.section].items[indexPath.row]
         let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+        selView.layer.cornerRadius = 5.0
+        selView.backgroundColor = UIColor.tint
         
         switch item.type {
         case .more:
-            return {
-                let node = SettingsMoreNode(title: item.title, subtitle: item.subtitle, image: item.image, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: moreCell, for: indexPath)
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = item.subtitle
+            cell.textLabel?.textColor = UIColor.text
+            cell.detailTextLabel?.textColor = UIColor.text
+            cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+            cell.selectedBackgroundView = selView
+            return cell
         case .boolean:
-            return {
-                let node = SettingsBooleanNode(title: item.title, image: item.image, isOn: item.options!["isOn"] as! Bool, style: style)
-                node.switchDidLoad = { (switchButton) in
-                    switchButton.tag = (item.options!["action"] as! Int)
-                    switchButton.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
-                }
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
-        case .pro:
-            let pro = Database.manager.application.user.pro
-            return {
-                let node = SettingsProNode(pro: pro, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: booleanCell, for: indexPath) as! SwitchCell
+            cell.switchControl.isOn = item.options!["isOn"] as! Bool
+            cell.switchControl.tag = (item.options!["action"] as! Int)
+            cell.switchControl.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
+            cell.switchControl.onTintColor = UIColor.positive
+            cell.selectionStyle = .none
+            cell.iconImage.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.iconImage.tintColor = UIColor.main
+            cell.titleLabel.text = item.title
+            cell.titleLabel.textColor = UIColor.text
+            return cell
         case .notification:
-            return {
-                return ASCellNode()
-            }
+            return UITableViewCell()
         }
     }
-
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! MainSettingsAction {
         case .pro:
@@ -198,9 +204,8 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        header.textLabel?.textColor = style.tableSectionHeaderColor
-        header.textLabel!.font = style.tableSectionHeaderFont
+        header.textLabel?.textColor = UIColor.text
+        header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     // MARK: - SFSafariViewControllerDelegate
@@ -285,50 +290,8 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
     }
     
     // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                let style = Themes.manager.settingsStyle
-                
-                //set NavigationBar
-                self.navigationController?.view.backgroundColor = style.background
-                self.navigationController?.navigationBar.barTintColor = style.barColor
-                self.navigationController?.navigationBar.isTranslucent = false
-                self.navigationController?.navigationBar.shadowImage = UIImage()
-                self.navigationController?.navigationBar.tintColor = style.barTint
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-                if #available(iOS 11.0, *) {
-                    self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-                }
-                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-                
-                // Backgrounds
-                self.view.backgroundColor = style.background
-                self.tableNode.backgroundColor = style.background
-                
-                // Table node
-                self.tableNode.view.separatorColor = style.settingsSeparatorColor
-                
-                self.footerView.backgroundColor = style.background
-                self.footerView.appIcon.tintColor = style.footerTintColor
-                self.footerView.appTitle.textColor = style.footerTintColor
-                self.footerView.appVersion.textColor = style.footerTintColor
-                self.footerView.appTitle.font = style.footerTitleFont
-                self.footerView.appVersion.font = style.footerVersionFont
-            })
-            
-            self.tableNode.reloadData()
-        })
-    }
-    
     private func setSettings() {
         self.settings.removeAll()
-        
-        // PRO
-        let proItem = SettingItem(title: "pro", type: .pro, action: MainSettingsAction.pro, options: ["isPro": true])
-        let proSection = SettingsSection(items: [proItem])
-        self.settings.append(proSection)
         
         // SYNC
         var syncString = Localizations.Settings.Sync.never
@@ -374,12 +337,6 @@ class SettingsViewController: UIViewController, ASTableDataSource, ASTableDelega
         let welcomeItem = SettingItem(title: Localizations.Settings.About.welcome, type: .more, action: MainSettingsAction.welcome, subtitle: nil, image: #imageLiteral(resourceName: "cards"), options: nil)
         let evaluateDaySection = SettingsSection(items: [aboutItem, rateItem, welcomeItem], header: Localizations.General.evaluateday, footer: nil)
         self.settings.append(evaluateDaySection)
-        
-        OperationQueue.main.addOperation {
-            if self.tableNode != nil {
-                self.tableNode.reloadData()
-            }
-        }
     }
     
     private func openController(id: String) {

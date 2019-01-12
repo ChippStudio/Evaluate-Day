@@ -109,15 +109,6 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
                 node.separatorInset = separatorInsets
                 return node
             }
-        case .pro:
-            let pro = Database.manager.application.user.pro
-            return {
-                let node = SettingsProNode(pro: pro, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
         case .notification:
             return {
                 let node = SettingsNotificationNode(message: item.title, time: item.options!["time"] as! String, localizedRepeat: item.options!["repeat"] as! String, card: item.options!["card"] as! String, style: style)

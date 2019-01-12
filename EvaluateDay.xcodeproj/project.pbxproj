@@ -58,6 +58,7 @@
 		B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */; };
 		B53E5F4D205694C700B50B60 /* DarkActivityControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */; };
 		B53E706F21E927F200E19A62 /* EvaluateDashedLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E706E21E927F100E19A62 /* EvaluateDashedLineAnalyticsNode.swift */; };
+		B53E707221EA0B5300E19A62 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E707121EA0B5300E19A62 /* SwitchCell.swift */; };
 		B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */; };
 		B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DD21DD0123005A93CE /* ShareNode.swift */; };
 		B5479FC521E78A400002E7D7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5479FC421E78A400002E7D7 /* Images.swift */; };
@@ -499,6 +500,7 @@
 		B53E5F4A2056943100B50B60 /* LightActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E5F4C205694C700B50B60 /* DarkActivityControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkActivityControllerTheme.swift; sourceTree = "<group>"; };
 		B53E706E21E927F100E19A62 /* EvaluateDashedLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDashedLineAnalyticsNode.swift; sourceTree = "<group>"; };
+		B53E707121EA0B5300E19A62 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateLineAnalyticsNode.swift; sourceTree = "<group>"; };
 		B54535DD21DD0123005A93CE /* ShareNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareNode.swift; sourceTree = "<group>"; };
 		B5479FC421E78A400002E7D7 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,14 @@
 			path = Activity;
 			sourceTree = "<group>";
 		};
+		B53E707021EA0B2E00E19A62 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B53E707121EA0B5300E19A62 /* SwitchCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B55464E22029CEA900923CE3 /* EnriesList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,6 +1454,7 @@
 				B591FAD41FA83288007EE0F1 /* SectionControllers */,
 				B5C7573E1F9F32850032199E /* Nodes */,
 				B5A5915121D8D6860026FD84 /* Node */,
+				B53E707021EA0B2E00E19A62 /* Cell */,
 				B587D6C91FB96F4A006D62C1 /* Views */,
 				B5B27E7B1F9DAF6800CB9121 /* LaunchScreen */,
 				B5257D451FE91E5500AC54DE /* HTML */,
@@ -2588,6 +2599,7 @@
 				B5A1B0E61FBACF0B003D9E81 /* LaunchView.swift in Sources */,
 				B57B0637201B0D1800C4E182 /* GoalCard.swift in Sources */,
 				B5B7EE4C2010BBDD00BCD41A /* PhraseEvaluateSection.swift in Sources */,
+				B53E707221EA0B5300E19A62 /* SwitchCell.swift in Sources */,
 				B55D328C207917B800BD1E75 /* HabitNegativeNode.swift in Sources */,
 				B5F597701FBD4E1F0098A071 /* Variables.swift in Sources */,
 				B5EC885B201229590056C1C7 /* CounterEditableSection.swift in Sources */,

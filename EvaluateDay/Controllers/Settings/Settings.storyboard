@@ -17,11 +17,103 @@
                     <view key="view" contentMode="scaleToFill" id="Qyx-1v-eRf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="mNS-pc-l0L">
+                                <rect key="frame" x="10" y="0.0" width="355" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="moreCell" textLabel="vWO-1J-GCi" detailTextLabel="dxP-Op-kOe" imageView="Qq0-fH-kxq" style="IBUITableViewCellStyleValue1" id="M4S-kh-bMJ">
+                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M4S-kh-bMJ" id="dew-xU-2xl">
+                                            <rect key="frame" x="0.0" y="0.0" width="322" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vWO-1J-GCi">
+                                                    <rect key="frame" x="74" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dxP-Op-kOe">
+                                                    <rect key="frame" x="287" y="17" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="sandClockB" id="Qq0-fH-kxq">
+                                                    <rect key="frame" x="15" y="0.0" width="44" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="booleanCell" id="9sY-ht-VMT" customClass="SwitchCell" customModule="Evaluate_Day" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9sY-ht-VMT" id="IQR-Kc-qYn">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-01-d8r">
+                                                    <rect key="frame" x="15" y="9" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="4fb-dV-7iS"/>
+                                                        <constraint firstAttribute="width" secondItem="Mfy-01-d8r" secondAttribute="height" multiplier="1:1" id="PfP-yK-aBR"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-Az-rhV">
+                                                    <rect key="frame" x="56" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahm-SK-uge">
+                                                    <rect key="frame" x="291" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchAction:" destination="9sY-ht-VMT" eventType="valueChanged" id="7hg-MG-ehz"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ahm-SK-uge" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kkc-Az-rhV" secondAttribute="trailing" constant="10" id="0lT-PH-qlh"/>
+                                                <constraint firstItem="ahm-SK-uge" firstAttribute="centerY" secondItem="IQR-Kc-qYn" secondAttribute="centerY" id="6Ye-Rr-KjK"/>
+                                                <constraint firstItem="Mfy-01-d8r" firstAttribute="centerY" secondItem="kkc-Az-rhV" secondAttribute="centerY" id="9IP-fO-f70"/>
+                                                <constraint firstItem="kkc-Az-rhV" firstAttribute="centerY" secondItem="IQR-Kc-qYn" secondAttribute="centerY" id="ZOS-ye-1Et"/>
+                                                <constraint firstAttribute="trailing" secondItem="ahm-SK-uge" secondAttribute="trailing" constant="15" id="coz-i0-LoR"/>
+                                                <constraint firstItem="kkc-Az-rhV" firstAttribute="leading" secondItem="Mfy-01-d8r" secondAttribute="trailing" constant="15" id="fyn-qF-GRD"/>
+                                                <constraint firstItem="kkc-Az-rhV" firstAttribute="top" secondItem="ahm-SK-uge" secondAttribute="bottom" constant="-26" id="hZU-7l-cGR"/>
+                                                <constraint firstItem="Mfy-01-d8r" firstAttribute="leading" secondItem="IQR-Kc-qYn" secondAttribute="leading" constant="15" id="puS-uh-UU1"/>
+                                                <constraint firstItem="Mfy-01-d8r" firstAttribute="centerY" secondItem="IQR-Kc-qYn" secondAttribute="centerY" id="tJD-xR-A88"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImage" destination="Mfy-01-d8r" id="Vd5-0a-gAe"/>
+                                            <outlet property="switchControl" destination="ahm-SK-uge" id="HM0-yt-kVn"/>
+                                            <outlet property="titleLabel" destination="kkc-Az-rhV" id="Yhm-RX-WZ5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Byg-uC-fxo" id="Qbd-u8-KMY"/>
+                                    <outlet property="delegate" destination="Byg-uC-fxo" id="yqr-12-orH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mNS-pc-l0L" firstAttribute="top" secondItem="Qyx-1v-eRf" secondAttribute="top" id="4T1-XT-gHb"/>
+                            <constraint firstItem="mNS-pc-l0L" firstAttribute="leading" secondItem="2bP-DZ-DjH" secondAttribute="leading" constant="10" id="Nwo-Np-5ha"/>
+                            <constraint firstItem="mNS-pc-l0L" firstAttribute="trailing" secondItem="2bP-DZ-DjH" secondAttribute="trailing" constant="-10" id="Y7l-N0-OWD"/>
+                            <constraint firstItem="mNS-pc-l0L" firstAttribute="bottom" secondItem="Qyx-1v-eRf" secondAttribute="bottom" id="vRR-qY-HS7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2bP-DZ-DjH"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ZrZ-aw-olf"/>
                     <connections>
+                        <outlet property="tableView" destination="mNS-pc-l0L" id="VOa-tv-ylL"/>
                         <segue destination="9PV-CZ-hc5" kind="show" identifier="themesSegue" id="wBK-0o-G4H"/>
                         <segue destination="kJe-I6-o9t" kind="show" identifier="notificationSegue" id="Uem-jh-UiE"/>
                         <segue destination="bte-dM-HZ3" kind="show" identifier="passcodeSegue" id="uMX-6T-OPI"/>
@@ -509,7 +601,8 @@
         <image name="facebook" width="10" height="20"/>
         <image name="instagram" width="20" height="20"/>
         <image name="mail" width="20" height="16"/>
-        <image name="share" width="25" height="17"/>
+        <image name="sandClockB" width="250" height="250"/>
+        <image name="share" width="24" height="22"/>
         <image name="twitter" width="20" height="16"/>
     </resources>
 </document>
