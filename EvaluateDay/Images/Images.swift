@@ -48,6 +48,7 @@ internal enum Images {
     internal static let delete = ImageAsset(name: "delete")
     internal static let deleteBoard = ImageAsset(name: "deleteBoard")
     internal static let disclosure = ImageAsset(name: "disclosure")
+    internal static let done = ImageAsset(name: "done")
     internal static let down = ImageAsset(name: "down")
     internal static let exportBoard = ImageAsset(name: "exportBoard")
     internal static let faq = ImageAsset(name: "faq")

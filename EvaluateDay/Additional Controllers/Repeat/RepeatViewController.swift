@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 
-class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate {
+class RepeatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variable
     var didSetNewRepeatInterval: (() -> Void)?
@@ -29,32 +28,42 @@ class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate
         }
     }
     private var weekdays = [Bool]()
+    private let repeatCell = "repeatCell"
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = Localizations.Settings.Notifications.New.Repeat.title
-
-        // Set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.view.addSubnode(self.tableNode)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.tableNode.frame = self.view.bounds
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,40 +89,33 @@ class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate
         self.didSetNewRepeatInterval?()
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
-        var title = ""
-        var isSelected = false
-        if indexPath.section == 0 {
-            title = Locale.current.calendar.standaloneWeekdaySymbols[indexPath.row]
-            isSelected = self.weekdays[indexPath.row]
+        selView.backgroundColor = UIColor.tint
+        selView.layer.cornerRadius = 5.0
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: repeatCell, for: indexPath)
+        cell.textLabel?.text = Locale.current.calendar.standaloneWeekdaySymbols[indexPath.row]
+        cell.selectedBackgroundView = selView
+        if self.weekdays[indexPath.row] {
+            cell.imageView?.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+        } else {
+            cell.imageView?.image = nil
         }
         
-        return {
-            let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
-            node.select = isSelected
-            node.backgroundColor = style.settingsSectionBackground
-            node.selectedBackgroundView = selView
-            node.separatorInset = separatorInsets
-            
-            return node
-        }
+        return cell
     }
-    
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 0 {
             let temp = self.weekdays[indexPath.row]
@@ -121,35 +123,6 @@ class RepeatViewController: UIViewController, ASTableDataSource, ASTableDelegate
             self.weekdays.insert(!temp, at: indexPath.row)
         }
         
-        self.tableNode.reloadSections([0], with: .fade)
-        
-    }
-
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-            
-            // Table node
-            self.tableNode.reloadData()
-        })
+        self.tableView.reloadSections([0], with: .fade)
     }
 }
