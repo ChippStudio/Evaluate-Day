@@ -7,33 +7,30 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 
 @available(iOS 10.3, *)
-class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCollectionDataSource {
+class SettingsIconsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     // MARK: - UI
-    var collectionNode: ASCollectionNode!
-    let icons = ["WhiteAppIcon", "WhiteAppIcon-Positive", "WhiteAppIcon-Negative", "DarkAppIcon", "DarkAppIcon-Positive", "DarkAppIcon-Negative", "OrangeAppIcon", "OrangeAppIcon-Positive", "OrangeAppIcon-Negative", "BlackAppIcon", "BlackAppIcon-Positive", "BlackAppIcon-Negative"]
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var icons = [String]()
     
     // MARK: - Variables
     private let contentInset: CGFloat = 20.0
+    private let iconCell = "iconCell"
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set all icons
+        for i in 0...11 {
+            self.icons.append("AppIcon-\(i)")
+        }
 
         // Set navigation Item
         self.navigationItem.title = Localizations.Settings.Themes.Select.icon
-        
-        // set table node
-        let layout = self.calculateLayout()
-         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
-        self.collectionNode.dataSource = self
-        self.collectionNode.delegate = self
-        self.collectionNode.view.alwaysBounceVertical = true
-        self.collectionNode.contentInset = UIEdgeInsets(top: 20.0, left: self.contentInset, bottom: 0.0, right: self.contentInset)
-        self.view.addSubnode(self.collectionNode)
         
         // Analytics
         sendEvent(.openIcons, withProperties: nil)
@@ -44,28 +41,36 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.collectionNode.frame = self.view.bounds
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionNode.view.setCollectionViewLayout(self.calculateLayout(), animated: true)
-        self.observable()
     }
     
-    // MARK: - ASCollectionDataSource
-    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+        }
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.icons.count
     }
     
-    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let icon = self.icons[indexPath.row]
         var selected: Bool = false
         if let currentIcon = UIApplication.shared.alternateIconName {
@@ -78,20 +83,17 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
             }
         }
         
-        return {
-            let node = SettingsIconSelectNode(icon: UIImage(named: icon + "-Preview"), selected: selected, style: style)
-            node.isAccessibilityElement = true
-            node.accessibilityLabel = icon
-            node.accessibilityValue = "\(selected)"
-            node.accessibilityTraits = UIAccessibilityTraitButton
-            return node
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: iconCell, for: indexPath) as! IconCollectionViewCell
+        cell.iconImage.image = UIImage(named: icon + "-Preview")
+        if selected {
+            cell.contentView.backgroundColor = UIColor.tint
+        } else {
+            cell.contentView.backgroundColor = UIColor.background
         }
+        return cell
     }
     
-    // MARK: - ASCollectionDelegate
-    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        collectionNode.deselectItem(at: indexPath, animated: true)
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if Store.current.isPro {
             if indexPath.row == 0 {
                 UIApplication.shared.setAlternateIconName(nil, completionHandler: nil)
@@ -100,7 +102,8 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
                 UIApplication.shared.setAlternateIconName(icon, completionHandler: nil)
             }
             
-            self.collectionNode.reloadData()
+            self.collectionView.reloadData()
+            
             // Analytics
             sendEvent(.selectIcon, withProperties: ["icon": self.icons[indexPath.row]])
             
@@ -108,43 +111,5 @@ class SettingsIconsViewController: UIViewController, ASCollectionDelegate, ASCol
             let controler = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
             self.navigationController?.pushViewController(controler, animated: true)
         }
-    }
-
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.collectionNode.backgroundColor = style.background
-        })
-    }
-    
-    private func calculateLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 0.0
-        layout.minimumLineSpacing = 0.0
-        if self.view.traitCollection.userInterfaceIdiom == .pad {
-            layout.itemSize = CGSize(width: 130.0, height: 130.0)
-        } else {
-            let width = self.view.frame.size.width - self.contentInset * 2
-            let itemSize = width/3
-            layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        }
-        
-        return layout
     }
 }

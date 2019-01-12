@@ -12,101 +12,101 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>BlackAppIcon</key>
+			<key>AppIcon-1</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon</string>
+					<string>AppIcon-1</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>BlackAppIcon-Negative</key>
+			<key>AppIcon-10</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon-Negative</string>
+					<string>AppIcon-10</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>BlackAppIcon-Positive</key>
+			<key>AppIcon-11</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon-Positive</string>
+					<string>AppIcon-11</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon</key>
+			<key>AppIcon-2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon</string>
+					<string>AppIcon-2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon-Negative</key>
+			<key>AppIcon-3</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon-Negative</string>
+					<string>AppIcon-3</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon-Positive</key>
+			<key>AppIcon-4</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon-Positive</string>
+					<string>AppIcon-4</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon</key>
+			<key>AppIcon-5</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon</string>
+					<string>AppIcon-5</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon-Negative</key>
+			<key>AppIcon-6</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon-Negative</string>
+					<string>AppIcon-6</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon-Positive</key>
+			<key>AppIcon-7</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon-Positive</string>
+					<string>AppIcon-7</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>WhiteAppIcon-Negative</key>
+			<key>AppIcon-8</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>WhiteAppIcon-Negative</string>
+					<string>AppIcon-8</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>WhiteAppIcon-Positive</key>
+			<key>AppIcon-9</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>WhiteAppIcon-Positive</string>
+					<string>AppIcon-9</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -126,101 +126,101 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>BlackAppIcon</key>
+			<key>AppIcon-1</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon</string>
+					<string>AppIcon-1</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>BlackAppIcon-Negative</key>
+			<key>AppIcon-10</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon-Negative</string>
+					<string>AppIcon-10</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>BlackAppIcon-Positive</key>
+			<key>AppIcon-11</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>BlackAppIcon-Positive</string>
+					<string>AppIcon-11</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon</key>
+			<key>AppIcon-2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon</string>
+					<string>AppIcon-2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon-Negative</key>
+			<key>AppIcon-3</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon-Negative</string>
+					<string>AppIcon-3</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>DarkAppIcon-Positive</key>
+			<key>AppIcon-4</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>DarkAppIcon-Positive</string>
+					<string>AppIcon-4</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon</key>
+			<key>AppIcon-5</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon</string>
+					<string>AppIcon-5</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon-Negative</key>
+			<key>AppIcon-6</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon-Negative</string>
+					<string>AppIcon-6</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>OrangeAppIcon-Positive</key>
+			<key>AppIcon-7</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>OrangeAppIcon-Positive</string>
+					<string>AppIcon-7</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>WhiteAppIcon-Negative</key>
+			<key>AppIcon-8</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>WhiteAppIcon-Negative</string>
+					<string>AppIcon-8</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>WhiteAppIcon-Positive</key>
+			<key>AppIcon-9</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>WhiteAppIcon-Positive</string>
+					<string>AppIcon-9</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -266,7 +266,7 @@
 	<key>CFBundleVersion</key>
 	<string>6749</string>
 	<key>CSBuild</key>
-	<string>7073</string>
+	<string>7084</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>

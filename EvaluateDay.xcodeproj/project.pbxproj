@@ -11,6 +11,31 @@
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
 		B516B49320055A89003A93D9 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B49220055A89003A93D9 /* SnapshotHelper.swift */; };
+		B516CA1F21EA7DDB0002915F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA1E21EA7DDB0002915F /* IconCollectionViewCell.swift */; };
+		B516CA2C21EA8BB70002915F /* AppIcon-11.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2021EA8BB60002915F /* AppIcon-11.png */; };
+		B516CA2D21EA8BB70002915F /* AppIcon-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2121EA8BB60002915F /* AppIcon-10.png */; };
+		B516CA2E21EA8BB70002915F /* AppIcon-4.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2221EA8BB60002915F /* AppIcon-4.png */; };
+		B516CA2F21EA8BB70002915F /* AppIcon-8.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2321EA8BB60002915F /* AppIcon-8.png */; };
+		B516CA3021EA8BB70002915F /* AppIcon-5.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2421EA8BB60002915F /* AppIcon-5.png */; };
+		B516CA3121EA8BB70002915F /* AppIcon-7.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2521EA8BB60002915F /* AppIcon-7.png */; };
+		B516CA3221EA8BB70002915F /* AppIcon-9.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2621EA8BB60002915F /* AppIcon-9.png */; };
+		B516CA3321EA8BB70002915F /* AppIcon-3.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2721EA8BB60002915F /* AppIcon-3.png */; };
+		B516CA3421EA8BB70002915F /* AppIcon-6.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2821EA8BB70002915F /* AppIcon-6.png */; };
+		B516CA3521EA8BB70002915F /* AppIcon-0.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2921EA8BB70002915F /* AppIcon-0.png */; };
+		B516CA3621EA8BB70002915F /* AppIcon-2.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2A21EA8BB70002915F /* AppIcon-2.png */; };
+		B516CA3721EA8BB70002915F /* AppIcon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA2B21EA8BB70002915F /* AppIcon-1.png */; };
+		B516CA4421EA8C5B0002915F /* AppIcon-10-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3821EA8C590002915F /* AppIcon-10-Preview.png */; };
+		B516CA4521EA8C5B0002915F /* AppIcon-11-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3921EA8C5A0002915F /* AppIcon-11-Preview.png */; };
+		B516CA4621EA8C5B0002915F /* AppIcon-3-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3A21EA8C5A0002915F /* AppIcon-3-Preview.png */; };
+		B516CA4721EA8C5B0002915F /* AppIcon-9-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3B21EA8C5A0002915F /* AppIcon-9-Preview.png */; };
+		B516CA4821EA8C5B0002915F /* AppIcon-8-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3C21EA8C5A0002915F /* AppIcon-8-Preview.png */; };
+		B516CA4921EA8C5B0002915F /* AppIcon-0-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3D21EA8C5A0002915F /* AppIcon-0-Preview.png */; };
+		B516CA4A21EA8C5B0002915F /* AppIcon-2-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3E21EA8C5A0002915F /* AppIcon-2-Preview.png */; };
+		B516CA4B21EA8C5B0002915F /* AppIcon-1-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA3F21EA8C5A0002915F /* AppIcon-1-Preview.png */; };
+		B516CA4C21EA8C5B0002915F /* AppIcon-5-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4021EA8C5A0002915F /* AppIcon-5-Preview.png */; };
+		B516CA4D21EA8C5B0002915F /* AppIcon-6-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4121EA8C5B0002915F /* AppIcon-6-Preview.png */; };
+		B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */; };
+		B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -177,30 +202,6 @@
 		B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */; };
 		B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0722120B91000A9FCFB /* Photo.storyboard */; };
 		B59DA0752120CB0400A9FCFB /* PhotoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */; };
-		B59DA08221229EC100A9FCFB /* DarkAppIcon-Positive.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07621229EBD00A9FCFB /* DarkAppIcon-Positive.png */; };
-		B59DA08321229EC100A9FCFB /* DarkAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07721229EBE00A9FCFB /* DarkAppIcon.png */; };
-		B59DA08421229EC100A9FCFB /* BlackAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07821229EBE00A9FCFB /* BlackAppIcon.png */; };
-		B59DA08521229EC100A9FCFB /* OrangeAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07921229EBE00A9FCFB /* OrangeAppIcon.png */; };
-		B59DA08621229EC100A9FCFB /* DarkAppIcon-Negative.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07A21229EBF00A9FCFB /* DarkAppIcon-Negative.png */; };
-		B59DA08721229EC100A9FCFB /* WhiteAppIcon-Negative.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07B21229EBF00A9FCFB /* WhiteAppIcon-Negative.png */; };
-		B59DA08821229EC100A9FCFB /* WhiteAppIcon-Positive.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07C21229EBF00A9FCFB /* WhiteAppIcon-Positive.png */; };
-		B59DA08921229EC100A9FCFB /* WhiteAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07D21229EBF00A9FCFB /* WhiteAppIcon.png */; };
-		B59DA08A21229EC100A9FCFB /* BlackAppIcon-Negative.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07E21229EC000A9FCFB /* BlackAppIcon-Negative.png */; };
-		B59DA08B21229EC100A9FCFB /* OrangeAppIcon-Negative.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA07F21229EC000A9FCFB /* OrangeAppIcon-Negative.png */; };
-		B59DA08C21229EC100A9FCFB /* BlackAppIcon-Positive.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA08021229EC000A9FCFB /* BlackAppIcon-Positive.png */; };
-		B59DA08D21229EC100A9FCFB /* OrangeAppIcon-Positive.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA08121229EC000A9FCFB /* OrangeAppIcon-Positive.png */; };
-		B59DA09B2122A2DC00A9FCFB /* WhiteAppIcon-Negative-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA08F2122A2D900A9FCFB /* WhiteAppIcon-Negative-Preview.png */; };
-		B59DA09C2122A2DC00A9FCFB /* DarkAppIcon-Positive-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0902122A2DA00A9FCFB /* DarkAppIcon-Positive-Preview.png */; };
-		B59DA09D2122A2DC00A9FCFB /* OrangeAppIcon-Negative-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0912122A2DA00A9FCFB /* OrangeAppIcon-Negative-Preview.png */; };
-		B59DA09E2122A2DC00A9FCFB /* WhiteAppIcon-Positive-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0922122A2DB00A9FCFB /* WhiteAppIcon-Positive-Preview.png */; };
-		B59DA09F2122A2DC00A9FCFB /* BlackAppIcon-Positive-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0932122A2DB00A9FCFB /* BlackAppIcon-Positive-Preview.png */; };
-		B59DA0A02122A2DC00A9FCFB /* BlackAppIcon-Negative-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0942122A2DB00A9FCFB /* BlackAppIcon-Negative-Preview.png */; };
-		B59DA0A12122A2DC00A9FCFB /* DarkAppIcon-Negative-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0952122A2DB00A9FCFB /* DarkAppIcon-Negative-Preview.png */; };
-		B59DA0A22122A2DC00A9FCFB /* BlackAppIcon-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0962122A2DB00A9FCFB /* BlackAppIcon-Preview.png */; };
-		B59DA0A32122A2DC00A9FCFB /* OrangeAppIcon-Positive-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0972122A2DC00A9FCFB /* OrangeAppIcon-Positive-Preview.png */; };
-		B59DA0A42122A2DC00A9FCFB /* OrangeAppIcon-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0982122A2DC00A9FCFB /* OrangeAppIcon-Preview.png */; };
-		B59DA0A52122A2DC00A9FCFB /* WhiteAppIcon-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0992122A2DC00A9FCFB /* WhiteAppIcon-Preview.png */; };
-		B59DA0A62122A2DC00A9FCFB /* DarkAppIcon-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B59DA09A2122A2DC00A9FCFB /* DarkAppIcon-Preview.png */; };
 		B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F49211AD46700A59516 /* SeparatorNode.swift */; };
 		B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */; };
 		B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */; };
@@ -452,6 +453,31 @@
 		B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDayUITests.swift; sourceTree = "<group>"; };
 		B516B48C20055A2E003A93D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B516B49220055A89003A93D9 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		B516CA1E21EA7DDB0002915F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		B516CA2021EA8BB60002915F /* AppIcon-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-11.png"; sourceTree = "<group>"; };
+		B516CA2121EA8BB60002915F /* AppIcon-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-10.png"; sourceTree = "<group>"; };
+		B516CA2221EA8BB60002915F /* AppIcon-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-4.png"; sourceTree = "<group>"; };
+		B516CA2321EA8BB60002915F /* AppIcon-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-8.png"; sourceTree = "<group>"; };
+		B516CA2421EA8BB60002915F /* AppIcon-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-5.png"; sourceTree = "<group>"; };
+		B516CA2521EA8BB60002915F /* AppIcon-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-7.png"; sourceTree = "<group>"; };
+		B516CA2621EA8BB60002915F /* AppIcon-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-9.png"; sourceTree = "<group>"; };
+		B516CA2721EA8BB60002915F /* AppIcon-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-3.png"; sourceTree = "<group>"; };
+		B516CA2821EA8BB70002915F /* AppIcon-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-6.png"; sourceTree = "<group>"; };
+		B516CA2921EA8BB70002915F /* AppIcon-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-0.png"; sourceTree = "<group>"; };
+		B516CA2A21EA8BB70002915F /* AppIcon-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-2.png"; sourceTree = "<group>"; };
+		B516CA2B21EA8BB70002915F /* AppIcon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-1.png"; sourceTree = "<group>"; };
+		B516CA3821EA8C590002915F /* AppIcon-10-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-10-Preview.png"; sourceTree = "<group>"; };
+		B516CA3921EA8C5A0002915F /* AppIcon-11-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-11-Preview.png"; sourceTree = "<group>"; };
+		B516CA3A21EA8C5A0002915F /* AppIcon-3-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-3-Preview.png"; sourceTree = "<group>"; };
+		B516CA3B21EA8C5A0002915F /* AppIcon-9-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-9-Preview.png"; sourceTree = "<group>"; };
+		B516CA3C21EA8C5A0002915F /* AppIcon-8-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-8-Preview.png"; sourceTree = "<group>"; };
+		B516CA3D21EA8C5A0002915F /* AppIcon-0-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-0-Preview.png"; sourceTree = "<group>"; };
+		B516CA3E21EA8C5A0002915F /* AppIcon-2-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-2-Preview.png"; sourceTree = "<group>"; };
+		B516CA3F21EA8C5A0002915F /* AppIcon-1-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-1-Preview.png"; sourceTree = "<group>"; };
+		B516CA4021EA8C5A0002915F /* AppIcon-5-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-5-Preview.png"; sourceTree = "<group>"; };
+		B516CA4121EA8C5B0002915F /* AppIcon-6-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-6-Preview.png"; sourceTree = "<group>"; };
+		B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-4-Preview.png"; sourceTree = "<group>"; };
+		B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-7-Preview.png"; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -618,30 +644,6 @@
 		B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		B59DA0722120B91000A9FCFB /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTransition.swift; sourceTree = "<group>"; };
-		B59DA07621229EBD00A9FCFB /* DarkAppIcon-Positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkAppIcon-Positive.png"; sourceTree = "<group>"; };
-		B59DA07721229EBE00A9FCFB /* DarkAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DarkAppIcon.png; sourceTree = "<group>"; };
-		B59DA07821229EBE00A9FCFB /* BlackAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackAppIcon.png; sourceTree = "<group>"; };
-		B59DA07921229EBE00A9FCFB /* OrangeAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeAppIcon.png; sourceTree = "<group>"; };
-		B59DA07A21229EBF00A9FCFB /* DarkAppIcon-Negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkAppIcon-Negative.png"; sourceTree = "<group>"; };
-		B59DA07B21229EBF00A9FCFB /* WhiteAppIcon-Negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteAppIcon-Negative.png"; sourceTree = "<group>"; };
-		B59DA07C21229EBF00A9FCFB /* WhiteAppIcon-Positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteAppIcon-Positive.png"; sourceTree = "<group>"; };
-		B59DA07D21229EBF00A9FCFB /* WhiteAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteAppIcon.png; sourceTree = "<group>"; };
-		B59DA07E21229EC000A9FCFB /* BlackAppIcon-Negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackAppIcon-Negative.png"; sourceTree = "<group>"; };
-		B59DA07F21229EC000A9FCFB /* OrangeAppIcon-Negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrangeAppIcon-Negative.png"; sourceTree = "<group>"; };
-		B59DA08021229EC000A9FCFB /* BlackAppIcon-Positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackAppIcon-Positive.png"; sourceTree = "<group>"; };
-		B59DA08121229EC000A9FCFB /* OrangeAppIcon-Positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrangeAppIcon-Positive.png"; sourceTree = "<group>"; };
-		B59DA08F2122A2D900A9FCFB /* WhiteAppIcon-Negative-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteAppIcon-Negative-Preview.png"; sourceTree = "<group>"; };
-		B59DA0902122A2DA00A9FCFB /* DarkAppIcon-Positive-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkAppIcon-Positive-Preview.png"; sourceTree = "<group>"; };
-		B59DA0912122A2DA00A9FCFB /* OrangeAppIcon-Negative-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrangeAppIcon-Negative-Preview.png"; sourceTree = "<group>"; };
-		B59DA0922122A2DB00A9FCFB /* WhiteAppIcon-Positive-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteAppIcon-Positive-Preview.png"; sourceTree = "<group>"; };
-		B59DA0932122A2DB00A9FCFB /* BlackAppIcon-Positive-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackAppIcon-Positive-Preview.png"; sourceTree = "<group>"; };
-		B59DA0942122A2DB00A9FCFB /* BlackAppIcon-Negative-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackAppIcon-Negative-Preview.png"; sourceTree = "<group>"; };
-		B59DA0952122A2DB00A9FCFB /* DarkAppIcon-Negative-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkAppIcon-Negative-Preview.png"; sourceTree = "<group>"; };
-		B59DA0962122A2DB00A9FCFB /* BlackAppIcon-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackAppIcon-Preview.png"; sourceTree = "<group>"; };
-		B59DA0972122A2DC00A9FCFB /* OrangeAppIcon-Positive-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrangeAppIcon-Positive-Preview.png"; sourceTree = "<group>"; };
-		B59DA0982122A2DC00A9FCFB /* OrangeAppIcon-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrangeAppIcon-Preview.png"; sourceTree = "<group>"; };
-		B59DA0992122A2DC00A9FCFB /* WhiteAppIcon-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteAppIcon-Preview.png"; sourceTree = "<group>"; };
-		B59DA09A2122A2DC00A9FCFB /* DarkAppIcon-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkAppIcon-Preview.png"; sourceTree = "<group>"; };
 		B59F9F49211AD46700A59516 /* SeparatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorNode.swift; sourceTree = "<group>"; };
 		B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSectionTitleNode.swift; sourceTree = "<group>"; };
 		B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsNotificationObject.swift; sourceTree = "<group>"; };
@@ -974,19 +976,19 @@
 		B5257D631FEA601C00AC54DE /* AppIcons */ = {
 			isa = PBXGroup;
 			children = (
+				B516CA2921EA8BB70002915F /* AppIcon-0.png */,
+				B516CA2B21EA8BB70002915F /* AppIcon-1.png */,
+				B516CA2A21EA8BB70002915F /* AppIcon-2.png */,
+				B516CA2721EA8BB60002915F /* AppIcon-3.png */,
+				B516CA2221EA8BB60002915F /* AppIcon-4.png */,
+				B516CA2421EA8BB60002915F /* AppIcon-5.png */,
+				B516CA2821EA8BB70002915F /* AppIcon-6.png */,
+				B516CA2521EA8BB60002915F /* AppIcon-7.png */,
+				B516CA2321EA8BB60002915F /* AppIcon-8.png */,
+				B516CA2621EA8BB60002915F /* AppIcon-9.png */,
+				B516CA2121EA8BB60002915F /* AppIcon-10.png */,
+				B516CA2021EA8BB60002915F /* AppIcon-11.png */,
 				B59DA08E2122A14300A9FCFB /* Preview */,
-				B59DA07E21229EC000A9FCFB /* BlackAppIcon-Negative.png */,
-				B59DA08021229EC000A9FCFB /* BlackAppIcon-Positive.png */,
-				B59DA07821229EBE00A9FCFB /* BlackAppIcon.png */,
-				B59DA07A21229EBF00A9FCFB /* DarkAppIcon-Negative.png */,
-				B59DA07621229EBD00A9FCFB /* DarkAppIcon-Positive.png */,
-				B59DA07721229EBE00A9FCFB /* DarkAppIcon.png */,
-				B59DA07F21229EC000A9FCFB /* OrangeAppIcon-Negative.png */,
-				B59DA08121229EC000A9FCFB /* OrangeAppIcon-Positive.png */,
-				B59DA07921229EBE00A9FCFB /* OrangeAppIcon.png */,
-				B59DA07B21229EBF00A9FCFB /* WhiteAppIcon-Negative.png */,
-				B59DA07C21229EBF00A9FCFB /* WhiteAppIcon-Positive.png */,
-				B59DA07D21229EBF00A9FCFB /* WhiteAppIcon.png */,
 			);
 			path = AppIcons;
 			sourceTree = "<group>";
@@ -1014,6 +1016,7 @@
 			children = (
 				B53E707121EA0B5300E19A62 /* SwitchCell.swift */,
 				B5D854C41FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift */,
+				B516CA1E21EA7DDB0002915F /* IconCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1242,18 +1245,18 @@
 		B59DA08E2122A14300A9FCFB /* Preview */ = {
 			isa = PBXGroup;
 			children = (
-				B59DA0942122A2DB00A9FCFB /* BlackAppIcon-Negative-Preview.png */,
-				B59DA0932122A2DB00A9FCFB /* BlackAppIcon-Positive-Preview.png */,
-				B59DA0962122A2DB00A9FCFB /* BlackAppIcon-Preview.png */,
-				B59DA0952122A2DB00A9FCFB /* DarkAppIcon-Negative-Preview.png */,
-				B59DA0902122A2DA00A9FCFB /* DarkAppIcon-Positive-Preview.png */,
-				B59DA09A2122A2DC00A9FCFB /* DarkAppIcon-Preview.png */,
-				B59DA0912122A2DA00A9FCFB /* OrangeAppIcon-Negative-Preview.png */,
-				B59DA0972122A2DC00A9FCFB /* OrangeAppIcon-Positive-Preview.png */,
-				B59DA0982122A2DC00A9FCFB /* OrangeAppIcon-Preview.png */,
-				B59DA08F2122A2D900A9FCFB /* WhiteAppIcon-Negative-Preview.png */,
-				B59DA0922122A2DB00A9FCFB /* WhiteAppIcon-Positive-Preview.png */,
-				B59DA0992122A2DC00A9FCFB /* WhiteAppIcon-Preview.png */,
+				B516CA3D21EA8C5A0002915F /* AppIcon-0-Preview.png */,
+				B516CA3F21EA8C5A0002915F /* AppIcon-1-Preview.png */,
+				B516CA3E21EA8C5A0002915F /* AppIcon-2-Preview.png */,
+				B516CA3A21EA8C5A0002915F /* AppIcon-3-Preview.png */,
+				B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */,
+				B516CA4021EA8C5A0002915F /* AppIcon-5-Preview.png */,
+				B516CA4121EA8C5B0002915F /* AppIcon-6-Preview.png */,
+				B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */,
+				B516CA3C21EA8C5A0002915F /* AppIcon-8-Preview.png */,
+				B516CA3B21EA8C5A0002915F /* AppIcon-9-Preview.png */,
+				B516CA3821EA8C590002915F /* AppIcon-10-Preview.png */,
+				B516CA3921EA8C5A0002915F /* AppIcon-11-Preview.png */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -2030,76 +2033,76 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B516CA4D21EA8C5B0002915F /* AppIcon-6-Preview.png in Resources */,
 				B5D854E41FD015A900BB4E14 /* Repeat.storyboard in Resources */,
 				B5C757281F9DC9970032199E /* Onboarding.storyboard in Resources */,
-				B59DA09B2122A2DC00A9FCFB /* WhiteAppIcon-Negative-Preview.png in Resources */,
 				B5257D421FE91C0200AC54DE /* Web.storyboard in Resources */,
-				B59DA0A12122A2DC00A9FCFB /* DarkAppIcon-Negative-Preview.png in Resources */,
-				B59DA08521229EC100A9FCFB /* OrangeAppIcon.png in Resources */,
+				B516CA2F21EA8BB70002915F /* AppIcon-8.png in Resources */,
 				B587D6C81FB96D11006D62C1 /* Icons.xcassets in Resources */,
-				B59DA0A22122A2DC00A9FCFB /* BlackAppIcon-Preview.png in Resources */,
-				B59DA08821229EC100A9FCFB /* WhiteAppIcon-Positive.png in Resources */,
-				B59DA09C2122A2DC00A9FCFB /* DarkAppIcon-Positive-Preview.png in Resources */,
+				B516CA3421EA8BB70002915F /* AppIcon-6.png in Resources */,
+				B516CA3721EA8BB70002915F /* AppIcon-1.png in Resources */,
+				B516CA4421EA8C5B0002915F /* AppIcon-10-Preview.png in Resources */,
+				B516CA3321EA8BB70002915F /* AppIcon-3.png in Resources */,
+				B516CA4521EA8C5B0002915F /* AppIcon-11-Preview.png in Resources */,
 				B5A11405200E3112008DBF02 /* Map.storyboard in Resources */,
 				B5A730EB1FF2437C006B6F58 /* saveNewCard.wav in Resources */,
+				B516CA3021EA8BB70002915F /* AppIcon-5.png in Resources */,
+				B516CA3221EA8BB70002915F /* AppIcon-9.png in Resources */,
 				B5A730EA1FF2437C006B6F58 /* openAnalytics.wav in Resources */,
 				B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */,
+				B516CA3121EA8BB70002915F /* AppIcon-7.png in Resources */,
 				B58DC37C213D890A0067FD61 /* Dashboards.xcassets in Resources */,
 				B5A730F01FF2437C006B6F58 /* evaluateButton.wav in Resources */,
 				B593182A1FFAD4FF000D8FFE /* CardMerge.storyboard in Resources */,
 				B5A730EC1FF2437C006B6F58 /* evaluateCard.wav in Resources */,
 				B5257D481FE91E6D00AC54DE /* monthly.html in Resources */,
-				B59DA0A32122A2DC00A9FCFB /* OrangeAppIcon-Positive-Preview.png in Resources */,
-				B59DA08921229EC100A9FCFB /* WhiteAppIcon.png in Resources */,
-				B59DA08D21229EC100A9FCFB /* OrangeAppIcon-Positive.png in Resources */,
-				B59DA09D2122A2DC00A9FCFB /* OrangeAppIcon-Negative-Preview.png in Resources */,
 				B5B27E631F9DA66000CB9121 /* LaunchScreen.storyboard in Resources */,
+				B516CA4B21EA8C5B0002915F /* AppIcon-1-Preview.png in Resources */,
+				B516CA4821EA8C5B0002915F /* AppIcon-8-Preview.png in Resources */,
 				B5B27E871F9DC31F00CB9121 /* Evaluate.storyboard in Resources */,
-				B59DA08321229EC100A9FCFB /* DarkAppIcon.png in Resources */,
+				B516CA4A21EA8C5B0002915F /* AppIcon-2-Preview.png in Resources */,
 				B5B27E9D1F9DC55600CB9121 /* NewCard.storyboard in Resources */,
 				B5B27EA01F9DC5AC00CB9121 /* CardSettings.storyboard in Resources */,
 				B5A730EE1FF2437C006B6F58 /* openPro.wav in Resources */,
 				B5B27E8C1F9DC3BC00CB9121 /* Settings.storyboard in Resources */,
 				B5A5916021D8FB620026FD84 /* Media.xcassets in Resources */,
+				B516CA4921EA8C5B0002915F /* AppIcon-0-Preview.png in Resources */,
 				B5693EF520246EE900B8879C /* Entry.storyboard in Resources */,
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
 				B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */,
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
-				B59DA08A21229EC100A9FCFB /* BlackAppIcon-Negative.png in Resources */,
+				B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
-				B59DA09F2122A2DC00A9FCFB /* BlackAppIcon-Positive-Preview.png in Resources */,
-				B59DA08421229EC100A9FCFB /* BlackAppIcon.png in Resources */,
-				B59DA0A02122A2DC00A9FCFB /* BlackAppIcon-Negative-Preview.png in Resources */,
+				B516CA2C21EA8BB70002915F /* AppIcon-11.png in Resources */,
 				B5899B0921D7AFDE00CF123B /* SplitController.storyboard in Resources */,
+				B516CA4721EA8C5B0002915F /* AppIcon-9-Preview.png in Resources */,
 				B5A730ED1FF2437C006B6F58 /* closeSettings.wav in Resources */,
 				B5899B0E21D7B2C000CF123B /* Collection.storyboard in Resources */,
 				B55464CF2025AA9A00923CE3 /* Weather.xcassets in Resources */,
-				B59DA09E2122A2DC00A9FCFB /* WhiteAppIcon-Positive-Preview.png in Resources */,
 				B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */,
+				B516CA3621EA8BB70002915F /* AppIcon-2.png in Resources */,
+				B516CA3521EA8BB70002915F /* AppIcon-0.png in Resources */,
 				B5397840214F91A1002EAAFA /* Health.storyboard in Resources */,
 				B5EC88512011EF740056C1C7 /* Phrases.storyboard in Resources */,
 				B5B27E6F1F9DAC7000CB9121 /* Localizable.strings in Resources */,
-				B59DA08C21229EC100A9FCFB /* BlackAppIcon-Positive.png in Resources */,
 				B5AB1E952019D08900BB1A64 /* List.storyboard in Resources */,
 				B5B27E601F9DA66000CB9121 /* Assets.xcassets in Resources */,
+				B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */,
 				B5BD494E2116FAEB004872B0 /* Images.xcassets in Resources */,
-				B59DA08721229EC100A9FCFB /* WhiteAppIcon-Negative.png in Resources */,
-				B59DA0A42122A2DC00A9FCFB /* OrangeAppIcon-Preview.png in Resources */,
-				B59DA08B21229EC100A9FCFB /* OrangeAppIcon-Negative.png in Resources */,
-				B59DA0A52122A2DC00A9FCFB /* WhiteAppIcon-Preview.png in Resources */,
 				B5A226BD20FCAE530060538F /* Localizable.stringsdict in Resources */,
-				B59DA0A62122A2DC00A9FCFB /* DarkAppIcon-Preview.png in Resources */,
-				B59DA08621229EC100A9FCFB /* DarkAppIcon-Negative.png in Resources */,
+				B516CA4C21EA8C5B0002915F /* AppIcon-5-Preview.png in Resources */,
 				B5D854CA1FCDAA6F00BB4E14 /* Passcode.storyboard in Resources */,
 				B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */,
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
+				B516CA2E21EA8BB70002915F /* AppIcon-4.png in Resources */,
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
 				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
+				B516CA4621EA8C5B0002915F /* AppIcon-3-Preview.png in Resources */,
+				B516CA2D21EA8BB70002915F /* AppIcon-10.png in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
 				B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */,
-				B59DA08221229EC100A9FCFB /* DarkAppIcon-Positive.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2308,6 +2311,7 @@
 				B55D32822079042800BD1E75 /* TrackerCard+Extensions.swift in Sources */,
 				B5A5916721D8FC8F0026FD84 /* CollectionActionNode.swift in Sources */,
 				B5BD3B24200772090075C75F /* CriterionTenAnalyticsSection.swift in Sources */,
+				B516CA1F21EA7DDB0002915F /* IconCollectionViewCell.swift in Sources */,
 				B5CA2D5C1FB43CD100547EC8 /* ColorAnalyticsSection.swift in Sources */,
 				B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */,
 				B5C757421F9F33660032199E /* ColorEvaluateNode.swift in Sources */,
