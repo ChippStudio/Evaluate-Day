@@ -104,11 +104,11 @@ class RepeatViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: repeatCell, for: indexPath)
         cell.textLabel?.text = Locale.current.calendar.standaloneWeekdaySymbols[indexPath.row]
         cell.selectedBackgroundView = selView
+        cell.imageView?.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
         if self.weekdays[indexPath.row] {
-            cell.imageView?.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
             cell.imageView?.tintColor = UIColor.main
         } else {
-            cell.imageView?.image = nil
+            cell.imageView?.tintColor = UIColor.background
         }
         
         return cell

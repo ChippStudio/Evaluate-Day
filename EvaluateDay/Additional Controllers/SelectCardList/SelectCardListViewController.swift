@@ -7,20 +7,21 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import RealmSwift
 
 @objc protocol SelectCardListViewControllerDelegate {
     @objc func  didSelect(cardId id: String)
 }
-class SelectCardListViewController: UIViewController, ASTableDataSource, ASTableDelegate {
+class SelectCardListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variable
     var cards: Results<Card>!
     weak var delegate: SelectCardListViewControllerDelegate?
+    
+    private let cardCell = "cardCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -29,15 +30,11 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         // Navigation item
         self.navigationItem.title = Localizations.Settings.Notifications.New.selectCard
         
+        // TableView
+        self.tableView.showsVerticalScrollIndicator = false
+        
         // set cards
         self.cards = Database.manager.data.objects(Card.self).sorted(byKeyPath: "order")
-        
-        // set table node
-        self.tableNode = ASTableNode(style: .plain)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-//        self.tableNode.view.separatorStyle = .none
-        self.view.addSubnode(self.tableNode)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,81 +42,58 @@ class SelectCardListViewController: UIViewController, ASTableDataSource, ASTable
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.tableNode.frame = self.view.bounds
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 1
-    }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.cards.count
-    }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let title = self.cards[indexPath.row].title
-        let subtitle = self.cards[indexPath.row].subtitle
-        let image = Sources.image(forType: self.cards[indexPath.row].type)
-        let type = Sources.title(forType: self.cards[indexPath.row].type)
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
         
-        let selView = UIView()
-        selView.backgroundColor = Themes.manager.settingsStyle.settingsSelectColor
-        
-        return {
-            let node = TitleNode(title: title, subtitle: subtitle, image: image)
-            node.backgroundColor = Themes.manager.settingsStyle.settingsSectionBackground
-            node.selectedBackgroundView = selView
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
             
-            node.isAccessibilityElement = true
-            node.accessibilityTraits = UIAccessibilityTraitButton
-            node.accessibilityLabel = "\(title), \(type)"
-            node.accessibilityValue = subtitle
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
             
-            return node
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
         }
     }
     
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.cards.count
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let selView = UIView()
+        selView.backgroundColor = UIColor.tint
+        selView.layer.cornerRadius = 5.0
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cardCell, for: indexPath)
+        cell.textLabel?.text = self.cards[indexPath.row].title
+        cell.detailTextLabel?.text = self.cards[indexPath.row].subtitle
+        cell.imageView?.image = Sources.image(forType: self.cards[indexPath.row].type).resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+        cell.imageView?.tintColor = UIColor.main
+        cell.textLabel?.textColor = UIColor.text
+        cell.detailTextLabel?.textColor = UIColor.text
+        cell.selectedBackgroundView = selView
+        return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         self.delegate?.didSelect(cardId: self.cards[indexPath.row].id)
         sendEvent(.addCardToNotification, withProperties: ["type": self.cards[indexPath.row].type.string])
         self.navigationController?.popViewController(animated: true)
     }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-            
-            // Table node
-            self.tableNode.reloadData()
-        })
-    }
-
 }
