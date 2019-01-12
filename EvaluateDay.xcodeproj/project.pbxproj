@@ -1013,6 +1013,7 @@
 			isa = PBXGroup;
 			children = (
 				B53E707121EA0B5300E19A62 /* SwitchCell.swift */,
+				B5D854C41FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1742,7 +1743,6 @@
 				B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */,
 				B56218111FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift */,
 				B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */,
-				B5D854C41FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift */,
 				B584E0DA1FE2A104008093D5 /* WelcomeImageNode.swift */,
 				B584E0DC1FE2A5BD008093D5 /* WelcomeBecomeProNode.swift */,
 				B584E0DE1FE2A5FB008093D5 /* WelcomeLastSlideNode.swift */,

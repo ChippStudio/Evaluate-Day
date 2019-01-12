@@ -16,8 +16,9 @@ class SettingsAboutTitleTableViewCell: UITableViewCell {
 class SettingsAboutSocialTableViewCell: UITableViewCell {
 
     @IBOutlet weak var facebookButton: UIButton!
-    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var linkedinButton: UIButton!
     @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var githubButton: UIButton!
     @IBOutlet weak var mailButton: UIButton!
     
     override func awakeFromNib() {
@@ -27,17 +28,21 @@ class SettingsAboutSocialTableViewCell: UITableViewCell {
         self.facebookButton.layer.borderWidth = 1
         self.facebookButton.tag = 0
         
-        self.twitterButton.layer.cornerRadius = 20
-        self.twitterButton.layer.borderWidth = 1
-        self.twitterButton.tag = 1
-        
         self.instagramButton.layer.cornerRadius = 20
         self.instagramButton.layer.borderWidth = 1
-        self.instagramButton.tag = 2
+        self.instagramButton.tag = 1
+        
+        self.linkedinButton.layer.cornerRadius = 20
+        self.linkedinButton.layer.borderWidth = 1
+        self.linkedinButton.tag = 2
+        
+        self.githubButton.layer.cornerRadius = 20
+        self.githubButton.layer.borderWidth = 1
+        self.githubButton.tag = 3
         
         self.mailButton.layer.cornerRadius = 20
         self.mailButton.layer.borderWidth = 1
-        self.mailButton.tag = 3
+        self.mailButton.tag = 4
     }
 }
 

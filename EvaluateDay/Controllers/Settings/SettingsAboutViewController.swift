@@ -69,6 +69,8 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         //Table view
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 80.0
+        self.tableView.showsHorizontalScrollIndicator = false
+        self.tableView.showsVerticalScrollIndicator = false
         
         // Analytics
         sendEvent(.openAbout, withProperties: nil)
@@ -76,8 +78,32 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
         
-        self.observable()
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
+            self.tableView.reloadData()
+            
+            // Made in
+            self.madeLabel.textColor = UIColor.text
+            self.madeLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
+            self.footerView.backgroundColor = UIColor.background
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,52 +136,63 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let style = Themes.manager.settingsStyle
+        let selView = UIView()
+        selView.layer.cornerRadius = 5.0
+        selView.backgroundColor = UIColor.tint
+        
         switch indexPath.section {
         case 0: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: topTitleCellID, for: indexPath) as! SettingsAboutTitleTableViewCell
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
             let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
             cell.title.text = Localizations.General.evaluateday
-            cell.title.font = style.aboutAppTitleFont
-            cell.title.textColor = style.aboutTintColor
+            cell.title.font = UIFont.preferredFont(forTextStyle: .title1)
+            cell.title.textColor = UIColor.text
             cell.subtitle.text = Localizations.General.version(build, version)
-            cell.subtitle.textColor = style.aboutTintColor
-            cell.subtitle.font = style.aboutVersionFont
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.subtitle.textColor = UIColor.text
+            cell.subtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: socialCellID, for: indexPath) as! SettingsAboutSocialTableViewCell
             cell.facebookButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
             cell.facebookButton.backgroundColor = UIColor.white
-            cell.facebookButton.layer.borderColor = style.aboutTintColor.cgColor
+            cell.facebookButton.layer.borderColor = UIColor.main.cgColor
             
-            cell.twitterButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
-            cell.twitterButton.backgroundColor = UIColor.white
-            cell.twitterButton.layer.borderColor = style.aboutTintColor.cgColor
+            cell.linkedinButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
+            cell.linkedinButton.backgroundColor = UIColor.white
+            cell.linkedinButton.layer.borderColor = UIColor.main.cgColor
             
             cell.instagramButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
             cell.instagramButton.backgroundColor = UIColor.white
-            cell.instagramButton.layer.borderColor = style.aboutTintColor.cgColor
+            cell.instagramButton.layer.borderColor = UIColor.main.cgColor
+            
+            cell.githubButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
+            cell.githubButton.backgroundColor = UIColor.white
+            cell.githubButton.layer.borderColor = UIColor.main.cgColor
         
             cell.mailButton.addTarget(self, action: #selector(socialButtonsAction(_: )), for: .touchUpInside)
             cell.mailButton.backgroundColor = UIColor.white
-            cell.mailButton.layer.borderColor = style.aboutTintColor.cgColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.mailButton.layer.borderColor = UIColor.main.cgColor
+            
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: shareCellID, for: indexPath) as! SettingsAboutShareTableViewCell
             cell.title.text = Localizations.Settings.About.Share.title
-            cell.title.font = style.aboutShareFont
-            cell.title.textColor = style.aboutTintColor
+            cell.title.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.title.textColor = UIColor.text
             
-            cell.share.image = #imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate)
-            cell.share.tintColor = style.aboutTintColor
+            cell.share.image = Images.Media.share.image.withRenderingMode(.alwaysTemplate)
+            cell.share.tintColor = UIColor.main
             
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            
+            cell.selectedBackgroundView = selView
             
             cell.accessibilityTraits = UIAccessibilityTraitButton
             cell.accessibilityLabel = Localizations.Settings.About.Share.title
@@ -164,53 +201,58 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
             cell.textLabel?.text = Localizations.Settings.About.rate
-            cell.textLabel?.font = style.aboutSectionTitleFont
-            cell.textLabel?.textColor = style.aboutTintColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+            cell.textLabel?.textColor = UIColor.text
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
         case 2: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
             cell.textLabel?.text = Localizations.Settings.About.openSource
-            cell.textLabel?.font = style.aboutSectionTitleFont
-            cell.textLabel?.textColor = style.aboutTintColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+            cell.textLabel?.textColor = UIColor.text
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
         } else {
             let source = self.openSource[indexPath.row - 1]
             let cell = tableView.dequeueReusableCell(withIdentifier: detailsCellID, for: indexPath)
             cell.textLabel?.text = source.title
-            cell.textLabel?.font = style.aboutInfoFont
-            cell.textLabel?.textColor = style.aboutTintColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.textLabel?.textColor = UIColor.text
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
             }
         case 3: if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: menuCellID, for: indexPath)
             cell.textLabel?.text = Localizations.Settings.About.Legal.title
-            cell.textLabel?.font = style.aboutSectionTitleFont
-            cell.textLabel?.textColor = style.aboutTintColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+            cell.textLabel?.textColor = UIColor.text
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
         } else {
             let legal = self.legals[indexPath.row - 1]
             let cell = tableView.dequeueReusableCell(withIdentifier: detailsCellID, for: indexPath)
             cell.textLabel?.text = legal.title
-            cell.textLabel?.font = style.aboutInfoFont
-            cell.textLabel?.textColor = style.aboutTintColor
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.textLabel?.textColor = UIColor.text
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             return cell
             }
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: logoCellID, for: indexPath) as! SettingsLogoTableViewCell
-            cell.logo.image = #imageLiteral(resourceName: "Chipp-logo").withRenderingMode(.alwaysTemplate)
-            cell.logo.tintColor = style.aboutLogoTint
-            cell.backgroundColor = style.background
-            cell.contentView.backgroundColor = style.background
+            cell.logo.image = Images.Media.chippLogo.image
+            cell.backgroundColor = UIColor.background
+            cell.contentView.backgroundColor = UIColor.background
+            cell.selectedBackgroundView = selView
             
             cell.accessibilityTraits = UIAccessibilityTraitButton
             cell.accessibilityLabel = "Chipp Studio"
@@ -321,14 +363,17 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         switch sender.tag {
         case 0:
             sendEvent(.openEvaluateDaySocial, withProperties: ["social": "Facebook"])
-            self.openURL("https://www.facebook.com/EvaluateDay-136725710039383")
+            self.openURL("https://facebook.com/chippstudio")
         case 1:
-            sendEvent(.openEvaluateDaySocial, withProperties: ["social": "Twitter"])
-            self.openURL("https://twitter.com/ChippStudio")
-        case 2:
             sendEvent(.openEvaluateDaySocial, withProperties: ["social": "Instagram"])
-            self.openURL("https://www.instagram.com/evaluatedayapp")
+            self.openURL("https://www.instagram.com/chippstudio/")
+        case 2:
+            sendEvent(.openEvaluateDaySocial, withProperties: ["social": "LinkedIn"])
+            self.openURL("https://www.linkedin.com/company/chippstudio/")
         case 3:
+            sendEvent(.openEvaluateDaySocial, withProperties: ["social": "GitHub"])
+            self.openURL("https://github.com/ChippStudio")
+        case 4:
             sendEvent(.openEvaluateDaySocial, withProperties: ["social": "Newsletter"])
             self.openURL("http://eepurl.com/cgbuvb")
         default: break
@@ -358,33 +403,5 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
     struct Legal {
         let title: String
         let URL: String
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableView.backgroundColor = style.background
-            self.tableView.reloadData()
-            
-            // Made in
-            self.madeLabel.textColor = style.aboutTintColor
-            self.madeLabel.font = style.aboutMadeInFont
-            self.footerView.backgroundColor = style.background
-        })
     }
 }

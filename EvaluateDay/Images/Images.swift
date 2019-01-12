@@ -33,6 +33,7 @@ internal enum Images {
     internal static let tracker = ImageAsset(name: "tracker")
   }
   internal enum Media {
+    internal static let chippLogo = ImageAsset(name: "Chipp-logo")
     internal static let activity = ImageAsset(name: "activity")
     internal static let analytics = ImageAsset(name: "analytics")
     internal static let app = ImageAsset(name: "app")
@@ -51,8 +52,13 @@ internal enum Images {
     internal static let done = ImageAsset(name: "done")
     internal static let down = ImageAsset(name: "down")
     internal static let exportBoard = ImageAsset(name: "exportBoard")
+    internal static let facebook = ImageAsset(name: "facebook")
     internal static let faq = ImageAsset(name: "faq")
+    internal static let github = ImageAsset(name: "github")
     internal static let imagePlaceholder = ImageAsset(name: "imagePlaceholder")
+    internal static let instagram = ImageAsset(name: "instagram")
+    internal static let linkedin = ImageAsset(name: "linkedin")
+    internal static let mail = ImageAsset(name: "mail")
     internal static let notification = ImageAsset(name: "notification")
     internal static let passcode = ImageAsset(name: "passcode")
     internal static let settings = ImageAsset(name: "settings")
