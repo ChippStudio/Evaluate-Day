@@ -30,32 +30,32 @@ class CheckInPermissionNode: ASCellNode {
     init(date: Date) {
         super.init()
         
-        self.cover.backgroundColor = UIColor.main
+        self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
         
-        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.permissionButton.setAttributedTitle(buttonTitleString, for: .normal)
         
         self.permissionCover.cornerRadius = 20.0
-        self.permissionCover.backgroundColor = UIColor.tint
+        self.permissionCover.backgroundColor = UIColor.main
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         
         self.mapButtonCover.cornerRadius = 20.0
-        self.mapButtonCover.backgroundColor = UIColor.tint
+        self.mapButtonCover.backgroundColor = UIColor.main
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.currentDate.isAccessibilityElement = false
         
         // Buttons Action
@@ -97,7 +97,7 @@ class CheckInPermissionNode: ASCellNode {
         content.spacing = 10.0
         content.children = [self.currentDate, cellStack]
         
-        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
@@ -117,7 +117,7 @@ class CheckInPermissionNode: ASCellNode {
     
     @objc func permissionEndAction(sender: ASButtonNode) {
         UIView.animate(withDuration: 0.2) {
-            self.permissionCover.backgroundColor = UIColor.tint
+            self.permissionCover.backgroundColor = UIColor.main
         }
     }
     
@@ -129,7 +129,7 @@ class CheckInPermissionNode: ASCellNode {
     
     @objc func mapEndAction(sender: ASButtonNode) {
         UIView.animate(withDuration: 0.2) {
-            self.mapButtonCover.backgroundColor = UIColor.tint
+            self.mapButtonCover.backgroundColor = UIColor.main
         }
     }
 }

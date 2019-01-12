@@ -24,10 +24,10 @@ class JournalNewEntryActionNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.actionButtonCover.backgroundColor = UIColor.tint
+        self.actionButtonCover.backgroundColor = UIColor.main
         self.actionButtonCover.cornerRadius = 20.0
         
-        let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.actionButton.setAttributedTitle(actionTitle, for: .normal)
         
@@ -57,10 +57,9 @@ class JournalNewEntryActionNode: ASCellNode {
         
         let content = ASStackLayoutSpec.vertical()
         content.spacing = 10.0
-        content.alignItems = .start
         content.children = [self.currentDate, button]
         
-        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)

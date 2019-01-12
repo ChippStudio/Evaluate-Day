@@ -27,6 +27,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         // Navigation bar
         self.navigationItem.title = Localizations.Activity.title
         self.navigationController?.navigationBar.accessibilityIdentifier = "activityNavigationBar"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -55,7 +56,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,11 +68,31 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        self.collectionNode.frame = self.view.bounds
-//    }
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            
+            // Backgrounds
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.view.backgroundColor = UIColor.background
+            self.collectionNode.backgroundColor = UIColor.background
+            
+//            for object in self.adapter.objects() {
+//                if let section = self.adapter.sectionController(for: object) {
+//                    section.collectionContext?.performBatch(animated: true, updates: { (context) in
+//                        context.reload(section)
+//                    }, completion: nil)
+//                }
+//            }
+        }
+    }
     
     // MARK: - Objects
     let userObject = ActivityUserObject()
@@ -155,39 +176,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     }
     
     // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.activityControlerStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.navigationController?.view.backgroundColor = style.background
-            self.view.backgroundColor = style.background
-            self.collectionNode.backgroundColor = style.background
-            
-        })
-        
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            for object in self.adapter.objects() {
-                if let section = self.adapter.sectionController(for: object) {
-                    section.collectionContext?.performBatch(animated: true, updates: { (context) in
-                        context.reload(section)
-                    }, completion: nil)
-                }
-            }
-        })
-    }
-    
     private func facebookRequest(section: ListSectionController) {
         let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email, picture.type(large)"])
         _ = request?.start(completionHandler: { (_, result, _) in

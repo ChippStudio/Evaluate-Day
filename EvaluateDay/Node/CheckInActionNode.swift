@@ -16,8 +16,7 @@ class CheckInActionNode: ASCellNode {
     
     var checkInButton = ASButtonNode()
     var checkInButtonCover = ASDisplayNode()
-    
-    var separatorNode = ASDisplayNode()
+
     var currentDate = ASTextNode()
     
     var cover = ASDisplayNode()
@@ -29,21 +28,19 @@ class CheckInActionNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.mapButtonCover.backgroundColor = UIColor.tint
+        self.mapButtonCover.backgroundColor = UIColor.main
         self.mapButtonCover.cornerRadius = 20.0
         
-        self.checkInButtonCover.backgroundColor = UIColor.tint
+        self.checkInButtonCover.backgroundColor = UIColor.main
         self.checkInButtonCover.cornerRadius = 20.0
         
-        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.checkInButton.setAttributedTitle(checkInTitleString, for: .normal)
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
-        
-        self.separatorNode.backgroundColor = UIColor.main
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
@@ -67,36 +64,24 @@ class CheckInActionNode: ASCellNode {
     
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.separatorNode.style.preferredSize = CGSize(width: 200.0, height: 1.0)
         
         let checkInButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
         let checkInButtonInset = ASInsetLayoutSpec(insets: checkInButtonInsets, child: self.checkInButton)
         let fullCheckInButton = ASBackgroundLayoutSpec(child: checkInButtonInset, background: self.checkInButtonCover)
         
-        let checkInStack = ASStackLayoutSpec.horizontal()
-        checkInStack.children = [fullCheckInButton]
-        
-        let separatorStack = ASStackLayoutSpec.horizontal()
-        separatorStack.justifyContent = .center
-        separatorStack.children = [self.separatorNode]
-        
         let mapButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
         let mapButtonInset = ASInsetLayoutSpec(insets: mapButtonInsets, child: self.mapButton)
         let fullMapButton = ASBackgroundLayoutSpec(child: mapButtonInset, background: self.mapButtonCover)
         
-        let mapButtonStack = ASStackLayoutSpec.horizontal()
-        mapButtonStack.justifyContent = .end
-        mapButtonStack.children = [fullMapButton]
-        
         let buttons = ASStackLayoutSpec.vertical()
-        buttons.spacing = 15.0
-        buttons.children = [checkInStack, separatorStack, mapButtonStack]
+        buttons.spacing = 10.0
+        buttons.children = [fullCheckInButton, fullMapButton]
         
         let content = ASStackLayoutSpec.vertical()
-        content.spacing = 25.0
+        content.spacing = 15.0
         content.children = [self.currentDate, buttons]
         
-        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 20.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 10.0, right: 0.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
@@ -116,7 +101,7 @@ class CheckInActionNode: ASCellNode {
     
     @objc func checkInEndAction(sender: ASButtonNode) {
         UIView.animate(withDuration: 0.2) {
-            self.checkInButtonCover.backgroundColor = UIColor.tint
+            self.checkInButtonCover.backgroundColor = UIColor.main
         }
     }
     
@@ -128,7 +113,7 @@ class CheckInActionNode: ASCellNode {
     
     @objc func mapEndAction(sender: ASButtonNode) {
         UIView.animate(withDuration: 0.2) {
-            self.mapButtonCover.backgroundColor = UIColor.tint
+            self.mapButtonCover.backgroundColor = UIColor.main
         }
     }
 }

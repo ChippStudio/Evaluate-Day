@@ -21,7 +21,7 @@ class SeparatorNode: ASCellNode {
     override init() {
         super.init()
         
-        self.separator.backgroundColor = UIColor.tint
+        self.separator.backgroundColor = UIColor.main
         
         self.automaticallyManagesSubnodes = true
     }
@@ -29,7 +29,7 @@ class SeparatorNode: ASCellNode {
     // MARK: - Layout
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.separator.style.preferredSize.height = 1.0
+        self.separator.style.preferredSize.height = 0.5
         let separatorInsets = self.insets
         let separatorInset = ASInsetLayoutSpec(insets: separatorInsets, child: self.separator)
         return separatorInset

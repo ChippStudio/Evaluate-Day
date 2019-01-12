@@ -24,6 +24,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - Variable
     var date: Date = Date() {
         didSet {
+            if let split = self.universalSplitController as? SplitController {
+                split.date = self.date
+            }
+            self.dateObject.date = self.date
             if self.adapter == nil {
                 return
             }
@@ -152,7 +156,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
             //set NavigationBar
-
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            
             // Backgrounds
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
@@ -161,6 +169,16 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let split = self.universalSplitController as? SplitController {
+            self.date = split.date
+        }
+        if let section = self.adapter.sectionController(for: self.dateObject) as? DateSection {
+            section.date = self.date
+            section.isEdit = false
+            section.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                batchContext.reload(section)
+            }, completion: nil)
+        }
         // Get cards token
         self.cardsToken = self.cards.observe({ (c) in
             switch c {

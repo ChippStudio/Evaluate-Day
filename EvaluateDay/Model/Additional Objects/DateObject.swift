@@ -27,7 +27,7 @@ extension DateObject: ListDiffable {
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         if let object = object as? DateObject {
-            if object.date == self.date {
+            if object.date.timeIntervalSince1970 == self.date.timeIntervalSince1970 {
                 return true
             }
         }

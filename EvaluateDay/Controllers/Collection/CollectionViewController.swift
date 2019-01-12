@@ -20,6 +20,9 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     var adapter: ListAdapter!
     var date: Date = Date() {
         didSet {
+            if let split = self.universalSplitController as? SplitController {
+                split.date = self.date
+            }
             self.dateObject.date = self.date
         }
     }
@@ -65,6 +68,16 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let split = self.universalSplitController as? SplitController {
+            self.date = split.date
+        }
+        if let section = self.adapter.sectionController(for: self.dateObject) as? DateSection {
+            section.date = self.date
+            section.isEdit = false
+            section.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                batchContext.reload(section)
+            }, completion: nil)
+        }
         self.updateAppearance(animated: false)
         self.adapter.performUpdates(animated: true, completion: nil)
     }
