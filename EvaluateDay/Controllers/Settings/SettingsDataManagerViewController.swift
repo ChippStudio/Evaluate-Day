@@ -10,13 +10,16 @@ import UIKit
 import AsyncDisplayKit
 import CloudKit
 
-class SettingsDataManagerViewController: UIViewController, ASTableDataSource, ASTableDelegate {
+class SettingsDataManagerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
     var settings = [SettingsSection]()
+    
+    private var moreCell = "moreCell"
+    private var booleanCell = "booleanCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -24,12 +27,6 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         
         // Set navigation Item
         self.navigationItem.title = Localizations.Settings.Sync.Data.title
-        
-        // set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.view.addSubnode(self.tableNode)
         
         sendEvent(.openDataManager, withProperties: nil)
     }
@@ -39,67 +36,83 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
         self.setSettings()
+        self.updateAppearance(animated: false)
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return self.settings.count
-    }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.settings[section].items.count
-    }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
-        let item = self.settings[indexPath.section].items[indexPath.row]
-        let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
         
-        switch item.type {
-        case .more:
-            return {
-                let node = SettingsMoreNode(title: item.title, subtitle: item.subtitle, image: item.image, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
-        case .boolean:
-            return {
-                let node = SettingsBooleanNode(title: item.title, image: item.image, isOn: item.options!["isOn"] as! Bool, style: style)
-                node.switchDidLoad = { (switchButton) in
-                    switchButton.tag = (item.options!["action"] as! Int)
-                    switchButton.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
-                    switchButton.isEnabled = Store.current.isPro
-                }
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
-        case .notification:
-            return {
-                return ASCellNode()
-            }
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // tableView
+            self.tableView.backgroundColor = UIColor.background
         }
     }
     
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.settings.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.settings[section].items.count
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = self.settings[indexPath.section].items[indexPath.row]
+        let selView = UIView()
+        selView.layer.cornerRadius = 5.0
+        selView.backgroundColor = UIColor.tint
+        switch item.type {
+        case .more:
+            let cell = tableView.dequeueReusableCell(withIdentifier: moreCell, for: indexPath)
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = item.subtitle
+            cell.textLabel?.textColor = UIColor.text
+            cell.detailTextLabel?.textColor = UIColor.text
+            cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+            cell.selectedBackgroundView = selView
+            
+            cell.accessoryType = .disclosureIndicator
+            if item.options != nil {
+                if let disclosure = item.options!["disclosure"] as? Bool {
+                    if !disclosure {
+                        cell.accessoryType = .none
+                    }
+                }
+            }
+            return cell
+        case .boolean:
+            let cell = tableView.dequeueReusableCell(withIdentifier: booleanCell, for: indexPath) as! SwitchCell
+            cell.switchControl.isOn = item.options!["isOn"] as! Bool
+            cell.switchControl.tag = (item.options!["action"] as! Int)
+            cell.switchControl.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
+            cell.switchControl.onTintColor = UIColor.positive
+            cell.selectionStyle = .none
+            cell.iconImage.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.iconImage.tintColor = UIColor.main
+            cell.titleLabel.text = item.title
+            cell.titleLabel.textColor = UIColor.text
+            return cell
+        case .notification:
+            return UITableViewCell()
+        }
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! DataManagerSettingsAction {
         case .deleteCloud:
@@ -130,12 +143,12 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                             try! Database.manager.app.write {
                                 Database.manager.application.settings.enableSync = false
                             }
-                            if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 0)) as? SettingsBooleanNode {
-                                node.switchButton.isEnabled = false
+                            if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SwitchCell {
+                                cell.switchControl.isEnabled = false
                             }
                             (UIApplication.shared.delegate as! AppDelegate).syncEngine.stopSync()
                             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
-                    
+                            
                             let alert = UIAlertController(title: Localizations.Messages.Data.Cloud.DeleteAll.title, message: Localizations.Messages.Data.Cloud.DeleteAll.subtitle, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
@@ -150,13 +163,13 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
             
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
-        
+            
             if self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-                let node = self.tableNode.nodeForRow(at: indexPath) as! SettingsMoreNode
-                alert.popoverPresentationController?.sourceRect = node.title.frame
-                alert.popoverPresentationController?.sourceView = node.view
+                let cell = self.tableView.cellForRow(at: indexPath)!
+                alert.popoverPresentationController?.sourceRect = cell.textLabel!.frame
+                alert.popoverPresentationController?.sourceView = cell
             }
-        
+            
             alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
             alert.view.layoutIfNeeded()
             self.present(alert, animated: true) {
@@ -164,7 +177,7 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
             }
         case .deleteLocal:
             let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Settings.Sync.Data.Local.deleteDescription, preferredStyle: .actionSheet)
-        
+            
             let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
                 let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
@@ -183,16 +196,16 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
                 alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        
+            
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
-        
+            
             if self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-                let node = self.tableNode.nodeForRow(at: indexPath) as! SettingsMoreNode
-                alert.popoverPresentationController?.sourceRect = node.title.frame
-                alert.popoverPresentationController?.sourceView = node.view
+                let cell = self.tableView.cellForRow(at: indexPath)!
+                alert.popoverPresentationController?.sourceRect = cell.textLabel!.frame
+                alert.popoverPresentationController?.sourceView = cell
             }
-        
+            
             alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
             alert.view.layoutIfNeeded()
             self.present(alert, animated: true) {
@@ -231,11 +244,11 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
             let vc = UIActivityViewController(activityItems: [path!], applicationActivities: nil)
             let indexPath = IndexPath(row: 0, section: 2)
             if self.view.traitCollection.userInterfaceIdiom == .pad {
-                if let node = self.tableNode.nodeForRow(at: indexPath) {
-                    vc.popoverPresentationController?.sourceRect = node.frame
-                    vc.popoverPresentationController?.sourceView = node.view
+                if let cell = self.tableView.cellForRow(at: indexPath) {
+                    vc.popoverPresentationController?.sourceRect = cell.frame
+                    vc.popoverPresentationController?.sourceView = cell
                 } else {
-                    vc.popoverPresentationController?.sourceRect = self.tableNode.frame
+                    vc.popoverPresentationController?.sourceRect = self.tableView.frame
                     vc.popoverPresentationController?.sourceView = self.view
                 }
             }
@@ -257,16 +270,14 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        footer.textLabel?.textColor = style.tableSectionFooterColor
-        footer.textLabel!.font = style.tableSectionFooterFont
+        footer.textLabel?.textColor = UIColor.text
+        footer.textLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        header.textLabel?.textColor = style.tableSectionHeaderColor
-        header.textLabel!.font = style.tableSectionHeaderFont
+        header.textLabel?.textColor = UIColor.text
+        header.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     // MARK: - Actions
@@ -292,55 +303,23 @@ class SettingsDataManagerViewController: UIViewController, ASTableDataSource, AS
         self.settings.removeAll()
         
         // iCloud
-        let enableSync = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.enable, type: .boolean, action: DataManagerSettingsAction.bool, options: ["isOn": Database.manager.application.settings.enableSync, "action": BooleanAction.enableSync.rawValue])
-        let deleteCloudData = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.delete, type: .more, action: DataManagerSettingsAction.deleteCloud)
+        let enableSync = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.enable, type: .boolean, action: DataManagerSettingsAction.bool, image: Images.Media.sync.image, options: ["isOn": Database.manager.application.settings.enableSync, "action": BooleanAction.enableSync.rawValue])
+        let deleteCloudData = SettingItem(title: Localizations.Settings.Sync.Data.Cloud.delete, type: .more, action: DataManagerSettingsAction.deleteCloud, image: Images.Media.deleteBoard.image)
         let cloudSection = SettingsSection(items: [enableSync, deleteCloudData], header: Localizations.Settings.Sync.Data.Cloud.header, footer: nil)
         
         // Local
-        let deleteLocal = SettingItem(title: Localizations.Settings.Sync.Data.Local.delete, type: .more, action: DataManagerSettingsAction.deleteLocal)
+        let deleteLocal = SettingItem(title: Localizations.Settings.Sync.Data.Local.delete, type: .more, action: DataManagerSettingsAction.deleteLocal, image: Images.Media.deleteBoard.image)
         let localSection = SettingsSection(items: [deleteLocal], header: Localizations.Settings.Sync.Data.Local.header, footer: nil)
         
         // Export
-        let exportAll = SettingItem(title: Localizations.Settings.Sync.Data.Export.export, type: .more, action: DataManagerSettingsAction.export)
+        let exportAll = SettingItem(title: Localizations.Settings.Sync.Data.Export.export, type: .more, action: DataManagerSettingsAction.export, image: Images.Media.exportBoard.image)
         let exportSection = SettingsSection(items: [exportAll], header: Localizations.Settings.Sync.Data.Export.header, footer: nil)
         
         // Analytics
-        
         self.settings.append(cloudSection)
         self.settings.append(localSection)
         self.settings.append(exportSection)
         
-        if self.tableNode != nil {
-            self.tableNode.reloadData()
-        }
-    }
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-            
-            // Table node
-            if self.tableNode != nil {
-                self.tableNode.reloadData()
-            }
-        })
     }
     
     private enum DataManagerSettingsAction: SettingsAction {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import SafariServices
 import MessageUI
 
@@ -126,6 +125,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
             cell.imageView?.tintColor = UIColor.main
             cell.selectedBackgroundView = selView
+            
+            cell.accessoryType = .disclosureIndicator
+            if item.options != nil {
+                if let disclosure = item.options!["disclosure"] as? Bool {
+                    if !disclosure {
+                        cell.accessoryType = .none
+                    }
+                }
+            }
             return cell
         case .boolean:
             let cell = tableView.dequeueReusableCell(withIdentifier: booleanCell, for: indexPath) as! SwitchCell
@@ -197,9 +205,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        footer.textLabel?.textColor = style.tableSectionFooterColor
-        footer.textLabel!.font = style.tableSectionFooterFont
+        footer.textLabel?.textColor = UIColor.text
+        footer.textLabel!.font = UIFont.preferredFont(forTextStyle: .footnote)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -298,22 +305,19 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if Database.manager.application.sync.lastSyncDate != nil {
             syncString = DateFormatter.localizedString(from: Database.manager.application.sync.lastSyncDate!, dateStyle: .short, timeStyle: .short)
         }
-        let lastSyncItem = SettingItem(title: Localizations.Settings.Sync.last, type: .more, action: MainSettingsAction.sync, subtitle: syncString, image: Images.Media.sync.image)
+        let lastSyncItem = SettingItem(title: Localizations.Settings.Sync.last, type: .more, action: MainSettingsAction.sync, subtitle: syncString, image: Images.Media.sync.image, options: ["disclosure": false])
         let syncDataManage = SettingItem(title: Localizations.Settings.Sync.Data.title, type: .more, action: MainSettingsAction.syncData, image: Images.Media.data.image)
         let syncSection = SettingsSection(items: [lastSyncItem, syncDataManage], header: Localizations.Settings.Sync.title, footer: nil)
         self.settings.append(syncSection)
         
         // Themes
-        let themesItem = SettingItem(title: Localizations.Settings.Themes.Select.theme, type: .more, action: MainSettingsAction.themes, image: Images.Media.themes.image)
-        let selectIcon = SettingItem(title: Localizations.Settings.Themes.Select.icon, type: .more, action: MainSettingsAction.icons, image: Images.Media.app.image)
-        var items = [themesItem]
         if #available(iOS 10.3, *) {
             if UIApplication.shared.supportsAlternateIcons {
-                items.append(selectIcon)
+                let selectIcon = SettingItem(title: Localizations.Settings.Themes.Select.icon, type: .more, action: MainSettingsAction.icons, image: Images.Media.app.image)
+                let themeSection = SettingsSection(items: [selectIcon], header: Localizations.Settings.Themes.title, footer: nil)
+                self.settings.append(themeSection)
             }
         }
-        let themeSection = SettingsSection(items: items, header: Localizations.Settings.Themes.title, footer: nil)
-        self.settings.append(themeSection)
         
         // General
         let notificationItem = SettingItem(title: Localizations.Settings.Notifications.title, type: .more, action: MainSettingsAction.notification, subtitle: "\(Database.manager.application.notifications.count)", image: Images.Media.notification.image)

@@ -483,7 +483,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.themes.iconChange" = "Change App Icon";
 "settings.themes.select.icon" = "Select a Icon";
 "settings.themes.select.theme" = "Select a Theme";
-"settings.themes.title" = "Themes";
+"settings.themes.title" = "Appearance";
 "settings.title" = "Settings";
 
 // MARK: - Share

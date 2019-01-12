@@ -1441,7 +1441,7 @@ internal enum Localizations {
     internal enum Themes {
       /// Change App Icon
       internal static let iconChange = Localizations.tr("Localizable", "settings.themes.iconChange")
-      /// Themes
+      /// Appearance
       internal static let title = Localizations.tr("Localizable", "settings.themes.title")
       internal enum Select {
         /// Select a Icon
