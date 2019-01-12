@@ -7,18 +7,20 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import LocalAuthentication
 
-class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTableDelegate {
+class SettingsPasscodeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variable
     var settings = [SettingsSection]()
     
     private let delaySegue = "delaySegue"
+    
+    private let booleanCell = "booleanCell"
+    private let moreCell = "moreCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -26,12 +28,6 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
         
         // Set navigation item
         self.navigationItem.title = Localizations.Settings.Passcode.title
-        
-        // Set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.view.addSubnode(self.tableNode)
         
         // Analytics
         sendEvent(.openPasscode, withProperties: nil)
@@ -42,66 +38,84 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setSettings()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.observable()
-        self.setSettings()
-    }
-    
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.settings.count
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.settings[section].items.count
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = self.settings[indexPath.section].items[indexPath.row]
         let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+        selView.layer.cornerRadius = 5.0
+        selView.backgroundColor = UIColor.tint
         
         switch item.type {
         case .more:
-            return {
-                let node = SettingsMoreNode(title: item.title, subtitle: item.subtitle, image: item.image, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
-        case .boolean:
-            return {
-                let node = SettingsBooleanNode(title: item.title, image: item.image, isOn: item.options!["isOn"] as! Bool, style: style)
-                node.switchDidLoad = { (switchButton) in
-                    switchButton.tag = (item.options!["action"] as! Int)
-                    switchButton.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
+            let cell = tableView.dequeueReusableCell(withIdentifier: moreCell, for: indexPath)
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = item.subtitle
+            cell.textLabel?.textColor = UIColor.text
+            cell.detailTextLabel?.textColor = UIColor.text
+            cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+            cell.selectedBackgroundView = selView
+            
+            cell.accessoryType = .disclosureIndicator
+            if item.options != nil {
+                if let disclosure = item.options!["disclosure"] as? Bool {
+                    if !disclosure {
+                        cell.accessoryType = .none
+                    }
                 }
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
             }
+            return cell
+        case .boolean:
+            let cell = tableView.dequeueReusableCell(withIdentifier: booleanCell, for: indexPath) as! SwitchCell
+            cell.switchControl.isOn = item.options!["isOn"] as! Bool
+            cell.switchControl.tag = (item.options!["action"] as! Int)
+            cell.switchControl.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
+            cell.switchControl.onTintColor = UIColor.positive
+            cell.selectionStyle = .none
+            cell.iconImage.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.iconImage.tintColor = UIColor.main
+            cell.titleLabel.text = item.title
+            cell.titleLabel.textColor = UIColor.text
+            return cell
         case .notification:
-            return {
-                return ASCellNode()
-            }
+            return UITableViewCell()
         }
     }
     
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! PasscodeSettingsAction {
         case .delay:
@@ -134,37 +148,13 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
     }
     
     // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-        })
-    }
-    
     private func setSettings() {
         self.settings.removeAll()
         
         var passcodeSection = SettingsSection(items: [])
         
         let pass = Database.manager.application.settings.passcode
-        let passcodeItem = SettingItem(title: Localizations.Settings.Passcode.title, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": pass, "action": BooleanAction.passcode.rawValue])
+        let passcodeItem = SettingItem(title: Localizations.Settings.Passcode.title, type: .boolean, action: PasscodeSettingsAction.bool, image: Images.Media.passcode.image, options: ["isOn": pass, "action": BooleanAction.passcode.rawValue])
         passcodeSection.items.append(passcodeItem)
         
         if pass {
@@ -179,7 +169,7 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
             default:
                 requireString = Localizations.Settings.Passcode.Delay.minutes("\(Database.manager.application.settings.passcodeDelay.rawValue)")
             }
-            let requireItem = SettingItem(title: Localizations.Settings.Passcode.require, type: .more, action: PasscodeSettingsAction.delay, subtitle: requireString)
+            let requireItem = SettingItem(title: Localizations.Settings.Passcode.require, type: .more, action: PasscodeSettingsAction.delay, subtitle: requireString, image: Images.Media.passcode.image)
             passcodeSection.items.append(requireItem)
             
             var error: NSError?
@@ -200,8 +190,8 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
                     promptBiometricString = Localizations.Settings.Passcode.TouchID.prompt
                 }
                 
-                let biometricItem = SettingItem(title: biometricString, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": Database.manager.application.settings.passcodeBiometric, "action": BooleanAction.biometrics.rawValue])
-                let promtBiometricItem = SettingItem(title: promptBiometricString, type: .boolean, action: PasscodeSettingsAction.bool, options: ["isOn": Database.manager.application.settings.passcodePromptBiometric, "action": BooleanAction.promptBiometrics.rawValue])
+                let biometricItem = SettingItem(title: biometricString, type: .boolean, action: PasscodeSettingsAction.bool, image: Images.Media.passcode.image, options: ["isOn": Database.manager.application.settings.passcodeBiometric, "action": BooleanAction.biometrics.rawValue])
+                let promtBiometricItem = SettingItem(title: promptBiometricString, type: .boolean, action: PasscodeSettingsAction.bool, image: Images.Media.passcode.image, options: ["isOn": Database.manager.application.settings.passcodePromptBiometric, "action": BooleanAction.promptBiometrics.rawValue])
                 
                 passcodeSection.items.append(biometricItem)
                 passcodeSection.items.append(promtBiometricItem)
@@ -211,9 +201,7 @@ class SettingsPasscodeViewController: UIViewController, ASTableDataSource, ASTab
         
         self.settings.append(passcodeSection)
         
-        if self.tableNode != nil {
-            self.tableNode.reloadData()
-        }
+        self.tableView.reloadData()
     }
     
     private enum PasscodeSettingsAction: SettingsAction {
