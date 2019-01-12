@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import CloudKit
 
 class SettingsDataManagerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -315,11 +314,11 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
         let exportAll = SettingItem(title: Localizations.Settings.Sync.Data.Export.export, type: .more, action: DataManagerSettingsAction.export, image: Images.Media.exportBoard.image)
         let exportSection = SettingsSection(items: [exportAll], header: Localizations.Settings.Sync.Data.Export.header, footer: nil)
         
-        // Analytics
         self.settings.append(cloudSection)
         self.settings.append(localSection)
         self.settings.append(exportSection)
         
+        self.tableView.reloadData()
     }
     
     private enum DataManagerSettingsAction: SettingsAction {

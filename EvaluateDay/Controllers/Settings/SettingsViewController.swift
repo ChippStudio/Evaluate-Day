@@ -54,8 +54,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.preferredContentSize = CGSize(width: 360.0, height: 600.0)
         }
         
-        self.setSettings()
-        
         // Analytics
         sendEvent(.openSettings, withProperties: nil)
     }
@@ -67,6 +65,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setSettings()
         self.updateAppearance(animated: false)
     }
     
@@ -340,6 +339,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let rateItem = SettingItem(title: Localizations.Settings.About.rate, type: .more, action: MainSettingsAction.rate, subtitle: "⭐️⭐️⭐️⭐️⭐️", image: Images.Media.appStore.image, options: nil)
         let evaluateDaySection = SettingsSection(items: [aboutItem, rateItem], header: Localizations.General.evaluateday, footer: nil)
         self.settings.append(evaluateDaySection)
+        
+        self.tableView.reloadData()
     }
     
     private func openController(id: String) {

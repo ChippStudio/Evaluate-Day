@@ -10,16 +10,19 @@ import UIKit
 import AsyncDisplayKit
 import UserNotifications
 
-class SettingsNewNotificationViewController: UIViewController, ASTableDataSource, ASTableDelegate, TextTopViewControllerDelegate, SelectCardListViewControllerDelegate, TimeBottomViewControllerDelegate {
+class SettingsNewNotificationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TextTopViewControllerDelegate, SelectCardListViewControllerDelegate, TimeBottomViewControllerDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     var saveButton: UIBarButtonItem!
     var deleteButton: UIBarButtonItem!
     
     // MARK: - Variable
     var notification = LocalNotification()
     var card: Card!
+    
+    private let notificationCell = "notificationCell"
+    private let moreCell = "moreCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -37,11 +40,6 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             self.navigationItem.rightBarButtonItem = self.deleteButton
         }
         
-        // Set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.view.addSubnode(self.tableNode)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,19 +47,29 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.barButtonAccessibilityLabel()
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // tableView
+            self.tableView.backgroundColor = UIColor.background
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,21 +119,22 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
-    
+        selView.layer.cornerRadius = 5.0
+        selView.backgroundColor = UIColor.tint
+
         var title = ""
         var subtitle = ""
+        let image = Images.Media.notification.image
         
         switch indexPath.row {
         case 0:
@@ -154,20 +163,22 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             }
         }
         
-        return {
-            let node = SettingsMoreNode(title: title, subtitle: subtitle, image: nil, style: style)
-            
-            node.backgroundColor = style.settingsSectionBackground
-            node.selectedBackgroundView = selView
-            node.separatorInset = separatorInsets
-            
-            return node
-        }
+        let idetifire = indexPath.row == 0 ? notificationCell : moreCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: idetifire, for: indexPath)
+        cell.textLabel?.text = title
+        cell.detailTextLabel?.text = subtitle
+        cell.textLabel?.textColor = UIColor.text
+        cell.detailTextLabel?.textColor = UIColor.text
+        cell.imageView?.image = image.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+        cell.imageView?.tintColor = UIColor.main
+        cell.selectedBackgroundView = selView
+        
+        cell.accessoryType = .disclosureIndicator
+        return cell
     }
-    
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
             let controller = TextTopViewController()
@@ -188,7 +199,7 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             controller.notification = self.notification
             controller.didSetNewRepeatInterval = { () in
                 let indexPath = IndexPath(row: 2, section: 0)
-                self.tableNode.reloadRows(at: [indexPath], with: .fade)
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
             }
             self.navigationController?.pushViewController(controller, animated: true)
         default:
@@ -214,7 +225,7 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             self.barButtonAccessibilityLabel()
             
             let indexPath = IndexPath(row: 0, section: 0)
-            self.tableNode.reloadRows(at: [indexPath], with: .fade)
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
     
@@ -231,7 +242,7 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         self.barButtonAccessibilityLabel()
         
         let indexPath = IndexPath(row: 3, section: 0)
-        self.tableNode.reloadRows(at: [indexPath], with: .fade)
+        self.tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     // MARK: - TimeBottomViewControllerDelegate
@@ -247,7 +258,7 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
         self.barButtonAccessibilityLabel()
         
         let indexPath = IndexPath(row: 1, section: 0)
-        self.tableNode.reloadRows(at: [indexPath], with: .fade)
+        self.tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     // MARK: - Actions
@@ -306,28 +317,5 @@ class SettingsNewNotificationViewController: UIViewController, ASTableDataSource
             }
             self.deleteButton.accessibilityLabel = Localizations.General.delete + ", " + Localizations.Accessibility.Notification.description(self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
         }
-    }
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-        })
     }
 }

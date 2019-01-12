@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import UserNotifications
 
-class SettingsNotificationViewController: UIViewController, ASTableDataSource, ASTableDelegate {
+class SettingsNotificationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
     var settings = [SettingsSection]()
+    
+    private let notificationCell = "notificationCell"
+    private let moreCell = "moreCell"
     
     private let newNotification = "newNotification"
     
@@ -25,13 +27,8 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
         super.viewDidLoad()
         
         // Set navigation item
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.title = Localizations.Settings.Notifications.title
-        
-        // Set table node
-        self.tableNode = ASTableNode(style: .grouped)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.view.addSubnode(self.tableNode)
         
         // Analytics
         sendEvent(.openNotification, withProperties: nil)
@@ -42,81 +39,86 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
         self.setSettings()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.setSettings()
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            self.tableView.backgroundColor = UIColor.background
+        }
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == newNotification {
-            if self.tableNode.indexPathForSelectedRow != nil {
-                if self.tableNode.indexPathForSelectedRow!.section != 0 {
+            if self.tableView.indexPathForSelectedRow != nil {
+                if self.tableView.indexPathForSelectedRow!.section != 0 {
                     let controller = segue.destination as! SettingsNewNotificationViewController
-                    controller.notification = Database.manager.application.notifications[self.tableNode.indexPathForSelectedRow!.row]
+                    controller.notification = Database.manager.application.notifications[self.tableView.indexPathForSelectedRow!.row]
                 }
             }
         }
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.settings.count
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.settings[section].items.count
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.settingsStyle
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = self.settings[indexPath.section].items[indexPath.row]
         let selView = UIView()
-        selView.backgroundColor = style.settingsSelectColor
-        let separatorInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+        selView.backgroundColor = UIColor.tint
         
         switch item.type {
         case .more:
-            return {
-                let node = SettingsMoreNode(title: item.title, subtitle: item.subtitle, image: item.image, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
-        case .boolean:
-            return {
-                let node = SettingsBooleanNode(title: item.title, image: item.image, isOn: item.options!["isOn"] as! Bool, style: style)
-                node.switchDidLoad = { (switchButton) in
-                    switchButton.tag = (item.options!["action"] as! Int)
-                    switchButton.addTarget(self, action: #selector(self.booleanAction(sender:)), for: .valueChanged)
+            let cell = tableView.dequeueReusableCell(withIdentifier: moreCell, for: indexPath)
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = item.subtitle
+            cell.textLabel?.textColor = UIColor.text
+            cell.detailTextLabel?.textColor = UIColor.text
+            cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+            cell.selectedBackgroundView = selView
+            
+            cell.accessoryType = .disclosureIndicator
+            if item.options != nil {
+                if let disclosure = item.options!["disclosure"] as? Bool {
+                    if !disclosure {
+                        cell.accessoryType = .none
+                    }
                 }
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
             }
+            return cell
+        case .boolean:
+            return UITableViewCell()
         case .notification:
-            return {
-                let node = SettingsNotificationNode(message: item.title, time: item.options!["time"] as! String, localizedRepeat: item.options!["repeat"] as! String, card: item.options!["card"] as! String, style: style)
-                node.backgroundColor = style.settingsSectionBackground
-                node.selectedBackgroundView = selView
-                node.separatorInset = separatorInsets
-                return node
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: notificationCell, for: indexPath)
+            cell.textLabel?.text = item.title
+            let subtitle = (item.options!["time"] as! String) + " - " + (item.options!["repeat"] as! String) + " " + (item.options!["card"] as! String)
+            cell.detailTextLabel?.text = subtitle
+            cell.textLabel?.textColor = UIColor.text
+            cell.detailTextLabel?.textColor = UIColor.text
+            cell.imageView?.image = item.image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = UIColor.main
+            cell.selectedBackgroundView = selView
+            return cell
         }
     }
     
@@ -149,8 +151,8 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
         self.setSettings()
     }
 
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! NotificationSettingsAction {
         case .new:
@@ -167,8 +169,7 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
             self.performSegue(withIdentifier: newNotification, sender: self)
         case .bool: ()
         }
-        
-        tableNode.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -183,16 +184,14 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        footer.textLabel?.textColor = style.tableSectionFooterColor
-        footer.textLabel!.font = style.tableSectionFooterFont
+        footer.textLabel?.textColor = UIColor.text
+        footer.textLabel!.font = UIFont.preferredFont(forTextStyle: .footnote)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        let style = Themes.manager.settingsStyle
-        header.textLabel?.textColor = style.tableSectionHeaderColor
-        header.textLabel!.font = style.tableSectionHeaderFont
+        header.textLabel?.textColor = UIColor.text
+        header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     // MARK: - Actions
@@ -205,33 +204,10 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
     }
     
     // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.settingsSeparatorColor
-        })
-    }
     private func setSettings() {
         self.settings.removeAll()
         
-        let addNewItem = SettingItem(title: Localizations.Settings.Notifications.add, type: .more, action: NotificationSettingsAction.new)
+        let addNewItem = SettingItem(title: Localizations.Settings.Notifications.add, type: .more, action: NotificationSettingsAction.new, image: Images.Media.notification.image)
         let addNewSection = SettingsSection(items: [addNewItem])
         self.settings.append(addNewSection)
         
@@ -249,7 +225,7 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
                 let timeString = DateFormatter.localizedString(from: n.date, dateStyle: .none, timeStyle: .short)
                 let localizedRepeat = n.localizedString
                 
-                let item = SettingItem(title: n.message, type: .notification, action: NotificationSettingsAction.edit, subtitle: nil, image: nil, options: ["time": timeString, "repeat": localizedRepeat, "card": cardTitle])
+                let item = SettingItem(title: n.message, type: .notification, action: NotificationSettingsAction.edit, subtitle: nil, image: Images.Media.notification.image, options: ["time": timeString, "repeat": localizedRepeat, "card": cardTitle])
                 notificationsSection.items.append(item)
             }
             
@@ -258,9 +234,7 @@ class SettingsNotificationViewController: UIViewController, ASTableDataSource, A
             }
         }
         
-        if self.tableNode != nil {
-            self.tableNode.reloadData()
-        }
+        self.tableView.reloadData()
     }
     
     private enum NotificationSettingsAction: SettingsAction {
