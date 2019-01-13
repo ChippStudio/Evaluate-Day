@@ -1379,6 +1379,12 @@ internal enum Localizations {
           internal static let monthly = Localizations.tr("Localizable", "settings.pro.subscription.title.monthly")
         }
       }
+      internal enum View {
+        /// Tap here to Read More ...
+        internal static let readMore = Localizations.tr("Localizable", "settings.pro.view.readMore")
+        /// Unlock
+        internal static let unlock = Localizations.tr("Localizable", "settings.pro.view.unlock")
+      }
     }
     internal enum Support {
       /// FAQ

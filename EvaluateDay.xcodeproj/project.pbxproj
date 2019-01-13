@@ -36,6 +36,7 @@
 		B516CA4D21EA8C5B0002915F /* AppIcon-6-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4121EA8C5B0002915F /* AppIcon-6-Preview.png */; };
 		B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */; };
 		B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */; };
+		B516CA5121EB54A70002915F /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5021EB54A70002915F /* ProView.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -478,6 +479,7 @@
 		B516CA4121EA8C5B0002915F /* AppIcon-6-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-6-Preview.png"; sourceTree = "<group>"; };
 		B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-4-Preview.png"; sourceTree = "<group>"; };
 		B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-7-Preview.png"; sourceTree = "<group>"; };
+		B516CA5021EB54A70002915F /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 				B5729EDA2003935D00481D6F /* NextButton.swift */,
 				B5D11DAD206261B100D559BF /* LoadView.swift */,
 				B59DA05F211D5F0100A9FCFB /* ShareView.swift */,
+				B516CA5021EB54A70002915F /* ProView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2357,6 +2360,7 @@
 				B5257D571FE93FC800AC54DE /* DarkCardSettingsTheme.swift in Sources */,
 				B5DE2CB52001059300EFBCA5 /* SyncKey.swift in Sources */,
 				B5FD38DD1FD940EA0071B1F0 /* CardListEmptyView.swift in Sources */,
+				B516CA5121EB54A70002915F /* ProView.swift in Sources */,
 				B52D26D9201718C000332D0A /* CounterMergeSection.swift in Sources */,
 				B5A9D5AC2021FDA0006DFB32 /* PhotoValue+Extensions.swift in Sources */,
 				B5BD3B2A200774C50075C75F /* CriterionTenMergeSection.swift in Sources */,

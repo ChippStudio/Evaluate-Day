@@ -49,6 +49,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.tableFooterView = self.footerView
         self.tableView.accessibilityIdentifier = "settingsTableView"
+        self.tableView.contentInset.top = 40.0
+        
+        if let header = self.tableView.tableHeaderView as? ProView {
+            header.button.addTarget(self, action: #selector(self.proAction(sender:)), for: .touchUpInside)
+        }
         
         if self.popoverPresentationController != nil {
             self.preferredContentSize = CGSize(width: 360.0, height: 600.0)
@@ -156,8 +161,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! MainSettingsAction {
-        case .pro:
-            self.proAction()
         case .themes:
             self.openController(id: self.themesSegue)
         case .icons:
@@ -246,7 +249,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func proAction() {
+    @objc func proAction(sender: UIButton) {
         let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
         self.openController(controller: controller)
     }
@@ -352,7 +355,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private enum MainSettingsAction: SettingsAction {
-        case pro
         case week
         case themes
         case icons

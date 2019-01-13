@@ -37,6 +37,7 @@ internal enum Images {
     internal static let activity = ImageAsset(name: "activity")
     internal static let analytics = ImageAsset(name: "analytics")
     internal static let app = ImageAsset(name: "app")
+    internal static let appIcon = ImageAsset(name: "appIcon")
     internal static let appQA = ImageAsset(name: "appQA")
     internal static let appStore = ImageAsset(name: "appStore")
     internal static let cameraRoll = ImageAsset(name: "cameraRoll")

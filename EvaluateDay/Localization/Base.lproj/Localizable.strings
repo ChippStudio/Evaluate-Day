@@ -433,6 +433,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.pro.description.second" = "Advanced Analytics";
 "settings.pro.description.third" = "Cloud Sync";
 "settings.pro.description.title" = "Upgade to Evaluate Day Pro gain access to some extra features:";
+"settings.pro.view.unlock" = "Unlock";
+"settings.pro.view.readMore" = "Tap here to Read More ...";
 "settings.pro.node.ispro.subtitle" = "Thank you for your support!";
 "settings.pro.node.ispro.title" = "Evaluate Day Pro Unlocked";
 "settings.pro.node.subtitle" = "Unlimeted card, advanced analytics, export, sync and more!";
