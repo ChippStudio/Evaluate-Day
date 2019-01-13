@@ -27,11 +27,11 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
             l.style.preferredSize = CGSize(width: 16.0, height: 16.0)
             if c.isEmpty {
                 l.backgroundColor = UIColor.clear
-                l.borderWidth = 0.5
-                l.borderColor = UIColor.tint.cgColor
             } else {
                 l.backgroundColor = c.color
             }
+            l.borderWidth = 0.5
+            l.borderColor = UIColor.tint.cgColor
             l.cornerRadius = 8.0
             self.dots.append(l)
         }

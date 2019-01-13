@@ -7,16 +7,17 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 
-class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSource {
+class NewCardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
-    var tableNode: ASTableNode!
-    var closeButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
     let sources = Sources()
+    
+    private let newCardCell = "newCardCell"
+    private let proCell = "proCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -27,20 +28,7 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
         
-        // Set table node
-        self.tableNode = ASTableNode(style: .plain)
-        self.tableNode.delegate = self
-        self.tableNode.dataSource = self
-        self.tableNode.accessibilityIdentifier = "cardsTypeList"
-        self.tableNode.view.separatorStyle = .none
-        self.tableNode.view.showsVerticalScrollIndicator = false
-        
-        self.view.addSubnode(self.tableNode)
-        
-        if self.navigationController!.viewControllers.count == 1 {
-            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.closeButtonAction(sender:)))
-            self.navigationItem.leftBarButtonItem = closeButton
-        }
+        self.tableView.showsVerticalScrollIndicator = false
         
         // Analytics
         sendEvent(.openNewCardSelector, withProperties: nil)
@@ -53,75 +41,80 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.observable()
+        self.updateAppearance(animated: false)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
         
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
         }
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    // MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if Database.manager.application.user.pro {
+            if Store.current.isPro {
                 return 0
+            } else {
+                return 1
             }
-            
-            return 2
         }
         
         return self.sources.cards.count
     }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                return {
-                    let node = SettingsProNode()
-                    return node
-                }
-            }
-            
-            return {
-                let node = DescriptionNode(text: Localizations.New.Cards.Limit.message(cardsLimit), alignment: .right, style: Themes.manager.settingsStyle)
-                node.topInset = 10.0
-                return node
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: proCell, for: indexPath) as! ProUnlockCell
+            cell.descriptionLabel.text = Localizations.New.Cards.Limit.message(cardsLimit)
+            cell.proView.button.addTarget(self, action: #selector(self.openProAction(sender:)), for: .touchUpInside)
+            return cell
         }
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: newCardCell, for: indexPath) as! NewCardCell
         let source = self.sources.cards[indexPath.row]
-        var untouch = false
         
         if Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).count >= cardsLimit && !Store.current.isPro {
-            untouch = true
+            cell.selectionStyle = .none
+        } else {
+            cell.selectionStyle = .default
         }
         
-        return {
-            let node = SourceNode(title: source.title, subtitle: source.subtitle, image: source.image, untouchble: untouch, style: Themes.manager.newCardStyle)
-            return node
-        }
+        cell.iconImageView.image = source.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate)
+        
+        cell.titleLabel.text = source.title
+        cell.subtitleLabel.text = source.subtitle
+        
+        let selView = UIView()
+        selView.backgroundColor = UIColor.tint
+        selView.layer.cornerRadius = 5.0
+        
+        cell.selectedBackgroundView = selView
+        
+        return cell
     }
     
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 0 {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            self.navigationController?.pushViewController(controller, animated: true)
-            return
-        }
-        
-        if tableNode.nodeForRow(at: indexPath)!.selectionStyle == .none {
+        if tableView.cellForRow(at: indexPath)!.selectionStyle == .none {
             return
         }
         
@@ -137,32 +130,13 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
     }
     
     // MARK: - Actions
-    @objc func closeButtonAction(sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.newCardStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.reloadData()
-        })
+    @objc func openProAction(sender: UIButton) {
+        if Store.current.isPro {
+            let controller = UIStoryboard(name: Storyboards.proUnlock.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.universalSplitController?.pushSideViewController(controller)
+        } else {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.universalSplitController?.pushSideViewController(controller)
+        }
     }
 }
