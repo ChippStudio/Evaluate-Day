@@ -70,12 +70,8 @@ class ListMergeSection: ListSectionController, ASSectionController, MergeSection
                 return node
             }
         case self.nodes + self.otherCards.count:
-            var full = false
-            if self.selectedIndex != nil {
-                full = true
-            }
             return {
-                let node = SettingsProButtonNode(title: Localizations.CardMerge.action, full: full, style: style)
+                let node = SettingsProButtonNode(title: Localizations.CardMerge.action)
                 node.topInset = 50.0
                 node.didPressed = { () in
                     if self.selectedIndex == nil {

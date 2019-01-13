@@ -1423,6 +1423,8 @@
 				B5A5916621D8FC8F0026FD84 /* CollectionActionNode.swift */,
 				B5A5916821D92ABC0026FD84 /* CollectionActionButtonNode.swift */,
 				B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */,
+				B562180F1FD5A9D30061AC70 /* SettingsProReviewNode.swift */,
+				B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1756,10 +1758,8 @@
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B587D6B61FB6B10B006D62C1 /* SettingsBooleanNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
-				B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */,
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
 				B5257D3E1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift */,
-				B562180F1FD5A9D30061AC70 /* SettingsProReviewNode.swift */,
 				B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */,
 				B56218111FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift */,
 				B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */,

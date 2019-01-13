@@ -9,14 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol SettingsProButtonNodeStyle {
-    var proButtonTextColor: UIColor { get }
-    var proButtonTextFont: UIFont { get }
-    var proButtonCoverColor: UIColor { get }
-    var proButtonSelectedColor: UIColor { get }
-    var proSecondaryTextColor: UIColor { get }
-}
-
 class SettingsProButtonNode: ASCellNode {
     
     // MARK: - UI
@@ -28,27 +20,15 @@ class SettingsProButtonNode: ASCellNode {
     
     // MARK: - Variable
     var topInset: CGFloat = 5.0
-    private var styleNode: SettingsProButtonNodeStyle!
-    private var full: Bool!
     
     // MARK: - Initi
-    init(title: String, full: Bool, style: SettingsProButtonNodeStyle) {
+    init(title: String) {
         super.init()
-        
-        self.styleNode = style
-        self.full = full
     
         cover.cornerRadius = 5
-        if full {
-            cover.backgroundColor = style.proButtonCoverColor
-            textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.proButtonTextFont, NSAttributedStringKey.foregroundColor: style.proButtonTextColor])
-        } else {
-            cover.backgroundColor = UIColor.clear
-            cover.borderColor = style.proButtonCoverColor.cgColor
-            cover.borderWidth = 1.0
-            textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.proButtonTextFont, NSAttributedStringKey.foregroundColor: style.proSecondaryTextColor])
-        }
-        
+        cover.backgroundColor = UIColor.main
+        textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+    
         //Accessibility
         self.isAccessibilityElement = true
         self.accessibilityLabel = title
@@ -70,17 +50,13 @@ class SettingsProButtonNode: ASCellNode {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.3) {
-            self.cover.backgroundColor = self.styleNode.proButtonSelectedColor
+            self.cover.backgroundColor = UIColor.selected
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.3) {
-            if self.full {
-                self.cover.backgroundColor = self.styleNode.proButtonCoverColor
-            } else {
-                self.cover.backgroundColor = UIColor.clear
-            }
+            self.cover.backgroundColor = UIColor.main
         }
         
         if let table = self.owningNode as? ASTableNode {
@@ -99,11 +75,7 @@ class SettingsProButtonNode: ASCellNode {
     
     override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
         UIView.animate(withDuration: 0.3) {
-            if self.full {
-                self.cover.backgroundColor = self.styleNode.proButtonCoverColor
-            } else {
-                self.cover.backgroundColor = UIColor.clear
-            }
+            self.cover.backgroundColor = UIColor.main
         }
     }
 }

@@ -212,7 +212,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .viewAll:
             return {
-                let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll, full: false, style: style)
+                let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll)
                 node.topInset = 20.0
                 return node
             }

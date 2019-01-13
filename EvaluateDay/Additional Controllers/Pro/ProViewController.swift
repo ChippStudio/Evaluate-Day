@@ -16,8 +16,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     
     // MARK: - UI
     var tableNode: ASTableNode!
-    var nextButton: NextButton!
-    var closeButton: UIBarButtonItem!
     
     // MARK: - Variable
     var priceString = "..." {
@@ -50,34 +48,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             sendEvent(.openPro, withProperties: nil)
         }
         
-        // Set next button for onboarding
-        if !Database.manager.application.isShowWelcome {
-            self.nextButton = NextButton()
-            nextButton.contentView.backgroundColor = UIColor.white
-            
-            self.tableNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 100.0, right: 0.0)
-            self.view.addSubview(self.nextButton)
-            self.nextButton.snp.makeConstraints { (make) in
-                make.height.equalTo(60.0)
-                make.width.equalTo(60.0)
-                make.trailing.equalTo(self.view).offset(-30.0)
-                make.bottom.equalTo(self.view).offset(-20.0)
-            }
-            self.nextButton.addTarget(self, action: #selector(nextButtonAction(sender: )), for: .touchUpInside)
-            self.nextButton.alpha = 0.0
-            self.nextButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-            
-            self.nextButton.isAccessibilityElement = true
-            self.nextButton.accessibilityLabel = Localizations.Accessibility.Onboarding.Welcome.label
-            self.nextButton.accessibilityHint = Localizations.Accessibility.Onboarding.hint
-            
-        } else {
-            if self.navigationController!.viewControllers.first is ProViewController {
-                self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
-                self.navigationItem.leftBarButtonItem = closeButton
-            }
-        }
-        
         // Feedback
         Feedback.player.play(sound: .openPro, hapticFeedback: true)
     }
@@ -98,17 +68,31 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            self.tableNode.backgroundColor = UIColor.background
+            
+            // Table node
+            self.tableNode.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if self.nextButton != nil {
-            UIView.animate(withDuration: 1.0, delay: 2.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-                self.nextButton.alpha = 1.0
-                self.nextButton.transform = CGAffineTransform.identity
-            }, completion: nil)
-        }
     }
     
     // MARK: - ASTableDataSource
@@ -151,19 +135,22 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                     if KeychainWrapper.standard.integer(forKey: keychainProStart) != nil {
                        subscripition = false
                     }
+                    let selView = UIView()
+                    selView.backgroundColor = UIColor.tint
                     return {
-                        let node = SettingsProReviewNode(subscribe: subscripition, style: style)
+                        let node = SettingsProReviewNode(subscribe: subscripition)
+                        node.selectedBackgroundView = selView
                         return node
                     }
                 } else {
                     return {
-                        let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.manage, full: false, style: style)
+                        let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.manage)
                         return node
                     }
                 }
             } else {
                 return {
-                    let node = PrivacyAndEulaNode(style: style)
+                    let node = PrivacyAndEulaNode()
                     node.selectionStyle = .none
                     node.privacySelected = { () in
                         self.openURL(privacyURLString)
@@ -205,7 +192,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 1:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.annualy(Store.current.localizedAnnualyPrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.annualy(Store.current.localizedAnnualyPrice))
                     node.selectionStyle = .none
                     node.cover.backgroundColor = UIColor.squash
                     return node
@@ -236,7 +223,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 4:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.monthly(Store.current.localizedMonthlyPrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.monthly(Store.current.localizedMonthlyPrice))
                     node.selectionStyle = .none
                     return node
                 }
@@ -256,7 +243,7 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 6:
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.lifetime(Store.current.localizedLifetimePrice), full: true, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.Subscription.Buy.lifetime(Store.current.localizedLifetimePrice))
                     node.selectionStyle = .none
                     return node
                 }
@@ -282,21 +269,21 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         if indexPath.section == 2 {
             if indexPath.row == 0 {
                 return {
-                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.questions, full: false, style: style)
+                    let node = SettingsProButtonNode(title: Localizations.Settings.Pro.questions)
                     node.selectionStyle = .none
                     return node
                 }
             }
             
             return {
-                let node = SettingsProButtonNode(title: Localizations.Settings.Pro.restore, full: false, style: style)
+                let node = SettingsProButtonNode(title: Localizations.Settings.Pro.restore)
                 node.selectionStyle = .none
                 return node
             }
         }
     
         return {
-            let node = PrivacyAndEulaNode(style: style)
+            let node = PrivacyAndEulaNode()
             node.selectionStyle = .none
             node.privacySelected = { () in
                 self.openURL(privacyURLString)
@@ -447,16 +434,6 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
         self.present(safari, animated: true, completion: nil)
     }
     
-    @objc func nextButtonAction(sender: NextButton) {
-        let presentingController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
-        presentingController.transition = WelcomeTransition(animationDuration: 0.6)
-        try! Database.manager.app.write {
-            Database.manager.application.isShowWelcome = true
-        }
-        sendEvent(.finishOnboarding, withProperties: nil)
-        self.present(presentingController, animated: true, completion: nil)
-    }
-    
     // MARK: - Private actions
     // MARK: - Load view acctions
     private var evaluateLoadView: LoadView!
@@ -495,29 +472,5 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             self.evaluateLoadView.stopAnimation()
             self.evaluateLoadView = nil
         }
-    }
-    
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.settingsStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.reloadData()
-        })
     }
 }

@@ -164,19 +164,12 @@ class PermissionsViewController: UIViewController, ASTableDataSource, ASTableDel
     
     // MARK: - Actions
     @objc func nextButtonAction(sender: NextButton) {
-        if Store.current.isPro {
-            let presentingController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
-            presentingController.transition = WelcomeTransition(animationDuration: 0.6)
-            try! Database.manager.app.write {
-                Database.manager.application.isShowWelcome = true
-            }
-            sendEvent(.finishOnboarding, withProperties: nil)
-            self.present(presentingController, animated: true, completion: nil)
-        } else {
-            let presentingController = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            let navController = UINavigationController(rootViewController: presentingController)
-            navController.transition = WelcomeTransition(animationDuration: 0.6)
-            self.present(navController, animated: true, completion: nil)
+        let presentingController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+        presentingController.transition = WelcomeTransition(animationDuration: 0.6)
+        try! Database.manager.app.write {
+            Database.manager.application.isShowWelcome = true
         }
+        sendEvent(.finishOnboarding, withProperties: nil)
+        self.present(presentingController, animated: true, completion: nil)
     }
 }

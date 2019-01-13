@@ -9,15 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol PrivacyAndEulaNodeStyle {
-    var privacyButtonTextColor: UIColor { get }
-    var privacyButtonTextFont: UIFont { get }
-    var eulaButtonTextColor: UIColor { get }
-    var eulaButtonTextFont: UIFont { get }
-    var descriptionTextColor: UIColor { get }
-    var descriptionTextFont: UIFont { get }
-}
-
 class PrivacyAndEulaNode: ASCellNode {
     // MARK: - UI
     var privacyButton = ASButtonNode()
@@ -29,17 +20,17 @@ class PrivacyAndEulaNode: ASCellNode {
     var eulaSelected: (() -> Void)?
     
     // MARK: - Init
-    init(style: PrivacyAndEulaNodeStyle) {
+    override init() {
         super.init()
         
         // Description
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Privacy.description, attributes: [NSAttributedStringKey.font: style.descriptionTextFont, NSAttributedStringKey.foregroundColor: style.descriptionTextColor])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Privacy.description, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         // Buttons
-        let privacy = NSAttributedString(string: Localizations.Settings.Pro.Privacy.privacy, attributes: [NSAttributedStringKey.font: style.privacyButtonTextFont, NSAttributedStringKey.foregroundColor: style.privacyButtonTextColor])
+        let privacy = NSAttributedString(string: Localizations.Settings.Pro.Privacy.privacy, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.negative])
         self.privacyButton.setAttributedTitle(privacy, for: .normal)
         
-        let eula = NSAttributedString(string: Localizations.Settings.Pro.Privacy.eula, attributes: [NSAttributedStringKey.font: style.eulaButtonTextFont, NSAttributedStringKey.foregroundColor: style.eulaButtonTextColor])
+        let eula = NSAttributedString(string: Localizations.Settings.Pro.Privacy.eula, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.negative])
         self.eulaButton.setAttributedTitle(eula, for: .normal)
         
         self.privacyButton.addTarget(self, action: #selector(privacyButtonAction(sender:)), forControlEvents: .touchUpInside)

@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle, AnalyticsTimeTravelNodeStyle { }
+protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, AnalyticsTimeTravelNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {
@@ -53,4 +53,4 @@ protocol MergeSection {
     var mergeDone: (() -> Void)? { get set }
 }
 
-protocol MergeSectionStyle: BigDescriptionNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle, SettingsProButtonNodeStyle { }
+protocol MergeSectionStyle: BigDescriptionNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle { }
