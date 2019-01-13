@@ -27,6 +27,8 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
             l.style.preferredSize = CGSize(width: 16.0, height: 16.0)
             if c.isEmpty {
                 l.backgroundColor = UIColor.clear
+                l.borderWidth = 0.5
+                l.borderColor = UIColor.tint.cgColor
             } else {
                 l.backgroundColor = c.color
             }
@@ -57,6 +59,9 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         dotsStack.spacing = 10.0
         dotsStack.children = self.dots
         
+        let dotsInsets = UIEdgeInsets(top: 22.0, left: 0.0, bottom: 22.0, right: 0.0)
+        let dotsInset = ASInsetLayoutSpec(insets: dotsInsets, child: dotsStack)
+        
         let analyticsStack = ASStackLayoutSpec.horizontal()
         analyticsStack.spacing = 5
         analyticsStack.alignItems = .center
@@ -65,12 +70,12 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         let content = ASStackLayoutSpec.horizontal()
         content.spacing = 10.0
         content.justifyContent = .spaceBetween
-        content.children = [dotsStack, analyticsStack]
+        content.children = [dotsInset, analyticsStack]
         
-        let dotsInsets = UIEdgeInsets(top: 22.0, left: 10.0, bottom: 22.0, right: 10.0)
-        let dotsInset = ASInsetLayoutSpec(insets: dotsInsets, child: content)
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
-        let cell = ASBackgroundLayoutSpec(child: dotsInset, background: self.cover)
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
         
         let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

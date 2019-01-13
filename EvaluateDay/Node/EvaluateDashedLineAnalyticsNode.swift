@@ -31,6 +31,10 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
             if v == 0 {
                 let l = ASDisplayNode()
                 l.backgroundColor = UIColor.clear
+                l.borderColor = UIColor.tint.cgColor
+                l.borderWidth = 0.5
+                l.cornerRadius = 2.5
+                l.style.preferredSize = CGSize(width: 5.0, height: 5.0)
                 dashes.append(l)
             } else {
                 for i in 1...v {
