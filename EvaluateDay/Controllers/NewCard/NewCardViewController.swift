@@ -85,9 +85,8 @@ class NewCardViewController: UIViewController, ASTableDelegate, ASTableDataSourc
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                let pro = Database.manager.application.user.pro
                 return {
-                    let node = SettingsProNode(pro: pro, style: Themes.manager.settingsStyle)
+                    let node = SettingsProNode()
                     return node
                 }
             }

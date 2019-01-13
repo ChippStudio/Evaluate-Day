@@ -137,7 +137,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
                 self.chartDidLoad?()
             })
         } else {
-            self.chartNode = SettingsProNode(pro: false, style: Themes.manager.settingsStyle)
+            self.chartNode = SettingsProNode()
         }
         
         // Accessibility

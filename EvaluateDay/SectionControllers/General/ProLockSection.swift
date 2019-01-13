@@ -21,17 +21,17 @@ class ProLockSection: ListSectionController, ASSectionController {
     
     override init() {
         super.init()
-        if let user = Database.manager.app.objects(User.self).first {
-            self.realmToken = user.observe({ (_) in
-                if self.isPro != Store.current.isPro {
-                    self.isPro = Store.current.isPro
-                    self.collectionContext?.performBatch(animated: true, updates: { (context) in
-                        print("RELOAD FROM PRO LOCK")
-                        context.reload(self)
-                    }, completion: nil)
-                }
-            })
-        }
+//        if let user = Database.manager.app.objects(User.self).first {
+//            self.realmToken = user.observe({ (_) in
+//                if self.isPro != Store.current.isPro {
+//                    self.isPro = Store.current.isPro
+//                    self.collectionContext?.performBatch(animated: true, updates: { (context) in
+//                        print("RELOAD FROM PRO LOCK")
+//                        context.reload(self)
+//                    }, completion: nil)
+//                }
+//            })
+//        }
     }
     
     // MARK: - Override
@@ -40,9 +40,12 @@ class ProLockSection: ListSectionController, ASSectionController {
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let isPro = Store.current.isPro
         return {
-            return SettingsProNode(pro: isPro, style: Themes.manager.settingsStyle)
+            let node = SettingsProNode()
+            node.didLoadProView = { (view) in
+                view.button.addTarget(self, action: #selector(self.proDidAction(sender:)), for: .touchUpInside)
+            }
+            return node
         }
     }
     
@@ -55,8 +58,8 @@ class ProLockSection: ListSectionController, ASSectionController {
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -69,6 +72,10 @@ class ProLockSection: ListSectionController, ASSectionController {
     }
     
     override func didSelectItem(at index: Int) {
+    }
+    
+    // MARK: - Actions
+    @objc func proDidAction(sender: UIButton) {
         self.didSelectPro?()
     }
 }

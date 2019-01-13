@@ -79,10 +79,6 @@ class ProView: UIView {
         }
 
         // All labels
-        self.unlockLabel.text = Localizations.Settings.Pro.View.unlock
-        self.unlockLabel.textColor = UIColor.tint
-        self.unlockLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
-
         self.evaluateDayLabel.text = Localizations.General.evaluateday
         self.evaluateDayLabel.textColor = UIColor.tint
         self.evaluateDayLabel.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
@@ -106,10 +102,15 @@ class ProView: UIView {
             make.centerY.equalToSuperview()
         }
 
-        self.addSubview(self.unlockLabel)
-        self.unlockLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(self).offset(25.0)
-            make.bottom.equalTo(self.evaluateDayLabel.snp.top).offset(-10.0)
+        if !Store.current.isPro {
+            self.unlockLabel.text = Localizations.Settings.Pro.View.unlock
+            self.unlockLabel.textColor = UIColor.tint
+            self.unlockLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+            self.addSubview(self.unlockLabel)
+            self.unlockLabel.snp.makeConstraints { (make) in
+                make.leading.equalTo(self).offset(25.0)
+                make.bottom.equalTo(self.evaluateDayLabel.snp.top).offset(-10.0)
+            }
         }
 
         self.addSubview(self.readMoreLabel)

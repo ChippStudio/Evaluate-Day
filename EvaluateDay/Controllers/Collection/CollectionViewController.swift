@@ -113,6 +113,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         
         diffableCards.append(self.cardsObject)
         diffableCards.append(self.dateObject)
+        diffableCards.append(ProLock())
         diffableCards.append(self.actionObject)
         
         return diffableCards
@@ -130,6 +131,21 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             return section
         } else if object is CollectionActionsObject {
             let section = CollectionActionsSection()
+            section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
+            return section
+        } else if object is ProLock {
+            let section = ProLockSection()
+            section.didSelectPro = { () in
+                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                self.universalSplitController?.pushSideViewController(controller)
+//                if Store.current.isPro {
+//                    let controller = UIStoryboard(name: Storyboards.proUnlock.rawValue, bundle: nil).instantiateInitialViewController()!
+//                    self.openController(controller: controller)
+//                } else {
+//                    let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+//                    self.openController(controller: controller)
+//                }
+            }
             section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
             return section
         }

@@ -250,8 +250,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @objc func proAction(sender: UIButton) {
-        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-        self.openController(controller: controller)
+        if Store.current.isPro {
+            let controller = UIStoryboard(name: Storyboards.proUnlock.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.openController(controller: controller)
+        } else {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.openController(controller: controller)
+        }
     }
     
     func openSupport() {

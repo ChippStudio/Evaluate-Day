@@ -66,7 +66,7 @@ class AnalyticsCalendarNode: ASCellNode {
                 self.didLoadCalendar?()
             })
         } else {
-            self.calendarNode = SettingsProNode(pro: false, style: Themes.manager.settingsStyle)
+            self.calendarNode = SettingsProNode()
         }
         // Accessibility
         self.title.isAccessibilityElement = false

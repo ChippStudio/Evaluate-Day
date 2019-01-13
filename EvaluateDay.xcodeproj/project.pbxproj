@@ -37,6 +37,8 @@
 		B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */; };
 		B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */; };
 		B516CA5121EB54A70002915F /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5021EB54A70002915F /* ProView.swift */; };
+		B516CA5421EB85FA0002915F /* ProUnlock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B516CA5321EB85FA0002915F /* ProUnlock.storyboard */; };
+		B516CA5621EB86480002915F /* ProUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5521EB86480002915F /* ProUnlockViewController.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -480,6 +482,8 @@
 		B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-4-Preview.png"; sourceTree = "<group>"; };
 		B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-7-Preview.png"; sourceTree = "<group>"; };
 		B516CA5021EB54A70002915F /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
+		B516CA5321EB85FA0002915F /* ProUnlock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProUnlock.storyboard; sourceTree = "<group>"; };
+		B516CA5521EB86480002915F /* ProUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockViewController.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -936,6 +940,15 @@
 			path = EvaluateDayUITests;
 			sourceTree = "<group>";
 		};
+		B516CA5221EB85D20002915F /* ProUnlock */ = {
+			isa = PBXGroup;
+			children = (
+				B516CA5321EB85FA0002915F /* ProUnlock.storyboard */,
+				B516CA5521EB86480002915F /* ProUnlockViewController.swift */,
+			);
+			path = ProUnlock;
+			sourceTree = "<group>";
+		};
 		B5257D401FE91BD800AC54DE /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -1279,6 +1292,7 @@
 				B5BD3B432009E8A80075C75F /* SelectMap */,
 				B5257D401FE91BD800AC54DE /* Web */,
 				B59B4C7A1FD837F900E9A778 /* Pro */,
+				B516CA5221EB85D20002915F /* ProUnlock */,
 				B5D854E91FD06C5D00BB4E14 /* SelectCardList */,
 				B5D854E01FD0158300BB4E14 /* Repeat */,
 				B5D854C81FCDAA5D00BB4E14 /* Passcode */,
@@ -1408,6 +1422,7 @@
 				B59F9F49211AD46700A59516 /* SeparatorNode.swift */,
 				B5A5916621D8FC8F0026FD84 /* CollectionActionNode.swift */,
 				B5A5916821D92ABC0026FD84 /* CollectionActionButtonNode.swift */,
+				B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1740,7 +1755,6 @@
 				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B587D6B61FB6B10B006D62C1 /* SettingsBooleanNode.swift */,
-				B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
 				B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */,
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
@@ -2063,6 +2077,7 @@
 				B516CA4B21EA8C5B0002915F /* AppIcon-1-Preview.png in Resources */,
 				B516CA4821EA8C5B0002915F /* AppIcon-8-Preview.png in Resources */,
 				B5B27E871F9DC31F00CB9121 /* Evaluate.storyboard in Resources */,
+				B516CA5421EB85FA0002915F /* ProUnlock.storyboard in Resources */,
 				B516CA4A21EA8C5B0002915F /* AppIcon-2-Preview.png in Resources */,
 				B5B27E9D1F9DC55600CB9121 /* NewCard.storyboard in Resources */,
 				B5B27EA01F9DC5AC00CB9121 /* CardSettings.storyboard in Resources */,
@@ -2451,6 +2466,7 @@
 				B5257D601FE93FC800AC54DE /* DarkEvaluateTheme.swift in Sources */,
 				B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */,
 				B55D32742074F67300BD1E75 /* OrangeSlidesControllerTheme.swift in Sources */,
+				B516CA5621EB86480002915F /* ProUnlockViewController.swift in Sources */,
 				B55D326F2074F67300BD1E75 /* OrangeTopControllerTheme.swift in Sources */,
 				B5D854C71FCD859900BB4E14 /* SettingsSelectNode.swift in Sources */,
 				B5A5916921D92ABC0026FD84 /* CollectionActionButtonNode.swift in Sources */,
