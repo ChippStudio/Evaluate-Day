@@ -53,6 +53,7 @@ internal enum Images {
     internal static let down = ImageAsset(name: "down")
     internal static let exportBoard = ImageAsset(name: "exportBoard")
     internal static let facebook = ImageAsset(name: "facebook")
+    internal static let faceid = ImageAsset(name: "faceid")
     internal static let faq = ImageAsset(name: "faq")
     internal static let github = ImageAsset(name: "github")
     internal static let imagePlaceholder = ImageAsset(name: "imagePlaceholder")
@@ -67,6 +68,7 @@ internal enum Images {
     internal static let support = ImageAsset(name: "support")
     internal static let sync = ImageAsset(name: "sync")
     internal static let themes = ImageAsset(name: "themes")
+    internal static let touchid = ImageAsset(name: "touchid")
     internal static let up = ImageAsset(name: "up")
     internal static let week = ImageAsset(name: "week")
   }

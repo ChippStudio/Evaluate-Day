@@ -21,14 +21,14 @@ class PasscodeViewController: UIViewController {
         didSet {
             for v in self.view.subviews {
                 if v as? UIButton == nil && v as? UILabel == nil {
-                    v.backgroundColor = Themes.manager.passcodeControllerStyle.background
+                    v.backgroundColor = UIColor.background
                 }
             }
             for i in 0..<passcode.count {
                 for v in self.view.subviews {
                     if v as? UIButton == nil && v as? UILabel == nil {
                         if v.tag == i {
-                            v.backgroundColor = Themes.manager.passcodeControllerStyle.dotTintColor
+                            v.backgroundColor = UIColor.main
                         }
                     }
                 }
@@ -43,7 +43,7 @@ class PasscodeViewController: UIViewController {
                         self.passcode = ""
                         for v in self.view.subviews {
                             if v as? UIButton == nil && v as? UILabel == nil {
-                                v.backgroundColor = Themes.manager.passcodeControllerStyle.background
+                                v.backgroundColor = UIColor.background
                             }
                         }
                     }
@@ -64,7 +64,7 @@ class PasscodeViewController: UIViewController {
                             self.passcode = ""
                             for v in self.view.subviews {
                                 if v as? UIButton == nil && v as? UILabel == nil {
-                                    v.backgroundColor = Themes.manager.passcodeControllerStyle.background
+                                    v.backgroundColor = UIColor.background
                                 }
                             }
                         }
@@ -75,7 +75,7 @@ class PasscodeViewController: UIViewController {
                             self.passcode = ""
                             for v in self.view.subviews {
                                 if v as? UIButton == nil && v as? UILabel == nil {
-                                    v.backgroundColor = Themes.manager.passcodeControllerStyle.background
+                                    v.backgroundColor = UIColor.background
                                 }
                             }
                         } else {
@@ -97,7 +97,7 @@ class PasscodeViewController: UIViewController {
                                 self.passcode = ""
                                 for v in self.view.subviews {
                                     if v as? UIButton == nil && v as? UILabel == nil {
-                                        v.backgroundColor = Themes.manager.passcodeControllerStyle.background
+                                        v.backgroundColor = UIColor.background
                                     }
                                 }
                             }
@@ -122,15 +122,13 @@ class PasscodeViewController: UIViewController {
             self.navigationItem.title = Localizations.Settings.Passcode.title
         }
         
-        let style = Themes.manager.passcodeControllerStyle
-        
         for v in self.view.subviews {
             if let button = v as? UIButton {
                 if button.tag == 101 {
                     // Delete title
-                    button.titleLabel?.font = style.buttonMainFont
-                    button.setTitleColor(style.buttonMainColor, for: .normal)
-                    button.setTitleColor(style.buttonMainColor, for: .highlighted)
+                    button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .regular)
+                    button.setTitleColor(UIColor.text, for: .normal)
+                    button.setTitleColor(UIColor.tint, for: .highlighted)
                 } else if button.tag == 111 {
                     // Touch ID or Face ID icon
                     if Database.manager.application.settings.passcodeBiometric && Database.manager.application.settings.passcode {
@@ -172,8 +170,8 @@ class PasscodeViewController: UIViewController {
                     }
                     let center = NSMutableParagraphStyle()
                     center.alignment = .center
-                    let title = NSMutableAttributedString(string: "\(button.tag)" + subtitle, attributes: [NSAttributedStringKey.font: style.buttonMainFont, NSAttributedStringKey.foregroundColor: style.buttonMainColor, NSAttributedStringKey.paragraphStyle: center])
-                    title.addAttributes([NSAttributedStringKey.font: style.buttonSubFont, NSAttributedStringKey.foregroundColor: style.buttonSubColor], range: (title.string as NSString).range(of: subtitle))
+                    let title = NSMutableAttributedString(string: "\(button.tag)" + subtitle, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: center])
+                    title.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.main], range: (title.string as NSString).range(of: subtitle))
                     button.titleLabel?.numberOfLines = 2
                     button.setAttributedTitle(title, for: .normal)
                 }
@@ -188,13 +186,13 @@ class PasscodeViewController: UIViewController {
                 } else {
                     label.text = Localizations.Settings.Passcode.unlock(Localizations.General.evaluateday)
                 }
-                label.textColor = style.messageColor
-                label.font = style.messageFont
+                label.textColor = UIColor.text
+                label.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
             } else {
                 v.layer.cornerRadius = 20/2
                 v.layer.borderWidth = 1.0
-                v.layer.borderColor = style.dotTintColor.cgColor
-                v.backgroundColor = style.background
+                v.layer.borderColor = UIColor.main.cgColor
+                v.backgroundColor = UIColor.background
             }
         }
         
@@ -208,8 +206,16 @@ class PasscodeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
         
-        self.observable()
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            self.view.backgroundColor = UIColor.background
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -318,14 +324,6 @@ class PasscodeViewController: UIViewController {
                 }
             })
         }
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.passcodeControllerStyle
-            self.view.backgroundColor = style.background
-        })
     }
     
     private func setLetters() {
