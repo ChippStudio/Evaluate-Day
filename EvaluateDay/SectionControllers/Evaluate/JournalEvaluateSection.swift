@@ -43,7 +43,6 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
             lock = true
@@ -100,7 +99,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         let board = self.card.dashboardValue?.1
         
         return {
-            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, values: entriesCount, dashboard: board, style: style)
+            let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, values: entriesCount, dashboard: board)
             
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
@@ -125,7 +124,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
             
             if archived {
-                node.backgroundColor = style.cardArchiveColor
+                
             }
             
             return node
@@ -237,7 +236,7 @@ class JournalNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)], values: [Int], dashboard: UIImage?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)], values: [Int], dashboard: UIImage?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)

@@ -72,13 +72,24 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
                 sumValue! += v.value
             }
         }
-        
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var counter = [Float]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            if let c = counterCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+                counter.insert(Float(c.value), at: 0)
+            } else {
+                counter.insert(0, at: 0)
+            }
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter, style: style)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             if !lock {
                 node.counter.plus.addTarget(self, action: #selector(self.plusButtonAction(sender:)), forControlEvents: .touchUpInside)
@@ -102,8 +113,8 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -116,11 +127,6 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - TextTopViewControllerDelegate
@@ -150,6 +156,10 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
+    
     @objc private func plusButtonAction(sender: ASButtonNode) {
         let counterCard = self.card.data as! CounterCard
         if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
@@ -247,19 +257,35 @@ class CounterNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var counter: CounterEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: UIImage?, values: [Float], style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step, style: style)
+        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step)
+        
+        var max: Float = 0.0
+        for v in values {
+            if v > max {
+                max = v
+            }
+        }
+        self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: max)
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .counter))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(value)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -269,7 +295,7 @@ class CounterNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.counter]
+        stack.children = [self.title, self.counter, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

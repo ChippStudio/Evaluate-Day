@@ -9,25 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol CounterEvaluateNodeStyle {
-    var counterEvaluateCounterFont: UIFont { get }
-    var counterEvaluateCounterColor: UIColor { get }
-    var counterEvaluateSumFont: UIFont { get }
-    var counterEvaluateSumColor: UIColor { get }
-    var counterEvaluatePlusColor: UIColor { get }
-    var counterEvaluatePlusHighlightedColor: UIColor { get }
-    var counterEvaluateMinusColor: UIColor { get }
-    var counterEvaluateMinusHighlightedColor: UIColor { get }
-    var counterEvaluateCustomValueFont: UIFont { get }
-    var counterEvaluateCustomValueColor: UIColor { get }
-    var counterEvaluateCustomValueHighlightedColor: UIColor { get }
-    var counterEvaluateDateColor: UIColor { get }
-    var counterEvaluateDateFont: UIFont { get }
-    var counterEvaluatePreviousValueFont: UIFont { get }
-    var counterEvaluatePreviousValueColor: UIColor { get }
-    var counterEvaluateSeparatorColor: UIColor { get }
-}
-
 class CounterEvaluateNode: ASCellNode {
 
     // MARK: - UI
@@ -47,66 +28,57 @@ class CounterEvaluateNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, style: CounterEvaluateNodeStyle) {
+    init(value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double) {
         super.init()
         
         // Plus and minus buttons and covers
         let font = UIFont.systemFont(ofSize: 36.0, weight: .regular)
         
-        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: style.counterEvaluatePlusColor]
-        let plusHighlightedAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: style.counterEvaluatePlusHighlightedColor]
+        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.tint]
         
-        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: style.counterEvaluateMinusColor]
-        let minusHighlightedAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: style.counterEvaluateMinusHighlightedColor]
+        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.tint]
         
-        let customAttributes = [NSAttributedStringKey.font: style.counterEvaluateCustomValueFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateCustomValueColor]
-        let customHighlightedAttributes = [NSAttributedStringKey.font: style.counterEvaluateCustomValueFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateCustomValueHighlightedColor]
+        let customAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint]
         
         self.plus.setAttributedTitle(NSAttributedString(string: "+", attributes: plusAttributes), for: .normal)
-        self.plus.setAttributedTitle(NSAttributedString(string: "+", attributes: plusHighlightedAttributes), for: .highlighted)
         
         self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusAttributes), for: .normal)
-        self.minus.setAttributedTitle(NSAttributedString(string: "-", attributes: minusHighlightedAttributes), for: .highlighted)
         
         self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customAttributes), for: .normal)
-        self.customValueButton.setAttributedTitle(NSAttributedString(string: Localizations.Evaluate.Counter.customValue, attributes: customHighlightedAttributes), for: .highlighted)
         
-        self.plusCover.borderWidth = 1.0
-        self.plusCover.borderColor = style.counterEvaluatePlusColor.cgColor
+        self.plusCover.backgroundColor = UIColor.main
         
-        self.minusCover.borderWidth = 1.0
-        self.minusCover.borderColor = style.counterEvaluateMinusColor.cgColor
+        self.minusCover.backgroundColor = UIColor.main
         
-        self.customValueButtonCover.borderWidth = 1.0
-        self.customValueButtonCover.borderColor = style.counterEvaluateCustomValueColor.cgColor
+        self.customValueButtonCover.backgroundColor = UIColor.main
         
         // Sum title if needed
         if sumValue != nil {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
-            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: style.counterEvaluateSumFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateSumColor])
+            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
             self.sumText!.isAccessibilityElement = false
         }
         
         // counter
         let valueString = String(format: "%.2f", value)
-        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: style.counterEvaluateCounterFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateCounterColor])
+        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         let previousValueString = String(format: "%.2f", previousValue)
-        self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: style.counterEvaluatePreviousValueFont, NSAttributedStringKey.foregroundColor: style.counterEvaluatePreviousValueColor])
+        self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.counterEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateDateColor])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         var components = DateComponents()
         components.day = -1
         
         let previousDate = Calendar.current.date(byAdding: components, to: date)!
-        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: style.counterEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.counterEvaluateDateColor])
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
-        self.separator.backgroundColor = style.counterEvaluateSeparatorColor
+        self.separator.backgroundColor = UIColor.main
         self.separator.cornerRadius = 2.0
         
         //Accessibility
@@ -124,6 +96,21 @@ class CounterEvaluateNode: ASCellNode {
             self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Counter.summorySum("\(sumValue!)")
         }
         
+        self.customValueButton.addTarget(self, action: #selector(self.enterValueInitialAction(sender:)), forControlEvents: .touchDown)
+        self.customValueButton.addTarget(self, action: #selector(self.enterValueEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.customValueButton.addTarget(self, action: #selector(self.enterValueEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.customValueButton.addTarget(self, action: #selector(self.enterValueEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.plus.addTarget(self, action: #selector(self.plusInitialAction(sender:)), forControlEvents: .touchDown)
+        self.plus.addTarget(self, action: #selector(self.plusEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.plus.addTarget(self, action: #selector(self.plusEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.plus.addTarget(self, action: #selector(self.plusEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.minus.addTarget(self, action: #selector(self.minusInitialAction(sender:)), forControlEvents: .touchDown)
+        self.minus.addTarget(self, action: #selector(self.minusEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.minus.addTarget(self, action: #selector(self.minusEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.minus.addTarget(self, action: #selector(self.minusEndAction(sender:)), forControlEvents: .touchCancel)
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -132,7 +119,7 @@ class CounterEvaluateNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         // Buttons
         let buttonsSize: CGFloat = 50.0
-        let buttonCornerRadius: CGFloat = 5.0
+        let buttonCornerRadius: CGFloat = 10.0
         self.plus.style.preferredSize = CGSize(width: buttonsSize, height: buttonsSize)
         self.minus.style.preferredSize = CGSize(width: buttonsSize, height: buttonsSize)
         self.customValueButton.style.preferredSize.height = buttonsSize
@@ -169,12 +156,20 @@ class CounterEvaluateNode: ASCellNode {
         valuesStack.flexWrap = .wrap
         valuesStack.children = [currentStack, self.separator, previousStack]
         
+        let fullValueStack = ASStackLayoutSpec.vertical()
+        fullValueStack.spacing = 5.0
+        fullValueStack.children = [valuesStack]
+        
         if self.sumText != nil {
-            valuesStack.children?.append(self.sumText!)
+            let sumStack = ASStackLayoutSpec.horizontal()
+            sumStack.justifyContent = .end
+            sumStack.children = [self.sumText!]
+            
+            fullValueStack.children?.append(sumStack)
         }
         
-        let valueInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 0.0)
-        let valueInset = ASInsetLayoutSpec(insets: valueInsets, child: valuesStack)
+        let valueInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 20.0, right: 0.0)
+        let valueInset = ASInsetLayoutSpec(insets: valueInsets, child: fullValueStack)
         
         let valueInsetAccessibility = ASBackgroundLayoutSpec(child: valueInset, background: self.accessibilityNode)
         
@@ -182,9 +177,46 @@ class CounterEvaluateNode: ASCellNode {
         cell.spacing = 5.0
         cell.children = [valueInsetAccessibility, buttons]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
+    }
+    
+    // MARK: - Actions
+    @objc func enterValueInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.customValueButtonCover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func enterValueEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.customValueButtonCover.backgroundColor = UIColor.main
+        }
+    }
+    
+    @objc func plusInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.plusCover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func plusEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.plusCover.backgroundColor = UIColor.main
+        }
+    }
+    
+    @objc func minusInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.minusCover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func minusEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.minusCover.backgroundColor = UIColor.main
+        }
     }
 }

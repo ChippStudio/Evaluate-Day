@@ -15,7 +15,7 @@ struct LightShareViewTheme: ShareViewStyle {
     var shareViewLinkColor: UIColor { return UIColor.white }
     var shareViewTitleFont: UIFont { return UIFont.avenirNext(size: 20.0, weight: .regular) }
     var shareViewLinkFont: UIFont { return UIFont.avenirNext(size: 12.0, weight: .regular) }
-    var shareViewIconImage: UIImage { return #imageLiteral(resourceName: "WhiteAppIcon.png") }
+    var shareViewIconImage: UIImage { return #imageLiteral(resourceName: "edit") }
     
     var shareControllerBackground: UIColor { return UIColor.snow }
     var shareControllerCloseTintColor: UIColor { return UIColor.gunmetal }

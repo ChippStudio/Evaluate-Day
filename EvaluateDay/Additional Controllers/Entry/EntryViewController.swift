@@ -171,7 +171,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         case 3:
             var data = [String]()
             var text = Localizations.Evaluate.Weather.unknown
-            var icon: UIImage? = #imageLiteral(resourceName: "clear-day")
+            var icon: UIImage? = Images.Weather.clearDay.image
             if let w = self.textValue.weather {
                 icon = UIImage(named: w.icon)
                 var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
