@@ -9,12 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol ListItemEvaluateNodeStyle {
-    var listItemTextFont: UIFont { get }
-    var listItemTextColor: UIColor { get }
-    var listItemTintColor: UIColor { get }
-}
-
 class ListItemEvaluateNode: ASCellNode {
     // MARK: - UI
     var doneDot = ASDisplayNode()
@@ -26,16 +20,16 @@ class ListItemEvaluateNode: ASCellNode {
     var doneDidPressed: ((_ indexPath: IndexPath) -> Void)?
     
     // MARK: - Init
-    init(text: String, done: Bool, style: ListItemEvaluateNodeStyle) {
+    init(text: String, done: Bool) {
         super.init()
         
-        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.listItemTextFont, NSAttributedStringKey.foregroundColor: style.listItemTextColor, NSAttributedStringKey.strikethroughColor: style.listItemTintColor, NSAttributedStringKey.strikethroughStyle: NSNumber(value: done)])
+        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.strikethroughColor: UIColor.text, NSAttributedStringKey.strikethroughStyle: NSNumber(value: done)])
         
-        self.doneDotCover.borderColor = style.listItemTintColor.cgColor
+        self.doneDotCover.borderColor = UIColor.main.cgColor
         self.doneDotCover.borderWidth = 1.0
         
         if done {
-            self.doneDot.backgroundColor = style.listItemTintColor
+            self.doneDot.backgroundColor = UIColor.main
         }
         
         self.doneButton.addTarget(self, action: #selector(self.buttonAction(sender:)), forControlEvents: .touchUpInside)
@@ -80,7 +74,7 @@ class ListItemEvaluateNode: ASCellNode {
         cell.alignItems = .center
         cell.children = [fullDot, self.text]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

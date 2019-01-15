@@ -9,19 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol ListEvaluateNodeStyle {
-    var listEvaluateViewButtonFont: UIFont { get }
-    var listEvaluateViewButtonColor: UIColor { get }
-    var listEvaluateViewButtonHighlightedColor: UIColor { get }
-    var listEvaluateDayDoneFont: UIFont { get }
-    var listEvaluateDayDoneColor: UIColor { get }
-    var listEvaluateAllDoneFont: UIFont { get }
-    var listEvaluateAllDoneColor: UIColor { get }
-    var listEvaluateDateFont: UIFont { get }
-    var listEvaluateDateColor: UIColor { get }
-    var listEvaluateSeparatorColor: UIColor { get }
-}
-
 class ListEvaluateNode: ASCellNode {
     
     // MARK: - UI
@@ -36,18 +23,15 @@ class ListEvaluateNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(all: Int, allDone: Int, inDay: Int, date: Date, style: ListEvaluateNodeStyle) {
+    init(all: Int, allDone: Int, inDay: Int, date: Date) {
         super.init()
         
-        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonColor])
-        let openHighlightedTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: style.listEvaluateViewButtonFont, NSAttributedStringKey.foregroundColor: style.listEvaluateViewButtonHighlightedColor])
+        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.openListButton.setAttributedTitle(openTitle, for: .normal)
-        self.openListButton.setAttributedTitle(openHighlightedTitle, for: .highlighted)
         
-        self.openListButtonCover.cornerRadius = 5.0
-        self.openListButtonCover.borderWidth = 1.0
-        self.openListButtonCover.borderColor = style.listEvaluateViewButtonColor.cgColor
+        self.openListButtonCover.cornerRadius = 10.0
+        self.openListButtonCover.backgroundColor = UIColor.main
         
         let allPercent = Double(allDone) / Double(all) * 100.0
         let dayPercent = Double(inDay) / Double(all) * 100.0
@@ -58,16 +42,16 @@ class ListEvaluateNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.dayDone.attributedText = NSAttributedString(string: dayString, attributes: [NSAttributedStringKey.font: style.listEvaluateDayDoneFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDayDoneColor, NSAttributedStringKey.paragraphStyle: paragraph])
-        self.allDone.attributedText = NSAttributedString(string: allString, attributes: [NSAttributedStringKey.font: style.listEvaluateAllDoneFont, NSAttributedStringKey.foregroundColor: style.listEvaluateAllDoneColor, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.dayDone.attributedText = NSAttributedString(string: dayString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.allDone.attributedText = NSAttributedString(string: allString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: style.listEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDateColor])
-        self.lifetime.attributedText = NSAttributedString(string: Localizations.General.lifetime, attributes: [NSAttributedStringKey.font: style.listEvaluateDateFont, NSAttributedStringKey.foregroundColor: style.listEvaluateDateColor])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.lifetime.attributedText = NSAttributedString(string: Localizations.General.lifetime, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
-        self.separator.backgroundColor = style.listEvaluateSeparatorColor
+        self.separator.backgroundColor = UIColor.main
         self.separator.cornerRadius = 2.0
         
         // Accessibility
@@ -78,6 +62,11 @@ class ListEvaluateNode: ASCellNode {
         
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Evaluate.List.allDone(formatter.string(from: date), "\(inDay)", "\(all)", "\(dayPercent)", "\(allDone)", "\(all)", "\(allPercent)")
+        
+        self.openListButton.addTarget(self, action: #selector(self.openInitialAction(sender:)), forControlEvents: .touchDown)
+        self.openListButton.addTarget(self, action: #selector(self.openEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.openListButton.addTarget(self, action: #selector(self.openEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.openListButton.addTarget(self, action: #selector(self.openEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -108,7 +97,7 @@ class ListEvaluateNode: ASCellNode {
         
         let button = ASBackgroundLayoutSpec(child: openButtonInset, background: self.openListButtonCover)
         
-        let textsInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 10.0)
+        let textsInsets = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 0.0, right: 10.0)
         let textsInset = ASInsetLayoutSpec(insets: textsInsets, child: texts)
         
         let textsInsetAccessibility = ASBackgroundLayoutSpec(child: textsInset, background: self.accessibilityNode)
@@ -117,9 +106,22 @@ class ListEvaluateNode: ASCellNode {
         cell.spacing = 20.0
         cell.children = [textsInsetAccessibility, button]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 30.0, right: 10.0)
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
+    }
+    
+    // MARK: - Actions
+    @objc func openInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.openListButtonCover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func openEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.openListButtonCover.backgroundColor = UIColor.main
+        }
     }
 }

@@ -75,7 +75,26 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.observable()
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableNode.backgroundColor = UIColor.background
+        }
     }
     
     // MARK: - ASTableDataSource
@@ -90,12 +109,17 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         return self.done.count
     }
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
+        let selView = UIView()
+        selView.backgroundColor = UIColor.tint
+        selView.layer.cornerRadius = 5.0
+        
         if indexPath.section == 0 {
             let item = self.undone[indexPath.row]
             let text = item.text
+            
             return {
-                let node = ListItemEvaluateNode(text: text, done: false, style: style)
+                let node = ListItemEvaluateNode(text: text, done: false)
+                node.selectedBackgroundView = selView
                 node.doneDidPressed = { (cellIndexPath) in
                     //Feedback
                     Feedback.player.play(sound: nil, hapticFeedback: false, impact: true, feedbackType: nil)
@@ -108,7 +132,8 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         let item = self.done[indexPath.row]
         let text = item.text
         return {
-            let node = ListItemEvaluateNode(text: text, done: true, style: style)
+            let node = ListItemEvaluateNode(text: text, done: true)
+            node.selectedBackgroundView = selView
             node.doneDidPressed = { (cellIndexPath) in
                 self.didDonePressed(indexPath: cellIndexPath)
             }
@@ -235,30 +260,5 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
         }
         
         self.tableNode.reloadData()
-    }
-    
-    // MARK: - Private
-    private func observable() {
-        _ = Themes.manager.changeTheme.asObservable().subscribe({ (_) in
-            let style = Themes.manager.evaluateStyle
-            
-            //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = style.barColor
-            self.navigationController?.navigationBar.tintColor = style.barTint
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barTitleFont]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: style.barTint, NSAttributedStringKey.font: style.barLargeTitleFont]
-            }
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            
-            // Backgrounds
-            self.view.backgroundColor = style.background
-            self.tableNode.backgroundColor = style.background
-            
-            // Table node
-            self.tableNode.view.separatorColor = style.tableNodeSeparatorColor
-        })
     }
 }

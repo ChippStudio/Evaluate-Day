@@ -56,12 +56,27 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         let allDone = listCard.values.filter("done=%@", true).count
         let all = listCard.values.count
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var counter = [Int]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            let c = listCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end)
+            var done = 0
+            for d in c {
+                if d.done {
+                    done += 1
+                }
+            }
+            counter.insert(done, at: 0)
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, dashboard: board, values: counter)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             if !lock {
                 node.list.openListButton.addTarget(self, action: #selector(self.openListAction(sender:)), forControlEvents: .touchUpInside)
@@ -84,8 +99,8 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -98,14 +113,12 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
     @objc private func openListAction(sender: ASButtonNode) {
         let controller = UIStoryboard(name: Storyboards.list.rawValue, bundle: nil).instantiateInitialViewController() as! ListViewController
         controller.card = self.card
@@ -159,22 +172,32 @@ class ListNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var list: ListEvaluateNode!
+    var separator: SeparatorNode!
+    var analytics: EvaluateDashedLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, dashboard: UIImage?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date, style: style)
+        self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date)
         
+        self.analytics = EvaluateDashedLineAnalyticsNode(values: values)
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
+
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .list))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.List.done(formatter.string(from: date), "\(inDay)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -184,7 +207,7 @@ class ListNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.list]
+        stack.children = [self.title, self.list, self.analytics, self.share, self.separator]
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell
