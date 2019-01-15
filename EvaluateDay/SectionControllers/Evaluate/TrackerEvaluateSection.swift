@@ -78,12 +78,21 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         let previousDate = Calendar.current.date(byAdding: components, to: self.date)!
         let previousValueCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", previousDate.start, previousDate.end, false).count
         
-        let cardType = Sources.title(forType: self.card.type)
-        let board = self.card.dashboardValue
+        var counter = [Int]()
+        for i in 1...7 {
+            var components = DateComponents()
+            components.day = i * -1
+            let date = Calendar.current.date(byAdding: components, to: self.date)!
+            let c = trackerCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+            counter.insert(c, at: 0)
+        }
+        let board = self.card.dashboardValue?.1
         
         return {
-            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, cardType: cardType, dashboard: board, style: style)
-            node.visual(withStyle: style)
+            let node = TrackerNode(title: title, subtitle: subtitle, image: image, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, dashboard: board, values: counter)
+            
+            node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
+            node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             if !lock {
                 node.mark.markButton.addTarget(self, action: #selector(self.markAction(sender:)), forControlEvents: .touchUpInside)
@@ -116,8 +125,8 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -130,11 +139,6 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     override func didSelectItem(at index: Int) {
-        if index != 0 {
-            return
-        }
-        
-        self.didSelectItem?(self.section, self.card)
     }
     
     // MARK: - TextTopViewControllerDelegate
@@ -162,6 +166,10 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     // MARK: - Actions
+    @objc private func analyticsButton(sender: ASButtonNode) {
+        self.didSelectItem?(self.section, self.card)
+    }
+    
     @objc private func markAction(sender: ASButtonNode) {
         let value = MarkValue()
         value.owner = self.card.id
@@ -250,27 +258,37 @@ class TrackerNode: ASCellNode, CardNode {
     var title: TitleNode!
     var mark: HabitEvaluateNode!
     var comments = [HabitEvaluateCommentNode]()
+    var separator: SeparatorNode!
+    var analytics: EvaluateDashedLineAnalyticsNode!
+    var share: ShareNode!
     
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], cardType: String, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], dashboard: UIImage?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date, style: style)
+        self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date)
         
         for (i, comment) in comments.enumerated() {
-            let newComment = HabitEvaluateCommentNode(comment: comment, style: style)
+            let newComment = HabitEvaluateCommentNode(comment: comment, index: i + 1)
             OperationQueue.main.addOperation {
                 newComment.editButton.view.tag = i
             }
             self.comments.append(newComment)
         }
         
+        self.analytics = EvaluateDashedLineAnalyticsNode(values: values)
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        self.share = ShareNode(dashboardImage: dashboard)
+        
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(cardType)"
+        self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .tracker))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(marks)")
         self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
         
@@ -282,11 +300,17 @@ class TrackerNode: ASCellNode, CardNode {
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [self.title]
         
-        for comment in self.comments {
+        for (i, comment) in self.comments.enumerated() {
+            if i == 0 {
+                stack.children?.append(SpaceNode(space: 30.0))
+            }
             stack.children!.append(comment)
         }
         
         stack.children!.append(self.mark)
+        stack.children!.append(self.analytics)
+        stack.children!.append(self.share)
+        stack.children!.append(self.self.separator)
         
         let cell = ASBackgroundLayoutSpec(child: stack, background: self.accessibilityNode)
         return cell

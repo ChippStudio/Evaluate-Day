@@ -43,6 +43,7 @@
 		B516CA5B21EBC8310002915F /* ProUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5921EBC8310002915F /* ProUnlockCell.swift */; };
 		B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5E21ED1F810002915F /* LocationNode.swift */; };
 		B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6021EDD7130002915F /* ImagesNode.swift */; };
+		B516CA6321EE1FDB0002915F /* SpaceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6221EE1FDB0002915F /* SpaceNode.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -492,6 +493,7 @@
 		B516CA5921EBC8310002915F /* ProUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockCell.swift; sourceTree = "<group>"; };
 		B516CA5E21ED1F810002915F /* LocationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
 		B516CA6021EDD7130002915F /* ImagesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesNode.swift; sourceTree = "<group>"; };
+		B516CA6221EE1FDB0002915F /* SpaceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceNode.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -1409,6 +1411,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
+				B516CA6221EE1FDB0002915F /* SpaceNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
 				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
@@ -1417,6 +1420,9 @@
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
 				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
 				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
+				B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */,
+				B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */,
+				B55D328B207917B800BD1E75 /* HabitNegativeNode.swift */,
 				B55464872024A7BE00923CE3 /* DateNode.swift */,
 				B55464892024A7D200923CE3 /* WeatherNode.swift */,
 				B516CA5E21ED1F810002915F /* LocationNode.swift */,
@@ -1739,8 +1745,6 @@
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
 				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
 				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
-				B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */,
-				B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */,
 				B5AB1E912018CDD100BB1A64 /* ListEvaluateNode.swift */,
 				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
 				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
@@ -1753,7 +1757,6 @@
 				B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */,
 				B5DE2CA01FFF969300EFBCA5 /* BigDescriptionNode.swift */,
 				B59B4C761FD6B21D00E9A778 /* InfoNode.swift */,
-				B55D328B207917B800BD1E75 /* HabitNegativeNode.swift */,
 				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
 				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
 				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
@@ -2343,6 +2346,7 @@
 				B5BD3B24200772090075C75F /* CriterionTenAnalyticsSection.swift in Sources */,
 				B516CA1F21EA7DDB0002915F /* IconCollectionViewCell.swift in Sources */,
 				B5CA2D5C1FB43CD100547EC8 /* ColorAnalyticsSection.swift in Sources */,
+				B516CA6321EE1FDB0002915F /* SpaceNode.swift in Sources */,
 				B5D0C7C420A8539A000F98EF /* BlackNewCardTheme.swift in Sources */,
 				B5C757421F9F33660032199E /* ColorEvaluateNode.swift in Sources */,
 				B5C7573D1F9DF8870032199E /* ColorCard.swift in Sources */,

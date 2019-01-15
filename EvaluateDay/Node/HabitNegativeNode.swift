@@ -9,13 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol HabitNegativeNodeStyle {
-    var habitNegativeDescriptionFont: UIFont { get }
-    var habitNegativeDescriptionColor: UIColor { get }
-    var habitNegativeCoverColor: UIColor { get }
-    var habitNegativeCoverAlpha: CGFloat { get }
-}
-
 class HabitNegativeNode: ASCellNode {
 
     // MARK: - UI
@@ -23,13 +16,13 @@ class HabitNegativeNode: ASCellNode {
     var coverNode = ASDisplayNode()
     
     // MARK: - Init
-    init(style: HabitNegativeNodeStyle) {
+    override init() {
         super.init()
         
-        self.coverNode.backgroundColor = style.habitNegativeCoverColor
-        self.coverNode.alpha = style.habitNegativeCoverAlpha
+        self.coverNode.backgroundColor = UIColor.negative
+        self.coverNode.cornerRadius = 10.0
         
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Habit.negative, attributes: [NSAttributedStringKey.font: style.habitNegativeDescriptionFont, NSAttributedStringKey.foregroundColor: style.habitNegativeDescriptionColor])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Habit.negative, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         self.automaticallyManagesSubnodes = true
     }
@@ -37,11 +30,15 @@ class HabitNegativeNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.descriptionNode.style.flexShrink = 1.0
-        let descriptionInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
+        let descriptionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let descriptionInset = ASInsetLayoutSpec(insets: descriptionInsets, child: self.descriptionNode)
         descriptionInset.style.flexShrink = 1.0
         
         let cell = ASBackgroundLayoutSpec(child: descriptionInset, background: self.coverNode)
-        return cell
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        
+        return cellInset
     }
 }
