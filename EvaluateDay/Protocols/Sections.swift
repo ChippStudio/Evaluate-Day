@@ -21,7 +21,7 @@ protocol EvaluableSection {
     // MARK: - Handlers
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
-protocol EvaluableSectionStyle: UpdateNodeStyle, DashboardsNodeStyle, DashboardsNoneNodeStyle { }
+protocol EvaluableSectionStyle: DashboardsNodeStyle, DashboardsNoneNodeStyle { }
 
 // MARK: - Analytical
 protocol AnalyticalSection {

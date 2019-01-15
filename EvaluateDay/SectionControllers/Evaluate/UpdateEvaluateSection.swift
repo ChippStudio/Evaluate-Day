@@ -29,17 +29,12 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
-        
         let title = self.card.title
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let board = self.card.dashboardValue
         
         return {
-            let node = UpdateCardNode(title: title, subtitle: subtitle, image: image, dashboard: board, style: style)
-            node.visual(withStyle: style)
-            
+            let node = UpdateCardNode(title: title, subtitle: subtitle, image: image)
             return node
         }
     }
@@ -75,13 +70,17 @@ class UpdateCardNode: ASCellNode, CardNode {
     // MARK: - UI
     var title: TitleNode!
     var update: UpdateNode!
+    var separator: SeparatorNode!
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, dashboard: (title: String, image: UIImage)?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.update = UpdateNode(style: style)
+        self.update = UpdateNode()
+        
+        self.separator = SeparatorNode()
+        self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
         self.automaticallyManagesSubnodes = true
     }
@@ -89,7 +88,7 @@ class UpdateCardNode: ASCellNode, CardNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [self.title, self.update]
+        stack.children = [self.title, self.update, self.separator]
         
         return stack
     }

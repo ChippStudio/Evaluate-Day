@@ -44,6 +44,7 @@
 		B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5E21ED1F810002915F /* LocationNode.swift */; };
 		B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6021EDD7130002915F /* ImagesNode.swift */; };
 		B516CA6321EE1FDB0002915F /* SpaceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6221EE1FDB0002915F /* SpaceNode.swift */; };
+		B516CA6521EE31F70002915F /* EvaluateEmptyCardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -494,6 +495,7 @@
 		B516CA5E21ED1F810002915F /* LocationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
 		B516CA6021EDD7130002915F /* ImagesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesNode.swift; sourceTree = "<group>"; };
 		B516CA6221EE1FDB0002915F /* SpaceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceNode.swift; sourceTree = "<group>"; };
+		B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateEmptyCardNode.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -1413,6 +1415,7 @@
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
 				B516CA6221EE1FDB0002915F /* SpaceNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
+				B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */,
 				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
@@ -2559,6 +2562,7 @@
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
 				B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */,
 				B53977DA214B9C9F002EAAFA /* HealthValue+Extensions.swift in Sources */,
+				B516CA6521EE31F70002915F /* EvaluateEmptyCardNode.swift in Sources */,
 				B5D0C7BB20A8539A000F98EF /* BlackTopControllerTheme.swift in Sources */,
 				B5AB1E992019DA8300BB1A64 /* ListItemEvaluateNode.swift in Sources */,
 				B587D6B51FB5D157006D62C1 /* SettingsMoreNode.swift in Sources */,

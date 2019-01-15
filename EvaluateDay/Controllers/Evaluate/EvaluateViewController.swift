@@ -19,7 +19,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var newCardButton: UIBarButtonItem!
     var reorderCardsButton: UIBarButtonItem!
     var collectionNode: ASCollectionNode!
-    var emptyView = CardListEmptyView()
     
     // MARK: - Variable
     var date: Date = Date() {
@@ -48,7 +47,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     var cards: Results<Card>!
     private var cardsToken: NotificationToken!
     var adapter: ListAdapter!
-    var selectedDashboard: String! {
+    var collection: String! {
         didSet {
             if self.adapter == nil {
                 return
@@ -69,6 +68,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - Objects
     private let proLockObject = ProLock()
     private let dateObject = DateObject(date: Date())
+    private let emptyObject = EvaluateEmptyCardObject()
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -80,8 +80,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Navigation bar
         if self.cardType != nil {
             self.navigationItem.title = Sources.title(forType: cardType)
-        } else if self.selectedDashboard != nil {
-            if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.selectedDashboard!).first {
+        } else if self.collection != nil {
+            if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.collection!).first {
                 self.navigationItem.title = dashboard.title
             } else {
                 self.navigationItem.title = Localizations.Collection.titlePlaceholder
@@ -125,9 +125,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
         adapter.dataSource = self
-        
-        // Empty view
-        self.emptyView.newButton.addTarget(self, action: #selector(self.newCardButtonAction(sender:)), for: .touchUpInside)
         
         // Force Touch
         if self.traitCollection.forceTouchCapability == .available {
@@ -213,12 +210,11 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         var diffableCards = [ListDiffable]()
-        diffableCards.append(self.dateObject)
         if self.date < Date() {
             for c in self.cards {
-                if self.selectedDashboard != nil {
+                if self.collection != nil {
                     if c.dashboard != nil {
-                        if c.dashboard! == self.selectedDashboard! {
+                        if c.dashboard! == self.collection! {
                             let diffCard = DiffCard(card: c)
                             diffableCards.append(diffCard)
                         }
@@ -234,28 +230,20 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 }
             }
         }
-        
-        if !self.cards.isEmpty {
-            if diffableCards.isEmpty {
-                // Add emty card for dashboard
-                diffableCards.append(EvaluateEmptyCardObject())
-            }
+        if diffableCards.isEmpty {
+            diffableCards.append(self.emptyObject)
         }
         
+        diffableCards.insert(self.dateObject, at: 0)
+        
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
-            diffableCards.insert(self.proLockObject, at: 0)
+            diffableCards.insert(self.proLockObject, at: 1)
         }
         
         if self.cards.isEmpty || self.cards.count == 1 {
             self.navigationItem.setRightBarButtonItems([self.newCardButton], animated: true)
         } else {
             self.navigationItem.setRightBarButtonItems([self.newCardButton, self.reorderCardsButton], animated: true)
-        }
-        
-        if self.cards.isEmpty {
-            self.collectionNode.view.alwaysBounceVertical = false
-        } else {
-            self.collectionNode.view.alwaysBounceVertical = true
         }
         
         return diffableCards
@@ -288,7 +276,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
             return section
         } else if object is EvaluateEmptyCardObject {
-            let section = EvaluateEmptyCardSection()
+            var type: CardsEmptyType
+            if self.collection != nil {
+                type = .collection
+            } else if self.cardType != nil {
+                type = .type
+            } else {
+                type = .all
+            }
+            let section = EvaluateEmptyCardSection(type: type)
             section.inset = cardInsets
             return section
         } else if let object = object as? DateObject {
@@ -301,7 +297,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        return self.emptyView
+        return nil
     }
     
     // MARK: - UIViewControllerPreviewingDelegate

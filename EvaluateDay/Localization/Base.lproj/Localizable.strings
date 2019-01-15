@@ -307,7 +307,9 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "list.card.archiveNotDelete" = "You can archive card";
 "list.card.deleteMessage" = "You can`t UNDO this action";
 "list.card.empty.description" = "Cards help to control, evaluate and analyse your life.";
-"list.card.empty.title" = "You havn`t any cards";
+"list.card.empty.title" = "You haven`t any cards";
+"list.card.emptyType.subtitle" = "Cards help to control, evaluate and analyse your life.";
+"list.card.emptyType.title" = "You have not any cards in this type";
 "list.card.unarchiveMessage" = "You can evaluate days by this card";
 "list.title" = "All your card";
 

@@ -931,8 +931,14 @@ internal enum Localizations {
       internal enum Empty {
         /// Cards help to control, evaluate and analyse your life.
         internal static let description = Localizations.tr("Localizable", "list.card.empty.description")
-        /// You havn`t any cards
+        /// You haven`t any cards
         internal static let title = Localizations.tr("Localizable", "list.card.empty.title")
+      }
+      internal enum EmptyType {
+        /// Cards help to control, evaluate and analyse your life.
+        internal static let subtitle = Localizations.tr("Localizable", "list.card.emptyType.subtitle")
+        /// You have not any cards in this type
+        internal static let title = Localizations.tr("Localizable", "list.card.emptyType.title")
       }
     }
   }
