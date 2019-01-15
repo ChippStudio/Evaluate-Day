@@ -86,7 +86,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         let board = self.card.dashboardValue?.1
         
         return {
-            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter, style: style)
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter)
             
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
@@ -264,7 +264,7 @@ class CounterNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: UIImage?, values: [Float], style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: UIImage?, values: [Float]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)

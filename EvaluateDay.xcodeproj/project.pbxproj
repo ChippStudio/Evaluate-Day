@@ -1371,9 +1371,9 @@
 				B5AB1E8B2018CB1300BB1A64 /* ListEvaluateSection.swift */,
 				B57B0644201B18B900C4E182 /* GoalEvaluateSection.swift */,
 				B5A9D5AF2022062D006DFB32 /* JournalEvaluateSection.swift */,
-				B5E255B521527C9D00F97A3B /* HealthEvaluateSection.swift */,
 				B5DED79C1FCB04A7002DD956 /* UpdateEvaluateSection.swift */,
 				B5D3FB9C21410AC8004DFF78 /* EvaluateEmptyCardSection.swift */,
+				B5E255B521527C9D00F97A3B /* HealthEvaluateSection.swift */,
 			);
 			path = Evaluate;
 			sourceTree = "<group>";
@@ -1417,6 +1417,7 @@
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
 				B5C757411F9F33660032199E /* ColorEvaluateNode.swift */,
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
+				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
 				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
 				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
@@ -1747,7 +1748,6 @@
 				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
 				B5AB1E912018CDD100BB1A64 /* ListEvaluateNode.swift */,
 				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
-				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
 				B55464CC2025974400923CE3 /* PhotoNode.swift */,
