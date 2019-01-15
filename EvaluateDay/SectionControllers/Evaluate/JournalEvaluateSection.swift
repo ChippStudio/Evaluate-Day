@@ -58,34 +58,35 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         let image = Sources.image(forType: self.card.type)
         let archived = self.card.archived
         
-        var entries = [(text: String, metadata: [String], photo: UIImage?)]()
+        var entries = [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)]()
         
         for entry in self.values {
-            var metadata = [String]()
-            metadata.append(DateFormatter.localizedString(from: entry.created, dateStyle: .none, timeStyle: .short))
-            if let loc = entry.location {
-                if !loc.streetString.isEmpty {
-                    metadata.append(loc.streetString)
-                }
-            }
+            let text = entry.text
+            let date = entry.created
+            var weatherImage: UIImage?
+            var locationText = ""
+            var weatherText = ""
             if let w = entry.weather {
-                if w.pressure != 0.0 && w.humidity != 0.0 {
-                    var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
-                    //                    var apparentTemperature = "\(String(format: "%.0f", w.apparentTemperature)) ℃"
-                    if !Database.manager.application.settings.celsius {
-                        temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
-                        //                        apparentTemperature = "\(String(format: "%.0f", (w.apparentTemperature * (9/5) + 32))) ℉"
-                    }
-                    
-                    metadata.append(temperature)
+                weatherImage = UIImage(named: w.icon)
+                var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
+                if !Database.manager.application.settings.celsius {
+                    temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
                 }
+                weatherText = temperature
             }
-            var photo: UIImage?
-            if let p = entry.photos.first {
-                photo = p.image
+            if let loc = entry.location {
+                locationText.append(loc.streetString)
+                locationText.append(", \(loc.cityString)")
+            }
+            var photos = [UIImage?]()
+            for p in entry.photos {
+                photos.append(p.image)
+            }
+            if photos.isEmpty {
+                photos.append(nil)
             }
             
-            entries.append((text: entry.text, metadata: metadata, photo: photo))
+            entries.append((preview: text, images: photos, date: date, weatherImage: weatherImage, weatherText: weatherText, locationText: locationText))
         }
         
         var entriesCount = [Int]()
@@ -236,13 +237,13 @@ class JournalNode: ASCellNode, CardNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(text: String, metadata: [String], photo: UIImage?)], values: [Int], dashboard: UIImage?, style: EvaluableStyle) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)], values: [Int], dashboard: UIImage?, style: EvaluableStyle) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.new = JournalNewEntryActionNode(date: date)
         for (i, entry) in entries.enumerated() {
-            let newEntry = JournalEntryNode(text: entry.text, metadata: entry.metadata, photo: entry.photo, index: i, truncation: true)
+            let newEntry = JournalEntryNode(preview: entry.preview, images: entry.images, date: entry.date, weatherImage: entry.weatherImage, weatherText: entry.weatherText, locationText: entry.locationText, index: i)
             self.entries.append(newEntry)
         }
         

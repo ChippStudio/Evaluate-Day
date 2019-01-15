@@ -14,6 +14,8 @@ class DateNode: ASCellNode {
     var dateNode = ASTextNode()
     var cover = ASDisplayNode()
     
+    var button = ASButtonNode()
+    
     // MARK: - Init
     init(date: Date) {
         super.init()
@@ -23,6 +25,11 @@ class DateNode: ASCellNode {
         
         let dateString = DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .medium)
         self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        
+        self.button.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)
+        self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton
@@ -37,17 +44,32 @@ class DateNode: ASCellNode {
         self.dateNode.style.flexShrink = 1.0
         
         let content = ASStackLayoutSpec.vertical()
-        content.spacing = 30.0
+        content.alignItems = .center
+        content.justifyContent = .center
         content.children = [self.dateNode]
         
-        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        let cellInsets = UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
-        return cellInset
+        let back = ASOverlayLayoutSpec(child: cellInset, overlay: self.button)
+        return back
+    }
+    
+    // MARK: - Actions
+    @objc func buttonInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func buttonEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.main
+        }
     }
 }

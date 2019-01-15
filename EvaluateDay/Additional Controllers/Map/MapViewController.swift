@@ -132,18 +132,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
             let value = self.annotations[indexPath.row].locationValue
             if let entry = Database.manager.data.objects(TextValue.self).filter("id=%@", value.owner).first {
                 let text = entry.text
-                var metadata = [String]()
-                metadata.append(DateFormatter.localizedString(from: entry.created, dateStyle: .short, timeStyle: .short))
-                if let loc = entry.location {
-                    metadata.append(loc.streetString)
+                let date = entry.created
+                var weatherImage: UIImage?
+                var locationText = ""
+                var weatherText = ""
+                if let w = entry.weather {
+                    weatherImage = UIImage(named: w.icon)
+                    var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
+                    if !Database.manager.application.settings.celsius {
+                        temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
+                    }
+                    weatherText = temperature
                 }
-                var photo: UIImage?
-                if let p = entry.photos.first {
-                    photo = p.image
+                if let loc = entry.location {
+                    locationText.append(loc.streetString)
+                    locationText.append(", \(loc.cityString)")
+                }
+                var photos = [UIImage?]()
+                for p in entry.photos {
+                    photos.append(p.image)
+                }
+                if photos.isEmpty {
+                    photos.append(nil)
                 }
                 
                 return {
-                    let node = JournalEntryNode(text: text, metadata: metadata, photo: photo, truncation: true)
+                    let node = JournalEntryNode(preview: text, images: photos, date: date, weatherImage: weatherImage, weatherText: weatherText, locationText: locationText)
                     return node
                 }
             }

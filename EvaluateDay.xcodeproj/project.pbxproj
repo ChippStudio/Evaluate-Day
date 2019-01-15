@@ -41,6 +41,8 @@
 		B516CA5621EB86480002915F /* ProUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5521EB86480002915F /* ProUnlockViewController.swift */; };
 		B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5721EBC5090002915F /* NewCardCell.swift */; };
 		B516CA5B21EBC8310002915F /* ProUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5921EBC8310002915F /* ProUnlockCell.swift */; };
+		B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5E21ED1F810002915F /* LocationNode.swift */; };
+		B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6021EDD7130002915F /* ImagesNode.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -488,6 +490,8 @@
 		B516CA5521EB86480002915F /* ProUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockViewController.swift; sourceTree = "<group>"; };
 		B516CA5721EBC5090002915F /* NewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardCell.swift; sourceTree = "<group>"; };
 		B516CA5921EBC8310002915F /* ProUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockCell.swift; sourceTree = "<group>"; };
+		B516CA5E21ED1F810002915F /* LocationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
+		B516CA6021EDD7130002915F /* ImagesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesNode.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -1412,6 +1416,10 @@
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
 				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
 				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
+				B55464872024A7BE00923CE3 /* DateNode.swift */,
+				B55464892024A7D200923CE3 /* WeatherNode.swift */,
+				B516CA5E21ED1F810002915F /* LocationNode.swift */,
+				B516CA6021EDD7130002915F /* ImagesNode.swift */,
 				B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */,
 				B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */,
 				B5BD3B412009116C0075C75F /* CheckInDataEvaluateNode.swift */,
@@ -1738,8 +1746,6 @@
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
 				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
-				B55464872024A7BE00923CE3 /* DateNode.swift */,
-				B55464892024A7D200923CE3 /* WeatherNode.swift */,
 				B55464CC2025974400923CE3 /* PhotoNode.swift */,
 				B55464D02025C48300923CE3 /* TextNode.swift */,
 				B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */,
@@ -2431,6 +2437,7 @@
 				B59F9F50211B30E600A59516 /* CardSettingsNotificationSection.swift in Sources */,
 				B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */,
 				B58DC382213D92D10067FD61 /* DashboardsNode.swift in Sources */,
+				B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */,
 				B5899B1221D7B48E00CF123B /* Appearance.swift in Sources */,
 				B55D326D2074F67300BD1E75 /* OrangeCardSettingsTheme.swift in Sources */,
 				B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */,
@@ -2535,6 +2542,7 @@
 				B584E0D11FE27177008093D5 /* SlidesViewController.swift in Sources */,
 				B5D3FB95213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift in Sources */,
 				B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */,
+				B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */,
 				B5A2619B1FBBFEA1008EB017 /* UnarchiveNode.swift in Sources */,
 				B55464D92028607500923CE3 /* JournalMergeSection.swift in Sources */,
 				B5B27E891F9DC33200CB9121 /* EvaluateViewController.swift in Sources */,

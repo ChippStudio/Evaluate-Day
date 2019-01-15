@@ -12,13 +12,17 @@ import Alamofire
 import SwiftyJSON
 import CoreLocation
 
-class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate, SelectMapViewControllerDelegate, TimeBottomViewControllerDelegate, ASEditableTextNodeDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TextTopViewControllerDelegate {
-
+class EntryViewController: UIViewController, SelectMapViewControllerDelegate, TimeBottomViewControllerDelegate, ASEditableTextNodeDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, ASPagerDelegate, ASPagerDataSource {
+    
     // MARK: - UI
-    var tableNode: ASTableNode!
+    var pageNode: ASPagerNode!
     var deleteButton: UIBarButtonItem!
     var closeButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageCover: UIView!
+    @IBOutlet weak var textView: UITextView!
     
     // MARK: - Variables
     var textValue: TextValue!
@@ -26,6 +30,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     
     var new: Bool = false
     
+    private let numbersOfPages = 4
     private var lock = false
     
     // MARK: - Override
@@ -55,22 +60,25 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
         
         self.deleteButton.isEnabled = !self.lock
+        self.textView.isEditable = !self.lock
         
-        // Set table node
-        self.tableNode = ASTableNode(style: .plain)
-        self.tableNode.dataSource = self
-        self.tableNode.delegate = self
-        self.tableNode.view.separatorStyle = .none
-        self.tableNode.view.showsVerticalScrollIndicator = false
-        self.tableNode.view.showsHorizontalScrollIndicator = false
-        self.view.addSubnode(self.tableNode)
-        self.tableNode.view.keyboardDismissMode = .interactive
-        
-        self.updateAppearance(animated: false)
+        self.textView.text = textValue.text
+        self.textView.contentInset = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 100.0, right: 0.0)
         
         if self.textValue.location == nil {
             self.quickCheckIn(sender: ASButtonNode())
         }
+        
+        self.pageNode = ASPagerNode()
+        self.pageNode.setDelegate(self)
+        self.pageNode.setDataSource(self)
+        self.pageCover.addSubnode(self.pageNode)
+        
+        self.pageControl.numberOfPages = self.numbersOfPages
+        
+        // Keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(sender:)), name: .UIKeyboardDidHide, object: nil)
         
         sendEvent(.openEntry, withProperties: ["new": self.new])
     }
@@ -80,17 +88,17 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.tableNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.tableNode.frame = self.view.bounds
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateAppearance(animated: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.pageNode.frame = self.pageCover.bounds
+        if self.pageNode != nil {
+            self.pageNode.reloadData(completion: nil)
+        }
     }
     
     override func updateAppearance(animated: Bool) {
@@ -98,149 +106,101 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
+            
+            self.textView.textColor = UIColor.text
+            self.pageCover.backgroundColor = UIColor.background
+            self.pageControl.pageIndicatorTintColor = UIColor.tint
+            self.pageControl.currentPageIndicatorTintColor = UIColor.main
+            
             // Backgrounds
             self.view.backgroundColor = UIColor.background
-            self.tableNode.backgroundColor = UIColor.clear
-            
-            self.tableNode.reloadData()
+            self.textView.backgroundColor = UIColor.background
         }
     }
     
-    // MARK: - ASTableDataSource
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 4
+    // MARK: - ASPagerDataSource
+    func numberOfPages(in pagerNode: ASPagerNode) -> Int {
+        return self.numbersOfPages
     }
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        switch section {
+    
+    func pagerNode(_ pagerNode: ASPagerNode, nodeBlockAt index: Int) -> ASCellNodeBlock {
+        switch index {
         case 0:
-            return 1
-        case 1:
-            // Date
-            return 1
-        case 2:
-            // Locations
-            if self.textValue.location != nil {
-                return 2
+            var images = [UIImage]()
+            for im in self.textValue.photos {
+                images.append(im.image)
             }
-            return 1
-        case 3:
-            // Weather
-            if self.textValue.weather != nil {
-                return 1
-            }
-            return 0
-        default:
-            return 0
-        }
-    }
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        switch indexPath.section {
-        case 0:
-            let text = self.textValue.text
-            let photo = self.textValue.photos.first?.image
+            
             return {
-                let node = JournalEntryNode(text: text, metadata: [], photo: photo, editMode: !self.lock)
-                if node.selectImageButton != nil {
-                    node.selectImageButton.addTarget(self, action: #selector(self.photoAction(sender:)), forControlEvents: .touchUpInside)
+                let node = ImagesNode(images: images)
+                node.didSelectDeletePhotoAction = { (index) in
+                    self.deletePhotoAction(index: index)
                 }
-                if node.cameraButton != nil {
-                    node.cameraButton.addTarget(self, action: #selector(self.cameraAction(sender:)), forControlEvents: .touchUpInside)
+                node.didSelectPhotoAction = { (index) in
+                    self.photoAction()
                 }
-                if node.deleteImageButton != nil {
-                    node.deleteImageButton.addTarget(self, action: #selector(self.deletePhotoAction(sender:)), forControlEvents: .touchUpInside)
+                node.didSelectCameraAction = { (index) in
+                    self.cameraAction()
                 }
-                if node.editTextButton != nil {
-                    node.editTextButton.addTarget(self, action: #selector(self.editTextButtonAction(sender:)), forControlEvents: .touchUpInside)
-                }
-                if node.imageButton != nil {
-                    node.imageButton.addTarget(self, action: #selector(self.openPhoto(sender:)), forControlEvents: .touchUpInside)
-                }
-                node.selectionStyle = .none
+                return node
+            }
+        case 2:
+            var street = ""
+            var otherAddress = ""
+            var coordinates = ""
+            
+            if let loc = self.textValue.location {
+                street = loc.streetString
+                otherAddress = loc.otherAddressString
+                coordinates = loc.coordinatesString
+            } else {
+                otherAddress = Localizations.Evaluate.Checkin.Permission.description
+            }
+            return {
+                let node = LocationNode(street: street, otherAddress: otherAddress, coordinates: coordinates)
+                node.button.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
                 return node
             }
         case 1:
             let date = self.textValue.created
             return {
                 let node = DateNode(date: date)
+                node.button.addTarget(self, action: #selector(self.timeAction(sender:)), forControlEvents: .touchUpInside)
                 return node
             }
-        case 2:
-            if let loc = self.textValue.location {
-                if indexPath.row == 1 {
-                    let street = loc.streetString
-                    let otherAdress = loc.otherAddressString
-                    let coordinates = loc.coordinatesString
-                    return {
-                        let node = CheckInDataEvaluateNode(street: street, otherAddress: otherAdress, coordinates: coordinates)
-                        node.accessibilityTraits = UIAccessibilityTraitNone
-                        node.selectionStyle = .none
-                        node.leftInset = 30.0
-                        return node
-                    }
-                }
-            }
-            
-            if Permissions.defaults.locationStatus == .authorizedWhenInUse {
-                let date = self.textValue.created
-                return {
-                    let node = CheckInActionNode(date: date)
-                    if !self.lock {
-                        node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
-                        node.checkInButton.addTarget(self, action: #selector(self.quickCheckIn(sender:)), forControlEvents: .touchUpInside)
-                    }
-                    node.selectionStyle = .none
-                    node.currentDate.attributedText = NSAttributedString(string: "")
-                    return node
-                }
-            } else {
-                let date = self.textValue.created
-                return {
-                    let node = CheckInPermissionNode(date: date)
-                    if !self.lock {
-                        node.mapButton.addTarget(self, action: #selector(self.openMap(sender:)), forControlEvents: .touchUpInside)
-                        node.permissionButton.addTarget(self, action: #selector(self.allowLocation(sender:)), forControlEvents: .touchUpInside)
-                    }
-                    node.leftInset = 30.0
-                    node.selectionStyle = .none
-                    node.currentDate.attributedText = NSAttributedString(string: "")
-                    return node
-                }
-            }
         case 3:
-            let w = self.textValue.weather!
-            var icon = UIImage(named: w.icon)
             var data = [String]()
-            var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
-            var apparentTemperature = "\(String(format: "%.0f", w.apparentTemperature)) ℃"
-            if !Database.manager.application.settings.celsius {
-                temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
-                apparentTemperature = "\(String(format: "%.0f", (w.apparentTemperature * (9/5) + 32))) ℉"
+            var text = Localizations.Evaluate.Weather.unknown
+            var icon: UIImage? = #imageLiteral(resourceName: "clear-day")
+            if let w = self.textValue.weather {
+                icon = UIImage(named: w.icon)
+                var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
+                var apparentTemperature = "\(String(format: "%.0f", w.apparentTemperature)) ℃"
+                if !Database.manager.application.settings.celsius {
+                    temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
+                    apparentTemperature = "\(String(format: "%.0f", (w.apparentTemperature * (9/5) + 32))) ℉"
+                }
+                data.append(temperature)
+                data.append(apparentTemperature)
+                
+                let humidity = String(format: "%.0f", w.humidity * 100) + " %"
+                data.append(humidity)
+                
+                let pressure = String(format: "%.1f", w.pressure) + " mBar"
+                data.append(pressure)
+                
+                var windSpeed = String(format: "%.1f", w.windSpeed) + " m/s"
+                if !Locale.current.usesMetricSystem {
+                    windSpeed = String(format: "%.1f", w.windSpeed * (25/11)) + " mi/hr"
+                }
+                data.append(windSpeed)
+                
+                let cc = String(format: "%.1f", w.cloudCover * 100) + " %"
+                data.append(cc)
+                
+                text = Localizations.Evaluate.Journal.Entry.weather(temperature, apparentTemperature, humidity, pressure, windSpeed, cc)
             }
-            data.append(temperature)
-            data.append(apparentTemperature)
-        
-            let humidity = String(format: "%.0f", w.humidity * 100) + " %"
-            data.append(humidity)
             
-            let pressure = String(format: "%.1f", w.pressure) + " mBar"
-            data.append(pressure)
-            
-            var windSpeed = String(format: "%.1f", w.windSpeed) + " m/s"
-            if !Locale.current.usesMetricSystem {
-                windSpeed = String(format: "%.1f", w.windSpeed * (25/11)) + " mi/hr"
-            }
-            data.append(windSpeed)
-            
-            let cc = String(format: "%.1f", w.cloudCover * 100) + " %"
-            data.append(cc)
-            
-            var text = Localizations.Evaluate.Journal.Entry.weather(temperature, apparentTemperature, humidity, pressure, windSpeed, cc)
-            
-            if w.pressure == 0.0 && w.humidity == 0.0 {
-                data.removeAll()
-                text = Localizations.Evaluate.Weather.unknown
-                icon = #imageLiteral(resourceName: "clear-day")
-            }
             return {
                 let node = WeatherNode(icon: icon, text: text, data: data)
                 node.selectionStyle = .none
@@ -253,29 +213,9 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
     }
     
-    // MARK: - ASTableDelegate
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        tableNode.deselectRow(at: indexPath, animated: true)
-        if self.lock {
-            return
-        }
-        
-        if indexPath.section == 1 {
-            let controller = TimeBottomViewController()
-            controller.pickerMode = .dateAndTime
-            controller.date = self.textValue.created
-            controller.maximumDate = Date()
-            controller.delegate = self
-            controller.closeByTap = true
-            
-            if !Store.current.isPro {
-                var components = DateComponents()
-                components.day = -pastDaysLimit
-                controller.minumumDate = Calendar.current.date(byAdding: components, to: Date().start)
-            }
-            
-            self.present(controller, animated: true, completion: nil)
-        }
+    // MARK: - ASPagerDelegate
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.pageControl.currentPage = self.pageNode.currentPageIndex
     }
     
     // MARK: - TimeBottomViewControllerDelegate
@@ -313,7 +253,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             Database.manager.data.add(locationValue, update: true)
         }
         
-        self.tableNode.reloadSections(IndexSet(integer: 2), with: .automatic)
+        self.pageNode.reloadData()
         self.updateWeatherInformation()
         
         controller.dismiss(animated: true, completion: nil)
@@ -332,7 +272,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             location.isDeleted = true
         }
         
-        self.tableNode.reloadSections(IndexSet(integer: 2), with: .automatic)
+        self.pageNode.reloadData()
         
         guard let weather = self.textValue.weather else {
             return
@@ -342,7 +282,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             weather.isDeleted = true
         }
         
-        self.tableNode.reloadSections(IndexSet(integer: 3), with: .automatic)
+        self.pageNode.reloadData()
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -364,22 +304,15 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 }
             }
             
-            if let photo = self.textValue.photos.first {
-                photo.image = image
-                try! Database.manager.data.write {
-                    photo.edited = Date()
-                }
-            } else {
-                let photo = PhotoValue()
-                photo.owner = self.textValue.id
-                photo.image = image
-                
-                try! Database.manager.data.write {
-                    Database.manager.data.add(photo)
-                }
+            let photo = PhotoValue()
+            photo.owner = self.textValue.id
+            photo.image = image
+            
+            try! Database.manager.data.write {
+                Database.manager.data.add(photo)
             }
             
-            self.tableNode.reloadSections(IndexSet(integer: 0), with: .automatic)
+            self.pageNode.reloadData()
             
             if mainAsset != nil {
                 let date = mainAsset!.creationDate
@@ -481,13 +414,23 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(_ textView: UITextView) {
         try! Database.manager.data.write {
-            self.textValue.text = text
+            self.textValue.text = textView.text
         }
+    }
+    
+    // MARK: - Keyboard actions
+    @objc func keyboardWillShow(sender: Notification) {
+        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
         
-        self.tableNode.reloadSections(IndexSet(integer: 0), with: .automatic)
+        self.textView.contentInset.bottom = height
+    }
+    
+    @objc func keyboardDidHide(sender: Notification) {
+        
+        self.textView.contentInset.bottom = 100
     }
     
     // MARK: - Actions
@@ -513,7 +456,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                         Database.manager.data.add(weatherValue, update: true)
                     }
                     
-                    self.tableNode.reloadSections(IndexSet(integer: 3), with: .automatic)
+//                    self.tableNode.reloadSections(IndexSet(integer: 3), with: .automatic)
                 }
                 
                 return
@@ -552,12 +495,17 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 Database.manager.data.add(weatherValue, update: true)
             }
             
-            self.tableNode.reloadSections(IndexSet(integer: 3), with: .automatic)
+            self.pageNode.reloadData()
             
         }
     }
     
-    @objc func cameraAction(sender: ASButtonNode) {
+    @objc func cameraAction() {
+        if !Store.current.isPro && self.textValue.photos.count >= 1 {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.navigationController?.pushViewController(controller, animated: true)
+            return
+        }
         if Permissions.defaults.cameraStatus != .authorized {
             Permissions.defaults.cameraAutorize(completion: {
                 self.openPhotoPicker(withType: .camera)
@@ -567,7 +515,12 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         self.openPhotoPicker(withType: .camera)
     }
     
-    @objc func photoAction(sender: ASButtonNode) {
+    @objc func photoAction() {
+        if !Store.current.isPro && self.textValue.photos.count >= 1 {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.navigationController?.pushViewController(controller, animated: true)
+            return
+        }
         if Permissions.defaults.photoStatus != .authorized {
             Permissions.defaults.photoAutorize(completion: {
                 self.openPhotoPicker(withType: .photoLibrary)
@@ -578,6 +531,27 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         self.openPhotoPicker(withType: .photoLibrary)
     }
     
+    @objc func timeAction(sender: ASButtonNode) {
+        if self.lock {
+            return
+        }
+        
+        let controller = TimeBottomViewController()
+        controller.pickerMode = .dateAndTime
+        controller.date = self.textValue.created
+        controller.maximumDate = Date()
+        controller.delegate = self
+        controller.closeByTap = true
+        
+        if !Store.current.isPro {
+            var components = DateComponents()
+            components.day = -pastDaysLimit
+            controller.minumumDate = Calendar.current.date(byAdding: components, to: Date().start)
+        }
+        
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     @objc func openPhoto(sender: ASButtonNode) {
         if let photo = Database.manager.data.objects(PhotoValue.self).filter("owner=%@", self.textValue.id).first {
             let controller = UIStoryboard(name: Storyboards.photo.rawValue, bundle: nil).instantiateInitialViewController() as! PhotoViewController
@@ -586,21 +560,13 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
         }
     }
     
-    @objc func deletePhotoAction(sender: ASButtonNode) {
-        if let photo = self.textValue.photos.first {
-            try! Database.manager.data.write {
-                photo.isDeleted = true
-            }
-            
-            self.tableNode.reloadSections(IndexSet(integer: 0), with: .automatic)
+    @objc func deletePhotoAction(index: Int) {
+        let photo = self.textValue.photos[index]
+        try! Database.manager.data.write {
+            photo.isDeleted = true
         }
-    }
-    
-    @objc func editTextButtonAction(sender: ASButtonNode) {
-        let controller = TextTopViewController()
-        controller.delegate = self
-        controller.textView.text = self.textValue.text
-        self.present(controller, animated: true, completion: nil)
+        
+        self.pageNode.reloadData(completion: nil)
     }
     
     private func openPhotoPicker(withType type: UIImagePickerControllerSourceType) {
@@ -612,7 +578,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     
     @objc func allowLocation(sender: ASButtonNode) {
         Permissions.defaults.locationAuthorize {
-            self.tableNode.reloadSections(IndexSet(integer: 2), with: .automatic)
+            self.pageNode.reloadData()
         }
     }
     
@@ -679,96 +645,96 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
     }
     
     @objc func shareAction(sender: UIBarButtonItem) {
-        var viewImages = [UIImageView]()
+//        var viewImages = [UIImageView]()
         
         // Main entry node
-        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 0)) as? JournalEntryNode {
-            if node.deleteImageButton != nil {
-                node.deleteImageButton.alpha = 0.0
-            }
-            if node.cameraButton != nil {
-                node.cameraButton.alpha = 0.0
-            }
-            if node.selectImageButton != nil {
-                node.selectImageButton.alpha = 0.0
-            }
-            
-            if let nodeImage = node.view.snapshot {
-                viewImages.append(UIImageView(image: nodeImage))
-            }
-            
-            if node.deleteImageButton != nil {
-                node.deleteImageButton.alpha = 1.0
-            }
-            if node.cameraButton != nil {
-                node.cameraButton.alpha = 1.0
-            }
-            if node.selectImageButton != nil {
-                node.selectImageButton.alpha = 1.0
-            }
-        }
-        // Date Node
-        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 1)) {
-            if let nodeImage = node.view.snapshot {
-                viewImages.append(UIImageView(image: nodeImage))
-            }
-        }
-        // Location Node
-        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 1, section: 2)) {
-            if let nodeImage = node.view.snapshot {
-                viewImages.append(UIImageView(image: nodeImage))
-            }
-        }
-        // Weather Node
-        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 3)) {
-            if let nodeImage = node.view.snapshot {
-                viewImages.append(UIImageView(image: nodeImage))
-            }
-        }
-        
-        let imageBackgroundView = UIView()
-        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
-        
-        let stack = UIStackView(arrangedSubviews: viewImages)
-        stack.axis = .vertical
-        
-        imageBackgroundView.addSubview(stack)
-        stack.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-        }
-        
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(imageBackgroundView)
-        imageBackgroundView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        
-        imageBackgroundView.layoutIfNeeded()
-        let imageBackgroundViewImage = imageBackgroundView.snapshot!
-        imageBackgroundView.removeFromSuperview()
-        
-        let sv = ShareView(image: imageBackgroundViewImage)
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        sv.layoutIfNeeded()
-        let im = sv.snapshot
-        sv.removeFromSuperview()
-        
-        let shareContrroller = UIStoryboard(name: Storyboards.share.rawValue, bundle: nil).instantiateInitialViewController() as! ShareViewController
-        shareContrroller.image = im
-        shareContrroller.canonicalIdentifier = "entryShare"
-        shareContrroller.channel = "Journal"
-        shareContrroller.shareHandler = { () in
-            sendEvent(.shareFromEvaluateDay, withProperties: ["type": self.card.type.string])
-        }
-        
-        self.present(shareContrroller, animated: true, completion: nil)
+//        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 0)) as? JournalEntryNode {
+//            if node.deleteImageButton != nil {
+//                node.deleteImageButton.alpha = 0.0
+//            }
+//            if node.cameraButton != nil {
+//                node.cameraButton.alpha = 0.0
+//            }
+//            if node.selectImageButton != nil {
+//                node.selectImageButton.alpha = 0.0
+//            }
+//
+//            if let nodeImage = node.view.snapshot {
+//                viewImages.append(UIImageView(image: nodeImage))
+//            }
+//
+//            if node.deleteImageButton != nil {
+//                node.deleteImageButton.alpha = 1.0
+//            }
+//            if node.cameraButton != nil {
+//                node.cameraButton.alpha = 1.0
+//            }
+//            if node.selectImageButton != nil {
+//                node.selectImageButton.alpha = 1.0
+//            }
+//        }
+//        // Date Node
+//        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 1)) {
+//            if let nodeImage = node.view.snapshot {
+//                viewImages.append(UIImageView(image: nodeImage))
+//            }
+//        }
+//        // Location Node
+//        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 1, section: 2)) {
+//            if let nodeImage = node.view.snapshot {
+//                viewImages.append(UIImageView(image: nodeImage))
+//            }
+//        }
+//        // Weather Node
+//        if let node = self.tableNode.nodeForRow(at: IndexPath(row: 0, section: 3)) {
+//            if let nodeImage = node.view.snapshot {
+//                viewImages.append(UIImageView(image: nodeImage))
+//            }
+//        }
+//
+//        let imageBackgroundView = UIView()
+//        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+//
+//        let stack = UIStackView(arrangedSubviews: viewImages)
+//        stack.axis = .vertical
+//
+//        imageBackgroundView.addSubview(stack)
+//        stack.snp.makeConstraints { (make) in
+//            make.top.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//            make.leading.equalToSuperview()
+//            make.trailing.equalToSuperview()
+//        }
+//
+//        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(imageBackgroundView)
+//        imageBackgroundView.snp.makeConstraints { (make) in
+//            make.top.equalToSuperview()
+//            make.leading.equalToSuperview()
+//        }
+//
+//        imageBackgroundView.layoutIfNeeded()
+//        let imageBackgroundViewImage = imageBackgroundView.snapshot!
+//        imageBackgroundView.removeFromSuperview()
+//
+//        let sv = ShareView(image: imageBackgroundViewImage)
+//        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
+//        sv.snp.makeConstraints { (make) in
+//            make.top.equalToSuperview()
+//            make.leading.equalToSuperview()
+//        }
+//        sv.layoutIfNeeded()
+//        let im = sv.snapshot
+//        sv.removeFromSuperview()
+//
+//        let shareContrroller = UIStoryboard(name: Storyboards.share.rawValue, bundle: nil).instantiateInitialViewController() as! ShareViewController
+//        shareContrroller.image = im
+//        shareContrroller.canonicalIdentifier = "entryShare"
+//        shareContrroller.channel = "Journal"
+//        shareContrroller.shareHandler = { () in
+//            sendEvent(.shareFromEvaluateDay, withProperties: ["type": self.card.type.string])
+//        }
+//
+//        self.present(shareContrroller, animated: true, completion: nil)
     }
     
     func setNewLocation(location: CLLocation) {
@@ -799,7 +765,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
                 Database.manager.data.add(locationValue, update: true)
             }
             
-            self.tableNode.reloadSections(IndexSet(integer: 2), with: .automatic)
+            self.pageNode.reloadData()
             self.updateWeatherInformation()
         }
     }
@@ -810,7 +776,7 @@ class EntryViewController: UIViewController, ASTableDataSource, ASTableDelegate,
             self.textValue.edited = Date()
         }
         
-        self.tableNode.reloadSections(IndexSet(integer: 1), with: .automatic)
+        self.pageNode.reloadData(completion: nil)
         self.updateWeatherInformation()
     }
     

@@ -31,7 +31,7 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         self.tableNode = ASTableNode(style: .grouped)
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
-        self.tableNode.view.separatorStyle = .none
+//        self.tableNode.view.separatorStyle = .none
         self.view.addSubnode(self.tableNode)
     }
 
@@ -79,30 +79,36 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let entry = self.nodes[indexPath.section][indexPath.row]
         let text = entry.text
-        var metadata = [String]()
-        metadata.append(DateFormatter.localizedString(from: entry.created, dateStyle: .medium, timeStyle: .short))
+        let date = entry.created
+        var weatherImage: UIImage?
+        var locationText = ""
+        var weatherText = ""
         if let loc = entry.location {
-            metadata.append(loc.streetString)
+            locationText.append(loc.streetString)
+            locationText.append(", \(loc.cityString)")
         }
         if let w = entry.weather {
-            if w.pressure != 0.0 && w.humidity != 0.0 {
-                var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
-                //                    var apparentTemperature = "\(String(format: "%.0f", w.apparentTemperature)) ℃"
-                if !Database.manager.application.settings.celsius {
-                    temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
-                    //                        apparentTemperature = "\(String(format: "%.0f", (w.apparentTemperature * (9/5) + 32))) ℉"
-                }
-                
-                metadata.append(temperature)
+            weatherImage = UIImage(named: w.icon)
+            var temperature = "\(String(format: "%.0f", w.temperarure)) ℃"
+            if !Database.manager.application.settings.celsius {
+                temperature = "\(String(format: "%.0f", (w.temperarure * (9/5) + 32))) ℉"
             }
+            weatherText = temperature
         }
-        var photo: UIImage?
-        if let p = entry.photos.first {
-            photo = p.image
+        var photos = [UIImage?]()
+        for p in entry.photos {
+            photos.append(p.image)
         }
-        
+        if photos.isEmpty {
+            photos.append(nil)
+        }
+        let selView = UIView()
+        selView.backgroundColor = UIColor.tint
+        selView.layer.cornerRadius = 5.0
+
         return {
-            let node = JournalEntryNode(text: text, metadata: metadata, photo: photo)
+            let node = JournalEntryNode(preview: text, images: photos, date: date, weatherImage: weatherImage, weatherText: weatherText, locationText: locationText)
+            node.selectedBackgroundView = selView
             return node
         }
     }

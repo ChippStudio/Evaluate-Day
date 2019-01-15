@@ -27,10 +27,10 @@ class WeatherNode: ASCellNode {
         self.iconImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         self.iconImage.contentMode = .scaleAspectFit
         
-        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
         for d in data {
-            textString.addAttributes([NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body)], range: (textString.string as NSString).range(of: d))
+            textString.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .bold)], range: (textString.string as NSString).range(of: d))
         }
         
         self.textNode.attributedText = textString
@@ -45,14 +45,15 @@ class WeatherNode: ASCellNode {
         
         let content = ASStackLayoutSpec.horizontal()
         content.spacing = 10.0
+        content.alignItems = .center
         content.children = [self.iconImage, self.textNode]
         
-        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
         
-        let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
+        let cellInsets = UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

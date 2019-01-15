@@ -35,7 +35,7 @@ extension TextValue {
     }
     
     var photos: Results<PhotoValue> {
-        return Database.manager.data.objects(PhotoValue.self).filter("owner=%@ AND isDeleted=%@", self.id, false)
+        return Database.manager.data.objects(PhotoValue.self).filter("owner=%@ AND isDeleted=%@", self.id, false).sorted(byKeyPath: "created")
     }
     
     var location: LocationValue? {
