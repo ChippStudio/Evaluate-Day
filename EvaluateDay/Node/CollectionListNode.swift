@@ -17,6 +17,9 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
     var previews = [ASCellNode]()
     var collectionNode: ASCollectionNode!
     
+    var editButton = ASButtonNode()
+    var editButtonCover = ASDisplayNode()
+    
     // MARK: - Variables
     var data = [(title: String, subtitle: String)]()
     
@@ -26,6 +29,15 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         
         self.previews = previews
         self.data = data
+        
+        self.editButtonCover.backgroundColor = UIColor.background
+        self.editButtonCover.style.preferredSize = CGSize(width: 50.0, height: 50.0)
+        self.editButtonCover.cornerRadius = 25.0
+        self.editButtonCover.alpha = 0.5
+        
+        self.editButton.setImage(Images.Media.dots.image.resizedImage(newSize: CGSize(width: 20.0, height: 6.0)), for: .normal)
+        self.editButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        self.editButton.style.preferredSize = CGSize(width: 50.0, height: 50.0)
         
         self.backgroundColor = UIColor.background
         self.cornerRadius = 10.0
@@ -49,6 +61,12 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         self.collectionNode.alwaysBounceHorizontal = true
         self.collectionNode.dataSource = self
         
+        // Set button
+        self.editButton.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)
+        self.editButton.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpOutside)
+        self.editButton.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpInside)
+        self.editButton.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -56,6 +74,13 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         self.imageNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 120.0)
+        let fullEditButton = ASBackgroundLayoutSpec(child: self.editButton, background: self.editButtonCover)
+        
+        let fullEditButtonInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 0.0, right: 10.0)
+        let fullEditButtonInset = ASInsetLayoutSpec(insets: fullEditButtonInsets, child: fullEditButton)
+        
+        let relativeButton = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .start, sizingOption: [], child: fullEditButtonInset)
+        let topImage = ASOverlayLayoutSpec(child: self.imageNode, overlay: relativeButton)
         
         let titleInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let titleInset = ASInsetLayoutSpec(insets: titleInsets, child: self.title)
@@ -65,7 +90,7 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         let collectionNodeInset = ASInsetLayoutSpec(insets: collectionNodeInsets, child: self.collectionNode)
         
         let content = ASStackLayoutSpec.vertical()
-        content.children = [self.imageNode, titleInset, collectionNodeInset]
+        content.children = [topImage, titleInset, collectionNodeInset]
         
         for p in self.previews {
             content.children?.append(p)
@@ -87,6 +112,19 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         let item = self.data[indexPath.row]
         return {
             return CollectionListStaticticNode(title: item.title, subtitle: item.subtitle)
+        }
+    }
+    
+    // MARK: - Actions
+    @objc func buttonInitialAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.editButtonCover.backgroundColor = UIColor.selected
+        }
+    }
+    
+    @objc func buttonEndAction(sender: ASButtonNode) {
+        UIView.animate(withDuration: 0.2) {
+            self.editButtonCover.backgroundColor = UIColor.background
         }
     }
 }

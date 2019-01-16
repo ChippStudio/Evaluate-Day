@@ -46,6 +46,7 @@ class CollectionListSection: ListSectionController, ASSectionController {
         
         return {
             let node = CollectionListNode(title: title, image: image, previews: previews, data: data)
+            node.editButton.addTarget(self, action: #selector(self.editCollectionButtonAction(sender:)), forControlEvents: .touchUpInside)
             return node
         }
     }
@@ -79,5 +80,10 @@ class CollectionListSection: ListSectionController, ASSectionController {
                 nav.pushViewController(controller, animated: true)
             }
         }
+    }
+    
+    // MARK: - Actions
+    @objc func editCollectionButtonAction(sender: ASButtonNode) {
+        print("Edit collection button tapped ")
     }
 }

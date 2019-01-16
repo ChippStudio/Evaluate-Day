@@ -53,6 +53,7 @@ internal enum Images {
     internal static let deleteBoard = ImageAsset(name: "deleteBoard")
     internal static let disclosure = ImageAsset(name: "disclosure")
     internal static let done = ImageAsset(name: "done")
+    internal static let dots = ImageAsset(name: "dots")
     internal static let down = ImageAsset(name: "down")
     internal static let exportBoard = ImageAsset(name: "exportBoard")
     internal static let facebook = ImageAsset(name: "facebook")
