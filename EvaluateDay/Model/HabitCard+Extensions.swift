@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension HabitCard: Editable {
     var sectionController: ListSectionController {
@@ -72,5 +73,17 @@ extension HabitCard: Evaluable {
 extension HabitCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return HabitAnalyticsSection(card: self.card)
+    }
+}
+
+extension HabitCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+        if value == 0 {
+            return nil
+        }
+        let node = CollectibleDataNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: "\(value)")
+        
+        return node
     }
 }

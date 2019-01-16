@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension CriterionHundredCard: Editable {
     var sectionController: ListSectionController {
@@ -72,5 +73,16 @@ extension CriterionHundredCard: Evaluable {
 extension CriterionHundredCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return CriterionHundredAnalyticsSection(card: self.card)
+    }
+}
+
+extension CriterionHundredCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+            let node = CollectibleDataNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: "\(Int(value.value))")
+            return node
+        }
+        
+        return nil
     }
 }

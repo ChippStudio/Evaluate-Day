@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension GoalCard: Editable {
     var sectionController: ListSectionController {
@@ -73,5 +74,16 @@ extension GoalCard: Evaluable {
 extension GoalCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return GoalAnalyticsSection(card: self.card)
+    }
+}
+
+extension GoalCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+            let node = CollectibleDataNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: String(format: "%.2f", value.value))
+            return node
+        }
+        
+        return nil
     }
 }

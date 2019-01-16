@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension JournalCard: Editable {
     var sectionController: ListSectionController {
@@ -125,5 +126,17 @@ extension JournalCard: Evaluable {
 extension JournalCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return JournalAnalyticsSection(card: self.card)
+    }
+}
+
+extension JournalCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+        if value == 0 {
+            return nil
+        }
+        let node = CollectibleDataNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: "\(value)")
+        
+        return node
     }
 }

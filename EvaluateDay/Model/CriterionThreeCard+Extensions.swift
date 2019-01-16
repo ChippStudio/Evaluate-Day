@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension CriterionThreeCard: Editable {
     var sectionController: ListSectionController {
@@ -72,5 +73,24 @@ extension CriterionThreeCard: Evaluable {
 extension CriterionThreeCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return CriterionThreeAnalyticsSection(card: self.card)
+    }
+}
+
+extension CriterionThreeCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+            let dataImage: UIImage
+            if value.value == 0 {
+                dataImage = Images.Media.bad.image
+            } else if value.value == 1 {
+                dataImage = Images.Media.neutral.image
+            } else {
+                dataImage = Images.Media.good.image
+            }
+            let node = CollectibleImageNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: dataImage)
+            return node
+        }
+        
+        return nil
     }
 }

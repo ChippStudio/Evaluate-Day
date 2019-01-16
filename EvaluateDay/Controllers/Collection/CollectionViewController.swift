@@ -25,6 +25,21 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
                 split.date = self.date
             }
             self.dateObject.date = self.date
+            if self.adapter == nil {
+                return
+            }
+            self.adapter.performUpdates(animated: true) { (done) in
+                if done {
+                    for c in self.collections {
+                        if let section = self.adapter.sectionController(for: DiffCollection(collection: c)) as? CollectionListSection {
+                            section.date = self.date
+                            section.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
+                                batchContext.reload(section)
+                            }, completion: nil)
+                        }
+                    }
+                }
+            }
         }
     }
     

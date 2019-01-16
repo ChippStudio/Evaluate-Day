@@ -54,11 +54,11 @@ class CriterionThreeEvaluateNode: ASCellNode {
         if let previousValue = previousValue {
             self.previousImage = ASImageNode()
             if previousValue == 0 {
-                self.previousImage.image = #imageLiteral(resourceName: "bad")
+                self.previousImage.image = Images.Media.bad.image
             } else if previousValue == 1 {
-                self.previousImage.image = #imageLiteral(resourceName: "neutral")
+                self.previousImage.image = Images.Media.neutral.image
             } else if previousValue == 2 {
-                self.previousImage.image = #imageLiteral(resourceName: "good")
+                self.previousImage.image = Images.Media.good.image
             }
             self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
             

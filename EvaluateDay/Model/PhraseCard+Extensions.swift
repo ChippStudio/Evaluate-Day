@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension PhraseCard: Editable {
     var sectionController: ListSectionController {
@@ -71,5 +72,16 @@ extension PhraseCard: Evaluable {
 extension PhraseCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return PhraseAnalyticsSection(card: self.card)
+    }
+}
+
+extension PhraseCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+            let node = CollectibleTextNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: value.text)
+            return node
+        }
+        
+        return nil
     }
 }

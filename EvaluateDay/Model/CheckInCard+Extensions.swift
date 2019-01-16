@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension CheckInCard: Editable {
     var sectionController: ListSectionController {
@@ -71,5 +72,17 @@ extension CheckInCard: Evaluable {
 extension CheckInCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return CheckInAnalyticsSection(card: self.card)
+    }
+}
+
+extension CheckInCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
+        if value == 0 {
+            return nil
+        }
+        let node = CollectibleDataNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: "\(value)")
+        
+        return node
     }
 }

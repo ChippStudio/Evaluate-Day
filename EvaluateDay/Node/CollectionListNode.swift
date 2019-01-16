@@ -15,9 +15,13 @@ class CollectionListNode: ASCellNode {
     var imageNode = ASImageNode()
     var title = ASTextNode()
     
+    var previews = [ASCellNode]()
+    
     // MARK: - Init
-    init(title: String, image: UIImage) {
+    init(title: String, image: UIImage, previews: [ASCellNode]) {
         super.init()
+        
+        self.previews = previews
         
         self.backgroundColor = UIColor.background
         self.cornerRadius = 10.0
@@ -42,6 +46,10 @@ class CollectionListNode: ASCellNode {
         
         let content = ASStackLayoutSpec.vertical()
         content.children = [self.imageNode, titleInset]
+        
+        for p in self.previews {
+            content.children?.append(p)
+        }
         
         return content
     }

@@ -48,6 +48,10 @@
 		B516CA6721EF31560002915F /* CollectionListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6621EF31560002915F /* CollectionListSection.swift */; };
 		B516CA6921EF323E0002915F /* CollectionListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6821EF323E0002915F /* CollectionListNode.swift */; };
 		B516CA6B21EF33100002915F /* DiffCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6A21EF33100002915F /* DiffCollection.swift */; };
+		B516CA6D21EF3FE00002915F /* CollectibleColorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6C21EF3FE00002915F /* CollectibleColorNode.swift */; };
+		B516CA6F21EF43B60002915F /* CollectibleDataNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */; };
+		B516CA7121EF4A8D0002915F /* CollectibleImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */; };
+		B516CA7321EF7FD10002915F /* CollectibleTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -502,6 +506,10 @@
 		B516CA6621EF31560002915F /* CollectionListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListSection.swift; sourceTree = "<group>"; };
 		B516CA6821EF323E0002915F /* CollectionListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListNode.swift; sourceTree = "<group>"; };
 		B516CA6A21EF33100002915F /* DiffCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCollection.swift; sourceTree = "<group>"; };
+		B516CA6C21EF3FE00002915F /* CollectibleColorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleColorNode.swift; sourceTree = "<group>"; };
+		B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleDataNode.swift; sourceTree = "<group>"; };
+		B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleImageNode.swift; sourceTree = "<group>"; };
+		B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleTextNode.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -1424,6 +1432,7 @@
 				B516CA6221EE1FDB0002915F /* SpaceNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
 				B516CA6821EF323E0002915F /* CollectionListNode.swift */,
+				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */,
 				B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */,
 				B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */,
@@ -1460,6 +1469,10 @@
 				B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */,
 				B562180F1FD5A9D30061AC70 /* SettingsProReviewNode.swift */,
 				B56218081FD56A6C0061AC70 /* SettingsProButtonNode.swift */,
+				B516CA6C21EF3FE00002915F /* CollectibleColorNode.swift */,
+				B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */,
+				B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */,
+				B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1760,7 +1773,6 @@
 				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
 				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
 				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
-				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
 				B55464CC2025974400923CE3 /* PhotoNode.swift */,
 				B55464D02025C48300923CE3 /* TextNode.swift */,
@@ -2379,11 +2391,13 @@
 				B5BD3B1E2007676F0075C75F /* CriterionTenCard+Extensions.swift in Sources */,
 				B560DB41211B580800378AD8 /* CardSettingsDeleteSection.swift in Sources */,
 				B5FFDD4D201B8429008D0365 /* PhotoValue.swift in Sources */,
+				B516CA7321EF7FD10002915F /* CollectibleTextNode.swift in Sources */,
 				B5257D621FE93FC800AC54DE /* DarkSlidesControllerTheme.swift in Sources */,
 				B562180E1FD57E5C0061AC70 /* Store.swift in Sources */,
 				B554648A2024A7D200923CE3 /* WeatherNode.swift in Sources */,
 				B5F5977A1FBDBD080098A071 /* AnalyticsBarChartNode.swift in Sources */,
 				B5A5916321D8FBEC0026FD84 /* CollectionActionsObject.swift in Sources */,
+				B516CA7121EF4A8D0002915F /* CollectibleImageNode.swift in Sources */,
 				B5B27E7F1F9DC21600CB9121 /* Storyboards.swift in Sources */,
 				B55464D12025C48300923CE3 /* TextNode.swift in Sources */,
 				B5A11400200D4B14008DBF02 /* MapAnnotation.swift in Sources */,
@@ -2446,6 +2460,7 @@
 				B57B0639201B0F2900C4E182 /* GoalCard+Extensions.swift in Sources */,
 				B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */,
 				B5A1140B200F78C0008DBF02 /* CriterionThreeCard+Extensions.swift in Sources */,
+				B516CA6F21EF43B60002915F /* CollectibleDataNode.swift in Sources */,
 				B5A11409200F77C0008DBF02 /* CriterionThreeCard.swift in Sources */,
 				B5257D5A1FE93FC800AC54DE /* DarkAnalyticalTheme.swift in Sources */,
 				B5C7572C1F9DCA300032199E /* Card.swift in Sources */,
@@ -2597,6 +2612,7 @@
 				B5C757331F9DE2C20032199E /* Styles.swift in Sources */,
 				B5B7EE4A2010B8E400BCD41A /* PhraseCard+Extensions.swift in Sources */,
 				B5D9A85520612B4200F84091 /* ActivityPhotoSection.swift in Sources */,
+				B516CA6D21EF3FE00002915F /* CollectibleColorNode.swift in Sources */,
 				B55464882024A7BE00923CE3 /* DateNode.swift in Sources */,
 				B5D9A84A205BBB4300F84091 /* ActivityUserSection.swift in Sources */,
 				B5C7572A1F9DCA160032199E /* App.swift in Sources */,

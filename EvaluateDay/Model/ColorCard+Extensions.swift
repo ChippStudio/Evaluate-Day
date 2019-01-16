@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import IGListKit
 import CloudKit
+import AsyncDisplayKit
 
 extension ColorCard: Editable {
     var sectionController: ListSectionController {
@@ -72,5 +73,16 @@ extension ColorCard: Evaluable {
 extension ColorCard: Analytical {
     var analyticalSectionController: ListSectionController {
         return ColorAnalyticsSection(card: self.card)
+    }
+}
+
+extension ColorCard: Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode? {
+        if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
+            let node = CollectibleColorNode(title: self.card.title, image: Sources.image(forType: self.card.type), color: value.text)
+            return node
+        }
+        
+        return nil
     }
 }

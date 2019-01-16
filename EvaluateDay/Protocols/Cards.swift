@@ -11,6 +11,7 @@ import SwiftyJSON
 import IGListKit
 import CloudKit
 import RealmSwift
+import AsyncDisplayKit
 
 protocol Evaluable {
     var card: Card! { get set }
@@ -35,4 +36,8 @@ protocol Mergeable {
 protocol Analytical {
     var analyticalSectionController: ListSectionController { get }
     var card: Card! { get set }
+}
+
+protocol Collectible {
+    func collectionCellFor(_ date: Date) -> ASCellNode?
 }
