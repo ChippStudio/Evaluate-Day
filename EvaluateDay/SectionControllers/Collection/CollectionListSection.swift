@@ -40,8 +40,12 @@ class CollectionListSection: ListSectionController, ASSectionController {
             }
         }
         
+        var data = [(title: String, subtitle: String)]()
+        data.append((title: "\(cards.count)", subtitle: Localizations.Collection.Analytics.cards))
+        data.append((title: DateFormatter.localizedString(from: self.collection.created, dateStyle: .short, timeStyle: .none), subtitle: Localizations.Collection.Analytics.created))
+        
         return {
-            let node = CollectionListNode(title: title, image: image, previews: previews)
+            let node = CollectionListNode(title: title, image: image, previews: previews, data: data)
             return node
         }
     }
