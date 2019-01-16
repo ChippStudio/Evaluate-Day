@@ -253,7 +253,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
 }
 
-class TrackerNode: ASCellNode, CardNode {
+class TrackerNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var mark: HabitEvaluateNode!

@@ -166,7 +166,7 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
     }
 }
 
-class TenNode: ASCellNode, CardNode {
+class TenNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var slider: CriterionEvaluateNode!

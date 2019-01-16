@@ -256,7 +256,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
     }
 }
 
-class GoalNode: ASCellNode, CardNode {
+class GoalNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var goal: GoalEvaluateNode!

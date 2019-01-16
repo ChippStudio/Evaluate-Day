@@ -189,7 +189,7 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
 }
 
-class PhraseNode: ASCellNode, CardNode {
+class PhraseNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var phrase: PhraseEvaluateNode!

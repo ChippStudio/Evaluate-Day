@@ -224,7 +224,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
 }
 
-class JournalNode: ASCellNode, CardNode {
+class JournalNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var entries = [JournalEntryNode]()

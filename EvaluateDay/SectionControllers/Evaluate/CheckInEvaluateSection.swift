@@ -277,7 +277,7 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
 }
 
-class CheckInNode: ASCellNode, CardNode {
+class CheckInNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var datas = [CheckInDataEvaluateNode]()

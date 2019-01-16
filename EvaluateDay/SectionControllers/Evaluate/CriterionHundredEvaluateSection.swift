@@ -170,7 +170,7 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
     }
 }
 
-class HundredNode: ASCellNode, CardNode {
+class HundredNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var slider: CriterionEvaluateNode!

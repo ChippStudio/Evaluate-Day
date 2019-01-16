@@ -263,7 +263,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     }
 }
 
-class HabitNode: ASCellNode, CardNode {
+class HabitNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var negative: HabitNegativeNode!

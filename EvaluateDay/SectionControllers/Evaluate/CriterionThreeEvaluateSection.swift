@@ -178,7 +178,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
     }
 }
 
-class ThreeNode: ASCellNode, CardNode {
+class ThreeNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var buttons: CriterionThreeEvaluateNode!

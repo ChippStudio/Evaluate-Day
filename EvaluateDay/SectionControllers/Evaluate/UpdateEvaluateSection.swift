@@ -66,7 +66,7 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
 }
 
-class UpdateCardNode: ASCellNode, CardNode {
+class UpdateCardNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var update: UpdateNode!

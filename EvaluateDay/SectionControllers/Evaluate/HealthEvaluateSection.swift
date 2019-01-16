@@ -190,7 +190,7 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
 }
 
-class HealthNode: ASCellNode, CardNode {
+class HealthNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     

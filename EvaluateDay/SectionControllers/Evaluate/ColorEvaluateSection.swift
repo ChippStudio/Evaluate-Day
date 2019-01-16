@@ -175,7 +175,7 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     }
 }
 
-class ColorNode: ASCellNode, CardNode {
+class ColorNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var colors: ColorEvaluateNode!

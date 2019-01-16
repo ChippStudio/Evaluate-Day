@@ -17,6 +17,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     var collectionNode: ASCollectionNode!
     
     // MARK: - Variables
+    var collections: Results<Dashboard>!
     var adapter: ListAdapter!
     var date: Date = Date() {
         didSet {
@@ -41,6 +42,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
+        
+        self.collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
         
         // Collection view
         let layout = UICollectionViewFlowLayout()
@@ -99,11 +102,6 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             self.navigationController!.view.backgroundColor = UIColor.background
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
-            
-            // Collection View
-            self.adapter.performUpdates(animated: true, completion: { (_) in
-                self.collectionNode.reloadData()
-            })
         }
     }
     
@@ -117,6 +115,10 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             diffableCards.append(ProLock())
         }
         diffableCards.append(self.actionObject)
+        
+        for c in self.collections {
+            diffableCards.append(DiffCollection(collection: c))
+        }
         
         return diffableCards
     }
@@ -133,7 +135,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             return section
         } else if object is CollectionActionsObject {
             let section = CollectionActionsSection()
-            section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
+            section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 10.0, right: 0.0)
             return section
         } else if object is ProLock {
             let section = ProLockSection()
@@ -147,6 +149,10 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
                 }
             }
             section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
+            return section
+        } else if let object = object as? DiffCollection {
+            let section = CollectionListSection(collection: object.data)
+            section.inset = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
             return section
         }
         

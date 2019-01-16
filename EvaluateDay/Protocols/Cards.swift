@@ -36,7 +36,3 @@ protocol Analytical {
     var analyticalSectionController: ListSectionController { get }
     var card: Card! { get set }
 }
-
-protocol CardNode {
-    var title: TitleNode! { get set }
-}

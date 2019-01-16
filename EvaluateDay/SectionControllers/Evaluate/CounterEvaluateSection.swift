@@ -253,7 +253,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
 }
 
-class CounterNode: ASCellNode, CardNode {
+class CounterNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var counter: CounterEvaluateNode!

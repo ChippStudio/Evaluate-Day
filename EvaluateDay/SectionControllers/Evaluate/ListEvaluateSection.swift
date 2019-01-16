@@ -168,7 +168,7 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
     }
 }
 
-class ListNode: ASCellNode, CardNode {
+class ListNode: ASCellNode {
     // MARK: - UI
     var title: TitleNode!
     var list: ListEvaluateNode!
