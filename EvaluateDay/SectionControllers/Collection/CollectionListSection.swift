@@ -84,6 +84,10 @@ class CollectionListSection: ListSectionController, ASSectionController {
     
     // MARK: - Actions
     @objc func editCollectionButtonAction(sender: ASButtonNode) {
-        print("Edit collection button tapped ")
+        if let split = self.viewController?.universalSplitController {
+            let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController() as! EditCollectionViewController
+            controller.collection = self.collection
+            split.pushSideViewController(controller)
+        }
     }
 }

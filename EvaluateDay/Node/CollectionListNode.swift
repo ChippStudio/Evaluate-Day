@@ -41,8 +41,8 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         
         self.backgroundColor = UIColor.background
         self.cornerRadius = 10.0
-        self.borderColor = UIColor.text.cgColor
-        self.borderWidth = 1.0
+        self.borderColor = UIColor.main.cgColor
+        self.borderWidth = 0.5
         self.clipsToBounds = true
         
         self.imageNode.image = image

@@ -31,6 +31,7 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
         
         return {
             let node = CollectionActionButtonNode()
+            node.button.addTarget(self, action: #selector(self.newCollectionAction(sender:)), forControlEvents: .touchUpInside)
             return node
         }
     }
@@ -74,7 +75,7 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
     // MARK: - Actions
     @objc func newCollectionAction(sender: ASButtonNode) {
         if let split = self.viewController?.universalSplitController as? SplitController {
-            let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
+            let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController()!
             split.pushSideViewController(controller)
         }
     }

@@ -167,7 +167,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             return section
         } else if let object = object as? DiffCollection {
             let section = CollectionListSection(collection: object.data)
-            section.inset = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
+            section.inset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 10.0, right: 0.0)
             return section
         }
         

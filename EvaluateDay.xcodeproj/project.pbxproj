@@ -52,6 +52,8 @@
 		B516CA6F21EF43B60002915F /* CollectibleDataNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */; };
 		B516CA7121EF4A8D0002915F /* CollectibleImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */; };
 		B516CA7321EF7FD10002915F /* CollectibleTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */; };
+		B516CA7621EF97060002915F /* EditCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B516CA7521EF97060002915F /* EditCollection.storyboard */; };
+		B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA7721EF97610002915F /* EditCollectionViewController.swift */; };
 		B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */; };
 		B5257D3B1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */; };
 		B5257D3D1FE8516E00AC54DE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */; };
@@ -510,6 +512,8 @@
 		B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleDataNode.swift; sourceTree = "<group>"; };
 		B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleImageNode.swift; sourceTree = "<group>"; };
 		B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleTextNode.swift; sourceTree = "<group>"; };
+		B516CA7521EF97060002915F /* EditCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditCollection.storyboard; sourceTree = "<group>"; };
+		B516CA7721EF97610002915F /* EditCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCollectionViewController.swift; sourceTree = "<group>"; };
 		B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionButtonNode.swift; sourceTree = "<group>"; };
 		B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePermissionTitleNode.swift; sourceTree = "<group>"; };
 		B5257D3C1FE8516E00AC54DE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
@@ -975,6 +979,15 @@
 			path = ProUnlock;
 			sourceTree = "<group>";
 		};
+		B516CA7421EF96ED0002915F /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				B516CA7521EF97060002915F /* EditCollection.storyboard */,
+				B516CA7721EF97610002915F /* EditCollectionViewController.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		B5257D401FE91BD800AC54DE /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -1310,6 +1323,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B516CA7421EF96ED0002915F /* Collection */,
 				B539783C214F915E002EAAFA /* Health */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
 				B59DA06821201F5800A9FCFB /* Time */,
@@ -2113,6 +2127,7 @@
 				B5A730EC1FF2437C006B6F58 /* evaluateCard.wav in Resources */,
 				B5257D481FE91E6D00AC54DE /* monthly.html in Resources */,
 				B5B27E631F9DA66000CB9121 /* LaunchScreen.storyboard in Resources */,
+				B516CA7621EF97060002915F /* EditCollection.storyboard in Resources */,
 				B516CA4B21EA8C5B0002915F /* AppIcon-1-Preview.png in Resources */,
 				B516CA4821EA8C5B0002915F /* AppIcon-8-Preview.png in Resources */,
 				B5B27E871F9DC31F00CB9121 /* Evaluate.storyboard in Resources */,
@@ -2658,6 +2673,7 @@
 				B5B7EE482010B7C300BCD41A /* PhraseCard.swift in Sources */,
 				B5AB1E7C2018A21500BB1A64 /* MarkValue.swift in Sources */,
 				B55D3286207907BD00BD1E75 /* TrackerEvaluateSection.swift in Sources */,
+				B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */,
 				B5DE2CA31FFFC8EB00EFBCA5 /* SyncEngine.swift in Sources */,
 				B5AB1E902018CCEE00BB1A64 /* ListMergeSection.swift in Sources */,
 				B52D26DD201745CF00332D0A /* HabitCard.swift in Sources */,
