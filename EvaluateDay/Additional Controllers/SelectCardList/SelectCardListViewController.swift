@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 @objc protocol SelectCardListViewControllerDelegate {
-    @objc func  didSelect(cardId id: String)
+    @objc func  didSelect(cardId id: String, in cotroller: SelectCardListViewController)
 }
 class SelectCardListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -92,8 +92,6 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.delegate?.didSelect(cardId: self.cards[indexPath.row].id)
-        sendEvent(.addCardToNotification, withProperties: ["type": self.cards[indexPath.row].type.string])
-        self.navigationController?.popViewController(animated: true)
+        self.delegate?.didSelect(cardId: self.cards[indexPath.row].id, in: self)
     }
 }

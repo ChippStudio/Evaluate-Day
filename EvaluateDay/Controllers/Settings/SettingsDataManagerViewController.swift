@@ -188,6 +188,13 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
                     }
                 }
                 
+                let collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
+                for collection in collections {
+                    try! Database.manager.data.write {
+                        collection.isDeleted = true
+                    }
+                }
+                
                 Feedback.player.play(sound: .deleteCard, feedbackType: .success)
                 sendEvent(.deleteAllCards, withProperties: nil)
                 

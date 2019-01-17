@@ -233,6 +233,10 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 
 // MARK: - Collection
 "collection.title" = "Collections";
+"collection.edit.title" = "Collection";
+"collection.edit.image" = "Tap to edit...";
+"collection.edit.titlePlaceholder" = "Untitled collection";
+"collection.edit.addCard" = "Add Card";
 "collection.allcards" = "All Cards";
 "collection.icons" = "Icons";
 "collection.selectTitle" = "Title";

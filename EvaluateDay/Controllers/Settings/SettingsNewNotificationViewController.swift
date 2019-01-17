@@ -230,7 +230,7 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
     }
     
     // MARK: - SelectCardListViewControllerDelegate
-    func didSelect(cardId id: String) {
+    func didSelect(cardId id: String, in cotroller: SelectCardListViewController) {
         if self.notification.realm == nil {
             self.notification.cardID = id
         } else {
@@ -243,6 +243,10 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
         
         let indexPath = IndexPath(row: 3, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: .fade)
+        if let card = Database.manager.data.objects(Card.self).filter("id=%@", id).first {
+            sendEvent(.addCardToNotification, withProperties: ["type": card.type.string])
+        }
+        cotroller.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - TimeBottomViewControllerDelegate

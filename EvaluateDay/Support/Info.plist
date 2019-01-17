@@ -266,7 +266,7 @@
 	<key>CFBundleVersion</key>
 	<string>6749</string>
 	<key>CSBuild</key>
-	<string>7328</string>
+	<string>7367</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>
@@ -333,6 +333,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

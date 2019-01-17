@@ -208,6 +208,9 @@
 		B59318301FFAD625000D8FFE /* DarkCardMergeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593182F1FFAD625000D8FFE /* DarkCardMergeTheme.swift */; };
 		B59318331FFAD803000D8FFE /* ColorMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318321FFAD803000D8FFE /* ColorMergeSection.swift */; };
 		B59318351FFAD816000D8FFE /* CriterionHundredMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */; };
+		B5970F1321F109C3000B0BAA /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */; };
+		B5970F1521F1259D000B0BAA /* EditCollectionImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */; };
+		B5970F1721F12655000B0BAA /* CollectionImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
@@ -668,6 +671,9 @@
 		B593182F1FFAD625000D8FFE /* DarkCardMergeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCardMergeTheme.swift; sourceTree = "<group>"; };
 		B59318321FFAD803000D8FFE /* ColorMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMergeSection.swift; sourceTree = "<group>"; };
 		B59318341FFAD816000D8FFE /* CriterionHundredMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredMergeSection.swift; sourceTree = "<group>"; };
+		B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCollectionImagesViewController.swift; sourceTree = "<group>"; };
+		B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageTableViewCell.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -984,6 +990,7 @@
 			children = (
 				B516CA7521EF97060002915F /* EditCollection.storyboard */,
 				B516CA7721EF97610002915F /* EditCollectionViewController.swift */,
+				B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -1073,6 +1080,8 @@
 				B5D854C41FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift */,
 				B516CA1E21EA7DDB0002915F /* IconCollectionViewCell.swift */,
 				B516CA5921EBC8310002915F /* ProUnlockCell.swift */,
+				B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */,
+				B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2394,6 +2403,7 @@
 				B587D6BD1FB6D5D8006D62C1 /* Fonts.swift in Sources */,
 				B5A1140D200F79E6008DBF02 /* CriterionThreeEvaluateSection.swift in Sources */,
 				B5A9D5A8201F01E6006DFB32 /* JournalCard+Extensions.swift in Sources */,
+				B5970F1321F109C3000B0BAA /* TextFieldTableViewCell.swift in Sources */,
 				B5D9A847205BBABB00F84091 /* ActivityUserObject.swift in Sources */,
 				B59F9F4E211B2EED00A59516 /* CardSettingsNotificationObject.swift in Sources */,
 				B5AC0E1820E4C8B500F13A79 /* DarkTabControllerTheme.swift in Sources */,
@@ -2475,6 +2485,7 @@
 				B57B0639201B0F2900C4E182 /* GoalCard+Extensions.swift in Sources */,
 				B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */,
 				B5A1140B200F78C0008DBF02 /* CriterionThreeCard+Extensions.swift in Sources */,
+				B5970F1721F12655000B0BAA /* CollectionImageTableViewCell.swift in Sources */,
 				B516CA6F21EF43B60002915F /* CollectibleDataNode.swift in Sources */,
 				B5A11409200F77C0008DBF02 /* CriterionThreeCard.swift in Sources */,
 				B5257D5A1FE93FC800AC54DE /* DarkAnalyticalTheme.swift in Sources */,
@@ -2548,6 +2559,7 @@
 				B5CA2D651FB464C000547EC8 /* ColorDotNode.swift in Sources */,
 				B5A11402200E17C2008DBF02 /* AnalyticsMapNode.swift in Sources */,
 				B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */,
+				B5970F1521F1259D000B0BAA /* EditCollectionImagesViewController.swift in Sources */,
 				B587D6B91FB6B7D1006D62C1 /* SettingsProNode.swift in Sources */,
 				B57B0649201B21C000C4E182 /* GoalMergeSection.swift in Sources */,
 				B5899B1721D7BE0400CF123B /* CollectionCardsSection.swift in Sources */,

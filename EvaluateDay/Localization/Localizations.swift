@@ -581,6 +581,16 @@ internal enum Localizations {
       /// Created
       internal static let created = Localizations.tr("Localizable", "collection.analytics.created")
     }
+    internal enum Edit {
+      /// Add Card
+      internal static let addCard = Localizations.tr("Localizable", "collection.edit.addCard")
+      /// Tap to edit...
+      internal static let image = Localizations.tr("Localizable", "collection.edit.image")
+      /// Collection
+      internal static let title = Localizations.tr("Localizable", "collection.edit.title")
+      /// Untitled collection
+      internal static let titlePlaceholder = Localizations.tr("Localizable", "collection.edit.titlePlaceholder")
+    }
     internal enum Empty {
       /// You have not card in collection yet. Add card in card settings.
       internal static let subtitle = Localizations.tr("Localizable", "collection.empty.subtitle")
