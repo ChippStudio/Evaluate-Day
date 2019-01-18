@@ -48,13 +48,13 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             }
         case .delete:
             return {
-                let node = SettingsMoreNode(title: Localizations.General.delete, subtitle: nil, image: #imageLiteral(resourceName: "delete"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
+                let node = SettingsMoreNode(title: Localizations.General.delete, subtitle: nil, image: #imageLiteral(resourceName: "delete"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
                 node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneDeleteColor)
                 return node
             }
         case .merge:
             return {
-                let node = SettingsMoreNode(title: Localizations.CardMerge.action, subtitle: nil, image: #imageLiteral(resourceName: "merge"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneMergeColor])
+                let node = SettingsMoreNode(title: Localizations.CardMerge.action, subtitle: nil, image: #imageLiteral(resourceName: "merge"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneMergeColor])
                 node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneMergeColor)
                 return node
             }
@@ -64,7 +64,7 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
                 archiveString = Localizations.General.unarchive
             }
             return {
-                let node = SettingsMoreNode(title: archiveString, subtitle: nil, image: #imageLiteral(resourceName: "archive"), style: style, titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneArchiveColor])
+                let node = SettingsMoreNode(title: archiveString, subtitle: nil, image: #imageLiteral(resourceName: "archive"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneArchiveColor])
                 node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneArchiveColor)
                 return node
             }

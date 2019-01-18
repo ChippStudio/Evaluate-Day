@@ -141,7 +141,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             }
         case .more:
             return {
-                let node = SettingsMoreNode(title: Localizations.Analytics.Phrase.viewAll, subtitle: nil, image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.Analytics.Phrase.viewAll, subtitle: nil, image: nil)
                 return node
             }
         }

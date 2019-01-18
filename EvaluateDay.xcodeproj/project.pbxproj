@@ -1503,6 +1503,9 @@
 				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
 				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
 				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
+				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
+				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
+				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1819,10 +1822,7 @@
 				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
 				B5257D6A1FEA6E4300AC54DE /* AnalyticsExportNode.swift */,
 				B5257D6C1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift */,
-				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
-				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B587D6B61FB6B10B006D62C1 /* SettingsBooleanNode.swift */,
-				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
 				B5257D3E1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift */,
 				B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */,

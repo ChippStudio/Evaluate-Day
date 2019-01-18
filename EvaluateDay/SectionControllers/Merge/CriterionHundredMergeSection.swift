@@ -72,7 +72,7 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
             }
         case 3:
             return {
-                let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil, style: style)
+                let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil)
                 node.select = self.byBase
                 node.topInset = 30.0
                 node.leftInset = 20.0
@@ -80,7 +80,7 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
             }
         case 4:
             return {
-                let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil, style: style)
+                let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil)
                 node.select = self.byBase
                 node.leftInset = 20.0
                 return node
@@ -146,7 +146,7 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
             let cCard = self.otherCards[newIndex]
             let title = cCard.title
             return {
-                let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
+                let node = SettingsSelectNode(title: title, subtitle: nil, image: nil)
                 node.select = false
                 if self.selectedIndex != nil {
                     if newIndex == self.selectedIndex {

@@ -51,7 +51,6 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardSettingsStyle
         switch self.nodes[index] {
         case .sectionTitle:
             return {
@@ -83,15 +82,13 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         case .goal:
             let step = (self.card.data as! GoalCard).goalValue
             return {
-                let node = SettingsMoreNode(title: Localizations.CardSettings.Goal.goal, subtitle: String(format: "%.2f", step), image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Goal.goal, subtitle: String(format: "%.2f", step), image: nil)
                 return node
             }
         case .step:
             let step = (self.card.data as! GoalCard).step
             return {
-                let node = SettingsMoreNode(title: Localizations.CardSettings.Counter.step, subtitle: String(format: "%.2f", step), image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Counter.step, subtitle: String(format: "%.2f", step), image: nil)
                 return node
             }
         case .total:
@@ -111,8 +108,7 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         case .initial:
             let start = (self.card.data as! GoalCard).startValue
             return {
-                let node = SettingsMoreNode(title: Localizations.CardSettings.Counter.start, subtitle: String(format: "%.2f", start), image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Counter.start, subtitle: String(format: "%.2f", start), image: nil)
                 return node
             }
         }

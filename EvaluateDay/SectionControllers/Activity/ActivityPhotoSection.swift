@@ -64,7 +64,6 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.activityControlerStyle
         var subtitle = ""
         if !self.isPro {
             subtitle = Localizations.Activity.Gallery.subtitle
@@ -78,7 +77,7 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
         
         if !self.isFullGalery && index == 7 {
             return {
-                let node = SettingsMoreNode(title: Localizations.Activity.Gallery.allPhotos, subtitle: nil, image: nil, style: style)
+                let node = SettingsMoreNode(title: Localizations.Activity.Gallery.allPhotos, subtitle: nil, image: nil)
                 OperationQueue.main.addOperation {
                     node.disclosureImage.view.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
                 }

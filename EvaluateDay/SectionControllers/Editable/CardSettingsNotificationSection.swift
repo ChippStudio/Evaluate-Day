@@ -41,20 +41,16 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.cardSettingsStyle
         switch nodes[index].node {
         case .new:
             return {
-                let node = SettingsMoreNode(title: Localizations.Settings.Notifications.add, subtitle: nil, image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.Settings.Notifications.add, subtitle: nil, image: Images.Media.notification.image)
                 return node
             }
         case .separator:
             return {
                 let separator = SeparatorNode()
-                if index != 1 && index != 3 && index != self.nodes.count - 1 {
-                    separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
-                }
+                separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
                 return separator
             }
         case .sectionTitle:
@@ -70,8 +66,7 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
             let localizedRepeat = not.localizedString
             let cardTitle = self.card.title
             return {
-                let node = SettingsNotificationNode(message: title, time: timeString, localizedRepeat: localizedRepeat, card: cardTitle, style: style)
-                node.leftInset = 20.0
+                let node = SettingsNotificationNode(message: title, time: timeString, localizedRepeat: localizedRepeat, card: cardTitle)
                 return node
             }
         }
@@ -132,15 +127,14 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         self.nodes.removeAll()
         
         self.nodes.append((node: .sectionTitle, notification: nil))
-//        self.nodes.append((node: .separator, notification: nil))
         self.nodes.append((node: .new, notification: nil))
-//        self.nodes.append((node: .separator, notification: nil))
         
         for n in self.notifications {
             if n.cardID != nil {
                 self.nodes.append((node: .notification, notification: n))
-//                self.nodes.append((node: .separator, notification: nil))
             }
         }
+        
+        self.nodes.append((node: .separator, notification: nil))
     }
 }

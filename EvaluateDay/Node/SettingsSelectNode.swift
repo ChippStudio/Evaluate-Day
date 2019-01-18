@@ -33,14 +33,14 @@ class SettingsSelectNode: ASCellNode {
     }
     
     // MARK: - Init
-    init(title: String, subtitle: String?, image: UIImage?, style: SettingsMoreNodeStyle) {
+    init(title: String, subtitle: String?, image: UIImage?) {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsTitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsTitleNodeColor])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         if subtitle != nil {
             self.subtitle = ASTextNode()
-            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedStringKey.font: style.settingsSubtitleNodeFont, NSAttributedStringKey.foregroundColor: style.settingsSubtitleNodeColor])
+            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.text])
         }
         
         if image != nil {
@@ -48,8 +48,8 @@ class SettingsSelectNode: ASCellNode {
             self.imageNode.image = image
         }
         
-        self.selectImage.image = #imageLiteral(resourceName: "done")
-        self.selectImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.disclosureTintColor)
+        self.selectImage.image = Images.Media.disclosure.image
+        self.selectImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         self.isAccessibilityElement = true
         self.accessibilityTraits = UIAccessibilityTraitButton

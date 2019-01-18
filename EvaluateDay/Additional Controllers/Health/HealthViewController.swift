@@ -53,9 +53,8 @@ class HealthViewController: UIViewController, ASTableDelegate, ASTableDataSource
     }
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let item = self.sources[indexPath.section].sources[indexPath.row]
-        let style = Themes.manager.cardSettingsStyle
         return {
-            let node = SettingsMoreNode(title: item.localizedString, subtitle: nil, image: nil, style: style)
+            let node = SettingsMoreNode(title: item.localizedString, subtitle: nil, image: nil)
             return node
         }
     }

@@ -49,7 +49,6 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardSettingsStyle
         switch self.nodes[index] {
         case .sectionTitle:
             return {
@@ -81,8 +80,7 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
         case .goal:
             let goal = (self.card.data as! HealthCard).goal
             return {
-                let node = SettingsMoreNode(title: Localizations.CardSettings.Goal.goal, subtitle: "\(goal)", image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Goal.goal, subtitle: "\(goal)", image: nil)
                 return node
             }
         case .type:
@@ -92,8 +90,7 @@ class HealthEditableSection: ListSectionController, ASSectionController, Editabl
                 typeString = NSLocalizedString("health.id.\(type)", comment: "health type")
             }
             return {
-                let node = SettingsMoreNode(title: Localizations.CardSettings.Health.metrics, subtitle: typeString, image: nil, style: style)
-                node.leftInset = 20.0
+                let node = SettingsMoreNode(title: Localizations.CardSettings.Health.metrics, subtitle: typeString, image: nil)
                 return node
             }
         }

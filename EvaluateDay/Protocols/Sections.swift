@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Activity
-protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsBarChartNodeStyle, SettingsMoreNodeStyle { }
+protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsBarChartNodeStyle { }
 
 // MARK: - Evaluable
 protocol EvaluableSection {
@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, SettingsMoreNodeStyle, AnalyticsTimeTravelNodeStyle { }
+protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, AnalyticsTimeTravelNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {
@@ -42,7 +42,7 @@ protocol EditableSection {
     var setTextHandler: ((_ title: String, _ property: String, _ oldText: String?) -> Void)? { get set }
     var setBoolHandler: ((_ isOn: Bool, _ property: String, _ oldIsOn: Bool) -> Void)? { get set }
 }
-protocol EditableSectionStyle: SettingsMoreNodeStyle, SettingsNotificationNodeStyle { }
+protocol EditableSectionStyle { }
 
 // MARK: - Merge
 protocol MergeSection {
@@ -53,4 +53,4 @@ protocol MergeSection {
     var mergeDone: (() -> Void)? { get set }
 }
 
-protocol MergeSectionStyle: BigDescriptionNodeStyle, SettingsMoreNodeStyle { }
+protocol MergeSectionStyle: BigDescriptionNodeStyle { }

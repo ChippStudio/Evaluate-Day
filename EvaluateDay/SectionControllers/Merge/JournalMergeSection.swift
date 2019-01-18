@@ -113,7 +113,7 @@ class JournalMergeSection: ListSectionController, ASSectionController, MergeSect
             let cCard = self.otherCards[newIndex]
             let title = cCard.title
             return {
-                let node = SettingsSelectNode(title: title, subtitle: nil, image: nil, style: style)
+                let node = SettingsSelectNode(title: title, subtitle: nil, image: nil)
                 node.select = false
                 if self.selectedIndex != nil {
                     if newIndex == self.selectedIndex {
