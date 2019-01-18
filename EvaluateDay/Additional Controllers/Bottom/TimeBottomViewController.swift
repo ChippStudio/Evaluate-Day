@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol TimeBottomViewControllerStyle {
-    var timeBottomViewTintColor: UIColor { get }
-}
-
 @objc protocol TimeBottomViewControllerDelegate {
     @objc func didSelectTime(inDate date: Date)
 }
@@ -32,13 +28,11 @@ class TimeBottomViewController: BottomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let style = Themes.manager.bottomViewControllerStyle
-        
         self.datePicker.datePickerMode = self.pickerMode
         self.datePicker.date = self.date
         self.datePicker.minimumDate = self.minumumDate
         self.datePicker.maximumDate = self.maximumDate
-        self.datePicker.setValue(style.timeBottomViewTintColor, forKey: "textColor")
+        self.datePicker.setValue(UIColor.main, forKey: "textColor")
         self.datePicker.addTarget(self, action: #selector(timeSelect(sender:)), for: .valueChanged)
         
         self.contentView.addSubview(self.datePicker)

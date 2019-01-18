@@ -118,13 +118,13 @@ protocol SettingsStyle: SettingsBooleanNodeStyle, InfoNodeStyle, SettingsProDesc
     var safariTintColor: UIColor { get }
 }
 
-protocol TopViewControllerStyle: TextTopViewControllerStyle {
+protocol TopViewControllerStyle {
     var maskColor: UIColor { get }
     var maskAlpha: CGFloat { get }
     var topViewColor: UIColor { get }
 }
 
-protocol BottomViewControllerStyle: ReorderBottomViewControllerStyle, TimeBottomViewControllerStyle {
+protocol BottomViewControllerStyle {
     var maskColor: UIColor { get }
     var maskAlpha: CGFloat { get }
     var bottomViewColor: UIColor { get }

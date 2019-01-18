@@ -39,7 +39,6 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.cardSettingsStyle
         switch nodes[index] {
         case .sectionTitle:
             return {
@@ -48,14 +47,12 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             }
         case .delete:
             return {
-                let node = SettingsMoreNode(title: Localizations.General.delete, subtitle: nil, image: #imageLiteral(resourceName: "delete"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
-                node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneDeleteColor)
+                let node = DangerNode(title: Localizations.General.delete, image: Images.Media.delete.image, color: UIColor.negative)
                 return node
             }
         case .merge:
             return {
-                let node = SettingsMoreNode(title: Localizations.CardMerge.action, subtitle: nil, image: #imageLiteral(resourceName: "merge"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneMergeColor])
-                node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneMergeColor)
+                let node = DangerNode(title: Localizations.CardMerge.action, image: Images.Media.merge.image, color: UIColor.main)
                 return node
             }
         case .archive:
@@ -64,15 +61,21 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
                 archiveString = Localizations.General.unarchive
             }
             return {
-                let node = SettingsMoreNode(title: archiveString, subtitle: nil, image: #imageLiteral(resourceName: "archive"), titleAttributes: [NSAttributedStringKey.font: style.dangerZoneFont, NSAttributedStringKey.foregroundColor: style.dangerZoneArchiveColor])
-                node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.dangerZoneArchiveColor)
+                let node = DangerNode(title: archiveString, image: Images.Media.archive.image, color: UIColor.main)
                 return node
             }
         }
     }
     
     func sizeRangeForItem(at index: Int) -> ASSizeRange {
-        let width = self.collectionContext!.containerSize.width
+        let width: CGFloat = self.collectionContext!.containerSize.width
+        
+        if  width >= maxCollectionWidth {
+            let max = CGSize(width: width * collectionViewWidthDevider, height: CGFloat.greatestFiniteMagnitude)
+            let min = CGSize(width: width * collectionViewWidthDevider, height: 0)
+            return ASSizeRange(min: min, max: max)
+        }
+        
         let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)

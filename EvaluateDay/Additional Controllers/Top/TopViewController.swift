@@ -34,11 +34,9 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let style = Themes.manager.topViewControllerStyle
-        
         // Set mask and content view
-        self.maskView.backgroundColor = style.maskColor
-        self.maskView.alpha = style.maskAlpha
+        self.maskView.backgroundColor = UIColor.black
+        self.maskView.alpha = 0.5
         self.view.addSubview(self.maskView)
         
         self.maskView.snp.makeConstraints { (make) in
@@ -48,7 +46,7 @@ class TopViewController: UIViewController {
             make.leading.equalToSuperview()
         }
         
-        self.contentView.backgroundColor = style.topViewColor
+        self.contentView.backgroundColor = UIColor.background
         self.setConstraints(inTraitCollection: UIApplication.shared.keyWindow!.rootViewController!.view.traitCollection)
         
         // Set gesture recognizer

@@ -17,7 +17,6 @@ class BottomViewController: UIViewController {
     
     // MARK: - Variables
     var closeByTap: Bool = false
-    let style = Themes.manager.bottomViewControllerStyle
     
     // MARK: - Init
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -35,8 +34,8 @@ class BottomViewController: UIViewController {
         super.viewDidLoad()
         
         // Set mask and content view
-        self.maskView.backgroundColor = style.maskColor
-        self.maskView.alpha = style.maskAlpha
+        self.maskView.backgroundColor = UIColor.black
+        self.maskView.alpha = 0.5
         self.view.addSubview(self.maskView)
         
         self.maskView.snp.makeConstraints { (make) in
@@ -47,8 +46,8 @@ class BottomViewController: UIViewController {
         }
         
         self.closeButton = UIButton()
-        self.closeButton.tintColor = style.closeButtonColor
-        self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.tintColor = UIColor.main
+        self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.addTarget(self, action: #selector(self.closeButtonAction(sender:)), for: .touchUpInside)
         self.view.addSubview(self.closeButton)
         self.closeButton.accessibilityLabel = Localizations.General.close
@@ -64,7 +63,7 @@ class BottomViewController: UIViewController {
             }
         }
         
-        self.contentView.backgroundColor = style.bottomViewColor
+        self.contentView.backgroundColor = UIColor.background
         self.setConstraints(inTraitCollection: UIApplication.shared.keyWindow!.rootViewController!.view.traitCollection)
         
         // Set gesture recognizer

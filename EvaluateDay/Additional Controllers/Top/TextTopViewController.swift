@@ -12,14 +12,7 @@ import SnapKit
 @objc protocol TextTopViewControllerDelegate {
     @objc optional func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String)
 }
-protocol TextTopViewControllerStyle {
-    var titleColor: UIColor { get }
-    var titleFont: UIFont { get }
-    var textColor: UIColor { get }
-    var textFont: UIFont { get }
-    var buttonsFont: UIFont { get }
-    var buttonsColor: UIColor { get }
-}
+
 class TextTopViewController: TopViewController, UITextViewDelegate {
 
     // MARK: - UI
@@ -41,18 +34,15 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Style
-        let style = Themes.manager.topViewControllerStyle
-        
         // Views
-        self.titleLabel.textColor = style.titleColor
-        self.titleLabel.font = style.titleFont
+        self.titleLabel.textColor = UIColor.text
+        self.titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         self.titleLabel.numberOfLines = 0
         
-        self.textView.backgroundColor = style.topViewColor
-        self.textView.textColor = style.textColor
-        self.textView.font = style.textFont
-        self.textView.tintColor = style.textColor
+        self.textView.backgroundColor = UIColor.background
+        self.textView.textColor = UIColor.main
+        self.textView.font = UIFont.preferredFont(forTextStyle: .body)
+        self.textView.tintColor = UIColor.main
         self.textView.delegate = self
         self.textView.inputAccessoryView = self.viewForTextView()
         if self.onlyNumbers {
@@ -174,13 +164,13 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         let cancelButton = UIButton()
         let saveButton = UIButton()
         
-        cancelButton.setTitleColor(style.buttonsColor, for: .normal)
-        cancelButton.titleLabel?.font = style.buttonsFont
+        cancelButton.setTitleColor(UIColor.text, for: .normal)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction(sender:)), for: .touchUpInside)
         cancelButton.setTitle(Localizations.General.cancel, for: .normal)
         
-        saveButton.setTitleColor(style.buttonsColor, for: .normal)
-        saveButton.titleLabel?.font = style.buttonsFont
+        saveButton.setTitleColor(UIColor.text, for: .normal)
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
         saveButton.addTarget(self, action: #selector(saveButtonAction(sender:)), for: .touchUpInside)
         saveButton.setTitle(Localizations.General.save, for: .normal)
         

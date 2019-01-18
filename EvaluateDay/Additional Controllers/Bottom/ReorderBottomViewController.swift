@@ -9,10 +9,6 @@
 import UIKit
 import RealmSwift
 
-protocol ReorderBottomViewControllerStyle {
-    var reorderCellTextColor: UIColor { get }
-    var reorderCellTextFont: UIFont { get }
-}
 class ReorderBottomViewController: BottomViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
@@ -29,7 +25,7 @@ class ReorderBottomViewController: BottomViewController, UITableViewDataSource, 
         let tableFrame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
         self.tableView = UITableView(frame: tableFrame, style: .plain)
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "reorderCell")
-        self.tableView.backgroundColor = self.style.bottomViewColor
+        self.tableView.backgroundColor = UIColor.background
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.contentInset = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 20.0, right: 0.0)
@@ -71,10 +67,10 @@ class ReorderBottomViewController: BottomViewController, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "reorderCell", for: indexPath)
         cell.imageView?.image = Sources.image(forType: cards[indexPath.row].type).resizedImage(newSize: CGSize(width: 25.0, height: 25.0))
         cell.imageView?.contentMode = .scaleAspectFit
-        cell.backgroundColor = style.bottomViewColor
+        cell.backgroundColor = UIColor.background
         cell.textLabel?.text = self.cards[indexPath.row].title
-        cell.textLabel?.textColor = self.style.reorderCellTextColor
-        cell.textLabel?.font = self.style.reorderCellTextFont
+        cell.textLabel?.textColor = UIColor.main
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         cell.textLabel?.numberOfLines = 0
         return cell
     }

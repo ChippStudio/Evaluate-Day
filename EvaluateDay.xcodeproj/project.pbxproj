@@ -212,6 +212,7 @@
 		B5970F1521F1259D000B0BAA /* EditCollectionImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */; };
 		B5970F1721F12655000B0BAA /* CollectionImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */; };
 		B5970F1921F1B75A000B0BAA /* CardRepresentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */; };
+		B5970F1B21F1EEED000B0BAA /* DangerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
@@ -676,6 +677,7 @@
 		B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCollectionImagesViewController.swift; sourceTree = "<group>"; };
 		B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageTableViewCell.swift; sourceTree = "<group>"; };
 		B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepresentCell.swift; sourceTree = "<group>"; };
+		B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerNode.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -1506,6 +1508,7 @@
 				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
+				B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -2690,6 +2693,7 @@
 				B5AB1E7C2018A21500BB1A64 /* MarkValue.swift in Sources */,
 				B55D3286207907BD00BD1E75 /* TrackerEvaluateSection.swift in Sources */,
 				B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */,
+				B5970F1B21F1EEED000B0BAA /* DangerNode.swift in Sources */,
 				B5DE2CA31FFFC8EB00EFBCA5 /* SyncEngine.swift in Sources */,
 				B5AB1E902018CCEE00BB1A64 /* ListMergeSection.swift in Sources */,
 				B52D26DD201745CF00332D0A /* HabitCard.swift in Sources */,
