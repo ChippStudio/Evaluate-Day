@@ -74,7 +74,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .map:
             return {
-                let node = AnalyticsMapNode(title: Localizations.Analytics.Journal.near.uppercased(), actionTitle: Localizations.Analytics.Checkin.Map.action, style: style)
+                let node = AnalyticsMapNode(title: Localizations.Analytics.Journal.near.uppercased(), actionTitle: Localizations.Analytics.Checkin.Map.action)
                 node.topInset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 node.actionButton!.addTarget(self, action: #selector(self.openMapAction(sender:)), forControlEvents: .touchUpInside)

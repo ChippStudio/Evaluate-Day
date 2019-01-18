@@ -15,7 +15,6 @@ import Branch
 private enum AnalyticsNodeType {
     case title
     case information
-    case time
     case calendar
     case map
     case export
@@ -42,7 +41,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.time)
         self.nodes.append(.map)
         self.nodes.append(.calendar)
         self.nodes.append(.export)
@@ -54,7 +52,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -66,15 +63,10 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = TitleNode(title: title, subtitle: subtitle, image: image)
                 return node
             }
-        case .time:
-            return {
-                let node = AnalyticsTimeTravelNode(style: style)
-                return node
-            }
         case .map:
             return {
-                let node = AnalyticsMapNode(title: Localizations.Analytics.Checkin.Map.title.uppercased(), actionTitle: Localizations.Analytics.Checkin.Map.action, style: style)
-                node.topInset = 20.0
+                let node = AnalyticsMapNode(title: Localizations.Analytics.Checkin.Map.title.uppercased(), actionTitle: Localizations.Analytics.Checkin.Map.action)
+                node.topInset = 40.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 node.actionButton!.addTarget(self, action: #selector(self.openMapAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -171,8 +163,8 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -185,11 +177,7 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     override func didSelectItem(at index: Int) {
-        if self.nodes[index] == .time {
-            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
-            controller.card = self.card
-            self.viewController!.present(controller, animated: true, completion: nil)
-        } else if self.nodes[index] == .calendar {
+        if self.nodes[index] == .calendar {
             if !Store.current.isPro {
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
                 if let nav = self.viewController?.parent as? UINavigationController {

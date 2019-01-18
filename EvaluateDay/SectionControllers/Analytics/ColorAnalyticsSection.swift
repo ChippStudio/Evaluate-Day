@@ -87,7 +87,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 20.0
+                node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }

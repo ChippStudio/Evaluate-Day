@@ -1540,6 +1540,7 @@
 				B5257D6A1FEA6E4300AC54DE /* AnalyticsExportNode.swift */,
 				B5257D6C1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
+				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1850,7 +1851,6 @@
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
 				B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */,
-				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
 				B587D6B61FB6B10B006D62C1 /* SettingsBooleanNode.swift */,
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
 				B5257D3E1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift */,
