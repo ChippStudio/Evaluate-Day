@@ -89,13 +89,14 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         let crd = DiffCard(card: self.card)
+        let col = CardSettingsCollectionObject()
         if self.card.realm != nil {
             let not = CardSettingsNotificationObject(card: self.card)
             let del = CardSettingsDeleteObject()
-            return [crd, not, del]
+            return [crd, col, not, del]
         }
         
-        return [crd]
+        return [crd, col]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -136,6 +137,10 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         } else if object is CardSettingsDeleteObject {
             let controller = CardSettingsDeleteSection(card: self.card)
             controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 30.0, right: 0.0)
+            return controller
+        } else if object is CardSettingsCollectionObject {
+            let controller = CardSettingsCollectionSections(card: self.card)
+            controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 0.0, right: 0.0)
             return controller
         }
         

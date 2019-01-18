@@ -213,6 +213,12 @@
 		B5970F1721F12655000B0BAA /* CollectionImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */; };
 		B5970F1921F1B75A000B0BAA /* CardRepresentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */; };
 		B5970F1B21F1EEED000B0BAA /* DangerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */; };
+		B5970F1D21F21BC5000B0BAA /* CardSettingsCollectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1C21F21BC5000B0BAA /* CardSettingsCollectionObject.swift */; };
+		B5970F1F21F21C30000B0BAA /* CardSettingsCollectionSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1E21F21C30000B0BAA /* CardSettingsCollectionSections.swift */; };
+		B5970F2121F21FF3000B0BAA /* CardSettingsCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F2021F21FF3000B0BAA /* CardSettingsCollectionNode.swift */; };
+		B5970F2421F225BF000B0BAA /* CollectionsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5970F2321F225BF000B0BAA /* CollectionsList.storyboard */; };
+		B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */; };
+		B5970F2821F22700000B0BAA /* CollectionsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F2721F22700000B0BAA /* CollectionsListCell.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
@@ -446,7 +452,7 @@
 		B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */; };
 		B5F5977A1FBDBD080098A071 /* AnalyticsBarChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */; };
 		B5F5977E1FC990FE0098A071 /* AnalyticsChartNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5977D1FC990FE0098A071 /* AnalyticsChartNodes.swift */; };
-		B5FD38DD1FD940EA0071B1F0 /* CardListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD38DC1FD940EA0071B1F0 /* CardListEmptyView.swift */; };
+		B5FD38DD1FD940EA0071B1F0 /* ListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD38DC1FD940EA0071B1F0 /* ListEmptyView.swift */; };
 		B5FD38E71FDD66FD0071B1F0 /* LightShareViewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD38E61FDD66FD0071B1F0 /* LightShareViewTheme.swift */; };
 		B5FFDD4B201B8416008D0365 /* WeatherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4A201B8416008D0365 /* WeatherValue.swift */; };
 		B5FFDD4D201B8429008D0365 /* PhotoValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4C201B8429008D0365 /* PhotoValue.swift */; };
@@ -678,6 +684,12 @@
 		B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageTableViewCell.swift; sourceTree = "<group>"; };
 		B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepresentCell.swift; sourceTree = "<group>"; };
 		B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerNode.swift; sourceTree = "<group>"; };
+		B5970F1C21F21BC5000B0BAA /* CardSettingsCollectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsCollectionObject.swift; sourceTree = "<group>"; };
+		B5970F1E21F21C30000B0BAA /* CardSettingsCollectionSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsCollectionSections.swift; sourceTree = "<group>"; };
+		B5970F2021F21FF3000B0BAA /* CardSettingsCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsCollectionNode.swift; sourceTree = "<group>"; };
+		B5970F2321F225BF000B0BAA /* CollectionsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollectionsList.storyboard; sourceTree = "<group>"; };
+		B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListViewController.swift; sourceTree = "<group>"; };
+		B5970F2721F22700000B0BAA /* CollectionsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListCell.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -917,7 +929,7 @@
 		B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLineChartNode.swift; sourceTree = "<group>"; };
 		B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsBarChartNode.swift; sourceTree = "<group>"; };
 		B5F5977D1FC990FE0098A071 /* AnalyticsChartNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsChartNodes.swift; sourceTree = "<group>"; };
-		B5FD38DC1FD940EA0071B1F0 /* CardListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListEmptyView.swift; sourceTree = "<group>"; };
+		B5FD38DC1FD940EA0071B1F0 /* ListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEmptyView.swift; sourceTree = "<group>"; };
 		B5FD38E61FDD66FD0071B1F0 /* LightShareViewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightShareViewTheme.swift; sourceTree = "<group>"; };
 		B5FFDD4A201B8416008D0365 /* WeatherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherValue.swift; sourceTree = "<group>"; };
 		B5FFDD4C201B8429008D0365 /* PhotoValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoValue.swift; sourceTree = "<group>"; };
@@ -1087,6 +1099,7 @@
 				B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */,
 				B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */,
 				B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */,
+				B5970F2721F22700000B0BAA /* CollectionsListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1174,6 +1187,7 @@
 				B5D9A85220612AE100F84091 /* ActivityPhotoObject.swift */,
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
+				B5970F1C21F21BC5000B0BAA /* CardSettingsCollectionObject.swift */,
 				B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */,
 				B5899B1421D7BD8000CF123B /* CollectionCardsObject.swift */,
 				B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */,
@@ -1186,7 +1200,7 @@
 			isa = PBXGroup;
 			children = (
 				B587D6CC1FB96FA3006D62C1 /* PresentFutureEmptyView.swift */,
-				B5FD38DC1FD940EA0071B1F0 /* CardListEmptyView.swift */,
+				B5FD38DC1FD940EA0071B1F0 /* ListEmptyView.swift */,
 				B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */,
 				B5DED7A21FCC607D002DD956 /* SettingsFooterView.swift */,
 				B5729EDA2003935D00481D6F /* NextButton.swift */,
@@ -1267,6 +1281,15 @@
 			path = Merge;
 			sourceTree = "<group>";
 		};
+		B5970F2221F225AC000B0BAA /* CollectionsList */ = {
+			isa = PBXGroup;
+			children = (
+				B5970F2321F225BF000B0BAA /* CollectionsList.storyboard */,
+				B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */,
+			);
+			path = CollectionsList;
+			sourceTree = "<group>";
+		};
 		B598702D1FF2482300FF4605 /* SyncKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,6 +1360,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5970F2221F225AC000B0BAA /* CollectionsList */,
 				B516CA7421EF96ED0002915F /* Collection */,
 				B539783C214F915E002EAAFA /* Health */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
@@ -1396,6 +1420,7 @@
 				B57B063A201B114700C4E182 /* GoalEditableSection.swift */,
 				B5A9D5AD20220540006DFB32 /* JournalEditableSection.swift */,
 				B53977DF214BC7B2002EAAFA /* HealthEditableSection.swift */,
+				B5970F1E21F21C30000B0BAA /* CardSettingsCollectionSections.swift */,
 				B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */,
 				B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */,
 			);
@@ -1505,6 +1530,7 @@
 				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
 				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
 				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
+				B5970F2021F21FF3000B0BAA /* CardSettingsCollectionNode.swift */,
 				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
@@ -2140,6 +2166,7 @@
 				B5A730F01FF2437C006B6F58 /* evaluateButton.wav in Resources */,
 				B593182A1FFAD4FF000D8FFE /* CardMerge.storyboard in Resources */,
 				B5A730EC1FF2437C006B6F58 /* evaluateCard.wav in Resources */,
+				B5970F2421F225BF000B0BAA /* CollectionsList.storyboard in Resources */,
 				B5257D481FE91E6D00AC54DE /* monthly.html in Resources */,
 				B5B27E631F9DA66000CB9121 /* LaunchScreen.storyboard in Resources */,
 				B516CA7621EF97060002915F /* EditCollection.storyboard in Resources */,
@@ -2448,7 +2475,7 @@
 				B5257D581FE93FC800AC54DE /* DarkShareViewTheme.swift in Sources */,
 				B5257D571FE93FC800AC54DE /* DarkCardSettingsTheme.swift in Sources */,
 				B5DE2CB52001059300EFBCA5 /* SyncKey.swift in Sources */,
-				B5FD38DD1FD940EA0071B1F0 /* CardListEmptyView.swift in Sources */,
+				B5FD38DD1FD940EA0071B1F0 /* ListEmptyView.swift in Sources */,
 				B516CA5121EB54A70002915F /* ProView.swift in Sources */,
 				B52D26D9201718C000332D0A /* CounterMergeSection.swift in Sources */,
 				B5A9D5AC2021FDA0006DFB32 /* PhotoValue+Extensions.swift in Sources */,
@@ -2501,6 +2528,7 @@
 				B59F9F50211B30E600A59516 /* CardSettingsNotificationSection.swift in Sources */,
 				B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */,
 				B58DC382213D92D10067FD61 /* DashboardsNode.swift in Sources */,
+				B5970F1D21F21BC5000B0BAA /* CardSettingsCollectionObject.swift in Sources */,
 				B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */,
 				B5899B1221D7B48E00CF123B /* Appearance.swift in Sources */,
 				B55D326D2074F67300BD1E75 /* OrangeCardSettingsTheme.swift in Sources */,
@@ -2509,6 +2537,7 @@
 				B5CA2D671FB55FA700547EC8 /* Settings.swift in Sources */,
 				B584E0D51FE2766D008093D5 /* PermissionsViewController.swift in Sources */,
 				B57B0645201B18B900C4E182 /* GoalEvaluateSection.swift in Sources */,
+				B5970F2821F22700000B0BAA /* CollectionsListCell.swift in Sources */,
 				B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */,
 				B59318301FFAD625000D8FFE /* DarkCardMergeTheme.swift in Sources */,
 				B5A1B0E41FBACBBF003D9E81 /* BottomTransition.swift in Sources */,
@@ -2631,6 +2660,7 @@
 				B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */,
 				B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */,
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,
+				B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */,
 				B55D326A2074F67300BD1E75 /* OrangeAnalyticalTheme.swift in Sources */,
 				B5A0CFFF1FB1CF3F002B1636 /* ActionsNode.swift in Sources */,
 				B5A0CFE71FB0210D002B1636 /* LightTopControllerTheme.swift in Sources */,
@@ -2689,7 +2719,9 @@
 				B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */,
 				B5B27E8E1F9DC3C900CB9121 /* SettingsViewController.swift in Sources */,
 				B5C7572E1F9DCAA50032199E /* Extensions.swift in Sources */,
+				B5970F1F21F21C30000B0BAA /* CardSettingsCollectionSections.swift in Sources */,
 				B5B7EE482010B7C300BCD41A /* PhraseCard.swift in Sources */,
+				B5970F2121F21FF3000B0BAA /* CardSettingsCollectionNode.swift in Sources */,
 				B5AB1E7C2018A21500BB1A64 /* MarkValue.swift in Sources */,
 				B55D3286207907BD00BD1E75 /* TrackerEvaluateSection.swift in Sources */,
 				B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */,

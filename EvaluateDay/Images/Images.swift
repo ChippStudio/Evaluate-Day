@@ -68,6 +68,7 @@ internal enum Images {
     internal static let mail = ImageAsset(name: "mail")
     internal static let merge = ImageAsset(name: "merge")
     internal static let neutral = ImageAsset(name: "neutral")
+    internal static let new = ImageAsset(name: "new")
     internal static let notification = ImageAsset(name: "notification")
     internal static let passcode = ImageAsset(name: "passcode")
     internal static let settings = ImageAsset(name: "settings")

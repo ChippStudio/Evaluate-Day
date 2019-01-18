@@ -606,6 +606,8 @@ internal enum Localizations {
       }
     }
     internal enum Empty {
+      /// Add into the collection
+      internal static let cardSetting = Localizations.tr("Localizable", "collection.empty.cardSetting")
       /// You have not card in collection yet. Add card in card settings.
       internal static let subtitle = Localizations.tr("Localizable", "collection.empty.subtitle")
       /// The collection is empty

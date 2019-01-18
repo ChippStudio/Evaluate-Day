@@ -251,6 +251,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "collection.empty.subtitle" = "You have not card in collection yet. Add card in card settings.";
 "collection.analytics.cards" = "Cards";
 "collection.analytics.created" = "Created";
+"collection.empty.cardSetting" = "Add into the collection";
 
 // MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";

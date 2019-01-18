@@ -25,7 +25,7 @@ protocol ActivityControllerStyle: ActivitySection, LoadViewStyle {
     var settingsCoverColor: UIColor { get }
 }
 
-protocol EvaluableStyle: EvaluableSectionStyle, CardListEmptyViewStyle {
+protocol EvaluableStyle: EvaluableSectionStyle {
     var background: UIColor { get }
     var statusBarStyle: UIStatusBarStyle { get }
     var cardColor: UIColor { get }
