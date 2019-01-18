@@ -9,18 +9,9 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol AnalyticsColorStatisticNodeStyle {
-    var statisticTitleColor: UIColor { get }
-    var statisticTitleFont: UIFont { get }
-    var statisticSeparatorColor: UIColor { get }
-    var statisticDataColor: UIColor { get }
-    var statisticDataFont: UIFont { get }
-}
-
 class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - UI
-    var titleNode: ASTextNode = ASTextNode()
     var stats: ASDisplayNode!
     
     // MARK: - Variables
@@ -28,24 +19,23 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
     var data = [(color: String, data: String)]()
     
     // MARK: - Init
-    init(data: [(color: String, data: String)], style: AnalyticsColorStatisticNodeStyle) {
+    init(data: [(color: String, data: String)]) {
         super.init()
         
         self.data = data
         
-        self.titleNode.attributedText = NSAttributedString(string: Localizations.Analytics.Statistics.Color.title.uppercased(), attributes: [NSAttributedStringKey.foregroundColor: style.statisticTitleColor, NSAttributedStringKey.font: style.statisticTitleFont])
-        
         self.stats = ASDisplayNode(viewBlock: { () -> UIView in
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 110.0, height: 110.0)
+            layout.itemSize = CGSize(width: 90.0, height: 60.0)
             layout.minimumInteritemSpacing = 10.0
-            layout.minimumLineSpacing = 20.0
+            layout.minimumLineSpacing = 10.0
             layout.scrollDirection = .horizontal
             
             self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.backgroundColor = UIColor.clear
+            self.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
             self.collectionView.showsVerticalScrollIndicator = false
             self.collectionView.showsHorizontalScrollIndicator = false
             
@@ -60,16 +50,12 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.stats.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 110.0)
-        
-        let titleInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        let titleInset = ASInsetLayoutSpec(insets: titleInsets, child: self.titleNode)
+        self.stats.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 60.0)
         
         let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 20.0
-        cell.children = [titleInset, self.stats]
+        cell.children = [self.stats]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 40.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 30.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
@@ -108,9 +94,12 @@ class StatisticColorCollectionCell: UICollectionViewCell {
     var color: String! {
         didSet {
             if color == "FFFFFF" {
-                self.dataLabel.textColor = UIColor.gunmetal
+                self.dataLabel.textColor = UIColor.main
+                self.contentView.layer.borderColor = UIColor.main.cgColor
+                self.contentView.layer.borderWidth = 0.2
             } else {
                 self.dataLabel.textColor = UIColor.white
+                self.contentView.layer.borderWidth = 0.0
             }
             
             self.contentView.backgroundColor = color.color
@@ -135,16 +124,14 @@ class StatisticColorCollectionCell: UICollectionViewCell {
             v.removeFromSuperview()
         }
         
-        let style = Themes.manager.analyticalStyle
-        
         self.contentView.backgroundColor = UIColor.background
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 8.0
         
         self.dataLabel = UILabel()
         self.dataLabel.numberOfLines = 2
-        self.dataLabel.font = style.statisticDataFont
-        self.dataLabel.textColor = style.statisticDataColor
+        self.dataLabel.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
+        self.dataLabel.textColor = UIColor.white
         self.dataLabel.adjustsFontSizeToFitWidth = true
         self.dataLabel.textAlignment = .center
         
