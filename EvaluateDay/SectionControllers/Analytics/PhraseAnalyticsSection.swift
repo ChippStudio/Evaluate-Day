@@ -15,7 +15,6 @@ import Branch
 private enum AnalyticsNodeType {
     case title
     case statistics
-    case time
     case calendar
     case more
     case export
@@ -42,7 +41,6 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
         
         self.nodes.append(.title)
         self.nodes.append(.statistics)
-        self.nodes.append(.time)
         self.nodes.append(.calendar)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -54,7 +52,6 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -105,11 +102,6 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
-        case .time:
-            return {
-                let node = AnalyticsTimeTravelNode(style: style)
-                return node
-            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.Analytics.Phrase.Calendar.title.uppercased(), isPro: true)
@@ -117,7 +109,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 20.0
+                node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }
@@ -156,8 +148,8 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -176,10 +168,6 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 controller.card = self.card
                 parent.pushViewController(controller, animated: true)
             }
-        } else if self.nodes[index] == .time {
-            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
-            controller.card = self.card
-            self.viewController!.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .calendar {
             if !Store.current.isPro {
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
@@ -194,7 +182,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let phraseCard = self.card.data as! PhraseCard
         if phraseCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return UIColor.positive
+            return UIColor.main
         }
         
         return nil

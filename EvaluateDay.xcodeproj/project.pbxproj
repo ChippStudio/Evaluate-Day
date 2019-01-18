@@ -437,7 +437,6 @@
 		B5EC88442010C21E0056C1C7 /* PhraseEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */; };
 		B5EC884A2010EE370056C1C7 /* PhraseMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88492010EE370056C1C7 /* PhraseMergeSection.swift */; };
 		B5EC884C2010EF170056C1C7 /* PhraseAnalyticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC884B2010EF170056C1C7 /* PhraseAnalyticsSection.swift */; };
-		B5EC884E2011EA960056C1C7 /* PhraseListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */; };
 		B5EC88512011EF740056C1C7 /* Phrases.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5EC88502011EF740056C1C7 /* Phrases.storyboard */; };
 		B5EC88532011EF850056C1C7 /* PhrasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88522011EF850056C1C7 /* PhrasesViewController.swift */; };
 		B5EC885720121E5E0056C1C7 /* CounterCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC885620121E5E0056C1C7 /* CounterCard.swift */; };
@@ -914,7 +913,6 @@
 		B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEvaluateNode.swift; sourceTree = "<group>"; };
 		B5EC88492010EE370056C1C7 /* PhraseMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseMergeSection.swift; sourceTree = "<group>"; };
 		B5EC884B2010EF170056C1C7 /* PhraseAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseAnalyticsSection.swift; sourceTree = "<group>"; };
-		B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseListNode.swift; sourceTree = "<group>"; };
 		B5EC88502011EF740056C1C7 /* Phrases.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Phrases.storyboard; sourceTree = "<group>"; };
 		B5EC88522011EF850056C1C7 /* PhrasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesViewController.swift; sourceTree = "<group>"; };
 		B5EC885620121E5E0056C1C7 /* CounterCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCard.swift; sourceTree = "<group>"; };
@@ -1839,7 +1837,6 @@
 			children = (
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
 				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
-				B5EC884D2011EA960056C1C7 /* PhraseListNode.swift */,
 				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
 				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
 				B55464CC2025974400923CE3 /* PhotoNode.swift */,
@@ -2545,7 +2542,6 @@
 				B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */,
 				B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */,
 				B5EC884A2010EE370056C1C7 /* PhraseMergeSection.swift in Sources */,
-				B5EC884E2011EA960056C1C7 /* PhraseListNode.swift in Sources */,
 				B516CA5B21EBC8310002915F /* ProUnlockCell.swift in Sources */,
 				B584E0D91FE299C7008093D5 /* WelcomeTransition.swift in Sources */,
 				B5BD3B302007A50A0075C75F /* CheckInCard.swift in Sources */,
