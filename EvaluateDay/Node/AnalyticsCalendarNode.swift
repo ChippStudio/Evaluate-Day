@@ -10,17 +10,6 @@ import UIKit
 import AsyncDisplayKit
 import FSCalendar
 
-protocol AnalyticsCalendarNodeStyle {
-    var calendarTitleFont: UIFont { get }
-    var calendarTitleColor: UIColor { get }
-    var calendarFont: UIFont { get }
-    var calendarWeekdaysColor: UIColor { get }
-    var calendarCurrentMonthColor: UIColor { get }
-    var calendarOtherMonthColor: UIColor { get }
-    var calendarShareTintColor: UIColor { get }
-    var calendarSetColor: UIColor { get }
-}
-
 class AnalyticsCalendarNode: ASCellNode {
     // MARK: - UI
     var calendar: FSCalendar!
@@ -33,16 +22,16 @@ class AnalyticsCalendarNode: ASCellNode {
     var didLoadCalendar: (() -> Void)?
     
     // MARK: - Unit
-    init(title: String, isPro: Bool, style: AnalyticsCalendarNodeStyle) {
+    init(title: String, isPro: Bool) {
         super.init()
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.calendarTitleFont, NSAttributedStringKey.foregroundColor: style.calendarTitleColor, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraphStyle])
         
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
-        self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.calendarShareTintColor)
+        self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         if isPro {
             self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
@@ -52,15 +41,15 @@ class AnalyticsCalendarNode: ASCellNode {
                 self.calendar.today = nil
                 self.calendar.backgroundColor = UIColor.clear
                 self.calendar.firstWeekday = UInt(Database.manager.application.settings.weekStart)
-                self.calendar.appearance.titleFont = style.calendarFont
-                self.calendar.appearance.weekdayFont = style.calendarFont
-                self.calendar.appearance.subtitleFont = style.calendarFont
-                self.calendar.appearance.headerTitleFont = style.calendarFont
-                self.calendar.appearance.headerTitleColor = style.calendarWeekdaysColor
+                self.calendar.appearance.titleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+                self.calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+                self.calendar.appearance.subtitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+                self.calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+                self.calendar.appearance.headerTitleColor = UIColor.text
                 
-                self.calendar.appearance.weekdayTextColor = style.calendarWeekdaysColor
-                self.calendar.appearance.titleDefaultColor = style.calendarCurrentMonthColor
-                self.calendar.appearance.titlePlaceholderColor = style.calendarOtherMonthColor
+                self.calendar.appearance.weekdayTextColor = UIColor.main
+                self.calendar.appearance.titleDefaultColor = UIColor.text
+                self.calendar.appearance.titlePlaceholderColor = UIColor.main
                 return self.calendar
             }, didLoad: { (_) in
                 self.didLoadCalendar?()

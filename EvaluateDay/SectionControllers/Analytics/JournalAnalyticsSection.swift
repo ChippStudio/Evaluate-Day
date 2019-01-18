@@ -160,7 +160,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Phrase.Calendar.title.uppercased(), isPro: isPro, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Phrase.Calendar.title.uppercased(), isPro: isPro)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -288,10 +288,9 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     
     // MARK: - FSCalendarDelegate
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        let style = Themes.manager.analyticalStyle
         let journalCard = self.card.data as! JournalCard
         if journalCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return style.calendarSetColor
+            return UIColor.positive
         }
         
         return nil

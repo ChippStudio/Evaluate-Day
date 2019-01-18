@@ -118,7 +118,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Tracker.Calendar.title.uppercased(), isPro: true, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Tracker.Calendar.title.uppercased(), isPro: true)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -202,10 +202,9 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
     
     // MARK: - FSCalendarDelegate
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        let style = Themes.manager.analyticalStyle
         let checkInCard = self.card.data as! TrackerCard
         if checkInCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return style.calendarSetColor
+            return UIColor.main
         }
         
         return nil

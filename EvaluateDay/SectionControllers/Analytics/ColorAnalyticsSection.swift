@@ -51,7 +51,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -83,7 +82,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Color.Calendar.title.uppercased(), isPro: true, style: style)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Color.Calendar.title.uppercased(), isPro: true)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -150,12 +149,11 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let style = Themes.manager.analyticalStyle
         let colorCard = self.card.data as! ColorCard
         if let value = colorCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
             let color = value.text
             if color == "FFFFFF" {
-                return style.calendarWeekdaysColor
+                return UIColor.main
             } else {
                 return UIColor.white
             }
