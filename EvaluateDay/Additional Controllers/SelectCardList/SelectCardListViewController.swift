@@ -78,14 +78,32 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
         selView.backgroundColor = UIColor.tint
         selView.layer.cornerRadius = 5.0
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cardCell, for: indexPath)
-        cell.textLabel?.text = self.cards[indexPath.row].title
-        cell.detailTextLabel?.text = self.cards[indexPath.row].subtitle
-        cell.imageView?.image = Sources.image(forType: self.cards[indexPath.row].type).resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
-        cell.imageView?.tintColor = UIColor.main
-        cell.textLabel?.textColor = UIColor.text
-        cell.detailTextLabel?.textColor = UIColor.text
+        let cell = tableView.dequeueReusableCell(withIdentifier: cardCell, for: indexPath) as! CardRepresentCell
+        
+        let card = self.cards[indexPath.row]
+        
+        cell.cardTitleLabel?.text = card.title
+        cell.cardSubtitleLabel?.text = card.subtitle
+        cell.cardImageView?.image = Sources.image(forType: card.type).resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
+        cell.cardImageView?.tintColor = UIColor.main
         cell.selectedBackgroundView = selView
+        
+        cell.collectionImageHeight.constant = 0.0
+        cell.bottomOffset.constant = 0.0
+        cell.collectionTitleLabel.text = nil
+        cell.collectionImageView.image = nil
+        
+        if card.dashboard == nil {
+            return cell
+        }
+        
+        if let collection = Database.manager.data.objects(Dashboard.self).filter("id=%@ AND isDeleted=%@", card.dashboard!, false).first {
+            cell.collectionImageHeight.constant = 30.0
+            cell.bottomOffset.constant = 10.0
+            cell.collectionTitleLabel.text = collection.title
+            cell.collectionImageView.image = UIImage(named: collection.image)
+        }
+        
         return cell
     }
     

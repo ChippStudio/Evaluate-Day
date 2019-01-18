@@ -211,6 +211,7 @@
 		B5970F1321F109C3000B0BAA /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */; };
 		B5970F1521F1259D000B0BAA /* EditCollectionImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */; };
 		B5970F1721F12655000B0BAA /* CollectionImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */; };
+		B5970F1921F1B75A000B0BAA /* CardRepresentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */; };
 		B59B4C771FD6B21D00E9A778 /* InfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B4C761FD6B21D00E9A778 /* InfoNode.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
@@ -674,6 +675,7 @@
 		B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		B5970F1421F1259D000B0BAA /* EditCollectionImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCollectionImagesViewController.swift; sourceTree = "<group>"; };
 		B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageTableViewCell.swift; sourceTree = "<group>"; };
+		B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepresentCell.swift; sourceTree = "<group>"; };
 		B59B4C761FD6B21D00E9A778 /* InfoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNode.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -1082,6 +1084,7 @@
 				B516CA5921EBC8310002915F /* ProUnlockCell.swift */,
 				B5970F1221F109C3000B0BAA /* TextFieldTableViewCell.swift */,
 				B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */,
+				B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2392,6 +2395,7 @@
 				B55D32822079042800BD1E75 /* TrackerCard+Extensions.swift in Sources */,
 				B5A5916721D8FC8F0026FD84 /* CollectionActionNode.swift in Sources */,
 				B5BD3B24200772090075C75F /* CriterionTenAnalyticsSection.swift in Sources */,
+				B5970F1921F1B75A000B0BAA /* CardRepresentCell.swift in Sources */,
 				B516CA1F21EA7DDB0002915F /* IconCollectionViewCell.swift in Sources */,
 				B5CA2D5C1FB43CD100547EC8 /* ColorAnalyticsSection.swift in Sources */,
 				B516CA6321EE1FDB0002915F /* SpaceNode.swift in Sources */,

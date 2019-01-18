@@ -132,7 +132,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: addCardCell, for: indexPath)
-            cell.textLabel?.text = Localizations.Collection.Edit.addCard
+            cell.textLabel?.text = Localizations.Collection.Edit.AddCard.title
             cell.textLabel?.textColor = UIColor.text
             
             let selectedView = UIView()
@@ -172,8 +172,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             self.navigationController?.pushViewController(controller, animated: true)
         } else if indexPath.section == 2 {
             // Sure questens
-            // FIXME: - Add the message
-            let action = UIAlertController(title: Localizations.General.sureQuestion, message: nil, preferredStyle: .actionSheet)
+            let action = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Collection.Edit.DeleteCard.message, preferredStyle: .actionSheet)
             let deleteAction = UIAlertAction(title: Localizations.General.delete, style: .destructive) { (_) in
                 if self.collection.realm == nil {
                     self.tempCards.remove(at: indexPath.row)
@@ -206,6 +205,14 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             return Localizations.Collection.selectTitle
         } else if section == 2 {
             return Localizations.Collection.allcards
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 2 {
+            return nil
         }
         
         return nil
@@ -253,10 +260,9 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             } else {
                 cotroller.navigationController?.popViewController(animated: true)
                 
-                // FIXME: - Add the message
-                let alert = UIAlertController(title: Localizations.General.sureQuestion, message: nil, preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Collection.Edit.AddCard.message, preferredStyle: .actionSheet)
                 let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
-                let addAction = UIAlertAction(title: Localizations.Collection.Edit.addCard, style: .default) { (_) in
+                let addAction = UIAlertAction(title: Localizations.Collection.Edit.AddCard.title, style: .default) { (_) in
                     if self.collection.realm == nil {
                         self.tempCards.append(card)
                     } else {

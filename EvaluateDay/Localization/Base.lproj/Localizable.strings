@@ -236,7 +236,10 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "collection.edit.title" = "Collection";
 "collection.edit.image" = "Tap to edit...";
 "collection.edit.titlePlaceholder" = "Untitled collection";
-"collection.edit.addCard" = "Add Card";
+"collection.edit.addCard.title" = "Add Card";
+"collection.edit.deleteCard.footer" = "Tap on the card to delete it from the collection";
+"collection.edit.addCard.message" = "This card in other collection. Do change the collection?";
+"collection.edit.deleteCard.message" = "It deletes an only card from the collection";
 "collection.allcards" = "All Cards";
 "collection.icons" = "Icons";
 "collection.selectTitle" = "Title";

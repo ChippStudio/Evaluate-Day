@@ -582,14 +582,24 @@ internal enum Localizations {
       internal static let created = Localizations.tr("Localizable", "collection.analytics.created")
     }
     internal enum Edit {
-      /// Add Card
-      internal static let addCard = Localizations.tr("Localizable", "collection.edit.addCard")
       /// Tap to edit...
       internal static let image = Localizations.tr("Localizable", "collection.edit.image")
       /// Collection
       internal static let title = Localizations.tr("Localizable", "collection.edit.title")
       /// Untitled collection
       internal static let titlePlaceholder = Localizations.tr("Localizable", "collection.edit.titlePlaceholder")
+      internal enum AddCard {
+        /// This card in other collection. Do change the collection?
+        internal static let message = Localizations.tr("Localizable", "collection.edit.addCard.message")
+        /// Add Card
+        internal static let title = Localizations.tr("Localizable", "collection.edit.addCard.title")
+      }
+      internal enum DeleteCard {
+        /// Tap on the card to delete it from the collection
+        internal static let footer = Localizations.tr("Localizable", "collection.edit.deleteCard.footer")
+        /// It deletes an only card from the collection
+        internal static let message = Localizations.tr("Localizable", "collection.edit.deleteCard.message")
+      }
     }
     internal enum Empty {
       /// You have not card in collection yet. Add card in card settings.
