@@ -37,9 +37,7 @@ class PhraseEditableSection: ListSectionController, ASSectionController, Editabl
         }
         
         self.nodes.append(.sectionTitle)
-        self.nodes.append(.separator)
         self.nodes.append(.title)
-        self.nodes.append(.separator)
         self.nodes.append(.subtitles)
         self.nodes.append(.separator)
     }
@@ -74,9 +72,7 @@ class PhraseEditableSection: ListSectionController, ASSectionController, Editabl
         case .separator:
             return {
                 let separator = SeparatorNode()
-                if index != 1 && index != self.nodes.count - 1 {
-                    separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
-                }
+                separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
                 return separator
             }
         }

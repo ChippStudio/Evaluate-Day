@@ -191,20 +191,14 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         self.nodes.removeAll()
         
         self.nodes.append(.sectionTitle)
-        self.nodes.append(.separator)
         self.nodes.append(.title)
-        self.nodes.append(.separator)
         self.nodes.append(.subtitles)
-        self.nodes.append(.separator)
         self.nodes.append(.goal)
-        self.nodes.append(.separator)
         self.nodes.append(.step)
-        self.nodes.append(.separator)
         self.nodes.append(.total)
-        self.nodes.append(.separator)
         if (self.card.data as! GoalCard).isSum {
             self.nodes.append(.initial)
-            self.nodes.append(.separator)
         }
+        self.nodes.append(.separator)
     }
 }
