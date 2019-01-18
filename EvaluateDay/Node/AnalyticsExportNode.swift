@@ -9,14 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol AnalyticsExportNodeStyle {
-    var analyticsExportTintColor: UIColor { get }
-    var analyticsExportHighlightedColor: UIColor { get }
-    var analyticsExportTitleColor: UIColor { get }
-    var analyticsExportTitleFont: UIFont { get }
-    var analyticsExportActionColor: UIColor { get }
-    var analyticsExportActionFont: UIFont { get }
-}
 class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegate {
     // MARK: - UI
     var collectionNode: ASCollectionNode!
@@ -27,19 +19,17 @@ class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDeleg
     var topOffset: CGFloat = 10.0
     var didSelectType: ((ExportType, IndexPath, Int) -> Void)?
     private var types = [ExportType]()
-    private var collectionStyle: AnalyticsExportNodeStyle!
     
     // MARK: - Init
-    init(types: [ExportType], title: String, action: String, style: AnalyticsExportNodeStyle) {
+    init(types: [ExportType], title: String, action: String) {
         super.init()
         
         self.types = types
-        self.collectionStyle = style
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.analyticsExportTitleFont, NSAttributedStringKey.foregroundColor: style.analyticsExportTitleColor])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
         let center = NSMutableParagraphStyle()
         center.alignment = .center
-        self.action.attributedText = NSAttributedString(string: action, attributes: [NSAttributedStringKey.font: style.analyticsExportActionFont, NSAttributedStringKey.foregroundColor: style.analyticsExportActionColor, NSAttributedStringKey.paragraphStyle: center])
+        self.action.attributedText = NSAttributedString(string: action, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: center])
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -49,7 +39,7 @@ class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDeleg
         self.collectionNode.dataSource = self
         self.collectionNode.delegate = self
         self.collectionNode.backgroundColor = UIColor.clear
-        self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 40.0, bottom: 0.0, right: 20.0)
+        self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         OperationQueue.main.addOperation {
             self.collectionNode.view.alwaysBounceHorizontal = true
             self.collectionNode.view.showsHorizontalScrollIndicator = false
@@ -90,7 +80,7 @@ class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDeleg
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         let type = self.types[indexPath.row]
         return {
-            return AnalyticsExportFileTypeNode(type: type, style: self.collectionStyle)
+            return AnalyticsExportFileTypeNode(type: type)
         }
     }
     

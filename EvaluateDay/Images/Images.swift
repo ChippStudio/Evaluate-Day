@@ -48,6 +48,7 @@ internal enum Images {
     internal static let celsius = ImageAsset(name: "celsius")
     internal static let close = ImageAsset(name: "close")
     internal static let collections = ImageAsset(name: "collections")
+    internal static let csv = ImageAsset(name: "csv")
     internal static let currentLocation = ImageAsset(name: "currentLocation")
     internal static let data = ImageAsset(name: "data")
     internal static let delete = ImageAsset(name: "delete")
@@ -64,6 +65,7 @@ internal enum Images {
     internal static let good = ImageAsset(name: "good")
     internal static let imagePlaceholder = ImageAsset(name: "imagePlaceholder")
     internal static let instagram = ImageAsset(name: "instagram")
+    internal static let json = ImageAsset(name: "json")
     internal static let linkedin = ImageAsset(name: "linkedin")
     internal static let mail = ImageAsset(name: "mail")
     internal static let merge = ImageAsset(name: "merge")
@@ -78,6 +80,7 @@ internal enum Images {
     internal static let sync = ImageAsset(name: "sync")
     internal static let themes = ImageAsset(name: "themes")
     internal static let touchid = ImageAsset(name: "touchid")
+    internal static let txt = ImageAsset(name: "txt")
     internal static let up = ImageAsset(name: "up")
     internal static let week = ImageAsset(name: "week")
   }
