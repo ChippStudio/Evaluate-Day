@@ -536,6 +536,10 @@ internal enum Localizations {
         internal static let title = Localizations.tr("Localizable", "cardSettings.criterion.feater.title")
       }
     }
+    internal enum General {
+      /// Card Settings
+      internal static let title = Localizations.tr("Localizable", "cardSettings.general.title")
+    }
     internal enum Goal {
       /// Goal
       internal static let goal = Localizations.tr("Localizable", "cardSettings.goal.goal")

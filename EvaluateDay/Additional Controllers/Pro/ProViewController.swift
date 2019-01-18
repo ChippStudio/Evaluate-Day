@@ -200,14 +200,14 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             case 2:
                 if #available(iOS 11.2, *) {
                     return {
-                        let node = DescriptionNode(text: Store.current.annualy.introductory, alignment: .center, style: style)
+                        let node = DescriptionNode(text: Store.current.annualy.introductory, alignment: .center)
                         return node
                     }
                 } else {
                     // Fallback on earlier versions
                     // Without introductory price
                     return {
-                        return DescriptionNode(text: "", alignment: .center, style: style)
+                        return DescriptionNode(text: "", alignment: .center)
                     }
                 }
             case 3:
@@ -230,14 +230,14 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             case 5:
                 if #available(iOS 11.2, *) {
                     return {
-                        let node = DescriptionNode(text: Store.current.mouthly.introductory, alignment: .center, style: style)
+                        let node = DescriptionNode(text: Store.current.mouthly.introductory, alignment: .center)
                         return node
                     }
                 } else {
                     // Fallback on earlier versions
                     // Without introductory price
                     return {
-                        let node = DescriptionNode(text: "", alignment: .center, style: style)
+                        let node = DescriptionNode(text: "", alignment: .center)
                         return node
                     }
                 }
@@ -249,13 +249,13 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
                 }
             case 7:
                 return {
-                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.cancel, alignment: .left, style: style)
+                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.cancel, alignment: .left)
                     node.topInset = 30.0
                     return node
                 }
             case 8:
                 return {
-                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.iTunes, alignment: .left, style: style)
+                    let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.iTunes, alignment: .left)
                     node.topInset = 20.0
                     return node
                 }

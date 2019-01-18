@@ -9,13 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol CardSettingsBooleanNodeStyle {
-    var settingsBooleanTitle: UIColor { get }
-    var settingsBooleanTitleFont: UIFont { get }
-    var settingsBooleanOnTintColor: UIColor { get }
-    var settingsBooleanTintColor: UIColor { get }
-    var settingsBooleanThumbTintColor: UIColor { get }
-}
 class CardSettingsBooleanNode: ASCellNode {
     
     // MARK: - UI
@@ -29,17 +22,13 @@ class CardSettingsBooleanNode: ASCellNode {
     var switchAction: ((_ isOn: Bool) -> Void)?
     
     // MARK: - Init
-    init(title: String, isOn: Bool, style: CardSettingsBooleanNodeStyle) {
+    init(title: String, isOn: Bool) {
         super.init()
         
         self.switcher = ASDisplayNode(viewBlock: { () -> UIView in
             let switchButton = UISwitch()
             switchButton.isOn = isOn
-            switchButton.onTintColor = style.settingsBooleanOnTintColor
-            switchButton.tintColor = style.settingsBooleanTintColor
-            if style.settingsBooleanThumbTintColor != UIColor.clear {
-                switchButton.thumbTintColor = style.settingsBooleanThumbTintColor
-            }
+            switchButton.onTintColor = UIColor.positive
             switchButton.addTarget(self, action: #selector(self.switchActionFunction(sender:)), for: .valueChanged)
             switchButton.isAccessibilityElement = true
             switchButton.accessibilityLabel = title
@@ -47,7 +36,7 @@ class CardSettingsBooleanNode: ASCellNode {
         })
         self.switcher.backgroundColor = UIColor.clear
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: style.settingsBooleanTitleFont, NSAttributedStringKey.foregroundColor: style.settingsBooleanTitle])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         //Accessibility
         self.title.isAccessibilityElement = false

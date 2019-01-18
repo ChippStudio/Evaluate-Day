@@ -42,7 +42,7 @@ protocol EditableSection {
     var setTextHandler: ((_ title: String, _ property: String, _ oldText: String?) -> Void)? { get set }
     var setBoolHandler: ((_ isOn: Bool, _ property: String, _ oldIsOn: Bool) -> Void)? { get set }
 }
-protocol EditableSectionStyle: CardSettingsTextNodeStyle, CardSettingsBooleanNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle, CardSettingsSectionTitleNodeStyle, SettingsNotificationNodeStyle { }
+protocol EditableSectionStyle: SettingsMoreNodeStyle, SettingsNotificationNodeStyle { }
 
 // MARK: - Merge
 protocol MergeSection {
@@ -53,4 +53,4 @@ protocol MergeSection {
     var mergeDone: (() -> Void)? { get set }
 }
 
-protocol MergeSectionStyle: BigDescriptionNodeStyle, DescriptionNodeStyle, SettingsMoreNodeStyle { }
+protocol MergeSectionStyle: BigDescriptionNodeStyle, SettingsMoreNodeStyle { }

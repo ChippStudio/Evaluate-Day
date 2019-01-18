@@ -40,11 +40,11 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
         }
         
         self.nodes.append(.sectionTitle)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
         self.nodes.append(.title)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
         self.nodes.append(.subtitles)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
         self.nodes.append(.positiveBool)
         self.nodes.append(.positiveDescription)
         self.nodes.append(.separator)
@@ -56,42 +56,37 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        
-        let style = Themes.manager.cardSettingsStyle
-        
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title)
                 return node
             }
         case .title:
             let title = Localizations.CardSettings.title
             let text = self.card.title
             return {
-                let node = CardSettingsTextNode(title: title, text: text, style: style)
+                let node = CardSettingsTextNode(title: title, text: text)
                 return node
             }
         case .subtitles:
             let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
             return {
-                let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
+                let node = CardSettingsTextNode(title: subtitle, text: text)
                 return node
             }
         case .separator:
             return {
                 let separator = SeparatorNode()
-                if index != 1 && index != self.nodes.count - 1 {
-                    separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
-                }
+                separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
                 return separator
             }
         case .positiveBool:
             let title = Localizations.CardSettings.Criterion.Feater.title
             let isOn = (self.card.data as! CriterionHundredCard).positive
             return {
-                let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
+                let node = CardSettingsBooleanNode(title: title, isOn: isOn)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "positive", (self.card.data as! CriterionHundredCard).positive)
                 }
@@ -99,7 +94,7 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
             }
         case .positiveDescription:
             return {
-                let node = DescriptionNode(text: Localizations.CardSettings.Criterion.Feater.description, alignment: .left, style: style)
+                let node = DescriptionNode(text: Localizations.CardSettings.Criterion.Feater.description, alignment: .left)
                 node.topInset = 10.0
                 return node
             }
@@ -107,7 +102,14 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
     }
     
     func sizeRangeForItem(at index: Int) -> ASSizeRange {
-        let width = self.collectionContext!.containerSize.width
+        let width: CGFloat = self.collectionContext!.containerSize.width
+        
+        if  width >= maxCollectionWidth {
+            let max = CGSize(width: width * collectionViewWidthDevider, height: CGFloat.greatestFiniteMagnitude)
+            let min = CGSize(width: width * collectionViewWidthDevider, height: 0)
+            return ASSizeRange(min: min, max: max)
+        }
+        
         let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)

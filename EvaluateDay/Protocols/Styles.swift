@@ -90,7 +90,7 @@ protocol CardMergeStyle: MergeSectionStyle {
     var barLargeTitleFont: UIFont { get }
 }
 
-protocol SettingsStyle: SettingsMoreNodeStyle, SettingsBooleanNodeStyle, SettingsNotificationNodeStyle, SettingsProDescriptionNodeStyle, DescriptionNodeStyle, InfoNodeStyle, SettingsProDescriptionMoreNodeStyle, ProMoreViewControllerStyle, SettingsIconSelectNodeStyle {
+protocol SettingsStyle: SettingsMoreNodeStyle, SettingsBooleanNodeStyle, SettingsNotificationNodeStyle, SettingsProDescriptionNodeStyle, InfoNodeStyle, SettingsProDescriptionMoreNodeStyle, ProMoreViewControllerStyle, SettingsIconSelectNodeStyle {
     var background: UIColor { get }
     var statusBarStyle: UIStatusBarStyle { get }
     var barColor: UIColor { get }
@@ -159,7 +159,7 @@ protocol ShareViewStyle {
     var shareControllerShareButtonTextFont: UIFont { get }
 }
 
-protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeStyle, DescriptionNodeStyle {
+protocol SlidesViewControllerStyle: WelcomeLastSlideNodeStyle, WelcomeImageNodeStyle {
     var background: UIColor { get }
     var pageIndicatorColor: UIColor { get }
     var currentPageIndicatorColor: UIColor { get }

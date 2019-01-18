@@ -59,7 +59,7 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
             }
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.Notifications.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.Notifications.title)
                 return node
             }
         case .notification:
@@ -132,14 +132,14 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         self.nodes.removeAll()
         
         self.nodes.append((node: .sectionTitle, notification: nil))
-        self.nodes.append((node: .separator, notification: nil))
+//        self.nodes.append((node: .separator, notification: nil))
         self.nodes.append((node: .new, notification: nil))
-        self.nodes.append((node: .separator, notification: nil))
+//        self.nodes.append((node: .separator, notification: nil))
         
         for n in self.notifications {
             if n.cardID != nil {
                 self.nodes.append((node: .notification, notification: n))
-                self.nodes.append((node: .separator, notification: nil))
+//                self.nodes.append((node: .separator, notification: nil))
             }
         }
     }

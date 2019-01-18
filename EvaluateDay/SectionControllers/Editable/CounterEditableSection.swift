@@ -54,21 +54,21 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title)
                 return node
             }
         case .title:
             let title = Localizations.CardSettings.title
             let text = self.card.title
             return {
-                let node = CardSettingsTextNode(title: title, text: text, style: style)
+                let node = CardSettingsTextNode(title: title, text: text)
                 return node
             }
         case .subtitles:
             let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
             return {
-                let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
+                let node = CardSettingsTextNode(title: subtitle, text: text)
                 return node
             }
         case .separator:
@@ -90,7 +90,7 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
             let title = Localizations.CardSettings.Counter.Sum.title
             let isOn = (self.card.data as! CounterCard).isSum
             return {
-                let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
+                let node = CardSettingsBooleanNode(title: title, isOn: isOn)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "isSum", (self.card.data as! CounterCard).isSum)
                     self.nodesSource()

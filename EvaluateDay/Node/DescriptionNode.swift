@@ -9,11 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol DescriptionNodeStyle {
-    var descriptionNodeTextColor: UIColor { get }
-    var descriptionNodeTextFont: UIFont { get }
-}
-
 class DescriptionNode: ASCellNode {
     // MARK: - UI
     var textNode = ASTextNode()
@@ -23,7 +18,7 @@ class DescriptionNode: ASCellNode {
     var leftInset: CGFloat = 20.0
     
     // MARK: - Init
-    init(text: String, alignment: NSTextAlignment, style: DescriptionNodeStyle) {
+    init(text: String, alignment: NSTextAlignment) {
         super.init()
         
         self.selectionStyle = .none
@@ -31,7 +26,7 @@ class DescriptionNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = alignment
         
-        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.descriptionNodeTextFont, NSAttributedStringKey.foregroundColor: style.descriptionNodeTextColor, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: paragraph])
         
         self.automaticallyManagesSubnodes = true
     }

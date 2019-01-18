@@ -66,7 +66,7 @@ class CriterionThreeMergeSection: ListSectionController, ASSectionController, Me
             }
         case 2:
             return {
-                let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left, style: style)
+                let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
                 node.leftInset = 50.0
                 return node
             }
@@ -138,7 +138,7 @@ class CriterionThreeMergeSection: ListSectionController, ASSectionController, Me
             }
         case self.nodes + self.otherCards.count + 1:
             return {
-                let node = DescriptionNode(text: Localizations.CardMerge.disclaimer, alignment: .center, style: style)
+                let node = DescriptionNode(text: Localizations.CardMerge.disclaimer, alignment: .center)
                 return node
             }
         default:

@@ -105,7 +105,7 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
             }
         case self.nodes + self.otherCards.count + 1:
             return {
-                let node = DescriptionNode(text: Localizations.CardMerge.disclaimer, alignment: .center, style: style)
+                let node = DescriptionNode(text: Localizations.CardMerge.disclaimer, alignment: .center)
                 return node
             }
         default:

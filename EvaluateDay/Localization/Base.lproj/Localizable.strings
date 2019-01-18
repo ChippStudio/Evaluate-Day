@@ -169,6 +169,7 @@
 "cardMerge.title" = "Merge Cards";
 
 // MARK: - Card Settings
+"cardSettings.general.title" = "Card Settings";
 "cardSettings.counter.start" = "Initial value";
 "cardSettings.counter.step" = "Step";
 "cardSettings.counter.sum.title" = "Total values ​​for the days";

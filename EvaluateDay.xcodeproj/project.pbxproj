@@ -1499,6 +1499,10 @@
 				B516CA6E21EF43B60002915F /* CollectibleDataNode.swift */,
 				B516CA7021EF4A8D0002915F /* CollectibleImageNode.swift */,
 				B516CA7221EF7FD10002915F /* CollectibleTextNode.swift */,
+				B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */,
+				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
+				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
+				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1804,12 +1808,8 @@
 				B55464D02025C48300923CE3 /* TextNode.swift */,
 				B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */,
 				B5E772211FA0819D002FA03F /* SourceNode.swift */,
-				B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */,
 				B5DE2CA01FFF969300EFBCA5 /* BigDescriptionNode.swift */,
 				B59B4C761FD6B21D00E9A778 /* InfoNode.swift */,
-				B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */,
-				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
-				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
 				B5F597731FBD70B40098A071 /* AnalyticsColorStatisticNode.swift */,
 				B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */,

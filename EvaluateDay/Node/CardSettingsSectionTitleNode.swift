@@ -9,22 +9,17 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol CardSettingsSectionTitleNodeStyle {
-    var cardSettingsSectionTitleFont: UIFont { get }
-    var cardSettingsSectionTitleColor: UIColor { get }
-}
-
 class CardSettingsSectionTitleNode: ASCellNode {
 
     // MARK: - UI
     var title = ASTextNode()
     
     // MARK: - Init
-    init(title: String, style: CardSettingsSectionTitleNodeStyle) {
+    init(title: String) {
         
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedStringKey.font: style.cardSettingsSectionTitleFont, NSAttributedStringKey.foregroundColor: style.cardSettingsSectionTitleColor])
+        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         self.automaticallyManagesSubnodes = true
     }

@@ -32,6 +32,17 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         self.collectionNode.view.alwaysBounceVertical = true
         self.collectionNode.contentInset.top += 40.0
         self.view.addSubnode(self.collectionNode)
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.view.safeAreaLayoutGuide)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            } else {
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+        }
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
@@ -45,7 +56,7 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         }
         
         // MARK: - Navigation Item
-        self.navigationItem.title = Localizations.Settings.title + ": " + Sources.title(forType: self.card.type)
+        self.navigationItem.title = Localizations.CardSettings.General.title
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,19 +84,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
         }
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.collectionNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.collectionNode.frame = self.view.bounds
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
     
     // MARK: - ListAdapterDataSource

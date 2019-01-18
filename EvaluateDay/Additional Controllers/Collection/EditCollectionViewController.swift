@@ -212,7 +212,17 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 2 {
-            return nil
+            if self.collection.realm != nil {
+                if self.cards.count == 0 {
+                    return nil
+                }
+            } else {
+                if self.tempCards.count == 0 {
+                    return nil
+                }
+            }
+            
+            return Localizations.Collection.Edit.DeleteCard.footer
         }
         
         return nil

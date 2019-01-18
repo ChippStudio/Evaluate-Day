@@ -11,7 +11,6 @@ import AsyncDisplayKit
 
 private enum CardSettingsDeleteNodeType {
     case sectionTitle
-    case separator
     case delete
     case merge
     case archive
@@ -42,18 +41,9 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let style = Themes.manager.cardSettingsStyle
         switch nodes[index] {
-        case .separator:
-            return {
-                let separator = SeparatorNode()
-                if index != 1 && index != self.nodes.count - 1 {
-                    separator.insets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
-                }
-                return separator
-            }
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.CardSettings.dangerZone, style: style)
-                node.title.attributedText = NSAttributedString(string: Localizations.CardSettings.dangerZone.uppercased(), attributes: [NSAttributedStringKey.font: style.cardSettingsSectionTitleFont, NSAttributedStringKey.foregroundColor: style.dangerZoneDeleteColor])
+                let node = CardSettingsSectionTitleNode(title: Localizations.CardSettings.dangerZone)
                 return node
             }
         case .delete:
@@ -119,15 +109,15 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
         self.nodes.removeAll()
         
         self.nodes.append(.sectionTitle)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
         if self.card.data as? Mergeable != nil {
             self.nodes.append(.merge)
-            self.nodes.append(.separator)
+//            self.nodes.append(.separator)
         }
         self.nodes.append(.archive)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
         self.nodes.append(.delete)
-        self.nodes.append(.separator)
+//        self.nodes.append(.separator)
     }
     
     private func deleteCard(index: Int) {

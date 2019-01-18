@@ -62,25 +62,24 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardSettingsStyle
         switch self.nodes[index] {
         case .sectionTitle:
             return {
-                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title, style: style)
+                let node = CardSettingsSectionTitleNode(title: Localizations.Settings.General.title)
                 return node
             }
         case .title:
             let title = Localizations.CardSettings.title
             let text = self.card.title
             return {
-                let node = CardSettingsTextNode(title: title, text: text, style: style)
+                let node = CardSettingsTextNode(title: title, text: text)
                 return node
             }
         case .subtitles:
             let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
             return {
-                let node = CardSettingsTextNode(title: subtitle, text: text, style: style)
+                let node = CardSettingsTextNode(title: subtitle, text: text)
                 return node
             }
         case .separator:
@@ -95,7 +94,7 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
             let title = Localizations.CardSettings.Habit.multiple
             let isOn = (self.card.data as! HabitCard).multiple
             return {
-                let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
+                let node = CardSettingsBooleanNode(title: title, isOn: isOn)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "multiple", (self.card.data as! HabitCard).multiple)
                     self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
@@ -106,14 +105,14 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
             }
         case .multipleDescription:
             return {
-                let node = DescriptionNode(text: Localizations.CardSettings.Habit.description, alignment: .left, style: style)
+                let node = DescriptionNode(text: Localizations.CardSettings.Habit.description, alignment: .left)
                 return node
             }
         case .negativeBool:
             let title = Localizations.CardSettings.Habit.Negative.title
             let isOn = (self.card.data as! HabitCard).negative
             return {
-                let node = CardSettingsBooleanNode(title: title, isOn: isOn, style: style)
+                let node = CardSettingsBooleanNode(title: title, isOn: isOn)
                 node.switchAction = { (isOn) in
                     self.setBoolHandler?(isOn, "negative", (self.card.data as! HabitCard).multiple)
                     self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
@@ -124,7 +123,7 @@ class HabitEditableSection: ListSectionController, ASSectionController, Editable
             }
         case .negativeDescription:
             return {
-                let node = DescriptionNode(text: Localizations.CardSettings.Habit.Negative.description, alignment: .left, style: style)
+                let node = DescriptionNode(text: Localizations.CardSettings.Habit.Negative.description, alignment: .left)
                 return node
             }
         }
