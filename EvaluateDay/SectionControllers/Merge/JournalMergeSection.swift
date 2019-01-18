@@ -19,7 +19,7 @@ class JournalMergeSection: ListSectionController, ASSectionController, MergeSect
     
     // MARK: - Private variables
     private var otherCards: Results<Card>!
-    private let nodes: Int = 3
+    private let nodes: Int = 2
     private var selectedIndex: Int?
     
     // MARK: - Init
@@ -44,12 +44,6 @@ class JournalMergeSection: ListSectionController, ASSectionController, MergeSect
         
         switch index {
         case 0:
-            return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left)
-                node.topInset = 40.0
-                return node
-            }
-        case 1:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
@@ -60,7 +54,7 @@ class JournalMergeSection: ListSectionController, ASSectionController, MergeSect
                 node.accessibilityValue = subtitle
                 return node
             }
-        case 2:
+        case 1:
             return {
                 let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left)
                 node.topInset = 50.0

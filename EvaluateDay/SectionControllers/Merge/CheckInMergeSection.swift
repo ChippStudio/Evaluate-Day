@@ -44,12 +44,6 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
         
         switch index {
         case 0:
-            return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left)
-                node.topInset = 40.0
-                return node
-            }
-        case 1:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
@@ -58,6 +52,11 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
                 node.isAccessibilityElement = true
                 node.accessibilityLabel = title
                 node.accessibilityValue = subtitle
+                return node
+            }
+        case 1:
+            return {
+                let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
                 return node
             }
         case 2:

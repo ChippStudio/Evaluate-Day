@@ -21,7 +21,7 @@ class CriterionTenMergeSection: ListSectionController, ASSectionController, Merg
     // MARK: - Private variables
     private var byBase: Bool = true
     private var otherCards: Results<Card>!
-    private let nodes: Int = 6
+    private let nodes: Int = 5
     private var selectedIndex: Int?
     
     // MARK: - Init
@@ -46,12 +46,6 @@ class CriterionTenMergeSection: ListSectionController, ASSectionController, Merg
         
         switch index {
         case 0:
-            return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left)
-                node.topInset = 40.0
-                return node
-            }
-        case 1:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
@@ -62,24 +56,24 @@ class CriterionTenMergeSection: ListSectionController, ASSectionController, Merg
                 node.accessibilityValue = subtitle
                 return node
             }
-        case 2:
+        case 1:
             return {
                 let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
                 return node
             }
-        case 3:
+        case 2:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil)
                 node.select = self.byBase
                 return node
             }
-        case 4:
+        case 3:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil)
-                node.select = self.byBase
+                node.select = !self.byBase
                 return node
             }
-        case 5:
+        case 4:
             return {
                 let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left)
                 node.topInset = 50.0
@@ -175,16 +169,16 @@ class CriterionTenMergeSection: ListSectionController, ASSectionController, Merg
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 3 {
+        if index == 2 {
             self.byBase = true
             self.reloadData(atIndex: index)
-            self.reloadData(atIndex: 4)
+            self.reloadData(atIndex: 3)
         }
         
-        if index == 4 {
+        if index == 3 {
             self.byBase = false
             self.reloadData(atIndex: index)
-            self.reloadData(atIndex: 3)
+            self.reloadData(atIndex: 2)
         }
         
         if index - nodes >= 0 && index - nodes < self.otherCards.count {
