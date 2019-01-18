@@ -92,6 +92,7 @@ class CardMergeViewController: UIViewController, ListAdapterDataSource {
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
+                controller.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 0.0, right: 0.0)
                 return controller
             }
         }

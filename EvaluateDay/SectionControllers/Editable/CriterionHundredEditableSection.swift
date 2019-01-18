@@ -95,7 +95,6 @@ class CriterionHundredEditableSection: ListSectionController, ASSectionControlle
         case .positiveDescription:
             return {
                 let node = DescriptionNode(text: Localizations.CardSettings.Criterion.Feater.description, alignment: .left)
-                node.topInset = 10.0
                 return node
             }
         }

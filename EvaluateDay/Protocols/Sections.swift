@@ -53,4 +53,4 @@ protocol MergeSection {
     var mergeDone: (() -> Void)? { get set }
 }
 
-protocol MergeSectionStyle: BigDescriptionNodeStyle { }
+protocol MergeSectionStyle { }

@@ -9,12 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol BigDescriptionNodeStyle {
-    var bigDescriptionNodeTextColor: UIColor { get }
-    var bigDescriptionNodeTextFont: UIFont { get }
-    var bigDescriptionNodeSeparatorColor: UIColor { get }
-}
-
 class BigDescriptionNode: ASCellNode {
     
     // MARK: - UI
@@ -25,7 +19,7 @@ class BigDescriptionNode: ASCellNode {
     var topInset: CGFloat = 0.0
     
     // MARK: - Init
-    init(text: String, alignment: NSTextAlignment, style: BigDescriptionNodeStyle) {
+    init(text: String, alignment: NSTextAlignment) {
         super.init()
         
         self.selectionStyle = .none
@@ -33,9 +27,9 @@ class BigDescriptionNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = alignment
         
-        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: style.bigDescriptionNodeTextFont, NSAttributedStringKey.foregroundColor: style.bigDescriptionNodeTextColor, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
         
-        self.separator.backgroundColor = style.bigDescriptionNodeSeparatorColor
+        self.separator.backgroundColor = UIColor.main
         
         self.automaticallyManagesSubnodes = true
     }
@@ -43,13 +37,13 @@ class BigDescriptionNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.separator.style.preferredSize.height = 0.2
+        self.separator.style.preferredSize.height = 0.5
         
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 5.0
         cell.children = [self.textNode, self.separator]
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 0.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: self.topInset, left: 20.0, bottom: 10.0, right: 20.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

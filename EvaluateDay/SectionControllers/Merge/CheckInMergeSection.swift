@@ -42,12 +42,10 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardMergeStyle
-        
         switch index {
         case 0:
             return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left)
                 node.topInset = 40.0
                 return node
             }
@@ -64,7 +62,7 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
             }
         case 2:
             return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left)
                 node.topInset = 50.0
                 return node
             }
@@ -120,7 +118,6 @@ class CheckInMergeSection: ListSectionController, ASSectionController, MergeSect
                         node.select = true
                     }
                 }
-                node.leftInset = 20.0
                 return node
             }
         }

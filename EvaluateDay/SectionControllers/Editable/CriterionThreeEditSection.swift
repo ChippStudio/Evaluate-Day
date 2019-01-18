@@ -91,7 +91,6 @@ class CriterionThreeEditSection: ListSectionController, ASSectionController, Edi
         case .positiveDescription:
             return {
                 let node = DescriptionNode(text: Localizations.CardSettings.Criterion.Feater.description, alignment: .left)
-                node.topInset = 10.0
                 return node
             }
         }

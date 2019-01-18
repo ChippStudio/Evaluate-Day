@@ -44,12 +44,10 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardMergeStyle
-        
         switch index {
         case 0:
             return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left)
                 node.topInset = 40.0
                 return node
             }
@@ -67,27 +65,23 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
         case 2:
             return {
                 let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
-                node.leftInset = 50.0
                 return node
             }
         case 3:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil)
                 node.select = self.byBase
-                node.leftInset = 20.0
-                node.topInset = 30.0
                 return node
             }
         case 4:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil)
                 node.select = self.byBase
-                node.leftInset = 20.0
                 return node
             }
         case 5:
             return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left)
                 node.topInset = 50.0
                 return node
             }
@@ -153,7 +147,6 @@ class HabitMergeSection: ListSectionController, ASSectionController, MergeSectio
                         node.select = false
                     }
                 }
-                node.leftInset = 20.0
                 return node
             }
         }

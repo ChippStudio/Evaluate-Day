@@ -14,11 +14,10 @@ class SettingsSelectNode: ASCellNode {
     var title = ASTextNode()
     var subtitle: ASTextNode!
     var imageNode: ASImageNode!
+    
     private var selectImage = ASImageNode()
     
-    // MARK: - Variable
-    var topInset: CGFloat = 10.0
-    var leftInset: CGFloat = 15.0
+    var cover = ASDisplayNode()
     
     var select: Bool = false {
         didSet {
@@ -36,6 +35,9 @@ class SettingsSelectNode: ASCellNode {
     init(title: String, subtitle: String?, image: UIImage?) {
         super.init()
         
+        self.cover.backgroundColor = UIColor.background
+        self.cover.cornerRadius = 10.0
+        
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         if subtitle != nil {
@@ -48,7 +50,7 @@ class SettingsSelectNode: ASCellNode {
             self.imageNode.image = image
         }
         
-        self.selectImage.image = Images.Media.disclosure.image
+        self.selectImage.image = Images.Media.done.image
         self.selectImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         self.isAccessibilityElement = true
@@ -63,25 +65,54 @@ class SettingsSelectNode: ASCellNode {
         let spacing = ASLayoutSpec()
         spacing.style.flexGrow = 1.0
         
-        let cell = ASStackLayoutSpec.horizontal()
-        cell.spacing = 10.0
-        cell.alignItems = .center
-        cell.children = [self.title, spacing]
+        let content = ASStackLayoutSpec.horizontal()
+        content.spacing = 10.0
+        content.alignItems = .center
+        content.children = [self.title, spacing]
         if self.subtitle != nil {
-            cell.children?.append(self.subtitle)
+            content.children?.append(self.subtitle)
         }
         if self.imageNode != nil {
             self.imageNode.style.preferredSize = CGSize(width: 25.0, height: 25.0)
             self.imageNode.cornerRadius = 3.0
-            cell.children?.insert(self.imageNode, at: 0)
+            content.children?.insert(self.imageNode, at: 0)
         }
         
         self.selectImage.style.preferredSize = CGSize(width: 20.0, height: 20.0)
-        cell.children?.append(self.selectImage)
+        content.children?.append(self.selectImage)
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: self.leftInset, bottom: 10.0, right: 10.0)
+        let contentInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
+        
+        let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        
+        let cellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.tint
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.background
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.cover.backgroundColor = UIColor.background
+        }
     }
 }

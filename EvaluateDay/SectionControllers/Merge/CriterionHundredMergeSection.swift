@@ -20,8 +20,10 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
     
     // MARK: - Private variables
     private var byBase: Bool = true
+    
     private var otherCards: Results<Card>!
     private let nodes: Int = 5
+    
     private var selectedIndex: Int?
     
     // MARK: - Init
@@ -44,8 +46,6 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
-        let style = Themes.manager.cardMergeStyle
-        
         switch index {
         case 0:
             let title = self.card.title
@@ -61,27 +61,23 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
         case 1:
             return {
                 let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
-                node.leftInset = 50.0
                 return node
             }
         case 2:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil)
                 node.select = self.byBase
-                node.topInset = 30.0
-                node.leftInset = 20.0
                 return node
             }
         case 3:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil)
-                node.select = self.byBase
-                node.leftInset = 20.0
+                node.select = !self.byBase
                 return node
             }
         case 4:
             return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left, style: style)
+                let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left)
                 node.topInset = 50.0
                 return node
             }
@@ -147,7 +143,6 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
                         node.select = true
                     }
                 }
-                node.leftInset = 20.0
                 return node
             }
         }
@@ -176,16 +171,16 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
     }
     
     override func didSelectItem(at index: Int) {
-        if index == 3 {
+        if index == 2 {
             self.byBase = true
             self.reloadData(atIndex: index)
-            self.reloadData(atIndex: 4)
+            self.reloadData(atIndex: 3)
         }
         
-        if index == 4 {
+        if index == 3 {
             self.byBase = false
             self.reloadData(atIndex: index)
-            self.reloadData(atIndex: 3)
+            self.reloadData(atIndex: 2)
         }
         
         if index - nodes >= 0 && index - nodes < self.otherCards.count {

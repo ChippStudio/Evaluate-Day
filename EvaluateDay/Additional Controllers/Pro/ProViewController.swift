@@ -250,13 +250,11 @@ class ProViewController: UIViewController, ASTableDataSource, ASTableDelegate, M
             case 7:
                 return {
                     let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.cancel, alignment: .left)
-                    node.topInset = 30.0
                     return node
                 }
             case 8:
                 return {
                     let node = DescriptionNode(text: Localizations.Settings.Pro.Subscription.Description.iTunes, alignment: .left)
-                    node.topInset = 20.0
                     return node
                 }
             default:
