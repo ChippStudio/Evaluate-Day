@@ -160,7 +160,14 @@ class TrackerMergeSection: ListSectionController, ASSectionController, MergeSect
     }
     
     func sizeRangeForItem(at index: Int) -> ASSizeRange {
-        let width = self.collectionContext!.containerSize.width
+        let width: CGFloat = self.collectionContext!.containerSize.width
+        
+        if  width >= maxCollectionWidth {
+            let max = CGSize(width: width * collectionViewWidthDevider, height: CGFloat.greatestFiniteMagnitude)
+            let min = CGSize(width: width * collectionViewWidthDevider, height: 0)
+            return ASSizeRange(min: min, max: max)
+        }
+        
         let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)

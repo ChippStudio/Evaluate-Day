@@ -21,7 +21,7 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
     // MARK: - Private variables
     private var byBase: Bool = true
     private var otherCards: Results<Card>!
-    private let nodes: Int = 6
+    private let nodes: Int = 5
     private var selectedIndex: Int?
     
     // MARK: - Init
@@ -48,12 +48,6 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
         
         switch index {
         case 0:
-            return {
-                let node = BigDescriptionNode(text: Localizations.CardMerge.baseCard, alignment: .left, style: style)
-                node.topInset = 40.0
-                return node
-            }
-        case 1:
             let title = self.card.title
             let subtitle = self.card.subtitle
             let image = Sources.image(forType: self.card.type)
@@ -64,13 +58,13 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
                 node.accessibilityValue = subtitle
                 return node
             }
-        case 2:
+        case 1:
             return {
                 let node = DescriptionNode(text: Localizations.CardMerge.mergeTypeDescription, alignment: .left)
                 node.leftInset = 50.0
                 return node
             }
-        case 3:
+        case 2:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByBaseCard, subtitle: nil, image: nil)
                 node.select = self.byBase
@@ -78,14 +72,14 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
                 node.leftInset = 20.0
                 return node
             }
-        case 4:
+        case 3:
             return {
                 let node = SettingsSelectNode(title: Localizations.CardMerge.mergeByDate, subtitle: nil, image: nil)
                 node.select = self.byBase
                 node.leftInset = 20.0
                 return node
             }
-        case 5:
+        case 4:
             return {
                 let node = BigDescriptionNode(text: Localizations.CardMerge.selectCard, alignment: .left, style: style)
                 node.topInset = 50.0
@@ -160,7 +154,14 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
     }
     
     func sizeRangeForItem(at index: Int) -> ASSizeRange {
-        let width = self.collectionContext!.containerSize.width
+        let width: CGFloat = self.collectionContext!.containerSize.width
+        
+        if  width >= maxCollectionWidth {
+            let max = CGSize(width: width * collectionViewWidthDevider, height: CGFloat.greatestFiniteMagnitude)
+            let min = CGSize(width: width * collectionViewWidthDevider, height: 0)
+            return ASSizeRange(min: min, max: max)
+        }
+        
         let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
