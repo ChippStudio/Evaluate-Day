@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Activity
-protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsBarChartNodeStyle { }
+protocol ActivitySection: UserInformationNodeStyle, AnalyticsCalendarNodeStyle, AnalyticsBarChartNodeStyle { }
 
 // MARK: - Evaluable
 protocol EvaluableSection {
@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, AnalyticsTimeTravelNodeStyle { }
+protocol AnalyticalSectionStyle: AnalyticsCalendarNodeStyle, AnalyticsColorStatisticNodeStyle, AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsExportNodeStyle, AnalyticsMapNodeStyle, PhraseListNodeStyle, AnalyticsTimeTravelNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {

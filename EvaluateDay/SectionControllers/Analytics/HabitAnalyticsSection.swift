@@ -110,7 +110,7 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
             
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
         case .time:

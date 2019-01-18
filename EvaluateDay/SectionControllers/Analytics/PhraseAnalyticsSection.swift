@@ -102,7 +102,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 self.data!.append((title: Localizations.Analytics.Statistics.sum + ":", data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
         case .time:

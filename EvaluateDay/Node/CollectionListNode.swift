@@ -56,10 +56,12 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        self.collectionNode.showsVerticalScrollIndicator = false
-        self.collectionNode.showsHorizontalScrollIndicator = false
         self.collectionNode.alwaysBounceHorizontal = true
         self.collectionNode.dataSource = self
+        OperationQueue.main.addOperation {
+            self.collectionNode.view.showsVerticalScrollIndicator = false
+            self.collectionNode.view.showsHorizontalScrollIndicator = false
+        }
         
         // Set button
         self.editButton.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)

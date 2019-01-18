@@ -108,7 +108,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
                 self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
             }
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.Analytics.Statistics.title, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
         case .time:

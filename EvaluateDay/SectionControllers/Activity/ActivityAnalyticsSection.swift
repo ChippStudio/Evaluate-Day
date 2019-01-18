@@ -132,7 +132,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             }
             
             return {
-                let node = AnalyticsStatisticNode(title: Localizations.Activity.Analytics.Stat.description, data: self.data!, style: style)
+                let node = AnalyticsStatisticNode(data: self.data!)
                 // node.leftOffset = 10.0
                 return node
             }

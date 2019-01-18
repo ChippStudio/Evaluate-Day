@@ -15,7 +15,6 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
     // MARK: - UI
     var collectionNode: ASCollectionNode!
     var settingsButton: UIBarButtonItem!
-    var closeButton: UIBarButtonItem!
     
     // MARK: - Variable
     var card: Card!
@@ -26,7 +25,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         
         // Navigation bar
-        self.navigationItem.title = Localizations.Analytics.title + ": " + Sources.title(forType: self.card.type)
+        self.navigationItem.title = Localizations.Analytics.title
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -48,12 +47,6 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         self.settingsButton.accessibilityLabel = Localizations.Tabbar.settings
         self.settingsButton.accessibilityValue = self.card.title
         self.navigationItem.rightBarButtonItem = self.settingsButton
-        
-        // Close button
-        if self.navigationController?.viewControllers.first is EntryViewController {
-            self.closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(closeButtonAction(sender:)))
-            self.navigationItem.leftBarButtonItem = closeButton
-        }
         
         // Analytics
         sendEvent(.openAnalytics, withProperties: ["type": self.card.type.string])
@@ -96,11 +89,6 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
     // MARK: - ListAdapterDataSource
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [DiffCard(card: self.card)]
@@ -134,6 +122,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
                     }
                 }
                 
+                controller.inset = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 0.0, right: 0.0)
                 return controller
             }
         }
@@ -150,9 +139,5 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
         controller.card = self.card
         self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    @objc func closeButtonAction(sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
     }
 }

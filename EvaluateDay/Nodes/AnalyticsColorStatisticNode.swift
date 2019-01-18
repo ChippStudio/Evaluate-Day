@@ -137,7 +137,7 @@ class StatisticColorCollectionCell: UICollectionViewCell {
         
         let style = Themes.manager.analyticalStyle
         
-        self.contentView.backgroundColor = style.statisticDataCellBackground
+        self.contentView.backgroundColor = UIColor.background
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 8.0
         

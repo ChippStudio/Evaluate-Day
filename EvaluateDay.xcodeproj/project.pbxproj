@@ -1535,6 +1535,7 @@
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
 				B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */,
+				B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -1844,7 +1845,6 @@
 				B59B4C761FD6B21D00E9A778 /* InfoNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
 				B5F597731FBD70B40098A071 /* AnalyticsColorStatisticNode.swift */,
-				B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
 				B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */,
