@@ -49,8 +49,6 @@ final class Sources: NSObject {
             return Images.Cards.journal.image
         case .tracker:
             return Images.Cards.tracker.image
-        case .health:
-            return #imageLiteral(resourceName: "health")
         default:
             return #imageLiteral(resourceName: "update")
         }
@@ -82,8 +80,6 @@ final class Sources: NSObject {
             return Localizations.New.Journal.title
         case .tracker:
             return Localizations.New.Tracker.title
-        case .health:
-            return Localizations.New.Health.title
         default:
             return "none"
         }
@@ -105,8 +101,5 @@ final class Sources: NSObject {
         self.cards.append(Source(type: .list, title: Localizations.New.List.title, subtitle: Localizations.New.List.subtitle, image: Sources.image(forType: .list)))
         self.cards.append(Source(type: .goal, title: Localizations.New.Goal.title, subtitle: Localizations.New.Goal.subtitle, image: Sources.image(forType: .goal)))
         self.cards.append(Source(type: .journal, title: Localizations.New.Journal.title, subtitle: Localizations.New.Journal.subtitle, image: Sources.image(forType: .journal)))
-//        if HKHealthStore.isHealthDataAvailable() {
-//            self.cards.append(Source(type: .health, title: Localizations.new.health.title, subtitle: Localizations.new.health.subtitle, image: Sources.image(forType: .health)))
-//        }
     }
 }

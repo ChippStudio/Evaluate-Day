@@ -66,10 +66,6 @@ extension Card: CloudKitSyncable {
             goalCard.startValue = record.object(forKey: "start") as! Double
             goalCard.goalValue = record.object(forKey: "goal") as! Double
         case .journal: ()
-        case .health:
-            let healthCard = card.data as! HealthCard
-            healthCard.goal = record.object(forKey: "healthGoal") as! Double
-            healthCard.type = record.object(forKey: "healthType") as! String
         default:()
         }
         
@@ -125,10 +121,6 @@ extension Card: CloudKitSyncable {
             record.setObject(data.startValue as CKRecordValue, forKey: "start")
             record.setObject(data.goalValue as CKRecordValue, forKey: "goal")
         case .journal: ()
-        case .health:
-            let data = self.data as! HealthCard
-            record.setObject(data.goal as CKRecordValue, forKey: "healthGoal")
-            record.setObject(data.type as CKRecordValue, forKey: "healthType")
         default: ()
         }
         
