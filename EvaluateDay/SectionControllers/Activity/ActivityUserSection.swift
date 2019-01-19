@@ -22,7 +22,6 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.activityControlerStyle
         
         let user = Database.manager.application.user!
         var photo: UIImage? = nil
@@ -34,7 +33,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
         let bio = user.bio
         let web = user.web
         return {
-            self.node = UserInformationNode(photo: photo, name: name, email: email, bio: bio, web: web, isEdit: self.isEditMode, style: style)
+            self.node = UserInformationNode(photo: photo, name: name, email: email, bio: bio, web: web, isEdit: self.isEditMode)
             self.node.editButton.addTarget(self, action: #selector(self.editButtonAction(sender:)), forControlEvents: .touchUpInside)
             if self.node.facebookButton != nil {
                 self.node.facebookButton.addTarget(self, action: #selector(self.facebookButtonAction(sender:)), forControlEvents: .touchUpInside)

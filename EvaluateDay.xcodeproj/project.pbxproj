@@ -1454,10 +1454,12 @@
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
+				B5D9A84B205BC43600F84091 /* UserInformationNode.swift */,
 				B516CA6221EE1FDB0002915F /* SpaceNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
 				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
 				B55464CC2025974400923CE3 /* PhotoNode.swift */,
+				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
 				B516CA6821EF323E0002915F /* CollectionListNode.swift */,
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */,
@@ -1827,8 +1829,6 @@
 				B584E0DE1FE2A5FB008093D5 /* WelcomeLastSlideNode.swift */,
 				B5257D3A1FE7C57300AC54DE /* WelcomePermissionTitleNode.swift */,
 				B5257D381FE7C56000AC54DE /* WelcomePermissionButtonNode.swift */,
-				B5D9A84B205BC43600F84091 /* UserInformationNode.swift */,
-				B5D9A85620612EEB00F84091 /* ActivityPhotoNode.swift */,
 				B58DC381213D92D10067FD61 /* DashboardsNode.swift */,
 				B5D3FB96213E9CCD004DFF78 /* DashboardTitleNode.swift */,
 				B5D3FB982140FD0A004DFF78 /* DashboardsNoneNode.swift */,

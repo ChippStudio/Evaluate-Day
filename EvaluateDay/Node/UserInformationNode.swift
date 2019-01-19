@@ -9,37 +9,15 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol UserInformationNodeStyle {
-    var userInformationEditColor: UIColor { get }
-    var userInformationEditHighlightedColor: UIColor { get }
-    var userInformationEditFont: UIFont { get }
-    var userInfomationNameColor: UIColor { get }
-    var userInformationNameFont: UIFont { get }
-    var userInfomationEmailColor: UIColor { get }
-    var userInformationEmailFont: UIFont { get }
-    var userInfomationBioColor: UIColor { get }
-    var userInformationBioFont: UIFont { get }
-    var userInfomationLinkColor: UIColor { get }
-    var userInformationLinkFont: UIFont { get }
-    var userInformationSeparatorColor: UIColor { get }
-    var userInformationPlaceholderColor: UIColor { get }
-    var userInformationFacebookButtonFont: UIFont { get }
-    var userInformationFacebookButtonColor: UIColor { get }
-    var userInformationFacebookButtonCoverColor: UIColor { get }
-    var userInformationFacebookButtonHighlightedColor: UIColor { get }
-    var userInformationFacebookDisclaimerFont: UIFont { get }
-    var userInformationFacebookDisclaimerColor: UIColor { get }
-}
-
 class UserInformationNode: ASCellNode {
     // MARK: - UI
     var editButton = ASButtonNode()
     var userPhoto = ASImageNode()
     var userName: ASTextNode!
     var userEmail: ASTextNode!
-    var firstSeparator = ASDisplayNode()
     var userBio: ASTextNode!
     var userWeb: ASTextNode!
+    var firstSeparator: ASDisplayNode!
     var secondSeparator: ASDisplayNode!
     var facebookButton: ASButtonNode!
     var facebookCover: ASDisplayNode!
@@ -50,7 +28,7 @@ class UserInformationNode: ASCellNode {
     var nodeDidLoad: (() -> Void)?
     
     // MARK: - Init
-    init(photo: UIImage?, name: String?, email: String?, bio: String?, web: String?, isEdit: Bool, style: UserInformationNodeStyle) {
+    init(photo: UIImage?, name: String?, email: String?, bio: String?, web: String?, isEdit: Bool) {
         super.init()
         
         self.editMode = isEdit
@@ -59,7 +37,7 @@ class UserInformationNode: ASCellNode {
         if photo != nil {
             self.userPhoto.image = photo
         } else {
-            self.userPhoto.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.userInfomationNameColor)
+            self.userPhoto.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         }
         if self.editMode {
             self.userPhoto.isAccessibilityElement = true
@@ -73,42 +51,40 @@ class UserInformationNode: ASCellNode {
             editString = Localizations.General.done
             accessibilityEditLabel = Localizations.Accessibility.Activity.PersonalInformation.save
         }
-        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: style.userInformationEditFont, NSAttributedStringKey.foregroundColor: style.userInformationEditColor])
-        let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: style.userInformationEditFont, NSAttributedStringKey.foregroundColor: style.userInformationEditHighlightedColor])
+        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.main])
+        let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.editButton.setAttributedTitle(editAttr, for: .normal)
         self.editButton.setAttributedTitle(editHighlightedAttr, for: .highlighted)
         self.editButton.accessibilityLabel = accessibilityEditLabel
         
-        self.firstSeparator.backgroundColor = style.userInformationSeparatorColor
-        
-        var nameAttr = [NSAttributedStringKey.font: style.userInformationNameFont, NSAttributedStringKey.foregroundColor: style.userInformationPlaceholderColor]
-        var emailAttr = [NSAttributedStringKey.font: style.userInformationEmailFont, NSAttributedStringKey.foregroundColor: style.userInformationPlaceholderColor]
-        var bioAttr = [NSAttributedStringKey.font: style.userInformationBioFont, NSAttributedStringKey.foregroundColor: style.userInformationPlaceholderColor]
-        var webAttr = [NSAttributedStringKey.font: style.userInformationLinkFont, NSAttributedStringKey.foregroundColor: style.userInformationPlaceholderColor]
+        var nameAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.main]
+        var emailAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
+        var bioAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
+        var webAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
         
         if !isEdit {
             if name != nil {
-                nameAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationNameColor
+                nameAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
                 self.userName = ASTextNode()
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
                 self.userName.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.name
             }
             
             if email != nil {
-                emailAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationEmailColor
+                emailAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
                 self.userEmail = ASTextNode()
                 self.userEmail.attributedText = NSAttributedString(string: email!, attributes: emailAttr)
                 self.userEmail.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.email
             }
             
             if bio != nil {
-                bioAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationBioColor
+                bioAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
                 self.userBio = ASTextNode()
                 self.userBio.attributedText = NSAttributedString(string: bio!, attributes: bioAttr)
                 self.userBio.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.bio
             }
             if web != nil {
-                webAttr[NSAttributedStringKey.foregroundColor] = style.userInfomationLinkColor
+                webAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
                 self.userWeb = ASTextNode()
                 self.userWeb.attributedText = NSAttributedString(string: web!, attributes: webAttr)
                 self.userWeb.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.site
@@ -147,9 +123,12 @@ class UserInformationNode: ASCellNode {
             }
         }
         
-        if isEdit || email != nil || name != nil {
+        if isEdit || self.userBio != nil {
             self.secondSeparator = ASDisplayNode()
-            self.secondSeparator.backgroundColor = style.userInformationSeparatorColor
+            self.secondSeparator.backgroundColor = UIColor.main
+            
+            self.firstSeparator = ASDisplayNode()
+            self.firstSeparator.backgroundColor = UIColor.main
         }
         
         if isEdit || email == nil || name == nil {
@@ -157,12 +136,12 @@ class UserInformationNode: ASCellNode {
             self.facebookButton = ASButtonNode()
             self.facebookDisclaimer = ASTextNode()
             
-            self.facebookCover.backgroundColor = style.userInformationFacebookButtonCoverColor
+            self.facebookCover.backgroundColor = UIColor.facebook
             self.facebookCover.cornerRadius = 5.0
             
-            var facebookAttr = [NSAttributedStringKey.foregroundColor: style.userInformationFacebookButtonColor, NSAttributedStringKey.font: style.userInformationFacebookButtonFont]
+            var facebookAttr = [NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body)]
             let facebookTitle = NSAttributedString(string: Localizations.Activity.User.Facebook.action, attributes: facebookAttr)
-            facebookAttr[NSAttributedStringKey.foregroundColor] = style.userInformationFacebookButtonHighlightedColor
+            facebookAttr[NSAttributedStringKey.foregroundColor] = UIColor.main
             let facebookHighlightedTitle = NSAttributedString(string: Localizations.Activity.User.Facebook.action, attributes: facebookAttr)
             self.facebookButton.setAttributedTitle(facebookTitle, for: .normal)
             self.facebookButton.setAttributedTitle(facebookHighlightedTitle, for: .highlighted)
@@ -170,7 +149,7 @@ class UserInformationNode: ASCellNode {
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-            self.facebookDisclaimer.attributedText = NSAttributedString(string: Localizations.Activity.User.Facebook.disclaimer, attributes: [NSAttributedStringKey.foregroundColor: style.userInformationFacebookDisclaimerColor, NSAttributedStringKey.font: style.userInformationFacebookDisclaimerFont, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+            self.facebookDisclaimer.attributedText = NSAttributedString(string: Localizations.Activity.User.Facebook.disclaimer, attributes: [NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.paragraphStyle: paragraphStyle])
             self.facebookDisclaimer.isAccessibilityElement = false
         }
         
@@ -191,19 +170,17 @@ class UserInformationNode: ASCellNode {
         let editStackInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -20.0, right: 10.0)
         let editStackInset = ASInsetLayoutSpec(insets: editStackInsets, child: editStack)
         
-        self.userPhoto.style.preferredSize = CGSize(width: 130.0, height: 130.0)
-        self.userPhoto.cornerRadius = 130/2
+        self.userPhoto.style.preferredSize = CGSize(width: 100.0, height: 100.0)
+        self.userPhoto.cornerRadius = 10
         
-        let photoAndText = ASStackLayoutSpec.vertical()
+        let photoAndText = ASStackLayoutSpec.horizontal()
         photoAndText.spacing = 20.0
-        photoAndText.alignItems = .center
         photoAndText.children = [self.userPhoto]
         
-        if self.userName != nil || self.userEmail != nil {
+        if self.userName != nil || self.userEmail != nil || self.userBio != nil {
             let nameAndEmail = ASStackLayoutSpec.vertical()
             nameAndEmail.spacing = 10.0
             nameAndEmail.style.flexShrink = 1.0
-            nameAndEmail.alignItems = .center
             nameAndEmail.children = []
             if self.userName != nil {
                 self.userName.style.flexShrink = 1.0
@@ -214,24 +191,31 @@ class UserInformationNode: ASCellNode {
                 nameAndEmail.children?.append(self.userEmail)
             }
             
+            if self.userWeb != nil {
+                nameAndEmail.children?.append(self.userWeb)
+            }
+            
             photoAndText.children?.append(nameAndEmail)
         }
         
-        self.firstSeparator.style.preferredSize = CGSize(width: 250.0, height: 0.2)
+        let photoAndTextInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        let photoAndTextInset = ASInsetLayoutSpec(insets: photoAndTextInsets, child: photoAndText)
         
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 20.0
-        cell.children = [editStackInset, photoAndText, self.firstSeparator]
+        cell.children = [editStackInset, photoAndTextInset]
         
-        if self.userBio != nil || self.userWeb != nil {
+        if self.firstSeparator != nil {
+            self.firstSeparator.style.preferredSize = CGSize(width: 250.0, height: 0.2)
+            cell.children?.append(self.firstSeparator)
+        }
+        
+        if self.userWeb != nil {
             let bioStack = ASStackLayoutSpec.vertical()
             bioStack.spacing = 10.0
             bioStack.children = []
             if self.userBio != nil {
                 bioStack.children?.append(self.userBio)
-            }
-            if self.userWeb != nil {
-                bioStack.children?.append(self.userWeb)
             }
             
             let bioStackInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)

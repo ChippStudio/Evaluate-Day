@@ -36,38 +36,36 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let style = Themes.manager.evaluateStyle
-        
         self.view.backgroundColor = UIColor.clear
         
-        self.backView.backgroundColor = style.background
+        self.backView.backgroundColor = UIColor.background
         
-        self.closeButtonCover.backgroundColor = style.background
+        self.closeButtonCover.backgroundColor = UIColor.background
         self.closeButtonCover.layer.masksToBounds = true
         self.closeButtonCover.layer.cornerRadius = 25.0
         
-        self.shareButtonCover.backgroundColor = style.background
+        self.shareButtonCover.backgroundColor = UIColor.background
         self.shareButtonCover.layer.masksToBounds = true
         self.shareButtonCover.layer.cornerRadius = 25.0
         
-        self.infoCoverView.backgroundColor = style.background
+        self.infoCoverView.backgroundColor = UIColor.background
         self.infoCoverView.layer.masksToBounds = true
         self.infoCoverView.layer.cornerRadius = 10.0
         
-        self.createdLabel.textColor = style.barTint
-        self.createdLabel.font = style.imageInfoDateLabelFont
+        self.createdLabel.textColor = UIColor.main
+        self.createdLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         self.createdLabel.text = Localizations.General.createDate + ": " + DateFormatter.localizedString(from: self.photoValue.created, dateStyle: .medium, timeStyle: .medium)
         
         if self.photoValue.latitude != 0.0 && self.photoValue.longitude != 0.0 {
-            self.coordinatesLabel.textColor = style.barTint
-            self.coordinatesLabel.font = style.imageInfoCoordinatesFont
+            self.coordinatesLabel.textColor = UIColor.main
+            self.coordinatesLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
             self.coordinatesLabel.text = "\(self.photoValue.latitude), \(self.photoValue.longitude)"
             
             let location = CLLocation(latitude: self.photoValue.latitude, longitude: self.photoValue.longitude)
             CLGeocoder().reverseGeocodeLocation(location) { (places, _) in
                 if let place = places?.first {
-                    self.placeLabel.textColor = style.barTint
-                    self.placeLabel.font = style.imageInfoPlaceFont
+                    self.placeLabel.textColor = UIColor.main
+                    self.placeLabel.font = UIFont.preferredFont(forTextStyle: .body)
                     var placeString = ""
                     if let name = place.name {
                          placeString += name
@@ -88,10 +86,10 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.closeButton.tintColor = style.barTint
+        self.closeButton.tintColor = UIColor.main
         
         self.shareButton.setImage(#imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate), for: .normal)
-        self.shareButton.tintColor = style.barTint
+        self.shareButton.tintColor = UIColor.main
 
         let image = self.photoValue.image
         self.imageView.image = image

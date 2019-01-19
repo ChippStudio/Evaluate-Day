@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Activity
-protocol ActivitySection: UserInformationNodeStyle { }
+protocol ActivitySection { }
 
 // MARK: - Evaluable
 protocol EvaluableSection {

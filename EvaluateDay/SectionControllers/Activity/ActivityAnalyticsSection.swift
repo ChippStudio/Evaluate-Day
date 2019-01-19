@@ -14,7 +14,6 @@ import RealmSwift
 
 private enum NodeType {
     case bar
-    case title
     case stat
 }
 
@@ -27,9 +26,6 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     
     private var isPro: Bool!
     private var realmToken: NotificationToken!
-    
-    // MARK: - Actions
-    var shareHandler: ((IndexPath, [Any]) -> Void)?
     
     // MARK: - Init
     override init() {
@@ -48,9 +44,8 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             })
         }
         
-        self.nodes.append(.bar)
-        self.nodes.append(.title)
         self.nodes.append(.stat)
+        self.nodes.append(.bar)
     }
     // MARK: - Override
     override func numberOfItems() -> Int {
@@ -64,14 +59,6 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             distance = Localizations.General.lifetime
         }
         switch item {
-        case .title:
-            let title = Localizations.Activity.Analytics.Stat.title
-            let subtitle = Localizations.Activity.Analytics.Stat.subtitle
-            let image = Sources.image(forType: .evaluate)
-            return {
-                let node = TitleNode(title: title, subtitle: subtitle, image: image)
-                return node
-            }
         case .bar:
             var maxCount: Int = 7
             if isPro {
@@ -108,8 +95,8 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
             let archived = cards.filter("archived=%@", true)
             let days: Int = Database.manager.application.firstStartDate.days(to: Date().end)
-            let firstStart = DateFormatter.localizedString(from: Database.manager.application.firstStartDate, dateStyle: .medium, timeStyle: .medium)
-            let updateDate = DateFormatter.localizedString(from: Database.manager.application.lastUpdateDate, dateStyle: .medium, timeStyle: .medium)
+            let firstStart = DateFormatter.localizedString(from: Database.manager.application.firstStartDate, dateStyle: .medium, timeStyle: .none)
+            let updateDate = DateFormatter.localizedString(from: Database.manager.application.lastUpdateDate, dateStyle: .medium, timeStyle: .none)
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
             let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
             let fullVersion = "\(build) (\(version))"
@@ -178,12 +165,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
         
         let node = controller.collectionNode.nodeForItem(at: IndexPath(row: sender.view.tag, section: self.section))!
         
-        var nodeImageViews = [UIImageView(image: node.view.snapshot)]
-        if self.nodes[sender.view.tag] == .title {
-            if let statNode = controller.collectionNode.nodeForItem(at: IndexPath(row: sender.view.tag + 1, section: self.section)) as? AnalyticsStatisticNode {
-                nodeImageViews.append(UIImageView(image: statNode.view.snapshot))
-            }
-        }
+        let nodeImageViews = [UIImageView(image: node.view.snapshot)]
         
         let imageBackgroundView = UIView()
         imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background

@@ -83,14 +83,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             self.navigationController?.view.backgroundColor = UIColor.background
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
-            
-//            for object in self.adapter.objects() {
-//                if let section = self.adapter.sectionController(for: object) {
-//                    section.collectionContext?.performBatch(animated: true, updates: { (context) in
-//                        context.reload(section)
-//                    }, completion: nil)
-//                }
-//            }
         }
     }
     
@@ -145,23 +137,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             return section
         } else if object is ActivityAnalyticsObject {
             let section = ActivityAnalyticsSection()
-            section.shareHandler = { (indexPath, items) in
-                
-                let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-//                if self.traitCollection.userInterfaceIdiom == .pad {
-//                    shareActivity.modalPresentationStyle = .popover
-//                    if let node = self.collectionNode.nodeForItem(at: indexPath) as? TitleNode {
-//                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-//                        shareActivity.popoverPresentationController?.sourceView = node.view
-//                    } else {
-//                        let node = self.collectionNode.nodeForItem(at: indexPath) as! AnalyticsBarChartNode
-//                        shareActivity.popoverPresentationController?.sourceRect = node.shareButton.frame
-//                        shareActivity.popoverPresentationController?.sourceView = node.view
-//                    }
-//                }
-                sendEvent(.shareFromEvaluateDay, withProperties: ["type": "activity"])
-                self.present(shareActivity, animated: true, completion: nil)
-            }
             return section
         } else if object is ActivityPhotoObject {
             let section = ActivityPhotoSection()
