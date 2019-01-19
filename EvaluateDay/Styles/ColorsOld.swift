@@ -73,23 +73,6 @@ extension UIColor {
     @nonobjc class var eerieBlack: UIColor {
         return UIColor(red: 30.0 / 255.0, green: 25.0 / 255.0, blue: 25.0 / 255.0, alpha: 1.0)
     }
-    
-    @nonobjc class var pumpkin: UIColor {
-        return UIColor(red: 214.0 / 255.0, green: 117.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var facebook: UIColor {
-        return UIColor(red: 59.0 / 255.0, green: 89.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0)
-    }
-    @nonobjc class var google: UIColor {
-        return UIColor(red: 234.0 / 255.0, green: 67.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
-    }
-    @nonobjc class var twitter: UIColor {
-        return UIColor(red: 29.0 / 255.0, green: 161.0 / 255.0, blue: 242.0 / 255.0, alpha: 1.0)
-    }
-    @nonobjc class var vk: UIColor {
-        return UIColor(red: 69.0 / 255.0, green: 102.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
-    }
 }
 
 let colorsForSelection = [(color: "FFFFFF", name: "white"),

@@ -35,27 +35,25 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let style = Themes.manager.shareViewStyle
-        
-        self.view.backgroundColor = style.shareControllerBackground
+        self.view.backgroundColor = UIColor.background
         
         self.closeButton.setImage(#imageLiteral(resourceName: "close").resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-        self.closeButton.tintColor = style.shareControllerCloseTintColor
+        self.closeButton.tintColor = UIColor.main
         self.closeButton.accessibilityLabel = Localizations.General.close
         self.closeButtonCover.layer.masksToBounds = true
         self.closeButtonCover.layer.cornerRadius = 25.0
-        self.closeButtonCover.backgroundColor = style.shareControllerBackground
+        self.closeButtonCover.backgroundColor = UIColor.background
         
         self.shareImageView.contentMode = .scaleAspectFit
         self.shareImageView.image = self.image
         
         self.shareButton.setTitle(Localizations.Calendar.Empty.share, for: .normal)
-        self.shareButton.setTitleColor(style.shareControllerShareButtonTextColor, for: .normal)
-        self.shareButton.setTitleColor(style.shareControllerShareButtonTextHighlightedColor, for: .highlighted)
-        self.shareButton.titleLabel?.font = style.shareControllerShareButtonTextFont
+        self.shareButton.setTitleColor(UIColor.tint, for: .normal)
+        self.shareButton.setTitleColor(UIColor.main, for: .highlighted)
+        self.shareButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         self.shareButtonCover.layer.masksToBounds = true
         self.shareButtonCover.layer.cornerRadius = 8.0
-        self.shareButtonCover.backgroundColor = style.shareControllerShareButtonColor
+        self.shareButtonCover.backgroundColor = UIColor.pumpkin
         
         if self.imageViewWidthConstraint != nil {
             self.imageViewWidthConstraint.constant = maxCollectionWidth

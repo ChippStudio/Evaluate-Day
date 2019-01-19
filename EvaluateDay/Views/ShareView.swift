@@ -34,33 +34,33 @@ class ShareView: UIView {
     // MARK: - Init subviews
     fileprivate func initSubviews() {
         // Custom initialization
-        let style = Themes.manager.shareViewStyle
         
         self.title = UILabel()
         self.title.text = Localizations.General.evaluateday.uppercased()
-        self.title.font = style.shareViewTitleFont
-        self.title.textColor = style.shareViewTitleColor
+        self.title.font = UIFont.preferredFont(forTextStyle: .title1)
+        self.title.textColor = UIColor.tint
         self.title.textAlignment = .center
         
         self.iconImage = UIImageView()
         self.iconImage.contentMode = .scaleAspectFill
         self.iconImage.layer.masksToBounds = true
         self.iconImage.layer.cornerRadius = 3.0
-        self.iconImage.image = style.shareViewIconImage
+        self.iconImage.image = Images.Media.app.image.withRenderingMode(.alwaysTemplate)
+        self.iconImage.tintColor = UIColor.tint
         
         self.link = UILabel()
         self.link.text = appSiteURLString
-        self.link.font = style.shareViewLinkFont
-        self.link.textColor = style.shareViewLinkColor
+        self.link.font = UIFont.preferredFont(forTextStyle: .caption1)
+        self.link.textColor = UIColor.tint
         self.link.textAlignment = .right
         
         self.sharedImage = UIImageView()
         self.sharedImage.contentMode = .scaleAspectFill
         self.sharedImage.layer.masksToBounds = true
-        self.sharedImage.layer.cornerRadius = 3.0
+        self.sharedImage.layer.cornerRadius = 10.0
         self.sharedImage.image = self.image
         
-        self.backgroundColor = style.shareViewBackgroundColor
+        self.backgroundColor = UIColor.text
         
         self.addSubview(self.title)
         self.addSubview(self.sharedImage)
