@@ -56,7 +56,6 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -133,7 +132,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }

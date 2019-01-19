@@ -52,7 +52,6 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -115,7 +114,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt, isPro: isPro, style: style)
+                let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt)
                 node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -138,7 +137,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             opt?[.yLineNumber] = 5
             
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }

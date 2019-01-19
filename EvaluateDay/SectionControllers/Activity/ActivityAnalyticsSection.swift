@@ -59,7 +59,6 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let item = self.nodes[index]
-        let style = Themes.manager.activityControlerStyle
         var distance = Localizations.General.last7
         if isPro {
             distance = Localizations.General.lifetime
@@ -91,7 +90,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             opt?[.yLineNumber] = 5
             opt?[.positive] = true
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.Activity.Analytics.Barchart.title + "\n(\(distance))", data: data, options: opt, isPro: true, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Activity.Analytics.Barchart.title + "\n(\(distance))", data: data, options: opt)
                 //node.leftOffset = 0.0
                 node.chartStringForValue = { (node, value, axis) in
                     return ""

@@ -57,7 +57,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.analyticalStyle
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro
         switch nodeType {
@@ -192,7 +191,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
             let opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Journal.barEntries, data: data, options: opt, isPro: isPro, style: style)
+                let node = AnalyticsBarChartNode(title: Localizations.Analytics.Journal.barEntries, data: data, options: opt)
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }

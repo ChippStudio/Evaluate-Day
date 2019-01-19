@@ -10,12 +10,6 @@ import UIKit
 import AsyncDisplayKit
 import Charts
 
-protocol AnalyticsLineChartNodeStyle: AnalyticsChartNodeStyle {
-    var analyticsLineChartLineColor: UIColor { get }
-    var analyticsLineChartHightlightPositiveColor: UIColor { get }
-    var analyticsLineChartHightlightNegativeColor: UIColor { get }
-}
-
 class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate {
     // MARK: - UI
     var chartNode: ASDisplayNode!
@@ -43,7 +37,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     var chartValueSelected: ((_ node: AnalyticsLineChartNode, _ chartView: ChartViewBase, _ entry: ChartDataEntry, _ highlight: Highlight) -> String)?
     
     // MARK: - Init
-    init(title: String, data: [ChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?, isPro: Bool, style: AnalyticsLineChartNodeStyle) {
+    init(title: String, data: [ChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
         super.init()
         
         self.options = options
@@ -59,11 +53,11 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
                 titleString = title.uppercased()
             }
         }
-        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: style.chartNodeTitleFont, NSAttributedStringKey.foregroundColor: style.chartNodeTitleColor])
+        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
         
-        self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
+        self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
-        self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(style.chartNodeShareTintColor)
+        self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         var dateString = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
         var lastValueString = Localizations.General.none
@@ -79,66 +73,63 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.selectedYValue = "\(Float(lastValue.y))"
         }
         
-        self.dateAttributes = [NSAttributedStringKey.font: style.chartNodeDateFont, NSAttributedStringKey.foregroundColor: style.chartNodeDateColor]
+        self.dateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.main]
         self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
         
-        var valueColor = style.chartNodeValuePositiveColor
+        var valueColor = UIColor.positive
         if !positive {
-            valueColor = style.chartNodeValueNegativeColor
+            valueColor = UIColor.negative
         }
-        self.valueAttributes = [NSAttributedStringKey.font: style.chartNodeValueFont, NSAttributedStringKey.foregroundColor: valueColor]
+        self.valueAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedStringKey.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
-        if isPro {
-            self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
-                self.chart = LineChartView()
-                self.chart.chartDescription?.text = ""
-                self.chart.legend.enabled = false
-                self.chart.scaleYEnabled = false
-                self.chart.clipValuesToContentEnabled = true
-                self.chart.xAxis.labelPosition = .bottom
-                self.chart.xAxis.drawAxisLineEnabled = false
-                self.chart.xAxis.drawGridLinesEnabled = false
-                self.chart.xAxis.valueFormatter = self
-                self.chart.xAxis.labelFont = style.chartNodeXAxisFont
-                self.chart.xAxis.labelTextColor = style.chartNodeXAxisColor
-                self.chart.rightAxis.enabled = false
-                self.chart.leftAxis.drawAxisLineEnabled = false
-                self.chart.leftAxis.gridColor = style.chartNodeGridColor
-                self.chart.leftAxis.labelFont = style.chartNodeYAxisFont
-                self.chart.leftAxis.labelTextColor = style.chartNodeYAxisColor
-                self.chart.leftAxis.axisMaxLabels = 3
-                self.chart.doubleTapToZoomEnabled = false
-                
-                if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
-                    self.chart.leftAxis.labelCount = opt
-                }
-                self.chart.delegate = self
-                
-                let dataSet = LineChartDataSet(values: data, label: nil)
-                dataSet.lineWidth = 2.0
-                dataSet.circleRadius = 2.0
-                dataSet.drawCircleHoleEnabled = false
-                dataSet.drawCirclesEnabled = false
-                dataSet.drawValuesEnabled = false
-                dataSet.drawHorizontalHighlightIndicatorEnabled = false
-                dataSet.setColor(style.analyticsLineChartLineColor)
-                dataSet.mode = .horizontalBezier
-                var highlightColor = style.analyticsLineChartHightlightPositiveColor
-                if !positive {
-                    highlightColor = style.analyticsLineChartHightlightNegativeColor
-                }
-                dataSet.highlightColor = highlightColor
-                dataSet.highlightLineWidth = 1.0
-                
-                self.chart.data = LineChartData(dataSet: dataSet)
-                
-                return self.chart
-            }, didLoad: { (_) in
-                self.chartDidLoad?()
-            })
-        } else {
-            self.chartNode = SettingsProNode()
-        }
+        
+        self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
+            self.chart = LineChartView()
+            self.chart.chartDescription?.text = ""
+            self.chart.legend.enabled = false
+            self.chart.scaleYEnabled = false
+            self.chart.clipValuesToContentEnabled = true
+            self.chart.xAxis.labelPosition = .bottom
+            self.chart.xAxis.drawAxisLineEnabled = false
+            self.chart.xAxis.drawGridLinesEnabled = false
+            self.chart.xAxis.valueFormatter = self
+            self.chart.xAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
+            self.chart.xAxis.labelTextColor = UIColor.main
+            self.chart.rightAxis.enabled = false
+            self.chart.leftAxis.drawAxisLineEnabled = false
+            self.chart.leftAxis.gridColor = UIColor.main
+            self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
+            self.chart.leftAxis.labelTextColor = UIColor.main
+            self.chart.leftAxis.axisMaxLabels = 3
+            self.chart.doubleTapToZoomEnabled = false
+            
+            if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
+                self.chart.leftAxis.labelCount = opt
+            }
+            self.chart.delegate = self
+            
+            let dataSet = LineChartDataSet(values: data, label: nil)
+            dataSet.lineWidth = 2.0
+            dataSet.circleRadius = 2.0
+            dataSet.drawCircleHoleEnabled = false
+            dataSet.drawCirclesEnabled = false
+            dataSet.drawValuesEnabled = false
+            dataSet.drawHorizontalHighlightIndicatorEnabled = false
+            dataSet.setColor(UIColor.main)
+            dataSet.mode = .horizontalBezier
+            var highlightColor = UIColor.positive
+            if !positive {
+                highlightColor = UIColor.negative
+            }
+            dataSet.highlightColor = highlightColor
+            dataSet.highlightLineWidth = 1.0
+            
+            self.chart.data = LineChartData(dataSet: dataSet)
+            
+            return self.chart
+        }, didLoad: { (_) in
+            self.chartDidLoad?()
+        })
         
         // Accessibility
         self.titleNode.isAccessibilityElement = false
