@@ -26,7 +26,7 @@ class WebViewController: UIViewController {
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController!.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.gunmetal
+        self.navigationController?.navigationBar.tintColor = UIColor.main
         
         // set self
         self.view.backgroundColor = UIColor.white

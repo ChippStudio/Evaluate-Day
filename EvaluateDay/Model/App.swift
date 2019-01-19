@@ -57,7 +57,6 @@ class AppUsage: Object {
 }
 
 class Settings: Object {
-    @objc dynamic var themeRaw: Int = 0
     @objc dynamic var enableSync: Bool = true
     @objc dynamic var weekStart: Int = 2
     @objc dynamic var cameraRoll: Bool = true
@@ -69,17 +68,6 @@ class Settings: Object {
     @objc dynamic var passcodePromptBiometric: Bool = true
     @objc dynamic var passcodeDelayRaw: Int = 0
     
-    var theme: ThemeType {
-        set {
-            self.themeRaw = newValue.rawValue
-        }
-        get {
-            if let newTheme = ThemeType(rawValue: self.themeRaw) {
-                return newTheme
-            }
-            return .light
-        }
-    }
     var passcodeDelay: PasscodeDelay {
         set {
             self.passcodeDelayRaw = newValue.rawValue

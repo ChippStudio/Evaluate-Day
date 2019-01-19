@@ -263,7 +263,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if MFMailComposeViewController.canSendMail() {
             let mailView = MFMailComposeViewController()
             mailView.mailComposeDelegate = self
-            mailView.navigationBar.tintColor = Themes.manager.settingsStyle.safariTintColor
             mailView.setSubject(Localizations.Settings.Support.Mail.subject)
             var pro = 0
             if Database.manager.application.user.pro {
@@ -282,17 +281,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             let okAction = UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil)
             alert.addAction(okAction)
             
-            alert.view.tintColor = Themes.manager.settingsStyle.safariTintColor
-            alert.view.layoutIfNeeded()
             self.present(alert, animated: true) {
-                alert.view.tintColor = Themes.manager.settingsStyle.safariTintColor
             }
         }
     }
     
     func openURL(_ url: String) {
         let safari = SFSafariViewController(url: URL(string: url)!)
-        safari.preferredControlTintColor = Themes.manager.settingsStyle.safariTintColor
         safari.delegate = self
         self.present(safari, animated: true, completion: nil)
     }

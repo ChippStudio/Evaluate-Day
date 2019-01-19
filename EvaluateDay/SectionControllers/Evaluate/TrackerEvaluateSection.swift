@@ -47,7 +47,6 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        let style = Themes.manager.evaluateStyle
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {
             lock = true
@@ -109,7 +108,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
             
             if archived {
-                node.backgroundColor = style.cardArchiveColor
+                node.backgroundColor = UIColor.background
             }
             
             return node

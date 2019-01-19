@@ -376,12 +376,8 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
                 }
                 alert.addAction(cancelAction)
                 
-                alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-                alert.view.layoutIfNeeded()
-                
                 if loc == nil {
                     self.present(alert, animated: true) {
-                        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
                     }
                 } else {
                     CLGeocoder().reverseGeocodeLocation(loc!, completionHandler: { (places, _) in
@@ -401,7 +397,6 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
                             }
                             alert.message = message
                             self.present(alert, animated: true) {
-                                alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
                             }
                         }
                     })
@@ -633,10 +628,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
             alert.popoverPresentationController?.sourceView = self.view
         }
         
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
         self.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
         }
     }
     

@@ -542,7 +542,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         }
         
         let imageBackgroundView = UIView()
-        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+        imageBackgroundView.backgroundColor = UIColor.background
         
         let stack = UIStackView(arrangedSubviews: nodeImageViews)
         stack.axis = .vertical

@@ -156,10 +156,9 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     
     // MARK: - Private func
     private func viewForTextView() -> UIView {
-        let style = Themes.manager.topViewControllerStyle
         
         let keyboardView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 140.0, height: 44.0))
-        keyboardView.backgroundColor = style.topViewColor
+        keyboardView.backgroundColor = UIColor.background
         
         let cancelButton = UIButton()
         let saveButton = UIButton()

@@ -382,7 +382,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
     
     func openURL(_ url: String) {
         let safari = SFSafariViewController(url: URL(string: url)!)
-        safari.preferredControlTintColor = Themes.manager.settingsStyle.safariTintColor
         safari.delegate = self
         self.present(safari, animated: true, completion: nil)
     }

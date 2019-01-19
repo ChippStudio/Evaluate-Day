@@ -36,3 +36,11 @@ enum ShortcutItems: String {
     case new = "shortcut-newCard"
     case activity = "shortcut-Activity"
 }
+
+enum AnalyticsChartNodeOptionsKey: String {
+    case dateFormat
+    case valueSubString
+    case uppercaseTitle
+    case yLineNumber
+    case positive
+}

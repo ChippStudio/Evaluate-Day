@@ -291,7 +291,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         }
         
         let imageBackgroundView = UIView()
-        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+        imageBackgroundView.backgroundColor = UIColor.background
         
         let stack = UIStackView(arrangedSubviews: nodeImageViews)
         stack.axis = .vertical

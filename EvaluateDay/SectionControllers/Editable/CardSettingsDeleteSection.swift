@@ -177,11 +177,7 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
                 alert.popoverPresentationController?.sourceView = node.view
             }
         }
-        
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
         self.viewController!.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
         }
     }
     
@@ -213,11 +209,7 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
                 alert.popoverPresentationController?.sourceView = node.view
             }
         }
-        
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
         self.viewController!.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
         }
     }
     
@@ -249,11 +241,8 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
                 alert.popoverPresentationController?.sourceView = node.view
             }
         }
-        
-        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-        alert.view.layoutIfNeeded()
+
         self.viewController!.present(alert, animated: true) {
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
         }
     }
 }

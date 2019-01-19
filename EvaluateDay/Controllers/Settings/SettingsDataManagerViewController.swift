@@ -169,10 +169,7 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
                 alert.popoverPresentationController?.sourceView = cell
             }
             
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-            alert.view.layoutIfNeeded()
             self.present(alert, animated: true) {
-                alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
             }
         case .deleteLocal:
             let alert = UIAlertController(title: Localizations.General.sureQuestion, message: Localizations.Settings.Sync.Data.Local.deleteDescription, preferredStyle: .actionSheet)
@@ -211,11 +208,7 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
                 alert.popoverPresentationController?.sourceRect = cell.textLabel!.frame
                 alert.popoverPresentationController?.sourceView = cell
             }
-            
-            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-            alert.view.layoutIfNeeded()
             self.present(alert, animated: true) {
-                alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
             }
         case .export:
             // Export all data

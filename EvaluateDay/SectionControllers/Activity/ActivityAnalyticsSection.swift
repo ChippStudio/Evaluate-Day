@@ -168,7 +168,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
         let nodeImageViews = [UIImageView(image: node.view.snapshot)]
         
         let imageBackgroundView = UIView()
-        imageBackgroundView.backgroundColor = Themes.manager.analyticalStyle.background
+        imageBackgroundView.backgroundColor = UIColor.background
         
         let stack = UIStackView(arrangedSubviews: nodeImageViews)
         stack.axis = .vertical

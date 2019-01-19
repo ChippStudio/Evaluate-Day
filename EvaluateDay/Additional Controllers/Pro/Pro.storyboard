@@ -20,68 +20,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="w08-Iq-ZFV"/>
                     </view>
-                    <connections>
-                        <segue destination="WN0-x4-rfH" kind="show" identifier="showDetails" id="LQw-Gk-6Yr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-7Z-jvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="150" y="143"/>
-        </scene>
-        <!--Pro More View Controller-->
-        <scene sceneID="dvf-vP-6gf">
-            <objects>
-                <viewController storyboardIdentifier="proMoreViewController" id="WN0-x4-rfH" customClass="ProMoreViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kps-z0-wZp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jw7-DJ-TU9">
-                                <rect key="frame" x="0.0" y="772" width="414" height="90"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk2-Ej-XUc">
-                                <rect key="frame" x="20" y="792" width="374" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HE-Z5-3Nz">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
-                                        <state key="normal" title="[Button]"/>
-                                        <connections>
-                                            <action selector="subscriptionButtonAction:" destination="WN0-x4-rfH" eventType="touchUpInside" id="AwL-Ym-MwV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6HE-Z5-3Nz" secondAttribute="trailing" id="0ME-3T-QiK"/>
-                                    <constraint firstItem="6HE-Z5-3Nz" firstAttribute="leading" secondItem="Vk2-Ej-XUc" secondAttribute="leading" id="BkJ-Ke-Gfo"/>
-                                    <constraint firstAttribute="height" constant="50" id="XPh-H3-rzC"/>
-                                    <constraint firstItem="6HE-Z5-3Nz" firstAttribute="top" secondItem="Vk2-Ej-XUc" secondAttribute="top" id="cI6-f2-vlT"/>
-                                    <constraint firstAttribute="bottom" secondItem="6HE-Z5-3Nz" secondAttribute="bottom" id="oXc-Tu-HXE"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Vk2-Ej-XUc" firstAttribute="leading" secondItem="jw7-DJ-TU9" secondAttribute="leading" constant="20" id="3rv-mp-z30"/>
-                            <constraint firstItem="jw7-DJ-TU9" firstAttribute="leading" secondItem="U28-pd-dTj" secondAttribute="leading" id="NRU-yF-s1c"/>
-                            <constraint firstItem="Vk2-Ej-XUc" firstAttribute="trailing" secondItem="jw7-DJ-TU9" secondAttribute="trailing" constant="-20" id="O2n-74-mpR"/>
-                            <constraint firstItem="jw7-DJ-TU9" firstAttribute="trailing" secondItem="U28-pd-dTj" secondAttribute="trailing" id="TG5-qT-PlI"/>
-                            <constraint firstItem="Vk2-Ej-XUc" firstAttribute="top" secondItem="jw7-DJ-TU9" secondAttribute="top" constant="20" id="ekZ-NQ-Bki"/>
-                            <constraint firstItem="jw7-DJ-TU9" firstAttribute="bottom" secondItem="U28-pd-dTj" secondAttribute="bottom" id="tmi-69-iNJ"/>
-                            <constraint firstItem="Vk2-Ej-XUc" firstAttribute="bottom" secondItem="jw7-DJ-TU9" secondAttribute="bottom" constant="-20" id="uUT-IK-cP8"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="U28-pd-dTj"/>
-                    </view>
-                    <connections>
-                        <outlet property="annualyButton" destination="6HE-Z5-3Nz" id="Hto-Lv-J2f"/>
-                        <outlet property="annualyButtonCover" destination="Vk2-Ej-XUc" id="4RH-en-yvq"/>
-                        <outlet property="cover" destination="jw7-DJ-TU9" id="3Gh-DJ-uS0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hIp-bw-ddq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1177" y="143"/>
         </scene>
     </scenes>
 </document>

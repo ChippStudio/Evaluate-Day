@@ -1,5 +1,5 @@
 //
-//  ProViewController.swift
+//  OnboardingViewController.swift
 //  EvaluateDay
 //
 //  Created by Konstantin Tsistjakov on 19/01/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProViewController: UIViewController {
+class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

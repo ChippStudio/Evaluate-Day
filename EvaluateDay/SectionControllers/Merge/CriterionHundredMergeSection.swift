@@ -91,10 +91,7 @@ class CriterionHundredMergeSection: ListSectionController, ASSectionController, 
                         let okAction = UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil)
                         alert.addAction(okAction)
                         
-                        alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
-                        alert.view.layoutIfNeeded()
                         self.viewController?.present(alert, animated: true) {
-                            alert.view.tintColor = Themes.manager.evaluateStyle.actionSheetTintColor
                         }
                     } else {
                         // MARK: - Merge Data

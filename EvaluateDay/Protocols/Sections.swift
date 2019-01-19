@@ -21,7 +21,6 @@ protocol EvaluableSection {
     // MARK: - Handlers
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
 }
-protocol EvaluableSectionStyle: DashboardsNodeStyle, DashboardsNoneNodeStyle { }
 
 // MARK: - Analytical
 protocol AnalyticalSection {
@@ -31,7 +30,6 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle { }
 
 // MARK: - Editable
 protocol EditableSection {
@@ -42,7 +40,6 @@ protocol EditableSection {
     var setTextHandler: ((_ title: String, _ property: String, _ oldText: String?) -> Void)? { get set }
     var setBoolHandler: ((_ isOn: Bool, _ property: String, _ oldIsOn: Bool) -> Void)? { get set }
 }
-protocol EditableSectionStyle { }
 
 // MARK: - Merge
 protocol MergeSection {
@@ -52,5 +49,3 @@ protocol MergeSection {
     // MARK: - Handlers
     var mergeDone: (() -> Void)? { get set }
 }
-
-protocol MergeSectionStyle { }
