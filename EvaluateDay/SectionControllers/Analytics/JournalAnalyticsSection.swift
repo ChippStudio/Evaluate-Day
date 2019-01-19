@@ -16,7 +16,6 @@ import Charts
 private enum AnalyticsNodeType {
     case title
     case information
-    case time
     case calendar
     case map
     case bar
@@ -45,7 +44,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.time)
         self.nodes.append(.map)
         self.nodes.append(.calendar)
         self.nodes.append(.viewAll)
@@ -153,11 +151,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
-        case .time:
-            return {
-                let node = AnalyticsTimeTravelNode(style: style)
-                return node
-            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.Analytics.Phrase.Calendar.title.uppercased(), isPro: isPro)
@@ -244,8 +237,8 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -265,10 +258,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             if let nav = self.viewController?.parent as? UINavigationController {
                 nav.pushViewController(controller, animated: true)
             }
-        } else if self.nodes[index] == .time {
-            let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
-            controller.card = self.card
-            self.viewController!.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .calendar {
             if !Store.current.isPro {
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!

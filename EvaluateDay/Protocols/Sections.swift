@@ -31,7 +31,7 @@ protocol AnalyticalSection {
     // MARK: - Handlers
     var exportHandler: ((_ indexPath: IndexPath, _ index: Int, _ item: Any) -> Void)? { get set }
 }
-protocol AnalyticalSectionStyle: AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle, AnalyticsTimeTravelNodeStyle { }
+protocol AnalyticalSectionStyle: AnalyticsLineChartNodeStyle, AnalyticsBarChartNodeStyle { }
 
 // MARK: - Editable
 protocol EditableSection {

@@ -78,8 +78,8 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - collectionViewOffset, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - collectionViewOffset, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     
@@ -104,8 +104,6 @@ class HealthEvaluateSection: ListSectionController, ASSectionController, Evaluab
         let node: ASCellNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
-        } else if let controller = self.viewController as? TimeViewController {
             node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
         } else {
             return

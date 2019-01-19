@@ -11,7 +11,6 @@ import UIKit
 
 // MARK: - Constants
 let maxCollectionWidth: CGFloat = 500.0
-let collectionViewOffset: CGFloat = 20.0
 let collectionViewWidthDevider: CGFloat = 2/3
 
 // MARK: - In App URLs
@@ -29,7 +28,7 @@ let appSiteURLString = "https://evaluateday.com"
 let feedbackMail = "support@evaluateday.com"
 
 // MARK: - PRO
-let proPlaceholder = "🇪🇪❤️\n👆🔒"
+let proPlaceholder = "🇪🇪❤️👆🔒"
 
 // MARK: - Navigation item
 let largeTitleFontSize: CGFloat = 28.0

@@ -224,9 +224,6 @@
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
 		B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA062211D66D500A9FCFB /* Share.storyboard */; };
 		B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA064211D66E100A9FCFB /* ShareViewController.swift */; };
-		B59DA067212018B000A9FCFB /* AnalyticsTimeTravelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */; };
-		B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA06921201F6300A9FCFB /* Time.storyboard */; };
-		B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06B21201F7800A9FCFB /* TimeViewController.swift */; };
 		B59DA06E212064C100A9FCFB /* SettingsIconSelectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */; };
 		B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */; };
 		B59DA0732120B91000A9FCFB /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA0722120B91000A9FCFB /* Photo.storyboard */; };
@@ -244,9 +241,7 @@
 		B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */; };
 		B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */; };
 		B5A0CFF51FB1A891002B1636 /* LightBottomControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF41FB1A891002B1636 /* LightBottomControllerTheme.swift */; };
-		B5A0CFFB1FB1CD91002B1636 /* CriterionHundredListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */; };
 		B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */; };
-		B5A0CFFF1FB1CF3F002B1636 /* ActionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */; };
 		B5A0D0011FB2C2AA002B1636 /* LightEvaluateTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0D0001FB2C2AA002B1636 /* LightEvaluateTheme.swift */; };
 		B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0D0031FB2C444002B1636 /* ColorEvaluateSection.swift */; };
 		B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0D0051FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift */; };
@@ -266,7 +261,6 @@
 		B5A1B0E61FBACF0B003D9E81 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */; };
 		B5A226BD20FCAE530060538F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B5A226BF20FCAE530060538F /* Localizable.stringsdict */; };
 		B5A226C420FCB5B60060538F /* Store+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A226C320FCB5B60060538F /* Store+Extensions.swift */; };
-		B5A2619B1FBBFEA1008EB017 /* UnarchiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */; };
 		B5A5915021D8D6720026FD84 /* DateSelectorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5914F21D8D6720026FD84 /* DateSelectorNode.swift */; };
 		B5A5915321D8D6C40026FD84 /* DateShowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5915221D8D6C40026FD84 /* DateShowNode.swift */; };
 		B5A5915521D8D6D30026FD84 /* DateButtonsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5915421D8D6D30026FD84 /* DateButtonsNode.swift */; };
@@ -396,7 +390,6 @@
 		B5D854CE1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854CD1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift */; };
 		B5D854D01FCEB6AE00BB4E14 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854CF1FCEB6AE00BB4E14 /* Enums.swift */; };
 		B5D854D21FCEE4B000BB4E14 /* SettingsPasscodeDelayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854D11FCEE4B000BB4E14 /* SettingsPasscodeDelayViewController.swift */; };
-		B5D854D41FCF08C300BB4E14 /* ThemeImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */; };
 		B5D854DD1FCFF91F00BB4E14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D854DC1FCFF91F00BB4E14 /* StoreKit.framework */; };
 		B5D854DF1FCFFC4100BB4E14 /* SettingsNewNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854DE1FCFFC4100BB4E14 /* SettingsNewNotificationViewController.swift */; };
 		B5D854E21FD0159300BB4E14 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D854E11FD0159300BB4E14 /* RepeatViewController.swift */; };
@@ -431,7 +424,6 @@
 		B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E75E891FA0A28100DBF6D5 /* Database.swift */; };
 		B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7721B1FA07E46002FA03F /* Sources.swift */; };
 		B5E7721E1FA07E59002FA03F /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7721D1FA07E59002FA03F /* Source.swift */; };
-		B5E772221FA0819D002FA03F /* SourceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E772211FA0819D002FA03F /* SourceNode.swift */; };
 		B5E7722B1FA09EEB002FA03F /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7722A1FA09EEB002FA03F /* Themes.swift */; };
 		B5EC883E2010BE630056C1C7 /* PhraseEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC883D2010BE630056C1C7 /* PhraseEditableSection.swift */; };
 		B5EC88442010C21E0056C1C7 /* PhraseEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */; };
@@ -694,9 +686,6 @@
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		B59DA062211D66D500A9FCFB /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		B59DA064211D66E100A9FCFB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTimeTravelNode.swift; sourceTree = "<group>"; };
-		B59DA06921201F6300A9FCFB /* Time.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Time.storyboard; sourceTree = "<group>"; };
-		B59DA06B21201F7800A9FCFB /* TimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIconSelectNode.swift; sourceTree = "<group>"; };
 		B59DA0702120B8F200A9FCFB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		B59DA0722120B91000A9FCFB /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
@@ -714,9 +703,7 @@
 		B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderBottomViewController.swift; sourceTree = "<group>"; };
 		B5A0CFF41FB1A891002B1636 /* LightBottomControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightBottomControllerTheme.swift; sourceTree = "<group>"; };
-		B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredListNode.swift; sourceTree = "<group>"; };
 		B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionEvaluateNode.swift; sourceTree = "<group>"; };
-		B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsNode.swift; sourceTree = "<group>"; };
 		B5A0D0001FB2C2AA002B1636 /* LightEvaluateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightEvaluateTheme.swift; sourceTree = "<group>"; };
 		B5A0D0031FB2C444002B1636 /* ColorEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEvaluateSection.swift; sourceTree = "<group>"; };
 		B5A0D0051FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEvaluateSection.swift; sourceTree = "<group>"; };
@@ -739,7 +726,6 @@
 		B5A226CB20FCFC370060538F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226CC20FCFC3A0060538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B5A226CD20FCFC3D0060538F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveNode.swift; sourceTree = "<group>"; };
 		B5A5914F21D8D6720026FD84 /* DateSelectorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorNode.swift; sourceTree = "<group>"; };
 		B5A5915221D8D6C40026FD84 /* DateShowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShowNode.swift; sourceTree = "<group>"; };
 		B5A5915421D8D6D30026FD84 /* DateButtonsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateButtonsNode.swift; sourceTree = "<group>"; };
@@ -872,7 +858,6 @@
 		B5D854CD1FCDAB6B00BB4E14 /* LightPasscodeControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPasscodeControllerTheme.swift; sourceTree = "<group>"; };
 		B5D854CF1FCEB6AE00BB4E14 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		B5D854D11FCEE4B000BB4E14 /* SettingsPasscodeDelayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPasscodeDelayViewController.swift; sourceTree = "<group>"; };
-		B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeImageNode.swift; sourceTree = "<group>"; };
 		B5D854DC1FCFF91F00BB4E14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B5D854DE1FCFFC4100BB4E14 /* SettingsNewNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNewNotificationViewController.swift; sourceTree = "<group>"; };
 		B5D854E11FD0159300BB4E14 /* RepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
@@ -907,7 +892,6 @@
 		B5E75E891FA0A28100DBF6D5 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B5E7721B1FA07E46002FA03F /* Sources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources.swift; sourceTree = "<group>"; };
 		B5E7721D1FA07E59002FA03F /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		B5E772211FA0819D002FA03F /* SourceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNode.swift; sourceTree = "<group>"; };
 		B5E7722A1FA09EEB002FA03F /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		B5EC883D2010BE630056C1C7 /* PhraseEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEditableSection.swift; sourceTree = "<group>"; };
 		B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEvaluateNode.swift; sourceTree = "<group>"; };
@@ -1318,15 +1302,6 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
-		B59DA06821201F5800A9FCFB /* Time */ = {
-			isa = PBXGroup;
-			children = (
-				B59DA06921201F6300A9FCFB /* Time.storyboard */,
-				B59DA06B21201F7800A9FCFB /* TimeViewController.swift */,
-			);
-			path = Time;
-			sourceTree = "<group>";
-		};
 		B59DA06F2120B8C900A9FCFB /* PhotoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1362,7 +1337,6 @@
 				B516CA7421EF96ED0002915F /* Collection */,
 				B539783C214F915E002EAAFA /* Health */,
 				B59DA06F2120B8C900A9FCFB /* PhotoView */,
-				B59DA06821201F5800A9FCFB /* Time */,
 				B59DA061211D66C400A9FCFB /* Share */,
 				B55464E22029CEA900923CE3 /* EnriesList */,
 				B5693EF320246EDC00B8879C /* Entry */,
@@ -1482,6 +1456,8 @@
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
 				B516CA6221EE1FDB0002915F /* SpaceNode.swift */,
 				B54535DD21DD0123005A93CE /* ShareNode.swift */,
+				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
+				B55464CC2025974400923CE3 /* PhotoNode.swift */,
 				B516CA6821EF323E0002915F /* CollectionListNode.swift */,
 				B5B7EE3D20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift */,
 				B516CA6421EE31F70002915F /* EvaluateEmptyCardNode.swift */,
@@ -1491,6 +1467,7 @@
 				B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */,
 				B57B0642201B170300C4E182 /* GoalEvaluateNode.swift */,
 				B5AB1E912018CDD100BB1A64 /* ListEvaluateNode.swift */,
+				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
 				B5EC886620134A840056C1C7 /* CounterEvaluateNode.swift */,
 				B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */,
 				B55464D2202743FF00923CE3 /* JournalEntryNode.swift */,
@@ -1533,6 +1510,7 @@
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
 				B5970F1A21F1EEEC000B0BAA /* DangerNode.swift */,
+				B5DE2CA01FFF969300EFBCA5 /* BigDescriptionNode.swift */,
 				B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */,
 				B5F597731FBD70B40098A071 /* AnalyticsColorStatisticNode.swift */,
 				B5257D6A1FEA6E4300AC54DE /* AnalyticsExportNode.swift */,
@@ -1835,25 +1813,15 @@
 		B5C7573E1F9F32850032199E /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				B5DED79E1FCB0578002DD956 /* UpdateNode.swift */,
-				B5A0CFFA1FB1CD91002B1636 /* CriterionHundredListNode.swift */,
-				B5AB1E982019DA8300BB1A64 /* ListItemEvaluateNode.swift */,
-				B5A0CFFE1FB1CF3F002B1636 /* ActionsNode.swift */,
-				B55464CC2025974400923CE3 /* PhotoNode.swift */,
 				B55464D02025C48300923CE3 /* TextNode.swift */,
-				B5A2619A1FBBFEA1008EB017 /* UnarchiveNode.swift */,
-				B5E772211FA0819D002FA03F /* SourceNode.swift */,
-				B5DE2CA01FFF969300EFBCA5 /* BigDescriptionNode.swift */,
 				B59B4C761FD6B21D00E9A778 /* InfoNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
-				B59DA066212018B000A9FCFB /* AnalyticsTimeTravelNode.swift */,
 				B587D6B61FB6B10B006D62C1 /* SettingsBooleanNode.swift */,
 				B56218091FD56A6C0061AC70 /* SettingsProDescriptionNode.swift */,
 				B5257D3E1FE8552D00AC54DE /* SettingsProDescriptionMoreNode.swift */,
 				B59DA06D212064C100A9FCFB /* SettingsIconSelectNode.swift */,
 				B56218111FD5AC7A0061AC70 /* PrivacyAndEulaNode.swift */,
-				B5D854D31FCF08C300BB4E14 /* ThemeImageNode.swift */,
 				B584E0DA1FE2A104008093D5 /* WelcomeImageNode.swift */,
 				B584E0DC1FE2A5BD008093D5 /* WelcomeBecomeProNode.swift */,
 				B584E0DE1FE2A5FB008093D5 /* WelcomeLastSlideNode.swift */,
@@ -2181,7 +2149,6 @@
 				B5693EF520246EE900B8879C /* Entry.storyboard in Resources */,
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
-				B59DA06A21201F6300A9FCFB /* Time.storyboard in Resources */,
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
 				B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
@@ -2442,7 +2409,6 @@
 				B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */,
 				B5AB1E8C2018CB1300BB1A64 /* ListEvaluateSection.swift in Sources */,
 				B5D3FB8F213E3D4B004DFF78 /* LIghtDashboardSettingsTheme.swift in Sources */,
-				B5E772221FA0819D002FA03F /* SourceNode.swift in Sources */,
 				B5B7EE3E20108A2E00BCD41A /* CriterionThreeEvaluateNode.swift in Sources */,
 				B5BD3B1E2007676F0075C75F /* CriterionTenCard+Extensions.swift in Sources */,
 				B560DB41211B580800378AD8 /* CardSettingsDeleteSection.swift in Sources */,
@@ -2460,7 +2426,6 @@
 				B5397842214F923E002EAAFA /* HealthSource.swift in Sources */,
 				B5DED79F1FCB0578002DD956 /* UpdateNode.swift in Sources */,
 				B53977D8214A93F6002EAAFA /* HealthValue.swift in Sources */,
-				B5D854D41FCF08C300BB4E14 /* ThemeImageNode.swift in Sources */,
 				B562180A1FD56A6C0061AC70 /* SettingsProButtonNode.swift in Sources */,
 				B5BD3B422009116C0075C75F /* CheckInDataEvaluateNode.swift in Sources */,
 				B562180B1FD56A6C0061AC70 /* SettingsProDescriptionNode.swift in Sources */,
@@ -2564,7 +2529,6 @@
 				B55464E62029CED200923CE3 /* EntriesListViewController.swift in Sources */,
 				B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */,
 				B5257D391FE7C56000AC54DE /* WelcomePermissionButtonNode.swift in Sources */,
-				B59DA06C21201F7800A9FCFB /* TimeViewController.swift in Sources */,
 				B5899B1021D7B2CE00CF123B /* CollectionViewController.swift in Sources */,
 				B5257D601FE93FC800AC54DE /* DarkEvaluateTheme.swift in Sources */,
 				B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */,
@@ -2634,7 +2598,6 @@
 				B5D3FB95213E3DFB004DFF78 /* BlackDashboardSettingsTheme.swift in Sources */,
 				B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */,
 				B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */,
-				B5A2619B1FBBFEA1008EB017 /* UnarchiveNode.swift in Sources */,
 				B55464D92028607500923CE3 /* JournalMergeSection.swift in Sources */,
 				B5B27E891F9DC33200CB9121 /* EvaluateViewController.swift in Sources */,
 				B5A1B0DE1FB9ADF0003D9E81 /* Transition.swift in Sources */,
@@ -2651,14 +2614,12 @@
 				B5AB1E992019DA8300BB1A64 /* ListItemEvaluateNode.swift in Sources */,
 				B587D6B51FB5D157006D62C1 /* SettingsMoreNode.swift in Sources */,
 				B5729EDB2003935D00481D6F /* NextButton.swift in Sources */,
-				B5A0CFFB1FB1CD91002B1636 /* CriterionHundredListNode.swift in Sources */,
 				B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */,
 				B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */,
 				B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */,
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,
 				B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */,
 				B55D326A2074F67300BD1E75 /* OrangeAnalyticalTheme.swift in Sources */,
-				B5A0CFFF1FB1CF3F002B1636 /* ActionsNode.swift in Sources */,
 				B5A0CFE71FB0210D002B1636 /* LightTopControllerTheme.swift in Sources */,
 				B5D854E21FD0159300BB4E14 /* RepeatViewController.swift in Sources */,
 				B5899B0721D7AD2800CF123B /* UniversalSplitViewController.swift in Sources */,
@@ -2754,7 +2715,6 @@
 				B52D26DF20174A0E00332D0A /* HabitCard+Extensions.swift in Sources */,
 				B560DB3F211B575C00378AD8 /* CardSettingsDeleteObject.swift in Sources */,
 				B5257D441FE91C1300AC54DE /* WebViewController.swift in Sources */,
-				B59DA067212018B000A9FCFB /* AnalyticsTimeTravelNode.swift in Sources */,
 				B587D6B31FB59CA2006D62C1 /* LightSettingsTheme.swift in Sources */,
 				B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */,
 				B53E5F4B2056943100B50B60 /* LightActivityControllerTheme.swift in Sources */,

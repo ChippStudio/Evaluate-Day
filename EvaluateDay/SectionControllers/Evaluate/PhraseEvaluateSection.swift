@@ -159,8 +159,6 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         
         if let controller = self.viewController as? EvaluateViewController {
             node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
-        } else if let controller = self.viewController as? TimeViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
         } else {
             return
         }

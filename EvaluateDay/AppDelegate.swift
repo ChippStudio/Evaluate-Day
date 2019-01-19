@@ -298,11 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 if topController as? PasscodeViewController == nil {
                     // Open Evaluate day controller
-                    if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.actionCardID!).first {
-                        let controller = UIStoryboard(name: Storyboards.time.rawValue, bundle: nil).instantiateInitialViewController() as! TimeViewController
-                        controller.card = card
-                        topController.present(controller, animated: true, completion: nil)
-                    }
+                    
                 } else {
                     return
                 }

@@ -51,7 +51,7 @@ protocol AnalyticalStyle: AnalyticalSectionStyle {
     var tableNodeSeparatorColor: UIColor { get }
 }
 
-protocol NewCardStyle: SourceNodeStyle {
+protocol NewCardStyle {
     var background: UIColor { get }
     var barColor: UIColor { get }
     var barTint: UIColor { get }
