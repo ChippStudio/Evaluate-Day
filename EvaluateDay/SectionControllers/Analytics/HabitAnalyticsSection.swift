@@ -72,11 +72,11 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
             let habitCard = self.card.data as! HabitCard
             self.data = [(title: String, data: String)]()
             
-            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
             
             if isPro {
-                self.data!.append((title: Localizations.Analytics.Habit.marks + ":", data: "\(habitCard.values.count)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(self.groupedData.count)"))
+                self.data!.append((title: Localizations.Analytics.Habit.marks, data: "\(habitCard.values.count)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(self.groupedData.count)"))
                 
                 var maximum = 0
                 var minimum = 1000000000
@@ -94,16 +94,16 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 }
                 
                 if maximum != 0 && minimum != 1000000000 {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(self.groupedData.count))"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+                    self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(self.groupedData.count))"))
                 }
             } else {
-                self.data!.append((title: Localizations.Analytics.Habit.marks + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Habit.marks, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.days, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
             }
             
             return {

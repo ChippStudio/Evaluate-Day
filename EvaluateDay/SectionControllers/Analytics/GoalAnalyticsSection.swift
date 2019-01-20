@@ -66,8 +66,8 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
         case .information:
             let goalCard = self.card.data as! GoalCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(goalCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(goalCard.values.count)"))
             
             if isPro {
                 var minimum: Double = 3
@@ -88,17 +88,17 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
                 if goalCard.isSum {
                     self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + goalCard.startValue)"))
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(goalCard.values.count))"))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(goalCard.values.count))"))
             } else {
                 self.data!.append((title: Localizations.CardSettings.Goal.goal, data: proPlaceholder))
                 if goalCard.isSum {
                     self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
             }
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)

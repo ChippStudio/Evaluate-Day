@@ -93,8 +93,8 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let journalCard = self.card.data as! JournalCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.Analytics.Statistics.entries + ":", data: "\(journalCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.entries, data: "\(journalCard.values.count)"))
             
             if isPro {
                 var max: CLLocationDistance = 0.0
@@ -129,18 +129,18 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 
                 if maxString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: maxString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
                 }
                 if minString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: minString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
                 }
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: "\(sum)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: "\(maxCh)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: "\(minCh)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: String(format: "%.2f", Double(sum)/Double(journalCard.values.count))))
             } else {
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: proPlaceholder))

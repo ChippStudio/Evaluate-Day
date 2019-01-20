@@ -83,20 +83,20 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                     sum += c
                 }
                 average = Double(sum) / Double(phraseCard.values.count)
-                self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(phraseCard.values.count)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(max)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(min)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(average)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.sum + ":", data: "\(sum)"))
+                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(phraseCard.values.count)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(max)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(min)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(average)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum)"))
             } else {
                 // Set statistics information
-                self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.sum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.Analytics.Statistics.days, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
             }
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)

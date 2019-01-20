@@ -66,8 +66,8 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let counterCard = self.card.data as! CounterCard
             self.data = [(title: String, data: String)]()
-            self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-            self.data!.append((title: Localizations.Analytics.Statistics.days + ":", data: "\(counterCard.values.count)"))
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(counterCard.values.count)"))
             
             if isPro {
                 var minimum: Double = 3
@@ -86,16 +86,16 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                 if counterCard.isSum {
                     self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + counterCard.startValue)"))
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: "\(maximum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: "\(minimum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: "\(Float(sum)/Float(counterCard.values.count))"))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(counterCard.values.count))"))
             } else {
                 if counterCard.isSum {
                     self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
             }
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)

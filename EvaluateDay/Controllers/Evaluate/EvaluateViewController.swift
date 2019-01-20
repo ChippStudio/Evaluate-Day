@@ -13,7 +13,7 @@ import RealmSwift
 import Branch
 import StoreKit
 
-class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewControllerPreviewingDelegate, DateSectionProtocol {
+class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewControllerPreviewingDelegate, DateSectionProtocol, AnalyticsPreviewDelegate {
     
     // MARK: - UI
     var newCardButton: UIBarButtonItem!
@@ -311,16 +311,50 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         
         if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
             previewingContext.sourceRect = targetCell.frame
-            let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
-            settings.card = section.card
-            return settings
+            let analyticsPreview = UIStoryboard(name: Storyboards.analyticsPreview.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsPreviewViewController
+            analyticsPreview.preferredContentSize = CGSize(width: 0.0, height: 300.0)
+            analyticsPreview.card = section.card
+            analyticsPreview.delegate = self
+            return analyticsPreview
         }
         
         return nil
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.universalSplitController?.pushSideViewController(viewControllerToCommit)
+        if let preview = viewControllerToCommit as? AnalyticsPreviewViewController {
+            let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
+            analytics.card = preview.card
+            self.universalSplitController?.pushSideViewController(analytics)
+        }
+    }
+    
+    // MARK: - AnalyticsPreviewDelegate
+    func analyticsPreview(controller: AnalyticsPreviewViewController, didSelect action: UIPreviewAction, for previewedController: UIViewController) {
+        switch action.title {
+        case Localizations.General.Action.analytics:
+            let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
+            analytics.card = controller.card
+            self.universalSplitController?.pushSideViewController(analytics)
+        case Localizations.General.edit:
+            let edit = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
+            edit.card = controller.card
+            self.universalSplitController?.pushSideViewController(edit)
+        case Localizations.CardMerge.action:
+            let merge = UIStoryboard(name: Storyboards.cardMerge.rawValue, bundle: nil).instantiateInitialViewController() as! CardMergeViewController
+            merge.card = controller.card
+            self.universalSplitController?.pushSideViewController(merge)
+        case Localizations.General.archive:
+            try! Database.manager.data.write {
+                controller.card.archived = true
+            }
+        case Localizations.General.unarchive:
+            try! Database.manager.data.write {
+                controller.card.archived = false
+            }
+        default:
+            break
+        }
     }
     
     // MARK: - Actions

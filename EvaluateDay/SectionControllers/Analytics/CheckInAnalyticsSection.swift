@@ -86,8 +86,8 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             let checkInCard = self.card.data as! CheckInCard
             self.data = [(title: String, data: String)]()
             if isPro {
-                self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.checkins + ":", data: "\(checkInCard.values.count)"))
+                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: "\(checkInCard.values.count)"))
                 
                 var max: CLLocationDistance = 0.0
                 var min: CLLocationDistance = 50000000.0
@@ -107,16 +107,16 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 
                 if maxString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: maxString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
                 }
                 if minString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: minString!))
+                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
                 }
             } else {
-                self.data!.append((title: Localizations.General.createDate + ":", data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.checkins + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum + ":", data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum + ":", data: proPlaceholder))
+                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
             }
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
