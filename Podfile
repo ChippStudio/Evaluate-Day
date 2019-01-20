@@ -8,7 +8,6 @@ target 'EvaluateDay' do
 
   pod 'SnapKit'
   pod 'RealmSwift'
-  pod 'RxSwift', '~> 4.0'
   pod 'Texture'
   pod 'SwiftyJSON'
   pod 'Alamofire', '~> 4.5'

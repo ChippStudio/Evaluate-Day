@@ -36,6 +36,17 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
         self.collectionNode.accessibilityIdentifier = "AnalyticsCollection"
         self.view.addSubnode(self.collectionNode)
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.view.safeAreaLayoutGuide)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            } else {
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+        }
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
@@ -58,12 +69,6 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.collectionNode.frame = self.view.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {

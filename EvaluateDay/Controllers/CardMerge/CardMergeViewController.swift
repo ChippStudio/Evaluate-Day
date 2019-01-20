@@ -30,6 +30,17 @@ class CardMergeViewController: UIViewController, ListAdapterDataSource {
         self.collectionNode = ASCollectionNode(collectionViewLayout: UICollectionViewFlowLayout())
         self.collectionNode.view.alwaysBounceVertical = true
         self.view.addSubnode(self.collectionNode)
+        self.collectionNode.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.view.safeAreaLayoutGuide)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            } else {
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+        }
         
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
@@ -62,14 +73,6 @@ class CardMergeViewController: UIViewController, ListAdapterDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.traitCollection.userInterfaceIdiom == .pad && self.view.frame.size.width >= maxCollectionWidth {
-            self.collectionNode.frame = CGRect(x: self.view.frame.size.width / 2 - maxCollectionWidth / 2, y: 0.0, width: maxCollectionWidth, height: self.view.frame.size.height)
-        } else {
-            self.collectionNode.frame = self.view.bounds
-        }
     }
     
     // MARK: - ListAdapterDataSource

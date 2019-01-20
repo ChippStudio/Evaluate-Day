@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-import RxSwift
 import Photos
 import UserNotifications
 
@@ -24,7 +23,7 @@ class Permissions: NSObject {
     var notificationStatus = UNAuthorizationStatus.notDetermined
     
     // MARK: - Variable
-    var currentLocation: Variable<CLLocation?> = Variable(nil)
+    var currentLocation: CLLocation?
     private var locationAutorizationCompletion: (() -> Void)?
     
     // MARK: - Private
@@ -81,10 +80,10 @@ class Permissions: NSObject {
     }
     
     func distanceFrom(location: CLLocation?) -> CLLocationDistance? {
-        if currentLocation.value == nil || location == nil {
+        if currentLocation == nil || location == nil {
             return nil
         }
-        return currentLocation.value!.distance(from: location!)
+        return currentLocation!.distance(from: location!)
     }
     
     // MARK: - Camera and mic actions
@@ -154,7 +153,7 @@ extension Permissions: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let loc = locations.last {
             self.locationManager.stopUpdatingLocation()
-            currentLocation.value = loc
+            currentLocation = loc
         }
     }
     
@@ -164,7 +163,7 @@ extension Permissions: CLLocationManagerDelegate {
             self.locationAutorizationCompletion?()
             self.locationAutorizationCompletion = nil
         }
-        if self.currentLocation.value == nil {
+        if self.currentLocation == nil {
             self.updateLocation()
         }
     }

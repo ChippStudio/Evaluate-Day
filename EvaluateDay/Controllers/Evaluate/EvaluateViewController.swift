@@ -65,6 +65,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         }
     }
     
+    var scrollToCard: String!
+    
     // MARK: - Objects
     private let proLockObject = ProLock()
     private let dateObject = DateObject(date: Date())
@@ -129,10 +131,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Force Touch
         if self.traitCollection.forceTouchCapability == .available {
             self.registerForPreviewing(with: self, sourceView: self.collectionNode.view)
-        } else {
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction(sender:)))
-            longPress.minimumPressDuration = 0.5
-            self.view.addGestureRecognizer(longPress)
         }
         
         if UserDefaults.standard.bool(forKey: "demo") {
@@ -195,7 +193,12 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.controlUserReview(sender: nil)
+        if self.scrollToCard != nil {
+            if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.scrollToCard, false).first {
+                self.adapter.scroll(to: DiffCard(card: card), supplementaryKinds: nil, scrollDirection: .vertical, scrollPosition: .top, animated: true)
+                self.scrollToCard = nil
+            }
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.controlUserReview(sender:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
@@ -263,7 +266,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 cntrl.didSelectItem = { (index, card) in
                     let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                     analytycs.card = card
-                    self.navigationController?.pushViewController(analytycs, animated: true)
+                    self.universalSplitController?.pushSideViewController(analytycs)
                 }
             }
             return controller
@@ -317,11 +320,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
+        self.universalSplitController?.pushSideViewController(viewControllerToCommit)
     }
     
     // MARK: - Actions
-    
     @objc func newCardButtonAction(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
         self.navigationController?.pushViewController(controller, animated: true)
@@ -332,29 +334,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         controller.cards = self.cards
         controller.closeByTap = true
         self.present(controller, animated: true, completion: nil)
-    }
-    
-    func scrollToCard(cardID: String) {
-        for (i, c) in self.cards.enumerated() {
-            if c.id == cardID {
-                let indexPath = IndexPath(row: 0, section: i)
-                self.collectionNode.scrollToItem(at: indexPath, at: .top, animated: true)
-                break
-            }
-        }
-    }
-    @objc func longPressAction(sender: UILongPressGestureRecognizer) {
-        guard let indexPath = self.collectionNode.indexPathForItem(at: sender.location(in: self.collectionNode.view)) else {
-            return
-        }
-        
-        if self.navigationController?.topViewController is EvaluateViewController {
-            if let section = self.adapter.sectionController(forSection: indexPath.section) as? EvaluableSection {
-                let settings = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
-                settings.card = section.card
-                self.navigationController?.pushViewController(settings, animated: true)
-            }
-        }
     }
     
     // MARK: - Private

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import RxSwift
 
 final class Database: NSObject {
 

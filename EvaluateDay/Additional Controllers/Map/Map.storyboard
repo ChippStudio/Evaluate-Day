@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q5T-bb-yxy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q5T-bb-yxy">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +41,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zXE-MG-LKn" firstAttribute="leading" secondItem="nW6-HA-X6U" secondAttribute="leading" id="Igr-b2-bsF"/>
+                            <constraint firstItem="zXE-MG-LKn" firstAttribute="leading" secondItem="yIp-Uw-4rr" secondAttribute="leading" id="Igr-b2-bsF"/>
                             <constraint firstItem="2FK-EE-ouH" firstAttribute="top" secondItem="yIp-Uw-4rr" secondAttribute="centerY" id="KFQ-4d-qqI"/>
                             <constraint firstItem="2FK-EE-ouH" firstAttribute="trailing" secondItem="nW6-HA-X6U" secondAttribute="trailing" id="TKU-ri-I56">
                                 <variation key="widthClass=regular" constant="-40"/>
@@ -50,7 +49,7 @@
                             <constraint firstItem="2FK-EE-ouH" firstAttribute="leading" secondItem="nW6-HA-X6U" secondAttribute="leading" id="W2g-we-UNg"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="bottom" secondItem="yIp-Uw-4rr" secondAttribute="bottom" id="ZVQ-Lc-kfA"/>
                             <constraint firstItem="zXE-MG-LKn" firstAttribute="top" secondItem="yIp-Uw-4rr" secondAttribute="top" id="eFB-7f-dP6"/>
-                            <constraint firstItem="zXE-MG-LKn" firstAttribute="trailing" secondItem="nW6-HA-X6U" secondAttribute="trailing" id="gC3-lG-utR"/>
+                            <constraint firstItem="zXE-MG-LKn" firstAttribute="trailing" secondItem="yIp-Uw-4rr" secondAttribute="trailing" id="gC3-lG-utR"/>
                             <constraint firstItem="2FK-EE-ouH" firstAttribute="bottom" secondItem="yIp-Uw-4rr" secondAttribute="bottom" id="vhM-kO-h3l">
                                 <variation key="widthClass=regular" constant="-40"/>
                             </constraint>

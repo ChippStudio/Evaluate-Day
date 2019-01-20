@@ -82,14 +82,10 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         longGesture.minimumPressDuration = 0.5
         self.mapView.addGestureRecognizer(longGesture)
         
-        // Current Location
-        _ = Permissions.defaults.currentLocation.asObservable().subscribe(onNext: { (location) in
-            if location != nil {
-                let region = MKCoordinateRegionMakeWithDistance(location!.coordinate, 1000, 1000)
-                self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
-            }
-            
-        }, onError: nil, onCompleted: nil, onDisposed: nil)
+        if Permissions.defaults.currentLocation != nil {
+            let region = MKCoordinateRegionMakeWithDistance(Permissions.defaults.currentLocation!.coordinate, 1000, 1000)
+            self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -255,7 +251,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func currentLocationButtonAction(_ sender: UIButton) {
-        guard let location = Permissions.defaults.currentLocation.value else {
+        guard let location = Permissions.defaults.currentLocation else {
             return
         }
         

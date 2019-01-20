@@ -871,7 +871,7 @@ internal enum Localizations {
     }
     internal enum Shortcut {
       internal enum Activity {
-        /// Open Activity
+        /// Activity
         internal static let title = Localizations.tr("Localizable", "general.shortcut.activity.title")
       }
       internal enum Evaluate {

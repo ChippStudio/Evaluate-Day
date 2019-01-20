@@ -45,7 +45,7 @@ extension LocationValue {
     }
     
     var distance: CLLocationDistance {
-        guard let currentLocation = Permissions.defaults.currentLocation.value else {
+        guard let currentLocation = Permissions.defaults.currentLocation else {
             return 0.0
         }
         
@@ -53,7 +53,7 @@ extension LocationValue {
     }
     
     var distanceString: String {
-        guard let currentLocation = Permissions.defaults.currentLocation.value else {
+        guard let currentLocation = Permissions.defaults.currentLocation else {
             return "0"
         }
         

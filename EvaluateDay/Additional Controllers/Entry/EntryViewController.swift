@@ -327,7 +327,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
                 }
                 
                 if loc != nil {
-                    if let currentLocation = Permissions.defaults.currentLocation.value {
+                    if let currentLocation = Permissions.defaults.currentLocation {
                         if loc!.distance(from: currentLocation) < 500 {
                             return
                         }
@@ -584,7 +584,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
     }
     
     @objc func quickCheckIn(sender: ASButtonNode) {
-        guard let currentLocation = Permissions.defaults.currentLocation.value else {
+        guard let currentLocation = Permissions.defaults.currentLocation else {
             return
         }
         

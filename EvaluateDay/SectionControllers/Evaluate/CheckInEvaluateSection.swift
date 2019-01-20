@@ -211,7 +211,7 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
     }
     @objc private func checkInAction(sender: ASButtonNode) {
-        if let loc = Permissions.defaults.currentLocation.value {
+        if let loc = Permissions.defaults.currentLocation {
             let locationValue = LocationValue()
             locationValue.location = loc
             locationValue.created = self.date

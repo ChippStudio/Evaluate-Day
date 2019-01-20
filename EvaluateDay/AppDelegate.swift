@@ -75,13 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        // Set quick actions
-        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.General.Shortcut.Evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "appQA"), userInfo: nil)
-        let newCardItem = UIApplicationShortcutItem(type: ShortcutItems.new.rawValue, localizedTitle: Localizations.General.Shortcut.New.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "newQA"), userInfo: nil)
-        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.General.Shortcut.Activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
-        
-        UIApplication.shared.shortcutItems = [evaluateItem, newCardItem, activityItem]
-        
         // Set Notification Categories
         let evaluateAction = UNNotificationAction(identifier: "Evaluate-Action", title: Localizations.General.Action.evaluate, options: .foreground)
         let analyticsAction = UNNotificationAction(identifier: "Analytics-Action", title: Localizations.General.Action.analytics, options: .foreground)
@@ -134,6 +127,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        // Set quick actions
+        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.General.Shortcut.Evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "cardQA"), userInfo: nil)
+        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.General.Shortcut.Activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
+        
+        UIApplication.shared.shortcutItems = [evaluateItem, activityItem]
+        
+        for collection in Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false) {
+            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, collection.id)
+            let title = collection.title.isEmpty ? Localizations.Collection.Edit.titlePlaceholder : collection.title
+            let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id])
+            UIApplication.shared.shortcutItems?.append(collectionItem)
+        }
+        // Present passcode controller if needed
         if Database.manager.application.settings.passcode {
             if var topController = UIApplication.shared.keyWindow?.rootViewController {
                 while let presentedViewController = topController.presentedViewController {
@@ -172,7 +178,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: - User Notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Did register for remote notification")
         if !UserDefaults.standard.bool(forKey: "demo") {
             YMPYandexMetricaPush.setDeviceTokenFrom(deviceToken)
         }
@@ -181,12 +186,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("did fail register")
         print(error.localizedDescription)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("did receive remote")
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo)
         if notification.subscriptionID == SyncKey.zoneNotification {
             self.syncEngine.fetchDataFromCloudKit(completion: {
@@ -217,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Show custom UI if needed
-        print("did receive in foreground app")
+        print("ggggggggggggggg")
     }
     
     // MARK: - Respond Universal Links
@@ -230,6 +233,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
         self.shortcutItem = ShortcutItems(rawValue: shortcutItem.type)
+        if let collection = shortcutItem.userInfo?["collection"] as? String {
+            self.shortcutCollectionID = collection
+        }
+        
         self.openFromQuickAction()
         
         sendEvent(.openFromShortcut, withProperties: ["type": shortcutItem.type, "success": true])
@@ -238,6 +245,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: - Actions
     var shortcutItem: ShortcutItems?
+    var shortcutCollectionID: String?
     func openFromQuickAction() {
         if self.shortcutItem == nil {
             return
@@ -250,30 +258,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if topController as? PasscodeViewController == nil {
                 
+                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
+                self.window?.rootViewController = split
+                self.window?.makeKeyAndVisible()
+                
                 switch self.shortcutItem! {
                 case .evaluate:
-                    if let bar = topController as? UITabBarController {
-                        bar.selectedIndex = 0
-                        if let nav = bar.selectedViewController as? UINavigationController {
-                            nav.popToRootViewController(animated: false)
-                        }
-                    } else {
-                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController()!
-                        topController.present(controller, animated: false, completion: nil)
-                    }
-                case .new:
-                    let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
-                    let nav = UINavigationController(rootViewController: controller)
-                    topController.present(nav, animated: false, completion: nil)
+                    let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController()!
+                    split.mainController.pushViewController(controller, animated: true)
                 case .activity:
-                    if let bar = topController as? UITabBarController {
-                        bar.selectedIndex = 1
-                        if let nav = bar.selectedViewController as? UINavigationController {
-                            nav.popToRootViewController(animated: false)
-                        }
-                    } else {
-                        let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-                        topController.present(controller, animated: false, completion: nil)
+                    let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
+                    split.pushSideViewController(controller)
+                case .collection:
+                    if self.shortcutCollectionID != nil {
+                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                        controller.collection = self.shortcutCollectionID!
+                        split.mainController.pushViewController(controller, animated: true)
                     }
                 }
             } else {
@@ -283,6 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.shortcutItem = nil
         }
     }
+    
     private var actionID: String?
     private var actionCardID: String?
     func openFromNotification() {
@@ -290,37 +291,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         
-        if self.actionID! == "Evaluate-Action" || self.actionCardID == UNNotificationDefaultActionIdentifier {
-            if var topController = UIApplication.shared.keyWindow?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
-                
-                if topController as? PasscodeViewController == nil {
-                    // Open Evaluate day controller
-                    
-                } else {
-                    return
-                }
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
             }
-        } else if self.actionID! == "Analytics-Action" {
-            if var topController = UIApplication.shared.keyWindow?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
+            
+            if topController as? PasscodeViewController == nil {
                 
-                if topController as? PasscodeViewController == nil {
+                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
+                self.window?.rootViewController = split
+                self.window?.makeKeyAndVisible()
+                
+                if self.actionID! == "Evaluate-Action" || self.actionCardID == UNNotificationDefaultActionIdentifier {
+                    // Open Evaluate day controller
+                    let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                    controller.scrollToCard = self.actionCardID
+                    split.mainController.pushViewController(controller, animated: true)
+                } else if self.actionID! == "Analytics-Action" {
                     // Open card analytics view controller
-                    if let card = Database.manager.data.objects(Card.self).filter("id=%@", self.actionCardID!).first {
-                        // Open Evaluate day controller
-                        let controller = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
-                        controller.card = card
-                        let navController = UINavigationController(rootViewController: controller)
-                        topController.present(navController, animated: true, completion: nil)
+                    if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.actionCardID!, false).first {
+                        let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
+                        analytycs.card = card
+                        split.pushSideViewController(analytycs)
                     }
-                } else {
-                    return
                 }
+            } else {
+                return
             }
         }
         

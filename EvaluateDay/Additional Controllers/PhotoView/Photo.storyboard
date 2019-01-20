@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xev-iD-nxY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xev-iD-nxY">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +30,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYY-O1-hYz">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <state key="normal" image="closeCircle"/>
+                                        <state key="normal" image="close"/>
                                         <connections>
                                             <action selector="closeButtonAction:" destination="Xev-iD-nxY" eventType="touchUpInside" id="FkY-pF-Efm"/>
                                         </connections>
@@ -107,18 +106,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2D4-DA-ZAt" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="CS8-1E-JSz"/>
+                            <constraint firstItem="2D4-DA-ZAt" firstAttribute="leading" secondItem="L9M-sY-4rU" secondAttribute="leading" id="CS8-1E-JSz"/>
                             <constraint firstItem="SVV-id-TiN" firstAttribute="top" secondItem="OzV-86-DsI" secondAttribute="top" constant="10" id="GFf-ae-AaY"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="NVw-OK-LsD"/>
-                            <constraint firstItem="0H0-6z-Yuv" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="O2J-yl-Pe2"/>
+                            <constraint firstItem="0H0-6z-Yuv" firstAttribute="leading" secondItem="L9M-sY-4rU" secondAttribute="leading" id="O2J-yl-Pe2"/>
                             <constraint firstItem="2D4-DA-ZAt" firstAttribute="top" secondItem="L9M-sY-4rU" secondAttribute="top" id="T2h-6p-27B"/>
                             <constraint firstItem="d2X-WF-DiN" firstAttribute="top" secondItem="OzV-86-DsI" secondAttribute="top" constant="10" id="WAc-eo-fUW"/>
                             <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="WFo-1L-NCl" secondAttribute="trailing" id="WZK-3F-xso"/>
-                            <constraint firstItem="OzV-86-DsI" firstAttribute="trailing" secondItem="2D4-DA-ZAt" secondAttribute="trailing" id="Ykg-YX-EYK"/>
+                            <constraint firstAttribute="trailing" secondItem="2D4-DA-ZAt" secondAttribute="trailing" id="Ykg-YX-EYK"/>
                             <constraint firstItem="d2X-WF-DiN" firstAttribute="leading" secondItem="SVV-id-TiN" secondAttribute="trailing" constant="20" id="Zli-Fz-G36"/>
                             <constraint firstAttribute="bottom" secondItem="2D4-DA-ZAt" secondAttribute="bottom" id="c7X-PU-o5S"/>
                             <constraint firstItem="WFo-1L-NCl" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" id="dcu-rX-vwT"/>
-                            <constraint firstItem="0H0-6z-Yuv" firstAttribute="trailing" secondItem="OzV-86-DsI" secondAttribute="trailing" id="eaa-xV-r6K"/>
+                            <constraint firstItem="0H0-6z-Yuv" firstAttribute="trailing" secondItem="L9M-sY-4rU" secondAttribute="trailing" id="eaa-xV-r6K"/>
                             <constraint firstAttribute="bottom" secondItem="WFo-1L-NCl" secondAttribute="bottom" id="gwe-Rm-l3a"/>
                             <constraint firstItem="SVV-id-TiN" firstAttribute="leading" secondItem="OzV-86-DsI" secondAttribute="leading" constant="10" id="npA-Cy-lyi"/>
                             <constraint firstItem="0H0-6z-Yuv" firstAttribute="bottom" secondItem="L9M-sY-4rU" secondAttribute="bottom" id="uQt-w7-jGl"/>
@@ -144,7 +143,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="closeCircle" width="38" height="38"/>
-        <image name="share" width="25" height="17"/>
+        <image name="close" width="38" height="38"/>
+        <image name="share" width="24" height="22"/>
     </resources>
 </document>

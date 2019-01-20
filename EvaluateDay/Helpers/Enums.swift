@@ -33,8 +33,8 @@ enum ExportType {
 
 enum ShortcutItems: String {
     case evaluate = "shortcut-evaluate"
-    case new = "shortcut-newCard"
     case activity = "shortcut-Activity"
+    case collection = "shortcut-collection"
 }
 
 enum AnalyticsChartNodeOptionsKey: String {

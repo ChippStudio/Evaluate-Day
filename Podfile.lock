@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.0)
+  - Alamofire (4.8.1)
   - Amplitude-iOS (4.0.4)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -7,9 +7,9 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Branch (0.25.10):
-    - Branch/Core (= 0.25.10)
-  - Branch/Core (0.25.10)
+  - Branch (0.25.11):
+    - Branch/Core (= 0.25.11)
+  - Branch/Core (0.25.11)
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
@@ -19,9 +19,9 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.39.1):
     - FBSDKCoreKit
-  - Flurry-iOS-SDK/FlurryAds (9.2.3):
+  - Flurry-iOS-SDK/FlurryAds (9.3.0):
     - Flurry-iOS-SDK/FlurrySDK
-  - Flurry-iOS-SDK/FlurrySDK (9.2.3)
+  - Flurry-iOS-SDK/FlurrySDK (9.3.0)
   - FSCalendar (2.8.0)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -48,9 +48,6 @@ PODS:
   - Realm/Headers (3.13.1)
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
-  - RxAtomic (4.4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
   - SimulatorStatusMagic (2.4.1)
   - SnapKit (4.2.0)
   - SwiftGen (6.0.2)
@@ -91,7 +88,6 @@ DEPENDENCIES:
   - Flurry-iOS-SDK/FlurrySDK
   - FSCalendar
   - RealmSwift
-  - RxSwift (~> 4.0)
   - SimulatorStatusMagic
   - SnapKit
   - SwiftGen
@@ -120,8 +116,6 @@ SPEC REPOS:
     - PINRemoteImage
     - Realm
     - RealmSwift
-    - RxAtomic
-    - RxSwift
     - SimulatorStatusMagic
     - SnapKit
     - SwiftGen
@@ -132,15 +126,15 @@ SPEC REPOS:
     - YandexMobileMetricaPush
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: 3365f2e17921c503ff8a626cd053a056dbb87c62
+  Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
-  Flurry-iOS-SDK: 2ea1973a6c9c6b3675765d73ea290b281f8cb084
+  Flurry-iOS-SDK: 43afe11656872692de232f580ef0a8a68b0b47c9
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
@@ -148,8 +142,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
@@ -159,6 +151,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: 811baea0201471d0bc65d5e8017250505cee0cfe
   YandexMobileMetricaPush: 88e192d6484c4c66b1904325b32a915923acd312
 
-PODFILE CHECKSUM: e9feb679f2876b4afad8bc707367e34232a65084
+PODFILE CHECKSUM: cf4d539aa82e70aacc0e6a8ee4d29caf3d49759e
 
 COCOAPODS: 1.5.0

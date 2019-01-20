@@ -48,7 +48,6 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         //set open sources libraries
         self.openSource.append(OpenSource(title: "SnapKit", URL: "https://github.com/SnapKit/SnapKit"))
         self.openSource.append(OpenSource(title: "Realm", URL: "https://realm.io"))
-        self.openSource.append(OpenSource(title: "RxSwift", URL: "https://github.com/ReactiveX/RxSwift"))
         self.openSource.append(OpenSource(title: "Texture", URL: "http://texturegroup.org/"))
         self.openSource.append(OpenSource(title: "SwiftyJSON", URL: "https://github.com/SwiftyJSON/SwiftyJSON"))
         self.openSource.append(OpenSource(title: "Alamofire", URL: "https://github.com/Alamofire/Alamofire"))
@@ -60,6 +59,8 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         self.openSource.append(OpenSource(title: "YandexMobileMetrica", URL: "https://appmetrica.yandex.com"))
         self.openSource.append(OpenSource(title: "Facebook SDK", URL: "https://developers.facebook.com/"))
         self.openSource.append(OpenSource(title: "Branch", URL: "https://branch.io"))
+        self.openSource.append(OpenSource(title: "Flurry-iOS", URL: "http://www.flurry.com"))
+        self.openSource.append(OpenSource(title: "SwiftGen", URL: "https://github.com/SwiftGen/SwiftGen"))
         
         //set legal
         self.legals.append(Legal(title: Localizations.Settings.About.Legal.forecast, URL: "https://darksky.net"))
