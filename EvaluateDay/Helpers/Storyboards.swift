@@ -24,7 +24,6 @@ enum Storyboards: String {
     case repeatList = "Repeat"
     case selectCardList = "SelectCardList"
     case pro = "Pro"
-    case proUnlock = "ProUnlock"
     case onboarding = "Onboarding"
     case web = "Web"
     case selectMap = "SelectMap"

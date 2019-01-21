@@ -1266,15 +1266,9 @@ internal enum Localizations {
       /// Subscription
       internal static let title = Localizations.tr("Localizable", "settings.pro.title")
       internal enum Description {
-        /// Unlimited Cards
-        internal static let first = Localizations.tr("Localizable", "settings.pro.description.first")
-        /// Data Export
-        internal static let fourth = Localizations.tr("Localizable", "settings.pro.description.fourth")
-        /// Advanced Analytics
-        internal static let second = Localizations.tr("Localizable", "settings.pro.description.second")
-        /// Cloud Sync
-        internal static let third = Localizations.tr("Localizable", "settings.pro.description.third")
-        /// Upgade to Evaluate Day Pro gain access to some extra features:
+        /// Some cool and useful features are unavaible without an active subscription.
+        internal static let mainTitle = Localizations.tr("Localizable", "settings.pro.description.mainTitle")
+        /// Upgade to Evaluate Day Pro gain access to some extra features: Cloud Sync, Unlimited Cards, Advanced Analytics, Data Export, and much more...
         internal static let title = Localizations.tr("Localizable", "settings.pro.description.title")
         internal enum More {
           /// And much more...
@@ -1379,17 +1373,13 @@ internal enum Localizations {
           internal static func annualy(_ p1: String) -> String {
             return Localizations.tr("Localizable", "settings.pro.subscription.buy.annualy", p1)
           }
-          /// %@ / Lifetime
-          internal static func lifetime(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "settings.pro.subscription.buy.lifetime", p1)
-          }
           /// %@ / Month
           internal static func monthly(_ p1: String) -> String {
             return Localizations.tr("Localizable", "settings.pro.subscription.buy.monthly", p1)
           }
         }
         internal enum Description {
-          /// All subscription can be canceled at any time
+          /// All subscription can be canceled at any time.
           internal static let cancel = Localizations.tr("Localizable", "settings.pro.subscription.description.cancel")
           /// Subscriptions will be charged to your credit card through your iTunes account. Your subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You will not be able to cancel the subscription once activated. Manage your subscriptions in Account Settings after purchase. Any unused portion of a free trial peri​od, will be forfeited when the user purchases a subscription.
           internal static let iTunes = Localizations.tr("Localizable", "settings.pro.subscription.description.iTunes")
@@ -1409,16 +1399,20 @@ internal enum Localizations {
           }
         }
         internal enum Title {
-          /// Annually subscription
+          /// 12 Month
           internal static let anuualy = Localizations.tr("Localizable", "settings.pro.subscription.title.anuualy")
-          /// Lifetime subscription
-          internal static let lifetime = Localizations.tr("Localizable", "settings.pro.subscription.title.lifetime")
-          /// Monthly subscription
+          /// Continue
+          internal static let `continue` = Localizations.tr("Localizable", "settings.pro.subscription.title.continue")
+          /// One Time Purchase - %@
+          internal static func lifetime(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "settings.pro.subscription.title.lifetime", p1)
+          }
+          /// 1 Month
           internal static let monthly = Localizations.tr("Localizable", "settings.pro.subscription.title.monthly")
         }
       }
       internal enum View {
-        /// Tap here to Read More ...
+        /// Read More ...
         internal static let readMore = Localizations.tr("Localizable", "settings.pro.view.readMore")
         /// Unlock
         internal static let unlock = Localizations.tr("Localizable", "settings.pro.view.unlock")

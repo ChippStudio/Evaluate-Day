@@ -131,12 +131,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - Actions
     @objc func openProAction(sender: UIButton) {
-        if Store.current.isPro {
-            let controller = UIStoryboard(name: Storyboards.proUnlock.rawValue, bundle: nil).instantiateInitialViewController()!
-            self.universalSplitController?.pushSideViewController(controller)
-        } else {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            self.universalSplitController?.pushSideViewController(controller)
-        }
+        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+        self.universalSplitController?.pushSideViewController(controller)
     }
 }

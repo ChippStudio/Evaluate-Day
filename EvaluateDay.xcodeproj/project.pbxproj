@@ -37,8 +37,6 @@
 		B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */; };
 		B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */; };
 		B516CA5121EB54A70002915F /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5021EB54A70002915F /* ProView.swift */; };
-		B516CA5421EB85FA0002915F /* ProUnlock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B516CA5321EB85FA0002915F /* ProUnlock.storyboard */; };
-		B516CA5621EB86480002915F /* ProUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5521EB86480002915F /* ProUnlockViewController.swift */; };
 		B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5721EBC5090002915F /* NewCardCell.swift */; };
 		B516CA5B21EBC8310002915F /* ProUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5921EBC8310002915F /* ProUnlockCell.swift */; };
 		B516CA5F21ED1F810002915F /* LocationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CA5E21ED1F810002915F /* LocationNode.swift */; };
@@ -149,6 +147,9 @@
 		B58DDAA821F389D5005F48AE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DDAA721F389D5005F48AE /* OnboardingViewController.swift */; };
 		B58DDAAB21F483E5005F48AE /* AnalyticsPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DDAAA21F483E5005F48AE /* AnalyticsPreviewViewController.swift */; };
 		B58DDAAD21F483FA005F48AE /* AnalyticsPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58DDAAC21F483FA005F48AE /* AnalyticsPreview.storyboard */; };
+		B58DDAAF21F5F74C005F48AE /* SubscriptionBuyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */; };
+		B58DDAB121F5F7CE005F48AE /* SubscriptionReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */; };
+		B58DDAB321F61B3F005F48AE /* ProMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DDAB221F61B3F005F48AE /* ProMoreViewController.swift */; };
 		B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */; };
 		B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */; };
 		B59318241FF90890000D8FFE /* ColorEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59318231FF90890000D8FFE /* ColorEditableSection.swift */; };
@@ -410,8 +411,6 @@
 		B516CA4221EA8C5B0002915F /* AppIcon-4-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-4-Preview.png"; sourceTree = "<group>"; };
 		B516CA4321EA8C5B0002915F /* AppIcon-7-Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-7-Preview.png"; sourceTree = "<group>"; };
 		B516CA5021EB54A70002915F /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
-		B516CA5321EB85FA0002915F /* ProUnlock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProUnlock.storyboard; sourceTree = "<group>"; };
-		B516CA5521EB86480002915F /* ProUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockViewController.swift; sourceTree = "<group>"; };
 		B516CA5721EBC5090002915F /* NewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardCell.swift; sourceTree = "<group>"; };
 		B516CA5921EBC8310002915F /* ProUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnlockCell.swift; sourceTree = "<group>"; };
 		B516CA5E21ED1F810002915F /* LocationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
@@ -522,6 +521,9 @@
 		B58DDAA721F389D5005F48AE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B58DDAAA21F483E5005F48AE /* AnalyticsPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPreviewViewController.swift; sourceTree = "<group>"; };
 		B58DDAAC21F483FA005F48AE /* AnalyticsPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnalyticsPreview.storyboard; sourceTree = "<group>"; };
+		B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBuyCell.swift; sourceTree = "<group>"; };
+		B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionReviewCell.swift; sourceTree = "<group>"; };
+		B58DDAB221F61B3F005F48AE /* ProMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMoreViewController.swift; sourceTree = "<group>"; };
 		B591FAD21FA71B28007EE0F1 /* CriterionHundredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredCard.swift; sourceTree = "<group>"; };
 		B591FAD51FA832E5007EE0F1 /* CriterionHundredEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEditableSection.swift; sourceTree = "<group>"; };
 		B59318231FF90890000D8FFE /* ColorEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEditableSection.swift; sourceTree = "<group>"; };
@@ -796,15 +798,6 @@
 			path = EvaluateDayUITests;
 			sourceTree = "<group>";
 		};
-		B516CA5221EB85D20002915F /* ProUnlock */ = {
-			isa = PBXGroup;
-			children = (
-				B516CA5321EB85FA0002915F /* ProUnlock.storyboard */,
-				B516CA5521EB86480002915F /* ProUnlockViewController.swift */,
-			);
-			path = ProUnlock;
-			sourceTree = "<group>";
-		};
 		B516CA7421EF96ED0002915F /* Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,6 +867,8 @@
 				B5970F1621F12655000B0BAA /* CollectionImageTableViewCell.swift */,
 				B5970F1821F1B75A000B0BAA /* CardRepresentCell.swift */,
 				B5970F2721F22700000B0BAA /* CollectionsListCell.swift */,
+				B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */,
+				B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1065,6 +1060,7 @@
 			children = (
 				B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */,
 				B58DDAA521F38973005F48AE /* ProViewController.swift */,
+				B58DDAB221F61B3F005F48AE /* ProMoreViewController.swift */,
 			);
 			path = Pro;
 			sourceTree = "<group>";
@@ -1122,7 +1118,6 @@
 				B5BD3B432009E8A80075C75F /* SelectMap */,
 				B5257D401FE91BD800AC54DE /* Web */,
 				B59B4C7A1FD837F900E9A778 /* Pro */,
-				B516CA5221EB85D20002915F /* ProUnlock */,
 				B5D854E91FD06C5D00BB4E14 /* SelectCardList */,
 				B5D854E01FD0158300BB4E14 /* Repeat */,
 				B5D854C81FCDAA5D00BB4E14 /* Passcode */,
@@ -1831,7 +1826,6 @@
 				B516CA4B21EA8C5B0002915F /* AppIcon-1-Preview.png in Resources */,
 				B516CA4821EA8C5B0002915F /* AppIcon-8-Preview.png in Resources */,
 				B5B27E871F9DC31F00CB9121 /* Evaluate.storyboard in Resources */,
-				B516CA5421EB85FA0002915F /* ProUnlock.storyboard in Resources */,
 				B516CA4A21EA8C5B0002915F /* AppIcon-2-Preview.png in Resources */,
 				B5B27E9D1F9DC55600CB9121 /* NewCard.storyboard in Resources */,
 				B5B27EA01F9DC5AC00CB9121 /* CardSettings.storyboard in Resources */,
@@ -2061,6 +2055,7 @@
 				B5EC88442010C21E0056C1C7 /* PhraseEvaluateNode.swift in Sources */,
 				B5AB1E842018BFE600BB1A64 /* ListEditableSection.swift in Sources */,
 				B5BD3B2C200793350075C75F /* LocationValue.swift in Sources */,
+				B58DDAAF21F5F74C005F48AE /* SubscriptionBuyCell.swift in Sources */,
 				B5899B1921D7BF6C00CF123B /* CardsListNode.swift in Sources */,
 				B5D3FB9D21410AC8004DFF78 /* EvaluateEmptyCardSection.swift in Sources */,
 				B52D26E120174E7800332D0A /* HabitEditableSection.swift in Sources */,
@@ -2132,6 +2127,7 @@
 				B59DA0712120B8F200A9FCFB /* PhotoViewController.swift in Sources */,
 				B5B7EE442010B6C900BCD41A /* TextValue.swift in Sources */,
 				B5D854E61FD03D0B00BB4E14 /* Permissions.swift in Sources */,
+				B58DDAB121F5F7CE005F48AE /* SubscriptionReviewCell.swift in Sources */,
 				B5C757401F9F32B10032199E /* TitleNode.swift in Sources */,
 				B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */,
 				B5899B2121D7D10000CF123B /* DateSection.swift in Sources */,
@@ -2177,7 +2173,6 @@
 				B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */,
 				B5899B1021D7B2CE00CF123B /* CollectionViewController.swift in Sources */,
 				B5535AEE1FF00AF700D2AE25 /* Feedback.swift in Sources */,
-				B516CA5621EB86480002915F /* ProUnlockViewController.swift in Sources */,
 				B516CA6B21EF33100002915F /* DiffCollection.swift in Sources */,
 				B5D854C71FCD859900BB4E14 /* SettingsSelectNode.swift in Sources */,
 				B5A5916921D92ABC0026FD84 /* CollectionActionButtonNode.swift in Sources */,
@@ -2272,6 +2267,7 @@
 				B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */,
 				B56CF54421502B3C000A5CFE /* HealthSources.swift in Sources */,
 				B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */,
+				B58DDAB321F61B3F005F48AE /* ProMoreViewController.swift in Sources */,
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,
 				B516CA6721EF31560002915F /* CollectionListSection.swift in Sources */,
 				B52D26E720175FB800332D0A /* HabitEvaluateSection.swift in Sources */,
