@@ -62,6 +62,14 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if Store.current.isPro {
             let cell = tableView.dequeueReusableCell(withIdentifier: subscriptionReviewCell, for: indexPath) as! SubscriptionReviewCell
+            cell.privacyButton.addTarget(self, action: #selector(self.openPrivacy(sender:)), for: .touchUpInside)
+            cell.eulaButton.addTarget(self, action: #selector(self.openEULA(sender:)), for: .touchUpInside)
+            cell.manageButton.addTarget(self, action: #selector(self.manageSubscriptions(sender:)), for: .touchUpInside)
+            
+            let selectedView = UIView()
+            selectedView.backgroundColor = UIColor.tint
+            
+            cell.selectedBackgroundView = selectedView
             return cell
         }
         
@@ -73,6 +81,23 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         cell.oneTimeButton.addTarget(self, action: #selector(self.oneTimePurchaseAction(sender:)), for: .touchUpInside)
         cell.viewMoreButton.addTarget(self, action: #selector(self.readMoreAction(sender:)), for: .touchUpInside)
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if Store.current.isPro {
+            let controller = UIStoryboard(name: Storyboards.web.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let topController = controller.topViewController as! WebViewController
+            if Store.current.subscriptionID == Store.current.monthlyProductID {
+                topController.html = Bundle.main.path(forResource: "monthly", ofType: "html")
+                self.present(controller, animated: true, completion: nil)
+            } else if Store.current.subscriptionID == Store.current.annuallyProductID {
+                topController.html = Bundle.main.path(forResource: "annualy", ofType: "html")
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
     }
     
     // MARK: - Actions
@@ -111,6 +136,12 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.showLoadView()
         Store.current.payment(product: Store.current.lifetime) { (transaction, error) in
             self.hideLoadView()
+        }
+    }
+    
+    @objc func manageSubscriptions(sender: UIButton) {
+        if let url = URL(string: subscriptionManageURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
