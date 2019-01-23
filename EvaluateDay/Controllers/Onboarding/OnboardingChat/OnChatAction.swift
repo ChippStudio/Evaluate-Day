@@ -20,14 +20,14 @@ public class OnChatAction: NSObject {
     
     // MARK: - Public
     public var answerMessage: String!
+    public let actionView: UIView
     
     // MARK: - Internal Variables
     weak var delegate: OnChatActionDelegate?
     var index: Int = 0
+    let messages: [String]
     
     // MARK: - Private Variables
-    private let messages: [String]
-    private let actionView: UIView
     private var handler: ((_ action: OnChatAction) -> Void)?
     
     private var isAnimation = false
@@ -65,7 +65,7 @@ public class OnChatAction: NSObject {
         if row == self.messages.count {
             return self.answerMessage
         }
-        
+//        print("IndexPath = \(row): \(self.index)")
         return self.messages[row]
     }
     

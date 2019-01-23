@@ -14,6 +14,9 @@
 		B50804DF21F7182F008E9D8D /* OnChatAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804DE21F7182F008E9D8D /* OnChatAnswerCell.swift */; };
 		B50804E121F719B5008E9D8D /* OnChatLoadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804E021F719B5008E9D8D /* OnChatLoadCell.swift */; };
 		B50804E721F8574A008E9D8D /* OnChatTextActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */; };
+		B50804EA21F87DE4008E9D8D /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804E921F87DE4008E9D8D /* ActionButtonView.swift */; };
+		B50804EC21F8AD0F008E9D8D /* ActionTwoButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804EB21F8AD0F008E9D8D /* ActionTwoButtonsView.swift */; };
+		B50804EE21F8D2C5008E9D8D /* ActionProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804ED21F8D2C5008E9D8D /* ActionProView.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -391,6 +394,9 @@
 		B50804DE21F7182F008E9D8D /* OnChatAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatAnswerCell.swift; sourceTree = "<group>"; };
 		B50804E021F719B5008E9D8D /* OnChatLoadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatLoadCell.swift; sourceTree = "<group>"; };
 		B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatTextActionView.swift; sourceTree = "<group>"; };
+		B50804E921F87DE4008E9D8D /* ActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
+		B50804EB21F8AD0F008E9D8D /* ActionTwoButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTwoButtonsView.swift; sourceTree = "<group>"; };
+		B50804ED21F8D2C5008E9D8D /* ActionProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProView.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -810,6 +816,16 @@
 				B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */,
 			);
 			path = OnboardingChat;
+			sourceTree = "<group>";
+		};
+		B50804E821F87D51008E9D8D /* Actions Views */ = {
+			isa = PBXGroup;
+			children = (
+				B50804E921F87DE4008E9D8D /* ActionButtonView.swift */,
+				B50804EB21F8AD0F008E9D8D /* ActionTwoButtonsView.swift */,
+				B50804ED21F8D2C5008E9D8D /* ActionProView.swift */,
+			);
+			path = "Actions Views";
 			sourceTree = "<group>";
 		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
@@ -1570,6 +1586,7 @@
 				B50804D521F70E23008E9D8D /* OnboardingChat */,
 				B5C757271F9DC9970032199E /* Onboarding.storyboard */,
 				B58DDAA721F389D5005F48AE /* OnboardingViewController.swift */,
+				B50804E821F87D51008E9D8D /* Actions Views */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -2177,6 +2194,7 @@
 				B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */,
 				B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */,
 				B5EC884A2010EE370056C1C7 /* PhraseMergeSection.swift in Sources */,
+				B50804EA21F87DE4008E9D8D /* ActionButtonView.swift in Sources */,
 				B516CA5B21EBC8310002915F /* ProUnlockCell.swift in Sources */,
 				B584E0D91FE299C7008093D5 /* WelcomeTransition.swift in Sources */,
 				B5BD3B302007A50A0075C75F /* CheckInCard.swift in Sources */,
@@ -2228,6 +2246,7 @@
 				B57F45CC20E675D900672FD6 /* secret.swift in Sources */,
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
 				B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */,
+				B50804EE21F8D2C5008E9D8D /* ActionProView.swift in Sources */,
 				B52D26ED2017648700332D0A /* HabitAnalyticsSection.swift in Sources */,
 				B50804E721F8574A008E9D8D /* OnChatTextActionView.swift in Sources */,
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
@@ -2311,6 +2330,7 @@
 				B5B7EE482010B7C300BCD41A /* PhraseCard.swift in Sources */,
 				B5970F2121F21FF3000B0BAA /* CardSettingsCollectionNode.swift in Sources */,
 				B5AB1E7C2018A21500BB1A64 /* MarkValue.swift in Sources */,
+				B50804EC21F8AD0F008E9D8D /* ActionTwoButtonsView.swift in Sources */,
 				B55D3286207907BD00BD1E75 /* TrackerEvaluateSection.swift in Sources */,
 				B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */,
 				B5970F1B21F1EEED000B0BAA /* DangerNode.swift in Sources */,

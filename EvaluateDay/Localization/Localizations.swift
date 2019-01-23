@@ -833,6 +833,8 @@ internal enum Localizations {
     internal static let ok = Localizations.tr("Localizable", "general.ok")
     /// Save
     internal static let save = Localizations.tr("Localizable", "general.save")
+    /// Send
+    internal static let send = Localizations.tr("Localizable", "general.send")
     /// Skip
     internal static let skip = Localizations.tr("Localizable", "general.skip")
     /// Are you sure?
@@ -1457,8 +1459,80 @@ internal enum Localizations {
   }
 
   internal enum Welcome {
+    /// Yes, sure
+    internal static let next = Localizations.tr("Localizable", "welcome.next")
     /// Welcome
     internal static let title = Localizations.tr("Localizable", "welcome.title")
+    internal enum New {
+      internal enum All {
+        /// Enjoy!
+        internal static let enjoy = Localizations.tr("Localizable", "welcome.new.all.enjoy")
+        /// That's all
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.all.firstMessage")
+        /// Please enjoy the app. And will write us your feedback
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.all.secondMessage")
+      }
+      internal enum Cards {
+        /// Evaluate Collection
+        internal static let collection = Localizations.tr("Localizable", "welcome.new.cards.collection")
+        /// Что бы вам проще было начать, мы можем создать для вас набор карточек
+        internal static let fifthdMessage = Localizations.tr("Localizable", "welcome.new.cards.fifthdMessage")
+        /// Основное понятие приложения это карточки. Выберите, то что, хотите оценить и создайте подходящую карточку.
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.cards.firstMessage")
+        /// Карточки можно объединять в коллекции, так вы смодете оценивать то, что захотите по множеству критерий
+        internal static let fourthMessage = Localizations.tr("Localizable", "welcome.new.cards.fourthMessage")
+        /// Yes, sure
+        internal static let one = Localizations.tr("Localizable", "welcome.new.cards.one")
+        /// Все что останеться потом, это день за днем оценивать данные в этой карточки.
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.cards.secondMessage")
+        /// Do it for you?
+        internal static let seventhdMessage = Localizations.tr("Localizable", "welcome.new.cards.seventhdMessage")
+        /// Естесвенно вы сможете позже их изменить
+        internal static let sixthdMessage = Localizations.tr("Localizable", "welcome.new.cards.sixthdMessage")
+        /// Через какое то время, сложиться объяктивная картина, по которой можно будет делать выводы
+        internal static let thirdMessage = Localizations.tr("Localizable", "welcome.new.cards.thirdMessage")
+        /// Not needed
+        internal static let two = Localizations.tr("Localizable", "welcome.new.cards.two")
+      }
+      internal enum Email {
+        /// I will do it later
+        internal static let empty = Localizations.tr("Localizable", "welcome.new.email.empty")
+        /// Отлично осталось совсем не много
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.email.firstMessage")
+        /// Evaluate Day постоянно развивается, подпишитесь на нашу рассылку, что бы быть в курсе последних идей и новостей
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.email.secondMessage")
+        /// Обещаем писать не чаще 2 раз в месяц и не какого спама
+        internal static let thirdMessage = Localizations.tr("Localizable", "welcome.new.email.thirdMessage")
+      }
+      internal enum Intro {
+        /// Welcome on board, we so glad to see you in Evaluate Day app. \nChipp Studio Team
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.intro.firstMessage")
+        /// It is the quick onboarding, we need to know more about you. To make your experience with app better.
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.intro.secondMessage")
+        /// Are you ready to start?
+        internal static let thirdMessage = Localizations.tr("Localizable", "welcome.new.intro.thirdMessage")
+      }
+      internal enum Pro {
+        /// Nice app, I am in
+        internal static let buyed = Localizations.tr("Localizable", "welcome.new.pro.buyed")
+        /// One more thing
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.pro.firstMessage")
+        /// I will do it later
+        internal static let notBuyed = Localizations.tr("Localizable", "welcome.new.pro.notBuyed")
+        /// Воспользуйтесь всеми функциями Evaluate Day без ограничений
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.pro.secondMessage")
+      }
+      internal enum User {
+        /// I prefer stay incognito
+        internal static let emptyName = Localizations.tr("Localizable", "welcome.new.user.emptyName")
+        /// Greate, let's start
+        internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.user.firstMessage")
+        /// Name
+        internal static let placeholder = Localizations.tr("Localizable", "welcome.new.user.placeholder")
+        /// What is your name?
+        internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.user.secondMessage")
+      }
+    }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

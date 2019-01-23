@@ -301,6 +301,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "general.photo.select" = "Select photo";
 "general.photo.take" = "Take photo";
 "general.save" = "Save";
+"general.send" = "Send";
 "general.shortcut.activity.title" = "Activity";
 "general.shortcut.evaluate.title" = "Evaluate";
 "general.shortcut.new.title" = "Add new card";
@@ -515,3 +516,33 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 
 // MARK: - Welcome
 "welcome.title" = "Welcome";
+"welcome.next" = "Yes, sure";
+"welcome.new.intro.firstMessage" = "Welcome on board, we so glad to see you in Evaluate Day app. \nChipp Studio Team";
+"welcome.new.intro.secondMessage" = "It is the quick onboarding, we need to know more about you. To make your experience with app better.";
+"welcome.new.intro.thirdMessage" = "Are you ready to start?";
+"welcome.new.user.firstMessage" = "Greate, let's start";
+"welcome.new.user.secondMessage" = "What is your name?";
+"welcome.new.user.emptyName" = "I prefer stay incognito";
+"welcome.new.user.placeholder" = "Name";
+"welcome.new.cards.firstMessage" = "Основное понятие приложения это карточки. Выберите, то что, хотите оценить и создайте подходящую карточку.";
+"welcome.new.cards.secondMessage" = "Все что останеться потом, это день за днем оценивать данные в этой карточки.";
+"welcome.new.cards.thirdMessage" = "Через какое то время, сложиться объяктивная картина, по которой можно будет делать выводы";
+"welcome.new.cards.fourthMessage" = "Карточки можно объединять в коллекции, так вы смодете оценивать то, что захотите по множеству критерий";
+"welcome.new.cards.fifthdMessage" = "Что бы вам проще было начать, мы можем создать для вас набор карточек";
+"welcome.new.cards.sixthdMessage" = "Естесвенно вы сможете позже их изменить";
+"welcome.new.cards.seventhdMessage" = "Do it for you?";
+"welcome.new.cards.one" = "Yes, sure";
+"welcome.new.cards.two" = "Not needed";
+"welcome.new.cards.collection" = "Evaluate Collection";
+"welcome.new.email.firstMessage" = "Отлично осталось совсем не много";
+"welcome.new.email.secondMessage" = "Evaluate Day постоянно развивается, подпишитесь на нашу рассылку, что бы быть в курсе последних идей и новостей";
+"welcome.new.email.thirdMessage" = "Обещаем писать не чаще 2 раз в месяц и не какого спама";
+"welcome.new.email.empty" = "I will do it later";
+"welcome.new.pro.firstMessage" = "One more thing";
+"welcome.new.pro.secondMessage" = "Воспользуйтесь всеми функциями Evaluate Day без ограничений";
+"welcome.new.pro.buyed" = "Nice app, I am in";
+"welcome.new.pro.notBuyed" = "I will do it later";
+"welcome.new.all.firstMessage" = "That's all";
+"welcome.new.all.secondMessage" = "Please enjoy the app. And will write us your feedback";
+"welcome.new.all.enjoy" = "Enjoy!";
+

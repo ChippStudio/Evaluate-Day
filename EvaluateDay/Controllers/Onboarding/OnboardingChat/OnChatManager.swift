@@ -13,6 +13,7 @@ public class OnChatManager: NSObject {
     // MARK: - Variables
     public let tableView: UITableView
     public let viewController: UIViewController
+    public private(set) var isInAction = false
     
     // MARK: - Appearance
     public var messageBubbleColor: UIColor = UIColor.lightGray
@@ -51,7 +52,7 @@ public class OnChatManager: NSObject {
         self.tableView.separatorStyle = .none
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
-        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 150.0, right: 0.0)
+//        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.tableView.frame.size.height/2, right: 0.0)
         
         // Keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
@@ -60,6 +61,11 @@ public class OnChatManager: NSObject {
     
     // MARK: - Public Actions
     public func startChatFlow() {
+        
+        if self.isInAction {
+            return
+        }
+        
         // Register cells for table view
         if let questenCell = self.delegate?.onChatManager?(manager: self, registerCellFor: .message) {
             self.tableView.register(questenCell, forCellReuseIdentifier: questenCellIdentifire)
@@ -79,7 +85,10 @@ public class OnChatManager: NSObject {
             self.tableView.register(OnChatLoadCell.classForCoder(), forCellReuseIdentifier: animationCellIdentifire)
         }
         
-        self.actions[0].startAction()
+        if !self.actions.isEmpty {
+            self.actions[0].startAction()
+            self.isInAction = true
+        }
     }
     
     public func addAction(action: OnChatAction) {
@@ -91,34 +100,27 @@ public class OnChatManager: NSObject {
     // MARK: - Keyboard actions
     @objc func keyboardWillShow(sender: Notification) {
         let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
-
-        self.tableView.contentInset.bottom = height
         
-        let bottomOffset: CGFloat
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow!
-            bottomOffset = window.safeAreaInsets.bottom
-        } else {
-            bottomOffset = 0.0
-        }
         if self.actionViewBottomConstraint != nil {
             UIView.animate(withDuration: 0.2) {
-                self.actionViewBottomConstraint.constant = -(height - bottomOffset)
+                self.tableView.contentInset.bottom += height
+                self.actionViewBottomConstraint.constant = -height
             }
         }
-        
+
         self.viewController.view.layoutIfNeeded()
     }
-    
+
     @objc func keyboardDidHide(sender: Notification) {
-        
-        self.tableView.contentInset.bottom = 0.0
+        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
+
         if self.actionViewBottomConstraint != nil {
             UIView.animate(withDuration: 0.2) {
+                self.tableView.contentInset.bottom -= height
                 self.actionViewBottomConstraint.constant = 0.0
             }
         }
-        
+
         self.viewController.view.layoutIfNeeded()
     }
 }
@@ -185,21 +187,32 @@ extension OnChatManager: UITableViewDataSource, UITableViewDelegate {
 extension OnChatManager: OnChatActionDelegate {
     func chatAction(action: OnChatAction, hideAction view: UIView) {
         view.removeFromSuperview()
+        self.tableView.contentInset.bottom = 0.0
         self.actionViewBottomConstraint = nil
     }
     func chatAction(action: OnChatAction, showAction view: UIView) {
         // Show Action view and wait answer from it
+        view.alpha = 0.0
         self.viewController.view.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         let left = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.viewController.view, attribute: .leading, multiplier: 1.0, constant: 0.0)
         let right = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.viewController.view, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-        if #available(iOS 11.0, *) {
-            self.actionViewBottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.viewController.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        } else {
-            self.actionViewBottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.viewController.view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        }
+        self.actionViewBottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.viewController.view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         
         self.viewController.view.addConstraints([left, right, self.actionViewBottomConstraint])
+        
+        view.layoutIfNeeded()
+        
+        view.transform = CGAffineTransform(translationX: 0.0, y: view.frame.size.height + 60)
+        view.alpha = 1.0
+        self.tableView.contentInset.bottom = view.frame.height
+        UIView.animate(withDuration: 0.5) {
+            view.transform = CGAffineTransform.identity
+        }
+        
+        // Set index path
+        let indexPath = IndexPath(row: action.messages.count - 1, section: action.index)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     func chatAction(didFinishAction action: OnChatAction) {

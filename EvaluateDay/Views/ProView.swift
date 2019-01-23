@@ -19,6 +19,11 @@ class ProView: UIView {
     var button = UIButton()
 
     // MARK: - Override
+    init() {
+        super.init(frame: CGRect.zero)
+        self.initSubviews()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initSubviews()

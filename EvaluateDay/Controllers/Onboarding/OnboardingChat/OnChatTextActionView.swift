@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class OnChatTextActionView: UIView, ActionView {
+public class OnChatTextActionView: UIView, ActionView, UITextFieldDelegate {
     
     public var complition: ((String) -> Void)?
     
@@ -32,6 +32,8 @@ public class OnChatTextActionView: UIView, ActionView {
         // Set text field
         self.textField.borderStyle = .roundedRect
         self.textField.translatesAutoresizingMaskIntoConstraints = false
+        self.textField.returnKeyType = .done
+        self.textField.delegate = self
         
         // set button
         self.button.setTitle("Send", for: .normal)
@@ -44,14 +46,19 @@ public class OnChatTextActionView: UIView, ActionView {
         self.addSubview(self.button)
         self.addSubview(self.textField)
         
-        let tTopConstraint = NSLayoutConstraint(item: self.textField, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 5.0)
-        let tBottomConstraint = NSLayoutConstraint(item: self.textField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -5.0)
+        let tTopConstraint = NSLayoutConstraint(item: self.textField, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 10.0)
+        let tBottomConstraint: NSLayoutConstraint
+        if #available(iOS 11.0, *) {
+            tBottomConstraint = NSLayoutConstraint(item: self.textField, attribute: .bottom, relatedBy: .equal, toItem: self.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: -10.0)
+        } else {
+            tBottomConstraint = NSLayoutConstraint(item: self.textField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -10.0)
+        }
         let tLeadingConstraint = NSLayoutConstraint(item: self.textField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 20.0)
 
         let bCenterConstraint = NSLayoutConstraint(item: self.button, attribute: .centerY, relatedBy: .equal, toItem: self.textField, attribute: .centerY, multiplier: 1.0, constant: 0.0)
         let bHeightConstraint = NSLayoutConstraint(item: self.button, attribute: .height, relatedBy: .equal, toItem: self.textField, attribute: .height, multiplier: 1.0, constant: 0.0)
-        let bLeadingConstraint = NSLayoutConstraint(item: self.button, attribute: .leading, relatedBy: .equal, toItem: self.textField, attribute: .trailing, multiplier: 1.0, constant: 10.0)
-        let bTrailingConstraint = NSLayoutConstraint(item: self.button, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -10.0)
+        let bLeadingConstraint = NSLayoutConstraint(item: self.button, attribute: .leading, relatedBy: .equal, toItem: self.textField, attribute: .trailing, multiplier: 1.0, constant: 20.0)
+        let bTrailingConstraint = NSLayoutConstraint(item: self.button, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -20.0)
 
         self.button.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
         self.textField.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
@@ -65,5 +72,12 @@ public class OnChatTextActionView: UIView, ActionView {
         } else {
             self.complition?("")
         }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.buttonAction(sendre: self.button)
+        
+        return true
     }
 }
