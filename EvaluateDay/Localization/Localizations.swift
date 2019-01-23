@@ -885,69 +885,6 @@ internal enum Localizations {
     }
   }
 
-  internal enum Health {
-    internal enum Category {
-      /// Body Measurements
-      internal static let body = Localizations.tr("Localizable", "health.category.body")
-      /// Fitness
-      internal static let fitness = Localizations.tr("Localizable", "health.category.fitness")
-      /// Mindfulness
-      internal static let mindfulness = Localizations.tr("Localizable", "health.category.mindfulness")
-      /// Nutrition
-      internal static let nutrition = Localizations.tr("Localizable", "health.category.nutrition")
-      /// Sleep
-      internal static let sleep = Localizations.tr("Localizable", "health.category.sleep")
-    }
-    internal enum Id {
-      /// Mindful Minutes
-      internal static let hkCategoryTypeIdentifierMindfulSession = Localizations.tr("Localizable", "health.id.HKCategoryTypeIdentifierMindfulSession")
-      /// Sleep
-      internal static let hkCategoryTypeIdentifierSleepAnalysis = Localizations.tr("Localizable", "health.id.HKCategoryTypeIdentifierSleepAnalysis")
-      /// Active Energy
-      internal static let hkQuantityTypeIdentifierActiveEnergyBurned = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierActiveEnergyBurned")
-      /// Workouts
-      internal static let hkQuantityTypeIdentifierAppleExerciseTime = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierAppleExerciseTime")
-      /// Resting Energy
-      internal static let hkQuantityTypeIdentifierBasalEnergyBurned = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierBasalEnergyBurned")
-      /// Body Fat Percentage
-      internal static let hkQuantityTypeIdentifierBodyFatPercentage = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierBodyFatPercentage")
-      /// Weight
-      internal static let hkQuantityTypeIdentifierBodyMass = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierBodyMass")
-      /// Body Mass Index
-      internal static let hkQuantityTypeIdentifierBodyMassIndex = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierBodyMassIndex")
-      /// Caffeine
-      internal static let hkQuantityTypeIdentifierDietaryCaffeine = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietaryCaffeine")
-      /// Dietary Energy
-      internal static let hkQuantityTypeIdentifierDietaryEnergyConsumed = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietaryEnergyConsumed")
-      /// Total Fat
-      internal static let hkQuantityTypeIdentifierDietaryFatTotal = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietaryFatTotal")
-      /// Protein
-      internal static let hkQuantityTypeIdentifierDietaryProtein = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietaryProtein")
-      /// Sugar
-      internal static let hkQuantityTypeIdentifierDietarySugar = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietarySugar")
-      /// Water
-      internal static let hkQuantityTypeIdentifierDietaryWater = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDietaryWater")
-      /// Cycling Distance
-      internal static let hkQuantityTypeIdentifierDistanceCycling = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDistanceCycling")
-      /// Swimming Distance
-      internal static let hkQuantityTypeIdentifierDistanceSwimming = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDistanceSwimming")
-      /// Walking and Running Distance
-      internal static let hkQuantityTypeIdentifierDistanceWalkingRunning = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDistanceWalkingRunning")
-      /// Wheelchair Distance
-      internal static let hkQuantityTypeIdentifierDistanceWheelchair = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierDistanceWheelchair")
-      /// Flight Climbed
-      internal static let hkQuantityTypeIdentifierFlightsClimbed = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierFlightsClimbed")
-      /// Lean Body Mass
-      internal static let hkQuantityTypeIdentifierLeanBodyMass = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierLeanBodyMass")
-      /// Nike Fuel
-      internal static let hkQuantityTypeIdentifierNikeFuel = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierNikeFuel")
-      /// Steps
-      internal static let hkQuantityTypeIdentifierStepCount = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierStepCount")
-      /// Swimming Strokes
-      internal static let hkQuantityTypeIdentifierSwimmingStrokeCount = Localizations.tr("Localizable", "health.id.HKQuantityTypeIdentifierSwimmingStrokeCount")
-    }
-  }
-
   internal enum List {
     /// All your card
     internal static let title = Localizations.tr("Localizable", "list.title")
@@ -1520,36 +1457,8 @@ internal enum Localizations {
   }
 
   internal enum Welcome {
-    /// by Chipp Studio
-    internal static let bychippstudio = Localizations.tr("Localizable", "welcome.bychippstudio")
-    internal enum Cards {
-      /// Add a new card for each action or problem
-      internal static let first = Localizations.tr("Localizable", "welcome.cards.first")
-      /// ...the more accurate analysis you will get
-      internal static let fourth = Localizations.tr("Localizable", "welcome.cards.fourth")
-      /// Track and record all changes
-      internal static let second = Localizations.tr("Localizable", "welcome.cards.second")
-      /// The more often and more carefully you will do it...
-      internal static let third = Localizations.tr("Localizable", "welcome.cards.third")
-      internal enum Last {
-        /// Enjoy.
-        internal static let description = Localizations.tr("Localizable", "welcome.cards.last.description")
-        /// You`re all set!
-        internal static let title = Localizations.tr("Localizable", "welcome.cards.last.title")
-        internal enum More {
-          /// Next.
-          internal static let description = Localizations.tr("Localizable", "welcome.cards.last.more.description")
-          /// One more thing...
-          internal static let title = Localizations.tr("Localizable", "welcome.cards.last.more.title")
-        }
-      }
-      internal enum Pro {
-        /// Thanks to you, we developed a new and improved version of Evaluate Day - we've added new cards, synchronization and much more. Your subscription will be valid until
-        internal static let description = Localizations.tr("Localizable", "welcome.cards.pro.description")
-        /// Thank You for your support 😍👍👇🔓
-        internal static let title = Localizations.tr("Localizable", "welcome.cards.pro.title")
-      }
-    }
+    /// Welcome
+    internal static let title = Localizations.tr("Localizable", "welcome.title")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

@@ -514,45 +514,4 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "update.title" = "Please update your version of Evaluate Day";
 
 // MARK: - Welcome
-"welcome.bychippstudio" = "by Chipp Studio";
-"welcome.cards.first" = "Add a new card for each action or problem";
-"welcome.cards.fourth" = "...the more accurate analysis you will get";
-"welcome.cards.last.description" = "Enjoy.";
-"welcome.cards.last.more.description" = "Next.";
-"welcome.cards.last.more.title" = "One more thing...";
-"welcome.cards.last.title" = "You`re all set!";
-"welcome.cards.pro.description" = "Thanks to you, we developed a new and improved version of Evaluate Day - we've added new cards, synchronization and much more. Your subscription will be valid until";
-"welcome.cards.pro.title" = "Thank You for your support 😍👍👇🔓";
-"welcome.cards.second" = "Track and record all changes";
-"welcome.cards.third" = "The more often and more carefully you will do it...";
-
-// MARK: - Health
-"health.category.fitness" = "Fitness";
-"health.category.nutrition" = "Nutrition";
-"health.category.sleep" = "Sleep";
-"health.category.mindfulness" = "Mindfulness";
-"health.category.body" = "Body Measurements";
-
-"health.id.HKQuantityTypeIdentifierStepCount" = "Steps";
-"health.id.HKQuantityTypeIdentifierDistanceWalkingRunning" = "Walking and Running Distance";
-"health.id.HKQuantityTypeIdentifierDistanceCycling" = "Cycling Distance";
-"health.id.HKQuantityTypeIdentifierFlightsClimbed" = "Flight Climbed";
-"health.id.HKQuantityTypeIdentifierActiveEnergyBurned" = "Active Energy";
-"health.id.HKQuantityTypeIdentifierBasalEnergyBurned" = "Resting Energy";
-"health.id.HKQuantityTypeIdentifierAppleExerciseTime" = "Workouts";
-"health.id.HKQuantityTypeIdentifierDistanceSwimming" = "Swimming Distance";
-"health.id.HKQuantityTypeIdentifierSwimmingStrokeCount" = "Swimming Strokes";
-"health.id.HKQuantityTypeIdentifierDistanceWheelchair" = "Wheelchair Distance";
-"health.id.HKQuantityTypeIdentifierNikeFuel" = "Nike Fuel";
-"health.id.HKQuantityTypeIdentifierBodyFatPercentage" = "Body Fat Percentage";
-"health.id.HKQuantityTypeIdentifierBodyMassIndex" = "Body Mass Index";
-"health.id.HKQuantityTypeIdentifierBodyMass" = "Weight";
-"health.id.HKQuantityTypeIdentifierLeanBodyMass" = "Lean Body Mass";
-"health.id.HKQuantityTypeIdentifierDietaryCaffeine" = "Caffeine";
-"health.id.HKQuantityTypeIdentifierDietaryWater" = "Water";
-"health.id.HKQuantityTypeIdentifierDietaryEnergyConsumed" = "Dietary Energy";
-"health.id.HKQuantityTypeIdentifierDietarySugar" = "Sugar";
-"health.id.HKQuantityTypeIdentifierDietaryFatTotal" = "Total Fat";
-"health.id.HKQuantityTypeIdentifierDietaryProtein" = "Protein";
-"health.id.HKCategoryTypeIdentifierSleepAnalysis" = "Sleep";
-"health.id.HKCategoryTypeIdentifierMindfulSession" = "Mindful Minutes";
+"welcome.title" = "Welcome";

@@ -30,7 +30,7 @@ class SubscriptionReviewCell: UITableViewCell {
         self.proLabel.text = Localizations.Settings.Pro.Review.title.uppercased()
         self.thankLabel.text = Localizations.Settings.Pro.Review.subtitle
         self.subscriptionLabel.text = Localizations.Settings.Pro.Review.Subscription.title
-        self.emogiLabel.text = proPlaceholder
+        self.emogiLabel.text = "😍🇪🇪👍🔓"
         if let valid = Store.current.valid {
         self.validLabel.text = Localizations.Settings.Pro.Review.Subscription.subtitle(DateFormatter.localizedString(from: valid, dateStyle: .medium, timeStyle: .none))
         } else {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50804D721F70E3F008E9D8D /* OnChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804D621F70E3F008E9D8D /* OnChatManager.swift */; };
+		B50804D921F71098008E9D8D /* OnChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804D821F71098008E9D8D /* OnChatAction.swift */; };
+		B50804DB21F7120E008E9D8D /* OnChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804DA21F7120E008E9D8D /* OnChat.swift */; };
+		B50804DD21F71813008E9D8D /* OnChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804DC21F71813008E9D8D /* OnChatMessageCell.swift */; };
+		B50804DF21F7182F008E9D8D /* OnChatAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804DE21F7182F008E9D8D /* OnChatAnswerCell.swift */; };
+		B50804E121F719B5008E9D8D /* OnChatLoadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804E021F719B5008E9D8D /* OnChatLoadCell.swift */; };
+		B50804E721F8574A008E9D8D /* OnChatTextActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -71,7 +78,6 @@
 		B52D26F1201765AC00332D0A /* HabitEvaluateCommentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */; };
 		B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536110A1FF8ED4C007A1290 /* Syncable.swift */; };
 		B53977D6214A8D8A002EAAFA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53977D5214A8D8A002EAAFA /* HealthKit.framework */; };
-		B5397842214F923E002EAAFA /* HealthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5397841214F923E002EAAFA /* HealthSource.swift */; };
 		B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */; };
 		B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53E5F462053F66300B50B60 /* Activity.storyboard */; };
 		B53E5F492053F68B00B50B60 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5F482053F68B00B50B60 /* ActivityViewController.swift */; };
@@ -112,7 +118,6 @@
 		B5693EF2202462F100B8879C /* JournalNewEntryActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */; };
 		B5693EF520246EE900B8879C /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5693EF420246EE900B8879C /* Entry.storyboard */; };
 		B5693EF720246EFB00B8879C /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5693EF620246EFB00B8879C /* EntryViewController.swift */; };
-		B56CF54421502B3C000A5CFE /* HealthSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CF54321502B3C000A5CFE /* HealthSources.swift */; };
 		B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */; };
 		B57B0637201B0D1800C4E182 /* GoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B0636201B0D1800C4E182 /* GoalCard.swift */; };
 		B57B0639201B0F2900C4E182 /* GoalCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B0638201B0F2900C4E182 /* GoalCard+Extensions.swift */; };
@@ -379,6 +384,13 @@
 		7C3DBDAD229DB2AB1651F7A6 /* Pods_EvaluateDayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EvaluateDayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		946D58101EC7DECDA1AD25D7 /* Pods-EvaluateDayUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDayUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDayUITests/Pods-EvaluateDayUITests.release.xcconfig"; sourceTree = "<group>"; };
 		94DD3AAE2D688BAF2D7A9AB7 /* Pods-EvaluateDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDay/Pods-EvaluateDay.debug.xcconfig"; sourceTree = "<group>"; };
+		B50804D621F70E3F008E9D8D /* OnChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatManager.swift; sourceTree = "<group>"; };
+		B50804D821F71098008E9D8D /* OnChatAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatAction.swift; sourceTree = "<group>"; };
+		B50804DA21F7120E008E9D8D /* OnChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChat.swift; sourceTree = "<group>"; };
+		B50804DC21F71813008E9D8D /* OnChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatMessageCell.swift; sourceTree = "<group>"; };
+		B50804DE21F7182F008E9D8D /* OnChatAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatAnswerCell.swift; sourceTree = "<group>"; };
+		B50804E021F719B5008E9D8D /* OnChatLoadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatLoadCell.swift; sourceTree = "<group>"; };
+		B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChatTextActionView.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,7 +457,6 @@
 		B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluateCommentNode.swift; sourceTree = "<group>"; };
 		B536110A1FF8ED4C007A1290 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
 		B53977D5214A8D8A002EAAFA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		B5397841214F923E002EAAFA /* HealthSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSource.swift; sourceTree = "<group>"; };
 		B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDotsAnalyticsNode.swift; sourceTree = "<group>"; };
 		B53E5F462053F66300B50B60 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		B53E5F482053F68B00B50B60 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -486,7 +497,6 @@
 		B5693EF1202462F100B8879C /* JournalNewEntryActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalNewEntryActionNode.swift; sourceTree = "<group>"; };
 		B5693EF420246EE900B8879C /* Entry.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
 		B5693EF620246EFB00B8879C /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		B56CF54321502B3C000A5CFE /* HealthSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSources.swift; sourceTree = "<group>"; };
 		B570C3F71FAC363100B12309 /* CardSettingsTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsTextNode.swift; sourceTree = "<group>"; };
 		B57B0636201B0D1800C4E182 /* GoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCard.swift; sourceTree = "<group>"; };
 		B57B0638201B0F2900C4E182 /* GoalCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalCard+Extensions.swift"; sourceTree = "<group>"; };
@@ -786,6 +796,20 @@
 				946D58101EC7DECDA1AD25D7 /* Pods-EvaluateDayUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B50804D521F70E23008E9D8D /* OnboardingChat */ = {
+			isa = PBXGroup;
+			children = (
+				B50804D621F70E3F008E9D8D /* OnChatManager.swift */,
+				B50804D821F71098008E9D8D /* OnChatAction.swift */,
+				B50804DC21F71813008E9D8D /* OnChatMessageCell.swift */,
+				B50804DE21F7182F008E9D8D /* OnChatAnswerCell.swift */,
+				B50804E021F719B5008E9D8D /* OnChatLoadCell.swift */,
+				B50804DA21F7120E008E9D8D /* OnChat.swift */,
+				B50804E621F8574A008E9D8D /* OnChatTextActionView.swift */,
+			);
+			path = OnboardingChat;
 			sourceTree = "<group>";
 		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
@@ -1543,6 +1567,7 @@
 		B5C757241F9DC9700032199E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				B50804D521F70E23008E9D8D /* OnboardingChat */,
 				B5C757271F9DC9970032199E /* Onboarding.storyboard */,
 				B58DDAA721F389D5005F48AE /* OnboardingViewController.swift */,
 			);
@@ -1655,8 +1680,6 @@
 			children = (
 				B5E7721B1FA07E46002FA03F /* Sources.swift */,
 				B5E7721D1FA07E59002FA03F /* Source.swift */,
-				B56CF54321502B3C000A5CFE /* HealthSources.swift */,
-				B5397841214F923E002EAAFA /* HealthSource.swift */,
 			);
 			path = "Cards Source";
 			sourceTree = "<group>";
@@ -2092,7 +2115,6 @@
 				B516CA7121EF4A8D0002915F /* CollectibleImageNode.swift in Sources */,
 				B5B27E7F1F9DC21600CB9121 /* Storyboards.swift in Sources */,
 				B5A11400200D4B14008DBF02 /* MapAnnotation.swift in Sources */,
-				B5397842214F923E002EAAFA /* HealthSource.swift in Sources */,
 				B5DED79F1FCB0578002DD956 /* UpdateNode.swift in Sources */,
 				B562180A1FD56A6C0061AC70 /* SettingsProButtonNode.swift in Sources */,
 				B5BD3B422009116C0075C75F /* CheckInDataEvaluateNode.swift in Sources */,
@@ -2184,6 +2206,7 @@
 				B5D854C51FCCBBF300BB4E14 /* SettingsAboutTableViewCells.swift in Sources */,
 				B5BD3B472009E8C70075C75F /* SelectMapViewController.swift in Sources */,
 				B5A5915321D8D6C40026FD84 /* DateShowNode.swift in Sources */,
+				B50804E121F719B5008E9D8D /* OnChatLoadCell.swift in Sources */,
 				B5D854DF1FCFFC4100BB4E14 /* SettingsNewNotificationViewController.swift in Sources */,
 				B5479FCB21E89BDF0002E7D7 /* Localizations.swift in Sources */,
 				B59318331FFAD803000D8FFE /* ColorMergeSection.swift in Sources */,
@@ -2193,6 +2216,7 @@
 				B587D6B91FB6B7D1006D62C1 /* SettingsProNode.swift in Sources */,
 				B58DDAA621F38973005F48AE /* ProViewController.swift in Sources */,
 				B57B0649201B21C000C4E182 /* GoalMergeSection.swift in Sources */,
+				B50804D721F70E3F008E9D8D /* OnChatManager.swift in Sources */,
 				B5899B1721D7BE0400CF123B /* CollectionCardsSection.swift in Sources */,
 				B5AB1E802018A40900BB1A64 /* ListCard.swift in Sources */,
 				B5D9A84C205BC43600F84091 /* UserInformationNode.swift in Sources */,
@@ -2205,6 +2229,7 @@
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
 				B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */,
 				B52D26ED2017648700332D0A /* HabitAnalyticsSection.swift in Sources */,
+				B50804E721F8574A008E9D8D /* OnChatTextActionView.swift in Sources */,
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
 				B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */,
 				B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */,
@@ -2246,6 +2271,7 @@
 				B5EC8859201220F30056C1C7 /* CounterCard+Extensions.swift in Sources */,
 				B5DED79D1FCB04A8002DD956 /* UpdateEvaluateSection.swift in Sources */,
 				B5BD3B28200774160075C75F /* CriterionTenEditSection.swift in Sources */,
+				B50804D921F71098008E9D8D /* OnChatAction.swift in Sources */,
 				B5B7EE4A2010B8E400BCD41A /* PhraseCard+Extensions.swift in Sources */,
 				B5D9A85520612B4200F84091 /* ActivityPhotoSection.swift in Sources */,
 				B516CA6D21EF3FE00002915F /* CollectibleColorNode.swift in Sources */,
@@ -2265,13 +2291,13 @@
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
 				B5D854CC1FCDAA8300BB4E14 /* PasscodeViewController.swift in Sources */,
 				B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */,
-				B56CF54421502B3C000A5CFE /* HealthSources.swift in Sources */,
 				B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */,
 				B58DDAB321F61B3F005F48AE /* ProMoreViewController.swift in Sources */,
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,
 				B516CA6721EF31560002915F /* CollectionListSection.swift in Sources */,
 				B52D26E720175FB800332D0A /* HabitEvaluateSection.swift in Sources */,
 				B593182C1FFAD53A000D8FFE /* CardMergeViewController.swift in Sources */,
+				B50804DD21F71813008E9D8D /* OnChatMessageCell.swift in Sources */,
 				B5899B1521D7BD8000CF123B /* CollectionCardsObject.swift in Sources */,
 				B59F9F4C211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift in Sources */,
 				B5899B1D21D7C80500CF123B /* AllCardsNode.swift in Sources */,
@@ -2294,6 +2320,8 @@
 				B58DC378213C0EAF0067FD61 /* Dashboard.swift in Sources */,
 				B5EC8863201348AB0056C1C7 /* CounterEvaluateSection.swift in Sources */,
 				B5BD3B2020076BAD0075C75F /* CriterionTenEvaluateSection.swift in Sources */,
+				B50804DB21F7120E008E9D8D /* OnChat.swift in Sources */,
+				B50804DF21F7182F008E9D8D /* OnChatAnswerCell.swift in Sources */,
 				B5AC0E0320E23BBB00F13A79 /* SettingsIconsViewController.swift in Sources */,
 				B5A11415200F8264008DBF02 /* CriterionThreeEditSection.swift in Sources */,
 				B5BD3B2E2007A0390075C75F /* LocationValue+Extensions.swift in Sources */,
