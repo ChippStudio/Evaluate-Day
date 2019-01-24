@@ -17,6 +17,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var topImage: UIImageView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var selectImageButton: UIButton!
     
     // MARK: - Variables
     var collection: Dashboard!
@@ -43,6 +44,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         // Set delete or save bar button
         if self.collection.realm != nil {
             self.deleteBarButton = UIBarButtonItem(image: Images.Media.delete.image.resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.deleteButtonAction(sender:)))
+            self.deleteBarButton.accessibilityLabel = Localizations.General.delete
             self.navigationItem.rightBarButtonItem = self.deleteBarButton
         } else {
             self.saveBarButton = UIBarButtonItem(title: Localizations.General.save, style: .plain, target: self, action: #selector(self.saveButtonAction(sender:)))
@@ -53,6 +55,8 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         self.cards = Database.manager.data.objects(Card.self).filter("dashboard=%@ AND isDeleted=%@", self.collection.id, false).sorted(byKeyPath: "order")
         
         self.topLabel.text = Localizations.Collection.Edit.image
+        
+        self.selectImageButton.accessibilityLabel = Localizations.Accessibility.Collection.editImage
         
         // Keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)

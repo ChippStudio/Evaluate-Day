@@ -33,6 +33,11 @@ class AllCardsNode: ASCellNode {
         
         self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.tint])
         
+        self.textNode.isAccessibilityElement = false
+        self.cover.isAccessibilityElement = true
+        self.cover.accessibilityLabel = Localizations.Collection.allcards
+        self.cover.accessibilityTraits = UIAccessibilityTraitButton
+        
         self.automaticallyManagesSubnodes = true
     }
     

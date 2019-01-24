@@ -74,7 +74,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
                 values.insert(0.0, at: 0)
             }
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = ThreeNode(title: title, subtitle: subtitle, current: value, previousValue: previousValue, date: self.date, isPositive: isPositive, lock: lock, values: values, dashboard: board)
@@ -187,7 +187,7 @@ class ThreeNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: UIImage?) {
+    init(title: String, subtitle: String, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: (String, UIImage)?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionThree))
@@ -195,7 +195,7 @@ class ThreeNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         self.analytics = EvaluateLineAnalyticsNode(values: values, maxValue: 3.0)
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

@@ -33,6 +33,7 @@ class ImagesNode: ASCellNode {
             }
             
             let button = ASButtonNode()
+            button.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.deletePhoto
             OperationQueue.main.addOperation {
                 button.view.tag = i
             }
@@ -49,6 +50,9 @@ class ImagesNode: ASCellNode {
         for i in self.imageNodes.count..<3 {
             let photoButton = ASButtonNode()
             let cameraButton = ASButtonNode()
+            
+            photoButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.openGalery
+            cameraButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.openCamera
             OperationQueue.main.addOperation {
                 photoButton.view.tag = i
                 cameraButton.view.tag = i

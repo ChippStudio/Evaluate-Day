@@ -27,6 +27,9 @@ class CollectibleImageNode: ASCellNode {
         self.dataImageNode.image = data.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate)
         self.dataImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        
         self.automaticallyManagesSubnodes = true
     }
     

@@ -86,6 +86,10 @@ class StatisticCollectionCell: ASCellNode {
         self.titleNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
         self.subtitleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityValue = data
+        
         self.automaticallyManagesSubnodes = true
     }
     

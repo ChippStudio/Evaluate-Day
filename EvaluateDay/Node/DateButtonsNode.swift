@@ -24,8 +24,10 @@ class DateButtonsNode: ASCellNode {
     var date: Date! {
         didSet {
             var alpha: CGFloat = 1.0
+            self.todayCover.isAccessibilityElement = true
             if date.isToday {
                 alpha = 0.0
+                self.todayCover.isAccessibilityElement = false
             }
             UIView.animate(withDuration: 0.2) {
                 self.todayCover.alpha = alpha
@@ -57,6 +59,18 @@ class DateButtonsNode: ASCellNode {
         self.arrowButton.addTarget(self, action: #selector(self.arrowEndAction(sender:)), forControlEvents: .touchUpOutside)
         self.arrowButton.addTarget(self, action: #selector(self.arrowEndAction(sender:)), forControlEvents: .touchUpInside)
         self.arrowButton.addTarget(self, action: #selector(self.arrowEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.todayCover.isAccessibilityElement = true
+        self.todayCover.accessibilityTraits = UIAccessibilityTraitButton
+        self.todayCover.accessibilityLabel = Localizations.General.today
+        
+        self.arrowCover.isAccessibilityElement = true
+        self.arrowCover.accessibilityTraits = UIAccessibilityTraitButton
+        self.arrowCover.accessibilityLabel = Localizations.Accessibility.date
+        
+        self.todayText.isAccessibilityElement = false
+        self.arrowButton.isAccessibilityElement = false
+        self.todayButton.isAccessibilityElement = false
         
         self.date = date
         self.automaticallyManagesSubnodes = true

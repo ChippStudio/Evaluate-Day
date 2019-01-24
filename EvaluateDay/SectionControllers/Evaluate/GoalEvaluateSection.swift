@@ -83,7 +83,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
         }
         let step = goalCard.step
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, step: step, dashboard: board, values: counter)
@@ -263,7 +263,7 @@ class GoalNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, dashboard: UIImage?, values: [Float]) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -280,7 +280,7 @@ class GoalNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

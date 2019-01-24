@@ -26,6 +26,10 @@ class CollectibleDataNode: ASCellNode {
         
         self.dataNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main])
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        self.accessibilityValue = data
+        
         self.automaticallyManagesSubnodes = true
     }
     

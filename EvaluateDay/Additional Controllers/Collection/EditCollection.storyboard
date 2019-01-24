@@ -27,6 +27,9 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9d-lg-WSm">
                                             <rect key="frame" x="10" y="140" width="355" height="15"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -125,6 +128,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -143,6 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="PYs-DI-pck"/>
                     </view>
                     <connections>
+                        <outlet property="selectImageButton" destination="jbV-gN-YUD" id="f1b-fc-pRk"/>
                         <outlet property="tableView" destination="CTa-iH-Piy" id="WEb-2L-RWM"/>
                         <outlet property="topImage" destination="I9e-YE-7Hn" id="IVS-Ss-mzp"/>
                         <outlet property="topLabel" destination="l9d-lg-WSm" id="6yu-ar-gji"/>
@@ -185,6 +192,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="ex0-9M-ntI" secondAttribute="bottom" constant="10" id="zNe-Fn-4Ng"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="collectionImageView" destination="ex0-9M-ntI" id="rgx-ro-cYl"/>
                                         </connections>

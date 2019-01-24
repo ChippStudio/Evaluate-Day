@@ -72,7 +72,7 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
                 colors.insert("", at: 0)
             }
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = ColorNode(title: title, subtitle: subtitle, image: image, selectedColor: color, colorName: colorName, date: self.date, lock: lock, colors: colors, dashboard: board)
@@ -183,7 +183,7 @@ class ColorNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, colors: [String], dashboard: UIImage?) {
+    init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, colors: [String], dashboard: (String, UIImage)?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -192,7 +192,7 @@ class ColorNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

@@ -46,6 +46,10 @@ class LocationNode: ASCellNode {
         self.accessibilityLabel = self.street.attributedText!.string
         self.accessibilityValue = self.otherAddress.attributedText!.string
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = "\(street), \(otherAddress)"
+        self.accessibilityValue = coordinates
+        
         self.automaticallyManagesSubnodes = true
     }
     

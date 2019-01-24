@@ -83,7 +83,7 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             let c = (self.card.data as! CheckInCard).values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
             chekins.insert(c, at: 0)
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = CheckInNode(title: title, subtitle: subtitle, image: image, date: self.date, datas: datas, permissions: permissions, dashboard: board, values: chekins)
@@ -287,7 +287,7 @@ class CheckInNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, dashboard: UIImage?, values: [Int]) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, datas: [(street: String, otherAddress: String, coordinates: String, index: Int)], permissions: Bool, dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -307,7 +307,7 @@ class CheckInNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

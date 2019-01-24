@@ -78,7 +78,15 @@ class JournalEntryNode: ASCellNode {
             self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpOutside)
             self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpInside)
             self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
+            
+            self.button.accessibilityLabel = newText
+            self.button.accessibilityValue = "\(dateString), \(weatherText), \(locationText)"
         }
+        
+        self.weatherText.isAccessibilityElement = false
+        self.locationText.isAccessibilityElement = false
+        self.textPreview.isAccessibilityElement = false
+        self.dateNode.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
     }

@@ -80,14 +80,19 @@ extension CriterionThreeCard: Collectible {
     func collectionCellFor(_ date: Date) -> ASCellNode? {
         if let value = self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first {
             let dataImage: UIImage
+            let acValue: String
             if value.value == 0 {
                 dataImage = Images.Media.bad.image
+                acValue = Localizations.Accessibility.Evaluate.Criterion.Three.bad
             } else if value.value == 1 {
+                acValue = Localizations.Accessibility.Evaluate.Criterion.Three.neutral
                 dataImage = Images.Media.neutral.image
             } else {
+                acValue = Localizations.Accessibility.Evaluate.Criterion.Three.good
                 dataImage = Images.Media.good.image
             }
             let node = CollectibleImageNode(title: self.card.title, image: Sources.image(forType: self.card.type), data: dataImage)
+            node.accessibilityValue = acValue
             return node
         }
         

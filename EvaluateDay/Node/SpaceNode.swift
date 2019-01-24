@@ -25,6 +25,8 @@ class SpaceNode: ASCellNode {
         
         self.spacer.backgroundColor = UIColor.clear
         
+        self.isAccessibilityElement = false
+        
         self.automaticallyManagesSubnodes = true
     }
     

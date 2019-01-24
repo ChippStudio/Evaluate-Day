@@ -18,7 +18,7 @@ class ShareNode: ASCellNode {
     var shareCover = ASDisplayNode()
     
     // MARK: - Init
-    init(dashboardImage: UIImage?) {
+    init(dashboardImage: UIImage?, collectionTitle: String?, cardTitle: String) {
         super.init()
         
         self.dashboard.image = dashboardImage
@@ -31,6 +31,14 @@ class ShareNode: ASCellNode {
         self.shareButton.addTarget(self, action: #selector(self.shareEndAction(sender:)), forControlEvents: .touchUpOutside)
         self.shareButton.addTarget(self, action: #selector(self.shareEndAction(sender:)), forControlEvents: .touchUpInside)
         self.shareButton.addTarget(self, action: #selector(self.shareEndAction(sender:)), forControlEvents: .touchCancel)
+        
+        self.shareButton.accessibilityLabel = Localizations.Calendar.Empty.share
+        self.shareButton.accessibilityValue = cardTitle
+        
+        if dashboardImage != nil {
+            self.dashboard.isAccessibilityElement = true
+            self.dashboard.accessibilityLabel = Localizations.Accessibility.Collection.override(cardTitle, collectionTitle! )
+        }
         
         self.automaticallyManagesSubnodes = true
     }

@@ -31,6 +31,17 @@ class CollectibleColorNode: ASCellNode {
             self.colorNode.borderWidth = 0.5
         }
         
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = title
+        var acColor: String = ""
+        for item in colorsForSelection {
+            if item.color == color {
+                acColor = item.name
+                break
+            }
+        }
+        self.accessibilityValue = acColor
+        
         self.automaticallyManagesSubnodes = true
     }
     

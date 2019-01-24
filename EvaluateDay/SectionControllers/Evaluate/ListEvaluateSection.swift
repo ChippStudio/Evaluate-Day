@@ -69,7 +69,7 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
             counter.insert(done, at: 0)
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = ListNode(title: title, subtitle: subtitle, image: image, all: all, allDone: allDone, inDay: done, date: self.date, dashboard: board, values: counter)
@@ -176,7 +176,7 @@ class ListNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, dashboard: UIImage?, values: [Int]) {
+    init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -187,7 +187,7 @@ class ListNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
 
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"

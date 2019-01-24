@@ -87,7 +87,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             counter.insert(c, at: 0)
         }
         
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = HabitNode(title: title, subtitle: subtitle, image: image, negative: negative, marks: valuesCount, previousMarks: previousValueCount, date: self.date, comments: commetsStack, dashboard: board, values: counter)
@@ -273,7 +273,7 @@ class HabitNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], dashboard: UIImage?, values: [Int]) {
+    init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -296,7 +296,7 @@ class HabitNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

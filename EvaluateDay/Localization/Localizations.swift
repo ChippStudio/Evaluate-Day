@@ -17,6 +17,8 @@ internal enum Localizations {
     internal static func current(_ p1: String) -> String {
       return Localizations.tr("Localizable", "accessibility.current", p1)
     }
+    /// Double tap to select new date
+    internal static let date = Localizations.tr("Localizable", "accessibility.date")
     /// less
     internal static let less = Localizations.tr("Localizable", "accessibility.less")
     /// more
@@ -68,6 +70,8 @@ internal enum Localizations {
       }
       /// Map view
       internal static let mapView = Localizations.tr("Localizable", "accessibility.analytics.mapView")
+      /// Open Analytics
+      internal static let `open` = Localizations.tr("Localizable", "accessibility.analytics.open")
       /// Share statistic
       internal static let shareStat = Localizations.tr("Localizable", "accessibility.analytics.shareStat")
       internal enum Export {
@@ -79,19 +83,19 @@ internal enum Localizations {
         }
       }
     }
-    internal enum Dashboard {
-      /// Dashboards - %@
-      internal static func dashboards(_ p1: String) -> String {
-        return Localizations.tr("Localizable", "accessibility.dashboard.dashboards", p1)
+    internal enum Collection {
+      /// Collection - %@
+      internal static func collection(_ p1: String) -> String {
+        return Localizations.tr("Localizable", "accessibility.collection.collection", p1)
       }
-      /// Add new dasboard
-      internal static let new = Localizations.tr("Localizable", "accessibility.dashboard.new")
-      /// %@, cards - %@
+      /// Edit Collection
+      internal static let edit = Localizations.tr("Localizable", "accessibility.collection.edit")
+      /// Double Tap to select new image
+      internal static let editImage = Localizations.tr("Localizable", "accessibility.collection.editImage")
+      /// Card - %@,  in collection - %@
       internal static func `override`(_ p1: String, _ p2: String) -> String {
-        return Localizations.tr("Localizable", "accessibility.dashboard.override", p1, p2)
+        return Localizations.tr("Localizable", "accessibility.collection.override", p1, p2)
       }
-      /// Save new title for dashboard
-      internal static let saveTitle = Localizations.tr("Localizable", "accessibility.dashboard.saveTitle")
     }
     internal enum Evaluate {
       /// %@, marked locations - %i
@@ -239,21 +243,9 @@ internal enum Localizations {
         return Localizations.tr("Localizable", "accessibility.notification.description", p1, p2, p3, p4)
       }
     }
-    internal enum Onboarding {
-      /// Double tap to open next screen
-      internal static let hint = Localizations.tr("Localizable", "accessibility.onboarding.hint")
-      /// Scroll left to open next page
-      internal static let scrollLeft = Localizations.tr("Localizable", "accessibility.onboarding.scrollLeft")
-      internal enum Permissions {
-        /// authorized
-        internal static let authorized = Localizations.tr("Localizable", "accessibility.onboarding.permissions.authorized")
-        /// restricted
-        internal static let restricted = Localizations.tr("Localizable", "accessibility.onboarding.permissions.restricted")
-      }
-      internal enum Welcome {
-        /// Welcome to the Evaluate Day app by Chipp Studio.
-        internal static let label = Localizations.tr("Localizable", "accessibility.onboarding.welcome.label")
-      }
+    internal enum Pro {
+      /// Conrol Evaluate Day subscription status
+      internal static let `open` = Localizations.tr("Localizable", "accessibility.pro.open")
     }
   }
 

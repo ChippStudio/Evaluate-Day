@@ -28,6 +28,9 @@ class CollectionActionButtonNode: ASCellNode {
         self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpInside)
         self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
         
+        self.text.isAccessibilityElement = false
+        self.button.accessibilityLabel = Localizations.Collection.addNew
+        
         self.automaticallyManagesSubnodes = true
     }
     

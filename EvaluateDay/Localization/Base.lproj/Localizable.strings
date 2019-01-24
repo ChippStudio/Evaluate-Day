@@ -24,6 +24,7 @@
 "accessibility.analytics.lineChartData" = "Line chart have %@ entries";
 "accessibility.analytics.mapView" = "Map view";
 "accessibility.analytics.shareStat" = "Share statistic";
+"accessibility.analytics.open" = "Open Analytics";
 "accessibility.current" = "Current value is %@";
 "accessibility.evaluate.checkIn" = "%@, marked locations - %i";
 "accessibility.evaluate.counter.decrease" = "Decrease counter with step - %@";
@@ -67,21 +68,18 @@
 "accessibility.evaluate.map.search" = "Double tap to save search";
 "accessibility.evaluate.phraseEdit" = "Edit phrase per %@";
 "accessibility.evaluate.reorder" = "Reorder Cards";
+"accessibility.date" = "Double tap to select new date";
 "accessibility.less" = "less";
 "accessibility.more" = "more";
+"accessibility.pro.open" = "Conrol Evaluate Day subscription status";
 "accessibility.notification.description" = "notification with the message: %@, repeat: %@, at %@, with the card: %@";
-"accessibility.onboarding.hint" = "Double tap to open next screen";
-"accessibility.onboarding.permissions.authorized" = "authorized";
-"accessibility.onboarding.permissions.restricted" = "restricted";
-"accessibility.onboarding.scrollLeft" = "Scroll left to open next page";
-"accessibility.onboarding.welcome.label" = "Welcome to the Evaluate Day app by Chipp Studio.";
 "accessibility.previous" = "Previous value is %@";
 "accessibility.selected" = "selected";
 "accessibility.unselected" = "unselected";
-"accessibility.dashboard.dashboards" = "Dashboards - %@";
-"accessibility.dashboard.override" = "%@, cards - %@";
-"accessibility.dashboard.new" = "Add new dasboard";
-"accessibility.dashboard.saveTitle" = "Save new title for dashboard";
+"accessibility.collection.collection" = "Collection - %@";
+"accessibility.collection.override" = "Card - %@,  in collection - %@";
+"accessibility.collection.edit" = "Edit Collection";
+"accessibility.collection.editImage" = "Double Tap to select new image";
 
 // MARK: - Activity
 "activity.analytics.barchart.title" = "Statistics of launches";

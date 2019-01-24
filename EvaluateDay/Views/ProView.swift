@@ -62,6 +62,7 @@ class ProView: UIView {
         proLabel.text = "PRO"
         proLabel.textColor = UIColor.selected
         proLabel.font = UIFont.systemFont(ofSize: 24.0, weight: .bold)
+        proLabel.isAccessibilityElement = false
 
         let icon = UIImageView()
         icon.image = Images.Media.appIcon.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate)
@@ -136,5 +137,12 @@ class ProView: UIView {
         self.button.addTarget(self, action: #selector(self.viewEndAction(sender:)), for: .touchUpOutside)
         self.button.addTarget(self, action: #selector(self.viewEndAction(sender:)), for: .touchUpInside)
         self.button.addTarget(self, action: #selector(self.viewEndAction(sender:)), for: .touchCancel)
+        
+        // Set accesebility
+        self.unlockLabel.isAccessibilityElement = false
+        self.evaluateDayLabel.isAccessibilityElement = false
+        self.readMoreLabel.isAccessibilityElement = false
+        
+        self.button.accessibilityLabel = Localizations.Accessibility.Pro.open
     }
 }

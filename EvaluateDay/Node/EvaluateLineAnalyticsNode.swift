@@ -57,6 +57,8 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         
         self.lines.insert(self.standart, at: 0)
         
+        self.button.accessibilityLabel = Localizations.Accessibility.Analytics.open
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -82,13 +84,12 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         let contentInset = ASInsetLayoutSpec(insets: contentInsets, child: content)
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
+        let cellButton = ASOverlayLayoutSpec(child: cell, overlay: self.button)
         
         let cellInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
-        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cellButton)
         
-        let cellButton = ASOverlayLayoutSpec(child: cellInset, overlay: self.button)
-        
-        return cellButton
+        return cellInset
     }
     
     // MARK: - Actions

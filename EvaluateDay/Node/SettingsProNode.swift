@@ -30,9 +30,9 @@ class SettingsProNode: ASCellNode {
         })
         
         //Accessibility
-        self.isAccessibilityElement = true
-//        self.accessibilityLabel = "\(titleString), \(subtitleString)"
-        self.accessibilityTraits = UIAccessibilityTraitButton
+//        self.isAccessibilityElement = true
+////        self.accessibilityLabel = "\(titleString), \(subtitleString)"
+//        self.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }

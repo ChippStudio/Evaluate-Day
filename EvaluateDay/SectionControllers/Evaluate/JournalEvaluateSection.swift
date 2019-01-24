@@ -96,7 +96,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             let c = (self.card.data as! JournalCard).values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).count
             entriesCount.insert(c, at: 0)
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = JournalNode(title: title, subtitle: subtitle, image: image, date: self.date, entries: entries, values: entriesCount, dashboard: board)
@@ -234,7 +234,7 @@ class JournalNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)], values: [Int], dashboard: UIImage?) {
+    init(title: String, subtitle: String, image: UIImage, date: Date, entries: [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)], values: [Int], dashboard: (String, UIImage)?) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -249,7 +249,7 @@ class JournalNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"

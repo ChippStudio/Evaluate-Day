@@ -50,6 +50,8 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
         self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
         
+        self.button.accessibilityLabel = Localizations.Accessibility.Analytics.open
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -77,12 +79,12 @@ class EvaluateColorDotsAnalyticsNode: ASCellNode {
         
         let cell = ASBackgroundLayoutSpec(child: contentInset, background: self.cover)
         
+        let buttonStack = ASOverlayLayoutSpec(child: cell, overlay: self.button)
+        
         let cellInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 0.0, right: 20.0)
-        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
+        let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: buttonStack)
         
-        let buttonStack = ASOverlayLayoutSpec(child: cellInset, overlay: self.button)
-        
-        return buttonStack
+        return cellInset
     }
     
     // MARK: - Actions

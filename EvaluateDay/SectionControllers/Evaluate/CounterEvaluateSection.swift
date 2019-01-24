@@ -82,7 +82,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
                 counter.insert(0, at: 0)
             }
         }
-        let board = self.card.dashboardValue?.1
+        let board = self.card.dashboardValue
         
         return {
             let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter)
@@ -261,7 +261,7 @@ class CounterNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: UIImage?, values: [Float]) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
         super.init()
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
@@ -278,7 +278,7 @@ class CounterNode: ASCellNode {
         self.separator = SeparatorNode()
         self.separator.insets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 0.0, right: 20.0)
         
-        self.share = ShareNode(dashboardImage: dashboard)
+        self.share = ShareNode(dashboardImage: dashboard?.1, collectionTitle: dashboard?.0, cardTitle: title)
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true

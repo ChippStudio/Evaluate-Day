@@ -20,6 +20,8 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
     var editButton = ASButtonNode()
     var editButtonCover = ASDisplayNode()
     
+    private var accessibilityNode = ASDisplayNode()
+    
     // MARK: - Variables
     var data = [(title: String, subtitle: String)]()
     
@@ -69,6 +71,15 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         self.editButton.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpInside)
         self.editButton.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
         
+        // Accessibility
+        self.accessibilityNode.isAccessibilityElement = true
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Collection.collection(title)
+        
+        self.editButton.accessibilityLabel = Localizations.Accessibility.Collection.edit
+        
+        self.title.isAccessibilityElement = false
+        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -98,7 +109,8 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
             content.children?.append(p)
         }
         
-        return content
+        let cell = ASBackgroundLayoutSpec(child: content, background: self.accessibilityNode)
+        return cell
     }
     
     // MARK: - ASCollectionDataSource
@@ -149,6 +161,10 @@ class CollectionListStaticticNode: ASCellNode {
         
         self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
         self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
+        
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = subtitle
+        self.accessibilityValue = title
         
         self.automaticallyManagesSubnodes = true
     }

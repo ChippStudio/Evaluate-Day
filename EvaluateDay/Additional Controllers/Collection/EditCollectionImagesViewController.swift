@@ -47,6 +47,8 @@ class EditCollectionImagesViewController: UIViewController, UITableViewDataSourc
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.tint
         
+        cell.accessibilityLabel = "collection-\(indexPath.row)"
+        
         cell.selectedBackgroundView = selectedView
         
         return cell
