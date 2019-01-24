@@ -80,7 +80,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             self.navigationController?.navigationBar.shadowImage = UIImage()
             
             // Backgrounds
-            self.navigationController?.view.backgroundColor = UIColor.background
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
         }

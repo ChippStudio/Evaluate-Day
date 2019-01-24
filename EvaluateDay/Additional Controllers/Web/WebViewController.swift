@@ -21,15 +21,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set navigation controller
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.main
-        
         // set self
-        self.view.backgroundColor = UIColor.white
         self.webView.backgroundColor = UIColor.white
 
         // Set close button
@@ -44,6 +36,27 @@ class WebViewController: UIViewController {
             }
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+        }
     }
 
     override func didReceiveMemoryWarning() {

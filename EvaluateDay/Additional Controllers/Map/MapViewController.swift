@@ -103,6 +103,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
         
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
+            
             self.baseView.backgroundColor = UIColor.background
         }
     }

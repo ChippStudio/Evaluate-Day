@@ -32,6 +32,29 @@ class EditCollectionImagesViewController: UIViewController, UITableViewDataSourc
             self.images.append("dashboard-\(i)")
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateAppearance(animated: false)
+    }
+    
+    override func updateAppearance(animated: Bool) {
+        super.updateAppearance(animated: animated)
+        
+        let duration: TimeInterval = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration) {
+            //set NavigationBar
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
+            // Backgrounds
+            self.view.backgroundColor = UIColor.background
+            
+            // TableView
+            self.tableView.backgroundColor = UIColor.background
+        }
+    }
     
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {

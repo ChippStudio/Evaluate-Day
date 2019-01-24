@@ -107,6 +107,12 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
             
+            //set NavigationBar
+            self.navigationController?.navigationBar.barTintColor = UIColor.background
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.tintColor = UIColor.main
+            
             self.textView.textColor = UIColor.text
             self.pageCover.backgroundColor = UIColor.background
             self.pageControl.pageIndicatorTintColor = UIColor.tint
