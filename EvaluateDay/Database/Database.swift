@@ -53,6 +53,11 @@ final class Database: NSObject {
                     newObject!["enableSync"] = true
                 })
             }
+            if oldSchemaVersion < 6 {
+                migration.enumerateObjects(ofType: App.className(), { (_, newObject) in
+                    newObject!["isShowWelcome"] = false
+                })
+            }
         })
         
         let dataURL = container!.appendingPathComponent(dataRealmKey, isDirectory: false).appendingPathExtension(realmKey)

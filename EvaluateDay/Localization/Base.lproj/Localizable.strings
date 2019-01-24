@@ -538,6 +538,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "welcome.new.email.secondMessage" = "Evaluate Day постоянно развивается, подпишитесь на нашу рассылку, что бы быть в курсе последних идей и новостей";
 "welcome.new.email.thirdMessage" = "Обещаем писать не чаще 2 раз в месяц и не какого спама";
 "welcome.new.email.empty" = "I will do it later";
+"welcome.new.email.placeholder" = "email";
 "welcome.new.pro.firstMessage" = "One more thing";
 "welcome.new.pro.secondMessage" = "Воспользуйтесь всеми функциями Evaluate Day без ограничений";
 "welcome.new.pro.buyed" = "Nice app, I am in";

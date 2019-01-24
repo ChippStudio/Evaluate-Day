@@ -1499,6 +1499,8 @@ internal enum Localizations {
         internal static let empty = Localizations.tr("Localizable", "welcome.new.email.empty")
         /// Отлично осталось совсем не много
         internal static let firstMessage = Localizations.tr("Localizable", "welcome.new.email.firstMessage")
+        /// email
+        internal static let placeholder = Localizations.tr("Localizable", "welcome.new.email.placeholder")
         /// Evaluate Day постоянно развивается, подпишитесь на нашу рассылку, что бы быть в курсе последних идей и новостей
         internal static let secondMessage = Localizations.tr("Localizable", "welcome.new.email.secondMessage")
         /// Обещаем писать не чаще 2 раз в месяц и не какого спама

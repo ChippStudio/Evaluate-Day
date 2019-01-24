@@ -16,8 +16,15 @@ public class OnChatTextActionView: UIView, ActionView, UITextFieldDelegate {
     public var button = UIButton()
     public var textField = UITextField()
     
+    // MARK: - Variables
+    public let skipString: String
+    public let sendString: String
+    
     // MARK: - Init
-    public init() {
+    public init(skipTitle: String, sendTitle: String) {
+        self.skipString = skipTitle
+        self.sendString = sendTitle
+        
         super.init(frame: CGRect.zero)
         self.initializeView()
     }
@@ -34,9 +41,10 @@ public class OnChatTextActionView: UIView, ActionView, UITextFieldDelegate {
         self.textField.translatesAutoresizingMaskIntoConstraints = false
         self.textField.returnKeyType = .done
         self.textField.delegate = self
+        self.textField.addTarget(self, action: #selector(self.textFieldAction(sender:)), for: .editingChanged)
         
         // set button
-        self.button.setTitle("Send", for: .normal)
+        self.button.setTitle(self.skipString, for: .normal)
         self.button.setTitleColor(UIColor.black, for: .normal)
         self.button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         self.button.translatesAutoresizingMaskIntoConstraints = false
@@ -79,5 +87,17 @@ public class OnChatTextActionView: UIView, ActionView, UITextFieldDelegate {
         self.buttonAction(sendre: self.button)
         
         return true
+    }
+    
+    @objc func textFieldAction(sender: UITextField) {
+        if sender.text == nil {
+            self.button.setTitle(self.skipString, for: .normal)
+            return
+        }
+        if sender.text!.isEmpty {
+            self.button.setTitle(self.skipString, for: .normal)
+        } else {
+            self.button.setTitle(self.sendString, for: .normal)
+        }
     }
 }

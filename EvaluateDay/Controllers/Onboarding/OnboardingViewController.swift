@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class OnboardingViewController: UIViewController {
 
@@ -40,7 +41,11 @@ class OnboardingViewController: UIViewController {
         self.chatManager.animationImageTintColor = UIColor.main
         
         // Set chat flow
-        self.chatFlowForNewUser()
+        if Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).count != 0 {
+            self.chatFlowForOldUser()
+        } else {
+            self.chatFlowForNewUser()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,7 +80,8 @@ class OnboardingViewController: UIViewController {
     // MARK: - Button Actions
     @objc func skipAction(sender: UIBarButtonItem) {
         // Skip onboarding
-        print("Skip Onboarding")
+        let controller = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+        self.present(controller, animated: true, completion: nil)
     }
     
     @objc func openProController(sender: UIButton) {
@@ -96,8 +102,7 @@ class OnboardingViewController: UIViewController {
             self.navigationItem.setRightBarButton(skipButton, animated: true)
         }
         
-        let secondActionView = OnChatTextActionView()
-        secondActionView.button.setTitle(Localizations.General.send, for: .normal)
+        let secondActionView = OnChatTextActionView(skipTitle: Localizations.General.skip, sendTitle: Localizations.General.send)
         secondActionView.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         secondActionView.button.setTitleColor(UIColor.tint, for: .normal)
         
@@ -184,7 +189,20 @@ class OnboardingViewController: UIViewController {
             action.resumeAction(withMessage: action.answerMessage)
         }
         
-        let fourthAction = OnChatAction(messages: [Localizations.Welcome.New.Email.firstMessage, Localizations.Welcome.New.Email.secondMessage, Localizations.Welcome.New.Email.thirdMessage], actionView: secondActionView) { (action) in
+        let fourthActionView = OnChatTextActionView(skipTitle: Localizations.General.skip, sendTitle: Localizations.General.send)
+        fourthActionView.backgroundColor = UIColor.positive
+        fourthActionView.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        fourthActionView.button.setTitleColor(UIColor.tint, for: .normal)
+        
+        fourthActionView.textField.font = UIFont.preferredFont(forTextStyle: .body)
+        fourthActionView.textField.placeholder = Localizations.Welcome.New.Email.placeholder
+        fourthActionView.textField.keyboardType = .emailAddress
+        fourthActionView.textField.autocapitalizationType = .none
+        fourthActionView.textField.tintColor = UIColor.tint
+        fourthActionView.textField.textColor = UIColor.tint
+        fourthActionView.textField.backgroundColor = UIColor.positive
+        fourthActionView.textField.layer.borderColor = UIColor.tint.cgColor
+        let fourthAction = OnChatAction(messages: [Localizations.Welcome.New.Email.firstMessage, Localizations.Welcome.New.Email.secondMessage, Localizations.Welcome.New.Email.thirdMessage], actionView: fourthActionView) { (action) in
             
             // Send email to MailChimp
             
@@ -194,7 +212,12 @@ class OnboardingViewController: UIViewController {
             } else {
                 
                 // Send email to MailChimp
-                let headers = ["Content-Type": "application/json"]
+                var headers: HTTPHeaders = [:]
+                
+                if let authorizationHeader = Request.authorizationHeader(user: "API", password: mailChimpAPIKey) {
+                    headers[authorizationHeader.key] = authorizationHeader.value
+                }
+                headers["Content-Type"] = "application/json"
                 
                 // JSON Body
                 let body: [String : Any] = [
@@ -202,9 +225,19 @@ class OnboardingViewController: UIViewController {
                     "email_address": action.answerMessage
                 ]
                 
-                Alamofire.request("https://us14.api.mailchimp.com/3.0/lists/\(mailChimpListID)/members", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).authenticate(user: "API", password: mailChimpAPIKey).responseJSON { response in
+                Alamofire.request("https://us14.api.mailchimp.com/3.0/lists/\(mailChimpListID)/members", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                     
-                    action.resumeAction(withMessage: action.answerMessage)
+                    let json = JSON(response.value!)
+                    let answer: String
+                    if let email = json["email_address"].string {
+                        answer = email
+                        try! Database.manager.app.write {
+                            Database.manager.application.user.email = email
+                        }
+                    } else {
+                        answer = Localizations.Welcome.New.Email.empty
+                    }
+                    action.resumeAction(withMessage: answer)
                 }
             }
         }
@@ -218,6 +251,10 @@ class OnboardingViewController: UIViewController {
         let sixthActionView = ActionButtonView(frame: CGRect.zero)
         sixthActionView.button.setTitle(Localizations.Welcome.New.All.enjoy, for: .normal)
         let sixthAction = OnChatAction(messages: [Localizations.Welcome.New.All.firstMessage, Localizations.Welcome.New.All.secondMessage], actionView: sixthActionView) { (action) in
+            
+            try! Database.manager.app.write {
+                Database.manager.application.isShowWelcome = true
+            }
             
             let controller = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
             self.present(controller, animated: true, completion: nil)
@@ -234,11 +271,92 @@ class OnboardingViewController: UIViewController {
     func chatFlowForOldUser() {
         let firstActionView = ActionButtonView(frame: CGRect.zero)
         firstActionView.button.setTitle(Localizations.Welcome.next, for: .normal)
-        let firstAction = OnChatAction(messages: ["first"], actionView: firstActionView) { (action) in
-            let new = Localizations.Welcome.next
+        let firstAction = OnChatAction(messages: [Localizations.Welcome.New.Intro.firstMessage, Localizations.Welcome.New.Intro.secondMessage, Localizations.Welcome.New.Intro.thirdMessage], actionView: firstActionView) { (action) in
+            
+            let new = action.answerMessage!
             action.resumeAction(withMessage: new)
+            
+            let skipButton = UIBarButtonItem(title: Localizations.General.skip, style: .plain, target: self, action: #selector(self.skipAction(sender:)))
+            self.navigationItem.setRightBarButton(skipButton, animated: true)
+        }
+        
+        let secondActionView = OnChatTextActionView(skipTitle: Localizations.General.skip, sendTitle: Localizations.General.send)
+        secondActionView.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        secondActionView.button.setTitleColor(UIColor.tint, for: .normal)
+        
+        secondActionView.textField.font = UIFont.preferredFont(forTextStyle: .body)
+        secondActionView.textField.placeholder = Localizations.Welcome.New.Email.placeholder
+        secondActionView.textField.keyboardType = .emailAddress
+        secondActionView.textField.autocapitalizationType = .none
+        secondActionView.textField.tintColor = UIColor.tint
+        secondActionView.textField.textColor = UIColor.tint
+        secondActionView.textField.backgroundColor = UIColor.positive
+        secondActionView.textField.layer.borderColor = UIColor.tint.cgColor
+        
+        secondActionView.backgroundColor = UIColor.positive
+        let secondAction = OnChatAction(messages: [Localizations.Welcome.New.Email.firstMessage, Localizations.Welcome.New.Email.secondMessage, Localizations.Welcome.New.Email.thirdMessage], actionView: secondActionView) { (action) in
+            
+            // Send email to MailChimp
+            
+            let new = action.answerMessage!
+            if new.isEmpty {
+                action.resumeAction(withMessage: Localizations.Welcome.New.Email.empty)
+            } else {
+                
+                // Send email to MailChimp
+                var headers: HTTPHeaders = [:]
+                
+                if let authorizationHeader = Request.authorizationHeader(user: "API", password: mailChimpAPIKey) {
+                    headers[authorizationHeader.key] = authorizationHeader.value
+                }
+                headers["Content-Type"] = "application/json"
+                
+                // JSON Body
+                let body: [String : Any] = [
+                    "status": "subscribed",
+                    "email_address": action.answerMessage
+                ]
+                
+                Alamofire.request("https://us14.api.mailchimp.com/3.0/lists/\(mailChimpListID)/members", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                    
+                    let json = JSON(response.value!)
+                    let answer: String
+                    if let email = json["email_address"].string {
+                        answer = email
+                        try! Database.manager.app.write {
+                            Database.manager.application.user.email = email
+                        }
+                    } else {
+                        answer = Localizations.Welcome.New.Email.empty
+                    }
+                    action.resumeAction(withMessage: answer)
+                }
+            }
+        }
+        
+        let thirdActionView = ActionProView()
+        thirdActionView.proView.button.addTarget(self, action: #selector(self.openProController(sender:)), for: .touchUpInside)
+        let thirdAction = OnChatAction(messages: [Localizations.Welcome.New.Pro.firstMessage, Localizations.Welcome.New.Pro.secondMessage], actionView: thirdActionView) { (action) in
+            action.resumeAction(withMessage: action.answerMessage)
+        }
+        
+        let fourthActionView = ActionButtonView(frame: CGRect.zero)
+        fourthActionView.button.setTitle(Localizations.Welcome.New.All.enjoy, for: .normal)
+        let fourthAction = OnChatAction(messages: [Localizations.Welcome.New.All.firstMessage, Localizations.Welcome.New.All.secondMessage], actionView: fourthActionView) { (action) in
+            
+            try! Database.manager.app.write {
+                Database.manager.application.isShowWelcome = true
+            }
+            
+            let controller = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.present(controller, animated: true, completion: nil)
         }
         
         self.chatManager.addAction(action: firstAction)
+        self.chatManager.addAction(action: secondAction)
+        if !Store.current.isPro {
+            self.chatManager.addAction(action: thirdAction)
+        }
+        self.chatManager.addAction(action: fourthAction)
     }
 }

@@ -828,6 +828,34 @@
 			path = "Actions Views";
 			sourceTree = "<group>";
 		};
+		B50804EF21F9B3BD008E9D8D /* Model Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5DE2CAC2000EAA900EFBCA5 /* Card+Extensions.swift */,
+				B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */,
+				B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */,
+				B5BD3B312007A65E0075C75F /* CheckInCard+Extensions.swift */,
+				B5B7EE492010B8E400BCD41A /* PhraseCard+Extensions.swift */,
+				B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */,
+				B5BD3B1D2007676F0075C75F /* CriterionTenCard+Extensions.swift */,
+				B5A1140A200F78C0008DBF02 /* CriterionThreeCard+Extensions.swift */,
+				B5EC8858201220F30056C1C7 /* CounterCard+Extensions.swift */,
+				B52D26DE20174A0E00332D0A /* HabitCard+Extensions.swift */,
+				B55D32812079042800BD1E75 /* TrackerCard+Extensions.swift */,
+				B5AB1E812018A4E100BB1A64 /* ListCard+Extensions.swift */,
+				B57B0638201B0F2900C4E182 /* GoalCard+Extensions.swift */,
+				B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */,
+				B5B7EE452010B70800BCD41A /* TextValue+Extensions.swift */,
+				B5BD3B2D2007A0390075C75F /* LocationValue+Extensions.swift */,
+				B5DE2CB22001003B00EFBCA5 /* NumberValue+Extensions.swift */,
+				B5AB1E7D2018A2CC00BB1A64 /* MarkValue+Extensions.swift */,
+				B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */,
+				B5A9D5AB2021FDA0006DFB32 /* PhotoValue+Extensions.swift */,
+			);
+			name = "Model Extensions";
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1425,26 +1453,7 @@
 				B5AB1E7B2018A21500BB1A64 /* MarkValue.swift */,
 				B5FFDD4A201B8416008D0365 /* WeatherValue.swift */,
 				B5FFDD4C201B8429008D0365 /* PhotoValue.swift */,
-				B5DE2CAC2000EAA900EFBCA5 /* Card+Extensions.swift */,
-				B58DC379213C10690067FD61 /* Dashboard+Extensions.swift */,
-				B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */,
-				B5BD3B312007A65E0075C75F /* CheckInCard+Extensions.swift */,
-				B5B7EE492010B8E400BCD41A /* PhraseCard+Extensions.swift */,
-				B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */,
-				B5BD3B1D2007676F0075C75F /* CriterionTenCard+Extensions.swift */,
-				B5A1140A200F78C0008DBF02 /* CriterionThreeCard+Extensions.swift */,
-				B5EC8858201220F30056C1C7 /* CounterCard+Extensions.swift */,
-				B52D26DE20174A0E00332D0A /* HabitCard+Extensions.swift */,
-				B55D32812079042800BD1E75 /* TrackerCard+Extensions.swift */,
-				B5AB1E812018A4E100BB1A64 /* ListCard+Extensions.swift */,
-				B57B0638201B0F2900C4E182 /* GoalCard+Extensions.swift */,
-				B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */,
-				B5B7EE452010B70800BCD41A /* TextValue+Extensions.swift */,
-				B5BD3B2D2007A0390075C75F /* LocationValue+Extensions.swift */,
-				B5DE2CB22001003B00EFBCA5 /* NumberValue+Extensions.swift */,
-				B5AB1E7D2018A2CC00BB1A64 /* MarkValue+Extensions.swift */,
-				B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */,
-				B5A9D5AB2021FDA0006DFB32 /* PhotoValue+Extensions.swift */,
+				B50804EF21F9B3BD008E9D8D /* Model Extensions */,
 				B59318251FFA4A8C000D8FFE /* DiffCard */,
 				B584E0C61FDFC648008093D5 /* Additional Objects */,
 			);

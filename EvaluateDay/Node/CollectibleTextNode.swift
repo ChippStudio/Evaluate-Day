@@ -35,6 +35,7 @@ class CollectibleTextNode: ASCellNode {
         self.titleNode.style.flexShrink = 1.0
         
         let texts = ASStackLayoutSpec.vertical()
+        texts.style.flexShrink = 1.0
         texts.children = [self.titleNode, self.dataNode]
         
         let cell = ASStackLayoutSpec.horizontal()

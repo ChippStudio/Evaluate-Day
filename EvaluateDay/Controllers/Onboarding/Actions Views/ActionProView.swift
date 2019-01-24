@@ -46,10 +46,10 @@ class ActionProView: UIView, ActionView {
             }
         }
         
-        self.backgroundColor = UIColor.background
+        self.backgroundColor = UIColor.positive
         
         self.nextButton.layer.cornerRadius = 10.0
-        self.nextButton.setTitleColor(UIColor.main, for: .normal)
+        self.nextButton.setTitleColor(UIColor.tint, for: .normal)
         self.nextButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         
         self.nextButton.addTarget(self, action: #selector(self.initialTouch(sender:)), for: .touchDown)
