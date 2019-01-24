@@ -51,53 +51,11 @@ class EvaluateDayUITests: XCTestCase {
     
     func testUI() {
         // Make screenshots for App Store
+        
         let app = XCUIApplication()
-        snapshot("01") // Evaluate
+        app.navigationBars["collectionNavigationBar"].buttons["hiddenButton"].tap()
+//        app.collectionViews["collectionCollection"].buttons["AllCards"].tap()
+//        XCUIApplication().navigationBars["evaluateNavigationBar"]/*@START_MENU_TOKEN@*/.buttons["newCardButton"]/*[[".buttons[\"Add new card\"]",".buttons[\"newCardButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
-        let tabBarsQuery = XCUIApplication().tabBars
-        
-        // Open analitycs
-        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 1).tap()
-        snapshot("02") // Analytics
-        
-        app.collectionViews["AnalyticsCollection"].children(matching: .cell).element(boundBy: 2).tap()
-        snapshot("03") // Time Travel
-        app.buttons["closeButton"].tap()
-        
-        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
-        
-        tabBarsQuery.buttons["activity"].tap()
-        
-        snapshot("04") // Activity
-        tabBarsQuery.buttons["evaluate"].tap()
-        
-        XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["newCardButton"].tap()
-        snapshot("05") // New Card
-        
-        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
-        app.collectionViews["evaluateCollection"].children(matching: .cell).element(boundBy: 1).tap()
-        XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["cardSettingsButton"].tap()
-        snapshot("06") // Card Settings
-        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
-        XCUIApplication().navigationBars["evaluateNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
-        
-        tabBarsQuery.buttons["settings"].tap()
-        
-        snapshot("09") // Settings
-        
-        XCUIApplication().tables["settingsTableView"].children(matching: .cell).element(boundBy: 3).tap()
-        XCUIApplication().tables["themeTable"].children(matching: .cell).element(boundBy: 1).tap()
-        
-        snapshot("07") //Themes
-        
-        if !self.ipad {
-            XCUIApplication().navigationBars["settingsNavigationBar"].children(matching: .button).element(boundBy: 0).tap()
-        }
-        
-        tabBarsQuery.buttons["evaluate"].tap()
-        XCUIApplication().navigationBars["evaluateNavigationBar"].buttons["reorderButton"].tap()
-        snapshot("08") //Reoreder
-        
-        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element(boundBy: 0).tap()
     }
 }

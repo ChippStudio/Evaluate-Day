@@ -266,13 +266,13 @@
 	<key>CFBundleVersion</key>
 	<string>6749</string>
 	<key>CSBuild</key>
-	<string>7840</string>
+	<string>7846</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>
 	<true/>
 	<key>CSTest</key>
-	<false/>
+	<true/>
 	<key>FacebookAppID</key>
 	<string>184140535498012</string>
 	<key>FacebookDisplayName</key>

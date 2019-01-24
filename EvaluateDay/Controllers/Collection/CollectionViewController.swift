@@ -57,6 +57,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
+        self.navigationController?.navigationBar.accessibilityIdentifier = "collectionNavigationBar"
         
         self.collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
         
@@ -82,6 +83,13 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
         self.adapter.setASDKCollectionNode(self.collectionNode)
         adapter.dataSource = self
+        
+        // Set hidden buttons
+        if UserDefaults.standard.bool(forKey: "CSTest") || UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+            let hiddenButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.scrollToCollections))
+            hiddenButton.accessibilityIdentifier = "hiddenButton"
+            self.navigationItem.setRightBarButton(hiddenButton, animated: false)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -172,4 +180,10 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
+    
+    // MARK: - Private Actions
+    @objc private func scrollToCollections() {
+        self.collectionNode.scrollToItem(at: IndexPath(row: 0, section: 3), at: .top, animated: false)
+    }
+    
 }

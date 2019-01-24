@@ -37,6 +37,7 @@ class AllCardsNode: ASCellNode {
         self.cover.isAccessibilityElement = true
         self.cover.accessibilityLabel = Localizations.Collection.allcards
         self.cover.accessibilityTraits = UIAccessibilityTraitButton
+        self.cover.accessibilityIdentifier = "AllCards"
         
         self.automaticallyManagesSubnodes = true
     }
