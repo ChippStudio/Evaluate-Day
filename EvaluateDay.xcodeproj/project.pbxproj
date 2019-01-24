@@ -923,7 +923,7 @@
 			path = Activity;
 			sourceTree = "<group>";
 		};
-		B53E707021EA0B2E00E19A62 /* Cell */ = {
+		B53E707021EA0B2E00E19A62 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				B53E707121EA0B5300E19A62 /* SwitchCell.swift */,
@@ -938,7 +938,7 @@
 				B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */,
 				B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B55464E22029CEA900923CE3 /* EnriesList */ = {
@@ -1287,7 +1287,7 @@
 			path = Many;
 			sourceTree = "<group>";
 		};
-		B5A5915121D8D6860026FD84 /* Node */ = {
+		B5A5915121D8D6860026FD84 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
 				B5C7573F1F9F32B10032199E /* TitleNode.swift */,
@@ -1359,7 +1359,7 @@
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
 			);
-			path = Node;
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 		B5AB1E932019D07600BB1A64 /* List */ = {
@@ -1403,12 +1403,12 @@
 				B5B27E6C1F9DAC1700CB9121 /* Localization */,
 				B5E75E881FA0A26500DBF6D5 /* Database */,
 				B562180C1FD57E490061AC70 /* Store */,
-				B5C757341F9DE2E60032199E /* Styles */,
+				B5C757341F9DE2E60032199E /* Appearance */,
 				B5B27E7C1F9DB08300CB9121 /* Controllers */,
 				B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */,
 				B591FAD41FA83288007EE0F1 /* SectionControllers */,
-				B5A5915121D8D6860026FD84 /* Node */,
-				B53E707021EA0B2E00E19A62 /* Cell */,
+				B5A5915121D8D6860026FD84 /* Nodes */,
+				B53E707021EA0B2E00E19A62 /* Cells */,
 				B587D6C91FB96F4A006D62C1 /* Views */,
 				B5B27E7B1F9DAF6800CB9121 /* LaunchScreen */,
 				B5257D451FE91E5500AC54DE /* HTML */,
@@ -1609,12 +1609,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		B5C757341F9DE2E60032199E /* Styles */ = {
+		B5C757341F9DE2E60032199E /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
 				B5899B1121D7B48E00CF123B /* Appearance.swift */,
 			);
-			path = Styles;
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 		B5CA2D5A1FB43CAF00547EC8 /* Analytics */ = {
