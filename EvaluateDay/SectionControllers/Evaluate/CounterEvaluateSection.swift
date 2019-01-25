@@ -218,13 +218,21 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         self.viewController?.present(controller, animated: true, completion: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: CounterNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? CounterNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -247,6 +255,8 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -263,6 +273,8 @@ class CounterNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step)

@@ -144,13 +144,21 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
         self.didSelectItem?(self.section, self.card)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: ThreeNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? ThreeNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -173,6 +181,9 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -189,6 +200,7 @@ class ThreeNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, current: Double?, previousValue: Double?, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: (String, UIImage)?) {
         super.init()
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionThree))
         self.buttons = CriterionThreeEvaluateNode(value: current, previousValue: previousValue, date: date, lock: lock, positive: isPositive)

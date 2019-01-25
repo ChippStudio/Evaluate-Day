@@ -134,13 +134,22 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: ListNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? ListNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
+        
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
             UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(sv)
@@ -162,6 +171,9 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -178,6 +190,8 @@ class ListNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, all: Int, allDone: Int, inDay: Int, date: Date, dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.list = ListEvaluateNode(all: all, allDone: allDone, inDay: inDay, date: date)

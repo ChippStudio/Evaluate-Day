@@ -228,13 +228,21 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     }
     
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: HabitNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? HabitNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -257,6 +265,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -275,6 +286,8 @@ class HabitNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, negative: Bool, marks: Int, previousMarks: Int, date: Date, comments: [String], dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date)

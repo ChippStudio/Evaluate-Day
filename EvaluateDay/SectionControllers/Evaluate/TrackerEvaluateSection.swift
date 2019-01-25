@@ -218,13 +218,21 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: TrackerNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? TrackerNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -247,6 +255,9 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -264,6 +275,8 @@ class TrackerNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, marks: Int, previousMarks: Int, date: Date, comments: [String], dashboard: (String, UIImage)?, values: [Int]) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.mark = HabitEvaluateNode(marks: marks, previousMarks: previousMarks, date: date)

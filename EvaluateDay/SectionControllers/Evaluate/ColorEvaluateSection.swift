@@ -140,13 +140,21 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         self.didSelectItem?(self.section, self.card)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: ColorNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? ColorNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -169,6 +177,9 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -185,6 +196,8 @@ class ColorNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, image: UIImage, selectedColor: String, colorName: String, date: Date, lock: Bool, colors: [String], dashboard: (String, UIImage)?) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
         self.colors = ColorEvaluateNode(selectedColor: selectedColor, date: date, lock: lock)

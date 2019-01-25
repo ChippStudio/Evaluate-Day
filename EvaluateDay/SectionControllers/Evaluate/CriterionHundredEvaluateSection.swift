@@ -136,13 +136,21 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         self.didSelectItem?(self.section, self.card)
     }
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: HundredNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? HundredNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -165,6 +173,9 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -181,6 +192,8 @@ class HundredNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, current: Float, previous: Float, date: Date, isPositive: Bool, lock: Bool, values: [Float], dashboard: (String, UIImage)?) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .criterionHundred))
         self.slider = CriterionEvaluateNode(current: current, previous: previous, date: date, maxValue: 100.0, isPositive: isPositive, lock: lock)

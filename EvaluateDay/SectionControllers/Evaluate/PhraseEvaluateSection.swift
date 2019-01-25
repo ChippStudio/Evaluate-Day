@@ -155,13 +155,21 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     @objc private func shareAction(sender: ASButtonNode) {
-        let node: ASCellNode!
+        let node: PhraseNode!
         
         if let controller = self.viewController as? EvaluateViewController {
-            node = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section))
+            if let tNode = controller.collectionNode.nodeForItem(at: IndexPath(row: 0, section: self.section)) as? PhraseNode {
+                node = tNode
+            } else {
+                return
+            }
+            
         } else {
             return
         }
+        
+        node.share.shareCover.alpha = 0.0
+        node.share.shareImage.alpha = 0.0
         
         if let nodeImage = node.view.snapshot {
             let sv = ShareView(image: nodeImage)
@@ -184,6 +192,9 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             
             self.viewController?.present(shareContrroller, animated: true, completion: nil)
         }
+        
+        node.share.shareCover.alpha = 1.0
+        node.share.shareImage.alpha = 1.0
     }
 }
 
@@ -200,6 +211,8 @@ class PhraseNode: ASCellNode {
     // MARK: - Init
     init(title: String, subtitle: String, text: String, date: Date, values: [Bool], dashboard: (String, UIImage)?) {
         super.init()
+        
+        self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: Sources.image(forType: .phrase))
         self.phrase = PhraseEvaluateNode(text: text, date: date)
