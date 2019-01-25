@@ -143,8 +143,8 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             
             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
             
-            if let nav = self.viewController?.parent as? UINavigationController {
-                nav.popToRootViewController(animated: true)
+            if let split = self.viewController?.universalSplitController {
+                split.popSideViewController()
             }
         }
         

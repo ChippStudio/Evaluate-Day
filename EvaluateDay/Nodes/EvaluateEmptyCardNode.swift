@@ -31,7 +31,7 @@ class EvaluateEmptyCardNode: ASCellNode {
         self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.paragraphStyle: paragraph, NSAttributedStringKey.foregroundColor: UIColor.main])
         self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.paragraphStyle: paragraph, NSAttributedStringKey.foregroundColor: UIColor.main])
         
-        self.newCardButton.setAttributedTitle(NSAttributedString(string: Localizations.General.Shortcut.New.title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint]), for: .normal)
+        self.newCardButton.setAttributedTitle(NSAttributedString(string: Localizations.General.Shortcut.New.title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]), for: .normal)
         self.newCardButtonCover.backgroundColor = UIColor.main
         self.newCardButtonCover.cornerRadius = 10.0
         

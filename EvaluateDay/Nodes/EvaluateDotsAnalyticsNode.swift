@@ -26,10 +26,10 @@ class EvaluateDotsAnalyticsNode: ASCellNode {
             let l = ASDisplayNode()
             l.style.preferredSize = CGSize(width: 16.0, height: 16.0)
             if v {
-                l.backgroundColor = UIColor.tint
+                l.backgroundColor = UIColor.textTint
             } else {
                 l.borderWidth = 1.0
-                l.borderColor = UIColor.tint.cgColor
+                l.borderColor = UIColor.textTint.cgColor
             }
             l.cornerRadius = 8.0
             self.dots.append(l)
@@ -44,10 +44,10 @@ class EvaluateDotsAnalyticsNode: ASCellNode {
         self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
-        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
-        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.button.accessibilityLabel = Localizations.Accessibility.Analytics.open
         

@@ -39,8 +39,8 @@ class CriterionEvaluateNode: ASCellNode {
         self.previousValueNumber = previous
         self.currentDateNumber = date
         
-        self.valueTextAtributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.tint]
-        self.persentTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint]
+        self.valueTextAtributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        self.persentTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint]
         
         super.init()
         
@@ -48,7 +48,7 @@ class CriterionEvaluateNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.currentValue.attributedText = NSAttributedString(string: "\(Int(current))", attributes: self.valueTextAtributes)
-        self.previousValue.attributedText = NSAttributedString(string: "\(Int(previous))", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.previousValue.attributedText = NSAttributedString(string: "\(Int(previous))", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
@@ -58,10 +58,10 @@ class CriterionEvaluateNode: ASCellNode {
         
         let previousDate = Calendar.current.date(byAdding: components, to: date)!
         
-        self.currentDate.attributedText = NSAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
-        self.previousDate.attributedText = NSAttributedString(string: dateFormatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.currentDate.attributedText = NSAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.previousDate.attributedText = NSAttributedString(string: dateFormatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
-        self.separator.backgroundColor = UIColor.tint
+        self.separator.backgroundColor = UIColor.textTint
         self.separator.cornerRadius = 2.0
         
         self.persent.attributedText = NSAttributedString(string: "\(calculatePercent(value: current))", attributes: self.persentTextAttributes)
@@ -71,7 +71,7 @@ class CriterionEvaluateNode: ASCellNode {
             self.slider.minimumValue = 0.0
             self.slider.maximumValue = maxValue
             self.slider.setValue(current, animated: true)
-            self.slider.maximumTrackTintColor = UIColor.tint
+            self.slider.maximumTrackTintColor = UIColor.textTint
             self.slider.minimumTrackTintColor = UIColor.selected
             self.slider.isEnabled = !lock
             self.slider.addTarget(self, action: #selector(self.sliderAction(sender:)), for: .valueChanged)

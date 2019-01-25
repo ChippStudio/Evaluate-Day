@@ -38,11 +38,11 @@ class GoalEvaluateNode: ASCellNode {
         // Plus and minus buttons and covers
         let font = UIFont.systemFont(ofSize: 36.0, weight: .regular)
         
-        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.tint]
+        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
         
-        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.tint]
+        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
         
-        let customAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint]
+        let customAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
         
         self.plus.setAttributedTitle(NSAttributedString(string: "+", attributes: plusAttributes), for: .normal)
         

@@ -55,7 +55,7 @@ class ProView: UIView {
         self.layer.cornerRadius = 10.0
         
         // Generate Pro View
-        self.miniProLabel.backgroundColor = UIColor.tint
+        self.miniProLabel.backgroundColor = UIColor.textTint
         self.miniProLabel.layer.cornerRadius = 10.0
 
         let proLabel = UILabel()
@@ -86,11 +86,11 @@ class ProView: UIView {
 
         // All labels
         self.evaluateDayLabel.text = Localizations.General.evaluateday
-        self.evaluateDayLabel.textColor = UIColor.tint
+        self.evaluateDayLabel.textColor = UIColor.textTint
         self.evaluateDayLabel.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
 
         self.readMoreLabel.text = Localizations.Settings.Pro.View.readMore
-        self.readMoreLabel.textColor = UIColor.tint
+        self.readMoreLabel.textColor = UIColor.textTint
         self.readMoreLabel.font = UIFont.systemFont(ofSize: 11.0, weight: .regular)
         self.readMoreLabel.adjustsFontSizeToFitWidth = true
 
@@ -110,7 +110,7 @@ class ProView: UIView {
 
         if !Store.current.isPro {
             self.unlockLabel.text = Localizations.Settings.Pro.View.unlock
-            self.unlockLabel.textColor = UIColor.tint
+            self.unlockLabel.textColor = UIColor.textTint
             self.unlockLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
             self.addSubview(self.unlockLabel)
             self.unlockLabel.snp.makeConstraints { (make) in

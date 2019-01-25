@@ -16,6 +16,7 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
 
     // MARK: - UI
     @IBOutlet weak var tableView: UITableView!
+    var addCardButton: UIBarButtonItem!
     
     // MARK: - Variable
     var cards: Results<Card>!
@@ -34,7 +35,11 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.showsVerticalScrollIndicator = false
         
         // set cards
-        self.cards = Database.manager.data.objects(Card.self).sorted(byKeyPath: "order")
+        self.cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
+        
+        // Set button
+        self.addCardButton = UIBarButtonItem(image: Images.Media.new.image.resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.addCardAction(sender:)))
+        self.navigationItem.rightBarButtonItem = self.addCardButton
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,12 +62,17 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
             
             // Backgrounds
             self.view.backgroundColor = UIColor.background
             
             // TableView
             self.tableView.backgroundColor = UIColor.background
+            self.tableView.reloadData()
         }
     }
     
@@ -111,5 +121,11 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.delegate?.didSelect(cardId: self.cards[indexPath.row].id, in: self)
+    }
+    
+    // MARK: - Actions
+    @objc func addCardAction(sender: UIBarButtonItem) {
+        let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

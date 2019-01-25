@@ -491,10 +491,10 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.sync.last" = "Last Sync";
 "settings.sync.never" = "never";
 "settings.sync.title" = "Sync";
-"settings.themes.iconChange" = "Change App Icon";
 "settings.themes.select.icon" = "Select a Icon";
-"settings.themes.select.theme" = "Select a Theme";
 "settings.themes.title" = "Appearance";
+"settings.themes.darkMode" = "Dark Mode";
+"settings.themes.blackMode" = "Black Mode";
 "settings.title" = "Settings";
 
 // MARK: - Share

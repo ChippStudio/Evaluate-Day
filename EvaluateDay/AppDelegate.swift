@@ -30,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                   "test": Bundle.main.object(forInfoDictionaryKey: "CSTest") as! Bool,
                                                   "isAddedDemoData": false,
                                                   "logPurchaseTurnOffReason": false,
-                                                  "sendAnaliticsPurchaceDate": Date().timeIntervalSince1970])
+                                                  "sendAnaliticsPurchaceDate": Date().timeIntervalSince1970,
+                                                  Theme.darkMode.rawValue: false,
+                                                  Theme.blackMode.rawValue: false])
         
         if !UserDefaults.standard.bool(forKey: "demo") && !UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
             // Init App Metrica

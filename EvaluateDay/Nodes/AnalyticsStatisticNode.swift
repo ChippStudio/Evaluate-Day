@@ -31,6 +31,7 @@ class AnalyticsStatisticNode: ASCellNode, ASCollectionDataSource {
         self.collectionNode.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         self.collectionNode.alwaysBounceHorizontal = true
         self.collectionNode.dataSource = self
+        self.collectionNode.backgroundColor = UIColor.background
         
         OperationQueue.main.addOperation {
             self.collectionNode.view.showsVerticalScrollIndicator = false
@@ -83,8 +84,8 @@ class StatisticCollectionCell: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.titleNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
-        self.subtitleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.titleNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.subtitleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = title

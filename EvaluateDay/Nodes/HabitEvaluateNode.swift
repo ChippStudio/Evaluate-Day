@@ -48,8 +48,8 @@ class HabitEvaluateNode: ASCellNode {
         self.countSeparator.backgroundColor = UIColor.main
         self.countSeparator.cornerRadius = 2.0
         
-        let markButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
-        let markCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let markButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let markCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         let deleteCommentString = NSAttributedString(string: Localizations.Evaluate.Habit.removeLast, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.negative])
         
         self.markButtonCover.backgroundColor = UIColor.main

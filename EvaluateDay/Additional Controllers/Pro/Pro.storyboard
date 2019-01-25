@@ -247,6 +247,7 @@
                                                 <constraint firstItem="Zef-bO-a0X" firstAttribute="width" secondItem="FEO-KU-Jhh" secondAttribute="width" id="zxP-uc-kvN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bottomDurationLabel" destination="0cz-sP-42z" id="UHB-v4-6bs"/>
                                             <outlet property="bottomPriceLabel" destination="dbf-Hr-uNF" id="MDF-tK-1Yx"/>
@@ -375,6 +376,7 @@
                                                 <constraint firstItem="lJ1-va-zQX" firstAttribute="leading" secondItem="ghk-8m-Ras" secondAttribute="leading" constant="20" id="zfZ-Bg-Qeq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="emogiLabel" destination="Gae-o1-fJe" id="Lyk-Xl-xEn"/>
                                             <outlet property="eulaButton" destination="4kI-Ct-TnF" id="ogI-Wf-K7l"/>
@@ -448,6 +450,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -25,7 +25,7 @@ class SettingsMoreNode: ASCellNode {
         self.cover.backgroundColor = UIColor.main
         self.cover.cornerRadius = 10.0
         
-        var titleNewAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint]
+        var titleNewAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
         if titleAttributes != nil {
             titleNewAttributes = titleAttributes!
         }
@@ -42,11 +42,11 @@ class SettingsMoreNode: ASCellNode {
             self.imageNode = ASImageNode()
             self.imageNode.image = image?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0))
             self.imageNode.contentMode = .scaleAspectFit
-            self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+            self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         }
         
         self.disclosureImage.image = Images.Media.disclosure.image
-        self.disclosureImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.disclosureImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         //Accessibility
         self.isAccessibilityElement = true

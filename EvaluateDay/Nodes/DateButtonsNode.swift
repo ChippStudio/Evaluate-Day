@@ -41,7 +41,7 @@ class DateButtonsNode: ASCellNode {
     init(date: Date) {
         super.init()
         
-        self.todayText.attributedText = NSAttributedString(string: Localizations.General.today, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.todayText.attributedText = NSAttributedString(string: Localizations.General.today, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         self.todayCover.backgroundColor = UIColor.main
         self.todayCover.cornerRadius = 15.0
         self.todayButton.addTarget(self, action: #selector(self.todayInitialAction(sender:)), forControlEvents: .touchDown)
@@ -50,7 +50,7 @@ class DateButtonsNode: ASCellNode {
         self.todayButton.addTarget(self, action: #selector(self.todayEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.arrowImage.image = UIImage(named: "down")?.resizedImage(newSize: CGSize(width: 22.0, height: 12.0))
-        self.arrowImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.arrowImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         self.arrowImage.contentMode = .scaleAspectFit
         
         self.arrowCover.backgroundColor = UIColor.main

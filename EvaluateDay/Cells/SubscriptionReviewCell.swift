@@ -49,7 +49,7 @@ class SubscriptionReviewCell: UITableViewCell {
         self.subscriptionLabel.textColor = UIColor.main
         self.validLabel.textColor = UIColor.text
         self.informationLabel.textColor = UIColor.main
-        self.manageButton.setTitleColor(UIColor.tint, for: .normal)
+        self.manageButton.setTitleColor(UIColor.textTint, for: .normal)
         
         self.manageButtonCover.backgroundColor = UIColor.main
         self.manageButtonCover.layer.cornerRadius = 10.0

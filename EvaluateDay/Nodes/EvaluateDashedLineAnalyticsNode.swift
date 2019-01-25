@@ -31,7 +31,7 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
             if v == 0 {
                 let l = ASDisplayNode()
                 l.backgroundColor = UIColor.clear
-                l.borderColor = UIColor.tint.cgColor
+                l.borderColor = UIColor.textTint.cgColor
                 l.borderWidth = 0.5
                 l.cornerRadius = 2.5
                 l.style.preferredSize = CGSize(width: 5.0, height: 5.0)
@@ -43,7 +43,7 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
                     }
                     
                     let l = ASDisplayNode()
-                    l.backgroundColor = UIColor.tint
+                    l.backgroundColor = UIColor.textTint
                     l.cornerRadius = 2.5
                     l.style.preferredSize = CGSize(width: 5.0, height: 5.0)
                     dashes.append(l)
@@ -57,10 +57,10 @@ class EvaluateDashedLineAnalyticsNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
-        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
-        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.button.addTarget(self, action: #selector(self.analyticsInitialAction(sender:)), forControlEvents: .touchDown)
         self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpOutside)

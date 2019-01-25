@@ -61,12 +61,12 @@ class SubscriptionBuyCell: UITableViewCell {
         self.topDurationLabel.text = Localizations.Settings.Pro.Subscription.Title.anuualy
         self.topPriceLabel.text = Localizations.Settings.Pro.Subscription.Buy.annualy(Store.current.localizedAnnualyPrice)
         self.topSelectedImage.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate)
-        self.topSelectedImage.tintColor = UIColor.tint
+        self.topSelectedImage.tintColor = UIColor.textTint
         
         self.bottomDurationLabel.text = Localizations.Settings.Pro.Subscription.Title.monthly
         self.bottomPriceLabel.text = Localizations.Settings.Pro.Subscription.Buy.monthly(Store.current.localizedMonthlyPrice)
         self.bottomSelectedImage.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate)
-        self.bottomSelectedImage.tintColor = UIColor.tint
+        self.bottomSelectedImage.tintColor = UIColor.textTint
         
         self.continueButton.setTitle(Localizations.Settings.Pro.Subscription.Title.continue, for: .normal)
         self.oneTimeButton.setTitle(Localizations.Settings.Pro.Subscription.Title.lifetime(Store.current.localizedLifetimePrice), for: .normal)
@@ -87,12 +87,12 @@ class SubscriptionBuyCell: UITableViewCell {
         self.selectionCoverView.layer.borderWidth = 0.5
         self.selectionCoverView.layer.masksToBounds = true
         
-        self.continueButton.setTitleColor(UIColor.tint, for: .normal)
+        self.continueButton.setTitleColor(UIColor.textTint, for: .normal)
         self.continueCover.layer.cornerRadius = 10.0
         self.continueCover.layer.masksToBounds = true
         self.continueCover.backgroundColor = UIColor.main
         
-        self.oneTimeButton.setTitleColor(UIColor.tint, for: .normal)
+        self.oneTimeButton.setTitleColor(UIColor.textTint, for: .normal)
         self.oneTimeButtonCover.layer.cornerRadius = 10.0
         self.oneTimeButtonCover.layer.masksToBounds = true
         self.oneTimeButtonCover.backgroundColor = UIColor.main
@@ -119,8 +119,8 @@ class SubscriptionBuyCell: UITableViewCell {
             if self.isTopSelected {
                 self.topViewCover.backgroundColor = UIColor.main
                 self.topSelectedImage.alpha = 1.0
-                self.topDurationLabel.textColor = UIColor.tint
-                self.topPriceLabel.textColor = UIColor.tint
+                self.topDurationLabel.textColor = UIColor.textTint
+                self.topPriceLabel.textColor = UIColor.textTint
                 
                 self.bottomViewCover.backgroundColor = UIColor.background
                 self.bottomSelectedImage.alpha = 0.0
@@ -140,8 +140,8 @@ class SubscriptionBuyCell: UITableViewCell {
                 
                 self.bottomViewCover.backgroundColor = UIColor.main
                 self.bottomSelectedImage.alpha = 1.0
-                self.bottomDurationLabel.textColor = UIColor.tint
-                self.bottomPriceLabel.textColor = UIColor.tint
+                self.bottomDurationLabel.textColor = UIColor.textTint
+                self.bottomPriceLabel.textColor = UIColor.textTint
                 
                 if Store.current.mouthly != nil {
                     if #available(iOS 11.2, *) {

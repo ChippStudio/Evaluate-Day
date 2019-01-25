@@ -24,8 +24,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var booleanCell = "booleanCell"
     
     // MARK: - Segues
-    private let userSegue = "userSegue"
-    private let themesSegue = "themesSegue"
     private let iconsSegue = "iconsSegue"
     private let notificationSegue = "notificationSegue"
     private let passcodeSegue = "passcodeSegue"
@@ -84,6 +82,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
             
             // Backgrounds
             self.view.backgroundColor = UIColor.background
@@ -161,8 +167,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         let item = self.settings[indexPath.section].items[indexPath.row]
         switch item.action as! MainSettingsAction {
-        case .themes:
-            self.openController(id: self.themesSegue)
         case .icons:
             self.openController(id: self.iconsSegue)
         case .notification:
@@ -234,15 +238,28 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if let action = BooleanAction(rawValue: sender.tag) {
             try! Database.manager.app.write {
                 switch action {
-                    case .celcius:
-                        Database.manager.application.settings.celsius = sender.isOn
-                        sendEvent(.setCelsius, withProperties: ["value": sender.isOn])
-                    case .sound:
-                        Database.manager.application.settings.sound = sender.isOn
-                        sendEvent(.setSounds, withProperties: ["value": sender.isOn])
-                    case .photo:
-                        Database.manager.application.settings.cameraRoll = sender.isOn
-                        sendEvent(.setCameraRoll, withProperties: ["value": sender.isOn])
+                case .celcius:
+                    Database.manager.application.settings.celsius = sender.isOn
+                    sendEvent(.setCelsius, withProperties: ["value": sender.isOn])
+                case .sound:
+                    Database.manager.application.settings.sound = sender.isOn
+                    sendEvent(.setSounds, withProperties: ["value": sender.isOn])
+                case .photo:
+                    Database.manager.application.settings.cameraRoll = sender.isOn
+                    sendEvent(.setCameraRoll, withProperties: ["value": sender.isOn])
+                case .darkMode:
+                    if Store.current.isPro || !sender.isOn {
+                        UserDefaults.standard.set(sender.isOn, forKey: Theme.darkMode.rawValue)
+                        (UIApplication.shared.delegate as! AppDelegate).window!.didUpdatedAppearance(animated: true)
+                        self.setSettings()
+                    } else {
+                        let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    }
+                case .blackMode:
+                    UserDefaults.standard.set(sender.isOn, forKey: Theme.blackMode.rawValue)
+                    (UIApplication.shared.delegate as! AppDelegate).window!.didUpdatedAppearance(animated: true)
+                    self.setSettings()
                 }
             }
             
@@ -308,13 +325,23 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.settings.append(syncSection)
         
         // Themes
+        
+        var themeItems = [SettingItem]()
+        let darkMode = SettingItem(title: Localizations.Settings.Themes.darkMode, type: .boolean, action: MainSettingsAction.bool, subtitle: nil, image: Images.Media.themes.image, options: ["isOn": UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue), "action": BooleanAction.darkMode.rawValue])
+        themeItems.append(darkMode)
+        if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
+            let blackMode = SettingItem(title: Localizations.Settings.Themes.blackMode, type: .boolean, action: MainSettingsAction.bool, subtitle: nil, image: Images.Media.themes.image, options: ["isOn": UserDefaults.standard.bool(forKey: Theme.blackMode.rawValue), "action": BooleanAction.blackMode.rawValue])
+            themeItems.append(blackMode)
+        }
         if #available(iOS 10.3, *) {
             if UIApplication.shared.supportsAlternateIcons {
                 let selectIcon = SettingItem(title: Localizations.Settings.Themes.Select.icon, type: .more, action: MainSettingsAction.icons, image: Images.Media.app.image)
-                let themeSection = SettingsSection(items: [selectIcon], header: Localizations.Settings.Themes.title, footer: nil)
-                self.settings.append(themeSection)
+                themeItems.append(selectIcon)
             }
         }
+        
+        let themeSection = SettingsSection(items: themeItems, header: Localizations.Settings.Themes.title, footer: nil)
+        self.settings.append(themeSection)
         
         // General
         let notificationItem = SettingItem(title: Localizations.Settings.Notifications.title, type: .more, action: MainSettingsAction.notification, subtitle: "\(Database.manager.application.notifications.count)", image: Images.Media.notification.image)
@@ -351,7 +378,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private enum MainSettingsAction: SettingsAction {
         case week
-        case themes
         case icons
         case notification
         case passcode
@@ -369,5 +395,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case photo
         case celcius
         case sound
+        case darkMode
+        case blackMode
     }
 }

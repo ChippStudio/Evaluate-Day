@@ -77,6 +77,10 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
             //set NavigationBar
             self.navigationController?.navigationBar.barTintColor = UIColor.background
             self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             
@@ -178,6 +182,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         
         // Analytics
         sendEvent(.addNewCard, withProperties: ["type": self.card.type.string])
-        self.navigationController?.popToRootViewController(animated: true)
+        self.universalSplitController?.popViewController()
     }
 }

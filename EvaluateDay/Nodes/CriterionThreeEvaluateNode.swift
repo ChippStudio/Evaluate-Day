@@ -32,9 +32,9 @@ class CriterionThreeEvaluateNode: ASCellNode {
         self.middleButton.setImage(#imageLiteral(resourceName: "neutral").resizedImage(newSize: CGSize(width: 50.0, height: 50.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.bottomButton.setImage(#imageLiteral(resourceName: "bad").resizedImage(newSize: CGSize(width: 50.0, height: 50.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         
-        self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
-        self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
-        self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.topButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
+        self.middleButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
+        self.bottomButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         if value != nil {
             if value == 0 {
@@ -49,7 +49,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         if let previousValue = previousValue {
             self.previousImage = ASImageNode()
@@ -60,7 +60,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
             } else if previousValue == 2 {
                 self.previousImage.image = Images.Media.good.image
             }
-            self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+            self.previousImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
             
             var previousValueString = ""
             if previousValue == 0 {
@@ -82,7 +82,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
             
             let previousDate = Calendar.current.date(byAdding: components, to: date)!
             self.previousDate = ASTextNode()
-            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
             
             // Accessibility
             self.previousDate.isAccessibilityElement = false

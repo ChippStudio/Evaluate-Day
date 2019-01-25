@@ -25,13 +25,13 @@ class AllCardsNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.imageNode.image = UIImage(named: "cards")?.resizedImage(newSize: CGSize(width: 26.0, height: 26.0))
-        self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 14.0))
         self.disclosure.contentMode = .scaleAspectFit
-        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
-        self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.textNode.isAccessibilityElement = false
         self.cover.isAccessibilityElement = true

@@ -111,12 +111,26 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     override func updateAppearance(animated: Bool) {
         super.updateAppearance(animated: animated)
         
+        if animated {
+            for object in self.adapter.objects() {
+                if let section = self.adapter.sectionController(for: object) {
+                    section.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                        batchContext.reload(section)
+                    }, completion: nil)
+                }
+            }
+        }
+        
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
             
             //set NavigationBar
             self.navigationController?.navigationBar.barTintColor = UIColor.background
             self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "collections")?.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)), style: .plain, target: nil, action: nil)

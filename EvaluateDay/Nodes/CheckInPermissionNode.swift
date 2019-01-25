@@ -38,14 +38,14 @@ class CheckInPermissionNode: ASCellNode {
         
         self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
         
-        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.permissionButton.setAttributedTitle(buttonTitleString, for: .normal)
         
         self.permissionCover.cornerRadius = 20.0
         self.permissionCover.backgroundColor = UIColor.main
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         

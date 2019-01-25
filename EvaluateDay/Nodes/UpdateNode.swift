@@ -31,7 +31,7 @@ class UpdateNode: ASCellNode {
         self.updateButtonCover.backgroundColor = UIColor.main
         self.updateButtonCover.cornerRadius = 10.0
         
-        let buttonTitle = NSAttributedString(string: Localizations.Update.button, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: center])
+        let buttonTitle = NSAttributedString(string: Localizations.Update.button, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: center])
         self.updateButton.setAttributedTitle(buttonTitle, for: .normal)
         self.updateButton.addTarget(self, action: #selector(updateButtonAction(sender:)), forControlEvents: .touchUpInside)
         

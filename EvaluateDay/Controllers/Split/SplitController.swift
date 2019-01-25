@@ -29,11 +29,13 @@ class SplitController: UniversalSplitViewController {
     
     override func updateAppearance(animated: Bool) {
         super.updateAppearance(animated: animated)
-        
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
+        if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
+            return UIStatusBarStyle.lightContent
+        }
         return UIStatusBarStyle.default
     }
 }

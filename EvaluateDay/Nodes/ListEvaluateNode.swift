@@ -26,7 +26,7 @@ class ListEvaluateNode: ASCellNode {
     init(all: Int, allDone: Int, inDay: Int, date: Date) {
         super.init()
         
-        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.openListButton.setAttributedTitle(openTitle, for: .normal)
         

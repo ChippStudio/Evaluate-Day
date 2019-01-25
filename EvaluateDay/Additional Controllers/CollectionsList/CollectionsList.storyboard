@@ -52,6 +52,7 @@
                                                 <constraint firstItem="MgT-0h-yRl" firstAttribute="top" secondItem="go9-Pu-1JW" secondAttribute="top" constant="11" id="xop-I9-yds"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="collectionImage" destination="MgT-0h-yRl" id="Fcv-HW-fje"/>
                                             <outlet property="collectionTitle" destination="AvK-1n-5aF" id="YDx-rk-xo7"/>

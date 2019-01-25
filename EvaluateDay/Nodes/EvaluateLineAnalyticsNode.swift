@@ -28,7 +28,7 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         
         for v in values {
             let l = ASDisplayNode()
-            l.backgroundColor = UIColor.tint
+            l.backgroundColor = UIColor.textTint
             l.cornerRadius = 2.5
             var value: Float = 5.0
             if ((50.0 * v) / maxValue) > value {
@@ -42,10 +42,10 @@ class EvaluateLineAnalyticsNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.disclosure.image = UIImage(named: "disclosure")?.resizedImage(newSize: CGSize(width: 8.0, height: 13.0))
-        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.analytics.image = Images.Media.analytics.image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0))
-        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.analytics.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.button.addTarget(self, action: #selector(self.analyticsInitialAction(sender:)), forControlEvents: .touchDown)
         self.button.addTarget(self, action: #selector(self.analyticsEndAction(sender:)), forControlEvents: .touchUpOutside)

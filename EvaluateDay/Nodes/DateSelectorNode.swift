@@ -27,6 +27,7 @@ class DateSelectorNode: ASCellNode {
             self.datePicker.date = date
             self.datePicker.maximumDate = Date()
             self.datePicker.datePickerMode = UIDatePickerMode.date
+            self.datePicker.setValue(UIColor.text, forKey: "textColor")
             
             return self.datePicker
         }, didLoad: { (_) in

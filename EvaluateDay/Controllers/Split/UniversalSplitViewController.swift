@@ -331,6 +331,27 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             self.casheViewControllers.append(controller)
         }
     }
+    func popViewController() {
+        if self.isControllerContaintsSideController {
+            guard let controller = self.sideController else {
+                return
+            }
+            
+            if !self.casheViewControllers.isEmpty {
+                self.casheViewControllers.removeLast()
+                controller.popViewController(animated: true)
+            } else {
+                self.casheViewControllers.removeAll()
+                self.removeChildViewController(controller)
+                self.sideController = nil
+            }
+        } else {
+            if self.casheViewControllers.count != 0 {
+                self.casheViewControllers.removeLast()
+            }
+            self.mainController.popViewController(animated: true)
+        }
+    }
     func popSideViewController() {
         
         if self.isControllerContaintsSideController {
@@ -342,10 +363,15 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             self.removeChildViewController(controller)
             self.sideController = nil
         } else {
-            if self.casheViewControllers.count != 0 {
-                self.casheViewControllers.removeLast()
+            
+            for _ in self.casheViewControllers {
+                self.mainController.popViewController(animated: true)
             }
-            self.mainController.popViewController(animated: true)
+            self.casheViewControllers.removeAll()
+//            if self.casheViewControllers.count != 0 {
+//                self.casheViewControllers.removeLast()
+//            }
+//            self.mainController.popViewController(animated: true)
         }
     }
 

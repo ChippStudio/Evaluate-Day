@@ -40,7 +40,7 @@ class AnalyticsMapNode: ASCellNode {
             self.actionButton = ASButtonNode()
             self.actionButtonCover = ASDisplayNode()
             
-            let actionTitleString = NSAttributedString(string: actionTitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+            let actionTitleString = NSAttributedString(string: actionTitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
             
             self.actionButton.setAttributedTitle(actionTitleString, for: .normal)
             

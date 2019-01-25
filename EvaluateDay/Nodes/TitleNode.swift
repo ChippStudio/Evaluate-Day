@@ -23,6 +23,7 @@ class TitleNode: ASCellNode {
         self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.subtitle.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
         self.previewImage.image = image
+        self.previewImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.text)
         self.previewImage.contentMode = .scaleAspectFit
         self.previewImage.alpha = 0.5
         

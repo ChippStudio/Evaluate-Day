@@ -34,9 +34,9 @@ class CheckInActionNode: ASCellNode {
         self.checkInButtonCover.backgroundColor = UIColor.main
         self.checkInButtonCover.cornerRadius = 20.0
         
-        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.checkInButton.setAttributedTitle(checkInTitleString, for: .normal)
         

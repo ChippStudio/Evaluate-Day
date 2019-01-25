@@ -55,6 +55,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         self.cards = Database.manager.data.objects(Card.self).filter("dashboard=%@ AND isDeleted=%@", self.collection.id, false).sorted(byKeyPath: "order")
         
         self.topLabel.text = Localizations.Collection.Edit.image
+        self.topLabel.textColor = UIColor.text
         
         self.selectImageButton.accessibilityLabel = Localizations.Accessibility.Collection.editImage
         
@@ -85,6 +86,10 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            }
             
             // Backgrounds
             self.view.backgroundColor = UIColor.background
@@ -125,10 +130,10 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: titleCell, for: indexPath) as! TextFieldTableViewCell
-            cell.textField.placeholder = Localizations.Collection.Edit.titlePlaceholder
+            cell.textField.attributedPlaceholder = NSAttributedString(string: Localizations.Collection.Edit.titlePlaceholder, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
             cell.textField.text = self.collection.title
             cell.textField.textColor = UIColor.main
-            cell.textField.tintColor = UIColor.tint
+            cell.textField.tintColor = UIColor.textTint
             cell.textField.addTarget(self, action: #selector(self.changeTitleAction(sender:)), for: .editingChanged)
             cell.selectionStyle = .none
             return cell

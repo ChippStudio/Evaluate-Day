@@ -79,6 +79,7 @@
                                                 <constraint firstItem="R80-31-S5Z" firstAttribute="leading" secondItem="SB6-zp-YQ7" secondAttribute="leading" constant="15" id="ufC-O3-G1L"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bottomOffset" destination="CvB-fb-zHI" id="iMS-24-n44"/>
                                             <outlet property="cardImageView" destination="Kee-HF-tXu" id="vhU-eD-8Ru"/>

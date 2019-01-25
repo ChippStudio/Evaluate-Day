@@ -62,6 +62,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="61Y-V0-vHy" secondAttribute="trailing" constant="10" id="vLw-sM-W1r"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="iconImageView" destination="BSW-Io-apk" id="dwk-er-bE4"/>
                                             <outlet property="subtitleLabel" destination="POs-RG-9zE" id="wjF-Dw-SDN"/>
@@ -99,6 +100,7 @@
                                                 <constraint firstItem="Ov9-y5-T4v" firstAttribute="top" secondItem="ZNt-sc-Soi" secondAttribute="bottom" constant="10" id="pbC-lC-60e"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Ov9-y5-T4v" id="9Cc-3X-CWc"/>
                                             <outlet property="proView" destination="ZNt-sc-Soi" id="tmj-av-LWb"/>

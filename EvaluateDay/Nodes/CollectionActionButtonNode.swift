@@ -20,7 +20,7 @@ class CollectionActionButtonNode: ASCellNode {
     override init() {
         super.init()
         
-        self.text.attributedText = NSAttributedString(string: Localizations.Collection.addNew, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.text.attributedText = NSAttributedString(string: Localizations.Collection.addNew, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         self.cover.backgroundColor = UIColor.main
         self.cover.cornerRadius = 25.0
         self.button.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)

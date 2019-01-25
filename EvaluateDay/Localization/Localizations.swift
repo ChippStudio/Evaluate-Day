@@ -1408,15 +1408,15 @@ internal enum Localizations {
       }
     }
     internal enum Themes {
-      /// Change App Icon
-      internal static let iconChange = Localizations.tr("Localizable", "settings.themes.iconChange")
+      /// Black Mode
+      internal static let blackMode = Localizations.tr("Localizable", "settings.themes.blackMode")
+      /// Dark Mode
+      internal static let darkMode = Localizations.tr("Localizable", "settings.themes.darkMode")
       /// Appearance
       internal static let title = Localizations.tr("Localizable", "settings.themes.title")
       internal enum Select {
         /// Select a Icon
         internal static let icon = Localizations.tr("Localizable", "settings.themes.select.icon")
-        /// Select a Theme
-        internal static let theme = Localizations.tr("Localizable", "settings.themes.select.theme")
       }
     }
   }
