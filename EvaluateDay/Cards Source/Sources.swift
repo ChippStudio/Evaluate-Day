@@ -52,6 +52,19 @@ final class Sources: NSObject {
     static var ascending: Bool {
         return Database.manager.application.settings.cardAscending
     }
+    static var ascendingCollection: Bool {
+        return Database.manager.application.settings.collectionAscending
+    }
+    static var sortedCollection: String {
+        let settings = Database.manager.application.settings!
+        if settings.collectionSortedManually {
+            return "order"
+        } else if settings.collectionSortedAlphabet {
+            return "title"
+        } else {
+            return "created"
+        }
+    }
     static func image(forType type: CardType) -> UIImage {
         switch type {
         case .evaluate:

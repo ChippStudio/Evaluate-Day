@@ -333,7 +333,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
                 self.collection.isDeleted = true
             }
             
-            self.navigationController?.popViewController(animated: true)
+            self.universalSplitController?.popSideViewController()
         }
         let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
         
@@ -361,7 +361,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
         
-        self.navigationController?.popViewController(animated: true)
+        self.universalSplitController?.popSideViewController()
     }
     
     // MARK: - Keyboard actions

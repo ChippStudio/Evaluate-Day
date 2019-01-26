@@ -75,6 +75,12 @@ class Settings: Object {
     @objc dynamic var cardSortedAlphabet = false
     @objc dynamic var cardSortedDate = false
     
+    // Sorted Collections
+    @objc dynamic var collectionAscending = true
+    @objc dynamic var collectionSortedManually = true
+    @objc dynamic var collectionSortedAlphabet = false
+    @objc dynamic var collectionSortedDate = false
+    
     var passcodeDelay: PasscodeDelay {
         set {
             self.passcodeDelayRaw = newValue.rawValue

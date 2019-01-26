@@ -19,6 +19,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     
     // MARK: - Variables
     var collections: Results<Dashboard>!
+    var collectionToken: NotificationToken!
     var adapter: ListAdapter!
     var date: Date = Date() {
         didSet {
@@ -60,7 +61,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         }
         self.navigationController?.navigationBar.accessibilityIdentifier = "collectionNavigationBar"
         
-        self.collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
+        // Set collections
+        self.setCollections()
         
         // Collection view
         let layout = UICollectionViewFlowLayout()
@@ -87,6 +89,25 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         
         self.reorderButton = UIBarButtonItem(image: Images.Media.reorder.image.resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.reorderButtonAction(sender:)))
         self.navigationItem.rightBarButtonItem = self.reorderButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setCollections), name: NSNotification.Name.CollectionsSortedDidChange, object: nil)
+    }
+    
+    @objc private func setCollections() {
+        self.collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false).sorted(byKeyPath: Sources.sortedCollection, ascending: Sources.ascendingCollection)
+        // Get cards token
+        self.collectionToken = self.collections.observe({ (c) in
+            switch c {
+            case .initial(_):
+                self.adapter.performUpdates(animated: true, completion: nil)
+            case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
+                if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
+                    self.adapter.performUpdates(animated: true, completion: nil)
+                }
+            case .error(let error):
+                print("ERROR - \(error.localizedDescription)")
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,8 +122,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
                 batchContext.reload(section)
             }, completion: nil)
         }
+        self.setCollections()
         self.updateAppearance(animated: false)
-        self.adapter.performUpdates(animated: true, completion: nil)
     }
     
     override func updateAppearance(animated: Bool) {
@@ -136,6 +157,13 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             self.navigationController!.view.backgroundColor = UIColor.background
             self.view.backgroundColor = UIColor.background
             self.collectionNode.backgroundColor = UIColor.background
+        }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if self.collectionToken != nil {
+            self.collectionToken.invalidate()
         }
     }
     

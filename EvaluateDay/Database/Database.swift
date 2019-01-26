@@ -63,6 +63,11 @@ final class Database: NSObject {
                     newObject!["cardSortedManually"] = true
                     newObject!["cardSortedAlphabet"] = false
                     newObject!["cardSortedDate"] = false
+
+                    newObject!["collectionAscending"] = true
+                    newObject!["collectionSortedManually"] = true
+                    newObject!["collectionSortedAlphabet"] = false
+                    newObject!["collectionSortedDate"] = false
                 })
             }
         })

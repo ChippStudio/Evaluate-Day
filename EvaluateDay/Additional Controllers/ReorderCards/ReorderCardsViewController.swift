@@ -262,7 +262,6 @@ class ReorderCardsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: - Private
-    private var showArchived = false
     func setCards() {
         // Set cards
         self.cards = Database.manager.data.objects(Card.self).filter(Sources.predicate).sorted(byKeyPath: Sources.sorted, ascending: Sources.ascending)

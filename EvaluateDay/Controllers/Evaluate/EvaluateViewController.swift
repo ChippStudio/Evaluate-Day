@@ -150,11 +150,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.cardsToken = self.cards.observe({ (c) in
             switch c {
             case .initial(_):
-                print("INITIAL UPDATE")
                 self.adapter.performUpdates(animated: true, completion: nil)
             case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
                 if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
-                    print("UPDATE UPDATE")
                     self.adapter.performUpdates(animated: true, completion: nil)
                 }
             case .error(let error):

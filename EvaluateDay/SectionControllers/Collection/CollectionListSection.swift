@@ -40,8 +40,10 @@ class CollectionListSection: ListSectionController, ASSectionController {
             }
         }
         
+        let statCards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, self.collection.id)
         var data = [(title: String, subtitle: String)]()
-        data.append((title: "\(cards.count)", subtitle: Localizations.Collection.Analytics.cards))
+        data.append((title: "\(statCards.count)", subtitle: Localizations.Collection.Analytics.cards))
+        data.append((title: "\(statCards.filter("archived=%@", true).count)", subtitle: Localizations.Activity.Analytics.Stat.archived))
         data.append((title: DateFormatter.localizedString(from: self.collection.created, dateStyle: .short, timeStyle: .none), subtitle: Localizations.Collection.Analytics.created))
         
         return {

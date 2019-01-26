@@ -17,6 +17,11 @@ extension Notification.Name {
             return NSNotification.Name("CardsSortedDidChange")
         }
     }
+    static var CollectionsSortedDidChange: NSNotification.Name {
+        get {
+            return NSNotification.Name("CollectionsSortedDidChange")
+        }
+    }
 }
 
 // MARK: - UUID
