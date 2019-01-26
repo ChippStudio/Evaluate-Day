@@ -364,8 +364,11 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "new.phrase.title" = "Phrase";
 "new.tracker.subtitle" = "It can help you track infrequent mundane activities like medication-taking.";
 "new.tracker.title" = "Tracker";
-"new.health.title" = "Health";
-"new.health.subtitle" = "Track one or more health metrics from Apple Health";
+"new.group.mindfulness.title" = "Mindfulness";
+"new.group.diary.title" = "Diary";
+"new.group.habit.title" = "Habit";
+"new.group.count.title" = "Count";
+"new.group.gtd.title" = "Get Things Done";
 
 // MARK: - Permissions
 "permission.camera.description" = "Capture interesting moments right from the app";

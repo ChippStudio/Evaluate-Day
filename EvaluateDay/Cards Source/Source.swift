@@ -14,3 +14,8 @@ struct Source {
     var subtitle: String
     var image: UIImage
 }
+
+struct GroupSource {
+    var title: String
+    var cards: [Source]
+}

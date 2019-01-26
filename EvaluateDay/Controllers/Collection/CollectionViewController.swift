@@ -194,6 +194,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     
     // MARK: - Actions
     @objc func reorderButtonAction(sender: UIBarButtonItem) {
-        
+        let controller = UIStoryboard(name: Storyboards.reorderCollections.rawValue, bundle: nil).instantiateInitialViewController()!
+        self.present(controller, animated: true, completion: nil)
     }
 }

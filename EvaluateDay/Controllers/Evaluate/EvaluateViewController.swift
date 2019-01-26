@@ -378,9 +378,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     @objc func reorderCardsAction(sender: UIBarButtonItem) {
-        let controller = ReorderBottomViewController()
-        controller.cards = self.cards
-        controller.closeByTap = true
+        let controller = UIStoryboard(name: Storyboards.reorderCards.rawValue, bundle: nil).instantiateInitialViewController()!
         self.present(controller, animated: true, completion: nil)
     }
     

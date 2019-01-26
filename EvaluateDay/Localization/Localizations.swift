@@ -1005,17 +1005,33 @@ internal enum Localizations {
       /// Goal
       internal static let title = Localizations.tr("Localizable", "new.goal.title")
     }
+    internal enum Group {
+      internal enum Count {
+        /// Count
+        internal static let title = Localizations.tr("Localizable", "new.group.count.title")
+      }
+      internal enum Diary {
+        /// Diary
+        internal static let title = Localizations.tr("Localizable", "new.group.diary.title")
+      }
+      internal enum Gtd {
+        /// Get Things Done
+        internal static let title = Localizations.tr("Localizable", "new.group.gtd.title")
+      }
+      internal enum Habit {
+        /// Habit
+        internal static let title = Localizations.tr("Localizable", "new.group.habit.title")
+      }
+      internal enum Mindfulness {
+        /// Mindfulness
+        internal static let title = Localizations.tr("Localizable", "new.group.mindfulness.title")
+      }
+    }
     internal enum Habit {
       /// Forming habits through constant monitoring and reminders
       internal static let subtitle = Localizations.tr("Localizable", "new.habit.subtitle")
       /// Habit
       internal static let title = Localizations.tr("Localizable", "new.habit.title")
-    }
-    internal enum Health {
-      /// Track one or more health metrics from Apple Health
-      internal static let subtitle = Localizations.tr("Localizable", "new.health.subtitle")
-      /// Health
-      internal static let title = Localizations.tr("Localizable", "new.health.title")
     }
     internal enum Journal {
       /// A collection of entries that have one theme in common. Entries are supplemented with various auxiliary data (geo-position, weather, entry time and image)

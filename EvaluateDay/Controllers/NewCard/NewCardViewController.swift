@@ -69,7 +69,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return self.sources.groupedCards.count + 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -80,7 +80,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
-        return self.sources.cards.count
+        return self.sources.groupedCards[section - 1].cards.count
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -92,7 +92,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: newCardCell, for: indexPath) as! NewCardCell
-        let source = self.sources.cards[indexPath.row]
+        let source = self.sources.groupedCards[indexPath.section - 1].cards[indexPath.row]
         
         if Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).count >= cardsLimit && !Store.current.isPro {
             cell.selectionStyle = .none
@@ -118,11 +118,15 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 0 {
+            return
+        }
+        
         if tableView.cellForRow(at: indexPath)!.selectionStyle == .none {
             return
         }
         
-        let source = self.sources.cards[indexPath.row]
+        let source = self.sources.groupedCards[indexPath.section - 1].cards[indexPath.row]
         let newCard = Card()
         newCard.type = source.type
         newCard.order = Database.manager.data.objects(Card.self).count
@@ -131,6 +135,30 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
             controller.card = newCard
             self.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return nil
+        }
+        
+        return self.sources.groupedCards[section - 1].title
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        guard let footer = view as? UITableViewHeaderFooterView else { return }
+        footer.textLabel?.textColor = UIColor.text
+        footer.textLabel!.font = UIFont.preferredFont(forTextStyle: .footnote)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.text
+        header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     // MARK: - Actions

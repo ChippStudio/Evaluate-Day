@@ -178,6 +178,11 @@
 		B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */; };
 		B5970F2821F22700000B0BAA /* CollectionsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5970F2721F22700000B0BAA /* CollectionsListCell.swift */; };
 		B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */; };
+		B59D039F21FC6D7F0048B0AF /* ReorderCollections.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59D039E21FC6D7F0048B0AF /* ReorderCollections.storyboard */; };
+		B59D03A121FC6D9D0048B0AF /* ReorderCards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59D03A021FC6D9D0048B0AF /* ReorderCards.storyboard */; };
+		B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A221FC6DBF0048B0AF /* ReorderCollectionsViewController.swift */; };
+		B59D03A521FC6DDC0048B0AF /* ReorderCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A421FC6DDC0048B0AF /* ReorderCardsViewController.swift */; };
+		B59D03A821FC71FA0048B0AF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A721FC71FA0048B0AF /* NavigationController.swift */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
 		B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA062211D66D500A9FCFB /* Share.storyboard */; };
 		B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA064211D66E100A9FCFB /* ShareViewController.swift */; };
@@ -560,6 +565,11 @@
 		B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListViewController.swift; sourceTree = "<group>"; };
 		B5970F2721F22700000B0BAA /* CollectionsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListCell.swift; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
+		B59D039E21FC6D7F0048B0AF /* ReorderCollections.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReorderCollections.storyboard; sourceTree = "<group>"; };
+		B59D03A021FC6D9D0048B0AF /* ReorderCards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReorderCards.storyboard; sourceTree = "<group>"; };
+		B59D03A221FC6DBF0048B0AF /* ReorderCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderCollectionsViewController.swift; sourceTree = "<group>"; };
+		B59D03A421FC6DDC0048B0AF /* ReorderCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderCardsViewController.swift; sourceTree = "<group>"; };
+		B59D03A721FC71FA0048B0AF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		B59DA062211D66D500A9FCFB /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		B59DA064211D66E100A9FCFB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1133,6 +1143,32 @@
 			path = Pro;
 			sourceTree = "<group>";
 		};
+		B59D039C21FC6D550048B0AF /* ReorderCards */ = {
+			isa = PBXGroup;
+			children = (
+				B59D03A021FC6D9D0048B0AF /* ReorderCards.storyboard */,
+				B59D03A421FC6DDC0048B0AF /* ReorderCardsViewController.swift */,
+			);
+			path = ReorderCards;
+			sourceTree = "<group>";
+		};
+		B59D039D21FC6D650048B0AF /* ReorderCollections */ = {
+			isa = PBXGroup;
+			children = (
+				B59D039E21FC6D7F0048B0AF /* ReorderCollections.storyboard */,
+				B59D03A221FC6DBF0048B0AF /* ReorderCollectionsViewController.swift */,
+			);
+			path = ReorderCollections;
+			sourceTree = "<group>";
+		};
+		B59D03A621FC71C80048B0AF /* OverrideNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B59D03A721FC71FA0048B0AF /* NavigationController.swift */,
+			);
+			path = OverrideNavigationController;
+			sourceTree = "<group>";
+		};
 		B59DA061211D66C400A9FCFB /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -1173,6 +1209,8 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59D039D21FC6D650048B0AF /* ReorderCollections */,
+				B59D039C21FC6D550048B0AF /* ReorderCards */,
 				B58DDAA921F483C5005F48AE /* AnalyticsPreview */,
 				B5970F2221F225AC000B0BAA /* CollectionsList */,
 				B516CA7421EF96ED0002915F /* Collection */,
@@ -1189,6 +1227,7 @@
 				B5D854E91FD06C5D00BB4E14 /* SelectCardList */,
 				B5D854E01FD0158300BB4E14 /* Repeat */,
 				B5D854C81FCDAA5D00BB4E14 /* Passcode */,
+				B59D03A621FC71C80048B0AF /* OverrideNavigationController */,
 				B5A0CFE01FAF8DB6002B1636 /* Top */,
 				B5A0CFE11FAF8DC3002B1636 /* Bottom */,
 				B5A1B0DC1FB9ADC4003D9E81 /* Transitions */,
@@ -1892,6 +1931,7 @@
 				B58DDAAD21F483FA005F48AE /* AnalyticsPreview.storyboard in Resources */,
 				B5899B0921D7AFDE00CF123B /* SplitController.storyboard in Resources */,
 				B516CA4721EA8C5B0002915F /* AppIcon-9-Preview.png in Resources */,
+				B59D039F21FC6D7F0048B0AF /* ReorderCollections.storyboard in Resources */,
 				B5A730ED1FF2437C006B6F58 /* closeSettings.wav in Resources */,
 				B5899B0E21D7B2C000CF123B /* Collection.storyboard in Resources */,
 				B55464CF2025AA9A00923CE3 /* Weather.xcassets in Resources */,
@@ -1914,6 +1954,7 @@
 				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B516CA4621EA8C5B0002915F /* AppIcon-3-Preview.png in Resources */,
+				B59D03A121FC6D9D0048B0AF /* ReorderCards.storyboard in Resources */,
 				B516CA2D21EA8BB70002915F /* AppIcon-10.png in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
 				B59B4C7C1FD8383C00E9A778 /* Pro.storyboard in Resources */,
@@ -2261,6 +2302,7 @@
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
 				B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */,
 				B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */,
+				B59D03A821FC71FA0048B0AF /* NavigationController.swift in Sources */,
 				B5EC886720134A840056C1C7 /* CounterEvaluateNode.swift in Sources */,
 				B5D854C31FCCBA4F00BB4E14 /* SettingsAboutViewController.swift in Sources */,
 				B5D854EF1FD07B8400BB4E14 /* TimeBottomViewController.swift in Sources */,
@@ -2280,6 +2322,7 @@
 				B5A1B0DE1FB9ADF0003D9E81 /* Transition.swift in Sources */,
 				B5F597741FBD70B40098A071 /* AnalyticsColorStatisticNode.swift in Sources */,
 				B5DE2CB720010EC700EFBCA5 /* ErrorHandler.swift in Sources */,
+				B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */,
 				B5B7EE462010B70800BCD41A /* TextValue+Extensions.swift in Sources */,
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
@@ -2358,6 +2401,7 @@
 				B57B0637201B0D1800C4E182 /* GoalCard.swift in Sources */,
 				B5B7EE4C2010BBDD00BCD41A /* PhraseEvaluateSection.swift in Sources */,
 				B53E707221EA0B5300E19A62 /* SwitchCell.swift in Sources */,
+				B59D03A521FC6DDC0048B0AF /* ReorderCardsViewController.swift in Sources */,
 				B55D328C207917B800BD1E75 /* HabitNegativeNode.swift in Sources */,
 				B5F597701FBD4E1F0098A071 /* Variables.swift in Sources */,
 				B5EC885B201229590056C1C7 /* CounterEditableSection.swift in Sources */,
