@@ -183,8 +183,6 @@
 "cardSettings.textPlaceholder" = "Tap to enter new";
 "cardSettings.title" = "Title";
 "cardSettings.untitle" = "Untitled %@";
-"cardSettings.health.metrics" = "Metrics";
-"cardSettings.health.appleMetrics" = "Apple Health Metrics";
 
 // MARK: - Defaults
 "default.data.phrase.one" = "Cards can help you track different indicators of your day. Find out more about the available types of cards at the \"Add a new card\" screen.\
@@ -499,6 +497,12 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.themes.darkMode" = "Dark Mode";
 "settings.themes.blackMode" = "Black Mode";
 "settings.title" = "Settings";
+"settings.sorted.showArchived" = "Show archived cards";
+"settings.sorted.date.ascending" = "Date of creation (ascending)";
+"settings.sorted.date.descending" = "Date of creation (descending)";
+"settings.sorted.alphabet.ascending" = "Alphabet (A-Z)";
+"settings.sorted.alphabet.descending" = "Alphabet (Z-A)";
+"settings.sorted.custom" = "Manually sorted";
 
 // MARK: - Share
 "share.description" = "Shared with Evaluate Day app";

@@ -52,10 +52,14 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         var entries = [(preview: String, images: [UIImage?], date: Date, weatherImage: UIImage?, weatherText: String, locationText: String)]()
         
@@ -121,10 +125,6 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
                         self.viewController?.present(nav, animated: true, completion: nil)
                     }
                 }
-            }
-            
-            if archived {
-                
             }
             
             return node

@@ -44,10 +44,14 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         let goalCard = self.card.data as! GoalCard
         var value: Double = 0.0
@@ -95,10 +99,6 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
                 node.goal.plus.addTarget(self, action: #selector(self.plusButtonAction(sender:)), forControlEvents: .touchUpInside)
                 node.goal.minus.addTarget(self, action: #selector(self.minusButtonAction(sender:)), forControlEvents: .touchUpInside)
                 node.goal.customValueButton.addTarget(self, action: #selector(self.customValueButtonAction(sender:)), forControlEvents: .touchUpInside)
-            }
-            
-            if archived {
-                node.backgroundColor = UIColor.background
             }
             
             return node

@@ -44,9 +44,13 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
-        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionThreeCard
         var value: Double?
@@ -105,9 +109,6 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
                         batchContext.reload(self)
                     }, completion: nil)
                 }
-            }
-            
-            if archived {
             }
             
             return node

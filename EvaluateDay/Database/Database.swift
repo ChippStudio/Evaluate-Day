@@ -57,6 +57,13 @@ final class Database: NSObject {
                 migration.enumerateObjects(ofType: App.className(), { (_, newObject) in
                     newObject!["isShowWelcome"] = false
                 })
+                migration.enumerateObjects(ofType: Settings.className(), { (_, newObject) in
+                    newObject!["cardAscending"] = true
+                    newObject!["cardIsShowArchived"] = false
+                    newObject!["cardSortedManually"] = true
+                    newObject!["cardSortedAlphabet"] = false
+                    newObject!["cardSortedDate"] = false
+                })
             }
         })
         

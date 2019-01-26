@@ -39,6 +39,7 @@ let pastDaysLimit: Int = 2
 
 // MARK: - Cards
 let cardInsets = UIEdgeInsets(top: 70.0, left: 0.0, bottom: 0.0, right: 0.0)
+let cardArchivedMark = "🔒 "
 
 // MARK: - Demo Locations
 let dayLocations: [(longitude: Double, latitude: Double, area: String, locality: String, country: String, name: String)] = [

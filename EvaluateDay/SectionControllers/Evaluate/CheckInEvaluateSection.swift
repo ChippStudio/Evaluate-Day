@@ -56,10 +56,14 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         var datas = [(street: String, otherAddress: String, coordinates: String, index: Int)]()
         
@@ -115,10 +119,6 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
                     node.checkin.checkInButton.addTarget(self, action: #selector(self.checkInAction(sender:)), forControlEvents: .touchUpInside)
                     node.checkin.mapButton.addTarget(self, action: #selector(self.selectOnMapAction(sender:)), forControlEvents: .touchUpInside)
                 }
-            }
-            
-            if archived {
-                node.backgroundColor = UIColor.background
             }
             
             return node

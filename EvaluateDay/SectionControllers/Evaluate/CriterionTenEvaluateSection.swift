@@ -43,9 +43,13 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
-//        let archived = self.card.archived
         
         let criterionCard = self.card.data as! CriterionTenCard
         var value: Float = 0.0

@@ -44,10 +44,14 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         let colorCard = self.card.data as! ColorCard
         var color = "FFFFF"
@@ -100,10 +104,6 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
                 
                 //Feedback
                 Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
-            }
-            
-            if archived {
-                node.backgroundColor = UIColor.background
             }
             
             return node

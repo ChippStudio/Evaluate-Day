@@ -56,10 +56,14 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         let trackerCard = self.card.data as! TrackerCard
         let valuesCount = trackerCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", self.date.start, self.date.end, false).count
@@ -105,10 +109,6 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
                 for comment in node.comments {
                     comment.editButton.addTarget(self, action: #selector(self.editCommentAction(sender:)), forControlEvents: .touchUpInside)
                 }
-            }
-            
-            if archived {
-                node.backgroundColor = UIColor.background
             }
             
             return node

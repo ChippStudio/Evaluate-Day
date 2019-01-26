@@ -68,6 +68,13 @@ class Settings: Object {
     @objc dynamic var passcodePromptBiometric: Bool = true
     @objc dynamic var passcodeDelayRaw: Int = 0
     
+    // Sorted cards
+    @objc dynamic var cardAscending = true
+    @objc dynamic var cardIsShowArchived = false
+    @objc dynamic var cardSortedManually = true
+    @objc dynamic var cardSortedAlphabet = false
+    @objc dynamic var cardSortedDate = false
+    
     var passcodeDelay: PasscodeDelay {
         set {
             self.passcodeDelayRaw = newValue.rawValue

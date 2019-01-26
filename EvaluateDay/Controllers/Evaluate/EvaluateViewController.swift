@@ -77,7 +77,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         super.viewDidLoad()
         
         // Get cards
-        self.cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).sorted(byKeyPath: "order")
+        self.setCards()
         
         // Navigation bar
         if self.cardType != nil {
@@ -105,6 +105,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         self.reorderCardsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "reorder").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(reorderCardsAction(sender:)))
         self.reorderCardsButton.accessibilityIdentifier = "reorderButton"
         self.reorderCardsButton.accessibilityLabel = Localizations.Accessibility.Evaluate.reorder
+        
+        self.navigationItem.setRightBarButtonItems([self.newCardButton, self.reorderCardsButton], animated: true)
         
         // Collection view
         let layout = UICollectionViewFlowLayout()
@@ -138,6 +140,27 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             tapGesture.numberOfTouchesRequired = 2
             self.view.addGestureRecognizer(tapGesture)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setCards), name: NSNotification.Name.CardsSortedDidChange, object: nil)
+    }
+    
+    @objc private func setCards() {
+        self.cards = Database.manager.data.objects(Card.self).filter(Sources.predicate).sorted(byKeyPath: Sources.sorted, ascending: Sources.ascending)
+        // Get cards token
+        self.cardsToken = self.cards.observe({ (c) in
+            switch c {
+            case .initial(_):
+                print("INITIAL UPDATE")
+                self.adapter.performUpdates(animated: true, completion: nil)
+            case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
+                if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
+                    print("UPDATE UPDATE")
+                    self.adapter.performUpdates(animated: true, completion: nil)
+                }
+            case .error(let error):
+                print("ERROR - \(error.localizedDescription)")
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -188,19 +211,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 batchContext.reload(section)
             }, completion: nil)
         }
-        // Get cards token
-        self.cardsToken = self.cards.observe({ (c) in
-            switch c {
-            case .initial(_):
-                self.adapter.performUpdates(animated: true, completion: nil)
-            case .update(_, deletions: let deleted, insertions: let inserted, modifications: let modificated):
-                if inserted.count != 0 || deleted.count != 0 || modificated.count != 0 {
-                    self.adapter.performUpdates(animated: true, completion: nil)
-                }
-            case .error(let error):
-                print("ERROR - \(error.localizedDescription)")
-            }
-        })
+        self.setCards()
         self.updateAppearance(animated: false)
     }
     
@@ -255,12 +266,6 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro && diffableCards.count != 0 {
             diffableCards.insert(self.proLockObject, at: 1)
-        }
-        
-        if self.cards.isEmpty || self.cards.count == 1 {
-            self.navigationItem.setRightBarButtonItems([self.newCardButton], animated: true)
-        } else {
-            self.navigationItem.setRightBarButtonItems([self.newCardButton, self.reorderCardsButton], animated: true)
         }
         
         return diffableCards

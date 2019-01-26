@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 import AsyncDisplayKit
 
+// MARK: - Notifications
+extension Notification.Name {
+    static var CardsSortedDidChange: NSNotification.Name {
+        get {
+            return NSNotification.Name("CardsSortedDidChange")
+        }
+    }
+}
+
 // MARK: - UUID
 extension UUID {
     static var id: String {

@@ -45,10 +45,14 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         let image = Sources.image(forType: self.card.type)
-        let archived = self.card.archived
         
         let listCard = self.card.data as! ListCard
         let done = listCard.values.filter("(doneDate >= %@) AND (doneDate <= %@) AND (done=%@)", self.date.start, self.date.end, true).count
@@ -79,10 +83,6 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
             
             if !lock {
                 node.list.openListButton.addTarget(self, action: #selector(self.openListAction(sender:)), forControlEvents: .touchUpInside)
-            }
-            
-            if archived {
-                node.backgroundColor = UIColor.background
             }
             
             return node

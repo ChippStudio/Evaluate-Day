@@ -548,12 +548,6 @@ internal enum Localizations {
         internal static let title = Localizations.tr("Localizable", "cardSettings.habit.negative.title")
       }
     }
-    internal enum Health {
-      /// Apple Health Metrics
-      internal static let appleMetrics = Localizations.tr("Localizable", "cardSettings.health.appleMetrics")
-      /// Metrics
-      internal static let metrics = Localizations.tr("Localizable", "cardSettings.health.metrics")
-    }
   }
 
   internal enum Collection {
@@ -1363,6 +1357,24 @@ internal enum Localizations {
         internal static let readMore = Localizations.tr("Localizable", "settings.pro.view.readMore")
         /// Unlock
         internal static let unlock = Localizations.tr("Localizable", "settings.pro.view.unlock")
+      }
+    }
+    internal enum Sorted {
+      /// Manually sorted
+      internal static let custom = Localizations.tr("Localizable", "settings.sorted.custom")
+      /// Show archived cards
+      internal static let showArchived = Localizations.tr("Localizable", "settings.sorted.showArchived")
+      internal enum Alphabet {
+        /// Alphabet (A-Z)
+        internal static let ascending = Localizations.tr("Localizable", "settings.sorted.alphabet.ascending")
+        /// Alphabet (Z-A)
+        internal static let descending = Localizations.tr("Localizable", "settings.sorted.alphabet.descending")
+      }
+      internal enum Date {
+        /// Date of creation (ascending)
+        internal static let ascending = Localizations.tr("Localizable", "settings.sorted.date.ascending")
+        /// Date of creation (descending)
+        internal static let descending = Localizations.tr("Localizable", "settings.sorted.date.descending")
       }
     }
     internal enum Support {

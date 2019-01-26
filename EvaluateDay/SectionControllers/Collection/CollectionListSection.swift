@@ -30,7 +30,7 @@ class CollectionListSection: ListSectionController, ASSectionController {
         let title = self.collection.title
         let image = UIImage(named: self.collection.image)!
         
-        let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, self.collection.id).sorted(byKeyPath: "order")
+        let cards = Database.manager.data.objects(Card.self).filter(Sources.predicate).filter("dashboard=%@", self.collection.id).sorted(byKeyPath: Sources.sorted, ascending: Sources.ascending)
         var previews = [ASCellNode]()
         for c in cards {
             if let card = c.data as? Collectible {

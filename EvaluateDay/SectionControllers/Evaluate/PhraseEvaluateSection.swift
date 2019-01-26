@@ -45,7 +45,12 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             lock = true
         }
         
-        let title = self.card.title
+        let title: String
+        if self.card.archived {
+            title = cardArchivedMark + self.card.title
+        } else {
+            title = self.card.title
+        }
         let subtitle = self.card.subtitle
         
         let phraseCard = self.card.data as! PhraseCard
@@ -77,10 +82,6 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
             if !lock {
                 node.phrase.editButton.addTarget(self, action: #selector(self.editTextAction(sender:)), forControlEvents: .touchUpInside)
             }
-            
-//            if archived {
-//                node.backgroundColor = style.cardArchiveColor
-//            }
             
             return node
         }

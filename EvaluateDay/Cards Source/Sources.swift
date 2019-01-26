@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HealthKit
 
 final class Sources: NSObject {
 
@@ -30,6 +29,29 @@ final class Sources: NSObject {
     }
     
     // MARK: - Static functions
+    static var predicate: NSPredicate {
+        let settings = Database.manager.application.settings!
+        let pr: NSPredicate
+        if settings.cardIsShowArchived {
+            pr = NSPredicate(format: "isDeleted = %@", argumentArray: [false])
+        } else {
+            pr = NSPredicate(format: "isDeleted = %@ AND archived = %@", argumentArray: [false, false])
+        }
+        return pr
+    }
+    static var sorted: String {
+        let settings = Database.manager.application.settings!
+        if settings.cardSortedManually {
+            return "order"
+        } else if settings.cardSortedAlphabet {
+            return "title"
+        } else {
+            return "created"
+        }
+    }
+    static var ascending: Bool {
+        return Database.manager.application.settings.cardAscending
+    }
     static func image(forType type: CardType) -> UIImage {
         switch type {
         case .evaluate:
