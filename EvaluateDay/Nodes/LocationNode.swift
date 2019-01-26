@@ -27,13 +27,13 @@ class LocationNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         if street.isEmpty && otherAddress.isEmpty {
-            self.street.attributedText = NSAttributedString(string: Localizations.Evaluate.Location.unknown, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.tint])
+            self.street.attributedText = NSAttributedString(string: Localizations.Evaluate.Location.unknown, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         } else {
-            self.street.attributedText = NSAttributedString(string: street, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.tint])
-            self.otherAddress.attributedText = NSAttributedString(string: otherAddress, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.tint])
+            self.street.attributedText = NSAttributedString(string: street, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+            self.otherAddress.attributedText = NSAttributedString(string: otherAddress, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         }
         
-        self.coordinates.attributedText = NSAttributedString(string: coordinates, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        self.coordinates.attributedText = NSAttributedString(string: coordinates, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         // Set button
         self.button.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)

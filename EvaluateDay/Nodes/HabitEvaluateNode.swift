@@ -119,7 +119,7 @@ class HabitEvaluateNode: ASCellNode {
             marksCounter.children?.append(self.deleteButton!)
         }
         
-        let markButtonsInsets = UIEdgeInsets(top: 10.0, left: 30.0, bottom: 10.0, right: 30.0)
+        let markButtonsInsets = UIEdgeInsets(top: 15.0, left: 30.0, bottom: 15.0, right: 30.0)
         
         let markButtonInset = ASInsetLayoutSpec(insets: markButtonsInsets, child: self.markButton)
         let markAndCommentButtonInset = ASInsetLayoutSpec(insets: markButtonsInsets, child: self.markAndCommentButton)

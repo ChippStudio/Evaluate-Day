@@ -46,8 +46,8 @@ class BottomViewController: UIViewController {
         }
         
         self.closeButton = UIButton()
-        self.closeButton.tintColor = UIColor.main
-        self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
+//        self.closeButton.tintColor = UIColor.main
+//        self.closeButton.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0)).withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.addTarget(self, action: #selector(self.closeButtonAction(sender:)), for: .touchUpInside)
         self.view.addSubview(self.closeButton)
         self.closeButton.accessibilityLabel = Localizations.General.close

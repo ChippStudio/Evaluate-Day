@@ -120,7 +120,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
             self.textView.textColor = UIColor.text
             self.pageCover.backgroundColor = UIColor.background
             self.pageNode.backgroundColor = UIColor.background
-            self.pageControl.pageIndicatorTintColor = UIColor.tint
+            self.pageControl.pageIndicatorTintColor = UIColor.textTint
             self.pageControl.currentPageIndicatorTintColor = UIColor.main
             
             // Backgrounds

@@ -15,6 +15,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
     
     // MARK: - UI
     var collectionNode: ASCollectionNode!
+    var reorderButton: UIBarButtonItem!
     
     // MARK: - Variables
     var collections: Results<Dashboard>!
@@ -84,12 +85,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         self.adapter.setASDKCollectionNode(self.collectionNode)
         adapter.dataSource = self
         
-        // Set hidden buttons
-        if UserDefaults.standard.bool(forKey: "CSTest") || UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
-            let hiddenButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.scrollToCollections))
-            hiddenButton.accessibilityIdentifier = "hiddenButton"
-            self.navigationItem.setRightBarButton(hiddenButton, animated: false)
-        }
+        self.reorderButton = UIBarButtonItem(image: Images.Media.reorder.image.resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.reorderButtonAction(sender:)))
+        self.navigationItem.rightBarButtonItem = self.reorderButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -195,9 +192,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         return nil
     }
     
-    // MARK: - Private Actions
-    @objc private func scrollToCollections() {
-        self.collectionNode.scrollToItem(at: IndexPath(row: 0, section: 3), at: .top, animated: false)
+    // MARK: - Actions
+    @objc func reorderButtonAction(sender: UIBarButtonItem) {
+        
     }
-    
 }

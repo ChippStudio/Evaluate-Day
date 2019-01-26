@@ -96,6 +96,7 @@ class SettingsPasscodeDelayViewController: UIViewController, UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: delayCell, for: indexPath)
         cell.textLabel?.text = requireString
+        cell.textLabel?.textColor = UIColor.text
         cell.selectedBackgroundView = selView
         cell.imageView?.image = Images.Media.done.image.resizedImage(newSize: CGSize(width: 26.0, height: 26.0)).withRenderingMode(.alwaysTemplate)
         if item == Database.manager.application.settings.passcodeDelay {

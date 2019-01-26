@@ -29,10 +29,10 @@ class CheckInActionNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.mapButtonCover.backgroundColor = UIColor.main
-        self.mapButtonCover.cornerRadius = 20.0
+        self.mapButtonCover.cornerRadius = 10.0
         
         self.checkInButtonCover.backgroundColor = UIColor.main
-        self.checkInButtonCover.cornerRadius = 20.0
+        self.checkInButtonCover.cornerRadius = 10.0
         
         let checkInTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.quickCheckin, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
@@ -65,11 +65,11 @@ class CheckInActionNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        let checkInButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
+        let checkInButtonInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
         let checkInButtonInset = ASInsetLayoutSpec(insets: checkInButtonInsets, child: self.checkInButton)
         let fullCheckInButton = ASBackgroundLayoutSpec(child: checkInButtonInset, background: self.checkInButtonCover)
         
-        let mapButtonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
+        let mapButtonInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
         let mapButtonInset = ASInsetLayoutSpec(insets: mapButtonInsets, child: self.mapButton)
         let fullMapButton = ASBackgroundLayoutSpec(child: mapButtonInset, background: self.mapButtonCover)
         

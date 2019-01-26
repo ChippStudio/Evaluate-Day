@@ -25,7 +25,7 @@ class JournalNewEntryActionNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.actionButtonCover.backgroundColor = UIColor.main
-        self.actionButtonCover.cornerRadius = 20.0
+        self.actionButtonCover.cornerRadius = 10.0
         
         let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
@@ -50,7 +50,7 @@ class JournalNewEntryActionNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        let buttonInsets = UIEdgeInsets(top: 8.0, left: 15.0, bottom: 8.0, right: 15.0)
+        let buttonInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
         let buttonInset = ASInsetLayoutSpec(insets: buttonInsets, child: self.actionButton)
         
         let button = ASBackgroundLayoutSpec(child: buttonInset, background: self.actionButtonCover)

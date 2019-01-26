@@ -28,7 +28,7 @@ let appSiteURLString = "https://evaluateday.com"
 let feedbackMail = "support@evaluateday.com"
 
 // MARK: - PRO
-let proPlaceholder = "🇪🇪❤️👆🔒"
+let proPlaceholder = "🔒"
 
 // MARK: - Navigation item
 let largeTitleFontSize: CGFloat = 28.0

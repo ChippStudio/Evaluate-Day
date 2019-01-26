@@ -92,7 +92,7 @@ class ListEvaluateNode: ASCellNode {
         texts.alignItems = .end
         texts.children = [currentStack, self.separator, lifetimeStack]
         
-        let openButtonInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
+        let openButtonInsets = UIEdgeInsets(top: 15.0, left: 0.0, bottom: 15.0, right: 0.0)
         let openButtonInset = ASInsetLayoutSpec(insets: openButtonInsets, child: self.openListButton)
         
         let button = ASBackgroundLayoutSpec(child: openButtonInset, background: self.openListButtonCover)

@@ -42,14 +42,14 @@ class CheckInPermissionNode: ASCellNode {
         
         self.permissionButton.setAttributedTitle(buttonTitleString, for: .normal)
         
-        self.permissionCover.cornerRadius = 20.0
+        self.permissionCover.cornerRadius = 10.0
         self.permissionCover.backgroundColor = UIColor.main
         
         let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         
-        self.mapButtonCover.cornerRadius = 20.0
+        self.mapButtonCover.cornerRadius = 10.0
         self.mapButtonCover.backgroundColor = UIColor.main
         
         let formatter = DateFormatter()
@@ -75,12 +75,12 @@ class CheckInPermissionNode: ASCellNode {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        let permissionButtonInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
+        let permissionButtonInsets = UIEdgeInsets(top: 15.0, left: 0.0, bottom: 15.0, right: 0.0)
         let permissionButtonInset = ASInsetLayoutSpec(insets: permissionButtonInsets, child: self.permissionButton)
         
         let permission = ASBackgroundLayoutSpec(child: permissionButtonInset, background: self.permissionCover)
         
-        let mapButtonInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
+        let mapButtonInsets = UIEdgeInsets(top: 15.0, left: 0.0, bottom: 15.0, right: 0.0)
         let mapButtonInset = ASInsetLayoutSpec(insets: mapButtonInsets, child: self.mapButton)
         
         let map = ASBackgroundLayoutSpec(child: mapButtonInset, background: self.mapButtonCover)

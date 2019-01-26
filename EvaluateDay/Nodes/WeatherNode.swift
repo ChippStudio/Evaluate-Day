@@ -24,10 +24,10 @@ class WeatherNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.iconImage.image = icon
-        self.iconImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+        self.iconImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         self.iconImage.contentMode = .scaleAspectFit
         
-        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.tint])
+        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
         
         for d in data {
             textString.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .bold)], range: (textString.string as NSString).range(of: d))

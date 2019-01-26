@@ -38,7 +38,7 @@ class ImagesNode: ASCellNode {
                 button.view.tag = i
             }
             button.setImage(Images.Media.close.image.resizedImage(newSize: CGSize(width: 21.0, height: 21.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-            button.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+            button.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
             button.addTarget(self, action: #selector(self.photoDeleteAction(sender:)), forControlEvents: .touchUpInside)
             
             let im = ImagePresenterNode(image: image, button: button)
@@ -59,12 +59,12 @@ class ImagesNode: ASCellNode {
             }
             photoButton.style.preferredSize = CGSize(width: 80.0, height: 40.0)
             photoButton.setImage(Images.Media.imagePlaceholder.image.resizedImage(newSize: CGSize(width: 20.0, height: 15.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-            photoButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+            photoButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
             photoButton.addTarget(self, action: #selector(self.photoAction(sender:)), forControlEvents: .touchUpInside)
             
             cameraButton.style.preferredSize = CGSize(width: 80.0, height: 40.0)
             cameraButton.setImage(Images.Media.camera.image.resizedImage(newSize: CGSize(width: 20.0, height: 17.0)).withRenderingMode(.alwaysTemplate), for: .normal)
-            cameraButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.tint)
+            cameraButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
             cameraButton.addTarget(self, action: #selector(self.cameraAction(sender:)), forControlEvents: .touchUpInside)
             
             let new = NewImagePresenterNode(camera: cameraButton, photo: photoButton)
@@ -72,7 +72,7 @@ class ImagesNode: ASCellNode {
             new.style.preferredSize = CGSize(width: 80.0, height: 80.0)
             new.clipsToBounds = true
             new.cornerRadius = 40.0
-            new.borderColor = UIColor.tint.cgColor
+            new.borderColor = UIColor.textTint.cgColor
             new.borderWidth = 1.0
             
             self.newImageNode.append(new)

@@ -75,6 +75,7 @@ internal enum Images {
     internal static let new = ImageAsset(name: "new")
     internal static let notification = ImageAsset(name: "notification")
     internal static let passcode = ImageAsset(name: "passcode")
+    internal static let reorder = ImageAsset(name: "reorder")
     internal static let settings = ImageAsset(name: "settings")
     internal static let share = ImageAsset(name: "share")
     internal static let sound = ImageAsset(name: "sound")
