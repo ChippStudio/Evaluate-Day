@@ -14,6 +14,7 @@ class PasscodeViewController: UIViewController {
 
     // MARK: - UI
     @IBOutlet weak var messageLabel: UILabel!
+    var heightView: UIView = UIView()
     
     // MARK: - Variable
     private let passcodeKey = "ED_passcode"
@@ -204,9 +205,24 @@ class PasscodeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("NEW SIZE - \(size)")
+        if size.height <= 550 {
+            self.setHeightView()
+        } else {
+            self.heightView.removeFromSuperview()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateAppearance(animated: false)
+        if self.view.frame.size.height <= 550 {
+            // Set height view
+            self.setHeightView()
+        } else {
+            self.heightView.removeFromSuperview()
+        }
     }
     
     override func updateAppearance(animated: Bool) {
@@ -333,6 +349,38 @@ class PasscodeViewController: UIViewController {
                     }
                 }
             })
+        }
+    }
+    
+    func setHeightView() {
+        self.heightView.removeFromSuperview()
+        self.heightView = UIView()
+        self.heightView.backgroundColor = UIColor.background
+        let descLabel = UILabel()
+        descLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        descLabel.numberOfLines = 0
+        descLabel.textColor = UIColor.main
+        descLabel.textAlignment = .center
+        descLabel.text = Localizations.Settings.Passcode.rotate
+        self.heightView.addSubview(descLabel)
+        descLabel.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                make.leading.greaterThanOrEqualTo(self.heightView.safeAreaLayoutGuide).offset(20.0)
+                make.trailing.lessThanOrEqualTo(self.heightView.safeAreaLayoutGuide).offset(-20.0)
+            } else {
+                // Fallback on earlier versions
+                make.trailing.lessThanOrEqualToSuperview().offset(-20.0)
+                make.leading.greaterThanOrEqualToSuperview().offset(20.0)
+            }
+        }
+        self.view.addSubview(self.heightView)
+        self.heightView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
     }
     

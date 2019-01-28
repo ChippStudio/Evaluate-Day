@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ListEmptyView: UIView {
+class EmptyView: UIView {
+    
     // MARK: - UI
-    var cover = UIView()
     var imageView = UIImageView()
     var titleLabel = UILabel()
     var descriptionLabel = UILabel()
     var button = UIButton()
+    var buttonCover = UIView()
     
     // MARK: - Override
     init() {
@@ -54,9 +55,29 @@ class ListEmptyView: UIView {
             make.top.equalTo(self.titleLabel.snp.bottom).offset(20.0)
         }
         
+        self.button.setTitleColor(UIColor.textTint, for: .normal)
+        self.buttonCover.layer.masksToBounds = true
+        self.buttonCover.layer.cornerRadius = 10.0
+        self.buttonCover.backgroundColor = UIColor.main
+        self.buttonCover.addSubview(self.button)
+        self.button.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.height.equalTo(50.0)
+            make.width.equalTo(230.0)
+        }
+        
+        self.addSubview(self.buttonCover)
+        self.buttonCover.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(20.0)
+        }
+        
         self.button.addTarget(self, action: #selector(self.startTouch(sender:)), for: .touchDown)
         self.button.addTarget(self, action: #selector(self.cancelTouch(sender:)), for: .touchUpOutside)
-        self.button.addTarget(self, action: #selector(self.endTouch(sender:)), for: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.cancelTouch(sender:)), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,11 +86,14 @@ class ListEmptyView: UIView {
     
     // MARK: - Button Action
     @objc func startTouch(sender: UIButton) {
+        UIView.animate(withDuration: 0.2) {
+            self.buttonCover.backgroundColor = UIColor.selected
+        }
     }
     
     @objc func cancelTouch(sender: UIButton) {
-    }
-    
-    @objc func endTouch(sender: UIButton) {
+        UIView.animate(withDuration: 0.2) {
+            self.buttonCover.backgroundColor = UIColor.main
+        }
     }
 }

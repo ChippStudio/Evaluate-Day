@@ -376,7 +376,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     // MARK: - Actions
     @objc func newCardButtonAction(sender: UIBarButtonItem) {
-        let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
+        let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController() as! NewCardViewController
+        controller.cardType = self.cardType
+        controller.collectionID = self.collection
         self.universalSplitController?.pushSideViewController(controller)
     }
     

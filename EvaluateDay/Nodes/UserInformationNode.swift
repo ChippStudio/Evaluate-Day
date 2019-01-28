@@ -33,11 +33,9 @@ class UserInformationNode: ASCellNode {
         
         self.editMode = isEdit
         
-        self.userPhoto.image = #imageLiteral(resourceName: "userQA")
+        self.userPhoto.image = Images.Media.userAvatar.image
         if photo != nil {
             self.userPhoto.image = photo
-        } else {
-            self.userPhoto.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         }
         if self.editMode {
             self.userPhoto.isAccessibilityElement = true
@@ -210,7 +208,7 @@ class UserInformationNode: ASCellNode {
             cell.children?.append(self.firstSeparator)
         }
         
-        if self.userWeb != nil {
+        if self.userBio != nil {
             let bioStack = ASStackLayoutSpec.vertical()
             bioStack.spacing = 10.0
             bioStack.children = []
@@ -238,6 +236,7 @@ class UserInformationNode: ASCellNode {
             
             let fbActionStack = ASStackLayoutSpec.vertical()
             fbActionStack.alignItems = .center
+            fbActionStack.spacing = 3.0
             fbActionStack.children = [fb, self.facebookDisclaimer]
             
             cell.children?.append(fbActionStack)

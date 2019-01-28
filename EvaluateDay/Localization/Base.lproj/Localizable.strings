@@ -103,6 +103,8 @@
 "activity.user.placeholder.email" = "Set email";
 "activity.user.placeholder.name" = "Set full name";
 "activity.user.placeholder.web" = "Your web site";
+"activity.user.description.name" = "Super User";
+"activity.user.description.bio" = "This information will be used as your signature.";
 
 // MARK: - Analytics
 "analytics.action" = "Analytics";
@@ -248,6 +250,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "collection.analytics.cards" = "Cards";
 "collection.analytics.created" = "Created";
 "collection.empty.cardSetting" = "Add into the collection";
+"collection.empty.list.title" = "You have not any collections";
+"collection.empty.list.description" = "The collections help to organize cards";
 
 // MARK: - Evaluate
 "evaluate.checkin.permission.buttonTitle" = "Allow location access";
@@ -422,6 +426,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.passcode.touchID.prompt" = "Prompt for Touch ID";
 "settings.passcode.touchID.title" = "Touch ID";
 "settings.passcode.unlock" = "Unlock %@";
+"settings.passcode.rotate" = "Please rotate your iOS device to portrait mode";
 "settings.pro.description.more.activity.description" = "Full analytics on the use of the application. View all photos added to the app in one place.";
 "settings.pro.description.more.activity.title" = "Full activity";
 "settings.pro.description.more.analytics.description" = "Complete analytics for each card. Everything you need in one place";

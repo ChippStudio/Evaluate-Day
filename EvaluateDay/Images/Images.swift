@@ -86,6 +86,7 @@ internal enum Images {
     internal static let txt = ImageAsset(name: "txt")
     internal static let up = ImageAsset(name: "up")
     internal static let user = ImageAsset(name: "user")
+    internal static let userAvatar = ImageAsset(name: "userAvatar")
     internal static let userQA = ImageAsset(name: "userQA")
     internal static let week = ImageAsset(name: "week")
   }

@@ -28,10 +28,18 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
         if let av = user.avatar {
             photo = UIImage(data: av)
         }
-        let name = user.name
+        var name = user.name
         let email = user.email
-        let bio = user.bio
+        var bio = user.bio
         let web = user.web
+        
+        // Set place holders
+        if bio == nil && name == nil && !self.isEditMode {
+            bio = Localizations.Activity.User.Description.bio
+        }
+        if name == nil && !self.isEditMode {
+            name = Localizations.Activity.User.Description.name
+        }
         return {
             self.node = UserInformationNode(photo: photo, name: name, email: email, bio: bio, web: web, isEdit: self.isEditMode)
             self.node.editButton.addTarget(self, action: #selector(self.editButtonAction(sender:)), forControlEvents: .touchUpInside)

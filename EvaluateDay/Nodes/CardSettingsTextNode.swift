@@ -29,7 +29,7 @@ class CardSettingsTextNode: ASCellNode {
         var textColor = UIColor.main
         var textString = text
         if text == "" {
-            textColor = UIColor.lightText
+            textColor = UIColor.lightGray
             textString = Localizations.CardSettings.textPlaceholder
         }
         

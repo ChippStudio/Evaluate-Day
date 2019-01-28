@@ -19,7 +19,7 @@ class CollectionsListViewController: UIViewController, UITableViewDataSource, UI
     // MARK: - UI
     @IBOutlet weak var tableView: UITableView!
     var addNewCollectionButton: UIBarButtonItem!
-    var emptyView = ListEmptyView()
+    var emptyView = EmptyView()
     
     // MARK: - Variables
     var collections: Results<Dashboard>!
@@ -35,8 +35,10 @@ class CollectionsListViewController: UIViewController, UITableViewDataSource, UI
         
         // set empty view
         self.emptyView.imageView.image = Images.Media.collections.image.withRenderingMode(.alwaysTemplate)
-        self.emptyView.titleLabel.text = Localizations.Collection.Empty.title
-        self.emptyView.descriptionLabel.text = Localizations.Collection.Empty.subtitle
+        self.emptyView.titleLabel.text = Localizations.Collection.Empty.List.title
+        self.emptyView.descriptionLabel.text = Localizations.Collection.Empty.List.description
+        self.emptyView.button.setTitle(Localizations.Collection.addNew, for: .normal)
+        self.emptyView.button.addTarget(self, action: #selector(self.newCollectionButtonAction(sender:)), for: .touchUpInside)
 
         self.collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
         

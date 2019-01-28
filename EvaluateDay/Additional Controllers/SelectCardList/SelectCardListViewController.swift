@@ -17,6 +17,7 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - UI
     @IBOutlet weak var tableView: UITableView!
     var addCardButton: UIBarButtonItem!
+    var emptyView = EmptyView()
     
     // MARK: - Variable
     var cards: Results<Card>!
@@ -40,6 +41,12 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
         // Set button
         self.addCardButton = UIBarButtonItem(image: Images.Media.new.image.resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(self.addCardAction(sender:)))
         self.navigationItem.rightBarButtonItem = self.addCardButton
+        // set empty view
+        self.emptyView.imageView.image = Images.Media.cards.image.withRenderingMode(.alwaysTemplate)
+        self.emptyView.titleLabel.text = Localizations.List.Card.EmptyType.title
+        self.emptyView.descriptionLabel.text = Localizations.List.Card.EmptyType.subtitle
+        self.emptyView.button.setTitle(Localizations.General.Shortcut.New.title, for: .normal)
+        self.emptyView.button.addTarget(self, action: #selector(self.addCardAction(sender:)), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +57,20 @@ class SelectCardListViewController: UIViewController, UITableViewDataSource, UIT
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateAppearance(animated: false)
+        
+        if self.cards.isEmpty {
+            self.tableView.alpha = 0.0
+            self.view.addSubview(self.emptyView)
+            self.emptyView.snp.makeConstraints { (make) in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview()
+            }
+        } else {
+            self.tableView.alpha = 1.0
+            self.emptyView.removeFromSuperview()
+        }
     }
     
     override func updateAppearance(animated: Bool) {

@@ -89,9 +89,8 @@ class EvaluateEmptyCardSection: ListSectionController, ASSectionController {
     
     // MARK: - Actions
     @objc func addNewCard(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
+        if let controller = self.viewController as? EvaluateViewController {
+            controller.newCardButtonAction(sender: UIBarButtonItem())
         }
     }
 }

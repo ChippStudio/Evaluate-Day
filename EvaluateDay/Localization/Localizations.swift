@@ -289,6 +289,12 @@ internal enum Localizations {
       internal static let title = Localizations.tr("Localizable", "activity.gallery.title")
     }
     internal enum User {
+      internal enum Description {
+        /// This information will be used as your signature.
+        internal static let bio = Localizations.tr("Localizable", "activity.user.description.bio")
+        /// Super User
+        internal static let name = Localizations.tr("Localizable", "activity.user.description.name")
+      }
       internal enum Facebook {
         /// Update from Facebook
         internal static let action = Localizations.tr("Localizable", "activity.user.facebook.action")
@@ -598,6 +604,12 @@ internal enum Localizations {
       internal static let subtitle = Localizations.tr("Localizable", "collection.empty.subtitle")
       /// The collection is empty
       internal static let title = Localizations.tr("Localizable", "collection.empty.title")
+      internal enum List {
+        /// The collections help to organize cards
+        internal static let description = Localizations.tr("Localizable", "collection.empty.list.description")
+        /// You have not any collections
+        internal static let title = Localizations.tr("Localizable", "collection.empty.list.title")
+      }
     }
   }
 
@@ -1162,6 +1174,8 @@ internal enum Localizations {
       internal static let reenter = Localizations.tr("Localizable", "settings.passcode.reenter")
       /// Require after...
       internal static let require = Localizations.tr("Localizable", "settings.passcode.require")
+      /// Please rotate your iOS device to portrait mode
+      internal static let rotate = Localizations.tr("Localizable", "settings.passcode.rotate")
       /// Passcode
       internal static let title = Localizations.tr("Localizable", "settings.passcode.title")
       /// Unlock %@

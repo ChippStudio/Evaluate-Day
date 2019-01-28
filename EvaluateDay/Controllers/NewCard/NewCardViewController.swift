@@ -16,8 +16,11 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var proView: ProView!
     
     // MARK: - Variables
-    let sources = Sources()
     
+    var cardType: CardType!
+    var collectionID: String!
+    
+    private let sources = Sources()
     private let newCardCell = "newCardCell"
     
     // MARK: - Override
@@ -47,6 +50,15 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.cardType != nil {
+            self.makeNewCard(withType: self.cardType)
+            self.cardType = nil
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,14 +126,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         
         let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
-        let newCard = Card()
-        newCard.type = source.type
-        newCard.order = Database.manager.data.objects(Card.self).count
-        if newCard.data as? Editable != nil {
-            let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
-            controller.card = newCard
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        self.makeNewCard(withType: source.type)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -145,6 +150,19 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // MARK: - Actions
+    func makeNewCard(withType type: CardType) {
+        let newCard = Card()
+        newCard.type = type
+        newCard.order = Database.manager.data.objects(Card.self).count
+        if self.collectionID != nil {
+            newCard.dashboard = collectionID
+        }
+        if newCard.data as? Editable != nil {
+            let controller = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
+            controller.card = newCard
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
     @objc func openProAction(sender: UIButton) {
         let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
         self.universalSplitController?.pushSideViewController(controller)

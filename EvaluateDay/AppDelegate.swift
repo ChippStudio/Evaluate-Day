@@ -94,6 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
+        self.window?.rootViewController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+        self.window?.makeKeyAndVisible()
+        
         if Database.manager.application.settings.passcode {
             if self.window?.rootViewController as? PasscodeViewController == nil {
                 let controller = UIStoryboard(name: Storyboards.passcode.rawValue, bundle: nil).instantiateInitialViewController() as! PasscodeViewController
