@@ -132,9 +132,29 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            try! Database.manager.app.write {
-                Database.manager.application.user.avatar = UIImagePNGRepresentation(image)
+            var newRect: CGRect!
+            
+            let maxSize: CGFloat = 800.0
+            if image.size.width > image.size.height {
+                let scale = maxSize / image.size.width
+                let newHeight = image.size.height * scale
+                
+                newRect = CGRect(x: 0.0, y: 0.0, width: maxSize, height: newHeight)
+            } else {
+                let scale = maxSize / image.size.height
+                let newWidth = image.size.width * scale
+                
+                newRect = CGRect(x: 0.0, y: 0.0, width: newWidth, height: maxSize)
             }
+            
+            UIGraphicsBeginImageContext(newRect.size)
+            image.draw(in: newRect)
+            if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
+                try! Database.manager.app.write {
+                    Database.manager.application.user.avatar = UIImagePNGRepresentation(newImage)
+                }
+            }
+            UIGraphicsEndImageContext()
         }
         
         self.collectionContext?.performBatch(animated: true, updates: { (context) in

@@ -78,7 +78,7 @@ class ProMoreViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel?.textColor = UIColor.text
         cell.detailTextLabel?.text = item.subtitle
         cell.detailTextLabel?.textColor = UIColor.main
-        cell.imageView?.image = item.image.resizedImage(newSize: (CGSize(width: 40.0, height: 40.0))).withRenderingMode(.alwaysTemplate)
+        cell.imageView?.image = item.image.resizedImage(newSize: (CGSize(width: 30.0, height: 30.0))).withRenderingMode(.alwaysTemplate)
         cell.imageView?.tintColor = UIColor.main
         
         let selectedView = UIView()

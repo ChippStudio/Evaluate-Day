@@ -266,13 +266,13 @@
 	<key>CFBundleVersion</key>
 	<string>6749</string>
 	<key>CSBuild</key>
-	<string>7987</string>
+	<string>8060</string>
 	<key>CSDemo</key>
-	<true/>
+	<false/>
 	<key>CSSandbox</key>
 	<true/>
 	<key>CSTest</key>
-	<true/>
+	<false/>
 	<key>FacebookAppID</key>
 	<string>184140535498012</string>
 	<key>FacebookDisplayName</key>
@@ -312,7 +312,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Evaluate</string>
+	<string>SplitController</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

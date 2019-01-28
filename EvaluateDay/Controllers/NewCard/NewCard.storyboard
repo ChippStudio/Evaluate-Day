@@ -22,9 +22,38 @@
                                 <rect key="frame" x="10" y="20" width="355" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="igx-Jf-seM">
+                                    <rect key="frame" x="0.0" y="0.0" width="355" height="197"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLD-1H-sHe" customClass="ProView" customModule="Evaluate_Day" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="5" width="355" height="140"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="140" id="F1K-kP-71G"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1s-cW-QRG">
+                                            <rect key="frame" x="10" y="155" width="335" height="32"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="dLD-1H-sHe" secondAttribute="trailing" id="0yX-Jb-gaZ"/>
+                                        <constraint firstItem="dLD-1H-sHe" firstAttribute="leading" secondItem="igx-Jf-seM" secondAttribute="leading" id="MYg-Ot-WJw"/>
+                                        <constraint firstItem="y1s-cW-QRG" firstAttribute="top" secondItem="dLD-1H-sHe" secondAttribute="bottom" constant="10" id="hXA-Ko-OYC"/>
+                                        <constraint firstItem="y1s-cW-QRG" firstAttribute="leading" secondItem="igx-Jf-seM" secondAttribute="leading" constant="10" id="nFZ-qN-XrA"/>
+                                        <constraint firstAttribute="bottom" secondItem="y1s-cW-QRG" secondAttribute="bottom" constant="10" id="xt6-A8-eBa"/>
+                                        <constraint firstAttribute="trailing" secondItem="y1s-cW-QRG" secondAttribute="trailing" constant="10" id="yBu-3d-G04"/>
+                                        <constraint firstItem="dLD-1H-sHe" firstAttribute="top" secondItem="igx-Jf-seM" secondAttribute="top" constant="5" id="zWR-c7-6ft"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newCardCell" rowHeight="77" id="Vlw-gj-tZu" customClass="NewCardCell" customModule="Evaluate_Day" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="355" height="77"/>
+                                        <rect key="frame" x="0.0" y="252.5" width="355" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vlw-gj-tZu" id="ifh-l9-HrJ">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="76.5"/>
@@ -69,43 +98,6 @@
                                             <outlet property="titleLabel" destination="61Y-V0-vHy" id="f1c-pi-U87"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="proCell" rowHeight="170" id="TRR-kb-Hg9" customClass="ProUnlockCell" customModule="Evaluate_Day" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="132.5" width="355" height="170"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TRR-kb-Hg9" id="HXn-jB-QL3">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="169.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNt-sc-Soi" customClass="ProView" customModule="Evaluate_Day" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="10" width="355" height="128"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="128" id="mU4-Yr-PA4"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ov9-y5-T4v">
-                                                    <rect key="frame" x="10" y="148" width="335" height="11.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ZNt-sc-Soi" firstAttribute="top" secondItem="HXn-jB-QL3" secondAttribute="top" constant="10" id="7En-uH-kpC"/>
-                                                <constraint firstItem="Ov9-y5-T4v" firstAttribute="leading" secondItem="HXn-jB-QL3" secondAttribute="leading" constant="10" id="HE1-PU-96E"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ov9-y5-T4v" secondAttribute="trailing" constant="10" id="Sei-hd-EAy"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ov9-y5-T4v" secondAttribute="bottom" constant="10" id="XjQ-Qf-2IP"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZNt-sc-Soi" secondAttribute="trailing" id="ZIw-mZ-YgK"/>
-                                                <constraint firstItem="ZNt-sc-Soi" firstAttribute="leading" secondItem="HXn-jB-QL3" secondAttribute="leading" id="i50-dM-US2"/>
-                                                <constraint firstItem="Ov9-y5-T4v" firstAttribute="top" secondItem="ZNt-sc-Soi" secondAttribute="bottom" constant="10" id="pbC-lC-60e"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="descriptionLabel" destination="Ov9-y5-T4v" id="9Cc-3X-CWc"/>
-                                            <outlet property="proView" destination="ZNt-sc-Soi" id="tmj-av-LWb"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Xjw-nz-wzG" id="PMC-bb-X21"/>
@@ -123,6 +115,8 @@
                         <viewLayoutGuide key="safeArea" id="A2z-AE-5Wf"/>
                     </view>
                     <connections>
+                        <outlet property="proLimitLabel" destination="y1s-cW-QRG" id="hvQ-mx-c5K"/>
+                        <outlet property="proView" destination="dLD-1H-sHe" id="w0S-0P-5LK"/>
                         <outlet property="tableView" destination="pxz-ci-iRa" id="lca-Ff-YxN"/>
                     </connections>
                 </viewController>

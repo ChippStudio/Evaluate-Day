@@ -341,7 +341,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "new.checkin.title" = "Check In";
 "new.color.subtitle" = "Select color of the day";
 "new.color.title" = "Color";
-"new.controller.title" = "New type of card";
+"new.controller.title" = "New card";
 "new.counter.subtitle" = "Creat for adding or subtracting a single value as you go";
 "new.counter.title" = "Counter";
 "new.criterionHundred.subtitle" = "Helps evaluate and analyze various criteria that cannot be tracked with sensors. Evaluation on a 100-point scale.";
@@ -518,37 +518,3 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "update.button" = "Download now";
 "update.subtitle" = "In new version we add new type of cards, please download new version from App Store";
 "update.title" = "Please update your version of Evaluate Day";
-
-// MARK: - Welcome
-"welcome.title" = "Welcome";
-"welcome.next" = "Yes, sure";
-"welcome.new.intro.firstMessage" = "Welcome on board, we so glad to see you in Evaluate Day app. \nChipp Studio Team";
-"welcome.new.intro.secondMessage" = "It is the quick onboarding, we need to know more about you. To make your experience with app better.";
-"welcome.new.intro.thirdMessage" = "Are you ready to start?";
-"welcome.new.user.firstMessage" = "Greate, let's start";
-"welcome.new.user.secondMessage" = "What is your name?";
-"welcome.new.user.emptyName" = "I prefer stay incognito";
-"welcome.new.user.placeholder" = "Name";
-"welcome.new.cards.firstMessage" = "Основное понятие приложения это карточки. Выберите, то что, хотите оценить и создайте подходящую карточку.";
-"welcome.new.cards.secondMessage" = "Все что останеться потом, это день за днем оценивать данные в этой карточки.";
-"welcome.new.cards.thirdMessage" = "Через какое то время, сложиться объяктивная картина, по которой можно будет делать выводы";
-"welcome.new.cards.fourthMessage" = "Карточки можно объединять в коллекции, так вы смодете оценивать то, что захотите по множеству критерий";
-"welcome.new.cards.fifthdMessage" = "Что бы вам проще было начать, мы можем создать для вас набор карточек";
-"welcome.new.cards.sixthdMessage" = "Естесвенно вы сможете позже их изменить";
-"welcome.new.cards.seventhdMessage" = "Do it for you?";
-"welcome.new.cards.one" = "Yes, sure";
-"welcome.new.cards.two" = "Not needed";
-"welcome.new.cards.collection" = "Evaluate Collection";
-"welcome.new.email.firstMessage" = "Отлично осталось совсем не много";
-"welcome.new.email.secondMessage" = "Evaluate Day постоянно развивается, подпишитесь на нашу рассылку, что бы быть в курсе последних идей и новостей";
-"welcome.new.email.thirdMessage" = "Обещаем писать не чаще 2 раз в месяц и не какого спама";
-"welcome.new.email.empty" = "I will do it later";
-"welcome.new.email.placeholder" = "email";
-"welcome.new.pro.firstMessage" = "One more thing";
-"welcome.new.pro.secondMessage" = "Воспользуйтесь всеми функциями Evaluate Day без ограничений";
-"welcome.new.pro.buyed" = "Nice app, I am in";
-"welcome.new.pro.notBuyed" = "I will do it later";
-"welcome.new.all.firstMessage" = "That's all";
-"welcome.new.all.secondMessage" = "Please enjoy the app. And will write us your feedback";
-"welcome.new.all.enjoy" = "Enjoy!";
-

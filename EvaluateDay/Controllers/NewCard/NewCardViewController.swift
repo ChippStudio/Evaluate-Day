@@ -12,12 +12,13 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // MARK: - UI
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var proLimitLabel: UILabel!
+    @IBOutlet weak var proView: ProView!
     
     // MARK: - Variables
     let sources = Sources()
     
     private let newCardCell = "newCardCell"
-    private let proCell = "proCell"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -28,7 +29,16 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
         
+        self.proLimitLabel.textColor = UIColor.main
+        self.proLimitLabel.text = Localizations.New.Cards.Limit.message(cardsLimit)
+        
+        self.proView.button.addTarget(self, action: #selector(openProAction(sender:)), for: .touchUpInside)
+        
         self.tableView.showsVerticalScrollIndicator = false
+        
+        if Store.current.isPro {
+            self.tableView.tableHeaderView = nil
+        }
         
         // Analytics
         sendEvent(.openNewCardSelector, withProperties: nil)
@@ -69,30 +79,15 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sources.groupedCards.count + 1
+        return self.sources.groupedCards.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            if Store.current.isPro {
-                return 0
-            } else {
-                return 1
-            }
-        }
-        
-        return self.sources.groupedCards[section - 1].cards.count
+        return self.sources.groupedCards[section].cards.count
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: proCell, for: indexPath) as! ProUnlockCell
-            cell.descriptionLabel.text = Localizations.New.Cards.Limit.message(cardsLimit)
-            cell.proView.button.addTarget(self, action: #selector(self.openProAction(sender:)), for: .touchUpInside)
-            return cell
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: newCardCell, for: indexPath) as! NewCardCell
-        let source = self.sources.groupedCards[indexPath.section - 1].cards[indexPath.row]
+        let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
         
         if Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).count >= cardsLimit && !Store.current.isPro {
             cell.selectionStyle = .none
@@ -118,15 +113,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 0 {
-            return
-        }
-        
-        if tableView.cellForRow(at: indexPath)!.selectionStyle == .none {
-            return
-        }
-        
-        let source = self.sources.groupedCards[indexPath.section - 1].cards[indexPath.row]
+        let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
         let newCard = Card()
         newCard.type = source.type
         newCard.order = Database.manager.data.objects(Card.self).count
@@ -138,11 +125,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return nil
-        }
-        
-        return self.sources.groupedCards[section - 1].title
+        return self.sources.groupedCards[section].title
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
