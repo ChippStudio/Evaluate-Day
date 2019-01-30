@@ -115,7 +115,6 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt)
-                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

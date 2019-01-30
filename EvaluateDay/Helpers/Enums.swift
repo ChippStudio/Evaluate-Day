@@ -44,3 +44,9 @@ enum AnalyticsChartNodeOptionsKey: String {
     case yLineNumber
     case positive
 }
+
+enum AnalyticsChartRange {
+    case week
+    case month
+    case year
+}

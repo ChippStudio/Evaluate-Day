@@ -124,6 +124,18 @@ extension Date {
             return Calendar.current.date(byAdding: components, to: self.start)!
         }
     }
+    var center: Date {
+        get {
+            var components = DateComponents()
+            components.day = 0
+            components.hour = 12
+            return Calendar.current.date(byAdding: components, to: self.start)!
+        }
+    }
+    func startOfWeek(startDay: Int = 0) -> Date {
+        let sunday = Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        return Calendar.current.date(byAdding: .day, value: startDay - 2, to: sunday)!
+    }
     func days(to: Date) -> Int {
         let component = Calendar.current.dateComponents([.day], from: self, to: to)
         if let day = component.day {

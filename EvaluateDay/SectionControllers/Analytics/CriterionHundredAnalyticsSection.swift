@@ -102,7 +102,7 @@ class CriterionHundredAnalyticsSection: ListSectionController, ASSectionControll
             let criterionCard = self.card.data as! CriterionHundredCard
             let sortedValues = criterionCard.values.sorted(byKeyPath: "created")
             for v in sortedValues {
-                let chartDataEntry = ChartDataEntry(x: Double(v.created.start.timeIntervalSince1970), y: Double(v.value), data: v.created.start as AnyObject)
+                let chartDataEntry = ChartDataEntry(x: Double(v.created.center.timeIntervalSince1970), y: Double(v.value), data: v.created.center as AnyObject)
                 data.append(chartDataEntry)
             }
             
@@ -112,7 +112,6 @@ class CriterionHundredAnalyticsSection: ListSectionController, ASSectionControll
             
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt)
-                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

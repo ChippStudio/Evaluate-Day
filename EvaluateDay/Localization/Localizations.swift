@@ -391,6 +391,14 @@ internal enum Localizations {
         internal static let title = Localizations.tr("Localizable", "analytics.phrase.calendar.title")
       }
     }
+    internal enum Range {
+      /// Month
+      internal static let month = Localizations.tr("Localizable", "analytics.range.month")
+      /// Week
+      internal static let week = Localizations.tr("Localizable", "analytics.range.week")
+      /// Year
+      internal static let year = Localizations.tr("Localizable", "analytics.range.year")
+    }
     internal enum Statistics {
       /// Average
       internal static let average = Localizations.tr("Localizable", "analytics.statistics.average")

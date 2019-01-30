@@ -142,6 +142,9 @@
 "analytics.timeTravel" = "Time Travel";
 "analytics.title" = "Analytics";
 "analytics.tracker.calendar.title" = "Days for which a tracker was marked";
+"analytics.range.week" = "Week";
+"analytics.range.month" = "Month";
+"analytics.range.year" = "Year";
 
 // MARK: - Calendar
 "calendar.checkin.noTitle" = "You haven't been anywhere yet";
