@@ -118,8 +118,10 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         // Ranges
         self.rangeBackButton.setImage(Images.Media.backArrow.image.resizedImage(newSize: CGSize(width: 8.0, height: 13.0)), for: .normal)
         self.rangeBackButton.addTarget(self, action: #selector(self.backButtonAction(sender:)), forControlEvents: .touchUpInside)
+        self.rangeBackButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         self.rangeForwardButton.setImage(Images.Media.disclosure.image.resizedImage(newSize: CGSize(width: 8.0, height: 13.0)), for: .normal)
         self.rangeForwardButton.addTarget(self, action: #selector(self.forwardButtonAction(sender:)), forControlEvents: .touchUpInside)
+        self.rangeForwardButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.chart = LineChartView()
@@ -135,7 +137,8 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.chart.xAxis.labelTextColor = UIColor.main
             self.chart.rightAxis.enabled = false
             self.chart.leftAxis.drawAxisLineEnabled = false
-            self.chart.leftAxis.gridColor = UIColor.main
+            self.chart.leftAxis.valueFormatter = self
+            self.chart.leftAxis.gridColor = UIColor.tint
             self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
             self.chart.leftAxis.labelTextColor = UIColor.main
             self.chart.leftAxis.axisMaxLabels = 3
@@ -238,7 +241,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [topInset, rangeButtonsInset, rangeTitleInset, self.chartNode]
         
-        let cellInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 20.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
@@ -247,24 +250,32 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     // MARK: - IAxisValueFormatter
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
-//        if self.chartStringForValue != nil {
-//            return self.chartStringForValue!(self, value, axis)
-//        }
-        
-        let dateFormatter = DateFormatter()
-        
-        switch self.selectedRange {
-        case .week:
-            dateFormatter.dateFormat = "dd"
-        case .month:
-            dateFormatter.dateFormat = "dd"
-        case .year:
-            dateFormatter.dateFormat = "dd MMM"
+        if self.chartStringForValue != nil {
+            return self.chartStringForValue!(self, value, axis)
         }
-//        if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
-//            dateFormatter.dateFormat = opt
-//        }
-        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        
+        if axis is YAxis {
+            return String(format: "%.0f", value)
+        }
+        
+        if axis is XAxis {
+            let dateFormatter = DateFormatter()
+            
+            switch self.selectedRange {
+            case .week:
+                dateFormatter.dateFormat = "dd"
+            case .month:
+                dateFormatter.dateFormat = "dd"
+            case .year:
+                dateFormatter.dateFormat = "dd MMM"
+            }
+            if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
+                dateFormatter.dateFormat = opt
+            }
+            return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        }
+        
+        return ""
     }
     
     // MARK: - ChartViewDelegate
@@ -451,6 +462,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         dataSet.highlightColor = highlightColor
         dataSet.highlightLineWidth = 1.0
         
+        self.chart.animate(yAxisDuration: 0.4)
         self.chart.data = LineChartData(dataSet: dataSet)
         
         self.setRangeTitle()

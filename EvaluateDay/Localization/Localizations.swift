@@ -328,6 +328,12 @@ internal enum Localizations {
           internal static let title = Localizations.tr("Localizable", "analytics.chart.bar.criterion.title")
         }
       }
+      internal enum HorizontalBar {
+        internal enum Criterion {
+          /// Number of values
+          internal static let title = Localizations.tr("Localizable", "analytics.chart.horizontalBar.criterion.title")
+        }
+      }
       internal enum Line {
         internal enum Criterion {
           /// Data by all time

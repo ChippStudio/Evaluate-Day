@@ -109,6 +109,7 @@
 // MARK: - Analytics
 "analytics.action" = "Analytics";
 "analytics.chart.bar.criterion.title" = "All data";
+"analytics.chart.horizontalBar.criterion.title" = "Number of values";
 "analytics.chart.line.criterion.title" = "Data by all time";
 "analytics.checkin.calendar.title" = "Days for which a location was marked";
 "analytics.checkin.map.action" = "View all on map";

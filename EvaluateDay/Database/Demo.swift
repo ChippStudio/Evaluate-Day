@@ -128,7 +128,7 @@ final class Demo {
         // Make data
         var values = [NumberValue]()
         var components = DateComponents()
-        for i in self.startDay...200 {
+        for i in self.startDay...30 {
             components.day = -i
             if let newDate = Calendar.current.date(byAdding: components, to: Date()) {
                 let value = NumberValue()

@@ -137,7 +137,6 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
                 node.chartStringForValue = { (node, value, axis) in
                     return ""
                 }
-                node.topOffset = 20.0
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

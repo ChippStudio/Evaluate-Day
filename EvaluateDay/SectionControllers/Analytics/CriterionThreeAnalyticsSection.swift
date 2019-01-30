@@ -17,6 +17,7 @@ private enum AnalyticsNodeType {
     case information
     case lineChart
     case barChart
+    case horizontalBarChart
     case export
 }
 
@@ -42,6 +43,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
         self.nodes.append(.title)
         self.nodes.append(.information)
         self.nodes.append(.lineChart)
+        self.nodes.append(.horizontalBarChart)
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -130,15 +132,59 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             }
             
             var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
-            opt?[.yLineNumber] = 5
+            opt?[.yLineNumber] = 3
             opt?[.positive] = criterionCard.positive
             
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
                 node.chartStringForValue = { (node, value, axis) in
+                    
+                    if axis is YAxis {
+                        return String(format: "%.0f", value)
+                    }
+                    
                     return ""
                 }
-                node.topOffset = 20.0
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
+        case .horizontalBarChart:
+            var data = [BarChartDataEntry]()
+            let criterionCard = self.card.data as! CriterionThreeCard
+            
+            let bad = criterionCard.values.filter("value=%@", 0)
+            let badChart = BarChartDataEntry(x: 0, y: Double(bad.count))
+            
+            let neutral = criterionCard.values.filter("value=%@", 1)
+            let neutralChart = BarChartDataEntry(x: 1, y: Double(neutral.count))
+            
+            let good = criterionCard.values.filter("value=%@", 2)
+            let goodChart = BarChartDataEntry(x: 2, y: Double(good.count))
+            
+            data.append(badChart)
+            data.append(neutralChart)
+            data.append(goodChart)
+            
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            opt?[.yLineNumber] = 5
+            opt?[.positive] = criterionCard.positive
+            
+            return {
+                let node = AnalyticsHorizontalBarChartNode(title: Localizations.Analytics.Chart.HorizontalBar.Criterion.title, data: data, options: opt)
+                node.chartStringForValue = { (node, value, axis) in
+                    if value == 0 {
+                        return "🙁"
+                    } else if value == 1 {
+                        return "😐"
+                    } else if value == 2 {
+                        return "🙂"
+                    }
+                    
+                    return ""
+                }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

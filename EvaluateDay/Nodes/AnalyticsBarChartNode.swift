@@ -23,8 +23,6 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     
     // MARK: - Variable
     var chartDidLoad: (() -> Void)?
-    var topOffset: CGFloat = 0.0
-    var leftOffset: CGFloat = 40.0
     var options: [AnalyticsChartNodeOptionsKey: Any]?
     
     private var valueAttributes: [NSAttributedStringKey: Any]!
@@ -101,10 +99,10 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             
             self.chart.rightAxis.enabled = false
             self.chart.leftAxis.drawAxisLineEnabled = false
-            self.chart.leftAxis.gridColor = UIColor.main
+            self.chart.leftAxis.valueFormatter = self
+            self.chart.leftAxis.gridColor = UIColor.tint
             self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
             self.chart.leftAxis.labelTextColor = UIColor.main
-            self.chart.leftAxis.axisMaxLabels = 3
             
             if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
                 self.chart.leftAxis.labelCount = opt
@@ -179,7 +177,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [topInset, self.chartNode]
         
-        let cellInsets = UIEdgeInsets(top: self.topOffset, left: 0.0, bottom: 20.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset
@@ -187,16 +185,25 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     
     // MARK: - IAxisValueFormatter
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        
         if self.chartStringForValue != nil {
             return self.chartStringForValue!(self, value, axis)
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM"
-        if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
-            dateFormatter.dateFormat = opt
+        if axis is YAxis {
+            return String(format: "%.0f", value)
         }
-        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        
+        if axis is XAxis {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM"
+            if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
+                dateFormatter.dateFormat = opt
+            }
+            return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        }
+        
+        return ""
     }
     
     // MARK: - ChartViewDelegate

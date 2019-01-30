@@ -79,7 +79,6 @@
 		B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */; };
 		B54535DE21DD0124005A93CE /* ShareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54535DD21DD0123005A93CE /* ShareNode.swift */; };
 		B5479FC521E78A400002E7D7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5479FC421E78A400002E7D7 /* Images.swift */; };
-		B5479FCB21E89BDF0002E7D7 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5479FCA21E89BDF0002E7D7 /* Localizations.swift */; };
 		B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */; };
 		B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */; };
 		B5535AEC1FEFF7A500D2AE25 /* Store+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */; };
@@ -172,6 +171,8 @@
 		B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A221FC6DBF0048B0AF /* ReorderCollectionsViewController.swift */; };
 		B59D03A521FC6DDC0048B0AF /* ReorderCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A421FC6DDC0048B0AF /* ReorderCardsViewController.swift */; };
 		B59D03A821FC71FA0048B0AF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03A721FC71FA0048B0AF /* NavigationController.swift */; };
+		B59D03B02201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03AF2201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift */; };
+		B59D03B22201E6BB0048B0AF /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D03B12201E6BB0048B0AF /* Localizations.swift */; };
 		B59DA060211D5F0100A9FCFB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA05F211D5F0100A9FCFB /* ShareView.swift */; };
 		B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59DA062211D66D500A9FCFB /* Share.storyboard */; };
 		B59DA065211D66E100A9FCFB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DA064211D66E100A9FCFB /* ShareViewController.swift */; };
@@ -454,7 +455,6 @@
 		B54535DB21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateLineAnalyticsNode.swift; sourceTree = "<group>"; };
 		B54535DD21DD0123005A93CE /* ShareNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareNode.swift; sourceTree = "<group>"; };
 		B5479FC421E78A400002E7D7 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		B5479FCA21E89BDF0002E7D7 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		B5535AE51FEFD8E600D2AE25 /* ColorCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AE71FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CriterionHundredCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Enums.swift"; sourceTree = "<group>"; };
@@ -547,6 +547,8 @@
 		B59D03A221FC6DBF0048B0AF /* ReorderCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderCollectionsViewController.swift; sourceTree = "<group>"; };
 		B59D03A421FC6DDC0048B0AF /* ReorderCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderCardsViewController.swift; sourceTree = "<group>"; };
 		B59D03A721FC71FA0048B0AF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		B59D03AF2201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHorizontalBarChartNode.swift; sourceTree = "<group>"; };
+		B59D03B12201E6BB0048B0AF /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		B59DA05F211D5F0100A9FCFB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		B59DA062211D66D500A9FCFB /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		B59DA064211D66E100A9FCFB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1349,6 +1351,7 @@
 				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
+				B59D03AF2201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -1414,7 +1417,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B27E711F9DAC7000CB9121 /* Localizable.strings */,
-				B5479FCA21E89BDF0002E7D7 /* Localizations.swift */,
+				B59D03B12201E6BB0048B0AF /* Localizations.swift */,
 				B5A226CE20FD0FF20060538F /* Many */,
 			);
 			path = Localization;
@@ -1725,12 +1728,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5B27E671F9DA66000CB9121 /* Build configuration list for PBXNativeTarget "EvaluateDay" */;
 			buildPhases = (
+				B52781B121E785290030C1AF /* SwiftGen */,
 				317E35EA4B4DDFC49DB149C6 /* [CP] Check Pods Manifest.lock */,
 				B5B27E511F9DA66000CB9121 /* Sources */,
 				B5B27E521F9DA66000CB9121 /* Frameworks */,
 				B5B27E531F9DA66000CB9121 /* Resources */,
 				FBBDFC70680E9F12BFBE8F12 /* [CP] Embed Pods Frameworks */,
-				B52781B121E785290030C1AF /* SwiftGen */,
 				B5B27E731F9DAD5900CB9121 /* SwiftLint */,
 				B5B27E741F9DAE3A00CB9121 /* Build Number */,
 			);
@@ -2132,6 +2135,7 @@
 				B5FD38DD1FD940EA0071B1F0 /* EmptyView.swift in Sources */,
 				B516CA5121EB54A70002915F /* ProView.swift in Sources */,
 				B52D26D9201718C000332D0A /* CounterMergeSection.swift in Sources */,
+				B59D03B22201E6BB0048B0AF /* Localizations.swift in Sources */,
 				B5A9D5AC2021FDA0006DFB32 /* PhotoValue+Extensions.swift in Sources */,
 				B5BD3B2A200774C50075C75F /* CriterionTenMergeSection.swift in Sources */,
 				B5D854E81FD041C500BB4E14 /* SettingsNotificationNode.swift in Sources */,
@@ -2157,6 +2161,7 @@
 				B5D854E61FD03D0B00BB4E14 /* Permissions.swift in Sources */,
 				B58DDAB121F5F7CE005F48AE /* SubscriptionReviewCell.swift in Sources */,
 				B5C757401F9F32B10032199E /* TitleNode.swift in Sources */,
+				B59D03B02201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift in Sources */,
 				B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */,
 				B5899B2121D7D10000CF123B /* DateSection.swift in Sources */,
 				B57B0639201B0F2900C4E182 /* GoalCard+Extensions.swift in Sources */,
@@ -2213,7 +2218,6 @@
 				B5BD3B472009E8C70075C75F /* SelectMapViewController.swift in Sources */,
 				B5A5915321D8D6C40026FD84 /* DateShowNode.swift in Sources */,
 				B5D854DF1FCFFC4100BB4E14 /* SettingsNewNotificationViewController.swift in Sources */,
-				B5479FCB21E89BDF0002E7D7 /* Localizations.swift in Sources */,
 				B59318331FFAD803000D8FFE /* ColorMergeSection.swift in Sources */,
 				B5CA2D651FB464C000547EC8 /* ColorDotNode.swift in Sources */,
 				B5A11402200E17C2008DBF02 /* AnalyticsMapNode.swift in Sources */,
