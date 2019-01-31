@@ -55,7 +55,7 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         let cell = ASStackLayoutSpec.vertical()
         cell.children = [self.stats]
         
-        let cellInsets = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 30.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

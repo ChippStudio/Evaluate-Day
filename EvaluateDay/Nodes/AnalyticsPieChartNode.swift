@@ -1,8 +1,8 @@
 //
-//  AnalyticsHorizontalBarChartNode.swift
+//  AnalyticsPieChartNode.swift
 //  EvaluateDay
 //
-//  Created by Konstantin Tsistjakov on 30/01/2019.
+//  Created by Konstantin Tsistjakov on 31/01/2019.
 //  Copyright © 2019 Konstantin Tsistjakov. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import UIKit
 import AsyncDisplayKit
 import Charts
 
-class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFormatter {
-
+class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
+    
     // MARK: - UI
-    var chart: HorizontalBarChartView!
+    var chart: PieChartView!
     var chartNode: ASDisplayNode!
     var titleNode = ASTextNode()
     var shareButton = ASButtonNode()
@@ -23,10 +23,10 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
     var options: [AnalyticsChartNodeOptionsKey: Any]?
     
     // MARK: - Delegates handlers
-    var chartStringForValue: ((_ node: AnalyticsHorizontalBarChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
+    var chartStringForValue: ((_ value: Double, _ entry: ChartDataEntry, _ dataSetIndex: Int, _ viewPortHandler: ViewPortHandler?) -> String)?
     
     // MARK: - Init
-    init(title: String, data: [BarChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
+    init(title: String, data: [PieChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
         super.init()
         
         self.options = options
@@ -44,45 +44,28 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
-            self.chart = HorizontalBarChartView(frame: CGRect.zero)
-            
+            self.chart = PieChartView()
+            self.chart.backgroundColor = UIColor.background
+            self.chart.holeColor = UIColor.background
             self.chart.chartDescription?.text = ""
             self.chart.legend.enabled = false
-            self.chart.scaleYEnabled = false
-            self.chart.scaleXEnabled = false
-            self.chart.clipValuesToContentEnabled = true
-
-            self.chart.xAxis.labelPosition = .bottom
-            self.chart.xAxis.drawAxisLineEnabled = false
-            self.chart.xAxis.drawGridLinesEnabled = false
-            self.chart.xAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
-            self.chart.xAxis.labelTextColor = UIColor.main
-            self.chart.xAxis.valueFormatter = self
-            self.chart.rightAxis.enabled = false
-            self.chart.leftAxis.enabled = false
-            self.chart.leftAxis.drawAxisLineEnabled = false
-            self.chart.leftAxis.drawGridLinesEnabled = false
-            self.chart.leftAxis.gridColor = UIColor.main
-            self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
-            self.chart.leftAxis.labelTextColor = UIColor.main
-            self.chart.leftAxis.axisMinimum = 0.0
             
-            let dataSet = BarChartDataSet(values: data, label: nil)
-            dataSet.drawValuesEnabled = true
-            dataSet.valueTextColor = UIColor.text
+            let dataSet = PieChartDataSet(values: data, label: nil)
             dataSet.valueFormatter = self
-            dataSet.highlightEnabled = false
-            dataSet.colors = [UIColor.main]
-            
-            self.chart.animate(xAxisDuration: 0.4)
-            self.chart.data = BarChartData(dataSet: dataSet)
+            dataSet.valueColors = [UIColor.black]
+            dataSet.colors.removeAll()
+            for entry in data {
+                if let color = entry.data as? UIColor {
+                    dataSet.colors.append(color)
+                }
+            }
+            self.chart.data = PieChartData(dataSet: dataSet)
             
             return self.chart
         }, didLoad: { (_) in
             self.chartDidLoad?()
         })
         
-        self.chartNode.style.preferredSize.height = CGFloat(data.count) * 40.0
         self.automaticallyManagesSubnodes = true
     }
     
@@ -100,6 +83,7 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
         let topStack = ASStackLayoutSpec.vertical()
         topStack.children = [titleAndShare]
         
+        self.chartNode.style.preferredSize.height = constrainedSize.max.width //400.0
         let topInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 5.0, right: 10.0)
         let topInset = ASInsetLayoutSpec(insets: topInsets, child: topStack)
         let cell = ASStackLayoutSpec.vertical()
@@ -112,17 +96,12 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
         return cellInset
     }
     
-    // MARK: - IAxisValueFormatter
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        if self.chartStringForValue != nil {
-            return self.chartStringForValue!(self, value, axis)
-        }
-        
-        return "\(Int(value))"
-    }
-    
     // MARK: - IValueFormatter
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        if self.chartStringForValue != nil {
+            return self.chartStringForValue!(value, entry, dataSetIndex, viewPortHandler)
+        }
+        
         return String(format: "%.0f", value)
     }
 }

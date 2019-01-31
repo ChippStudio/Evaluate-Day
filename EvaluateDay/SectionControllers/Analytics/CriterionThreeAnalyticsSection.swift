@@ -19,6 +19,7 @@ private enum AnalyticsNodeType {
     case barChart
     case horizontalBarChart
     case export
+    case proReview
 }
 
 class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -42,6 +43,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.proReview)
         self.nodes.append(.lineChart)
         self.nodes.append(.horizontalBarChart)
         self.nodes.append(.barChart)
@@ -69,6 +71,9 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             let criterion = self.card.data as! CriterionThreeCard
             self.data = [(title: String, data: String)]()
             self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(criterion.values.count)"))
             
             if isPro {
@@ -174,6 +179,9 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             
             return {
                 let node = AnalyticsHorizontalBarChartNode(title: Localizations.Analytics.Chart.HorizontalBar.Criterion.title, data: data, options: opt)
+                node.chartDidLoad = { () in
+                    node.chart.xAxis.labelFont = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+                }
                 node.chartStringForValue = { (node, value, axis) in
                     if value == 0 {
                         return "🙁"
@@ -188,6 +196,14 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
+                }
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -244,6 +260,12 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

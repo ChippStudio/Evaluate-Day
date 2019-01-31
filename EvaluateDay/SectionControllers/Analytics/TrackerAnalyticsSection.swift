@@ -19,6 +19,7 @@ private enum AnalyticsNodeType {
     case calendar
     case export
     case barChart
+    case proReview
 }
 
 class TrackerAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -45,6 +46,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.proReview)
         self.nodes.append(.calendar)
         self.nodes.append(.barChart)
         self.nodes.append(.export)
@@ -73,9 +75,13 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             self.data = [(title: String, data: String)]()
             
             self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
+            self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(self.groupedData.count)"))
+            
             if isPro {
                 self.data!.append((title: Localizations.Analytics.Habit.marks, data: "\(trackerCard.values.count)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(self.groupedData.count)"))
                 
                 var maximum = 0
                 var minimum = 1000000000
@@ -99,7 +105,6 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
             } else {
                 self.data!.append((title: Localizations.Analytics.Habit.marks, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.days, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
@@ -139,6 +144,14 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
+                }
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -207,6 +220,13 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

@@ -18,6 +18,7 @@ private enum AnalyticsNodeType {
     case lineChart
     case barChart
     case export
+    case proReview
 }
 
 class CounterAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -41,6 +42,7 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.proReview)
         self.nodes.append(.lineChart)
         self.nodes.append(.barChart)
         self.nodes.append(.export)
@@ -67,6 +69,9 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             let counterCard = self.card.data as! CounterCard
             self.data = [(title: String, data: String)]()
             self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(counterCard.values.count)"))
             
             if isPro {
@@ -146,6 +151,14 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 return node
             }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
+                }
+                return node
+            }
         case .export:
             return {
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased())
@@ -199,6 +212,13 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

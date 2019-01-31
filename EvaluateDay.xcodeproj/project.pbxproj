@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50B18D822022799008A2231 /* AnalyticsProReviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */; };
+		B50B18DA2202F6EB008A2231 /* AnalyticsPieChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -381,6 +383,8 @@
 		7C3DBDAD229DB2AB1651F7A6 /* Pods_EvaluateDayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EvaluateDayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		946D58101EC7DECDA1AD25D7 /* Pods-EvaluateDayUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDayUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDayUITests/Pods-EvaluateDayUITests.release.xcconfig"; sourceTree = "<group>"; };
 		94DD3AAE2D688BAF2D7A9AB7 /* Pods-EvaluateDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDay/Pods-EvaluateDay.debug.xcconfig"; sourceTree = "<group>"; };
+		B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProReviewNode.swift; sourceTree = "<group>"; };
+		B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPieChartNode.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1349,9 +1353,11 @@
 				B5257D6C1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
 				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
+				B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
 				B59D03AF2201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift */,
+				B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -2286,6 +2292,7 @@
 				B55464882024A7BE00923CE3 /* DateNode.swift in Sources */,
 				B5D9A84A205BBB4300F84091 /* ActivityUserSection.swift in Sources */,
 				B5C7572A1F9DCA160032199E /* App.swift in Sources */,
+				B50B18D822022799008A2231 /* AnalyticsProReviewNode.swift in Sources */,
 				B5BD3B402008E9140075C75F /* CheckInAnalyticsSection.swift in Sources */,
 				B5257D6B1FEA6E4300AC54DE /* AnalyticsExportNode.swift in Sources */,
 				B5A5915021D8D6720026FD84 /* DateSelectorNode.swift in Sources */,
@@ -2310,6 +2317,7 @@
 				B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */,
 				B5AB1E8E2018CC7200BB1A64 /* ListAnalyticsSection.swift in Sources */,
 				B59DA0752120CB0400A9FCFB /* PhotoTransition.swift in Sources */,
+				B50B18DA2202F6EB008A2231 /* AnalyticsPieChartNode.swift in Sources */,
 				B5535AE61FEFD8E600D2AE25 /* ColorCard+Extensions.swift in Sources */,
 				B5B27E8E1F9DC3C900CB9121 /* SettingsViewController.swift in Sources */,
 				B5C7572E1F9DCAA50032199E /* Extensions.swift in Sources */,

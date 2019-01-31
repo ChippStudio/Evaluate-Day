@@ -21,6 +21,7 @@ private enum AnalyticsNodeType {
     case bar
     case viewAll
     case export
+    case proReview
 }
 
 class JournalAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance, MKMapViewDelegate {
@@ -44,6 +45,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.proReview)
         self.nodes.append(.map)
         self.nodes.append(.calendar)
         self.nodes.append(.viewAll)
@@ -94,6 +96,9 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             let journalCard = self.card.data as! JournalCard
             self.data = [(title: String, data: String)]()
             self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
             self.data!.append((title: Localizations.Analytics.Statistics.entries, data: "\(journalCard.values.count)"))
             
             if isPro {
@@ -205,6 +210,14 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             return {
                 let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll)
                 node.topInset = 20.0
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
+                }
                 return node
             }
         case .export:
@@ -319,6 +332,12 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

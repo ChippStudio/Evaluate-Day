@@ -11,12 +11,16 @@ import AsyncDisplayKit
 import FSCalendar
 import SwiftyJSON
 import Branch
+import Charts
 
 private enum AnalyticsNodeType {
     case title
+    case colorInformation
     case information
     case calendar
+    case pieChart
     case export
+    case proReview
 }
 
 class ColorAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -41,6 +45,9 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.colorInformation)
+        self.nodes.append(.pieChart)
+        self.nodes.append(.proReview)
         self.nodes.append(.calendar)
         self.nodes.append(.export)
     }
@@ -64,6 +71,19 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 return node
             }
         case .information:
+            let color = self.card.data as! ColorCard
+            var data = [(title: String, data: String)]()
+            data.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                data.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
+            data.append((title: Localizations.Analytics.Statistics.days, data: "\(color.values.count)"))
+            
+            return {
+                let node = AnalyticsStatisticNode(data: data)
+                return node
+            }
+        case .colorInformation:
             self.data = [(color: String, data: String)]()
             let colorCard = self.card.data as! ColorCard
             for color in colorsForSelection {
@@ -80,6 +100,31 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 let node = AnalyticsColorStatisticNode(data: self.data!)
                 return node
             }
+        case .pieChart:
+            var data = [PieChartDataEntry]()
+            var total: Int = 0
+            let colorCard = self.card.data as! ColorCard
+            for color in colorsForSelection {
+                let colorsCount = colorCard.values.filter("text=%@", color.color)
+                if colorsCount.count != 0 {
+                    total += colorsCount.count
+                    let d = PieChartDataEntry(value: Double(colorsCount.count), data: color.color.color as AnyObject)
+                    data.append(d)
+                }
+            }
+            let opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            return {
+                let node = AnalyticsPieChartNode(title: Localizations.Analytics.Chart.Pie.Color.title, data: data, options: opt)
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                node.chartStringForValue = { (value, _, _, _) in
+                    let percent = (Int(value) * 100) / total
+                    return "\(percent) %"
+                }
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.Analytics.Color.Calendar.title.uppercased(), isPro: true)
@@ -90,6 +135,14 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
+                }
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -175,6 +228,13 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

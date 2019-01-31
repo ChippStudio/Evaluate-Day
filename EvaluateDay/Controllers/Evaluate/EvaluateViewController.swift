@@ -364,10 +364,14 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         case Localizations.General.archive:
             try! Database.manager.data.write {
                 controller.card.archived = true
+                controller.card.archivedDate = Date()
+                controller.card.edited = Date()
             }
         case Localizations.General.unarchive:
             try! Database.manager.data.write {
                 controller.card.archived = false
+                controller.card.archivedDate = nil
+                controller.card.edited = Date()
             }
         default:
             break

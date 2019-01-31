@@ -340,6 +340,12 @@ internal enum Localizations {
           internal static let title = Localizations.tr("Localizable", "analytics.chart.line.criterion.title")
         }
       }
+      internal enum Pie {
+        internal enum Color {
+          /// Used colors by percent
+          internal static let title = Localizations.tr("Localizable", "analytics.chart.pie.color.title")
+        }
+      }
     }
     internal enum Checkin {
       internal enum Calendar {
@@ -1323,6 +1329,10 @@ internal enum Localizations {
         internal static let subtitle = Localizations.tr("Localizable", "settings.pro.review.subtitle")
         /// you are a Pro
         internal static let title = Localizations.tr("Localizable", "settings.pro.review.title")
+        internal enum Analytics {
+          /// More graphics and analytics available with Pro subscription.
+          internal static let title = Localizations.tr("Localizable", "settings.pro.review.analytics.title")
+        }
         internal enum Subscription {
           /// The date refers to the next renewal of the subscription. The free trial is counting as a one time subscription period and will be renewed as a paid subscription automatically.
           internal static let description = Localizations.tr("Localizable", "settings.pro.review.subscription.description")

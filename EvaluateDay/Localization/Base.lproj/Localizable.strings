@@ -110,6 +110,7 @@
 "analytics.action" = "Analytics";
 "analytics.chart.bar.criterion.title" = "All data";
 "analytics.chart.horizontalBar.criterion.title" = "Number of values";
+"analytics.chart.pie.color.title" = "Used colors by percent";
 "analytics.chart.line.criterion.title" = "Data by all time";
 "analytics.checkin.calendar.title" = "Days for which a location was marked";
 "analytics.checkin.map.action" = "View all on map";
@@ -468,6 +469,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.pro.review.subscription.title" = "Subscription";
 "settings.pro.review.subtitle" = "Thank you for your support!";
 "settings.pro.review.title" = "you are a Pro";
+"settings.pro.review.analytics.title" = "More graphics and analytics available with Pro subscription.";
 "settings.pro.subscription.buy.annualy" = "%@ / Year";
 "settings.pro.subscription.buy.monthly" = "%@ / Month";
 "settings.pro.subscription.description.cancel" = "All subscription can be canceled at any time.";

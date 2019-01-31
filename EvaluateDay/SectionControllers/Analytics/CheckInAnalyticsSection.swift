@@ -18,6 +18,7 @@ private enum AnalyticsNodeType {
     case calendar
     case map
     case export
+    case proReview
 }
 
 class CheckInAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance, MKMapViewDelegate {
@@ -41,6 +42,7 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
+        self.nodes.append(.proReview)
         self.nodes.append(.map)
         self.nodes.append(.calendar)
         self.nodes.append(.export)
@@ -87,6 +89,9 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             self.data = [(title: String, data: String)]()
             if isPro {
                 self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+                if card.archived {
+                    self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+                }
                 self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: "\(checkInCard.values.count)"))
                 
                 var max: CLLocationDistance = 0.0
@@ -132,6 +137,14 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 node.topInset = 50.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
+                }
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -233,6 +246,13 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

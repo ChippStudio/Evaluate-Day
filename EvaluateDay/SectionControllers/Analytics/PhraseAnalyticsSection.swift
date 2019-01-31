@@ -18,6 +18,7 @@ private enum AnalyticsNodeType {
     case calendar
     case more
     case export
+    case proReview
 }
 
 class PhraseAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -41,6 +42,7 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
         
         self.nodes.append(.title)
         self.nodes.append(.statistics)
+        self.nodes.append(.proReview)
         self.nodes.append(.calendar)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -64,14 +66,19 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 return node
             }
         case .statistics:
+            let phraseCard = self.card.data as! PhraseCard
             self.data = [(title: String, data: String)]()
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
+            self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(phraseCard.values.count)"))
             if isPro {
                 // Set statistics information
                 var max: Int = 0
                 var min: Int = 100000000
                 var average: Double = 0.0
                 var sum = 0
-                let phraseCard = self.card.data as! PhraseCard
                 for t in phraseCard.values {
                     let c = t.characters
                     if c > max {
@@ -83,16 +90,12 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                     sum += c
                 }
                 average = Double(sum) / Double(phraseCard.values.count)
-                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(phraseCard.values.count)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(max)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(min)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(average)"))
                 self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum)"))
             } else {
                 // Set statistics information
-                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.days, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
@@ -112,6 +115,14 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
+                }
+                return node
+            }
+        case .proReview:
+            return {
+                let node = AnalyticsProReviewNode()
+                node.didLoadProView = { (pro) in
+                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -198,6 +209,13 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
     }
     
     // MARK: - Actions
+    @objc private func proReviewAction(sender: UIButton) {
+        if let nav = self.viewController?.navigationController {
+            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {
