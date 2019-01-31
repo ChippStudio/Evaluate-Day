@@ -19,6 +19,7 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
     var shareButton = ASButtonNode()
     
     // MARK: - Variable
+    var format = "%.0f"
     var chartDidLoad: (() -> Void)?
     var options: [AnalyticsChartNodeOptionsKey: Any]?
     
@@ -66,6 +67,9 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
             self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
             self.chart.leftAxis.labelTextColor = UIColor.main
             self.chart.leftAxis.axisMinimum = 0.0
+            if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
+                self.chart.xAxis.labelCount = opt
+            }
             
             let dataSet = BarChartDataSet(values: data, label: nil)
             dataSet.drawValuesEnabled = true
@@ -123,6 +127,6 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
     
     // MARK: - IValueFormatter
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        return String(format: "%.0f", value)
+        return String(format: self.format, value)
     }
 }

@@ -32,8 +32,10 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     private var selectedYValue: String?
     
     // MARK: - Delegates handlers
-    var chartStringForValue: ((_ node: AnalyticsBarChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
-    var chartValueSelected: ((_ node: AnalyticsBarChartNode, _ chartView: ChartViewBase, _ entry: ChartDataEntry, _ highlight: Highlight) -> String)?
+    var chartStringForYValue: ((_ node: AnalyticsBarChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
+    var chartStringForXValue: ((_ node: AnalyticsBarChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
+    var chartXValueSelected: ((_ node: AnalyticsBarChartNode, _ value: Double, _ highlight: Highlight) -> String)?
+    var chartYValueSelected: ((_ node: AnalyticsBarChartNode, _ value: Double, _ highlight: Highlight) -> String)?
     
     // MARK: - Init
     init(title: String, data: [BarChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
@@ -125,6 +127,9 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             
             return self.chart
         }, didLoad: { (_) in
+            if let entry = data.last {
+                self.chartValueSelected(self.chart, entry: entry, highlight: Highlight())
+            }
             self.chartDidLoad?()
         })
         
@@ -186,15 +191,18 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     // MARK: - IAxisValueFormatter
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
-        if self.chartStringForValue != nil {
-            return self.chartStringForValue!(self, value, axis)
-        }
-        
         if axis is YAxis {
+            if self.chartStringForYValue != nil {
+                return self.chartStringForYValue!(self, value, axis)
+            }
             return String(format: "%.0f", value)
         }
         
         if axis is XAxis {
+            if self.chartStringForXValue != nil {
+                return self.chartStringForXValue!(self, value, axis)
+            }
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM"
             if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
@@ -215,14 +223,19 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         if let date = entry.data as? Date {
             dateString = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
         }
-        if self.chartValueSelected != nil {
-            dateString = self.chartValueSelected!(self, chartView, entry, highlight)
+        if self.chartXValueSelected != nil {
+            dateString = self.chartXValueSelected!(self, entry.x, highlight)
         }
         
-        self.valueNode.attributedText = NSAttributedString(string: "\(Int(entry.y))", attributes: self.valueAttributes)
+        var valueString = "\(Int(entry.y))"
+        if self.chartYValueSelected != nil {
+            valueString = self.chartYValueSelected!(self, entry.y, highlight)
+        }
+        
+        self.valueNode.attributedText = NSAttributedString(string: valueString, attributes: self.valueAttributes)
         self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
         
         self.selectedXValue = dateString
-        self.selectedYValue = "\(Int(entry.y))"
+        self.selectedYValue = valueString
     }
 }

@@ -44,7 +44,9 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -130,8 +132,25 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
 
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
+                    let index = Int(value)
+                    
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
+                    }
+                    
                     return ""
+                }
+                node.chartStringForYValue = { (node, value, axis) in
+                    let index = Int(value)
+                    return "\(index)"
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {

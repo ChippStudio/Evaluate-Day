@@ -45,10 +45,14 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.colorInformation)
-        self.nodes.append(.pieChart)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.calendar)
+        self.nodes.append(.colorInformation)
+        if Store.current.isPro {
+            self.nodes.append(.pieChart)
+        }
         self.nodes.append(.export)
     }
     
@@ -132,7 +136,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }

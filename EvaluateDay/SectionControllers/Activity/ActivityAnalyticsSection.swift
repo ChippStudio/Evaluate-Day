@@ -78,8 +78,19 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             opt?[.positive] = true
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Activity.Analytics.Barchart.title + "\n(\(distance))", data: data, options: opt)
-                //node.leftOffset = 0.0
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
+                    let index = Int(value)
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
+                    }
+                    
                     return ""
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)

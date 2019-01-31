@@ -11,6 +11,7 @@ import AsyncDisplayKit
 import FSCalendar
 import SwiftyJSON
 import Branch
+import Charts
 
 private enum AnalyticsNodeType {
     case title
@@ -19,6 +20,7 @@ private enum AnalyticsNodeType {
     case map
     case export
     case proReview
+    case months
 }
 
 class CheckInAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance, MKMapViewDelegate {
@@ -42,8 +44,13 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.map)
+        if Store.current.isPro {
+            self.nodes.append(.months)
+        }
         self.nodes.append(.calendar)
         self.nodes.append(.export)
     }
@@ -127,6 +134,52 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
             }
+        case .months:
+            var data = [BarChartDataEntry]()
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            let sortedValues = (self.card.data as! CheckInCard).values.sorted(byKeyPath: "created")
+            if let first = sortedValues.first {
+                var runDate = first.created
+                var barIndex: Double = 0.0
+                let currentMonthEnd = Calendar.current.dateInterval(of: .month, for: Date())!.end
+                while currentMonthEnd.timeIntervalSince1970 > runDate.timeIntervalSince1970 {
+                    let monthInterval = Calendar.current.dateInterval(of: .month, for: runDate)!
+                    let monthValues = (self.card.data as! CheckInCard).values.filter("(created >= %@) AND (created <= %@)", monthInterval.start, monthInterval.end)
+                    if monthValues.count != 0 {
+                        let barEntry = BarChartDataEntry(x: barIndex, y: Double(monthValues.count), data: monthInterval.start as AnyObject)
+                        data.append(barEntry)
+                        barIndex += 1
+                    }
+                    
+                    var components = DateComponents()
+                    components.month = 1
+                    
+                    let newRunDate = Calendar.current.date(byAdding: components, to: runDate)!
+                    runDate = newRunDate
+                }
+            }
+            
+            opt?[.yLineNumber] = data.count
+            return {
+                let node = AnalyticsHorizontalBarChartNode(title: Localizations.Analytics.Chart.HorizontalBar.CheckIn.title, data: data, options: opt)
+                node.chartStringForValue = { (_, value, _) in
+                    if Int(value) >= data.count {
+                        return "WTF"
+                    }
+                    let entry = data[Int(value)]
+                    if let date = entry.data as? Date {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM YYYY"
+                        return dateFormatter.string(from: date)
+                    }
+                    return ""
+                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
         case .calendar:
             return {
                 let node = AnalyticsCalendarNode(title: Localizations.Analytics.Checkin.Calendar.title.uppercased(), isPro: isPro)
@@ -134,7 +187,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 50.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }

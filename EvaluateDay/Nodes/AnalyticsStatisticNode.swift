@@ -45,7 +45,7 @@ class AnalyticsStatisticNode: ASCellNode, ASCollectionDataSource {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.collectionNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 60.0)
         
-        let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: self.collectionNode)
         
         return cellInset

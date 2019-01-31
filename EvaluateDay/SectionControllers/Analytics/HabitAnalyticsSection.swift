@@ -20,6 +20,7 @@ private enum AnalyticsNodeType {
     case export
     case barChart
     case proReview
+    case monthTotal
 }
 
 class HabitAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -46,8 +47,13 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.calendar)
+        if Store.current.isPro {
+            self.nodes.append(.monthTotal)
+        }
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -121,9 +127,56 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 20.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
+                }
+                return node
+            }
+        case .monthTotal:
+            var data = [BarChartDataEntry]()
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            let habitCard = self.card.data as! HabitCard
+            let sortedValues = habitCard.values.sorted(byKeyPath: "created")
+            if let first = sortedValues.first {
+                var runDate = first.created
+                var barIndex: Double = 0.0
+                let currentMonthEnd = Calendar.current.dateInterval(of: .month, for: Date())!.end
+                while currentMonthEnd.timeIntervalSince1970 > runDate.timeIntervalSince1970 {
+                    let monthInterval = Calendar.current.dateInterval(of: .month, for: runDate)!
+                    let monthValues = habitCard.values.filter("(created >= %@) AND (created <= %@)", monthInterval.start, monthInterval.end)
+                    if monthValues.count != 0 {
+                        let barEntry = BarChartDataEntry(x: barIndex, y: Double(monthValues.count), data: monthInterval.start as AnyObject)
+                        data.append(barEntry)
+                        barIndex += 1
+                    }
+                    
+                    var components = DateComponents()
+                    components.month = 1
+                    
+                    let newRunDate = Calendar.current.date(byAdding: components, to: runDate)!
+                    runDate = newRunDate
+                }
+            }
+            
+            opt?[.yLineNumber] = data.count
+            return {
+                let node = AnalyticsHorizontalBarChartNode(title: Localizations.Analytics.Chart.HorizontalBar.Habit.title, data: data, options: opt)
+                node.format = "%.0f"
+                node.chartStringForValue = { (_, value, _) in
+                    if Int(value) >= data.count {
+                        return "WTF"
+                    }
+                    let entry = data[Int(value)]
+                    if let date = entry.data as? Date {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM YYYY"
+                        return dateFormatter.string(from: date)
+                    }
+                    return ""
+                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
                 }
                 return node
             }
@@ -139,8 +192,25 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
             
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
+                    let index = Int(value)
+                    
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
+                    }
+                    
                     return ""
+                }
+                node.chartStringForYValue = { (node, value, axis) in
+                    let index = Int(value)
+                    return "\(index)"
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -205,7 +275,7 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let checkInCard = self.card.data as! HabitCard
         if checkInCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return UIColor.positive
+            return UIColor.main
         }
         
         return nil
@@ -214,7 +284,7 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let checkInCard = self.card.data as! HabitCard
         if checkInCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return UIColor.white
+            return UIColor.textTint
         }
         
         return nil

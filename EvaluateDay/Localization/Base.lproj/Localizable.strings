@@ -110,6 +110,10 @@
 "analytics.action" = "Analytics";
 "analytics.chart.bar.criterion.title" = "All data";
 "analytics.chart.horizontalBar.criterion.title" = "Number of values";
+"analytics.chart.horizontalBar.criterion.averageTitle" = "Average values by month";
+"analytics.chart.horizontalBar.checkIn.title" = "Marked locations by months";
+"analytics.chart.horizontalBar.habit.title" = "Number of marks by months";
+"analytics.chart.horizontalBar.goal.totalTitle" = "Total values by month";
 "analytics.chart.pie.color.title" = "Used colors by percent";
 "analytics.chart.line.criterion.title" = "Data by all time";
 "analytics.checkin.calendar.title" = "Days for which a location was marked";

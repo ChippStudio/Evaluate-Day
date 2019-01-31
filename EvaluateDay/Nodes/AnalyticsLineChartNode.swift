@@ -44,17 +44,24 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     private var selectedRange: AnalyticsChartRange = .week
     
     // Data
+    private var newData = [ChartDataEntry]()
     private let data: [ChartDataEntry]
-    private let highlightColor: UIColor
+    private var highlightColor: UIColor!
     private var centralDate = Date()
     
     // MARK: - Delegates handlers
-    var chartStringForValue: ((_ node: AnalyticsLineChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
-    var chartValueSelected: ((_ node: AnalyticsLineChartNode, _ chartView: ChartViewBase, _ entry: ChartDataEntry, _ highlight: Highlight) -> String)?
+    var chartStringForYValue: ((_ node: AnalyticsLineChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
+    var chartStringForXValue: ((_ node: AnalyticsLineChartNode, _ value: Double, _ axis: AxisBase?) -> String)?
+    var chartXValueSelected: ((_ node: AnalyticsLineChartNode, _ value: Double, _ highlight: Highlight) -> String)?
+    var chartYValueSelected: ((_ node: AnalyticsLineChartNode, _ value: Double, _ highlight: Highlight) -> String)?
     
     // MARK: - Init
     init(title: String, data: [ChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
         self.data = data
+        
+        super.init()
+        
+        self.options = options
     
         var positive = true
         if let pos = self.options?[.positive] as? Bool {
@@ -66,9 +73,6 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         } else {
             self.highlightColor = UIColor.positive
         }
-        super.init()
-        
-        self.options = options
         
         var titleString = title
         if let opt = options?[AnalyticsChartNodeOptionsKey.uppercaseTitle] as? Bool {
@@ -128,7 +132,6 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.chart.chartDescription?.text = ""
             self.chart.legend.enabled = false
             self.chart.scaleYEnabled = false
-//            self.chart.clipValuesToContentEnabled = true
             self.chart.xAxis.labelPosition = .bottom
             self.chart.xAxis.drawAxisLineEnabled = false
             self.chart.xAxis.drawGridLinesEnabled = false
@@ -141,19 +144,20 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.chart.leftAxis.gridColor = UIColor.tint
             self.chart.leftAxis.labelFont = UIFont.systemFont(ofSize: 9.0, weight: .regular)
             self.chart.leftAxis.labelTextColor = UIColor.main
-            self.chart.leftAxis.axisMaxLabels = 3
-            self.chart.leftAxis.axisMinimum = 0.0
             self.chart.doubleTapToZoomEnabled = false
 //
-//            if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
-//                self.chart.leftAxis.labelCount = opt
-//            }
+            if let opt = options?[AnalyticsChartNodeOptionsKey.yLineNumber] as? Int {
+                self.chart.leftAxis.labelCount = opt
+            }
             self.chart.delegate = self
     
             self.setData()
             
             return self.chart
         }, didLoad: { (_) in
+            if let entry = data.last {
+                self.chartValueSelected(self.chart, entry: entry, highlight: Highlight())
+            }
             self.chartDidLoad?()
         })
         
@@ -250,15 +254,21 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     // MARK: - IAxisValueFormatter
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
-        if self.chartStringForValue != nil {
-            return self.chartStringForValue!(self, value, axis)
-        }
-        
         if axis is YAxis {
+            if self.chartStringForYValue != nil {
+                return self.chartStringForYValue!(self, value, axis)
+            }
             return String(format: "%.0f", value)
         }
         
         if axis is XAxis {
+            if self.chartStringForXValue != nil {
+                return self.chartStringForXValue!(self, value, axis)
+            }
+            
+            if Int(value) >= self.newData.count {
+                return ""
+            }
             let dateFormatter = DateFormatter()
             
             switch self.selectedRange {
@@ -272,7 +282,11 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             if let opt = self.options?[AnalyticsChartNodeOptionsKey.dateFormat] as? String {
                 dateFormatter.dateFormat = opt
             }
-            return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+            
+            let entry = self.newData[Int(value)]
+            if let date = entry.data as? Date {
+                return dateFormatter.string(from: date)
+            }
         }
         
         return ""
@@ -287,15 +301,20 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         if let date = entry.data as? Date {
             dateString = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
         }
-        if self.chartValueSelected != nil {
-             dateString = self.chartValueSelected!(self, chartView, entry, highlight)
+        if self.chartXValueSelected != nil {
+             dateString = self.chartXValueSelected!(self, entry.x, highlight)
         }
         
-        self.valueNode.attributedText = NSAttributedString(string: "\(Int(entry.y))", attributes: self.valueAttributes)
+        var valueString = "\(Int(entry.y))"
+        if self.chartYValueSelected != nil {
+            valueString = self.chartYValueSelected!(self, entry.y, highlight)
+        }
+        
+        self.valueNode.attributedText = NSAttributedString(string: valueString, attributes: self.valueAttributes)
         self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
         
         self.selectedXValue = dateString
-        self.selectedYValue = "\(Float(entry.y))"
+        self.selectedYValue = valueString
     }
     
     // MARK: - Actions
@@ -392,19 +411,20 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         let dateFormatter = DateFormatter()
         switch self.selectedRange {
         case .week:
-            title = "\(DateFormatter.localizedString(from: Date(timeIntervalSince1970: self.chart.data!.xMin), dateStyle: .short, timeStyle: .none)) - \(DateFormatter.localizedString(from: Date(timeIntervalSince1970: self.chart.data!.xMax), dateStyle: .short, timeStyle: .none))"
+            let interval = Calendar.current.dateInterval(of: .weekOfYear, for: self.centralDate)!
+            title = "\(DateFormatter.localizedString(from: interval.start, dateStyle: .short, timeStyle: .none)) - \(DateFormatter.localizedString(from: interval.end, dateStyle: .short, timeStyle: .none))"
         case .month:
             dateFormatter.dateFormat = "MMMM"
-            title = dateFormatter.string(from: Date(timeIntervalSince1970: self.chart.data!.xMax))
+            title = dateFormatter.string(from: self.centralDate)
         case .year:
             dateFormatter.dateFormat = "yyyy"
-            title = dateFormatter.string(from: Date(timeIntervalSince1970: self.chart.data!.xMax))
+            title = dateFormatter.string(from: self.centralDate)
         }
         self.rangeTitle.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
     }
     
     private func setData() {
-        var newData = [ChartDataEntry]()
+        self.newData.removeAll()
         switch self.selectedRange {
         case .week:
             var components = DateComponents()
@@ -412,7 +432,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             for i in 0...6 {
                 components.day = i
                 let newDate = Calendar.current.date(byAdding: components, to: weekStart)!
-                newData.append(ChartDataEntry(x: newDate.center.timeIntervalSince1970, y: 0.0, data: newDate.center as AnyObject))
+                newData.append(ChartDataEntry(x: Double(i), y: 0.0, data: newDate.center as AnyObject))
             }
         case .month:
             let interval = Calendar.current.dateInterval(of: .month, for: self.centralDate)!
@@ -421,7 +441,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             for i in 0..<days {
                 components.day = i
                 let newDate = Calendar.current.date(byAdding: components, to: interval.start)!
-                newData.append(ChartDataEntry(x: newDate.center.timeIntervalSince1970, y: 0.0, data: newDate.center as AnyObject))
+                newData.append(ChartDataEntry(x: Double(i), y: 0.0, data: newDate.center as AnyObject))
             }
         case .year:
             let interval = Calendar.current.dateInterval(of: .year, for: self.centralDate)!
@@ -430,15 +450,14 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             for i in 0..<days {
                 components.day = i
                 let newDate = Calendar.current.date(byAdding: components, to: interval.start)!
-                newData.append(ChartDataEntry(x: newDate.center.timeIntervalSince1970, y: 0.0, data: newDate.center as AnyObject))
+                newData.append(ChartDataEntry(x: Double(i), y: 0.0, data: newDate.center as AnyObject))
             }
         }
         
         for (i, d) in newData.enumerated() {
             if let date = d.data as? Date {
                 if let entry = self.data.filter({$0.x >= date.start.timeIntervalSince1970 && $0.x <= date.end.timeIntervalSince1970}).first {
-                    newData.remove(at: i)
-                    newData.insert(entry, at: i)
+                    newData[i].y = entry.y
                 }
             }
         }

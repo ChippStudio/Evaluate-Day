@@ -43,9 +43,13 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.lineChart)
-        self.nodes.append(.horizontalBarChart)
+        if Store.current.isPro {
+            self.nodes.append(.horizontalBarChart)
+        }
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -114,11 +118,35 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             }
             
             var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
-            opt?[.yLineNumber] = 5
+            opt?[.yLineNumber] = 3
             opt?[.positive] = criterionCard.positive
             
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt)
+                node.chartStringForYValue = { (_, value, _) in
+                    let index = Int(value)
+                    if index == 0 {
+                        return "🙁"
+                    } else if index == 1 {
+                        return "😐"
+                    } else if index == 2 {
+                        return "🙂"
+                    }
+                    
+                    return ""
+                }
+                node.chartYValueSelected = { (_, value, _) in
+                    let index = Int(value)
+                    if index == 0 {
+                        return "🙁"
+                    } else if index == 1 {
+                        return "😐"
+                    } else if index == 2 {
+                        return "🙂"
+                    }
+                    
+                    return Localizations.General.none
+                }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -142,13 +170,45 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
                     
-                    if axis is YAxis {
-                        return String(format: "%.0f", value)
+                    let index = Int(value)
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
                     }
                     
                     return ""
+                }
+                node.chartStringForYValue = { (node, value, axis) in
+                    let index = Int(value)
+                    if index == 0 {
+                        return "🙁"
+                    } else if index == 1 {
+                        return "😐"
+                    } else if index == 2 {
+                        return "🙂"
+                    }
+                    
+                    return ""
+                }
+                node.chartYValueSelected = { (_, value, _) in
+                    let index = Int(value)
+                    if index == 0 {
+                        return "🙁"
+                    } else if index == 1 {
+                        return "😐"
+                    } else if index == 2 {
+                        return "🙂"
+                    }
+                    
+                    return Localizations.General.none
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -174,7 +234,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             data.append(goodChart)
             
             var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
-            opt?[.yLineNumber] = 5
+            opt?[.yLineNumber] = data.count
             opt?[.positive] = criterionCard.positive
             
             return {

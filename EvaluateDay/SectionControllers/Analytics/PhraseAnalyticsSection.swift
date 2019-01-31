@@ -42,7 +42,9 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
         
         self.nodes.append(.title)
         self.nodes.append(.statistics)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.calendar)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -112,7 +114,6 @@ class PhraseAnalyticsSection: ListSectionController, ASSectionController, Analyt
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 40.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }

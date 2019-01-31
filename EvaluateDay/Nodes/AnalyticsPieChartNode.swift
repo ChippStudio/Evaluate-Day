@@ -49,6 +49,7 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
             self.chart.holeColor = UIColor.background
             self.chart.chartDescription?.text = ""
             self.chart.legend.enabled = false
+            self.chart.rotationEnabled = false
             
             let dataSet = PieChartDataSet(values: data, label: nil)
             dataSet.valueFormatter = self

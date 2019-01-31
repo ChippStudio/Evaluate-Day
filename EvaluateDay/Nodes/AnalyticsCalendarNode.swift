@@ -18,7 +18,6 @@ class AnalyticsCalendarNode: ASCellNode {
     var shareButton = ASButtonNode()
     
     // MARK: - Variable
-    var topInset: CGFloat = 0.0
     var didLoadCalendar: (() -> Void)?
     
     // MARK: - Unit
@@ -90,7 +89,7 @@ class AnalyticsCalendarNode: ASCellNode {
         cell.justifyContent = .center
         cell.children = [shareInset, self.calendarNode]
         
-        let cellInsets = UIEdgeInsets(top: self.topInset, left: 0.0, bottom: 20.0, right: 0.0)
+        let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
         
         return cellInset

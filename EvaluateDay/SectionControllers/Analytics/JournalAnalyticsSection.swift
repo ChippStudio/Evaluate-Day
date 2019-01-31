@@ -45,11 +45,14 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
-        self.nodes.append(.map)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        } else {
+            self.nodes.append(.map)
+        }
         self.nodes.append(.calendar)
-        self.nodes.append(.viewAll)
         self.nodes.append(.bar)
+        self.nodes.append(.viewAll)
         self.nodes.append(.export)
     }
     
@@ -162,7 +165,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
                 }
-                node.topInset = 20.0
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
                 }
@@ -197,9 +199,25 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             let opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Journal.barEntries, data: data, options: opt)
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
+                    let index = Int(value)
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
+                    }
+                    
                     return ""
                 }
+//                node.chartStringForYValue = { (node, value, axis) in
+//                    let index = Int(value)
+//                    return "\(index)"
+//                }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
@@ -290,7 +308,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let journalCard = self.card.data as! JournalCard
         if journalCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return UIColor.positive
+            return UIColor.main
         }
         
         return nil
@@ -299,7 +317,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let jornalCard = self.card.data as! JournalCard
         if jornalCard.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).first != nil {
-            return UIColor.white
+            return UIColor.textTint
         }
         
         return nil

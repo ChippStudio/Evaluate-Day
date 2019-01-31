@@ -19,6 +19,7 @@ private enum AnalyticsNodeType {
     case barChart
     case export
     case proReview
+    case average
 }
 
 class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -42,8 +43,13 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        self.nodes.append(.proReview)
+        if !Store.current.isPro {
+            self.nodes.append(.proReview)
+        }
         self.nodes.append(.lineChart)
+        if Store.current.isPro {
+            self.nodes.append(.average)
+        }
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -122,7 +128,58 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
                 }
                 return node
             }
+        case .average:
+            var data = [BarChartDataEntry]()
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            let criterionCard = self.card.data as! CriterionTenCard
+            let sortedValues = criterionCard.values.sorted(byKeyPath: "created")
+            if let first = sortedValues.first {
+                var runDate = first.created
+                var barIndex: Double = 0.0
+                let currentMonthEnd = Calendar.current.dateInterval(of: .month, for: Date())!.end
+                while currentMonthEnd.timeIntervalSince1970 > runDate.timeIntervalSince1970 {
+                    let monthInterval = Calendar.current.dateInterval(of: .month, for: runDate)!
+                    let monthValues = criterionCard.values.filter("(created >= %@) AND (created <= %@)", monthInterval.start, monthInterval.end)
+                    if monthValues.count != 0 {
+                        var total = 0.0
+                        for v in monthValues {
+                            total += v.value
+                        }
+                        let barEntry = BarChartDataEntry(x: barIndex, y:  total / Double(monthValues.count), data: monthInterval.start as AnyObject)
+                        data.append(barEntry)
+                        barIndex += 1
+                    }
+                    
+                    var components = DateComponents()
+                    components.month = 1
+                    
+                    let newRunDate = Calendar.current.date(byAdding: components, to: runDate)!
+                    runDate = newRunDate
+                }
+            }
             
+            opt?[.yLineNumber] = data.count
+            return {
+                let node = AnalyticsHorizontalBarChartNode(title: Localizations.Analytics.Chart.HorizontalBar.Criterion.averageTitle, data: data, options: opt)
+                node.format = "%.1f"
+                node.chartStringForValue = { (_, value, _) in
+                    if Int(value) >= data.count {
+                        return "WTF"
+                    }
+                    let entry = data[Int(value)]
+                    if let date = entry.data as? Date {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM YYYY"
+                        return dateFormatter.string(from: date)
+                    }
+                    return ""
+                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
         case .barChart:
             var data = [BarChartDataEntry]()
             let criterionCard = self.card.data as! CriterionTenCard
@@ -139,8 +196,24 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
             
             return {
                 let node = AnalyticsBarChartNode(title: Localizations.Analytics.Chart.Bar.Criterion.title, data: data, options: opt)
-                node.chartStringForValue = { (node, value, axis) in
+                node.chartStringForXValue = { (node, value, axis) in
+                    let index = Int(value)
+                    if index >= data.count {
+                        return ""
+                    }
+                    
+                    if let date = data[index].data as? Date {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "dd MMM"
+                        
+                        return formatter.string(from: date)
+                    }
+                    
                     return ""
+                }
+                node.chartStringForYValue = { (node, value, axis) in
+                    let index = Int(value)
+                    return "\(index)"
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {

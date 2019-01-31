@@ -329,9 +329,23 @@ internal enum Localizations {
         }
       }
       internal enum HorizontalBar {
+        internal enum CheckIn {
+          /// Marked locations by months
+          internal static let title = Localizations.tr("Localizable", "analytics.chart.horizontalBar.checkIn.title")
+        }
         internal enum Criterion {
+          /// Average values by month
+          internal static let averageTitle = Localizations.tr("Localizable", "analytics.chart.horizontalBar.criterion.averageTitle")
           /// Number of values
           internal static let title = Localizations.tr("Localizable", "analytics.chart.horizontalBar.criterion.title")
+        }
+        internal enum Goal {
+          /// Total values by month
+          internal static let totalTitle = Localizations.tr("Localizable", "analytics.chart.horizontalBar.goal.totalTitle")
+        }
+        internal enum Habit {
+          /// Number of marks by months
+          internal static let title = Localizations.tr("Localizable", "analytics.chart.horizontalBar.habit.title")
         }
       }
       internal enum Line {
