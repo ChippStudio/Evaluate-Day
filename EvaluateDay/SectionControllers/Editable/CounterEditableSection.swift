@@ -14,6 +14,7 @@ private enum CounterSettingsNodeType {
     case sectionTitle
     case title
     case subtitles
+    case measurement
     case separator
     case step
     case total
@@ -66,6 +67,14 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
         case .subtitles:
             let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
+            return {
+                let node = CardSettingsTextNode(title: subtitle, text: text)
+                return node
+            }
+        case .measurement:
+            let subtitle = Localizations.CardSettings.Counter.measurement
+            let counterCard = self.card.data as! CounterCard
+            let text = counterCard.measurement
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text)
                 return node
@@ -132,6 +141,15 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
             self.setTextHandler?(Localizations.CardSettings.title, "title", self.card.title)
         } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.CardSettings.subtitle, "subtitle", self.card.subtitle)
+        } else if self.nodes[index] == .measurement {
+            let counterCard = self.card.data as! CounterCard
+            let text = counterCard.measurement
+            let controller = TextTopViewController()
+            controller.property = "measurement"
+            controller.delegate = self
+            controller.titleLabel.text = Localizations.CardSettings.Counter.measurement
+            controller.textView.text = text
+            self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .step {
             // Step value set
             let controller = TextTopViewController()
@@ -153,6 +171,22 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
     
     // MARK: - TextTopViewControllerDelegate
     func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+        if property == "measurement" {
+            let counterCard = self.card.data as! CounterCard
+            if counterCard.realm != nil {
+                try! Database.manager.data.write {
+                    counterCard[property] = text
+                }
+            } else {
+                counterCard[property] = text
+            }
+            
+            self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
+                batchContext.reload(self)
+            }, completion: nil)
+                
+            return
+        }
         if let value = Double(text) {
             let counterCard = self.card.data as! CounterCard
             if counterCard.realm != nil {
@@ -176,6 +210,7 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
         self.nodes.append(.sectionTitle)
         self.nodes.append(.title)
         self.nodes.append(.subtitles)
+        self.nodes.append(.measurement)
         self.nodes.append(.step)
         self.nodes.append(.total)
         if (self.card.data as! CounterCard).isSum {

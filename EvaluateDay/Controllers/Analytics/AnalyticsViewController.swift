@@ -55,7 +55,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         // Buttons
         self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings").resizedImage(newSize: CGSize(width: 22.0, height: 22.0)), style: .plain, target: self, action: #selector(openCardSettingsAction(sender:)))
         self.settingsButton.accessibilityIdentifier = "cardSettingsButton"
-        self.settingsButton.accessibilityLabel = Localizations.Tabbar.settings
+        self.settingsButton.accessibilityLabel = Localizations.Settings.title
         self.settingsButton.accessibilityValue = self.card.title
         self.navigationItem.rightBarButtonItem = self.settingsButton
         

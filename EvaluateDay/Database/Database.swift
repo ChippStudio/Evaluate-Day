@@ -85,6 +85,14 @@ final class Database: NSObject {
                     newObject!["dashboard"] = nil
                 })
             }
+            if oldSchemaVersion < 6 {
+                migration.enumerateObjects(ofType: CounterCard.className(), { (_, newObject) in
+                    newObject!["measurement"] = ""
+                })
+                migration.enumerateObjects(ofType: GoalCard.className(), { (_, newObject) in
+                    newObject!["measurement"] = ""
+                })
+            }
         })
         
         self.configureRealms()

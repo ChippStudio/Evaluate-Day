@@ -250,7 +250,7 @@ internal enum Localizations {
   }
 
   internal enum Activity {
-    /// Activity feed
+    /// Activity
     internal static let title = Localizations.tr("Localizable", "activity.title")
     internal enum Analytics {
       internal enum Barchart {
@@ -553,6 +553,8 @@ internal enum Localizations {
       return Localizations.tr("Localizable", "cardSettings.untitle", p1)
     }
     internal enum Counter {
+      /// Units of Measurement
+      internal static let measurement = Localizations.tr("Localizable", "cardSettings.counter.measurement")
       /// Initial value
       internal static let start = Localizations.tr("Localizable", "cardSettings.counter.start")
       /// Step
@@ -664,6 +666,8 @@ internal enum Localizations {
 
   internal enum Demo {
     internal enum Counter {
+      /// Cups
+      internal static let measurement = Localizations.tr("Localizable", "demo.counter.measurement")
       /// Cups of coffee ☕️
       internal static let subtitle = Localizations.tr("Localizable", "demo.counter.subtitle")
       /// Coffee ☕️
@@ -696,6 +700,8 @@ internal enum Localizations {
       internal static let workout = Localizations.tr("Localizable", "demo.dashboard.workout")
     }
     internal enum Goal {
+      /// Push-ups
+      internal static let measurement = Localizations.tr("Localizable", "demo.goal.measurement")
       /// Desired number of push-ups per day
       internal static let subtitle = Localizations.tr("Localizable", "demo.goal.subtitle")
       /// Push-ups per day
@@ -1510,17 +1516,6 @@ internal enum Localizations {
       /// Try Evaluate Day
       internal static let title = Localizations.tr("Localizable", "share.link.title")
     }
-  }
-
-  internal enum Tabbar {
-    /// Activity
-    internal static let activity = Localizations.tr("Localizable", "tabbar.activity")
-    /// Cards
-    internal static let cards = Localizations.tr("Localizable", "tabbar.cards")
-    /// Evaluate Day
-    internal static let evaluate = Localizations.tr("Localizable", "tabbar.evaluate")
-    /// Settings
-    internal static let settings = Localizations.tr("Localizable", "tabbar.settings")
   }
 
   internal enum Update {

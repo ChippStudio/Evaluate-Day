@@ -62,6 +62,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         }
         
         let step = counterCard.step
+        let measurement = counterCard.measurement
         
         var components = DateComponents()
         components.day = -1
@@ -89,7 +90,7 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         let board = self.card.dashboardValue
         
         return {
-            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter)
+            let node = CounterNode(title: title, subtitle: subtitle, image: image, value: value, measurement: measurement, sumValue: sumValue, previousValue: previousValue, date: self.date, step: step, dashboard: board, values: counter)
             
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
@@ -272,13 +273,13 @@ class CounterNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, measurement: String, sumValue: Double?, previousValue: Double, date: Date, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
         super.init()
         
         self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step)
+        self.counter = CounterEvaluateNode(value: value, sumValue: sumValue, previousValue: previousValue, date: date, step: step, measurement: measurement)
         
         var max: Float = 0.0
         for v in values {

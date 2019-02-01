@@ -57,6 +57,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         var value: Double = 0.0
         var previousValue: Double = 0.0
         let goalValue = goalCard.goalValue
+        let measurement = goalCard.measurement
         var sumValue: Double?
         if let currentValue = goalCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
             value = currentValue.value
@@ -90,7 +91,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         let board = self.card.dashboardValue
         
         return {
-            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, step: step, dashboard: board, values: counter)
+            let node = GoalNode(title: title, subtitle: subtitle, image: image, value: value, measurement: measurement, previousValue: previousValue, date: self.date, goalValue: goalValue, sumValue: sumValue, step: step, dashboard: board, values: counter)
             
             node.analytics.button.addTarget(self, action: #selector(self.analyticsButton(sender:)), forControlEvents: .touchUpInside)
             node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
@@ -275,13 +276,13 @@ class GoalNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String, image: UIImage, value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
+    init(title: String, subtitle: String, image: UIImage, value: Double, measurement: String, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, dashboard: (String, UIImage)?, values: [Float]) {
         super.init()
         
         self.backgroundColor = UIColor.background
         
         self.title = TitleNode(title: title, subtitle: subtitle, image: image)
-        self.goal = GoalEvaluateNode(value: value, previousValue: previousValue, date: date, goalValue: goalValue, sumValue: sumValue, step: step)
+        self.goal = GoalEvaluateNode(value: value, previousValue: previousValue, date: date, goalValue: goalValue, sumValue: sumValue, step: step, measurement: measurement)
         
         var max: Float = 0.0
         for v in values {

@@ -15,6 +15,7 @@ private enum GoalSettingsNodeType {
     case title
     case subtitles
     case separator
+    case measurement
     case goal
     case step
     case total
@@ -67,6 +68,14 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         case .subtitles:
             let subtitle = Localizations.CardSettings.subtitle
             let text = self.card.subtitle
+            return {
+                let node = CardSettingsTextNode(title: subtitle, text: text)
+                return node
+            }
+        case .measurement:
+            let subtitle = Localizations.CardSettings.Counter.measurement
+            let counterCard = self.card.data as! GoalCard
+            let text = counterCard.measurement
             return {
                 let node = CardSettingsTextNode(title: subtitle, text: text)
                 return node
@@ -141,6 +150,15 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
             self.setTextHandler?(Localizations.CardSettings.title, "title", self.card.title)
         } else if self.nodes[index] == .subtitles {
             self.setTextHandler?(Localizations.CardSettings.subtitle, "subtitle", self.card.subtitle)
+        } else if self.nodes[index] == .measurement {
+            let goalCard = self.card.data as! GoalCard
+            let text = goalCard.measurement
+            let controller = TextTopViewController()
+            controller.property = "measurement"
+            controller.delegate = self
+            controller.titleLabel.text = Localizations.CardSettings.Counter.measurement
+            controller.textView.text = text
+            self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .goal {
             // Goal value set
             let controller = TextTopViewController()
@@ -170,6 +188,22 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
     
     // MARK: - TextTopViewControllerDelegate
     func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+        if property == "measurement" {
+            let goalCard = self.card.data as! GoalCard
+            if goalCard.realm != nil {
+                try! Database.manager.data.write {
+                    goalCard[property] = text
+                }
+            } else {
+                goalCard[property] = text
+            }
+            
+            self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
+                batchContext.reload(self)
+            }, completion: nil)
+            
+            return
+        }
         if let value = Double(text) {
             let goalCard = self.card.data as! GoalCard
             if goalCard.realm != nil {
@@ -193,6 +227,7 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         self.nodes.append(.sectionTitle)
         self.nodes.append(.title)
         self.nodes.append(.subtitles)
+        self.nodes.append(.measurement)
         self.nodes.append(.goal)
         self.nodes.append(.step)
         self.nodes.append(.total)

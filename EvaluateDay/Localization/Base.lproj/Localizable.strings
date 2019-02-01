@@ -96,7 +96,7 @@
 "activity.gallery.allPhotos" = "Show all photos";
 "activity.gallery.subtitle" = "Unlock Evaluate Day Pro to see gallery";
 "activity.gallery.title" = "Gallery";
-"activity.title" = "Activity feed";
+"activity.title" = "Activity";
 "activity.user.facebook.action" = "Update from Facebook";
 "activity.user.facebook.disclaimer" = "We never post on Facebook.";
 "activity.user.placeholder.bio" = "Introduce yourself";
@@ -182,6 +182,7 @@
 "cardSettings.general.title" = "Card Settings";
 "cardSettings.counter.start" = "Initial value";
 "cardSettings.counter.step" = "Step";
+"cardSettings.counter.measurement" = "Units of Measurement";
 "cardSettings.counter.sum.title" = "Total values ​​for the days";
 "cardSettings.criterion.feater.description" = "Criteria can be positive and negative. For positive criteria, the higher the value, the better; for negative - on the contrary. Fatigue, for example, is a negative criterion.";
 "cardSettings.criterion.feater.title" = "Positive";
@@ -205,6 +206,7 @@ Head to the analytics section to read all the notes.";
 // MARK: - Demo
 "demo.counter.subtitle" = "Cups of coffee ☕️";
 "demo.counter.title" = "Coffee ☕️";
+"demo.counter.measurement" = "Cups";
 "demo.criterion.hundred.subtitle" = "Was your day productive?";
 "demo.criterion.hundred.title" = "Productivity";
 "demo.criterion.ten.subtitle" = "Am I really tired today?";
@@ -213,6 +215,7 @@ Head to the analytics section to read all the notes.";
 "demo.criterion.three.title" = "Mood";
 "demo.goal.subtitle" = "Desired number of push-ups per day";
 "demo.goal.title" = "Push-ups per day";
+"demo.goal.measurement" = "Push-ups";
 "demo.habit.subtitle" = "Write something everyday";
 "demo.habit.title" = "Write to the journal";
 "demo.journal.entryFour" = "USE IT ON ALL iOS DEVICES \
@@ -523,12 +526,6 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 // MARK: - Share
 "share.description" = "Shared with Evaluate Day app";
 "share.link.title" = "Try Evaluate Day";
-
-// MARK: - Tab Bar
-"tabbar.activity" = "Activity";
-"tabbar.cards" = "Cards";
-"tabbar.evaluate" = "Evaluate Day";
-"tabbar.settings" = "Settings";
 
 // MARK: - Update
 "update.button" = "Download now";

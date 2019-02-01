@@ -48,10 +48,16 @@ extension Card: CloudKitSyncable {
             counterCard.step = record.object(forKey: "step") as! Double
             counterCard.isSum = record.object(forKey: "sum") as! Bool
             counterCard.startValue = record.object(forKey: "start") as! Double
+            // New in iCloud model. May be nil if data from older model version < 6
+            if let mes = record.object(forKey: "measurement") as? String {
+                counterCard.measurement = mes
+            } else {
+                counterCard.measurement = ""
+            }
         case .habit:
             let habitCard = card.data as! HabitCard
             habitCard.multiple = record.object(forKey: "multiple") as! Bool
-            // New in iCloud model. May be nil if data from older model version
+            // New in iCloud model. May be nil if data from older model version < 3
             if let neg = record.object(forKey: "negative") as? Bool {
                 habitCard.negative = neg
             } else {
@@ -65,6 +71,12 @@ extension Card: CloudKitSyncable {
             goalCard.isSum = record.object(forKey: "sum") as! Bool
             goalCard.startValue = record.object(forKey: "start") as! Double
             goalCard.goalValue = record.object(forKey: "goal") as! Double
+            // New in iCloud model. May be nil if data from older model version < 6
+            if let mes = record.object(forKey: "measurement") as? String {
+                goalCard.measurement = mes
+            } else {
+                goalCard.measurement = ""
+            }
         case .journal: ()
         default:()
         }
@@ -108,6 +120,7 @@ extension Card: CloudKitSyncable {
             record.setObject(data.step as CKRecordValue, forKey: "step")
             record.setObject(data.isSum as CKRecordValue, forKey: "sum")
             record.setObject(data.startValue as CKRecordValue, forKey: "start")
+            record.setObject(data.measurement as CKRecordValue, forKey: "measurement")
         case .habit:
             let data = self.data as! HabitCard
             record.setObject(data.multiple as CKRecordValue, forKey: "multiple")
@@ -120,6 +133,7 @@ extension Card: CloudKitSyncable {
             record.setObject(data.isSum as CKRecordValue, forKey: "sum")
             record.setObject(data.startValue as CKRecordValue, forKey: "start")
             record.setObject(data.goalValue as CKRecordValue, forKey: "goal")
+            record.setObject(data.measurement as CKRecordValue, forKey: "measurement")
         case .journal: ()
         default: ()
         }

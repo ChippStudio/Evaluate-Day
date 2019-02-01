@@ -17,6 +17,9 @@ class GoalEvaluateNode: ASCellNode {
     var counter = ASTextNode()
     var previousCounter = ASTextNode()
     
+    var currentMeasurement = ASTextNode()
+    var previousMeasurement = ASTextNode()
+    
     var currentDate = ASTextNode()
     var previousDate = ASTextNode()
     
@@ -32,7 +35,7 @@ class GoalEvaluateNode: ASCellNode {
     private var accessibilityNode = ASDisplayNode()
     
     // MARK: - Init
-    init(value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double) {
+    init(value: Double, previousValue: Double, date: Date, goalValue: Double, sumValue: Double?, step: Double, measurement: String) {
         super.init()
         
         // Plus and minus buttons and covers
@@ -73,6 +76,9 @@ class GoalEvaluateNode: ASCellNode {
         
         let previousValueString = String(format: "%.2f", previousValue)
         self.previousCounter.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        
+        self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.previousMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         // Date
         let formatter = DateFormatter()
@@ -149,15 +155,19 @@ class GoalEvaluateNode: ASCellNode {
         buttons.spacing = 10.0
         buttons.children = [plusButton, minusButton, customButton]
         
+        let measurementInsets = UIEdgeInsets(top: -17.0, left: 0.0, bottom: 0.0, right: 5.0)
+        let currentMeasurementInset = ASInsetLayoutSpec(insets: measurementInsets, child: self.currentMeasurement)
+        let previousMeasurementInset = ASInsetLayoutSpec(insets: measurementInsets, child: self.previousMeasurement)
+        
         let currentStack = ASStackLayoutSpec.vertical()
         currentStack.alignItems = .end
         currentStack.spacing = 10.0
-        currentStack.children = [self.counter, self.currentDate]
+        currentStack.children = [self.counter, currentMeasurementInset, self.currentDate]
         
         let previousStack = ASStackLayoutSpec.vertical()
         previousStack.alignItems = .end
         previousStack.spacing = 10.0
-        previousStack.children = [self.previousCounter, self.previousDate]
+        previousStack.children = [self.previousCounter, previousMeasurementInset, self.previousDate]
         
         self.separator.style.preferredSize = CGSize(width: 4.0, height: 80.0)
         

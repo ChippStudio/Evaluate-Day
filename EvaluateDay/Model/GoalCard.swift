@@ -15,6 +15,7 @@ class GoalCard: Object {
     @objc dynamic var isSum: Bool = false
     @objc dynamic var startValue: Double = 0.0
     @objc dynamic var goalValue: Double = 0.0
+    @objc dynamic var measurement: String = ""
     
     // MARK: - Values
     var values: Results<NumberValue> {

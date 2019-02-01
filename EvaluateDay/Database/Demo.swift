@@ -236,6 +236,7 @@ final class Demo {
         card.type = .counter
         card.order = Database.manager.data.objects(Card.self).count
         card.dashboard = self.dashboards.work
+        (card.data as! CounterCard).measurement = Localizations.Demo.Counter.measurement
         
         // Make data
         var values = [NumberValue]()
@@ -355,6 +356,8 @@ final class Demo {
         card.dashboard = self.dashboards.workout
         let goalCard = card.data as! GoalCard
         goalCard.goalValue = 80
+        goalCard.step = 20.0
+        goalCard.measurement = Localizations.Demo.Goal.measurement
         
         var values = [NumberValue]()
         var components = DateComponents()
