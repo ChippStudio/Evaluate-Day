@@ -21,6 +21,7 @@ private enum AnalyticsNodeType {
     case barChart
     case proReview
     case monthTotal
+    case more
 }
 
 class TrackerAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -55,6 +56,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             self.nodes.append(.monthTotal)
         }
         self.nodes.append(.barChart)
+        self.nodes.append(.more)
         self.nodes.append(.export)
     }
     
@@ -224,6 +226,11 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 return node
             }
+        case .more:
+            return {
+                let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
+                return node
+            }
         case .export:
             return {
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased())
@@ -266,7 +273,12 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     override func didSelectItem(at index: Int) {
-        
+        if self.nodes[index] == .more {
+            let controller = UIStoryboard(name: Storyboards.marksList.rawValue, bundle: nil).instantiateInitialViewController() as! MarksListViewController
+            controller.card = self.card
+            controller.values = (self.card.data as! TrackerCard).values.sorted(byKeyPath: "created", ascending: false)
+            self.viewController?.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: - FSCalendarDelegate

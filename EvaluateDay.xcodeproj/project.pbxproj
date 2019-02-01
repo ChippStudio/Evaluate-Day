@@ -14,6 +14,12 @@
 		B50B18E2220474C8008A2231 /* ColorsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18E1220474C8008A2231 /* ColorsList.storyboard */; };
 		B50B18E4220474E9008A2231 /* ColorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18E3220474E9008A2231 /* ColorsListViewController.swift */; };
 		B50B18E622047693008A2231 /* ColorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18E522047693008A2231 /* ColorListCell.swift */; };
+		B50B18E922047BC5008A2231 /* MarksList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18E822047BC5008A2231 /* MarksList.storyboard */; };
+		B50B18EB22047C06008A2231 /* MarksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18EA22047C06008A2231 /* MarksListViewController.swift */; };
+		B50B18ED22047E7E008A2231 /* MarkListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18EC22047E7E008A2231 /* MarkListCell.swift */; };
+		B50B18EF22048848008A2231 /* LocationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18EE22048848008A2231 /* LocationListCell.swift */; };
+		B50B18F222048885008A2231 /* LocationsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18F122048885008A2231 /* LocationsList.storyboard */; };
+		B50B18F4220488B3008A2231 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18F3220488B3008A2231 /* LocationsListViewController.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -395,6 +401,12 @@
 		B50B18E1220474C8008A2231 /* ColorsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorsList.storyboard; sourceTree = "<group>"; };
 		B50B18E3220474E9008A2231 /* ColorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsListViewController.swift; sourceTree = "<group>"; };
 		B50B18E522047693008A2231 /* ColorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorListCell.swift; sourceTree = "<group>"; };
+		B50B18E822047BC5008A2231 /* MarksList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MarksList.storyboard; sourceTree = "<group>"; };
+		B50B18EA22047C06008A2231 /* MarksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksListViewController.swift; sourceTree = "<group>"; };
+		B50B18EC22047E7E008A2231 /* MarkListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListCell.swift; sourceTree = "<group>"; };
+		B50B18EE22048848008A2231 /* LocationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCell.swift; sourceTree = "<group>"; };
+		B50B18F122048885008A2231 /* LocationsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationsList.storyboard; sourceTree = "<group>"; };
+		B50B18F3220488B3008A2231 /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -852,6 +864,24 @@
 			path = ColorsList;
 			sourceTree = "<group>";
 		};
+		B50B18E722047B89008A2231 /* MarksList */ = {
+			isa = PBXGroup;
+			children = (
+				B50B18E822047BC5008A2231 /* MarksList.storyboard */,
+				B50B18EA22047C06008A2231 /* MarksListViewController.swift */,
+			);
+			path = MarksList;
+			sourceTree = "<group>";
+		};
+		B50B18F022048865008A2231 /* LocationsList */ = {
+			isa = PBXGroup;
+			children = (
+				B50B18F122048885008A2231 /* LocationsList.storyboard */,
+				B50B18F3220488B3008A2231 /* LocationsListViewController.swift */,
+			);
+			path = LocationsList;
+			sourceTree = "<group>";
+		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +964,8 @@
 				B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */,
 				B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */,
 				B50B18E522047693008A2231 /* ColorListCell.swift */,
+				B50B18EC22047E7E008A2231 /* MarkListCell.swift */,
+				B50B18EE22048848008A2231 /* LocationListCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1196,6 +1228,8 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B50B18F022048865008A2231 /* LocationsList */,
+				B50B18E722047B89008A2231 /* MarksList */,
 				B50B18E0220474B0008A2231 /* ColorsList */,
 				B50B18DB22045BB8008A2231 /* NumbersList */,
 				B59D039D21FC6D650048B0AF /* ReorderCollections */,
@@ -1934,7 +1968,9 @@
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
 				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
+				B50B18E922047BC5008A2231 /* MarksList.storyboard in Resources */,
 				B516CA4621EA8C5B0002915F /* AppIcon-3-Preview.png in Resources */,
+				B50B18F222048885008A2231 /* LocationsList.storyboard in Resources */,
 				B59D03A121FC6D9D0048B0AF /* ReorderCards.storyboard in Resources */,
 				B516CA2D21EA8BB70002915F /* AppIcon-10.png in Resources */,
 				B5257D491FE91E6D00AC54DE /* annualy.html in Resources */,
@@ -2126,6 +2162,7 @@
 				B5EC88442010C21E0056C1C7 /* PhraseEvaluateNode.swift in Sources */,
 				B5AB1E842018BFE600BB1A64 /* ListEditableSection.swift in Sources */,
 				B5BD3B2C200793350075C75F /* LocationValue.swift in Sources */,
+				B50B18F4220488B3008A2231 /* LocationsListViewController.swift in Sources */,
 				B58DDAAF21F5F74C005F48AE /* SubscriptionBuyCell.swift in Sources */,
 				B5899B1921D7BF6C00CF123B /* CardsListNode.swift in Sources */,
 				B5D3FB9D21410AC8004DFF78 /* EvaluateEmptyCardSection.swift in Sources */,
@@ -2277,6 +2314,7 @@
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
 				B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */,
 				B52D26ED2017648700332D0A /* HabitAnalyticsSection.swift in Sources */,
+				B50B18EB22047C06008A2231 /* MarksListViewController.swift in Sources */,
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
 				B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */,
 				B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */,
@@ -2332,6 +2370,7 @@
 				B5257D6B1FEA6E4300AC54DE /* AnalyticsExportNode.swift in Sources */,
 				B5A5915021D8D6720026FD84 /* DateSelectorNode.swift in Sources */,
 				B58DC37A213C10690067FD61 /* Dashboard+Extensions.swift in Sources */,
+				B50B18EF22048848008A2231 /* LocationListCell.swift in Sources */,
 				B5D9A85720612EEB00F84091 /* ActivityPhotoNode.swift in Sources */,
 				B5A11407200E3120008DBF02 /* MapViewController.swift in Sources */,
 				B591FAD31FA71B28007EE0F1 /* CriterionHundredCard.swift in Sources */,
@@ -2340,6 +2379,7 @@
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
 				B5D854CC1FCDAA8300BB4E14 /* PasscodeViewController.swift in Sources */,
 				B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */,
+				B50B18ED22047E7E008A2231 /* MarkListCell.swift in Sources */,
 				B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */,
 				B58DDAB321F61B3F005F48AE /* ProMoreViewController.swift in Sources */,
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,

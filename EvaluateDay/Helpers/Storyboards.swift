@@ -39,4 +39,6 @@ enum Storyboards: String {
     case reorderCards = "ReorderCards"
     case numbersList = "NumbersList"
     case colorsList = "ColorsList"
+    case marksList = "MarksList"
+    case locationsList = "LocationsList"
 }
