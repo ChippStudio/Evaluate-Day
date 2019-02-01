@@ -21,6 +21,7 @@ private enum AnalyticsNodeType {
     case pieChart
     case export
     case proReview
+    case more
 }
 
 class ColorAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance {
@@ -53,6 +54,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         if Store.current.isPro {
             self.nodes.append(.pieChart)
         }
+        self.nodes.append(.more)
         self.nodes.append(.export)
     }
     
@@ -149,6 +151,11 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 }
                 return node
             }
+        case .more:
+            return {
+                let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
+                return node
+            }
         case .export:
             return {
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased())
@@ -191,6 +198,12 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     override func didSelectItem(at index: Int) {
+        if self.nodes[index] == .more {
+            let controller = UIStoryboard(name: Storyboards.colorsList.rawValue, bundle: nil).instantiateInitialViewController() as! ColorsListViewController
+            controller.card = self.card
+            controller.values = (self.card.data as! ColorCard).values.sorted(byKeyPath: "created", ascending: false)
+            self.viewController?.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: - FSCalendarDelegate

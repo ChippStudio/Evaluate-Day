@@ -1,16 +1,15 @@
 //
-//  PhrasesViewController.swift
+//  ColorsListViewController.swift
 //  EvaluateDay
 //
-//  Created by Konstantin Tsistjakov on 19/01/2018.
-//  Copyright © 2018 Konstantin Tsistjakov. All rights reserved.
+//  Created by Konstantin Tsistjakov on 01/02/2019.
+//  Copyright © 2019 Konstantin Tsistjakov. All rights reserved.
 //
 
 import UIKit
-import AsyncDisplayKit
 import RealmSwift
 
-class PhrasesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ColorsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
     var editButton: UIBarButtonItem!
@@ -18,29 +17,20 @@ class PhrasesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - Variables
     var card: Card!
-    private var values: Results<TextValue>!
+    var values: Results<TextValue>!
     
-    private let phraseCell = "phraseCell"
+    private let colorContent = "colorContent"
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set navigation item
         self.navigationItem.title = self.card.title
-        
-        // self values
-        self.values = (self.card.data as! PhraseCard).values.sorted(byKeyPath: "created", ascending: false)
         
         if !self.card.archived {
             self.editButton = UIBarButtonItem(title: Localizations.General.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.editButton
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +60,7 @@ class PhrasesViewController: UIViewController, UITableViewDataSource, UITableVie
             self.tableView.backgroundColor = UIColor.background
         }
     }
+    
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -79,13 +70,21 @@ class PhrasesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let value = self.values[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: phraseCell, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: colorContent, for: indexPath) as! ColorListCell
+        cell.colorDot.backgroundColor = value.text.color
+        if value.text == "FFFFFF" {
+            cell.colorDot.layer.borderColor = UIColor.main.cgColor
+        } else {
+            cell.colorDot.layer.borderColor = value.text.color.cgColor
+        }
+        cell.dateLabel.text = DateFormatter.localizedString(from: value.created, dateStyle: .medium, timeStyle: .short)
         
-        cell.textLabel?.text = DateFormatter.localizedString(from: value.created, dateStyle: .medium, timeStyle: .none)
-        cell.detailTextLabel?.text = value.text
+        let selectedView = UIView()
+        selectedView.layer.cornerRadius = 10.0
+        selectedView.layer.masksToBounds = true
+        selectedView.backgroundColor = UIColor.tint
         
-        cell.textLabel?.textColor = UIColor.text
-        cell.detailTextLabel?.textColor = UIColor.main
+        cell.selectedBackgroundView = selectedView
         
         return cell
     }

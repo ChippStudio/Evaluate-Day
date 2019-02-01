@@ -35,6 +35,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
         self.tableNode.delegate = self
         self.tableNode.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
         self.tableNode.backgroundColor = UIColor.clear
+        self.tableNode.view.separatorStyle = .none
         self.baseView.addSubnode(self.tableNode)
         
         self.baseView.alpha = 0.0

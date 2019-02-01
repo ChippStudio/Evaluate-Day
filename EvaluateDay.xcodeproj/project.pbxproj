@@ -11,6 +11,9 @@
 		B50B18DA2202F6EB008A2231 /* AnalyticsPieChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */; };
 		B50B18DD22045BD1008A2231 /* NumbersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18DC22045BD1008A2231 /* NumbersList.storyboard */; };
 		B50B18DF22045C03008A2231 /* NumbersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18DE22045C03008A2231 /* NumbersListViewController.swift */; };
+		B50B18E2220474C8008A2231 /* ColorsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18E1220474C8008A2231 /* ColorsList.storyboard */; };
+		B50B18E4220474E9008A2231 /* ColorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18E3220474E9008A2231 /* ColorsListViewController.swift */; };
+		B50B18E622047693008A2231 /* ColorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18E522047693008A2231 /* ColorListCell.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -389,6 +392,9 @@
 		B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPieChartNode.swift; sourceTree = "<group>"; };
 		B50B18DC22045BD1008A2231 /* NumbersList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NumbersList.storyboard; sourceTree = "<group>"; };
 		B50B18DE22045C03008A2231 /* NumbersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewController.swift; sourceTree = "<group>"; };
+		B50B18E1220474C8008A2231 /* ColorsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorsList.storyboard; sourceTree = "<group>"; };
+		B50B18E3220474E9008A2231 /* ColorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsListViewController.swift; sourceTree = "<group>"; };
+		B50B18E522047693008A2231 /* ColorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorListCell.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -837,6 +843,15 @@
 			path = NumbersList;
 			sourceTree = "<group>";
 		};
+		B50B18E0220474B0008A2231 /* ColorsList */ = {
+			isa = PBXGroup;
+			children = (
+				B50B18E1220474C8008A2231 /* ColorsList.storyboard */,
+				B50B18E3220474E9008A2231 /* ColorsListViewController.swift */,
+			);
+			path = ColorsList;
+			sourceTree = "<group>";
+		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +933,7 @@
 				B5970F2721F22700000B0BAA /* CollectionsListCell.swift */,
 				B58DDAAE21F5F74C005F48AE /* SubscriptionBuyCell.swift */,
 				B58DDAB021F5F7CE005F48AE /* SubscriptionReviewCell.swift */,
+				B50B18E522047693008A2231 /* ColorListCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1180,6 +1196,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B50B18E0220474B0008A2231 /* ColorsList */,
 				B50B18DB22045BB8008A2231 /* NumbersList */,
 				B59D039D21FC6D650048B0AF /* ReorderCollections */,
 				B59D039C21FC6D550048B0AF /* ReorderCards */,
@@ -1858,6 +1875,7 @@
 				B516CA4421EA8C5B0002915F /* AppIcon-10-Preview.png in Resources */,
 				B516CA3321EA8BB70002915F /* AppIcon-3.png in Resources */,
 				B516CA4521EA8C5B0002915F /* AppIcon-11-Preview.png in Resources */,
+				B50B18E2220474C8008A2231 /* ColorsList.storyboard in Resources */,
 				B5A11405200E3112008DBF02 /* Map.storyboard in Resources */,
 				B5A730EB1FF2437C006B6F58 /* saveNewCard.wav in Resources */,
 				B516CA3021EA8BB70002915F /* AppIcon-5.png in Resources */,
@@ -2160,6 +2178,7 @@
 				B5A9D5AC2021FDA0006DFB32 /* PhotoValue+Extensions.swift in Sources */,
 				B5BD3B2A200774C50075C75F /* CriterionTenMergeSection.swift in Sources */,
 				B5D854E81FD041C500BB4E14 /* SettingsNotificationNode.swift in Sources */,
+				B50B18E622047693008A2231 /* ColorListCell.swift in Sources */,
 				B5A11411200F8111008DBF02 /* CriterionThreeAnalyticsSection.swift in Sources */,
 				B5DE2CAD2000EAA900EFBCA5 /* Card+Extensions.swift in Sources */,
 				B5D854ED1FD06CA700BB4E14 /* SelectCardListViewController.swift in Sources */,
@@ -2291,6 +2310,7 @@
 				B587D6B51FB5D157006D62C1 /* SettingsMoreNode.swift in Sources */,
 				B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */,
 				B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */,
+				B50B18E4220474E9008A2231 /* ColorsListViewController.swift in Sources */,
 				B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */,
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,
 				B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */,

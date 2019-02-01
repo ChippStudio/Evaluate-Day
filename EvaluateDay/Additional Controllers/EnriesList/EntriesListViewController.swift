@@ -12,6 +12,7 @@ import AsyncDisplayKit
 class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDelegate {
     
     // MARK: - UI
+    var editButton: UIBarButtonItem!
     var tableNode: ASTableNode!
     
     // MARK: - Variables
@@ -31,8 +32,12 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         self.tableNode = ASTableNode(style: .grouped)
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
-//        self.tableNode.view.separatorStyle = .none
         self.view.addSubnode(self.tableNode)
+        
+        if !self.card.archived {
+            self.editButton = UIBarButtonItem(title: Localizations.General.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
+            self.navigationItem.rightBarButtonItem = self.editButton
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,6 +127,27 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
             return node
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if self.card.archived {
+            return false
+        }
+        
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle != .delete {
+            return
+        }
+        
+        let value = self.nodes[indexPath.section][indexPath.row]
+        try! Database.manager.data.write {
+            value.isDeleted = true
+        }
+        self.nodes[indexPath.section].remove(at: indexPath.row)
+        self.tableNode.reloadSections([indexPath.section], with: .fade)
+    }
 
     // MARK: - ASTableDelegate
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
@@ -144,7 +170,29 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
         header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        self.editButton.title = Localizations.General.done
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath) {
+        self.editButton.title = Localizations.General.edit
+    }
+    
     // MARK: - Private
+    @objc private func editButtonAction(sender: UIBarButtonItem) {
+        let willEdit = !self.tableNode.view.isEditing
+        if willEdit {
+            sender.title = Localizations.General.done
+        } else {
+            sender.title = Localizations.General.edit
+        }
+        self.tableNode.view.setEditing(willEdit, animated: true)
+    }
+    
     private func groupNodes() {
         let entries = (self.card.data as! JournalCard).values.sorted(byKeyPath: "created", ascending: false)
         var currentDate: Date = Date()
