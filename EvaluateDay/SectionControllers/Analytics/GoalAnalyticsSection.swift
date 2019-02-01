@@ -21,6 +21,7 @@ private enum AnalyticsNodeType {
     case proReview
     case average
     case total
+    case more
 }
 
 class GoalAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -55,6 +56,7 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
             }
         }
         self.nodes.append(.barChart)
+        self.nodes.append(.more)
         self.nodes.append(.export)
     }
     
@@ -291,6 +293,11 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
                 }
                 return node
             }
+        case .more:
+            return {
+                let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
+                return node
+            }
         case .export:
             return {
                 let node = AnalyticsExportNode(types: [.csv, .json, .txt], title: Localizations.Analytics.Export.title.uppercased(), action: Localizations.Analytics.Export.action.uppercased())
@@ -333,13 +340,11 @@ class GoalAnalyticsSection: ListSectionController, ASSectionController, Analytic
     }
     
     override func didSelectItem(at index: Int) {
-        if self.nodes[index] == .lineChart {
-            if !Store.current.isPro {
-                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                if let nav = self.viewController?.parent as? UINavigationController {
-                    nav.pushViewController(controller, animated: true)
-                }
-            }
+        if self.nodes[index] == .more {
+            let controller = UIStoryboard(name: Storyboards.numbersList.rawValue, bundle: nil).instantiateInitialViewController() as! NumbersListViewController
+            controller.card = self.card
+            controller.values = (self.card.data as! GoalCard).values.sorted(byKeyPath: "created", ascending: false)
+            self.viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }
     

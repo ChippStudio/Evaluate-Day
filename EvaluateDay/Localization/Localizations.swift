@@ -317,6 +317,8 @@ internal enum Localizations {
   internal enum Analytics {
     /// Analytics
     internal static let action = Localizations.tr("Localizable", "analytics.action")
+    /// Show All Data
+    internal static let allData = Localizations.tr("Localizable", "analytics.allData")
     /// Time Travel
     internal static let timeTravel = Localizations.tr("Localizable", "analytics.timeTravel")
     /// Analytics

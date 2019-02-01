@@ -108,6 +108,7 @@
 
 // MARK: - Analytics
 "analytics.action" = "Analytics";
+"analytics.allData" = "Show All Data";
 "analytics.chart.bar.criterion.title" = "All data";
 "analytics.chart.horizontalBar.criterion.title" = "Number of values";
 "analytics.chart.horizontalBar.criterion.averageTitle" = "Average values by month";

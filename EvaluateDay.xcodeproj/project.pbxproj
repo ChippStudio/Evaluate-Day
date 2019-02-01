@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B50B18D822022799008A2231 /* AnalyticsProReviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */; };
 		B50B18DA2202F6EB008A2231 /* AnalyticsPieChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */; };
+		B50B18DD22045BD1008A2231 /* NumbersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18DC22045BD1008A2231 /* NumbersList.storyboard */; };
+		B50B18DF22045C03008A2231 /* NumbersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18DE22045C03008A2231 /* NumbersListViewController.swift */; };
 		B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE441FEBE57900E7FBEF /* ProLock.swift */; };
 		B50DDE471FEBE62E00E7FBEF /* ProLockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */; };
 		B516B48B20055A2E003A93D9 /* EvaluateDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516B48A20055A2E003A93D9 /* EvaluateDayUITests.swift */; };
@@ -385,6 +387,8 @@
 		94DD3AAE2D688BAF2D7A9AB7 /* Pods-EvaluateDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDay/Pods-EvaluateDay.debug.xcconfig"; sourceTree = "<group>"; };
 		B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProReviewNode.swift; sourceTree = "<group>"; };
 		B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPieChartNode.swift; sourceTree = "<group>"; };
+		B50B18DC22045BD1008A2231 /* NumbersList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NumbersList.storyboard; sourceTree = "<group>"; };
+		B50B18DE22045C03008A2231 /* NumbersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewController.swift; sourceTree = "<group>"; };
 		B50DDE441FEBE57900E7FBEF /* ProLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLock.swift; sourceTree = "<group>"; };
 		B50DDE461FEBE62E00E7FBEF /* ProLockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProLockSection.swift; sourceTree = "<group>"; };
 		B516B48820055A2D003A93D9 /* EvaluateDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaluateDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -824,6 +828,15 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		B50B18DB22045BB8008A2231 /* NumbersList */ = {
+			isa = PBXGroup;
+			children = (
+				B50B18DC22045BD1008A2231 /* NumbersList.storyboard */,
+				B50B18DE22045C03008A2231 /* NumbersListViewController.swift */,
+			);
+			path = NumbersList;
+			sourceTree = "<group>";
+		};
 		B516B48920055A2E003A93D9 /* EvaluateDayUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1180,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B50B18DB22045BB8008A2231 /* NumbersList */,
 				B59D039D21FC6D650048B0AF /* ReorderCollections */,
 				B59D039C21FC6D550048B0AF /* ReorderCards */,
 				B58DDAA921F483C5005F48AE /* AnalyticsPreview */,
@@ -1875,6 +1889,7 @@
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
 				B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
+				B50B18DD22045BD1008A2231 /* NumbersList.storyboard in Resources */,
 				B516CA2C21EA8BB70002915F /* AppIcon-11.png in Resources */,
 				B58DDAAD21F483FA005F48AE /* AnalyticsPreview.storyboard in Resources */,
 				B5899B0921D7AFDE00CF123B /* SplitController.storyboard in Resources */,
@@ -2309,6 +2324,7 @@
 				B58DDAB321F61B3F005F48AE /* ProMoreViewController.swift in Sources */,
 				B5AB1E822018A4E100BB1A64 /* ListCard+Extensions.swift in Sources */,
 				B516CA6721EF31560002915F /* CollectionListSection.swift in Sources */,
+				B50B18DF22045C03008A2231 /* NumbersListViewController.swift in Sources */,
 				B52D26E720175FB800332D0A /* HabitEvaluateSection.swift in Sources */,
 				B593182C1FFAD53A000D8FFE /* CardMergeViewController.swift in Sources */,
 				B5899B1521D7BD8000CF123B /* CollectionCardsObject.swift in Sources */,

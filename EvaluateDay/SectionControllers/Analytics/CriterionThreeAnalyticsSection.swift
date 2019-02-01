@@ -20,6 +20,7 @@ private enum AnalyticsNodeType {
     case horizontalBarChart
     case export
     case proReview
+    case more
 }
 
 class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -51,6 +52,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             self.nodes.append(.horizontalBarChart)
         }
         self.nodes.append(.barChart)
+        self.nodes.append(.more)
         self.nodes.append(.export)
     }
     
@@ -94,10 +96,10 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                     
                     sum += v.value
                 }
-                
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(criterion.values.count))"))
+        
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: self.emogi(forValue: maximum)))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: self.emogi(forValue: minimum)))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: self.emogi(forValue: (sum/Double(criterion.values.count).rounded()))))
             } else {
                 self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
                 self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
@@ -124,28 +126,10 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             return {
                 let node = AnalyticsLineChartNode(title: Localizations.Analytics.Chart.Line.Criterion.title, data: data, options: opt)
                 node.chartStringForYValue = { (_, value, _) in
-                    let index = Int(value)
-                    if index == 0 {
-                        return "🙁"
-                    } else if index == 1 {
-                        return "😐"
-                    } else if index == 2 {
-                        return "🙂"
-                    }
-                    
-                    return ""
+                    return self.emogi(forValue: value)
                 }
                 node.chartYValueSelected = { (_, value, _) in
-                    let index = Int(value)
-                    if index == 0 {
-                        return "🙁"
-                    } else if index == 1 {
-                        return "😐"
-                    } else if index == 2 {
-                        return "🙂"
-                    }
-                    
-                    return Localizations.General.none
+                    return self.emogi(forValue: value)
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -187,28 +171,10 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                     return ""
                 }
                 node.chartStringForYValue = { (node, value, axis) in
-                    let index = Int(value)
-                    if index == 0 {
-                        return "🙁"
-                    } else if index == 1 {
-                        return "😐"
-                    } else if index == 2 {
-                        return "🙂"
-                    }
-                    
-                    return ""
+                    return self.emogi(forValue: value)
                 }
                 node.chartYValueSelected = { (_, value, _) in
-                    let index = Int(value)
-                    if index == 0 {
-                        return "🙁"
-                    } else if index == 1 {
-                        return "😐"
-                    } else if index == 2 {
-                        return "🙂"
-                    }
-                    
-                    return Localizations.General.none
+                    return self.emogi(forValue: value)
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -243,15 +209,7 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                     node.chart.xAxis.labelFont = UIFont.systemFont(ofSize: 16.0, weight: .regular)
                 }
                 node.chartStringForValue = { (node, value, axis) in
-                    if value == 0 {
-                        return "🙁"
-                    } else if value == 1 {
-                        return "😐"
-                    } else if value == 2 {
-                        return "🙂"
-                    }
-                    
-                    return ""
+                    return self.emogi(forValue: value)
                 }
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
@@ -265,6 +223,11 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                 node.didLoadProView = { (pro) in
                     node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
+                return node
+            }
+        case .more:
+            return {
+                let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
                 return node
             }
         case .export:
@@ -309,13 +272,11 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
     }
     
     override func didSelectItem(at index: Int) {
-        if self.nodes[index] == .lineChart {
-            if !Store.current.isPro {
-                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                if let nav = self.viewController?.parent as? UINavigationController {
-                    nav.pushViewController(controller, animated: true)
-                }
-            }
+        if self.nodes[index] == .more {
+            let controller = UIStoryboard(name: Storyboards.numbersList.rawValue, bundle: nil).instantiateInitialViewController() as! NumbersListViewController
+            controller.card = self.card
+            controller.values = (self.card.data as! CriterionThreeCard).values.sorted(byKeyPath: "created", ascending: false)
+            self.viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }
     
@@ -325,6 +286,18 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
             nav.pushViewController(controller, animated: true)
         }
+    }
+    private func emogi(forValue value: Double) -> String {
+        let index = Int(value)
+        if index == 0 {
+            return "🙁"
+        } else if index == 1 {
+            return "😐"
+        } else if index == 2 {
+            return "🙂"
+        }
+        
+        return "\(value)"
     }
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
