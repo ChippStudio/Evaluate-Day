@@ -129,7 +129,8 @@
 "analytics.habit.marks" = "Marks";
 "analytics.journal.barEntries" = "Number of entries by day";
 "analytics.journal.near" = "Nearest entries";
-"analytics.journal.viewAll" = "View all";
+"analytics.journal.viewAll" = "View all entries";
+"analytics.journal.viewAllPhotos" = "View all photos";
 "analytics.list.items" = "Items";
 "analytics.list.itemsDone" = "Done";
 "analytics.list.percent" = "Percent";

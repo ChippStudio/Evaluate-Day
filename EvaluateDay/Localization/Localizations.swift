@@ -408,8 +408,10 @@ internal enum Localizations {
       internal static let barEntries = Localizations.tr("Localizable", "analytics.journal.barEntries")
       /// Nearest entries
       internal static let near = Localizations.tr("Localizable", "analytics.journal.near")
-      /// View all
+      /// View all entries
       internal static let viewAll = Localizations.tr("Localizable", "analytics.journal.viewAll")
+      /// View all photos
+      internal static let viewAllPhotos = Localizations.tr("Localizable", "analytics.journal.viewAllPhotos")
     }
     internal enum List {
       /// Items

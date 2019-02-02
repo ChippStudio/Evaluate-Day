@@ -22,6 +22,7 @@ private enum AnalyticsNodeType {
     case viewAll
     case export
     case proReview
+    case allPhotos
 }
 
 class JournalAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection, FSCalendarDelegate, FSCalendarDelegateAppearance, MKMapViewDelegate {
@@ -53,6 +54,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         self.nodes.append(.calendar)
         self.nodes.append(.bar)
         self.nodes.append(.viewAll)
+        self.nodes.append(.allPhotos)
         self.nodes.append(.export)
     }
     
@@ -226,8 +228,13 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .viewAll:
             return {
-                let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll)
-                node.topInset = 20.0
+//                let node = SettingsProButtonNode(title: Localizations.Analytics.Journal.viewAll)
+                let node = SettingsMoreNode(title: Localizations.Analytics.Journal.viewAll, subtitle: nil, image: nil)
+                return node
+            }
+        case .allPhotos:
+            return {
+                let node = SettingsMoreNode(title: Localizations.Analytics.Journal.viewAllPhotos, subtitle: nil, image: nil)
                 return node
             }
         case .proReview:
@@ -287,20 +294,10 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             if let nav = self.viewController?.parent as? UINavigationController {
                 nav.pushViewController(controller, animated: true)
             }
-        } else if self.nodes[index] == .calendar {
-            if !Store.current.isPro {
-                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                if let nav = self.viewController?.parent as? UINavigationController {
-                    nav.pushViewController(controller, animated: true)
-                }
-            }
-        } else if self.nodes[index] == .bar {
-            if !Store.current.isPro {
-                let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                if let nav = self.viewController?.parent as? UINavigationController {
-                    nav.pushViewController(controller, animated: true)
-                }
-            }
+        } else if self.nodes[index] == .allPhotos {
+            let controller = UIStoryboard(name: Storyboards.journalGallery.rawValue, bundle: nil).instantiateInitialViewController() as! JournalGalleryViewController
+            controller.card = self.card
+            self.viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }
     

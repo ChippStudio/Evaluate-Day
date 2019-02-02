@@ -371,6 +371,9 @@
 		B5F597761FBDA1AB0098A071 /* AnalyticsStatisticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */; };
 		B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */; };
 		B5F5977A1FBDBD080098A071 /* AnalyticsBarChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */; };
+		B5F5BFA52205DCCB00D566AA /* JournalGallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F5BFA42205DCCB00D566AA /* JournalGallery.storyboard */; };
+		B5F5BFA72205DD0000D566AA /* JournalGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5BFA62205DD0000D566AA /* JournalGalleryViewController.swift */; };
+		B5F5BFA92205E01000D566AA /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5BFA82205E01000D566AA /* GalleryCell.swift */; };
 		B5FD38DD1FD940EA0071B1F0 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD38DC1FD940EA0071B1F0 /* EmptyView.swift */; };
 		B5FFDD4B201B8416008D0365 /* WeatherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4A201B8416008D0365 /* WeatherValue.swift */; };
 		B5FFDD4D201B8429008D0365 /* PhotoValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4C201B8429008D0365 /* PhotoValue.swift */; };
@@ -766,6 +769,9 @@
 		B5F597751FBDA1AB0098A071 /* AnalyticsStatisticNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsStatisticNode.swift; sourceTree = "<group>"; };
 		B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLineChartNode.swift; sourceTree = "<group>"; };
 		B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsBarChartNode.swift; sourceTree = "<group>"; };
+		B5F5BFA42205DCCB00D566AA /* JournalGallery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JournalGallery.storyboard; sourceTree = "<group>"; };
+		B5F5BFA62205DD0000D566AA /* JournalGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalGalleryViewController.swift; sourceTree = "<group>"; };
+		B5F5BFA82205E01000D566AA /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		B5FD38DC1FD940EA0071B1F0 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B5FFDD4A201B8416008D0365 /* WeatherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherValue.swift; sourceTree = "<group>"; };
 		B5FFDD4C201B8429008D0365 /* PhotoValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoValue.swift; sourceTree = "<group>"; };
@@ -966,6 +972,7 @@
 				B50B18E522047693008A2231 /* ColorListCell.swift */,
 				B50B18EC22047E7E008A2231 /* MarkListCell.swift */,
 				B50B18EE22048848008A2231 /* LocationListCell.swift */,
+				B5F5BFA82205E01000D566AA /* GalleryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1228,6 +1235,7 @@
 		B5A0CFDF1FAF8D9B002B1636 /* Additional Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5F5BFA32205DCB500D566AA /* JournalGallery */,
 				B50B18F022048865008A2231 /* LocationsList */,
 				B50B18E722047B89008A2231 /* MarksList */,
 				B50B18E0220474B0008A2231 /* ColorsList */,
@@ -1772,6 +1780,15 @@
 			path = Phrases;
 			sourceTree = "<group>";
 		};
+		B5F5BFA32205DCB500D566AA /* JournalGallery */ = {
+			isa = PBXGroup;
+			children = (
+				B5F5BFA42205DCCB00D566AA /* JournalGallery.storyboard */,
+				B5F5BFA62205DD0000D566AA /* JournalGalleryViewController.swift */,
+			);
+			path = JournalGallery;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1966,6 +1983,7 @@
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
 				B516CA2E21EA8BB70002915F /* AppIcon-4.png in Resources */,
 				B59DA063211D66D500A9FCFB /* Share.storyboard in Resources */,
+				B5F5BFA52205DCCB00D566AA /* JournalGallery.storyboard in Resources */,
 				B5A5916121D8FB620026FD84 /* Cards.xcassets in Resources */,
 				B5D854EB1FD06C8000BB4E14 /* SelectCardList.storyboard in Resources */,
 				B50B18E922047BC5008A2231 /* MarksList.storyboard in Resources */,
@@ -2309,6 +2327,7 @@
 				B5B27EA21F9DC5BB00CB9121 /* CardSettingsViewController.swift in Sources */,
 				B5D854D01FCEB6AE00BB4E14 /* Enums.swift in Sources */,
 				B5DE2CB32001003B00EFBCA5 /* NumberValue+Extensions.swift in Sources */,
+				B5F5BFA92205E01000D566AA /* GalleryCell.swift in Sources */,
 				B5693EF2202462F100B8879C /* JournalNewEntryActionNode.swift in Sources */,
 				B57F45CC20E675D900672FD6 /* secret.swift in Sources */,
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
@@ -2431,6 +2450,7 @@
 				B55D328A20790B4400BD1E75 /* TrackerMergeSection.swift in Sources */,
 				B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */,
 				B55464D3202743FF00923CE3 /* JournalEntryNode.swift in Sources */,
+				B5F5BFA72205DD0000D566AA /* JournalGalleryViewController.swift in Sources */,
 				B52D26DF20174A0E00332D0A /* HabitCard+Extensions.swift in Sources */,
 				B560DB3F211B575C00378AD8 /* CardSettingsDeleteObject.swift in Sources */,
 				B5257D441FE91C1300AC54DE /* WebViewController.swift in Sources */,

@@ -20,6 +20,7 @@ class ImagesNode: ASCellNode {
     var didSelectPhotoAction: ((_ index: Int) -> Void)?
     var didSelectCameraAction: ((_ index: Int) -> Void)?
     var didSelectDeletePhotoAction: ((_ index: Int) -> Void)?
+    var didSelectImage: ((_ index: Int) -> Void)?
     
     // MARK: - Init
     init(images: [UIImage]) {
@@ -41,7 +42,14 @@ class ImagesNode: ASCellNode {
             button.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
             button.addTarget(self, action: #selector(self.photoDeleteAction(sender:)), forControlEvents: .touchUpInside)
             
-            let im = ImagePresenterNode(image: image, button: button)
+            let selectButton = ASButtonNode()
+            selectButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.Entry.viewPhoto
+            OperationQueue.main.addOperation {
+                selectButton.view.tag = i
+            }
+            selectButton.addTarget(self, action: #selector(self.selectPhotoAction(sender:)), forControlEvents: .touchUpInside)
+            
+            let im = ImagePresenterNode(image: image, button: button, selectButton: selectButton)
             im.style.preferredSize = CGSize(width: 80.0, height: 80.0)
             
             self.imageNodes.append(im)
@@ -115,6 +123,10 @@ class ImagesNode: ASCellNode {
     @objc func photoDeleteAction(sender: ASButtonNode) {
         self.didSelectDeletePhotoAction?(sender.view.tag)
     }
+    
+    @objc func selectPhotoAction(sender: ASButtonNode) {
+        self.didSelectImage?(sender.view.tag)
+    }
 }
 
 private class ImagePresenterNode: ASDisplayNode {
@@ -123,9 +135,10 @@ private class ImagePresenterNode: ASDisplayNode {
     var deleteButton = ASButtonNode()
     var buttonCover = ASDisplayNode()
     var imageNode = ASImageNode()
+    var selectButton = ASButtonNode()
     
     // MARK: - Init
-    init(image: UIImage, button: ASButtonNode) {
+    init(image: UIImage, button: ASButtonNode, selectButton: ASButtonNode) {
         super.init()
         self.imageNode.image = image
         self.imageNode.style.preferredSize = CGSize(width: 80.0, height: 80.0)
@@ -133,6 +146,7 @@ private class ImagePresenterNode: ASDisplayNode {
         self.imageNode.cornerRadius = 40.0
         
         self.deleteButton = button
+        self.selectButton = selectButton
         
         self.buttonCover.backgroundColor = UIColor.selected
         self.buttonCover.cornerRadius = 27/2
@@ -147,7 +161,9 @@ private class ImagePresenterNode: ASDisplayNode {
         
         let relative = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .start, sizingOption: [], child: fullButton)
         
-        let back = ASBackgroundLayoutSpec(child: relative, background: self.imageNode)
+        let imageButton = ASBackgroundLayoutSpec(child: self.selectButton, background: self.imageNode)
+        
+        let back = ASBackgroundLayoutSpec(child: relative, background: imageButton)
         
         return back
     }
