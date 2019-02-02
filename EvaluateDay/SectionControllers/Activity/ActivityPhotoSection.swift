@@ -70,7 +70,7 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
         }
         if index == 0 {
             return {
-                let node = TitleNode(title: Localizations.Activity.Gallery.title, subtitle: subtitle, image: #imageLiteral(resourceName: "gallery"))
+                let node = TitleNode(title: Localizations.Activity.Gallery.title, subtitle: subtitle, image: Images.Media.imagePlaceholder.image)
                 return node
             }
         }

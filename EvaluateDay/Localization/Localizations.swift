@@ -257,6 +257,14 @@ internal enum Localizations {
         /// Statistics of launches
         internal static let title = Localizations.tr("Localizable", "activity.analytics.barchart.title")
       }
+      internal enum HorizontalBarchart {
+        /// Total launches by month
+        internal static let title = Localizations.tr("Localizable", "activity.analytics.horizontalBarchart.title")
+      }
+      internal enum Linechart {
+        /// Launches
+        internal static let title = Localizations.tr("Localizable", "activity.analytics.linechart.title")
+      }
       internal enum Stat {
         /// Days
         internal static let alldays = Localizations.tr("Localizable", "activity.analytics.stat.alldays")

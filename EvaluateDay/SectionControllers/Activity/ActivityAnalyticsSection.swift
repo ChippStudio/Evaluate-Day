@@ -15,6 +15,8 @@ import RealmSwift
 private enum NodeType {
     case bar
     case stat
+    case line
+    case startsSum
 }
 
 class ActivityAnalyticsSection: ListSectionController, ASSectionController {
@@ -45,6 +47,10 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
         }
         
         self.nodes.append(.stat)
+        if Store.current.isPro {
+            self.nodes.append(.line)
+            self.nodes.append(.startsSum)
+        }
         self.nodes.append(.bar)
     }
     // MARK: - Override
@@ -54,9 +60,9 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let item = self.nodes[index]
-        var distance = Localizations.General.last7
+        var distance = Localizations.Activity.Analytics.Barchart.title + "\n\(Localizations.General.last7)"
         if isPro {
-            distance = Localizations.General.lifetime
+            distance = Localizations.Activity.Analytics.Barchart.title
         }
         switch item {
         case .bar:
@@ -77,7 +83,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             opt?[.yLineNumber] = 5
             opt?[.positive] = true
             return {
-                let node = AnalyticsBarChartNode(title: Localizations.Activity.Analytics.Barchart.title + "\n(\(distance))", data: data, options: opt)
+                let node = AnalyticsBarChartNode(title: distance, data: data, options: opt)
                 node.chartStringForXValue = { (node, value, axis) in
                     let index = Int(value)
                     if index >= data.count {
@@ -93,6 +99,74 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
                     
                     return ""
                 }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
+        case .startsSum:
+            var data = [BarChartDataEntry]()
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            let firstStart = Database.manager.application.firstStartDate
+            var runDate = firstStart
+            var barIndex: Double = 0.0
+            let currentMonthEnd = Calendar.current.dateInterval(of: .month, for: Date())!.end
+            while currentMonthEnd.timeIntervalSince1970 > runDate.timeIntervalSince1970 {
+                let monthInterval = Calendar.current.dateInterval(of: .month, for: runDate)!
+                let monthValues = Database.manager.app.objects(AppUsage.self).filter("(date >= %@) AND (date <= %@)", monthInterval.start, monthInterval.end)
+                if monthValues.count != 0 {
+                    let total = monthValues.count
+                    let barEntry = BarChartDataEntry(x: barIndex, y:  Double(total), data: monthInterval.start as AnyObject)
+                    data.append(barEntry)
+                    barIndex += 1
+                }
+                
+                var components = DateComponents()
+                components.month = 1
+                
+                let newRunDate = Calendar.current.date(byAdding: components, to: runDate)!
+                runDate = newRunDate
+            }
+            
+            opt?[.yLineNumber] = data.count
+            return {
+                let node = AnalyticsHorizontalBarChartNode(title: Localizations.Activity.Analytics.HorizontalBarchart.title, data: data, options: opt)
+                node.format = "%.0f"
+                node.chartStringForValue = { (_, value, _) in
+                    if Int(value) >= data.count {
+                        return "WTF"
+                    }
+                    let entry = data[Int(value)]
+                    if let date = entry.data as? Date {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM YYYY"
+                        return dateFormatter.string(from: date)
+                    }
+                    return ""
+                }
+                node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
+                OperationQueue.main.addOperation {
+                    node.shareButton.view.tag = index
+                }
+                return node
+            }
+        case .line:
+            var data = [ChartDataEntry]()
+            var opt: [AnalyticsChartNodeOptionsKey: Any]? = [.uppercaseTitle: true]
+            opt?[.yLineNumber] = 5
+            
+            let maxCount = Database.manager.application.firstStartDate.days(to: Date().end)
+            var components = DateComponents()
+            for i in 0...maxCount {
+                components.day = -(maxCount - i)
+                let currentDate = Calendar.current.date(byAdding: components, to: Date())!
+                let stat = Database.manager.app.objects(AppUsage.self).filter("(date >= %@) AND (date <= %@)", currentDate.start, currentDate.end)
+                let newData = ChartDataEntry(x: currentDate.timeIntervalSince1970, y: Double(stat.count), data: currentDate as AnyObject)
+                data.append(newData)
+            }
+            return {
+                let node = AnalyticsLineChartNode(title: Localizations.Activity.Analytics.Linechart.title, data: data, options: opt)
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

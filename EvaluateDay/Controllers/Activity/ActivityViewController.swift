@@ -144,6 +144,7 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
             return section
         } else if object is ActivityPhotoObject {
             let section = ActivityPhotoSection()
+            section.inset = UIEdgeInsets(top: 70.0, left: 0.0, bottom: 0.0, right: 0.0)
             return section
         }
         

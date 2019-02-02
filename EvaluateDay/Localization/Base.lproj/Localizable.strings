@@ -83,6 +83,8 @@
 
 // MARK: - Activity
 "activity.analytics.barchart.title" = "Statistics of launches";
+"activity.analytics.linechart.title" = "Launches";
+"activity.analytics.horizontalBarchart.title" = "Total launches by month";
 "activity.analytics.stat.alldays" = "Days";
 "activity.analytics.stat.archived" = "Archived";
 "activity.analytics.stat.cards" = "Cards";
