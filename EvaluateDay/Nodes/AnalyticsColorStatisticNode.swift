@@ -13,6 +13,7 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
     
     // MARK: - UI
     var stats: ASDisplayNode!
+    var emptyImageNode: ASImageNode!
     
     // MARK: - Variables
     var collectionView: UICollectionView!
@@ -23,6 +24,13 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         super.init()
         
         self.data = data
+        
+        if data.isEmpty {
+            self.emptyImageNode = ASImageNode()
+            self.emptyImageNode.contentMode = .center
+            self.emptyImageNode.image = UIImage(named: "empty\(3.random)")?.resizedImage(newSize: CGSize(width: 60.0, height: 60.0))
+            self.emptyImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        }
         
         self.stats = ASDisplayNode(viewBlock: { () -> UIView in
             let layout = UICollectionViewFlowLayout()
@@ -53,7 +61,12 @@ class AnalyticsColorStatisticNode: ASCellNode, UICollectionViewDataSource, UICol
         self.stats.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 60.0)
         
         let cell = ASStackLayoutSpec.vertical()
-        cell.children = [self.stats]
+        if self.emptyImageNode != nil {
+            self.emptyImageNode.style.preferredSize.height = 60
+            cell.children = [self.emptyImageNode]
+        } else {
+            cell.children = [self.stats]
+        }
         
         let cellInsets = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

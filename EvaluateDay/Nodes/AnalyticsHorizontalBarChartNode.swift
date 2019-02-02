@@ -17,6 +17,7 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
     var chartNode: ASDisplayNode!
     var titleNode = ASTextNode()
     var shareButton = ASButtonNode()
+    var emptyImageNode: ASImageNode!
     
     // MARK: - Variable
     var format = "%.0f"
@@ -43,6 +44,13 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
         self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        
+        if data.isEmpty {
+            self.emptyImageNode = ASImageNode()
+            self.emptyImageNode.contentMode = .center
+            self.emptyImageNode.image = UIImage(named: "empty\(3.random)")?.resizedImage(newSize: CGSize(width: 70.0, height: 70.0))
+            self.emptyImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        }
         
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.chart = HorizontalBarChartView(frame: CGRect.zero)
@@ -108,7 +116,13 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
         let topInset = ASInsetLayoutSpec(insets: topInsets, child: topStack)
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 10.0
-        cell.children = [topInset, self.chartNode]
+        cell.children = [topInset]
+        if self.emptyImageNode != nil {
+            self.emptyImageNode.style.preferredSize.height = 70.0
+            cell.children?.append(self.emptyImageNode)
+        } else {
+            cell.children?.append(self.chartNode)
+        }
         
         let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

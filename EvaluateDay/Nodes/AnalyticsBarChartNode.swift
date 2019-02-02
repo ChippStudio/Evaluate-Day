@@ -18,6 +18,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     var shareButton = ASButtonNode()
     var valueNode = ASTextNode()
     var date = ASTextNode()
+    var emptyImageNode: ASImageNode!
     
     private var dataAndDateAccessibility = ASDisplayNode()
     
@@ -84,6 +85,13 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         }
         self.valueAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedStringKey.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
+        
+        if data.isEmpty {
+            self.emptyImageNode = ASImageNode()
+            self.emptyImageNode.contentMode = .center
+            self.emptyImageNode.image = UIImage(named: "empty\(3.random)")?.resizedImage(newSize: CGSize(width: 200.0, height: 200.0))
+            self.emptyImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        }
         
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.chart = BarChartView()
@@ -180,7 +188,13 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
         
         self.chartNode.style.preferredSize.height = 200.0
         let cell = ASStackLayoutSpec.vertical()
-        cell.children = [topInset, self.chartNode]
+        cell.children = [topInset]
+        if self.emptyImageNode != nil {
+            self.emptyImageNode.style.preferredSize.height = 200.0
+            cell.children?.append(self.emptyImageNode)
+        } else {
+            cell.children?.append(self.chartNode)
+        }
         
         let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)

@@ -17,6 +17,7 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
     var chartNode: ASDisplayNode!
     var titleNode = ASTextNode()
     var shareButton = ASButtonNode()
+    var emptyImageNode: ASImageNode!
     
     // MARK: - Variable
     var chartDidLoad: (() -> Void)?
@@ -42,6 +43,13 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
         self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        
+        if data.isEmpty {
+            self.emptyImageNode = ASImageNode()
+            self.emptyImageNode.contentMode = .center
+            self.emptyImageNode.image = UIImage(named: "empty\(3.random)")?.resizedImage(newSize: CGSize(width: 250.0, height: 250.0))
+            self.emptyImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
+        }
         
         self.chartNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.chart = PieChartView()
@@ -84,12 +92,18 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
         let topStack = ASStackLayoutSpec.vertical()
         topStack.children = [titleAndShare]
         
-        self.chartNode.style.preferredSize.height = constrainedSize.max.width //400.0
+        self.chartNode.style.preferredSize.height = constrainedSize.max.width
         let topInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 5.0, right: 10.0)
         let topInset = ASInsetLayoutSpec(insets: topInsets, child: topStack)
         let cell = ASStackLayoutSpec.vertical()
         cell.spacing = 10.0
-        cell.children = [topInset, self.chartNode]
+        cell.children = [topInset]
+        if self.emptyImageNode != nil {
+            self.emptyImageNode.style.preferredSize.height = constrainedSize.max.width
+            cell.children?.append(self.emptyImageNode)
+        } else {
+            cell.children?.append(self.chartNode)
+        }
         
         let cellInsets = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 20.0, right: 0.0)
         let cellInset = ASInsetLayoutSpec(insets: cellInsets, child: cell)
