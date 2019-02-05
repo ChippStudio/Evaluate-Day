@@ -12,7 +12,7 @@ import AsyncDisplayKit
 import Branch
 import RealmSwift
 
-class PhraseEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextTopViewControllerDelegate {
+class PhraseEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextViewControllerDelegate {
     // MARK: - Variable
     var card: Card!
     var date: Date!
@@ -112,8 +112,8 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     override func didSelectItem(at index: Int) {
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         let phraseCard = self.card.data as! PhraseCard
         if phraseCard.realm != nil {
             if let value = phraseCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
@@ -143,10 +143,10 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
     }
     
     @objc private func editTextAction(sender: ASButtonNode) {
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.delegate = self
         if let value = (self.card.data as! PhraseCard).values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
-            controller.textView.text = value.text
+            controller.text = value.text
         }
         
         //Feedback

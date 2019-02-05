@@ -12,7 +12,7 @@ import AsyncDisplayKit
 import RealmSwift
 import Branch
 
-class HabitEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextTopViewControllerDelegate {
+class HabitEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextViewControllerDelegate {
     // MARK: - Variables
     var card: Card!
     var date: Date! {
@@ -142,8 +142,8 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     override func didSelectItem(at index: Int) {
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if property == "" {
             let value = MarkValue()
             value.owner = self.card.id
@@ -196,7 +196,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         if !habitCard.multiple && habitCard.values.filter("(created >= %@) AND (created <= %@) AND (isDeleted=%@)", self.date.start, self.date.end, false).count > 0 {
             return
         }
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.property = ""
         controller.delegate = self
         self.viewController?.present(controller, animated: true, completion: nil)
@@ -220,9 +220,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
     }
     @objc private func editCommentAction(sender: ASButtonNode) {
         let item = self.comments[sender.view.tag]
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.delegate = self
-        controller.textView.text = item.text
+        controller.text = item.text
         controller.property = item.id
         self.viewController?.present(controller, animated: true, completion: nil)
     }

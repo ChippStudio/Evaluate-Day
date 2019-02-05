@@ -11,7 +11,7 @@ import IGListKit
 import AsyncDisplayKit
 import Branch
 
-class GoalEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextTopViewControllerDelegate {
+class GoalEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextViewControllerDelegate {
     // MARK: - Variables
     var card: Card!
     var date: Date!
@@ -131,8 +131,8 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
     override func didSelectItem(at index: Int) {
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if let value = Double(text) {
             let goalCard = self.card.data as! GoalCard
             if let currentValue = goalCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
@@ -212,7 +212,7 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         }, completion: nil)
     }
     @objc private func customValueButtonAction(sender: ASButtonNode) {
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.onlyNumbers = true
         controller.delegate = self
         

@@ -123,7 +123,7 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Tracker.Calendar.title.uppercased(), isPro: true)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Tracker.Calendar.title.uppercased())
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

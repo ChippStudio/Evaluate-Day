@@ -11,7 +11,7 @@ import IGListKit
 import AsyncDisplayKit
 import RealmSwift
 
-class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextTopViewControllerDelegate {
+class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextViewControllerDelegate {
     // MARK: - UI
     var collectionNode: ASCollectionNode!
     var saveButton: UIBarButtonItem!
@@ -114,10 +114,10 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
                 let controller = editObject.sectionController
                 if var cntr = controller as? EditableSection {
                     cntr.setTextHandler = { (description, property, oldText) in
-                        let textController = TextTopViewController()
-                        textController.titleLabel.text = description.uppercased()
+                        let textController = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+                        textController.titleText = description.uppercased()
                         textController.property = property
-                        textController.textView.text = oldText
+                        textController.text = oldText
                         textController.delegate = self
                         self.present(textController, animated: true, completion: nil)
                     }
@@ -155,8 +155,8 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextT
         return nil
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if self.card.realm != nil {
             try! Database.manager.data.write {
                 self.card[property] = text

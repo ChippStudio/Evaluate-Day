@@ -199,8 +199,7 @@
 		B5A0CFDA1FAC6018002B1636 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFD91FAC6018002B1636 /* Sections.swift */; };
 		B5A0CFDC1FAC6D55002B1636 /* CardSettingsBooleanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */; };
 		B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */; };
-		B5A0CFE31FAF8DDA002B1636 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFE21FAF8DDA002B1636 /* TopViewController.swift */; };
-		B5A0CFE51FAF90BC002B1636 /* TextTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFE41FAF90BC002B1636 /* TextTopViewController.swift */; };
+		B5A0CFE51FAF90BC002B1636 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFE41FAF90BC002B1636 /* TextViewController.swift */; };
 		B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */; };
 		B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */; };
 		B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */; };
@@ -217,7 +216,6 @@
 		B5A11415200F8264008DBF02 /* CriterionThreeEditSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A11414200F8264008DBF02 /* CriterionThreeEditSection.swift */; };
 		B5A11417200F82ED008DBF02 /* CriterionThreeMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A11416200F82ED008DBF02 /* CriterionThreeMergeSection.swift */; };
 		B5A1B0DE1FB9ADF0003D9E81 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1B0DD1FB9ADF0003D9E81 /* Transition.swift */; };
-		B5A1B0E21FBAC7D8003D9E81 /* TopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1B0E11FBAC7D8003D9E81 /* TopTransition.swift */; };
 		B5A1B0E41FBACBBF003D9E81 /* BottomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1B0E31FBACBBF003D9E81 /* BottomTransition.swift */; };
 		B5A1B0E61FBACF0B003D9E81 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */; };
 		B5A226BD20FCAE530060538F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B5A226BF20FCAE530060538F /* Localizable.stringsdict */; };
@@ -240,6 +238,8 @@
 		B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5A730E71FF2437C006B6F58 /* selectValue.wav */; };
 		B5A730F01FF2437C006B6F58 /* evaluateButton.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5A730E81FF2437C006B6F58 /* evaluateButton.wav */; };
 		B5A730F21FF244A0006B6F58 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A730F11FF244A0006B6F58 /* CloudKit.framework */; };
+		B5A85ED12209A1DD00BF2AC6 /* TextControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */; };
+		B5A85ED32209BEEE00BF2AC6 /* Text.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A85ED22209BEEE00BF2AC6 /* Text.storyboard */; };
 		B5A9D5A6201F00F8006DFB32 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A5201F00F8006DFB32 /* JournalCard.swift */; };
 		B5A9D5A8201F01E6006DFB32 /* JournalCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */; };
 		B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */; };
@@ -591,8 +591,7 @@
 		B5A0CFD91FAC6018002B1636 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsBooleanNode.swift; sourceTree = "<group>"; };
 		B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
-		B5A0CFE21FAF8DDA002B1636 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
-		B5A0CFE41FAF90BC002B1636 /* TextTopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTopViewController.swift; sourceTree = "<group>"; };
+		B5A0CFE41FAF90BC002B1636 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderBottomViewController.swift; sourceTree = "<group>"; };
 		B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionEvaluateNode.swift; sourceTree = "<group>"; };
@@ -609,7 +608,6 @@
 		B5A11414200F8264008DBF02 /* CriterionThreeEditSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionThreeEditSection.swift; sourceTree = "<group>"; };
 		B5A11416200F82ED008DBF02 /* CriterionThreeMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionThreeMergeSection.swift; sourceTree = "<group>"; };
 		B5A1B0DD1FB9ADF0003D9E81 /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
-		B5A1B0E11FBAC7D8003D9E81 /* TopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTransition.swift; sourceTree = "<group>"; };
 		B5A1B0E31FBACBBF003D9E81 /* BottomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTransition.swift; sourceTree = "<group>"; };
 		B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B5A226C020FCAEA30060538F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -635,6 +633,8 @@
 		B5A730E71FF2437C006B6F58 /* selectValue.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = selectValue.wav; sourceTree = "<group>"; };
 		B5A730E81FF2437C006B6F58 /* evaluateButton.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = evaluateButton.wav; sourceTree = "<group>"; };
 		B5A730F11FF244A0006B6F58 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextControllerTransition.swift; sourceTree = "<group>"; };
+		B5A85ED22209BEEE00BF2AC6 /* Text.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Text.storyboard; sourceTree = "<group>"; };
 		B5A9D5A5201F00F8006DFB32 /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
 		B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JournalCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherValue+Extensions.swift"; sourceTree = "<group>"; };
@@ -1259,20 +1259,20 @@
 				B5D854E01FD0158300BB4E14 /* Repeat */,
 				B5D854C81FCDAA5D00BB4E14 /* Passcode */,
 				B59D03A621FC71C80048B0AF /* OverrideNavigationController */,
-				B5A0CFE01FAF8DB6002B1636 /* Top */,
+				B5A0CFE01FAF8DB6002B1636 /* TextViewController */,
 				B5A0CFE11FAF8DC3002B1636 /* Bottom */,
 				B5A1B0DC1FB9ADC4003D9E81 /* Transitions */,
 			);
 			path = "Additional Controllers";
 			sourceTree = "<group>";
 		};
-		B5A0CFE01FAF8DB6002B1636 /* Top */ = {
+		B5A0CFE01FAF8DB6002B1636 /* TextViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B5A0CFE21FAF8DDA002B1636 /* TopViewController.swift */,
-				B5A0CFE41FAF90BC002B1636 /* TextTopViewController.swift */,
+				B5A85ED22209BEEE00BF2AC6 /* Text.storyboard */,
+				B5A0CFE41FAF90BC002B1636 /* TextViewController.swift */,
 			);
-			path = Top;
+			path = TextViewController;
 			sourceTree = "<group>";
 		};
 		B5A0CFE11FAF8DC3002B1636 /* Bottom */ = {
@@ -1341,8 +1341,8 @@
 			isa = PBXGroup;
 			children = (
 				B5A1B0DD1FB9ADF0003D9E81 /* Transition.swift */,
-				B5A1B0E11FBAC7D8003D9E81 /* TopTransition.swift */,
 				B5A1B0E31FBACBBF003D9E81 /* BottomTransition.swift */,
+				B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */,
 				B584E0D81FE299C7008093D5 /* WelcomeTransition.swift */,
 				B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */,
 			);
@@ -1955,6 +1955,7 @@
 				B5693EF520246EE900B8879C /* Entry.storyboard in Resources */,
 				B55464E42029CEC000923CE3 /* EntriesList.storyboard in Resources */,
 				B5A730EF1FF2437C006B6F58 /* selectValue.wav in Resources */,
+				B5A85ED32209BEEE00BF2AC6 /* Text.storyboard in Resources */,
 				B5B27E931F9DC44900CB9121 /* Analytics.storyboard in Resources */,
 				B516CA4E21EA8C5B0002915F /* AppIcon-4-Preview.png in Resources */,
 				B5A730E91FF2437C006B6F58 /* deleteCard.wav in Resources */,
@@ -2197,7 +2198,7 @@
 				B516CA6321EE1FDB0002915F /* SpaceNode.swift in Sources */,
 				B5C757421F9F33660032199E /* ColorEvaluateNode.swift in Sources */,
 				B5C7573D1F9DF8870032199E /* ColorCard.swift in Sources */,
-				B5A0CFE51FAF90BC002B1636 /* TextTopViewController.swift in Sources */,
+				B5A0CFE51FAF90BC002B1636 /* TextViewController.swift in Sources */,
 				B5A1140D200F79E6008DBF02 /* CriterionThreeEvaluateSection.swift in Sources */,
 				B5A9D5A8201F01E6006DFB32 /* JournalCard+Extensions.swift in Sources */,
 				B5970F1321F109C3000B0BAA /* TextFieldTableViewCell.swift in Sources */,
@@ -2332,6 +2333,7 @@
 				B57F45CC20E675D900672FD6 /* secret.swift in Sources */,
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
 				B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */,
+				B5A85ED12209A1DD00BF2AC6 /* TextControllerTransition.swift in Sources */,
 				B52D26ED2017648700332D0A /* HabitAnalyticsSection.swift in Sources */,
 				B50B18EB22047C06008A2231 /* MarksListViewController.swift in Sources */,
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
@@ -2349,7 +2351,6 @@
 				B5DE2CAB2000DDA300EFBCA5 /* NumberValue.swift in Sources */,
 				B5AB1E972019D0C500BB1A64 /* ListViewController.swift in Sources */,
 				B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */,
-				B5A1B0E21FBAC7D8003D9E81 /* TopTransition.swift in Sources */,
 				B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */,
 				B516CA6121EDD7130002915F /* ImagesNode.swift in Sources */,
 				B55464D92028607500923CE3 /* JournalMergeSection.swift in Sources */,
@@ -2443,7 +2444,6 @@
 				B59F9F4A211AD46700A59516 /* SeparatorNode.swift in Sources */,
 				B5BD3B4F2009F98D0075C75F /* CheckInPermissionNode.swift in Sources */,
 				B5D854BD1FCCB93A00BB4E14 /* SettingsNotificationViewController.swift in Sources */,
-				B5A0CFE31FAF8DDA002B1636 /* TopViewController.swift in Sources */,
 				B5A9D5A6201F00F8006DFB32 /* JournalCard.swift in Sources */,
 				B5D854BF1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift in Sources */,
 				B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */,

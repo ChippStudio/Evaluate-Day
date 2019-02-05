@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import AsyncDisplayKit
 
-class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, TextTopViewControllerDelegate {
+class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, TextViewControllerDelegate {
 
     // MARK: - UI
     var tableNode: ASTableNode!
@@ -197,15 +197,15 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
             item = self.done[indexPath.row]
         }
         
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.property = item.id
-        controller.textView.text = item.text
+        controller.text = item.text
         controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if property == "" {
             let newValue = MarkValue()
             newValue.owner = self.card.id
@@ -232,7 +232,7 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
     }
     
     @objc func newItemButtonAction(sender: UIBarButtonItem) {
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.delegate = self
         controller.property = ""
         self.present(controller, animated: true, completion: nil)

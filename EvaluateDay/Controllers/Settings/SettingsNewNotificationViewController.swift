@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import UserNotifications
 
-class SettingsNewNotificationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TextTopViewControllerDelegate, SelectCardListViewControllerDelegate, TimeBottomViewControllerDelegate {
+class SettingsNewNotificationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TextViewControllerDelegate, SelectCardListViewControllerDelegate, TimeBottomViewControllerDelegate {
 
     // MARK: - UI
     @IBOutlet weak var tableView: UITableView!
@@ -185,10 +185,10 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            let controller = TextTopViewController()
-            controller.titleLabel.text = Localizations.Settings.Notifications.New.message
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+            controller.titleText = Localizations.Settings.Notifications.New.message
             if self.notification.message != Localizations.Settings.Notifications.New.defaultMessage {
-                controller.textView.text = self.notification.message
+                controller.text = self.notification.message
             }
             controller.delegate = self
             self.present(controller, animated: true, completion: nil)
@@ -215,8 +215,8 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
         }
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if text != "" {
             if self.notification.realm == nil {
                 self.notification.message = text

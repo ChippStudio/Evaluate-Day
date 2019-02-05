@@ -156,7 +156,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             return self.chart
         }, didLoad: { (_) in
             if let entry = data.last {
-                self.chartValueSelected(self.chart, entry: entry, highlight: Highlight())
+                self.selectValue(self.chart, entry: entry, highlight: Highlight())
             }
             self.chartDidLoad?()
         })
@@ -297,24 +297,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
         
         Feedback.player.play(sound: .selectValue, impact: true)
         
-        var dateString = "\(entry.x)"
-        if let date = entry.data as? Date {
-            dateString = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
-        }
-        if self.chartXValueSelected != nil {
-             dateString = self.chartXValueSelected!(self, entry.x, highlight)
-        }
-        
-        var valueString = "\(Int(entry.y))"
-        if self.chartYValueSelected != nil {
-            valueString = self.chartYValueSelected!(self, entry.y, highlight)
-        }
-        
-        self.valueNode.attributedText = NSAttributedString(string: valueString, attributes: self.valueAttributes)
-        self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
-        
-        self.selectedXValue = dateString
-        self.selectedYValue = valueString
+        self.selectValue(chartView, entry: entry, highlight: highlight)
     }
     
     // MARK: - Actions
@@ -382,6 +365,28 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     }
     
     // MARK: - Private actions
+    private func selectValue(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        var dateString = "\(entry.x)"
+        if let date = entry.data as? Date {
+            dateString = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+        }
+        if self.chartXValueSelected != nil {
+            dateString = self.chartXValueSelected!(self, entry.x, highlight)
+        }
+        
+        var valueString = "\(Int(entry.y))"
+        if self.chartYValueSelected != nil {
+            valueString = self.chartYValueSelected!(self, entry.y, highlight)
+        }
+        
+        self.valueNode.attributedText = NSAttributedString(string: valueString, attributes: self.valueAttributes)
+        self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
+        
+        self.selectedXValue = dateString
+        self.selectedYValue = valueString
+    }
+    
     private func setRangeButtons() {
         let weekAtributes: [NSAttributedStringKey: Any]
         let monthAtributes: [NSAttributedStringKey: Any]

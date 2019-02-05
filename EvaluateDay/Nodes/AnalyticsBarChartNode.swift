@@ -136,7 +136,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             return self.chart
         }, didLoad: { (_) in
             if let entry = data.last {
-                self.chartValueSelected(self.chart, entry: entry, highlight: Highlight())
+                self.selectValue(self.chart, entry: entry, highlight: Highlight())
             }
             self.chartDidLoad?()
         })
@@ -232,6 +232,12 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         Feedback.player.play(sound: .selectValue, impact: true)
+        
+        self.selectValue(chartView, entry: entry, highlight: highlight)
+    }
+    
+    // MARK: - Private Actions
+    private func selectValue(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         var dateString = "\(entry.x)"
         if let date = entry.data as? Date {

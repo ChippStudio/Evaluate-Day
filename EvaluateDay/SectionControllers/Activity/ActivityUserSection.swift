@@ -9,7 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class ActivityUserSection: ListSectionController, ASSectionController, TextTopViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ActivityUserSection: ListSectionController, ASSectionController, TextViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Variables
     var isEditMode = false
@@ -91,8 +91,8 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
         
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         switch property {
         case "name":
             var newText: String? = nil
@@ -187,36 +187,36 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextTopVi
     }
     
     @objc func nameTapAction(sender: UITapGestureRecognizer) {
-        let textController = TextTopViewController()
-        textController.textView.text = Database.manager.application.user.name
-        textController.title = Localizations.Activity.User.Placeholder.name
+        let textController = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+        textController.text = Database.manager.application.user.name
+        textController.titleText = Localizations.Activity.User.Placeholder.name
         textController.property = "name"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
     }
     
     @objc func emailTapAction(sender: UITapGestureRecognizer) {
-        let textController = TextTopViewController()
-        textController.textView.text = Database.manager.application.user.email
-        textController.title = Localizations.Activity.User.Placeholder.email
+        let textController = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+        textController.text = Database.manager.application.user.email
+        textController.titleText = Localizations.Activity.User.Placeholder.email
         textController.property = "email"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
     }
     
     @objc func bioTapAction(sender: UITapGestureRecognizer) {
-        let textController = TextTopViewController()
-        textController.textView.text = Database.manager.application.user.bio
-        textController.title = Localizations.Activity.User.Placeholder.bio
+        let textController = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+        textController.text = Database.manager.application.user.bio
+        textController.titleText = Localizations.Activity.User.Placeholder.bio
         textController.property = "bio"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)
     }
     
     @objc func webTapAction(sender: UITapGestureRecognizer) {
-        let textController = TextTopViewController()
-        textController.textView.text = Database.manager.application.user.web
-        textController.title = Localizations.Activity.User.Placeholder.web
+        let textController = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
+        textController.text = Database.manager.application.user.web
+        textController.titleText = Localizations.Activity.User.Placeholder.web
         textController.property = "web"
         textController.delegate = self
         self.viewController?.present(textController, animated: true, completion: nil)

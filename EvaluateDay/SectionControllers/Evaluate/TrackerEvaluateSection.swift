@@ -12,7 +12,7 @@ import AsyncDisplayKit
 import RealmSwift
 import Branch
 
-class TrackerEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextTopViewControllerDelegate {
+class TrackerEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextViewControllerDelegate {
     // MARK: - Variables
     var card: Card!
     var date: Date! {
@@ -140,8 +140,8 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     override func didSelectItem(at index: Int) {
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if property == "" {
             let value = MarkValue()
             value.owner = self.card.id
@@ -185,7 +185,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         }, completion: nil)
     }
     @objc private func markAndCommentAction(sender: ASButtonNode) {
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.property = ""
         controller.delegate = self
         
@@ -210,9 +210,9 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
     }
     @objc private func editCommentAction(sender: ASButtonNode) {
         let item = self.comments[sender.view.tag]
-        let controller = TextTopViewController()
+        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
         controller.delegate = self
-        controller.textView.text = item.text
+        controller.text = item.text
         controller.property = item.id
         self.viewController?.present(controller, animated: true, completion: nil)
     }

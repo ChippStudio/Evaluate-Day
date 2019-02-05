@@ -184,7 +184,7 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
         case .calendar:
             return {
-                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Checkin.Calendar.title.uppercased(), isPro: isPro)
+                let node = AnalyticsCalendarNode(title: Localizations.Analytics.Checkin.Calendar.title.uppercased())
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index

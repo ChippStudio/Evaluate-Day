@@ -21,7 +21,7 @@ private enum CounterSettingsNodeType {
     case initial
 }
 
-class CounterEditableSection: ListSectionController, ASSectionController, EditableSection, TextTopViewControllerDelegate {
+class CounterEditableSection: ListSectionController, ASSectionController, EditableSection, TextViewControllerDelegate {
     // MARK: - Variable
     var card: Card!
     
@@ -144,33 +144,33 @@ class CounterEditableSection: ListSectionController, ASSectionController, Editab
         } else if self.nodes[index] == .measurement {
             let counterCard = self.card.data as! CounterCard
             let text = counterCard.measurement
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.property = "measurement"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.measurement
-            controller.textView.text = text
+            controller.titleText = Localizations.CardSettings.Counter.measurement
+            controller.text = text
             self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .step {
             // Step value set
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.onlyNumbers = true
             controller.property = "step"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.step
+            controller.titleText = Localizations.CardSettings.Counter.step
             self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .initial {
             // Start value
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.onlyNumbers = true
             controller.property = "startValue"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.start
+            controller.titleText = Localizations.CardSettings.Counter.start
             self.viewController?.present(controller, animated: true, completion: nil)
         }
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if property == "measurement" {
             let counterCard = self.card.data as! CounterCard
             if counterCard.realm != nil {

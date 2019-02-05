@@ -1,5 +1,5 @@
 //
-//  TextTopViewController.swift
+//  TextViewController.swift
 //  EvaluateDay
 //
 //  Created by Konstantin Tsistjakov on 05/11/2017.
@@ -9,26 +9,40 @@
 import UIKit
 import SnapKit
 
-@objc protocol TextTopViewControllerDelegate {
-    @objc optional func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String)
+@objc protocol TextViewControllerDelegate {
+    @objc optional func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String)
 }
 
-class TextTopViewController: TopViewController, UITextViewDelegate {
+class TextViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - UI
-    var textView: UITextView = UITextView()
-    var titleLabel: UILabel = UILabel()
-    var bottomView: UIView = UIView()
-    
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var maskView: UIView!
+
     // MARK: - Variable
-    weak var delegate: TextTopViewControllerDelegate?
+    weak var delegate: TextViewControllerDelegate?
     
     var property: String = ""
+    var text: String? = ""
+    var titleText: String? = ""
     var onlyNumbers: Bool = false
     
-    private var maxTextViewHeight: CGFloat = 100.0
+    // MARK: - Init
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.modalPresentationStyle = .overFullScreen
+        self.transition = TextControllerTransition(animationDuration: 0.4)
+    }
     
-//    private var heightConstraint
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        self.modalPresentationStyle = .overFullScreen
+        self.transition = TextControllerTransition(animationDuration: 0.4)
+    }
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -38,37 +52,26 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         self.titleLabel.textColor = UIColor.text
         self.titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         self.titleLabel.numberOfLines = 0
+        self.titleLabel.text = self.titleText
         
         self.textView.backgroundColor = UIColor.background
+        self.textView.text = self.text
         self.textView.textColor = UIColor.main
         self.textView.font = UIFont.preferredFont(forTextStyle: .body)
         self.textView.tintColor = UIColor.main
         self.textView.delegate = self
         self.textView.inputAccessoryView = self.viewForTextView()
+        self.textView.alwaysBounceVertical = true
         if self.onlyNumbers {
             self.textView.keyboardType = .decimalPad
         }
         
-        // Set constaraint
-        self.contentView.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
-            if #available(iOS 11.0, *) {
-                make.top.equalTo(self.contentView.safeAreaLayoutGuide).offset(20.0)
-            } else {
-                make.top.equalTo(self.contentView).offset(40.0)
-            }
-            make.leading.equalTo(self.contentView).offset(10.0)
-            make.trailing.equalTo(self.contentView).offset(-10.0)
-        }
+        self.contentView.layer.masksToBounds = true
+        self.contentView.layer.cornerRadius = 15.0
+        self.contentView.backgroundColor = UIColor.background
         
-        self.contentView.addSubview(self.textView)
-        self.textView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom)
-            make.leading.equalTo(self.contentView).offset(10.0)
-            make.trailing.equalTo(self.contentView).offset(-10.0)
-            make.bottom.equalTo(self.contentView).offset(-20.0)
-            make.height.equalTo(100.0)
-        }
+        self.maskView.backgroundColor = UIColor.main
+        self.maskView.alpha = 0.6
         
         // Keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
@@ -81,14 +84,7 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.textView.becomeFirstResponder()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.textViewDidChange(self.textView)
     }
     
     // MARK: - UITextViewDelegate
@@ -118,25 +114,6 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         return false
     }
     
-    func textViewDidChange(_ textView: UITextView) {
-        // Control text view height
-        let rext = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        var newHeight: CGFloat = 100.0
-        if rext.height > newHeight && rext.height < self.maxTextViewHeight {
-            newHeight = rext.height
-        } else if rext.height > self.maxTextViewHeight {
-            newHeight = self.maxTextViewHeight
-        }
-        
-        self.textView.snp.updateConstraints { (make) in
-            make.height.equalTo(newHeight)
-        }
-        
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-    }
-    
     // MARK: - Actions
     @objc func cancelButtonAction(sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -150,11 +127,9 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
     // MARK: - Keyboard actions
     @objc func keyboardWillShow(sender: Notification) {
         let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
-        
-        self.maxTextViewHeight = self.view.frame.size.height - height - 150
+        self.textView.contentInset.bottom = height
     }
     
-    // MARK: - Private func
     private func viewForTextView() -> UIView {
         
         let keyboardView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 140.0, height: 44.0))
@@ -177,14 +152,24 @@ class TextTopViewController: TopViewController, UITextViewDelegate {
         cancelButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(20.0)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(keyboardView.safeAreaLayoutGuide).offset(20.0)
+            } else {
+                // Fallback on earlier versions
+                make.leading.equalToSuperview().offset(20.0)
+            }
         }
         
         keyboardView.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-20.0)
+            if #available(iOS 11.0, *) {
+                make.trailing.equalTo(keyboardView.safeAreaLayoutGuide).offset(-20.0)
+            } else {
+                // Fallback on earlier versions
+                make.trailing.equalToSuperview().offset(-20.0)
+            }
         }
         
         return keyboardView

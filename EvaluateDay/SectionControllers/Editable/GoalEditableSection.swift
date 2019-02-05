@@ -22,7 +22,7 @@ private enum GoalSettingsNodeType {
     case initial
 }
 
-class GoalEditableSection: ListSectionController, ASSectionController, EditableSection, TextTopViewControllerDelegate {
+class GoalEditableSection: ListSectionController, ASSectionController, EditableSection, TextViewControllerDelegate {
     // MARK: - Variable
     var card: Card!
     
@@ -153,41 +153,41 @@ class GoalEditableSection: ListSectionController, ASSectionController, EditableS
         } else if self.nodes[index] == .measurement {
             let goalCard = self.card.data as! GoalCard
             let text = goalCard.measurement
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.property = "measurement"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.measurement
-            controller.textView.text = text
+            controller.titleText = Localizations.CardSettings.Counter.measurement
+            controller.text = text
             self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .goal {
             // Goal value set
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.onlyNumbers = true
             controller.property = "goalValue"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Goal.goal
+            controller.titleText = Localizations.CardSettings.Goal.goal
             self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .step {
             // Step value set
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.onlyNumbers = true
             controller.property = "step"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.step
+            controller.titleText = Localizations.CardSettings.Counter.step
             self.viewController?.present(controller, animated: true, completion: nil)
         } else if self.nodes[index] == .initial {
             // Start value
-            let controller = TextTopViewController()
+            let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
             controller.onlyNumbers = true
             controller.property = "startValue"
             controller.delegate = self
-            controller.titleLabel.text = Localizations.CardSettings.Counter.start
+            controller.titleText = Localizations.CardSettings.Counter.start
             self.viewController?.present(controller, animated: true, completion: nil)
         }
     }
     
-    // MARK: - TextTopViewControllerDelegate
-    func textTopController(controller: TextTopViewController, willCloseWith text: String, forProperty property: String) {
+    // MARK: - TextViewControllerDelegate
+    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
         if property == "measurement" {
             let goalCard = self.card.data as! GoalCard
             if goalCard.realm != nil {

@@ -24,7 +24,7 @@ class AnalyticsStatisticNode: ASCellNode, ASCollectionDataSource {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 130.0, height: 60.0)
+        layout.itemSize = CGSize(width: 160.0, height: 60.0)
         layout.minimumLineSpacing = 10.0
         
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)

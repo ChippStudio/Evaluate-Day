@@ -21,7 +21,7 @@ class AnalyticsCalendarNode: ASCellNode {
     var didLoadCalendar: (() -> Void)?
     
     // MARK: - Unit
-    init(title: String, isPro: Bool) {
+    init(title: String) {
         super.init()
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -32,30 +32,27 @@ class AnalyticsCalendarNode: ASCellNode {
         self.shareButton.imageNode.contentMode = .scaleAspectFit
         self.shareButton.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
-        if isPro {
-            self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
-                self.calendar = FSCalendar()
-                self.calendar.clipsToBounds = true
-                self.calendar.allowsSelection = false
-                self.calendar.today = nil
-                self.calendar.backgroundColor = UIColor.clear
-                self.calendar.firstWeekday = UInt(Database.manager.application.settings.weekStart)
-                self.calendar.appearance.titleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-                self.calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-                self.calendar.appearance.subtitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-                self.calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-                self.calendar.appearance.headerTitleColor = UIColor.text
-                
-                self.calendar.appearance.weekdayTextColor = UIColor.main
-                self.calendar.appearance.titleDefaultColor = UIColor.text
-                self.calendar.appearance.titlePlaceholderColor = UIColor.main
-                return self.calendar
-            }, didLoad: { (_) in
-                self.didLoadCalendar?()
-            })
-        } else {
-            self.calendarNode = SettingsProNode()
-        }
+        self.calendarNode = ASDisplayNode(viewBlock: { () -> UIView in
+            self.calendar = FSCalendar()
+            self.calendar.clipsToBounds = true
+            self.calendar.allowsSelection = false
+            self.calendar.today = nil
+            self.calendar.backgroundColor = UIColor.clear
+            self.calendar.firstWeekday = UInt(Database.manager.application.settings.weekStart)
+            self.calendar.appearance.titleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+            self.calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+            self.calendar.appearance.subtitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+            self.calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+            self.calendar.appearance.headerTitleColor = UIColor.text
+            
+            self.calendar.appearance.weekdayTextColor = UIColor.main
+            self.calendar.appearance.titleDefaultColor = UIColor.text
+            self.calendar.appearance.titlePlaceholderColor = UIColor.main
+            return self.calendar
+        }, didLoad: { (_) in
+            self.didLoadCalendar?()
+        })
+
         // Accessibility
         self.title.isAccessibilityElement = false
         
