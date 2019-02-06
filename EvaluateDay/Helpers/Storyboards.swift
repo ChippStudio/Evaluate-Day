@@ -43,4 +43,5 @@ enum Storyboards: String {
     case locationsList = "LocationsList"
     case journalGallery = "JournalGallery"
     case text = "Text"
+    case number = "Number"
 }

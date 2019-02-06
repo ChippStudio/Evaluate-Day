@@ -11,7 +11,7 @@ import IGListKit
 import AsyncDisplayKit
 import Branch
 
-class CounterEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, TextViewControllerDelegate {
+class CounterEvaluateSection: ListSectionController, ASSectionController, EvaluableSection, NumberViewControllerDelegate {
     // MARK: - Variables
     var card: Card!
     var date: Date!
@@ -130,30 +130,28 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
     override func didSelectItem(at index: Int) {
     }
     
-    // MARK: - TextViewControllerDelegate
-    func textTopController(controller: TextViewController, willCloseWith text: String, forProperty property: String) {
-        if let value = Double(text) {
-            let counterCard = self.card.data as! CounterCard
-            if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
-                try! Database.manager.data.write {
-                    currentValue.value = value
-                    currentValue.edited = Date()
-                }
-            } else {
-                let newValue = NumberValue()
-                newValue.owner = self.card.id
-                newValue.created = self.date
-                newValue.value = value
-                
-                try! Database.manager.data.write {
-                    Database.manager.data.add(newValue)
-                }
+    // MARK: - NumberViewControllerDelegate
+    func numberController(controller: NumberViewController, willCloseWith value: Double, forProperty property: String) {
+        let counterCard = self.card.data as! CounterCard
+        if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
+            try! Database.manager.data.write {
+                currentValue.value = value
+                currentValue.edited = Date()
             }
+        } else {
+            let newValue = NumberValue()
+            newValue.owner = self.card.id
+            newValue.created = self.date
+            newValue.value = value
             
-            collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-                batchContext.reload(self)
-            }, completion: nil)
+            try! Database.manager.data.write {
+                Database.manager.data.add(newValue)
+            }
         }
+        
+        collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+            batchContext.reload(self)
+        }, completion: nil)
     }
     
     // MARK: - Actions
@@ -212,8 +210,11 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         }, completion: nil)
     }
     @objc private func customValueButtonAction(sender: ASButtonNode) {
-        let controller = UIStoryboard(name: Storyboards.text.rawValue, bundle: nil).instantiateInitialViewController() as! TextViewController
-        controller.onlyNumbers = true
+        let controller = UIStoryboard(name: Storyboards.number.rawValue, bundle: nil).instantiateInitialViewController() as! NumberViewController
+        let counterCard = self.card.data as! CounterCard
+        if let currentValue = counterCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).first {
+            controller.value = currentValue.value
+        }
         controller.delegate = self
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)

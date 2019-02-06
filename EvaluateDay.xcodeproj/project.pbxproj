@@ -240,6 +240,9 @@
 		B5A730F21FF244A0006B6F58 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A730F11FF244A0006B6F58 /* CloudKit.framework */; };
 		B5A85ED12209A1DD00BF2AC6 /* TextControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */; };
 		B5A85ED32209BEEE00BF2AC6 /* Text.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A85ED22209BEEE00BF2AC6 /* Text.storyboard */; };
+		B5A85ED62209C86500BF2AC6 /* Number.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A85ED52209C86500BF2AC6 /* Number.storyboard */; };
+		B5A85ED82209C87000BF2AC6 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85ED72209C87000BF2AC6 /* NumberViewController.swift */; };
+		B5A85EDA2209DDDB00BF2AC6 /* NumberControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85ED92209DDDB00BF2AC6 /* NumberControllerTransition.swift */; };
 		B5A9D5A6201F00F8006DFB32 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A5201F00F8006DFB32 /* JournalCard.swift */; };
 		B5A9D5A8201F01E6006DFB32 /* JournalCard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */; };
 		B5A9D5AA2021FA9D006DFB32 /* WeatherValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */; };
@@ -635,6 +638,9 @@
 		B5A730F11FF244A0006B6F58 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextControllerTransition.swift; sourceTree = "<group>"; };
 		B5A85ED22209BEEE00BF2AC6 /* Text.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Text.storyboard; sourceTree = "<group>"; };
+		B5A85ED52209C86500BF2AC6 /* Number.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Number.storyboard; sourceTree = "<group>"; };
+		B5A85ED72209C87000BF2AC6 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
+		B5A85ED92209DDDB00BF2AC6 /* NumberControllerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberControllerTransition.swift; sourceTree = "<group>"; };
 		B5A9D5A5201F00F8006DFB32 /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
 		B5A9D5A7201F01E6006DFB32 /* JournalCard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JournalCard+Extensions.swift"; sourceTree = "<group>"; };
 		B5A9D5A92021FA9D006DFB32 /* WeatherValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherValue+Extensions.swift"; sourceTree = "<group>"; };
@@ -1259,6 +1265,7 @@
 				B5D854E01FD0158300BB4E14 /* Repeat */,
 				B5D854C81FCDAA5D00BB4E14 /* Passcode */,
 				B59D03A621FC71C80048B0AF /* OverrideNavigationController */,
+				B5A85ED42209C85200BF2AC6 /* NumberViewController */,
 				B5A0CFE01FAF8DB6002B1636 /* TextViewController */,
 				B5A0CFE11FAF8DC3002B1636 /* Bottom */,
 				B5A1B0DC1FB9ADC4003D9E81 /* Transitions */,
@@ -1343,6 +1350,7 @@
 				B5A1B0DD1FB9ADF0003D9E81 /* Transition.swift */,
 				B5A1B0E31FBACBBF003D9E81 /* BottomTransition.swift */,
 				B5A85ED02209A1DD00BF2AC6 /* TextControllerTransition.swift */,
+				B5A85ED92209DDDB00BF2AC6 /* NumberControllerTransition.swift */,
 				B584E0D81FE299C7008093D5 /* WelcomeTransition.swift */,
 				B59DA0742120CB0400A9FCFB /* PhotoTransition.swift */,
 			);
@@ -1433,6 +1441,15 @@
 				B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		B5A85ED42209C85200BF2AC6 /* NumberViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B5A85ED52209C86500BF2AC6 /* Number.storyboard */,
+				B5A85ED72209C87000BF2AC6 /* NumberViewController.swift */,
+			);
+			path = NumberViewController;
 			sourceTree = "<group>";
 		};
 		B5AB1E932019D07600BB1A64 /* List */ = {
@@ -1973,6 +1990,7 @@
 				B516CA3521EA8BB70002915F /* AppIcon-0.png in Resources */,
 				B5EC88512011EF740056C1C7 /* Phrases.storyboard in Resources */,
 				B5B27E6F1F9DAC7000CB9121 /* Localizable.strings in Resources */,
+				B5A85ED62209C86500BF2AC6 /* Number.storyboard in Resources */,
 				B5AB1E952019D08900BB1A64 /* List.storyboard in Resources */,
 				B5B27E601F9DA66000CB9121 /* Assets.xcassets in Resources */,
 				B516CA4F21EA8C5B0002915F /* AppIcon-7-Preview.png in Resources */,
@@ -2342,6 +2360,7 @@
 				B59D03A821FC71FA0048B0AF /* NavigationController.swift in Sources */,
 				B5EC886720134A840056C1C7 /* CounterEvaluateNode.swift in Sources */,
 				B5D854C31FCCBA4F00BB4E14 /* SettingsAboutViewController.swift in Sources */,
+				B5A85EDA2209DDDB00BF2AC6 /* NumberControllerTransition.swift in Sources */,
 				B5D854EF1FD07B8400BB4E14 /* TimeBottomViewController.swift in Sources */,
 				B5BD3B3C2008B8B80075C75F /* CheckInMergeSection.swift in Sources */,
 				B5257D6D1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift in Sources */,
@@ -2361,6 +2380,7 @@
 				B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */,
 				B5B7EE462010B70800BCD41A /* TextValue+Extensions.swift in Sources */,
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
+				B5A85ED82209C87000BF2AC6 /* NumberViewController.swift in Sources */,
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
 				B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */,
 				B516CA6521EE31F70002915F /* EvaluateEmptyCardNode.swift in Sources */,

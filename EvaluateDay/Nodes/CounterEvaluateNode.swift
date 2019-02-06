@@ -29,9 +29,16 @@ class CounterEvaluateNode: ASCellNode {
     
     private var accessibilityNode = ASDisplayNode()
     
+    // MARK: - Variables
+    private let numberFormatter = NumberFormatter()
+    
     // MARK: - Init
     init(value: Double, sumValue: Double?, previousValue: Double, date: Date, step: Double, measurement: String) {
         super.init()
+        
+        // Set number formatter
+        self.numberFormatter.numberStyle = .decimal
+        self.numberFormatter.maximumFractionDigits = 2
         
         // Plus and minus buttons and covers
         let font = UIFont.systemFont(ofSize: 36.0, weight: .regular)
@@ -56,17 +63,17 @@ class CounterEvaluateNode: ASCellNode {
         
         // Sum title if needed
         if sumValue != nil {
-            let sumString = String(format: "%.2f", sumValue!)
+            let sumString = self.numberFormatter.string(from: NSNumber(value: sumValue!))!
             self.sumText = ASTextNode()
             self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
             self.sumText!.isAccessibilityElement = false
         }
         
         // counter
-        let valueString = String(format: "%.2f", value)
+        let valueString = self.numberFormatter.string(from: NSNumber(value: value))!
         self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text])
         
-        let previousValueString = String(format: "%.2f", previousValue)
+        let previousValueString = self.numberFormatter.string(from: NSNumber(value: previousValue))!
         self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
         
         self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
