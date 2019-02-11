@@ -357,6 +357,8 @@
 		B5E75E8A1FA0A28100DBF6D5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E75E891FA0A28100DBF6D5 /* Database.swift */; };
 		B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7721B1FA07E46002FA03F /* Sources.swift */; };
 		B5E7721E1FA07E59002FA03F /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7721D1FA07E59002FA03F /* Source.swift */; };
+		B5EA3E66221189C70020D4CB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5EA3E65221189C70020D4CB /* Onboarding.storyboard */; };
+		B5EA3E68221189EE0020D4CB /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA3E67221189EE0020D4CB /* OnboardingViewController.swift */; };
 		B5EC883E2010BE630056C1C7 /* PhraseEditableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC883D2010BE630056C1C7 /* PhraseEditableSection.swift */; };
 		B5EC88442010C21E0056C1C7 /* PhraseEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */; };
 		B5EC884A2010EE370056C1C7 /* PhraseMergeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC88492010EE370056C1C7 /* PhraseMergeSection.swift */; };
@@ -758,6 +760,8 @@
 		B5E75E891FA0A28100DBF6D5 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B5E7721B1FA07E46002FA03F /* Sources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources.swift; sourceTree = "<group>"; };
 		B5E7721D1FA07E59002FA03F /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		B5EA3E65221189C70020D4CB /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B5EA3E67221189EE0020D4CB /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B5EC883D2010BE630056C1C7 /* PhraseEditableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEditableSection.swift; sourceTree = "<group>"; };
 		B5EC88432010C21E0056C1C7 /* PhraseEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEvaluateNode.swift; sourceTree = "<group>"; };
 		B5EC88492010EE370056C1C7 /* PhraseMergeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseMergeSection.swift; sourceTree = "<group>"; };
@@ -1587,6 +1591,7 @@
 		B5B27E7C1F9DB08300CB9121 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5EA3E64221189B10020D4CB /* Onboarding */,
 				B5E75E8B1FA1A7CC00DBF6D5 /* Split */,
 				B5899B0C21D7B29600CF123B /* Collection */,
 				B5B27E851F9DC30500CB9121 /* Evaluate */,
@@ -1788,6 +1793,15 @@
 			path = "Cards Source";
 			sourceTree = "<group>";
 		};
+		B5EA3E64221189B10020D4CB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B5EA3E65221189C70020D4CB /* Onboarding.storyboard */,
+				B5EA3E67221189EE0020D4CB /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		B5EC884F2011EF640056C1C7 /* Phrases */ = {
 			isa = PBXGroup;
 			children = (
@@ -1964,6 +1978,7 @@
 				B5B27E871F9DC31F00CB9121 /* Evaluate.storyboard in Resources */,
 				B516CA4A21EA8C5B0002915F /* AppIcon-2-Preview.png in Resources */,
 				B5B27E9D1F9DC55600CB9121 /* NewCard.storyboard in Resources */,
+				B5EA3E66221189C70020D4CB /* Onboarding.storyboard in Resources */,
 				B5B27EA01F9DC5AC00CB9121 /* CardSettings.storyboard in Resources */,
 				B5A730EE1FF2437C006B6F58 /* openPro.wav in Resources */,
 				B5B27E8C1F9DC3BC00CB9121 /* Settings.storyboard in Resources */,
@@ -2377,6 +2392,7 @@
 				B5A1B0DE1FB9ADF0003D9E81 /* Transition.swift in Sources */,
 				B5F597741FBD70B40098A071 /* AnalyticsColorStatisticNode.swift in Sources */,
 				B5DE2CB720010EC700EFBCA5 /* ErrorHandler.swift in Sources */,
+				B5EA3E68221189EE0020D4CB /* OnboardingViewController.swift in Sources */,
 				B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */,
 				B5B7EE462010B70800BCD41A /* TextValue+Extensions.swift in Sources */,
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,

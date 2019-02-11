@@ -52,7 +52,7 @@ extension CriterionThreeCard: Evaluable {
     }
     
     func lastEventDate() -> Date? {
-        if let last = self.values.sorted(byKeyPath: "created", ascending: false).last {
+        if let last = self.values.sorted(byKeyPath: "created", ascending: true).last {
             return last.created
         }
         

@@ -430,7 +430,7 @@ internal enum Localizations {
       }
     }
     internal enum Preview {
-      /// Last update date:
+      /// Last date of evaluate:
       internal static let lastDateTitle = Localizations.tr("Localizable", "analytics.preview.lastDateTitle")
       /// The card has never been evaluated
       internal static let noneLastDate = Localizations.tr("Localizable", "analytics.preview.noneLastDate")
