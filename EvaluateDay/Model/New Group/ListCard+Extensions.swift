@@ -51,6 +51,14 @@ extension ListCard: Evaluable {
         return !self.values.filter("(doneDate >= %@) AND (doneDate <= %@) AND (done=%@)", date.start, date.end, true).isEmpty
     }
     
+    func lastEventDate() -> Date? {
+        if let last = self.values.sorted(byKeyPath: "created", ascending: false).last {
+            return last.created
+        }
+        
+        return nil
+    }
+    
     func textExport() -> String {
         var txtText = "Title, Subtitle, Created, 'Created - Since 1970', Edited,'Edited - Since 1970', Text, Done, 'Done Date\n"
         

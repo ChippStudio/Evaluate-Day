@@ -23,6 +23,9 @@ class AnalyticsPreviewViewController: UIViewController {
     @IBOutlet weak var collectionImageView: UIImageView!
     @IBOutlet weak var collectionTitle: UILabel!
     
+    @IBOutlet weak var lastUpdateDateTitle: UILabel!
+    @IBOutlet weak var lastUpdateDate: UILabel!
+    
     // MARK: - Variables
     var card: Card!
     weak var delegate: AnalyticsPreviewDelegate?
@@ -50,6 +53,14 @@ class AnalyticsPreviewViewController: UIViewController {
             }
         }
         
+        // Set analytics data
+        self.lastUpdateDateTitle.text = Localizations.Analytics.Preview.lastDateTitle
+        if let lastDate = self.card.data.lastEventDate() {
+            self.lastUpdateDate.text = DateFormatter.localizedString(from: lastDate, dateStyle: .medium, timeStyle: .short)
+        } else {
+            self.lastUpdateDate.text = Localizations.Analytics.Preview.noneLastDate
+        }
+        
         // Set appearance
         self.cardImageView.tintColor = UIColor.main
         self.cardTitleLabel.textColor = UIColor.text
@@ -61,6 +72,9 @@ class AnalyticsPreviewViewController: UIViewController {
         
         self.cover.backgroundColor = UIColor.tint
         self.cover.layer.cornerRadius = 10.0
+        
+        self.lastUpdateDate.textColor = UIColor.main
+        self.lastUpdateDateTitle.textColor = UIColor.main
         
         self.view.backgroundColor = UIColor.background
     }

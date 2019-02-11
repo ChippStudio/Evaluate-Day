@@ -18,8 +18,6 @@ disabled_rules: # rule identifiers to exclude from running
     - identifier_name
 excluded:
     - Pods
-    - EvaluateDay/Localization/LaurineGenerator.swift
-    - EvaluateDay/Localization/Localizations.swift
 
 line_length: 600
 type_body_length: 550

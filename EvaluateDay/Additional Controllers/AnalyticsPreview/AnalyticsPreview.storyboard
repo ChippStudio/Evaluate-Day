@@ -52,9 +52,29 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSH-Pb-8FA">
                                 <rect key="frame" x="10" y="95.5" width="355" height="180"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoh-fq-DTR">
+                                        <rect key="frame" x="20" y="25" width="315" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lv-Ix-Xot">
+                                        <rect key="frame" x="20" y="80" width="315" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="1lv-Ix-Xot" firstAttribute="centerY" secondItem="rSH-Pb-8FA" secondAttribute="centerY" id="A66-cf-aBb"/>
+                                    <constraint firstItem="hoh-fq-DTR" firstAttribute="top" secondItem="rSH-Pb-8FA" secondAttribute="top" constant="25" id="EyM-UM-Xpw"/>
                                     <constraint firstAttribute="height" constant="180" id="HEf-VM-01H"/>
+                                    <constraint firstItem="hoh-fq-DTR" firstAttribute="leading" secondItem="rSH-Pb-8FA" secondAttribute="leading" constant="20" id="SFu-Q7-rzK"/>
+                                    <constraint firstAttribute="trailing" secondItem="hoh-fq-DTR" secondAttribute="trailing" constant="20" id="v9X-wg-VNl"/>
+                                    <constraint firstAttribute="trailing" secondItem="1lv-Ix-Xot" secondAttribute="trailing" constant="20" id="vHA-5u-LCU"/>
+                                    <constraint firstItem="1lv-Ix-Xot" firstAttribute="leading" secondItem="rSH-Pb-8FA" secondAttribute="leading" constant="20" id="yIq-hs-0h5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -86,6 +106,8 @@
                         <outlet property="collectionImageView" destination="dUq-8m-nRb" id="NpP-eM-k8Y"/>
                         <outlet property="collectionTitle" destination="13M-lk-jui" id="996-ta-Xwz"/>
                         <outlet property="cover" destination="rSH-Pb-8FA" id="zpR-co-VQ3"/>
+                        <outlet property="lastUpdateDate" destination="1lv-Ix-Xot" id="fIX-2Y-nAw"/>
+                        <outlet property="lastUpdateDateTitle" destination="hoh-fq-DTR" id="Kh2-o4-ftX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cc4-uu-W6s" userLabel="First Responder" sceneMemberID="firstResponder"/>

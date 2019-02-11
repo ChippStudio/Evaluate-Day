@@ -83,20 +83,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, ASTableDataSource,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableNode.frame = self.baseView.bounds
-        if self.navigationController != nil {
-            if let tab = self.tabBarController {
-                tab.setTabBarVisible(visible: false, animated: true)
-            }
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if self.navigationController != nil {
-            if let tab = self.tabBarController {
-                tab.setTabBarVisible(visible: true, animated: true)
-            }
-        }
     }
     
     override func updateAppearance(animated: Bool) {

@@ -62,6 +62,14 @@ extension JournalCard: Evaluable {
         return !self.values.filter("(created >= %@) AND (created <= %@)", date.start, date.end).isEmpty
     }
     
+    func lastEventDate() -> Date? {
+        if let last = self.values.sorted(byKeyPath: "created", ascending: false).last {
+            return last.created
+        }
+        
+        return nil
+    }
+    
     func textExport() -> String {
         var txtText = "Title, Created, 'Created - Since 1970', Edited, 'Edited - Since 1970', Text, Latitude, Longitude, Street, City, State, Country, Temperature, Apparent Temperature, Summary, Humidity, Pressure, Wind Speed, Cloud Cover\n"
         

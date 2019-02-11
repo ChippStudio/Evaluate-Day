@@ -26,6 +26,8 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     var chartDidLoad: (() -> Void)?
     var options: [AnalyticsChartNodeOptionsKey: Any]?
     
+    private var numberFormatter = NumberFormatter()
+    
     private var valueAttributes: [NSAttributedStringKey: Any]!
     private var dateAttributes: [NSAttributedStringKey: Any]!
     
@@ -41,6 +43,9 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     // MARK: - Init
     init(title: String, data: [BarChartDataEntry], options: [AnalyticsChartNodeOptionsKey: Any]?) {
         super.init()
+        
+        self.numberFormatter.numberStyle = .decimal
+        self.numberFormatter.maximumFractionDigits = 2
         
         self.options = options
         
@@ -247,7 +252,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             dateString = self.chartXValueSelected!(self, entry.x, highlight)
         }
         
-        var valueString = "\(Int(entry.y))"
+        var valueString = self.numberFormatter.string(from: NSNumber(value: entry.y)) ?? "\(Int(entry.y))"
         if self.chartYValueSelected != nil {
             valueString = self.chartYValueSelected!(self, entry.y, highlight)
         }

@@ -429,6 +429,12 @@ internal enum Localizations {
         internal static let title = Localizations.tr("Localizable", "analytics.phrase.calendar.title")
       }
     }
+    internal enum Preview {
+      /// Last update date:
+      internal static let lastDateTitle = Localizations.tr("Localizable", "analytics.preview.lastDateTitle")
+      /// The card has never been evaluated
+      internal static let noneLastDate = Localizations.tr("Localizable", "analytics.preview.noneLastDate")
+    }
     internal enum Range {
       /// Month
       internal static let month = Localizations.tr("Localizable", "analytics.range.month")

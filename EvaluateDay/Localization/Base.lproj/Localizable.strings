@@ -155,6 +155,8 @@
 "analytics.range.week" = "Week";
 "analytics.range.month" = "Month";
 "analytics.range.year" = "Year";
+"analytics.preview.lastDateTitle" = "Last evaluate date:";
+"analytics.preview.noneLastDate" = "The card has never been evaluated";
 
 // MARK: - Calendar
 "calendar.checkin.noTitle" = "You haven't been anywhere yet";

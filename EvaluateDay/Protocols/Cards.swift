@@ -19,6 +19,7 @@ protocol Evaluable {
     
     func deleteValues()
     func hasEvent(forDate date: Date) -> Bool
+    func lastEventDate() -> Date?
     func textExport() -> String
 }
 

@@ -27,6 +27,10 @@ extension Update: Evaluable {
         return false
     }
     
+    func lastEventDate() -> Date? {
+        return nil
+    }
+    
     func textExport() -> String {
         return Localizations.Update.subtitle
     }

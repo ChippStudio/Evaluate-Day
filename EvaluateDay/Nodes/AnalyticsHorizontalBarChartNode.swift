@@ -141,6 +141,9 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
     
     // MARK: - IValueFormatter
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        return String(format: self.format, value)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter.string(from: NSNumber(value: value)) ?? String(format: self.format, value)
     }
 }
