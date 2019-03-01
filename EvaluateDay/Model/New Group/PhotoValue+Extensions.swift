@@ -11,8 +11,8 @@ import CloudKit
 import RealmSwift
 
 extension PhotoValue: CloudKitSyncable {
-    func record(zoneID: CKRecordZoneID) -> CKRecord? {
-        let recordId = CKRecordID(recordName: self.id, zoneID: zoneID)
+    func record(zoneID: CKRecordZone.ID) -> CKRecord? {
+        let recordId = CKRecord.ID(recordName: self.id, zoneID: zoneID)
         let record = CKRecord(recordType: "PhotoValue", recordID: recordId)
         record.setObject(self.owner as CKRecordValue, forKey: "owner")
         record.setObject(self.created as CKRecordValue, forKey: "created")
@@ -90,7 +90,7 @@ extension PhotoValue {
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            let imageData = UIImagePNGRepresentation(newImage!)
+            let imageData = newImage!.pngData()
             if let documentPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ee.chippstudio.evaluateday")?.path {
                 let fullPath = documentPath.appending("/media").appending("/\(self.id).png")
                 do {

@@ -35,13 +35,13 @@ class CheckInDataEvaluateNode: ASCellNode {
         }
         
         if street.isEmpty && otherAddress.isEmpty {
-            self.street.attributedText = NSAttributedString(string: Localizations.Evaluate.Location.unknown, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+            self.street.attributedText = NSAttributedString(string: Localizations.Evaluate.Location.unknown, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         } else {
-            self.street.attributedText = NSAttributedString(string: street, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.textTint])
-            self.otherAddress.attributedText = NSAttributedString(string: otherAddress, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+            self.street.attributedText = NSAttributedString(string: street, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.textTint])
+            self.otherAddress.attributedText = NSAttributedString(string: otherAddress, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         }
         
-        self.coordinates.attributedText = NSAttributedString(string: coordinates, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.coordinates.attributedText = NSAttributedString(string: coordinates, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         // Set button
         if index != nil {
@@ -55,7 +55,7 @@ class CheckInDataEvaluateNode: ASCellNode {
         }
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityLabel = self.street.attributedText!.string
         self.accessibilityValue = self.otherAddress.attributedText!.string
         

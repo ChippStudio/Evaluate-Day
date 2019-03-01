@@ -27,12 +27,12 @@ class SettingsProButtonNode: ASCellNode {
     
         cover.cornerRadius = 5
         cover.backgroundColor = UIColor.main
-        textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        textNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
     
         //Accessibility
         self.isAccessibilityElement = true
         self.accessibilityLabel = title
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

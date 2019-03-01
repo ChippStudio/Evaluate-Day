@@ -202,7 +202,7 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
         }
         //Feedback
-        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackType.error)
+        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackGenerator.FeedbackType.error)
         
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
@@ -300,7 +300,7 @@ class TrackerNode: ASCellNode {
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .tracker))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(marks)")
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

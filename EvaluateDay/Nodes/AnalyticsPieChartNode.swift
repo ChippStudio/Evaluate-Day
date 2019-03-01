@@ -38,7 +38,7 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
                 titleString = title.uppercased()
             }
         }
-        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit

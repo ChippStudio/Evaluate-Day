@@ -12,8 +12,8 @@ import CloudKit
 import RealmSwift
 
 extension Dashboard: CloudKitSyncable {
-    func record(zoneID: CKRecordZoneID) -> CKRecord? {
-        let recordId = CKRecordID(recordName: self.id, zoneID: zoneID)
+    func record(zoneID: CKRecordZone.ID) -> CKRecord? {
+        let recordId = CKRecord.ID(recordName: self.id, zoneID: zoneID)
         let record = CKRecord(recordType: "Dashboard", recordID: recordId)
         record.setObject(self.title as CKRecordValue, forKey: "title")
         record.setObject(self.image as CKRecordValue, forKey: "image")

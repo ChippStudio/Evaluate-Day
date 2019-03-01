@@ -49,7 +49,7 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         
         self.imageNode.image = image
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -74,7 +74,7 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         
         // Accessibility
         self.accessibilityNode.isAccessibilityElement = true
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityNode.accessibilityLabel = Localizations.Accessibility.Collection.collection(title)
         
         self.editButton.accessibilityLabel = Localizations.Accessibility.Collection.edit
@@ -160,8 +160,8 @@ class CollectionListStaticticNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
-        self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint, NSAttributedString.Key.paragraphStyle: paragraph])
+        self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint, NSAttributedString.Key.paragraphStyle: paragraph])
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = subtitle

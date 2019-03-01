@@ -213,7 +213,7 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         }
         
         //Feedback
-        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackType.error)
+        Feedback.player.play(sound: nil, hapticFeedback: false, impact: false, feedbackType: UINotificationFeedbackGenerator.FeedbackType.error)
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -318,7 +318,7 @@ class HabitNode: ASCellNode {
             self.accessibilityNode.accessibilityLabel! += ", \(Localizations.Accessibility.Evaluate.Criterion.negative)"
         }
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(marks)")
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

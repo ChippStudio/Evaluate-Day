@@ -21,6 +21,6 @@ protocol CloudKitSyncable: Syncable {
     associatedtype CloudKitSyncable
     
     // CloudKit
-    func record(zoneID: CKRecordZoneID) -> CKRecord?
+    func record(zoneID: CKRecordZone.ID) -> CKRecord?
     static func object(record: CKRecord) -> CloudKitSyncable?
 }

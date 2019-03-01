@@ -25,13 +25,13 @@ class UpdateNode: ASCellNode {
         let center = NSMutableParagraphStyle()
         center.alignment = .left
         
-        self.titleNode.attributedText = NSAttributedString(string: Localizations.Update.title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: center])
-        self.subtitleNode.attributedText = NSAttributedString(string: Localizations.Update.subtitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: center])
+        self.titleNode.attributedText = NSAttributedString(string: Localizations.Update.title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedString.Key.foregroundColor: UIColor.main, NSAttributedString.Key.paragraphStyle: center])
+        self.subtitleNode.attributedText = NSAttributedString(string: Localizations.Update.subtitle, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main, NSAttributedString.Key.paragraphStyle: center])
         
         self.updateButtonCover.backgroundColor = UIColor.main
         self.updateButtonCover.cornerRadius = 10.0
         
-        let buttonTitle = NSAttributedString(string: Localizations.Update.button, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: center])
+        let buttonTitle = NSAttributedString(string: Localizations.Update.button, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint, NSAttributedString.Key.paragraphStyle: center])
         self.updateButton.setAttributedTitle(buttonTitle, for: .normal)
         self.updateButton.addTarget(self, action: #selector(updateButtonAction(sender:)), forControlEvents: .touchUpInside)
         
@@ -66,6 +66,11 @@ class UpdateNode: ASCellNode {
     // MARK: - Actions
     @objc func updateButtonAction(sender: ASButtonNode) {
         let url = URL(string: appURLString)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

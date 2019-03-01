@@ -22,7 +22,7 @@ class HabitNegativeNode: ASCellNode {
         self.coverNode.backgroundColor = UIColor.negative
         self.coverNode.cornerRadius = 10.0
         
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Habit.negative, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Habit.negative, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.automaticallyManagesSubnodes = true
     }

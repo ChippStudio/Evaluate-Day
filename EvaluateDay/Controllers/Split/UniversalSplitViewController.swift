@@ -239,12 +239,12 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             return
         }
         
-        self.addChildViewController(controller)
-        controller.didMove(toParentViewController: self)
+        self.addChild(controller)
+        controller.didMove(toParent: self)
         
         controller.view.frame = isControllerContaintsSideController ? CGRect(x: 0, y: 0, width: mainControllerWidth, height: UIScreen.main.bounds.size.height) : CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         
-        controller.view.autoresizingMask = UIViewAutoresizing()
+        controller.view.autoresizingMask = UIView.AutoresizingMask()
         mainControllerSize = controller.view.bounds.size
         self.view.addSubview(controller.view)
         
@@ -261,11 +261,11 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
         }
         
         if isControllerContaintsSideController {
-            self.addChildViewController(controller)
-            self.didMove(toParentViewController: self)
+            self.addChild(controller)
+            self.didMove(toParent: self)
             controller.view.frame = CGRect(x: mainControllerSize.width, y: 0.0, width: self.view.frame.size.width - mainControllerSize.width, height: UIScreen.main.bounds.size.height)
             
-            controller.view.autoresizingMask = UIViewAutoresizing()
+            controller.view.autoresizingMask = UIView.AutoresizingMask()
             self.sideControllerSize = controller.view.bounds.size
             
             self.view.insertSubview(controller.view, belowSubview: self.mainController.view)
@@ -379,9 +379,9 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
     
     fileprivate func removeChildViewController(_ viewController: UIViewController?) {
         if let viewController = viewController {
-            viewController.willMove(toParentViewController: nil)
+            viewController.willMove(toParent: nil)
             viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
+            viewController.removeFromParent()
         }
     }
     

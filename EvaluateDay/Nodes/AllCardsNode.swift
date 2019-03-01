@@ -31,12 +31,12 @@ class AllCardsNode: ASCellNode {
         self.disclosure.contentMode = .scaleAspectFit
         self.disclosure.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
-        self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.textNode.attributedText = NSAttributedString(string: Localizations.Collection.allcards, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.textNode.isAccessibilityElement = false
         self.cover.isAccessibilityElement = true
         self.cover.accessibilityLabel = Localizations.Collection.allcards
-        self.cover.accessibilityTraits = UIAccessibilityTraitButton
+        self.cover.accessibilityTraits = UIAccessibilityTraits.button
         self.cover.accessibilityIdentifier = "AllCards"
         
         self.automaticallyManagesSubnodes = true

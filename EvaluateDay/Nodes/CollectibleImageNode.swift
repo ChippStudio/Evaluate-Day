@@ -22,7 +22,7 @@ class CollectibleImageNode: ASCellNode {
         self.imageNode.image = image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0)).withRenderingMode(.alwaysTemplate)
         self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
-        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.dataImageNode.image = data.resizedImage(newSize: CGSize(width: 20.0, height: 20.0)).withRenderingMode(.alwaysTemplate)
         self.dataImageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)

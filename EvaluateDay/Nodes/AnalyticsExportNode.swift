@@ -26,10 +26,10 @@ class AnalyticsExportNode: ASCellNode, ASCollectionDataSource, ASCollectionDeleg
         
         self.types = types
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text])
         let center = NSMutableParagraphStyle()
         center.alignment = .center
-        self.action.attributedText = NSAttributedString(string: action, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: center])
+        self.action.attributedText = NSAttributedString(string: action, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main, NSAttributedString.Key.paragraphStyle: center])
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

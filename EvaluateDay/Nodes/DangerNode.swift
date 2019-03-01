@@ -23,7 +23,7 @@ class DangerNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        let titleNewAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: color]
+        let titleNewAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: color]
         self.title.attributedText = NSAttributedString(string: title, attributes: titleNewAttributes)
         
         if image != nil {
@@ -36,7 +36,7 @@ class DangerNode: ASCellNode {
         //Accessibility
         self.isAccessibilityElement = true
         self.accessibilityLabel = title
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

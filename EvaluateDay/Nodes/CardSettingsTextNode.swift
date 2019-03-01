@@ -24,7 +24,7 @@ class CardSettingsTextNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         var textColor = UIColor.main
         var textString = text
@@ -33,10 +33,10 @@ class CardSettingsTextNode: ASCellNode {
             textString = Localizations.CardSettings.textPlaceholder
         }
         
-        self.text.attributedText = NSAttributedString(string: textString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: textColor])
+        self.text.attributedText = NSAttributedString(string: textString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: textColor])
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityLabel = title
         self.accessibilityValue = text
         

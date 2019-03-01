@@ -11,8 +11,8 @@ import RealmSwift
 import CloudKit
 
 extension WeatherValue: CloudKitSyncable {
-    func record(zoneID: CKRecordZoneID) -> CKRecord? {
-        let recordId = CKRecordID(recordName: self.id, zoneID: zoneID)
+    func record(zoneID: CKRecordZone.ID) -> CKRecord? {
+        let recordId = CKRecord.ID(recordName: self.id, zoneID: zoneID)
         let record = CKRecord(recordType: "WeatherValue", recordID: recordId)
         record.setObject(self.owner as CKRecordValue, forKey: "owner")
         record.setObject(self.created as CKRecordValue, forKey: "created")

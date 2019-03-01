@@ -84,8 +84,8 @@ extension Card: CloudKitSyncable {
         return card
     }
     
-    func record(zoneID: CKRecordZoneID) -> CKRecord? {
-        let recordId = CKRecordID(recordName: self.id, zoneID: zoneID)
+    func record(zoneID: CKRecordZone.ID) -> CKRecord? {
+        let recordId = CKRecord.ID(recordName: self.id, zoneID: zoneID)
         let record = CKRecord(recordType: "Card", recordID: recordId)
         record.setObject(self.title as CKRecordValue, forKey: "title")
         record.setObject(self.subtitle as CKRecordValue, forKey: "subtitle")

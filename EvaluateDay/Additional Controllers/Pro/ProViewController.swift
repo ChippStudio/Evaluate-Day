@@ -43,9 +43,9 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             // Backgrounds
@@ -145,7 +145,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @objc func manageSubscriptions(sender: UIButton) {
         if let url = URL(string: subscriptionManageURL) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
@@ -157,7 +157,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.loadCoverView.backgroundColor = UIColor.background
         self.loadCoverView.alpha = 0.0
         
-        self.loadIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.loadIndicatorView = UIActivityIndicatorView(style: .gray)
         self.loadIndicatorView.alpha = 0.0
         self.loadIndicatorView.startAnimating()
         
@@ -192,4 +192,9 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.loadCoverView.removeFromSuperview()
         self.loadIndicatorView.removeFromSuperview()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

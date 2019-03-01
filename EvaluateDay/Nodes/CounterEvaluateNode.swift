@@ -43,11 +43,11 @@ class CounterEvaluateNode: ASCellNode {
         // Plus and minus buttons and covers
         let font = UIFont.systemFont(ofSize: 36.0, weight: .regular)
         
-        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let plusAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
-        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let minusAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
-        let customAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let customAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
         self.plus.setAttributedTitle(NSAttributedString(string: "+", attributes: plusAttributes), for: .normal)
         
@@ -65,30 +65,30 @@ class CounterEvaluateNode: ASCellNode {
         if sumValue != nil {
             let sumString = self.numberFormatter.string(from: NSNumber(value: sumValue!))!
             self.sumText = ASTextNode()
-            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
             self.sumText!.isAccessibilityElement = false
         }
         
         // counter
         let valueString = self.numberFormatter.string(from: NSNumber(value: value))!
-        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         let previousValueString = self.numberFormatter.string(from: NSNumber(value: previousValue))!
-        self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.previousValue.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
-        self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.previousMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.previousMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         var components = DateComponents()
         components.day = -1
         
         let previousDate = Calendar.current.date(byAdding: components, to: date)!
-        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.separator.backgroundColor = UIColor.main
         self.separator.cornerRadius = 2.0

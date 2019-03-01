@@ -28,7 +28,7 @@ class CardSettingsCollectionNode: ASCellNode {
         self.collectionImage.cornerRadius = 10.0
         self.collectionImage.clipsToBounds = true
         
-        self.collectionTitle.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.collectionTitle.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.automaticallyManagesSubnodes = true
     }

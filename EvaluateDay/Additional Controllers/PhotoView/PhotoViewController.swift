@@ -112,7 +112,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         // Accessibility
         self.closeButton.accessibilityLabel = Localizations.General.close
         self.imageView.isAccessibilityElement = true
-        self.imageView.accessibilityTraits = UIAccessibilityTraitImage
+        self.imageView.accessibilityTraits = UIAccessibilityTraits.image
         
         self.infoCoverView.isAccessibilityElement = true
         self.infoCoverView.accessibilityLabel = self.createdLabel.text

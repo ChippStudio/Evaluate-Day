@@ -272,7 +272,7 @@ class JournalNode: ASCellNode {
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .journal))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.Journal.value(formatter.string(from: date), entries.count)
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

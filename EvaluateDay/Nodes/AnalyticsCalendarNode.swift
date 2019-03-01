@@ -26,7 +26,7 @@ class AnalyticsCalendarNode: ASCellNode {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
@@ -60,7 +60,7 @@ class AnalyticsCalendarNode: ASCellNode {
         self.shareButton.accessibilityValue = "\(self.title.attributedText!.string), \(Localizations.Accessibility.Analytics.calendarView)"
         
         self.calendarNode.isAccessibilityElement = true
-        self.calendarNode.accessibilityTraits = UIAccessibilityTraitNotEnabled
+        self.calendarNode.accessibilityTraits = UIAccessibilityTraits.notEnabled
         
         self.automaticallyManagesSubnodes = true
     }

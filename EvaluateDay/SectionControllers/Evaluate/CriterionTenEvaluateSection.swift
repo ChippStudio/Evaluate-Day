@@ -210,7 +210,7 @@ class TenNode: ASCellNode {
         }
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionTen)), \(criterionType)"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(Int(current))")
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

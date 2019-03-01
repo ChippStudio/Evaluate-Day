@@ -68,7 +68,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         //set special thanks
         
         //Table view
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.showsHorizontalScrollIndicator = false
         self.tableView.showsVerticalScrollIndicator = false
@@ -92,9 +92,9 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             // Backgrounds
@@ -199,7 +199,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             
             cell.selectedBackgroundView = selView
             
-            cell.accessibilityTraits = UIAccessibilityTraitButton
+            cell.accessibilityTraits = UIAccessibilityTraits.button
             cell.accessibilityLabel = Localizations.Settings.About.Share.title
             return cell
             }
@@ -259,7 +259,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             cell.contentView.backgroundColor = UIColor.background
             cell.selectedBackgroundView = selView
             
-            cell.accessibilityTraits = UIAccessibilityTraitButton
+            cell.accessibilityTraits = UIAccessibilityTraits.button
             cell.accessibilityLabel = "Chipp Studio"
             return cell
         }
@@ -308,7 +308,7 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
             }
         case 1:
             let url = URL(string: appURLString)!
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             
         case 2: if indexPath.row == 0 {
             var indexPaths = [IndexPath]()
@@ -408,4 +408,9 @@ class SettingsAboutViewController: UIViewController, UITableViewDataSource, UITa
         let title: String
         let URL: String
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

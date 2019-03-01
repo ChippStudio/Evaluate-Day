@@ -133,9 +133,12 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
     }
     
     // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         picker.dismiss(animated: true, completion: nil)
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             var newRect: CGRect!
             
             let maxSize: CGFloat = 800.0
@@ -155,7 +158,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
             image.draw(in: newRect)
             if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
                 try! Database.manager.app.write {
-                    Database.manager.application.user.avatar = UIImagePNGRepresentation(newImage)
+                    Database.manager.application.user.avatar = newImage.pngData()
                 }
             }
             UIGraphicsEndImageContext()
@@ -251,10 +254,20 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
     }
     
     // MARK: - Private
-    private func openPhotoPicker(withType type: UIImagePickerControllerSourceType) {
+    private func openPhotoPicker(withType type: UIImagePickerController.SourceType) {
         let photoController = UIImagePickerController()
         photoController.sourceType = type
         photoController.delegate = self
         self.viewController!.present(photoController, animated: true, completion: nil)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

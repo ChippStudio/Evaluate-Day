@@ -210,7 +210,7 @@ class ListNode: ASCellNode {
         self.accessibilityNode.isAccessibilityElement = true
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .list))"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.List.done(formatter.string(from: date), "\(inDay)")
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

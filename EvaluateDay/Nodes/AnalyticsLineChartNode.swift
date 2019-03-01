@@ -37,8 +37,8 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     
     private var numberFormatter = NumberFormatter()
     
-    private var valueAttributes: [NSAttributedStringKey: Any]!
-    private var dateAttributes: [NSAttributedStringKey: Any]!
+    private var valueAttributes: [NSAttributedString.Key: Any]!
+    private var dateAttributes: [NSAttributedString.Key: Any]!
     
     private var selectedYValue: String?
     private var selectedXValue: String?
@@ -85,7 +85,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
                 titleString = title.uppercased()
             }
         }
-        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
@@ -105,14 +105,14 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             self.selectedYValue = "\(Float(lastValue.y))"
         }
         
-        self.dateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.main]
+        self.dateAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.main]
         self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
         
         var valueColor = UIColor.positive
         if !positive {
             valueColor = UIColor.negative
         }
-        self.valueAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedStringKey.foregroundColor: valueColor]
+        self.valueAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedString.Key.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
         
         // Range buttons
@@ -393,22 +393,22 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
     }
     
     private func setRangeButtons() {
-        let weekAtributes: [NSAttributedStringKey: Any]
-        let monthAtributes: [NSAttributedStringKey: Any]
-        let yearAtributes: [NSAttributedStringKey: Any]
+        let weekAtributes: [NSAttributedString.Key: Any]
+        let monthAtributes: [NSAttributedString.Key: Any]
+        let yearAtributes: [NSAttributedString.Key: Any]
         switch self.selectedRange {
         case .week:
-            weekAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
-            monthAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
-            yearAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
+            weekAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
+            monthAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
+            yearAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
         case .month:
-            weekAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
-            monthAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
-            yearAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
+            weekAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
+            monthAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
+            yearAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
         case .year:
-            weekAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
-            monthAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text]
-            yearAtributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+            weekAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
+            monthAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text]
+            yearAtributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
         }
         
         self.weekButton.setAttributedTitle(NSAttributedString(string: Localizations.Analytics.Range.week, attributes: weekAtributes), for: .normal)
@@ -430,7 +430,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             dateFormatter.dateFormat = "yyyy"
             title = dateFormatter.string(from: self.centralDate)
         }
-        self.rangeTitle.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.rangeTitle.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
     }
     
     private func setData() {

@@ -171,8 +171,8 @@ class PasscodeViewController: UIViewController {
                     }
                     let center = NSMutableParagraphStyle()
                     center.alignment = .center
-                    let title = NSMutableAttributedString(string: "\(button.tag)" + subtitle, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: center])
-                    title.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.main], range: (title.string as NSString).range(of: subtitle))
+                    let title = NSMutableAttributedString(string: "\(button.tag)" + subtitle, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0, weight: .light), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: center])
+                    title.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .light), NSAttributedString.Key.foregroundColor: UIColor.main], range: (title.string as NSString).range(of: subtitle))
                     button.titleLabel?.numberOfLines = 2
                     button.setAttributedTitle(title, for: .normal)
                 }
@@ -198,7 +198,7 @@ class PasscodeViewController: UIViewController {
         }
         
         // set notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -235,9 +235,9 @@ class PasscodeViewController: UIViewController {
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             self.view.backgroundColor = UIColor.background

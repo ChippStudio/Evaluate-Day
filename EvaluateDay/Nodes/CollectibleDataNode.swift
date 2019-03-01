@@ -22,9 +22,9 @@ class CollectibleDataNode: ASCellNode {
         self.imageNode.image = image.resizedImage(newSize: CGSize(width: 24.0, height: 24.0)).withRenderingMode(.alwaysTemplate)
         self.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
-        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedString.Key.foregroundColor: UIColor.text])
         
-        self.dataNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.dataNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main])
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = title

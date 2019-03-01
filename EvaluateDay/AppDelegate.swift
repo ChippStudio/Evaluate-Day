@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var syncEngine: SyncEngine!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Danger ZONE please not release with TRUE
         UserDefaults.standard.register(defaults: ["demo": Bundle.main.object(forInfoDictionaryKey: "CSDemo") as! Bool,
                                                   "test": Bundle.main.object(forInfoDictionaryKey: "CSTest") as! Bool,
@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: - Open URL
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         let branchHandler = Branch.getInstance(branchApiKey).application(app, open: url, options: options)
         
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         for collection in Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false) {
             let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, collection.id)
             let title = collection.title.isEmpty ? Localizations.Collection.Edit.titlePlaceholder : collection.title
-            let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id])
+            let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id as NSSecureCoding])
             UIApplication.shared.shortcutItems?.append(collectionItem)
         }
         // Present passcode controller if needed
@@ -215,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: - Respond Universal Links
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         // pass the url to the handle deep link call
         return Branch.getInstance(branchApiKey).continue(userActivity)
     }
@@ -397,7 +397,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 content.body = Localizations.General.Notification._30days
             default: ()
             }
-            content.sound = UNNotificationSound(named: "EvaluatePush.wav")
+            content.sound = UNNotificationSound(named: convertToUNNotificationSoundName("EvaluatePush.wav"))
             content.userInfo = ["id": id]
             
             var components = DateComponents()
@@ -419,4 +419,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator
+private func convertToUNNotificationSoundName(_ input: String) -> UNNotificationSoundName {
+	return UNNotificationSoundName(rawValue: input)
 }

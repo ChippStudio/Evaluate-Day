@@ -28,10 +28,10 @@ class EvaluateEmptyCardNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.paragraphStyle: paragraph, NSAttributedStringKey.foregroundColor: UIColor.main])
-        self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.paragraphStyle: paragraph, NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.titleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.paragraphStyle: paragraph, NSAttributedString.Key.foregroundColor: UIColor.main])
+        self.subtitleNode.attributedText = NSAttributedString(string: subtitle, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.paragraphStyle: paragraph, NSAttributedString.Key.foregroundColor: UIColor.main])
         
-        self.newCardButton.setAttributedTitle(NSAttributedString(string: Localizations.General.Shortcut.New.title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]), for: .normal)
+        self.newCardButton.setAttributedTitle(NSAttributedString(string: Localizations.General.Shortcut.New.title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]), for: .normal)
         self.newCardButtonCover.backgroundColor = UIColor.main
         self.newCardButtonCover.cornerRadius = 10.0
         

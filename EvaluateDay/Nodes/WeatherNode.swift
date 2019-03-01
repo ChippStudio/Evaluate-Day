@@ -27,10 +27,10 @@ class WeatherNode: ASCellNode {
         self.iconImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         self.iconImage.contentMode = .scaleAspectFit
         
-        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let textString = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         for d in data {
-            textString.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14.0, weight: .bold)], range: (textString.string as NSString).range(of: d))
+            textString.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .bold)], range: (textString.string as NSString).range(of: d))
         }
         
         self.textNode.attributedText = textString

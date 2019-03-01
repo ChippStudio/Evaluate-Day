@@ -328,7 +328,7 @@ class CheckInNode: ASCellNode {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.Evaluate.checkIn(dateFormatter.string(from: date), datas.count)
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

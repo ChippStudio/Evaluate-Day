@@ -235,7 +235,7 @@ class ThreeNode: ASCellNode {
         }
         
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current(currentValueString)
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

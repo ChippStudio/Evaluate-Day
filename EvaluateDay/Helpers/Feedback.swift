@@ -34,14 +34,14 @@ final class Feedback {
     // MARK: - Init
     private init() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, with: AVAudioSessionCategoryOptions.mixWithOthers)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.ambient)), mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(false)
         } catch {
         }
     }
     
     // MARK: - Actions
-    func play(sound soundType: SoundType? = nil, hapticFeedback select: Bool = false, impact: Bool = false, feedbackType: UINotificationFeedbackType? = nil) {
+    func play(sound soundType: SoundType? = nil, hapticFeedback select: Bool = false, impact: Bool = false, feedbackType: UINotificationFeedbackGenerator.FeedbackType? = nil) {
         if soundType != nil {
             self.play(sound: soundType!)
         }
@@ -77,7 +77,7 @@ final class Feedback {
         self.selectGenerator.prepare()
         self.selectGenerator.selectionChanged()
     }
-    private func notify(type: UINotificationFeedbackType) {
+    private func notify(type: UINotificationFeedbackGenerator.FeedbackType) {
         self.notificationGenerator.prepare()
         self.notificationGenerator.notificationOccurred(type)
     }
@@ -85,4 +85,9 @@ final class Feedback {
         self.impactGenerator.prepare()
         self.impactGenerator.impactOccurred()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

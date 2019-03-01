@@ -55,7 +55,7 @@ class TourViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         self.pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         self.pageController.delegate = self
         self.pageController.dataSource = self
-        self.pageController.willMove(toParentViewController: self)
+        self.pageController.willMove(toParent: self)
         self.view.insertSubview(self.pageController.view, at: 0)
         self.pageController.view.snp.makeConstraints { (make) in
             make.top.equalToSuperview()

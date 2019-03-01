@@ -30,7 +30,7 @@ class AnalyticsMapNode: ASCellNode {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
         self.shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
@@ -40,7 +40,7 @@ class AnalyticsMapNode: ASCellNode {
             self.actionButton = ASButtonNode()
             self.actionButtonCover = ASDisplayNode()
             
-            let actionTitleString = NSAttributedString(string: actionTitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+            let actionTitleString = NSAttributedString(string: actionTitle!, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
             
             self.actionButton.setAttributedTitle(actionTitleString, for: .normal)
             

@@ -84,8 +84,8 @@ class StatisticCollectionCell: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.titleNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
-        self.subtitleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.titleNode.attributedText = NSAttributedString(string: data, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint, NSAttributedString.Key.paragraphStyle: paragraph])
+        self.subtitleNode.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint, NSAttributedString.Key.paragraphStyle: paragraph])
         
         self.isAccessibilityElement = true
         self.accessibilityLabel = title

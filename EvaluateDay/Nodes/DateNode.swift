@@ -24,7 +24,7 @@ class DateNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         let dateString = DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .medium)
-        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.button.addTarget(self, action: #selector(self.buttonInitialAction(sender:)), forControlEvents: .touchDown)
         self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchUpOutside)
@@ -32,7 +32,7 @@ class DateNode: ASCellNode {
         self.button.addTarget(self, action: #selector(self.buttonEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityLabel = dateString
         
         self.automaticallyManagesSubnodes = true

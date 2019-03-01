@@ -24,15 +24,15 @@ class SettingsNotificationNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.message.attributedText = NSAttributedString(string: message, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.message.attributedText = NSAttributedString(string: message, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
-        let timeString = NSMutableAttributedString(string: time + " - " + localizedRepeat + " " + card, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main])
-        timeString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.text], range: (timeString.string as NSString).range(of: card))
+        let timeString = NSMutableAttributedString(string: time + " - " + localizedRepeat + " " + card, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main])
+        timeString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.text], range: (timeString.string as NSString).range(of: card))
         
         self.information.attributedText = timeString
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityLabel = Localizations.Accessibility.Notification.description(message, localizedRepeat, time, card)
         
         self.automaticallyManagesSubnodes = true

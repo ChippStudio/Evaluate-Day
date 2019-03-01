@@ -23,7 +23,7 @@ class ListItemEvaluateNode: ASCellNode {
     init(text: String, done: Bool) {
         super.init()
         
-        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.strikethroughColor: UIColor.text, NSAttributedStringKey.strikethroughStyle: NSNumber(value: done)])
+        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.strikethroughColor: UIColor.text, NSAttributedString.Key.strikethroughStyle: NSNumber(value: done)])
         
         self.doneDotCover.borderColor = UIColor.main.cgColor
         self.doneDotCover.borderWidth = 1.0
@@ -35,7 +35,7 @@ class ListItemEvaluateNode: ASCellNode {
         self.doneButton.addTarget(self, action: #selector(self.buttonAction(sender:)), forControlEvents: .touchUpInside)
         
         // Accessibility
-        self.text.accessibilityTraits = UIAccessibilityTraitButton
+        self.text.accessibilityTraits = UIAccessibilityTraits.button
         self.text.accessibilityHint = Localizations.Accessibility.Evaluate.List.editItemHint
         
         self.doneButton.accessibilityLabel = Localizations.Accessibility.Evaluate.List.checkbox + ", \(text)"

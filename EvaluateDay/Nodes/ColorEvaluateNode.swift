@@ -54,7 +54,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         self.currentDate.isAccessibilityElement = false
         
         self.automaticallyManagesSubnodes = true
@@ -103,7 +103,7 @@ class ColorEvaluateNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegat
             let node = ColorDotNode(color: colorsForSelection[indexPath.row].color)
             node.isAccessibilityElement = true
             node.accessibilityLabel = "\(colorsForSelection[indexPath.row].name), \(self.currentDate.attributedText!.string)"
-            node.accessibilityTraits = UIAccessibilityTraitButton
+            node.accessibilityTraits = UIAccessibilityTraits.button
             node.selectionStyle = .none
             if colorsForSelection[indexPath.row].color == self.selectedColor {
                 node.colorSelected = true

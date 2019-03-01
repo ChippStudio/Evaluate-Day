@@ -1142,7 +1142,7 @@ internal enum Localizations {
     }
     internal enum Tour {
       internal enum Analytics {
-        /// After you have enough data, the app helps analyze it, or you can export all,  and do it in another app
+        /// After you have enough data, the app helps analyze it, or you can export all, and do it in another app
         internal static let description = Localizations.tr("Localizable", "onboarding.tour.analytics.description")
         /// Analytics
         internal static let title = Localizations.tr("Localizable", "onboarding.tour.analytics.title")

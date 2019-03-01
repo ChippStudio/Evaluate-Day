@@ -23,7 +23,7 @@ class AnalyticsProReviewNode: ASCellNode {
     override init() {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Analytics.title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.title.attributedText = NSAttributedString(string: Localizations.Settings.Pro.Review.Analytics.title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.main])
         
         self.proNode = ASDisplayNode(viewBlock: { () -> UIView in
             self.pro = ProView()

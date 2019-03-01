@@ -41,7 +41,7 @@ class DateButtonsNode: ASCellNode {
     init(date: Date) {
         super.init()
         
-        self.todayText.attributedText = NSAttributedString(string: Localizations.General.today, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.todayText.attributedText = NSAttributedString(string: Localizations.General.today, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         self.todayCover.backgroundColor = UIColor.main
         self.todayCover.cornerRadius = 15.0
         self.todayButton.addTarget(self, action: #selector(self.todayInitialAction(sender:)), forControlEvents: .touchDown)
@@ -61,11 +61,11 @@ class DateButtonsNode: ASCellNode {
         self.arrowButton.addTarget(self, action: #selector(self.arrowEndAction(sender:)), forControlEvents: .touchCancel)
         
         self.todayCover.isAccessibilityElement = true
-        self.todayCover.accessibilityTraits = UIAccessibilityTraitButton
+        self.todayCover.accessibilityTraits = UIAccessibilityTraits.button
         self.todayCover.accessibilityLabel = Localizations.General.today
         
         self.arrowCover.isAccessibilityElement = true
-        self.arrowCover.accessibilityTraits = UIAccessibilityTraitButton
+        self.arrowCover.accessibilityTraits = UIAccessibilityTraits.button
         self.arrowCover.accessibilityLabel = Localizations.Accessibility.date
         
         self.todayText.isAccessibilityElement = false

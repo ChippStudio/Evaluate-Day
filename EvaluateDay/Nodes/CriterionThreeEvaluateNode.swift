@@ -49,7 +49,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         if let previousValue = previousValue {
             self.previousImage = ASImageNode()
@@ -82,7 +82,7 @@ class CriterionThreeEvaluateNode: ASCellNode {
             
             let previousDate = Calendar.current.date(byAdding: components, to: date)!
             self.previousDate = ASTextNode()
-            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+            self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
             
             // Accessibility
             self.previousDate.isAccessibilityElement = false

@@ -52,10 +52,10 @@ class JournalEntryNode: ASCellNode {
         self.weatherImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         self.weatherImage.style.preferredSize = CGSize(width: 30.0, height: 30.0)
         
-        self.weatherText.attributedText = NSAttributedString(string: weatherText, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main])
-        self.locationText.attributedText = NSAttributedString(string: locationText, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.weatherText.attributedText = NSAttributedString(string: weatherText, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main])
+        self.locationText.attributedText = NSAttributedString(string: locationText, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main])
         let dateString = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .medium)
-        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.dateNode.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main])
         
         var newText = preview
         if newText.isEmpty {
@@ -68,7 +68,7 @@ class JournalEntryNode: ASCellNode {
             newText = String(newText[..<index]) + "..."
         }
         
-        self.textPreview.attributedText = NSAttributedString(string: newText, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.textPreview.attributedText = NSAttributedString(string: newText, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         if self.index != nil {
             self.button = ASButtonNode()

@@ -27,7 +27,7 @@ class BigDescriptionNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = alignment
         
-        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraph])
         
         self.separator.backgroundColor = UIColor.main
         

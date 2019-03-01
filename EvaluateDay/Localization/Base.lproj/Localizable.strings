@@ -545,7 +545,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "onboarding.tour.collections.title" = "Collections";
 "onboarding.tour.collections.description" = "help organize your cards";
 "onboarding.tour.analytics.title" = "Analytics";
-"onboarding.tour.analytics.description" = "After you have enough data, the app helps analyze it, or you can export all,  and do it in another app";
+"onboarding.tour.analytics.description" = "After you have enough data, the app helps analyze it, or you can export all, and do it in another app";
 "onboarding.tour.cardsSet.title" = "Cards Set";
 "onboarding.tour.cardsSet.description" = "We can add some cards for you. In the future, you can delete or modify the cards. Do it?";
 "onboarding.tour.cardsSet.button" = "Add Cards";

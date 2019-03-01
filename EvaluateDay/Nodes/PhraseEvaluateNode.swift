@@ -24,12 +24,12 @@ class PhraseEvaluateNode: ASCellNode {
         self.cover.backgroundColor = UIColor.main
         self.cover.cornerRadius = 10.0
         
-        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.text.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.date.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.date.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         self.date.isAccessibilityElement = false
         
         self.text.accessibilityLabel = text

@@ -41,7 +41,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             }
             if self.selectedLocation != nil {
                 if self.selectedLocation!.realm != nil {
-                    let region = MKCoordinateRegionMakeWithDistance(self.selectedLocation!.location.coordinate, 1000, 1000)
+                    let region = MKCoordinateRegion.init(center: self.selectedLocation!.location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
                     self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
                     let annotation = MapAnnotation(locationValue: self.selectedLocation!)
                     self.mapView.addAnnotation(annotation)
@@ -83,7 +83,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         self.mapView.addGestureRecognizer(longGesture)
         
         if Permissions.defaults.currentLocation != nil {
-            let region = MKCoordinateRegionMakeWithDistance(Permissions.defaults.currentLocation!.coordinate, 1000, 1000)
+            let region = MKCoordinateRegion.init(center: Permissions.defaults.currentLocation!.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
             self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
         }
     }
@@ -109,9 +109,9 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             self.closeButtonCover.backgroundColor = UIColor.main
@@ -152,7 +152,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.textColor = UIColor.text
         cell.detailTextLabel?.numberOfLines = 0
         
-        cell.accessibilityTraits = UIAccessibilityTraitButton
+        cell.accessibilityTraits = UIAccessibilityTraits.button
         cell.accessibilityHint = Localizations.Accessibility.Evaluate.Map.search
         
         return cell
@@ -177,7 +177,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         self.searchBar.resignFirstResponder()
         self.isSearchMode = false
         self.selectedLocation = value
-        let region = MKCoordinateRegionMakeWithDistance(value.location.coordinate, 1000, 1000)
+        let region = MKCoordinateRegion.init(center: value.location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
     }
     
@@ -205,7 +205,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in
-            let request = MKLocalSearchRequest()
+            let request = MKLocalSearch.Request()
             request.naturalLanguageQuery = searchText
             
             self.searchRequest = MKLocalSearch(request: request)
@@ -265,7 +265,7 @@ class SelectMapViewController: UIViewController, UITableViewDataSource, UITableV
             return
         }
         
-        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
+        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         self.mapView.setRegion(self.mapView.regionThatFits(region), animated: true)
     }
     

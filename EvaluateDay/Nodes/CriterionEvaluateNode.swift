@@ -25,8 +25,8 @@ class CriterionEvaluateNode: ASCellNode {
     var slider: UISlider!
     
     // MARK: - Variables
-    private var valueTextAtributes: [NSAttributedStringKey: Any]
-    private var persentTextAttributes: [NSAttributedStringKey: Any]
+    private var valueTextAtributes: [NSAttributedString.Key: Any]
+    private var persentTextAttributes: [NSAttributedString.Key: Any]
     private let previousValueNumber: Float
     private let currentDateNumber: Date
     /// (value: Int)
@@ -39,8 +39,8 @@ class CriterionEvaluateNode: ASCellNode {
         self.previousValueNumber = previous
         self.currentDateNumber = date
         
-        self.valueTextAtributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.textTint]
-        self.persentTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        self.valueTextAtributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.textTint]
+        self.persentTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
         super.init()
         
@@ -48,7 +48,7 @@ class CriterionEvaluateNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         self.currentValue.attributedText = NSAttributedString(string: "\(Int(current))", attributes: self.valueTextAtributes)
-        self.previousValue.attributedText = NSAttributedString(string: "\(Int(previous))", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.previousValue.attributedText = NSAttributedString(string: "\(Int(previous))", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
@@ -58,8 +58,8 @@ class CriterionEvaluateNode: ASCellNode {
         
         let previousDate = Calendar.current.date(byAdding: components, to: date)!
         
-        self.currentDate.attributedText = NSAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
-        self.previousDate.attributedText = NSAttributedString(string: dateFormatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        self.currentDate.attributedText = NSAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
+        self.previousDate.attributedText = NSAttributedString(string: dateFormatter.string(from: previousDate), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.separator.backgroundColor = UIColor.textTint
         self.separator.cornerRadius = 2.0

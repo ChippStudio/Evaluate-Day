@@ -21,7 +21,7 @@ class CollectionActionNode: ASCellNode {
     init(title: String, image: UIImage?, isMarked: Bool) {
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         if image != nil {
             self.imageNode = ASImageNode()
@@ -39,7 +39,7 @@ class CollectionActionNode: ASCellNode {
         //Accessibility
         self.cover.isAccessibilityElement = true
         self.cover.accessibilityLabel = title
-        self.cover.accessibilityTraits = UIAccessibilityTraitButton
+        self.cover.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

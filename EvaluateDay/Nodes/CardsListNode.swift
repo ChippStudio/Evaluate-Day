@@ -67,7 +67,7 @@ class CardsListNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegate {
             let node = CardsListDotNode(image: item.image)
             node.isAccessibilityElement = true
             node.accessibilityLabel = item.title
-            node.accessibilityTraits = UIAccessibilityTraitButton
+            node.accessibilityTraits = UIAccessibilityTraits.button
             return node
         }
     }

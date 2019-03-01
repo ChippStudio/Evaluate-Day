@@ -63,9 +63,9 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             // Backgrounds
@@ -101,7 +101,7 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
     private func setNotification(notification: LocalNotification, id: String, weekday: Int?, monthDay: Int?) {
         let content = UNMutableNotificationContent()
         content.body = notification.message
-        content.sound = UNNotificationSound(named: "EvaluatePush.wav")
+        content.sound = UNNotificationSound(named: convertToUNNotificationSoundName("EvaluatePush.wav"))
         content.userInfo = ["id": id]
         if notification.cardID != nil {
             content.categoryIdentifier = "EvaluateCategory-ID"
@@ -326,4 +326,9 @@ class SettingsNewNotificationViewController: UIViewController, UITableViewDataSo
             self.deleteButton.accessibilityLabel = Localizations.General.delete + ", " + Localizations.Accessibility.Notification.description(self.notification.message, self.notification.localizedString, DateFormatter.localizedString(from: self.notification.date, dateStyle: .none, timeStyle: .short), cardString)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUNNotificationSoundName(_ input: String) -> UNNotificationSoundName {
+	return UNNotificationSoundName(rawValue: input)
 }

@@ -36,7 +36,7 @@ class CardSettingsBooleanNode: ASCellNode {
         })
         self.switcher.backgroundColor = UIColor.clear
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         //Accessibility
         self.title.isAccessibilityElement = false

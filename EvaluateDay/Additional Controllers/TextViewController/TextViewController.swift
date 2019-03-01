@@ -74,7 +74,7 @@ class TextViewController: UIViewController, UITextViewDelegate {
         self.maskView.alpha = 0.6
         
         // Keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,7 +126,7 @@ class TextViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - Keyboard actions
     @objc func keyboardWillShow(sender: Notification) {
-        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
+        let height = (sender.userInfo![UIResponder.keyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
         self.textView.contentInset.bottom = height
     }
     

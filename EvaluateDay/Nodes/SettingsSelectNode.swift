@@ -38,11 +38,11 @@ class SettingsSelectNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         if subtitle != nil {
             self.subtitle = ASTextNode()
-            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.text])
+            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.text])
         }
         
         if image != nil {
@@ -54,7 +54,7 @@ class SettingsSelectNode: ASCellNode {
         self.selectImage.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.main)
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityLabel = title
         
         self.automaticallyManagesSubnodes = true

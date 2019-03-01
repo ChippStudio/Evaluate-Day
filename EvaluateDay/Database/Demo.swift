@@ -457,7 +457,7 @@ final class Demo {
                 user.name = "Konstantin Tsistjakov"
                 user.email = "hello@chippstudio.ee"
                 user.web = "https://chippstudio.ee"
-                user.avatar = UIImagePNGRepresentation(#imageLiteral(resourceName: "me"))
+                user.avatar = #imageLiteral(resourceName: "me").pngData()
             }
         }
         var usages = [AppUsage]()

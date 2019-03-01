@@ -31,8 +31,8 @@ class HabitEvaluateNode: ASCellNode {
     init(marks: Int, previousMarks: Int, date: Date) {
         super.init()
         
-        self.marksCount.attributedText = NSAttributedString(string: "\(marks)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.previousMarkCount.attributedText = NSAttributedString(string: "\(previousMarks)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.marksCount.attributedText = NSAttributedString(string: "\(marks)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50.0, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.previousMarkCount.attributedText = NSAttributedString(string: "\(previousMarks)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         var components = DateComponents()
         components.day = -1
@@ -42,15 +42,15 @@ class HabitEvaluateNode: ASCellNode {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.countSeparator.backgroundColor = UIColor.main
         self.countSeparator.cornerRadius = 2.0
         
-        let markButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
-        let markCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
-        let deleteCommentString = NSAttributedString(string: Localizations.Evaluate.Habit.removeLast, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.negative])
+        let markButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.mark, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
+        let markCommentButtonString = NSAttributedString(string: Localizations.Evaluate.Habit.markAndComment, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
+        let deleteCommentString = NSAttributedString(string: Localizations.Evaluate.Habit.removeLast, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.negative])
         
         self.markButtonCover.backgroundColor = UIColor.main
         self.markButtonCover.cornerRadius = 10.0

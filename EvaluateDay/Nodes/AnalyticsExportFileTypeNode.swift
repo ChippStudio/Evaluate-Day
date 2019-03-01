@@ -22,7 +22,7 @@ class AnalyticsExportFileTypeNode: ASCellNode {
         self.cornerRadius = 10.0
         
         self.isAccessibilityElement = true
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         self.accessibilityHint = Localizations.Accessibility.Analytics.Export.hint
         
         var fileTitle = ""

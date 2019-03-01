@@ -36,16 +36,16 @@ class CheckInPermissionNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         
-        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.descriptionNode.attributedText = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.description, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraph])
         
-        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let buttonTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.Permission.buttonTitle, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.permissionButton.setAttributedTitle(buttonTitleString, for: .normal)
         
         self.permissionCover.cornerRadius = 10.0
         self.permissionCover.backgroundColor = UIColor.main
         
-        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let mapTitleString = NSAttributedString(string: Localizations.Evaluate.Checkin.showMap, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.mapButton.setAttributedTitle(mapTitleString, for: .normal)
         
@@ -55,7 +55,7 @@ class CheckInPermissionNode: ASCellNode {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         self.currentDate.isAccessibilityElement = false
         
         // Buttons Action

@@ -118,7 +118,7 @@ extension UIView {
 // MARK: - UIViewController
 extension UIViewController {
     @objc public func updateAppearance(animated: Bool) {
-        for v in self.childViewControllers {
+        for v in self.children {
             v.updateAppearance(animated: animated)
         }
     }

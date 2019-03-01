@@ -19,7 +19,7 @@ class CardSettingsSectionTitleNode: ASCellNode {
         
         super.init()
         
-        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.title.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.automaticallyManagesSubnodes = true
     }

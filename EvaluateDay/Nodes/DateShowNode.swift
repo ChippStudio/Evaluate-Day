@@ -18,7 +18,7 @@ class DateShowNode: ASCellNode {
     var date: Date! {
         didSet {
             let dateString = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
-            self.dateView.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text])
+            self.dateView.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.foregroundColor: UIColor.text])
         }
     }
     
@@ -27,7 +27,7 @@ class DateShowNode: ASCellNode {
         super.init()
         
         let dateString = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
-        self.dateView.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.dateView.attributedText = NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.automaticallyManagesSubnodes = true
         

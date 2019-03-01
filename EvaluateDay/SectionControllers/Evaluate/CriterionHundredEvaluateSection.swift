@@ -214,7 +214,7 @@ class HundredNode: ASCellNode {
         }
         self.accessibilityNode.accessibilityLabel = "\(title), \(subtitle), \(Sources.title(forType: .criterionHundred)), \(criterionType)"
         self.accessibilityNode.accessibilityValue = Localizations.Accessibility.current("\(Int(current))")
-        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityNode.accessibilityTraits = UIAccessibilityTraits.button
         
         self.slider.didSliderLoad = { () in
             self.slider.slider.accessibilityLabel = title

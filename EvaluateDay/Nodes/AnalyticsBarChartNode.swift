@@ -28,8 +28,8 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
     
     private var numberFormatter = NumberFormatter()
     
-    private var valueAttributes: [NSAttributedStringKey: Any]!
-    private var dateAttributes: [NSAttributedStringKey: Any]!
+    private var valueAttributes: [NSAttributedString.Key: Any]!
+    private var dateAttributes: [NSAttributedString.Key: Any]!
     
     private var selectedXValue: String?
     private var selectedYValue: String?
@@ -61,7 +61,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             }
         }
         
-        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.titleNode.attributedText = NSAttributedString(string: titleString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.shareButton.setImage(Images.Media.share.image, for: .normal)
         self.shareButton.imageNode.contentMode = .scaleAspectFit
@@ -81,14 +81,14 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             self.selectedYValue = lastValueString
         }
         
-        self.dateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.main]
+        self.dateAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.main]
         self.date.attributedText = NSAttributedString(string: dateString, attributes: self.dateAttributes)
         
         var valueColor = UIColor.positive
         if !positive {
             valueColor = UIColor.negative
         }
-        self.valueAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedStringKey.foregroundColor: valueColor]
+        self.valueAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 45.0, weight: .medium), NSAttributedString.Key.foregroundColor: valueColor]
         self.valueNode.attributedText = NSAttributedString(string: lastValueString, attributes: self.valueAttributes)
         
         if data.isEmpty {

@@ -41,11 +41,11 @@ class GoalEvaluateNode: ASCellNode {
         // Plus and minus buttons and covers
         let font = UIFont.systemFont(ofSize: 36.0, weight: .regular)
         
-        let plusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let plusAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
-        let minusAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let minusAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
-        let customAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        let customAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
         
         self.plus.setAttributedTitle(NSAttributedString(string: "+", attributes: plusAttributes), for: .normal)
         
@@ -60,25 +60,25 @@ class GoalEvaluateNode: ASCellNode {
         self.customValueButtonCover.backgroundColor = UIColor.main
         
         let goalString = String(format: "%.2f", goalValue)
-        self.goalText.attributedText = NSAttributedString(string: Localizations.CardSettings.Goal.goal + " - \(goalString)", attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.goalText.attributedText = NSAttributedString(string: Localizations.CardSettings.Goal.goal + " - \(goalString)", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1), NSAttributedString.Key.foregroundColor: UIColor.main])
         
         // Sum title if needed
         if sumValue != nil {
             let sumString = String(format: "%.2f", sumValue!)
             self.sumText = ASTextNode()
-            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+            self.sumText?.attributedText = NSAttributedString(string: "∑ \(sumString)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
             self.sumText!.isAccessibilityElement = false
         }
         
         // counter
         let valueString = String(format: "%.2f", value)
-        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.counter.attributedText = NSAttributedString(string: valueString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40.0, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         let previousValueString = String(format: "%.2f", previousValue)
-        self.previousCounter.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.previousCounter.attributedText = NSAttributedString(string: previousValueString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
-        self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.previousMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.previousMeasurement.attributedText = NSAttributedString(string: measurement, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         // Date
         let formatter = DateFormatter()
@@ -89,8 +89,8 @@ class GoalEvaluateNode: ASCellNode {
         
         let previousDate = Calendar.current.date(byAdding: compnents, to: date)!
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.previousDate.attributedText = NSAttributedString(string: formatter.string(from: previousDate), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.separator.backgroundColor = UIColor.main
         self.separator.cornerRadius = 2.0

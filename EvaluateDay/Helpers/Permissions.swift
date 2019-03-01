@@ -49,7 +49,7 @@ class Permissions: NSObject {
         }
         
         // Set notification
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     // MARK: - Private Init
@@ -59,7 +59,7 @@ class Permissions: NSObject {
     
     // MARK: - Actions
     func openAppSettings() {
-        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
     }
     
     // MARK: - Location Actions
@@ -167,4 +167,9 @@ extension Permissions: CLLocationManagerDelegate {
             self.updateLocation()
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

@@ -92,7 +92,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             self.navigationItem.title = Localizations.Collection.allcards
         }
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
@@ -184,9 +184,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             //set NavigationBar
             self.navigationController?.navigationBar.barTintColor = UIColor.background
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -222,7 +222,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 self.scrollToCard = nil
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.controlUserReview(sender:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.controlUserReview(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

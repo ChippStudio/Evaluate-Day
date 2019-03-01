@@ -36,7 +36,7 @@ class UserInformationNode: ASCellNode {
         }
         if self.editMode {
             self.userPhoto.isAccessibilityElement = true
-            self.userPhoto.accessibilityTraits = UIAccessibilityTraitButton
+            self.userPhoto.accessibilityTraits = UIAccessibilityTraits.button
             self.userPhoto.accessibilityLabel = Localizations.Accessibility.Activity.PersonalInformation.image
         }
         
@@ -46,40 +46,40 @@ class UserInformationNode: ASCellNode {
             editString = Localizations.General.done
             accessibilityEditLabel = Localizations.Accessibility.Activity.PersonalInformation.save
         }
-        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.main])
-        let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedStringKey.foregroundColor: UIColor.text])
+        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedString.Key.foregroundColor: UIColor.main])
+        let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedString.Key.foregroundColor: UIColor.text])
         self.editButton.setAttributedTitle(editAttr, for: .normal)
         self.editButton.setAttributedTitle(editHighlightedAttr, for: .highlighted)
         self.editButton.accessibilityLabel = accessibilityEditLabel
         
-        var nameAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.main]
-        var emailAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
-        var bioAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
-        var webAttr = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main]
+        var nameAttr = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedString.Key.foregroundColor: UIColor.main]
+        var emailAttr = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main]
+        var bioAttr = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main]
+        var webAttr = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main]
         
         if !isEdit {
             if name != nil {
-                nameAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
+                nameAttr[NSAttributedString.Key.foregroundColor] = UIColor.text
                 self.userName = ASTextNode()
                 self.userName.attributedText = NSAttributedString(string: name!, attributes: nameAttr)
                 self.userName.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.name
             }
             
             if email != nil {
-                emailAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
+                emailAttr[NSAttributedString.Key.foregroundColor] = UIColor.text
                 self.userEmail = ASTextNode()
                 self.userEmail.attributedText = NSAttributedString(string: email!, attributes: emailAttr)
                 self.userEmail.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.email
             }
             
             if bio != nil {
-                bioAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
+                bioAttr[NSAttributedString.Key.foregroundColor] = UIColor.text
                 self.userBio = ASTextNode()
                 self.userBio.attributedText = NSAttributedString(string: bio!, attributes: bioAttr)
                 self.userBio.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.bio
             }
             if web != nil {
-                webAttr[NSAttributedStringKey.foregroundColor] = UIColor.text
+                webAttr[NSAttributedString.Key.foregroundColor] = UIColor.text
                 self.userWeb = ASTextNode()
                 self.userWeb.attributedText = NSAttributedString(string: web!, attributes: webAttr)
                 self.userWeb.accessibilityValue = Localizations.Accessibility.Activity.PersonalInformation.site

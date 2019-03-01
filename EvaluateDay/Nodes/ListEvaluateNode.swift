@@ -26,7 +26,7 @@ class ListEvaluateNode: ASCellNode {
     init(all: Int, allDone: Int, inDay: Int, date: Date) {
         super.init()
         
-        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let openTitle = NSAttributedString(string: Localizations.Evaluate.List.open, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.openListButton.setAttributedTitle(openTitle, for: .normal)
         
@@ -42,14 +42,14 @@ class ListEvaluateNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        self.dayDone.attributedText = NSAttributedString(string: dayString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30.0, weight: .medium), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
-        self.allDone.attributedText = NSAttributedString(string: allString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.dayDone.attributedText = NSAttributedString(string: dayString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30.0, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraph])
+        self.allDone.attributedText = NSAttributedString(string: allString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.paragraphStyle: paragraph])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
-        self.lifetime.attributedText = NSAttributedString(string: Localizations.General.lifetime, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedStringKey.foregroundColor: UIColor.text])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
+        self.lifetime.attributedText = NSAttributedString(string: Localizations.General.lifetime, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.text])
         
         self.separator.backgroundColor = UIColor.main
         self.separator.cornerRadius = 2.0

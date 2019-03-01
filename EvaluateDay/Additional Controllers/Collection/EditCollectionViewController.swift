@@ -60,8 +60,8 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         self.selectImageButton.accessibilityLabel = Localizations.Accessibility.Collection.editImage
         
         // Keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(sender:)), name: .UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(sender:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,9 +86,9 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             // Backgrounds
@@ -130,7 +130,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: titleCell, for: indexPath) as! TextFieldTableViewCell
-            cell.textField.attributedPlaceholder = NSAttributedString(string: Localizations.Collection.Edit.titlePlaceholder, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+            cell.textField.attributedPlaceholder = NSAttributedString(string: Localizations.Collection.Edit.titlePlaceholder, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
             cell.textField.text = self.collection.title
             cell.textField.textColor = UIColor.main
             cell.textField.tintColor = UIColor.textTint
@@ -366,7 +366,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: - Keyboard actions
     @objc func keyboardWillShow(sender: Notification) {
-        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
+        let height = (sender.userInfo![UIResponder.keyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
         
         self.tableView.contentInset.bottom = height
     }

@@ -36,7 +36,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
         }
@@ -75,8 +75,8 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         self.pageControl.numberOfPages = self.numbersOfPages
         
         // Keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(sender:)), name: .UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(sender:)), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         sendEvent(.openEntry, withProperties: ["new": self.new])
     }
@@ -110,9 +110,9 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.text]
+                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             }
             
             self.textView.textColor = UIColor.text
@@ -300,17 +300,20 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
     }
     
     // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         picker.dismiss(animated: true, completion: nil)
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             var mainAsset: PHAsset?
             if #available(iOS 11.0, *) {
-                if let asset = info[UIImagePickerControllerPHAsset] as? PHAsset {
+                if let asset = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.phAsset)] as? PHAsset {
                     mainAsset = asset
                 }
             } else {
                 // Fallback on earlier versions
-                if let assetURL = info[UIImagePickerControllerReferenceURL] as? String {
+                if let assetURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? String {
                     let url = URL(fileURLWithPath: assetURL)
                     if let asset = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil).firstObject {
                         mainAsset = asset
@@ -432,7 +435,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
     
     // MARK: - Keyboard actions
     @objc func keyboardWillShow(sender: Notification) {
-        let height = (sender.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
+        let height = (sender.userInfo![UIResponder.keyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size.height
         
         self.textView.contentInset.bottom = height
     }
@@ -570,7 +573,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         self.pageNode.reloadData(completion: nil)
     }
     
-    private func openPhotoPicker(withType type: UIImagePickerControllerSourceType) {
+    private func openPhotoPicker(withType type: UIImagePickerController.SourceType) {
         let photoController = UIImagePickerController()
         photoController.sourceType = type
         photoController.delegate = self
@@ -693,4 +696,14 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         
         print("Save image to camera roll ok")
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator
+private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

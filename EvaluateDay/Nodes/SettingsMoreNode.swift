@@ -19,13 +19,13 @@ class SettingsMoreNode: ASCellNode {
     var cover = ASDisplayNode()
     
     // MARK: - Init
-    init(title: String, subtitle: String?, image: UIImage?, titleAttributes: [NSAttributedStringKey: NSObject]? = nil) {
+    init(title: String, subtitle: String?, image: UIImage?, titleAttributes: [NSAttributedString.Key: NSObject]? = nil) {
         super.init()
         
         self.cover.backgroundColor = UIColor.main
         self.cover.cornerRadius = 10.0
         
-        var titleNewAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.textTint]
+        var titleNewAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.textTint]
         if titleAttributes != nil {
             titleNewAttributes = titleAttributes!
         }
@@ -35,7 +35,7 @@ class SettingsMoreNode: ASCellNode {
             self.subtitle = ASTextNode()
             let right = NSMutableParagraphStyle()
             right.alignment = .right
-            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.paragraphStyle: right])
+            self.subtitle.attributedText = NSAttributedString(string: subtitle!, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.tint, NSAttributedString.Key.paragraphStyle: right])
         }
         
         if image != nil {
@@ -52,7 +52,7 @@ class SettingsMoreNode: ASCellNode {
         self.isAccessibilityElement = true
         self.accessibilityLabel = title
         self.accessibilityValue = subtitle
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.accessibilityTraits = UIAccessibilityTraits.button
         
         self.automaticallyManagesSubnodes = true
     }

@@ -22,7 +22,7 @@ class DescriptionNode: ASCellNode {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = alignment
         
-        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote), NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.paragraphStyle: paragraph])
+        self.textNode.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .footnote), NSAttributedString.Key.foregroundColor: UIColor.main, NSAttributedString.Key.paragraphStyle: paragraph])
         
         self.automaticallyManagesSubnodes = true
     }

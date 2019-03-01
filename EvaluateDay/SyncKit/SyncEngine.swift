@@ -23,7 +23,7 @@ class SyncEngine {
     }
     // MARK: - Private Variables
     private var tokens = [NotificationToken]()
-    private var zoneId: CKRecordZoneID!
+    private var zoneId: CKRecordZone.ID!
     private let errorHandler = ErrorHandler()
     private var cloudChangeToken: CKServerChangeToken? {
         set {
@@ -87,8 +87,8 @@ class SyncEngine {
             }
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(sender:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(sender:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     // MARK: - Public actions
@@ -333,11 +333,11 @@ class SyncEngine {
         }
     }
     
-    private func saveChangesToCloud(recordsToStore: [CKRecord], recordsIdsToDelete: [CKRecordID], completion: (() -> Void)?) {
+    private func saveChangesToCloud(recordsToStore: [CKRecord], recordsIdsToDelete: [CKRecord.ID], completion: (() -> Void)?) {
         self.isSyncInProgress = true
         let modifyOperation = CKModifyRecordsOperation(recordsToSave: recordsToStore, recordIDsToDelete: recordsIdsToDelete)
         if #available(iOS 11.0, *) {
-            let config = CKOperationConfiguration()
+            let config = CKOperation.Configuration()
             config.isLongLived = true
             modifyOperation.configuration = config
         } else {
@@ -378,7 +378,7 @@ class SyncEngine {
         
         self.isSyncInProgress = true
         
-        let zoneChangesOptions = CKFetchRecordZoneChangesOptions()
+        let zoneChangesOptions = CKFetchRecordZoneChangesOperation.ZoneOptions()
         zoneChangesOptions.previousServerChangeToken = self.cloudChangeToken
         
         let changeOperation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zone], optionsByRecordZoneID: [zone: zoneChangesOptions])
@@ -571,7 +571,7 @@ class SyncEngine {
     
     private func subscribeZoneChanged(completion: (() -> Void)?) {
         let subscription = CKRecordZoneSubscription(zoneID: self.zoneId, subscriptionID: SyncKey.zoneNotification)
-        let info = CKNotificationInfo()
+        let info = CKSubscription.NotificationInfo()
         info.shouldSendContentAvailable = true // Silent push
         subscription.notificationInfo = info
         CKContainer.default().privateCloudDatabase.save(subscription, completionHandler: { (_, subscriptionError) in

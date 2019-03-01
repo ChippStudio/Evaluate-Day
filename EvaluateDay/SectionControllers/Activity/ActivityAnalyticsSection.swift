@@ -33,7 +33,7 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     override init() {
         super.init()
         self.isPro = Store.current.isPro
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadeAnalytics(sender:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadeAnalytics(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         if let user = Database.manager.app.objects(User.self).first {
             self.realmToken = user.observe({ (_) in
                 if self.isPro != Store.current.isPro {

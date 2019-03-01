@@ -24,8 +24,8 @@ class HabitEvaluateCommentNode: ASCellNode {
         self.cover.backgroundColor = UIColor.background
         self.cover.cornerRadius = 10.0
         
-        self.commentTextNode.attributedText = NSAttributedString(string: comment, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main])
-        self.indexTextNode.attributedText = NSAttributedString(string: "\(index).", attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedStringKey.foregroundColor: UIColor.main])
+        self.commentTextNode.attributedText = NSAttributedString(string: comment, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main])
+        self.indexTextNode.attributedText = NSAttributedString(string: "\(index).", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body), NSAttributedString.Key.foregroundColor: UIColor.main])
         
         // Accessibility
         self.commentTextNode.isAccessibilityElement = false

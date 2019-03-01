@@ -27,14 +27,14 @@ class JournalNewEntryActionNode: ASCellNode {
         self.actionButtonCover.backgroundColor = UIColor.main
         self.actionButtonCover.cornerRadius = 10.0
         
-        let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedStringKey.foregroundColor: UIColor.textTint])
+        let actionTitle = NSAttributedString(string: Localizations.Evaluate.Journal.newEntry, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2), NSAttributedString.Key.foregroundColor: UIColor.textTint])
         
         self.actionButton.setAttributedTitle(actionTitle, for: .normal)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
         
-        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedStringKey.foregroundColor: UIColor.text, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0, weight: .regular)])
+        self.currentDate.attributedText = NSAttributedString(string: formatter.string(from: date), attributes: [NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: .regular)])
         
         self.currentDate.isAccessibilityElement = false
         self.actionButton.accessibilityLabel = Localizations.Accessibility.Evaluate.Journal.newEntry(formatter.string(from: date))

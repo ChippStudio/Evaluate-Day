@@ -19,7 +19,7 @@ class TimeBottomViewController: BottomViewController {
     
     // MARK: - Variable
     var date = Date()
-    var pickerMode = UIDatePickerMode.time
+    var pickerMode = UIDatePicker.Mode.time
     var minumumDate: Date?
     var maximumDate: Date?
     weak var delegate: TimeBottomViewControllerDelegate?
