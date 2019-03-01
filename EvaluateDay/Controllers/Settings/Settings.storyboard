@@ -72,12 +72,16 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-Az-rhV">
                                                     <rect key="frame" x="56" y="11.5" width="42" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahm-SK-uge">
                                                     <rect key="frame" x="291" y="6.5" width="51" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="switch"/>
                                                     <connections>
                                                         <action selector="switchAction:" destination="9sY-ht-VMT" eventType="valueChanged" id="7hg-MG-ehz"/>
                                                     </connections>

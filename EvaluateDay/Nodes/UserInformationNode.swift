@@ -19,9 +19,6 @@ class UserInformationNode: ASCellNode {
     var userWeb: ASTextNode!
     var firstSeparator: ASDisplayNode!
     var secondSeparator: ASDisplayNode!
-    var facebookButton: ASButtonNode!
-    var facebookCover: ASDisplayNode!
-    var facebookDisclaimer: ASTextNode!
     
     // MARK: - Variables
     var editMode = false
@@ -129,28 +126,6 @@ class UserInformationNode: ASCellNode {
             self.firstSeparator.backgroundColor = UIColor.main
         }
         
-        if isEdit || email == nil || name == nil {
-            self.facebookCover = ASDisplayNode()
-            self.facebookButton = ASButtonNode()
-            self.facebookDisclaimer = ASTextNode()
-            
-            self.facebookCover.backgroundColor = UIColor.facebook
-            self.facebookCover.cornerRadius = 5.0
-            
-            var facebookAttr = [NSAttributedStringKey.foregroundColor: UIColor.tint, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body)]
-            let facebookTitle = NSAttributedString(string: Localizations.Activity.User.Facebook.action, attributes: facebookAttr)
-            facebookAttr[NSAttributedStringKey.foregroundColor] = UIColor.main
-            let facebookHighlightedTitle = NSAttributedString(string: Localizations.Activity.User.Facebook.action, attributes: facebookAttr)
-            self.facebookButton.setAttributedTitle(facebookTitle, for: .normal)
-            self.facebookButton.setAttributedTitle(facebookHighlightedTitle, for: .highlighted)
-            self.facebookButton.accessibilityValue = Localizations.Activity.User.Facebook.disclaimer
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            self.facebookDisclaimer.attributedText = NSAttributedString(string: Localizations.Activity.User.Facebook.disclaimer, attributes: [NSAttributedStringKey.foregroundColor: UIColor.main, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedStringKey.paragraphStyle: paragraphStyle])
-            self.facebookDisclaimer.isAccessibilityElement = false
-        }
-        
         self.automaticallyManagesSubnodes = true
     }
     
@@ -228,18 +203,6 @@ class UserInformationNode: ASCellNode {
             secondSeparateStack.alignItems = .end
             secondSeparateStack.children = [self.secondSeparator]
             cell.children?.append(secondSeparateStack)
-        }
-        
-        if self.facebookButton != nil {
-            self.facebookButton.style.preferredSize = CGSize(width: 290.0, height: 46)
-            let fb = ASBackgroundLayoutSpec(child: self.facebookButton, background: self.facebookCover)
-            
-            let fbActionStack = ASStackLayoutSpec.vertical()
-            fbActionStack.alignItems = .center
-            fbActionStack.spacing = 3.0
-            fbActionStack.children = [fb, self.facebookDisclaimer]
-            
-            cell.children?.append(fbActionStack)
         }
         
         let cellInsets = UIEdgeInsets(top: 30.0, left: 0.0, bottom: 30.0, right: 0.0)

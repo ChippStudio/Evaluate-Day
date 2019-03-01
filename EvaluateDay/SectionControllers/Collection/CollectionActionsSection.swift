@@ -20,11 +20,13 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
         if index == 0 {
             return {
                 let node = CollectionActionNode(title: Localizations.Settings.title, image: UIImage(named: "settings"), isMarked: false)
+                node.cover.accessibilityIdentifier = "settings"
                 return node
             }
         } else if index == 1 {
             return {
                 let node = CollectionActionNode(title: Localizations.Activity.title, image: UIImage(named: "activity"), isMarked: false)
+                node.cover.accessibilityIdentifier = "activity"
                 return node
             }
         }

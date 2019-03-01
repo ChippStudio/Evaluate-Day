@@ -46,6 +46,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         // Set table view
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.tableFooterView = self.footerView
+        self.tableView.isAccessibilityElement = true
         self.tableView.accessibilityIdentifier = "settingsTableView"
         self.tableView.contentInset.top = 40.0
         

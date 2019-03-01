@@ -536,3 +536,23 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "update.button" = "Download now";
 "update.subtitle" = "In new version we add new type of cards, please download new version from App Store";
 "update.title" = "Please update your version of Evaluate Day";
+
+// MARK: - Onboarding
+"onboarding.tour.welcome.title" = "Welcome";
+"onboarding.tour.welcome.description" = "on board, we so glad to see you in Evaluate Day app.\n\nWith app you can evaluate, analize, and control all kinds of your life";
+"onboarding.tour.cards.title" = "Cards";
+"onboarding.tour.cards.description" = "Just select what you want to track, make a new card from the suitable type and start adding data every day";
+"onboarding.tour.collections.title" = "Collections";
+"onboarding.tour.collections.description" = "help organize your cards";
+"onboarding.tour.analytics.title" = "Analytics";
+"onboarding.tour.analytics.description" = "After you have enough data, the app helps analyze it, or you can export all,  and do it in another app";
+"onboarding.tour.cardsSet.title" = "Cards Set";
+"onboarding.tour.cardsSet.description" = "We can add some cards for you. In the future, you can delete or modify the cards. Do it?";
+"onboarding.tour.cardsSet.button" = "Add Cards";
+"onboarding.tour.cardsSet.collection" = "Health";
+"onboarding.newsletter.title" = "Newsletter";
+"onboarding.newsletter.description" = "Get updates on Evaluate Day app progress. No spam, ever.";
+"onboarding.newsletter.button" = "Subscribe";
+"onboarding.newsletter.placeholder" = "Email address";
+"onboarding.enjoy.text" = "Enjoy!";
+"onboarding.enjoy.button" = "Start app";

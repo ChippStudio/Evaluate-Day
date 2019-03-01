@@ -8,7 +8,6 @@
 
 import UIKit
 import AsyncDisplayKit
-import FBSDKLoginKit
 import RealmSwift
 import SnapKit
 
@@ -112,24 +111,6 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         if object is ActivityUserObject {
             let section = ActivityUserSection()
-            section.didFacebookPressed = { (sec) in
-                if FBSDKAccessToken.current() == nil {
-                    FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { (result, error) in
-                        if error != nil {
-                            //Show error message
-                        } else if result != nil {
-                            if result!.isCancelled {
-                                // Cancelid Facebook login
-                            } else {
-                                // Success login
-                                self.facebookRequest(section: sec)
-                            }
-                        }
-                    })
-                } else {
-                    self.facebookRequest(section: sec)
-                }
-            }
             return section
         } else if object is ProLock {
             let section = ProLockSection()
@@ -153,42 +134,5 @@ class ActivityViewController: UIViewController, ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
-    }
-    
-    // MARK: - Private
-    private func facebookRequest(section: ListSectionController) {
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email, picture.type(large)"])
-        _ = request?.start(completionHandler: { (_, result, _) in
-            guard let userInfo = result as? [String: Any] else { return }
-            
-            if let imageURL = ((userInfo["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
-                //Download image from imageURL
-                do {
-                    let imageData = try Data(contentsOf: URL(string: imageURL)!)
-                    try Database.manager.app.write {
-                        Database.manager.application.user.avatar = imageData
-                    }
-                } catch {
-                    
-                }
-            }
-            
-            if let userName = userInfo["name"] as? String {
-                try! Database.manager.app.write {
-                    Database.manager.application.user.name = userName
-                }
-            }
-            if let userEmail = userInfo["email"] as? String {
-                try! Database.manager.app.write {
-                    Database.manager.application.user.email = userEmail
-                }
-            }
-            
-            section.collectionContext?.performBatch(animated: true, updates: { (context) in
-                context.reload(section)
-            }, completion: { (_) in
-                //
-            })
-        })
     }
 }

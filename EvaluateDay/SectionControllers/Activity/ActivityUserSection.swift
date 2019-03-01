@@ -13,7 +13,6 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
     
     // MARK: - Variables
     var isEditMode = false
-    var didFacebookPressed: ((_ section: ListSectionController) -> Void)?
     private var node: UserInformationNode!
     
     // MARK: - Override
@@ -43,9 +42,6 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
         return {
             self.node = UserInformationNode(photo: photo, name: name, email: email, bio: bio, web: web, isEdit: self.isEditMode)
             self.node.editButton.addTarget(self, action: #selector(self.editButtonAction(sender:)), forControlEvents: .touchUpInside)
-            if self.node.facebookButton != nil {
-                self.node.facebookButton.addTarget(self, action: #selector(self.facebookButtonAction(sender:)), forControlEvents: .touchUpInside)
-            }
             self.node.nodeDidLoad = { () in
                 if self.isEditMode {
                     self.node.userName.view.isUserInteractionEnabled = true
@@ -180,10 +176,6 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
         }, completion: { (_) in
             //
         })
-    }
-    
-    @objc func facebookButtonAction(sender: ASButtonNode) {
-        self.didFacebookPressed?(self)
     }
     
     @objc func nameTapAction(sender: UITapGestureRecognizer) {

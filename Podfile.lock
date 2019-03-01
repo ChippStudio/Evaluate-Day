@@ -1,24 +1,11 @@
 PODS:
   - Alamofire (4.8.1)
-  - Amplitude-iOS (4.0.4)
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
   - Branch (0.25.11):
     - Branch/Core (= 0.25.11)
   - Branch/Core (0.25.11)
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
-  - FBSDKCoreKit (4.39.1):
-    - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.39.1):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.39.1):
-    - FBSDKCoreKit
   - Flurry-iOS-SDK/FlurryAds (9.3.0):
     - Flurry-iOS-SDK/FlurrySDK
   - Flurry-iOS-SDK/FlurrySDK (9.3.0)
@@ -48,7 +35,6 @@ PODS:
   - Realm/Headers (3.13.1)
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
-  - SimulatorStatusMagic (2.4.1)
   - SnapKit (4.2.0)
   - SwiftGen (6.0.2)
   - SwiftKeychainWrapper (3.2.0)
@@ -78,17 +64,12 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
-  - Amplitude-iOS (~> 4.0.4)
   - Branch
   - Charts
-  - FBSDKCoreKit
-  - FBSDKLoginKit
-  - FBSDKShareKit
   - Flurry-iOS-SDK/FlurryAds
   - Flurry-iOS-SDK/FlurrySDK
   - FSCalendar
   - RealmSwift
-  - SimulatorStatusMagic
   - SnapKit
   - SwiftGen
   - SwiftKeychainWrapper
@@ -101,13 +82,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - Amplitude-iOS
-    - Bolts
     - Branch
     - Charts
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - FBSDKShareKit
     - Flurry-iOS-SDK
     - FSCalendar
     - IGListKit
@@ -116,7 +92,6 @@ SPEC REPOS:
     - PINRemoteImage
     - Realm
     - RealmSwift
-    - SimulatorStatusMagic
     - SnapKit
     - SwiftGen
     - SwiftKeychainWrapper
@@ -127,13 +102,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
-  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
-  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
-  FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
   Flurry-iOS-SDK: 43afe11656872692de232f580ef0a8a68b0b47c9
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
@@ -142,7 +112,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
-  SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
   SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
@@ -151,6 +120,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: 811baea0201471d0bc65d5e8017250505cee0cfe
   YandexMobileMetricaPush: 88e192d6484c4c66b1904325b32a915923acd312
 
-PODFILE CHECKSUM: cf4d539aa82e70aacc0e6a8ee4d29caf3d49759e
+PODFILE CHECKSUM: e420c9947cae5694b3f8ff49e1466704e52e6636
 
 COCOAPODS: 1.5.0

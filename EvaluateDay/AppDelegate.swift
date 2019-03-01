@@ -11,9 +11,7 @@ import CloudKit
 import UserNotifications
 import YandexMobileMetrica
 import YandexMobileMetricaPush
-import FBSDKCoreKit
 import Branch
-import Amplitude_iOS
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
@@ -42,15 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().delegate = delegate
             YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
             
-            // Init Amplitude
-            Amplitude.instance().trackingSessionEvents = true
-            Amplitude.instance().initializeApiKey(amplitudaApiKey)
-            
             // Init Flurry
             Flurry.startSession(flurryApiKey, with: FlurrySessionBuilder.init().withCrashReporting(true).withLogLevel(FlurryLogLevelAll))
-            
-            // Init Facebook
-            FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         }
         
         // Init Database
@@ -117,9 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         let branchHandler = Branch.getInstance(branchApiKey).application(app, open: url, options: options)
-        let facebookHandler = FBSDKApplicationDelegate.sharedInstance()!.application(app, open: url, options: options)
         
-        return facebookHandler || branchHandler
+        return branchHandler
     }
 
     // MARK: - Application lifecircle
@@ -327,17 +317,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: - Controll locations
     private func setUserInformation() {
-        let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
-        let dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
-        let starts = Database.manager.app.objects(AppUsage.self)
-        let voiceOver = UIAccessibilityIsVoiceOverRunning()
-        let identify = AMPIdentify()
-        identify.set("Pro", value: NSNumber(value: Store.current.isPro))
-        identify.set("VoiceOver", value: NSNumber(value: voiceOver))
-        identify.set("Cards", value: NSNumber(value: cards.count))
-        identify.set("Dashboards", value: NSNumber(value: dashboards.count))
-        identify.set("App Starts", value: NSNumber(value: starts.count))
-        Amplitude.instance().identify(identify)
+//        let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
+//        let dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
+//        let starts = Database.manager.app.objects(AppUsage.self)
+//        let voiceOver = UIAccessibilityIsVoiceOverRunning()
+        
     }
     private func controlLocations() {
         let values = Database.manager.data.objects(LocationValue.self).filter("isDeleted=%@", false)

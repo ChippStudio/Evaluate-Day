@@ -37,10 +37,9 @@ class CollectionActionNode: ASCellNode {
         self.cover.cornerRadius = 10.0
         
         //Accessibility
-        self.isAccessibilityElement = true
-        self.accessibilityLabel = title
-//        self.accessibilityValue = subtitle
-        self.accessibilityTraits = UIAccessibilityTraitButton
+        self.cover.isAccessibilityElement = true
+        self.cover.accessibilityLabel = title
+        self.cover.accessibilityTraits = UIAccessibilityTraitButton
         
         self.automaticallyManagesSubnodes = true
     }

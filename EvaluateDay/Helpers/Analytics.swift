@@ -7,10 +7,7 @@
 //
 
 import Foundation
-import Amplitude_iOS
 import YandexMobileMetrica
-import FBSDKCoreKit
-import FBSDKShareKit
 import Flurry_iOS_SDK
 
 enum Analytics: String {
@@ -92,45 +89,32 @@ func sendEvent(_ category: Analytics, withProperties properties: [String: Any]?)
     }
     
     if properties == nil {
-        Amplitude.instance().logEvent(category.rawValue)
         YMMYandexMetrica.reportEvent(category.rawValue, onFailure: nil)
-        FBSDKAppEvents.logEvent(category.rawValue)
     } else {
-        Amplitude.instance().logEvent(category.rawValue, withEventProperties: properties)
         YMMYandexMetrica.reportEvent(category.rawValue, parameters: properties, onFailure: nil)
-        FBSDKAppEvents.logEvent(category.rawValue, parameters: properties)
     }
 }
 
 func purchase(item: String?, trial: Bool, lifetime: Bool, receipt: Data) {
     
-    guard let item = item else {
-        return
-    }
+//    guard let item = item else {
+//        return
+//    }
+//    
+//    if Bundle.main.object(forInfoDictionaryKey: "CSSandbox") as! Bool || UserDefaults.standard.bool(forKey: "demo") {
+//        return
+//    }
     
-    if Bundle.main.object(forInfoDictionaryKey: "CSSandbox") as! Bool || UserDefaults.standard.bool(forKey: "demo") {
-        return
-    }
-    
-    let price: NSNumber = NSNumber(value: 1.0)
-    var identifire: String = "Evaluate Day Pro - "
-    
-    if item == Store.current.monthlyProductID {
-        identifire += "Montly"
-    } else if item == Store.current.annuallyProductID {
-        identifire += "Annualy"
-    } else if item == Store.current.lifetimeProductId {
-        identifire += "Lifetime"
-    } else {
-        return
-    }
-    
-    // Amplitude
-    let revenue = AMPRevenue()
-    revenue.setProductIdentifier(identifire)
-    revenue.setPrice(price)
-    revenue.setRevenueType("Subscription")
-    revenue.setEventProperties(["trial": trial, "lifetime": lifetime])
-    revenue.setReceipt(receipt)
-    Amplitude.instance().logRevenueV2(revenue)
+//    let price: NSNumber = NSNumber(value: 1.0)
+//    var identifire: String = "Evaluate Day Pro - "
+//    
+//    if item == Store.current.monthlyProductID {
+//        identifire += "Montly"
+//    } else if item == Store.current.annuallyProductID {
+//        identifire += "Annualy"
+//    } else if item == Store.current.lifetimeProductId {
+//        identifire += "Lifetime"
+//    } else {
+//        return
+//    }
 }

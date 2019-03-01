@@ -87,7 +87,7 @@ class ProView: UIView {
         // All labels
         self.evaluateDayLabel.text = Localizations.General.evaluateday
         self.evaluateDayLabel.textColor = UIColor.textTint
-        self.evaluateDayLabel.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
+        self.evaluateDayLabel.font = UIFont.systemFont(ofSize: 25.0, weight: .bold)
 
         self.readMoreLabel.text = Localizations.Settings.Pro.View.readMore
         self.readMoreLabel.textColor = UIColor.textTint
@@ -100,10 +100,10 @@ class ProView: UIView {
 
         self.evaluateDayLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(self)
-            make.leading.equalTo(self).offset(25.0)
+            make.leading.equalTo(self).offset(10.0)
         }
         self.miniProLabel.snp.makeConstraints { (make) in
-            make.trailing.equalTo(self).offset(-20.0)
+            make.trailing.equalTo(self).offset(-10.0)
             make.leading.greaterThanOrEqualTo(self.evaluateDayLabel.snp.trailing).offset(10.0)
             make.centerY.equalToSuperview()
         }

@@ -1123,6 +1123,61 @@ internal enum Localizations {
     }
   }
 
+  internal enum Onboarding {
+    internal enum Enjoy {
+      /// Start app
+      internal static let button = Localizations.tr("Localizable", "onboarding.enjoy.button")
+      /// Enjoy!
+      internal static let text = Localizations.tr("Localizable", "onboarding.enjoy.text")
+    }
+    internal enum Newsletter {
+      /// Subscribe
+      internal static let button = Localizations.tr("Localizable", "onboarding.newsletter.button")
+      /// Get updates on Evaluate Day app progress. No spam, ever.
+      internal static let description = Localizations.tr("Localizable", "onboarding.newsletter.description")
+      /// Email address
+      internal static let placeholder = Localizations.tr("Localizable", "onboarding.newsletter.placeholder")
+      /// Newsletter
+      internal static let title = Localizations.tr("Localizable", "onboarding.newsletter.title")
+    }
+    internal enum Tour {
+      internal enum Analytics {
+        /// After you have enough data, the app helps analyze it, or you can export all,  and do it in another app
+        internal static let description = Localizations.tr("Localizable", "onboarding.tour.analytics.description")
+        /// Analytics
+        internal static let title = Localizations.tr("Localizable", "onboarding.tour.analytics.title")
+      }
+      internal enum Cards {
+        /// Just select what you want to track, make a new card from the suitable type and start adding data every day
+        internal static let description = Localizations.tr("Localizable", "onboarding.tour.cards.description")
+        /// Cards
+        internal static let title = Localizations.tr("Localizable", "onboarding.tour.cards.title")
+      }
+      internal enum CardsSet {
+        /// Add Cards
+        internal static let button = Localizations.tr("Localizable", "onboarding.tour.cardsSet.button")
+        /// Health
+        internal static let collection = Localizations.tr("Localizable", "onboarding.tour.cardsSet.collection")
+        /// We can add some cards for you. In the future, you can delete or modify the cards. Do it?
+        internal static let description = Localizations.tr("Localizable", "onboarding.tour.cardsSet.description")
+        /// Cards Set
+        internal static let title = Localizations.tr("Localizable", "onboarding.tour.cardsSet.title")
+      }
+      internal enum Collections {
+        /// help organize your cards
+        internal static let description = Localizations.tr("Localizable", "onboarding.tour.collections.description")
+        /// Collections
+        internal static let title = Localizations.tr("Localizable", "onboarding.tour.collections.title")
+      }
+      internal enum Welcome {
+        /// on board, we so glad to see you in Evaluate Day app.\n\nWith app you can evaluate, analize, and control all kinds of your life
+        internal static let description = Localizations.tr("Localizable", "onboarding.tour.welcome.description")
+        /// Welcome
+        internal static let title = Localizations.tr("Localizable", "onboarding.tour.welcome.title")
+      }
+    }
+  }
+
   internal enum Permission {
     internal enum Camera {
       /// Capture interesting moments right from the app

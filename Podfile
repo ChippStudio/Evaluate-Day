@@ -24,20 +24,9 @@ target 'EvaluateDay' do
   pod 'YandexMobileMetricaPush'
   pod 'Flurry-iOS-SDK/FlurrySDK'
   pod 'Flurry-iOS-SDK/FlurryAds'
-  pod 'Amplitude-iOS', '~> 4.0.4'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
   pod 'Branch'
   
   # Code
   pod 'SwiftGen'
 
-end
-
-target 'EvaluateDayUITests' do
-    
-    platform :ios, '10.3'
-    
-    pod 'SimulatorStatusMagic'
 end
