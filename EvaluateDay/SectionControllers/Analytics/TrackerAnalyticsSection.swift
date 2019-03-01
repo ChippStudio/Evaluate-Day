@@ -65,6 +65,10 @@ class TrackerAnalyticsSection: ListSectionController, ASSectionController, Analy
         return self.nodes.count
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let nodeType = self.nodes[index]
         let isPro = Store.current.isPro

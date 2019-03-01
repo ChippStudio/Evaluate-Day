@@ -34,6 +34,10 @@ class CriterionTenEvaluateSection: ListSectionController, ASSectionController, E
         return 1
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         var lock = false
         if self.date.start.days(to: Date().start) > pastDaysLimit && !Store.current.isPro {

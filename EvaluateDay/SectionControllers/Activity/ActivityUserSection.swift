@@ -20,6 +20,10 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
         return 1
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let user = Database.manager.application.user!

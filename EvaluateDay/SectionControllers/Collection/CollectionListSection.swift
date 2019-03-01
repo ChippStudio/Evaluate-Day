@@ -25,6 +25,10 @@ class CollectionListSection: ListSectionController, ASSectionController {
         return 1
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         let title = self.collection.title

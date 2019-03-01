@@ -42,6 +42,10 @@ class GoalMergeSection: ListSectionController, ASSectionController, MergeSection
         return self.nodes + otherCards.count + 2
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         switch index {

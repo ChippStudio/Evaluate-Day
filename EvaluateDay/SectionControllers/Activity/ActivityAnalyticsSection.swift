@@ -58,6 +58,10 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
         return self.nodes.count
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let item = self.nodes[index]
         var distance = Localizations.Activity.Analytics.Barchart.title + "\n\(Localizations.General.last7)"

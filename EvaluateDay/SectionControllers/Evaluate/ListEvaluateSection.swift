@@ -34,6 +34,10 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         return 1
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         var lock = false

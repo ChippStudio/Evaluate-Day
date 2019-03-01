@@ -15,6 +15,10 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
         return 3
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         if index == 0 {

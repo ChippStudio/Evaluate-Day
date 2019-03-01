@@ -3,12 +3,12 @@ PODS:
   - Branch (0.25.11):
     - Branch/Core (= 0.25.11)
   - Branch/Core (0.25.11)
-  - Charts (3.2.1):
-    - Charts/Core (= 3.2.1)
-  - Charts/Core (3.2.1)
-  - Flurry-iOS-SDK/FlurryAds (9.3.0):
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
+  - Flurry-iOS-SDK/FlurryAds (9.3.1):
     - Flurry-iOS-SDK/FlurrySDK
-  - Flurry-iOS-SDK/FlurrySDK (9.3.0)
+  - Flurry-iOS-SDK/FlurrySDK (9.3.1)
   - FSCalendar (2.8.0)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -36,26 +36,39 @@ PODS:
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
   - SnapKit (4.2.0)
-  - SwiftGen (6.0.2)
+  - SwiftGen (6.1.0)
   - SwiftKeychainWrapper (3.2.0)
   - SwiftyJSON (4.2.0)
-  - Texture (2.7):
-    - Texture/PINRemoteImage (= 2.7)
-  - Texture/Core (2.7)
-  - Texture/IGListKit (2.7):
+  - Texture (2.8):
+    - Texture/AssetsLibrary (= 2.8)
+    - Texture/Core (= 2.8)
+    - Texture/MapKit (= 2.8)
+    - Texture/Photos (= 2.8)
+    - Texture/PINRemoteImage (= 2.8)
+    - Texture/Video (= 2.8)
+  - Texture/AssetsLibrary (2.8):
+    - Texture/Core
+  - Texture/Core (2.8)
+  - Texture/IGListKit (2.8):
     - IGListKit (~> 3.0)
     - Texture/Core
-  - Texture/PINRemoteImage (2.7):
+  - Texture/MapKit (2.8):
+    - Texture/Core
+  - Texture/Photos (2.8):
+    - Texture/Core
+  - Texture/PINRemoteImage (2.8):
     - PINRemoteImage/iOS (= 3.0.0-beta.13)
     - PINRemoteImage/PINCache
     - Texture/Core
-  - YandexMobileMetrica (3.5.0):
-    - YandexMobileMetrica/Static (= 3.5.0)
-  - YandexMobileMetrica/Static (3.5.0):
-    - YandexMobileMetrica/Static/Core (= 3.5.0)
-    - YandexMobileMetrica/Static/Crashes (= 3.5.0)
-  - YandexMobileMetrica/Static/Core (3.5.0)
-  - YandexMobileMetrica/Static/Crashes (3.5.0):
+  - Texture/Video (2.8):
+    - Texture/Core
+  - YandexMobileMetrica (3.6.0):
+    - YandexMobileMetrica/Static (= 3.6.0)
+  - YandexMobileMetrica/Static (3.6.0):
+    - YandexMobileMetrica/Static/Core (= 3.6.0)
+    - YandexMobileMetrica/Static/Crashes (= 3.6.0)
+  - YandexMobileMetrica/Static/Core (3.6.0)
+  - YandexMobileMetrica/Static/Crashes (3.6.0):
     - YandexMobileMetrica/Static/Core
   - YandexMobileMetricaPush (0.7.2):
     - YandexMobileMetricaPush/Static (= 0.7.2)
@@ -103,8 +116,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
-  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
-  Flurry-iOS-SDK: 43afe11656872692de232f580ef0a8a68b0b47c9
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
@@ -113,11 +126,11 @@ SPEC CHECKSUMS:
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
-  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
-  YandexMobileMetrica: 811baea0201471d0bc65d5e8017250505cee0cfe
+  Texture: fc6e0157201f3a6e503d364c147b1872e365cef4
+  YandexMobileMetrica: 11eee6732831a44aea2d81e3ae8626b5b0e129c5
   YandexMobileMetricaPush: 88e192d6484c4c66b1904325b32a915923acd312
 
 PODFILE CHECKSUM: e420c9947cae5694b3f8ff49e1466704e52e6636

@@ -48,6 +48,10 @@ class ColorEditableSection: ListSectionController, ASSectionController, Editable
         return self.nodes.count
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         switch self.nodes[index] {

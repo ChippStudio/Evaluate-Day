@@ -28,6 +28,10 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
         return 1
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let title = self.card.title
         let subtitle = self.card.subtitle

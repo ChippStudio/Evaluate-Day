@@ -50,6 +50,10 @@ class DateSection: ListSectionController, ASSectionController {
         return 4
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         switch index {
         case 1:

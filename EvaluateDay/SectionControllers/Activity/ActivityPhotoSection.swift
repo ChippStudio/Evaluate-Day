@@ -63,6 +63,10 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
         return 8
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         var subtitle = ""
         if !self.isPro {

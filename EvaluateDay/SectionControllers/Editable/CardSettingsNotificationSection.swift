@@ -40,6 +40,10 @@ class CardSettingsNotificationSection: ListSectionController, ASSectionControlle
         return nodes.count
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         switch nodes[index].node {
         case .new:

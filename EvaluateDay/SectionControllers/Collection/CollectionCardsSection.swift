@@ -25,6 +25,10 @@ class CollectionCardsSection: ListSectionController, ASSectionController, ASColl
         return 2
     }
     
+    func nodeForItem(at index: Int) -> ASCellNode {
+        return ASCellNode()
+    }
+    
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         
         if index == 0 {
