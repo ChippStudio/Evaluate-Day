@@ -22,8 +22,6 @@ target 'EvaluateDay' do
   # Analytics
   pod 'YandexMobileMetrica'
   pod 'YandexMobileMetricaPush'
-  pod 'Flurry-iOS-SDK/FlurrySDK'
-  pod 'Flurry-iOS-SDK/FlurryAds'
   pod 'Branch'
   
   # Code

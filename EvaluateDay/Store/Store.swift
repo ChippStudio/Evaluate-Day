@@ -364,23 +364,16 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 
                 var isPro = false
                 var validDate: Date?
-                var trial = false
-                var lifetime = false
                 
                 for (_, receipt) in json["latest_receipt_info"] {
                     if receipt["product_id"].stringValue == self.lifetimeProductId {
                         isPro = true
-                        lifetime = true
                         break
                     }
                     let date = Date(timeIntervalSince1970: receipt["expires_date_ms"].doubleValue / 1000)
                     if date > Date() {
                         isPro = true
                         validDate = date
-                        
-                        if receipt["is_trial_period"].stringValue == "true" {
-                            trial = true
-                        }
                         self.subscriptionID = receipt["product_id"].string
                     }
                 }
@@ -399,14 +392,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 }
                 
                 // Log analytics events
-                if Date(timeIntervalSince1970: UserDefaults.standard.object(forKey: "sendAnaliticsPurchaceDate") as! Double) < Date() {
-                    // New purchase transaction
-                    purchase(item: self.subscriptionID, trial: trial, lifetime: lifetime, receipt: receiptData)
-                    if self.valid != nil {
-                        UserDefaults.standard.set(self.valid!.timeIntervalSince1970, forKey: "sendAnaliticsPurchaceDate")
-                    }
-                }
-                
                 if self.autoRenewStatus == AutoRenewStatus.turnedOff {
                     //Future transaction stopped
                     if UserDefaults.standard.bool(forKey: "logPurchaseTurnOffReason") {

@@ -86,6 +86,7 @@
 		B52D26EF2017659400332D0A /* HabitEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */; };
 		B52D26F1201765AC00332D0A /* HabitEvaluateCommentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */; };
 		B536110B1FF8ED4C007A1290 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536110A1FF8ED4C007A1290 /* Syncable.swift */; };
+		B53795712239826A00C5BDD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B53795702239826A00C5BDD2 /* GoogleService-Info.plist */; };
 		B53977D6214A8D8A002EAAFA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53977D5214A8D8A002EAAFA /* HealthKit.framework */; };
 		B53DEA4621DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */; };
 		B53E5F472053F66300B50B60 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53E5F462053F66300B50B60 /* Activity.storyboard */; };
@@ -472,6 +473,7 @@
 		B52D26EE2017659400332D0A /* HabitEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluateNode.swift; sourceTree = "<group>"; };
 		B52D26F0201765AC00332D0A /* HabitEvaluateCommentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluateCommentNode.swift; sourceTree = "<group>"; };
 		B536110A1FF8ED4C007A1290 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
+		B53795702239826A00C5BDD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B53977D5214A8D8A002EAAFA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDotsAnalyticsNode.swift; sourceTree = "<group>"; };
 		B53E5F462053F66300B50B60 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 			isa = PBXGroup;
 			children = (
 				B57F45CB20E675D900672FD6 /* secret.swift */,
+				B53795702239826A00C5BDD2 /* GoogleService-Info.plist */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -1953,6 +1956,7 @@
 				B5BD494E2116FAEB004872B0 /* Images.xcassets in Resources */,
 				B5A226BD20FCAE530060538F /* Localizable.stringsdict in Resources */,
 				B516CA4C21EA8C5B0002915F /* AppIcon-5-Preview.png in Resources */,
+				B53795712239826A00C5BDD2 /* GoogleService-Info.plist in Resources */,
 				B5D854CA1FCDAA6F00BB4E14 /* Passcode.storyboard in Resources */,
 				B5BD3B452009E8B60075C75F /* SelectMap.storyboard in Resources */,
 				B56217F11FD30F4B0061AC70 /* EvaluatePush.wav in Resources */,
@@ -2049,7 +2053,6 @@
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
@@ -2067,7 +2070,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",

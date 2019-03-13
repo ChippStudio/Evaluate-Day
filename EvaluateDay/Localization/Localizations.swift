@@ -303,12 +303,6 @@ internal enum Localizations {
         /// Super User
         internal static let name = Localizations.tr("Localizable", "activity.user.description.name")
       }
-      internal enum Facebook {
-        /// Update from Facebook
-        internal static let action = Localizations.tr("Localizable", "activity.user.facebook.action")
-        /// We never post on Facebook.
-        internal static let disclaimer = Localizations.tr("Localizable", "activity.user.facebook.disclaimer")
-      }
       internal enum Placeholder {
         /// Introduce yourself
         internal static let bio = Localizations.tr("Localizable", "activity.user.placeholder.bio")

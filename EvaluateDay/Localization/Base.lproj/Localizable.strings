@@ -99,8 +99,6 @@
 "activity.gallery.subtitle" = "Unlock Evaluate Day Pro to see gallery";
 "activity.gallery.title" = "Gallery";
 "activity.title" = "Activity";
-"activity.user.facebook.action" = "Update from Facebook";
-"activity.user.facebook.disclaimer" = "We never post on Facebook.";
 "activity.user.placeholder.bio" = "Introduce yourself";
 "activity.user.placeholder.email" = "Set email";
 "activity.user.placeholder.name" = "Set full name";

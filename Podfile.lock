@@ -6,9 +6,6 @@ PODS:
   - Charts (3.2.2):
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
-  - Flurry-iOS-SDK/FlurryAds (9.3.1):
-    - Flurry-iOS-SDK/FlurrySDK
-  - Flurry-iOS-SDK/FlurrySDK (9.3.1)
   - FSCalendar (2.8.0)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -79,8 +76,6 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - Branch
   - Charts
-  - Flurry-iOS-SDK/FlurryAds
-  - Flurry-iOS-SDK/FlurrySDK
   - FSCalendar
   - RealmSwift
   - SnapKit
@@ -97,7 +92,6 @@ SPEC REPOS:
     - Alamofire
     - Branch
     - Charts
-    - Flurry-iOS-SDK
     - FSCalendar
     - IGListKit
     - PINCache
@@ -117,7 +111,6 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
-  Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
@@ -133,6 +126,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: 11eee6732831a44aea2d81e3ae8626b5b0e129c5
   YandexMobileMetricaPush: 88e192d6484c4c66b1904325b32a915923acd312
 
-PODFILE CHECKSUM: e420c9947cae5694b3f8ff49e1466704e52e6636
+PODFILE CHECKSUM: ecff31ce18f0e739024c326433ee712fc8a0fce8
 
 COCOAPODS: 1.5.0

@@ -293,7 +293,7 @@
                                 </variation>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-p7-zrA" customClass="ProView" customModule="Evaluate_Day" customModuleProvider="target">
-                                <rect key="frame" x="20" y="457" width="335" height="140"/>
+                                <rect key="frame" x="10" y="457" width="355" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="HCH-fU-LGP"/>
@@ -318,13 +318,13 @@
                             <constraint firstItem="agu-eC-pCy" firstAttribute="centerX" secondItem="8vU-pb-2yT" secondAttribute="centerX" id="6YN-71-XhN"/>
                             <constraint firstItem="1QI-p7-zrA" firstAttribute="top" secondItem="agu-eC-pCy" secondAttribute="bottom" constant="30" id="6l9-Oo-0Tb"/>
                             <constraint firstItem="1QI-p7-zrA" firstAttribute="centerX" secondItem="8vU-pb-2yT" secondAttribute="centerX" id="6pG-zw-tWG"/>
-                            <constraint firstItem="1QI-p7-zrA" firstAttribute="leading" secondItem="x0I-2d-QHB" secondAttribute="leading" constant="20" id="918-iK-nDN"/>
+                            <constraint firstItem="1QI-p7-zrA" firstAttribute="leading" secondItem="x0I-2d-QHB" secondAttribute="leading" constant="10" id="918-iK-nDN"/>
                             <constraint firstItem="agu-eC-pCy" firstAttribute="top" secondItem="x0I-2d-QHB" secondAttribute="top" id="Mnz-1j-z7k"/>
                             <constraint firstItem="x0I-2d-QHB" firstAttribute="bottom" secondItem="1QI-p7-zrA" secondAttribute="bottom" constant="70" id="sET-tt-MmC">
                                 <variation key="heightClass=compact" constant="20"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="150"/>
                             </constraint>
-                            <constraint firstItem="x0I-2d-QHB" firstAttribute="trailing" secondItem="1QI-p7-zrA" secondAttribute="trailing" constant="20" id="t5h-VF-cmc"/>
+                            <constraint firstItem="x0I-2d-QHB" firstAttribute="trailing" secondItem="1QI-p7-zrA" secondAttribute="trailing" constant="10" id="t5h-VF-cmc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x0I-2d-QHB"/>
                         <variation key="default">

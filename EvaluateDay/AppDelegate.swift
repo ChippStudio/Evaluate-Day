@@ -15,7 +15,6 @@ import Branch
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
-import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -39,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             delegate.nextDelegate = self
             UNUserNotificationCenter.current().delegate = delegate
             YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
-            
-            // Init Flurry
-            Flurry.startSession(flurryApiKey, with: FlurrySessionBuilder.init().withCrashReporting(true).withLogLevel(FlurryLogLevelAll))
         }
         
         // Init Database
@@ -317,10 +313,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: - Controll locations
     private func setUserInformation() {
-//        let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
-//        let dashboards = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
-//        let starts = Database.manager.app.objects(AppUsage.self)
-//        let voiceOver = UIAccessibilityIsVoiceOverRunning()
+        let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
+        let collections = Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false)
+        let starts = Database.manager.app.objects(AppUsage.self)
+        let voiceOver = UIAccessibility.isVoiceOverRunning
+        
+        let profile = YMMMutableUserProfile()
+        var profileUpdates = [YMMUserProfileUpdate]()
+        
+        let user = Database.manager.application.user!
+        profileUpdates.append(YMMProfileAttribute.name().withValue(user.name))
+        // Send only public email from profile, for feedback request
+        profileUpdates.append(YMMProfileAttribute.customString("email").withValue(user.email))
+        profileUpdates.append(YMMProfileAttribute.customString("site").withValue(user.web))
+        profileUpdates.append(YMMProfileAttribute.customNumber("cards").withValue(Double(cards.count)))
+        profileUpdates.append(YMMProfileAttribute.customNumber("collections").withValue(Double(collections.count)))
+        profileUpdates.append(YMMProfileAttribute.customNumber("starts").withValue(Double(starts.count)))
+        profileUpdates.append(YMMProfileAttribute.customBool("voiceOver").withValue(voiceOver))
+        
+        profile.apply(from: profileUpdates)
+        YMMYandexMetrica.report(profile, onFailure: nil)
         
     }
     private func controlLocations() {

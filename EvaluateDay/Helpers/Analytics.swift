@@ -8,7 +8,6 @@
 
 import Foundation
 import YandexMobileMetrica
-import Flurry_iOS_SDK
 
 enum Analytics: String {
     
@@ -30,8 +29,8 @@ enum Analytics: String {
     case shareFromAnalytics
     case openFromLocalNotification
     case showAppRate
-    case newDashboard
-    case deleteDashboard
+    case addNewCollection
+    case deleteCollection
     
     // MARK: - Settings
     case openSettings
@@ -70,7 +69,6 @@ enum Analytics: String {
     // MARK: - Welcome
     case startOnboarding
     case finishOnboarding
-    case onboardingSetPermission
     
     // MARK: - Flags
     case proTurnedOff
@@ -93,28 +91,4 @@ func sendEvent(_ category: Analytics, withProperties properties: [String: Any]?)
     } else {
         YMMYandexMetrica.reportEvent(category.rawValue, parameters: properties, onFailure: nil)
     }
-}
-
-func purchase(item: String?, trial: Bool, lifetime: Bool, receipt: Data) {
-    
-//    guard let item = item else {
-//        return
-//    }
-//    
-//    if Bundle.main.object(forInfoDictionaryKey: "CSSandbox") as! Bool || UserDefaults.standard.bool(forKey: "demo") {
-//        return
-//    }
-    
-//    let price: NSNumber = NSNumber(value: 1.0)
-//    var identifire: String = "Evaluate Day Pro - "
-//    
-//    if item == Store.current.monthlyProductID {
-//        identifire += "Montly"
-//    } else if item == Store.current.annuallyProductID {
-//        identifire += "Annualy"
-//    } else if item == Store.current.lifetimeProductId {
-//        identifire += "Lifetime"
-//    } else {
-//        return
-//    }
 }
