@@ -22,6 +22,7 @@ target 'EvaluateDay' do
   # Analytics
   pod 'YandexMobileMetrica'
   pod 'YandexMobileMetricaPush'
+  pod 'Firebase/Core'
   pod 'Branch'
   
   # Code

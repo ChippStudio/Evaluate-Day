@@ -76,8 +76,9 @@ fastlane/test_output
 Preview.html
 
 # Secrets files
-EvaluateDay/Support/Secret/
-# EvaluateDay/Support/Secret/secret.swift
+# EvaluateDay/Support/Secret/
+EvaluateDay/Support/Secret/secret.swift
+EvaluateDay/Support/Secret/GoogleService-Info.plist
 
 # macOS
 **/.DS_Store

@@ -15,6 +15,7 @@ import Branch
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().delegate = delegate
             YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
         }
+        
+        // Configure Firebase
+        FirebaseApp.configure()
         
         // Init Database
         Database.manager.initDatabase()
