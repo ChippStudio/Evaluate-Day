@@ -38,6 +38,8 @@ class EntriesListViewController: UIViewController, ASTableDataSource, ASTableDel
             self.editButton = UIBarButtonItem(title: Localizations.General.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.editButton
         }
+        
+        sendEvent(Analytics.entriesValueList, withProperties: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,22 +8,26 @@
 
 import Foundation
 import YandexMobileMetrica
+import Firebase
 
 enum Analytics: String {
     
     // MARK: - General
     case openActivity
-    case openCardList
+    case openEvaluate
+    case openCollections
     case openShareController
-    case openTimeTravel
     case openPhoto
+    case openGalery
     case reorderCards
+    case reorderCollection
     case openNewCardSelector
-    case openEntry
+    case selectNewCard
     case addNewCard
     case deleteCard
     case archiveCard
     case unarchiveCard
+    case openEntry
     case openAnalytics
     case shareFromEvaluateDay
     case shareFromAnalytics
@@ -31,6 +35,13 @@ enum Analytics: String {
     case showAppRate
     case addNewCollection
     case deleteCollection
+    case show3DTouchPreview
+    
+    case locationsValueList
+    case marksValueList
+    case colorsValueList
+    case numbersValueList
+    case entriesValueList
     
     // MARK: - Settings
     case openSettings
@@ -38,10 +49,13 @@ enum Analytics: String {
     case openProReview
     case openPro
     case openProMore
-    case openThemes
     case openIcons
-    case selectTheme
+    case startPay
+    case donePay
     case selectIcon
+    case selectDarkMode
+    case selectBlackMode
+    case selectLightMode
     case openNotification
     case addNewNotification
     case addCardToNotification
@@ -69,6 +83,8 @@ enum Analytics: String {
     // MARK: - Welcome
     case startOnboarding
     case finishOnboarding
+    case addDefaultsCards
+    case subscribeNewsletter
     
     // MARK: - Flags
     case proTurnedOff
@@ -78,6 +94,7 @@ enum Analytics: String {
     case deleteAllCards
     case deleteAllCardsInCloud
     case openFromShortcut
+    case changeMainDate
     
 }
 
@@ -88,7 +105,9 @@ func sendEvent(_ category: Analytics, withProperties properties: [String: Any]?)
     
     if properties == nil {
         YMMYandexMetrica.reportEvent(category.rawValue, onFailure: nil)
+        Firebase.Analytics.logEvent(category.rawValue, parameters: nil)
     } else {
         YMMYandexMetrica.reportEvent(category.rawValue, parameters: properties, onFailure: nil)
+        Firebase.Analytics.logEvent(category.rawValue, parameters: properties)
     }
 }

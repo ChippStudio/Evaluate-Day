@@ -10,7 +10,11 @@ import UIKit
 
 class SplitController: UniversalSplitViewController {
 
-    var date: Date = Date()
+    var date: Date = Date() {
+        didSet {
+            sendEvent(Analytics.changeMainDate, withProperties: nil)
+        }
+    }
     
     // MARK: - Override
     override func viewDidLoad() {

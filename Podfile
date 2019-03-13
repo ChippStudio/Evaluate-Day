@@ -23,6 +23,8 @@ target 'EvaluateDay' do
   pod 'YandexMobileMetrica'
   pod 'YandexMobileMetricaPush'
   pod 'Firebase/Core'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Branch'
   
   # Code

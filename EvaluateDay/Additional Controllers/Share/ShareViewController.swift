@@ -60,7 +60,9 @@ class ShareViewController: UIViewController {
         }
         
         // Analytics
-        sendEvent(.openShareController, withProperties: nil)
+        sendEvent(.openShareController, withProperties: ["feature": self.feature,
+                                                         "channel": self.channel,
+                                                         "identifier": self.canonicalIdentifier])
     }
 
     override func didReceiveMemoryWarning() {

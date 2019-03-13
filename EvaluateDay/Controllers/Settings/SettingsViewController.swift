@@ -253,6 +253,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                         UserDefaults.standard.set(sender.isOn, forKey: Theme.darkMode.rawValue)
                         (UIApplication.shared.delegate as! AppDelegate).window!.didUpdatedAppearance(animated: true)
                         self.setSettings()
+                        if sender.isOn {
+                            sendEvent(Analytics.selectDarkMode, withProperties: nil)
+                        } else {
+                            sendEvent(Analytics.selectLightMode, withProperties: nil)
+                        }
                     } else {
                         let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
                         self.navigationController?.pushViewController(controller, animated: true)
@@ -261,6 +266,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                     UserDefaults.standard.set(sender.isOn, forKey: Theme.blackMode.rawValue)
                     (UIApplication.shared.delegate as! AppDelegate).window!.didUpdatedAppearance(animated: true)
                     self.setSettings()
+                    if sender.isOn {
+                        sendEvent(Analytics.selectBlackMode, withProperties: nil)
+                    } else {
+                        sendEvent(Analytics.selectDarkMode, withProperties: nil)
+                    }
                 }
             }
             

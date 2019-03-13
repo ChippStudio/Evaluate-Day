@@ -126,6 +126,7 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         
         let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
+        sendEvent(Analytics.selectNewCard, withProperties: ["type": source.type.string])
         self.makeNewCard(withType: source.type)
     }
     

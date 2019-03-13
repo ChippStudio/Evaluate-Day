@@ -333,6 +333,8 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
                 self.collection.isDeleted = true
             }
             
+            sendEvent(Analytics.deleteCollection, withProperties: nil)
+            
             self.universalSplitController?.popSideViewController()
         }
         let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
@@ -360,6 +362,8 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
                 card.dashboard = self.collection.id
             }
         }
+        
+        sendEvent(Analytics.addNewCollection, withProperties: nil)
         
         self.universalSplitController?.popSideViewController()
     }

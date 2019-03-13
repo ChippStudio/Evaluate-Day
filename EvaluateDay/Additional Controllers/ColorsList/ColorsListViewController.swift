@@ -31,6 +31,8 @@ class ColorsListViewController: UIViewController, UITableViewDataSource, UITable
             self.editButton = UIBarButtonItem(title: Localizations.General.edit, style: .plain, target: self, action: #selector(self.editButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = self.editButton
         }
+        
+        sendEvent(Analytics.colorsValueList, withProperties: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

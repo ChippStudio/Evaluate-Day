@@ -57,6 +57,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     var cardType: CardType! {
         didSet {
+            if cardType == nil {
+                return
+            }
             self.navigationItem.title = Sources.title(forType: cardType)
             if self.adapter == nil {
                 return
@@ -81,7 +84,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         
         // Navigation bar
         if self.cardType != nil {
-            self.navigationItem.title = Sources.title(forType: cardType)
+            self.navigationItem.title = Sources.title(forType: cardType!)
         } else if self.collection != nil {
             if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.collection!).first {
                 self.navigationItem.title = dashboard.title
@@ -142,6 +145,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setCards), name: NSNotification.Name.CardsSortedDidChange, object: nil)
+        
+        sendEvent(Analytics.openEvaluate, withProperties: ["card_type": self.cardType == nil ? false : self.cardType.string,
+                                                           "collection": self.collection == nil ? false : true])
     }
     
     @objc private func setCards() {

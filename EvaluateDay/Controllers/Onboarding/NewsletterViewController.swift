@@ -98,6 +98,7 @@ class NewsletterViewController: UIViewController, UITextFieldDelegate {
         
         Alamofire.request("https://us14.api.mailchimp.com/3.0/lists/\(mailChimpListID)/members", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
+            sendEvent(Analytics.subscribeNewsletter, withProperties: nil)
             self.performSegue(withIdentifier: self.proSegue, sender: self)
         }
     }

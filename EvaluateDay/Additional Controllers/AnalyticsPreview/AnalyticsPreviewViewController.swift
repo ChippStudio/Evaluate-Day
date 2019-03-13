@@ -77,6 +77,8 @@ class AnalyticsPreviewViewController: UIViewController {
         self.lastUpdateDateTitle.textColor = UIColor.main
         
         self.view.backgroundColor = UIColor.background
+        
+        sendEvent(Analytics.show3DTouchPreview, withProperties: ["type": self.card.type.string])
     }
     
     override var previewActionItems: [UIPreviewActionItem] {

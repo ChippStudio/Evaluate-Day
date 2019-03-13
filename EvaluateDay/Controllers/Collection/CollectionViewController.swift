@@ -91,6 +91,8 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
         self.navigationItem.rightBarButtonItem = self.reorderButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setCollections), name: NSNotification.Name.CollectionsSortedDidChange, object: nil)
+        
+        sendEvent(Analytics.openCollections, withProperties: nil)
     }
     
     @objc private func setCollections() {

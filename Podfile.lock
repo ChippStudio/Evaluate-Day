@@ -6,6 +6,9 @@ PODS:
   - Charts (3.2.2):
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
   - Firebase/Core (5.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.6.0)
@@ -125,6 +128,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - Branch
   - Charts
+  - Crashlytics
+  - Fabric
   - Firebase/Core
   - FSCalendar
   - RealmSwift
@@ -142,6 +147,8 @@ SPEC REPOS:
     - Alamofire
     - Branch
     - Charts
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -168,6 +175,8 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
   FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
   FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
@@ -190,6 +199,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: 11eee6732831a44aea2d81e3ae8626b5b0e129c5
   YandexMobileMetricaPush: 88e192d6484c4c66b1904325b32a915923acd312
 
-PODFILE CHECKSUM: 33507147fbfe95994d46e099d945d729f5f8bc90
+PODFILE CHECKSUM: c7b5782a9af0cfddad1e7d412dcf5dc801af621c
 
 COCOAPODS: 1.5.0

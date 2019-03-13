@@ -322,6 +322,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let starts = Database.manager.app.objects(AppUsage.self)
         let voiceOver = UIAccessibility.isVoiceOverRunning
         
+        // App Metrica
         let profile = YMMMutableUserProfile()
         var profileUpdates = [YMMUserProfileUpdate]()
         
@@ -336,7 +337,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         profileUpdates.append(YMMProfileAttribute.customBool("voiceOver").withValue(voiceOver))
         
         profile.apply(from: profileUpdates)
-        YMMYandexMetrica.report(profile, onFailure: nil)
+        YMMYandexMetrica.report(profile) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        // Firebase
+        Firebase.Analytics.setUserProperty("\(cards.count)", forName: "Cards")
         
     }
     private func controlLocations() {

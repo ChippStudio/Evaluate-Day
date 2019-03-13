@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import StoreKit
 
 class ProViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -26,6 +27,12 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         // Set navigation item
         self.navigationItem.title = Localizations.Settings.Pro.title
+        
+        if Store.current.isPro {
+            sendEvent(Analytics.openProReview, withProperties: nil)
+        } else {
+            sendEvent(Analytics.openPro, withProperties: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +130,13 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SubscriptionBuyCell {
             self.showLoadView()
             let product = cell.isTopSelected ? Store.current.annualy : Store.current.mouthly
+            sendEvent(Analytics.startPay, withProperties: ["product": product?.productIdentifier ?? "WTF"])
             Store.current.payment(product: product) { (transaction, error) in
+                if transaction != nil {
+                    if transaction!.transactionState == SKPaymentTransactionState.purchasing || transaction!.transactionState == SKPaymentTransactionState.purchased {
+                        sendEvent(Analytics.donePay, withProperties: ["product": product?.productIdentifier ?? "WTF"])
+                    }
+                }
                 self.hideLoadView()
             }
         }
@@ -138,7 +151,13 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @objc func oneTimePurchaseAction(sender: UIButton) {
         self.showLoadView()
+        sendEvent(Analytics.startPay, withProperties: ["product": Store.current.lifetime.productIdentifier])
         Store.current.payment(product: Store.current.lifetime) { (transaction, error) in
+            if transaction != nil {
+                if transaction!.transactionState == SKPaymentTransactionState.purchasing || transaction!.transactionState == SKPaymentTransactionState.purchased {
+                    sendEvent(Analytics.donePay, withProperties: ["product": Store.current.lifetime.productIdentifier])
+                }
+            }
             self.hideLoadView()
         }
     }

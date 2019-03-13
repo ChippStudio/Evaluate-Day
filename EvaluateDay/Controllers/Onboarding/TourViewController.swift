@@ -190,6 +190,8 @@ class TourViewController: UIViewController, UIPageViewControllerDataSource, UIPa
             Database.manager.data.add(counterCard)
             Database.manager.data.add(values)
         }
+        
+        sendEvent(Analytics.addDefaultsCards, withProperties: nil)
         self.performSegue(withIdentifier: self.newsletterSegue, sender: self)
     }
 }

@@ -179,7 +179,7 @@ class ReorderCollectionsViewController: UIViewController, UITableViewDataSource,
         }
         
         // Analytics
-//        sendEvent(.reorderCards, withProperties: nil)
+        sendEvent(.reorderCollection, withProperties: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -34,6 +34,8 @@ class ProMoreViewController: UIViewController, UITableViewDataSource, UITableVie
         self.items.append((image: #imageLiteral(resourceName: "export"), title: Localizations.Settings.Pro.Description.More.Export.title, subtitle: Localizations.Settings.Pro.Description.More.Export.description))
         self.items.append((image: #imageLiteral(resourceName: "sandClockB"), title: Localizations.Settings.Pro.Description.More.Past.title, subtitle: Localizations.Settings.Pro.Description.More.Past.description))
         self.items.append((image: #imageLiteral(resourceName: "app"), title: Localizations.Settings.Pro.Description.More.Future.title, subtitle: Localizations.Settings.Pro.Description.More.Future.description))
+        
+        sendEvent(Analytics.openProMore, withProperties: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

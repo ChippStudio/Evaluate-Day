@@ -205,7 +205,6 @@
 		B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */; };
 		B5A0CFE51FAF90BC002B1636 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFE41FAF90BC002B1636 /* TextViewController.swift */; };
 		B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */; };
-		B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */; };
 		B5A0CFFD1FB1CDA7002B1636 /* CriterionEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */; };
 		B5A0D0041FB2C444002B1636 /* ColorEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0D0031FB2C444002B1636 /* ColorEvaluateSection.swift */; };
 		B5A0D0061FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0D0051FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift */; };
@@ -592,7 +591,6 @@
 		B5A0CFDD1FAC8715002B1636 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
 		B5A0CFE41FAF90BC002B1636 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
-		B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderBottomViewController.swift; sourceTree = "<group>"; };
 		B5A0CFFC1FB1CDA7002B1636 /* CriterionEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionEvaluateNode.swift; sourceTree = "<group>"; };
 		B5A0D0031FB2C444002B1636 /* ColorEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEvaluateSection.swift; sourceTree = "<group>"; };
 		B5A0D0051FB2C46D002B1636 /* CriterionHundredEvaluateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredEvaluateSection.swift; sourceTree = "<group>"; };
@@ -1266,7 +1264,6 @@
 			isa = PBXGroup;
 			children = (
 				B5A0CFF01FB1A44E002B1636 /* BottomViewController.swift */,
-				B5A0CFF21FB1A4D2002B1636 /* ReorderBottomViewController.swift */,
 				B5D854EE1FD07B8300BB4E14 /* TimeBottomViewController.swift */,
 			);
 			path = Bottom;
@@ -1813,6 +1810,7 @@
 				FBBDFC70680E9F12BFBE8F12 /* [CP] Embed Pods Frameworks */,
 				B5B27E731F9DAD5900CB9121 /* SwiftLint */,
 				B5B27E741F9DAE3A00CB9121 /* Build Number */,
+				B537957422398B6D00C5BDD2 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -2013,6 +2011,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
+		};
+		B537957422398B6D00C5BDD2 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		B5B27E731F9DAD5900CB9121 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2266,7 +2282,6 @@
 				B50B18EB22047C06008A2231 /* MarksListViewController.swift in Sources */,
 				B50DDE451FEBE57900E7FBEF /* ProLock.swift in Sources */,
 				B5A0CFDE1FAC8715002B1636 /* DescriptionNode.swift in Sources */,
-				B5A0CFF31FB1A4D2002B1636 /* ReorderBottomViewController.swift in Sources */,
 				B59D03A821FC71FA0048B0AF /* NavigationController.swift in Sources */,
 				B5EC886720134A840056C1C7 /* CounterEvaluateNode.swift in Sources */,
 				B5D854C31FCCBA4F00BB4E14 /* SettingsAboutViewController.swift in Sources */,
