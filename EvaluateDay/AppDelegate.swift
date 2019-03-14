@@ -329,12 +329,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let user = Database.manager.application.user!
         profileUpdates.append(YMMProfileAttribute.name().withValue(user.name))
         // Send only public email from profile, for feedback request
-        profileUpdates.append(YMMProfileAttribute.customString("email").withValue(user.email))
-        profileUpdates.append(YMMProfileAttribute.customString("site").withValue(user.web))
-        profileUpdates.append(YMMProfileAttribute.customNumber("cards").withValue(Double(cards.count)))
-        profileUpdates.append(YMMProfileAttribute.customNumber("collections").withValue(Double(collections.count)))
-        profileUpdates.append(YMMProfileAttribute.customNumber("starts").withValue(Double(starts.count)))
-        profileUpdates.append(YMMProfileAttribute.customBool("voiceOver").withValue(voiceOver))
+        profileUpdates.append(YMMProfileAttribute.customString("Email").withValue(user.email))
+        profileUpdates.append(YMMProfileAttribute.customString("Site").withValue(user.web))
+        profileUpdates.append(YMMProfileAttribute.customNumber("Cards").withValue(Double(cards.count)))
+        profileUpdates.append(YMMProfileAttribute.customNumber("Collections").withValue(Double(collections.count)))
+        profileUpdates.append(YMMProfileAttribute.customNumber("Starts").withValue(Double(starts.count)))
+        profileUpdates.append(YMMProfileAttribute.customBool("VoiceOver").withValue(voiceOver))
+        profileUpdates.append(YMMProfileAttribute.customBool("Pro").withValue(Store.current.isPro))
         
         profile.apply(from: profileUpdates)
         YMMYandexMetrica.report(profile) { (error) in
@@ -342,8 +343,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         // Firebase
+        Firebase.Analytics.setUserProperty("\(user.name ?? "Undefine")", forName: "Name")
+        Firebase.Analytics.setUserProperty("\(user.email ?? "Undefine")", forName: "Email")
+        Firebase.Analytics.setUserProperty("\(user.web ?? "Undefine")", forName: "Site")
         Firebase.Analytics.setUserProperty("\(cards.count)", forName: "Cards")
-        
+        Firebase.Analytics.setUserProperty("\(collections.count)", forName: "Collection")
+        Firebase.Analytics.setUserProperty("\(starts.count)", forName: "Starts")
+        Firebase.Analytics.setUserProperty(voiceOver ? "true" : "false", forName: "VoiceOver")
+        Firebase.Analytics.setUserProperty(Store.current.isPro ? "true" : "false", forName: "Pro")
     }
     private func controlLocations() {
         let values = Database.manager.data.objects(LocationValue.self).filter("isDeleted=%@", false)
