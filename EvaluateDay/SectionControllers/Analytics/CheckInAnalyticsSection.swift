@@ -19,7 +19,6 @@ private enum AnalyticsNodeType {
     case calendar
     case map
     case export
-    case proReview
     case months
     case more
 }
@@ -45,13 +44,8 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.map)
-        if Store.current.isPro {
-            self.nodes.append(.months)
-        }
+        self.nodes.append(.months)
         self.nodes.append(.calendar)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -100,41 +94,34 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .information:
             let checkInCard = self.card.data as! CheckInCard
             self.data = [(title: String, data: String)]()
-            if isPro {
-                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                if card.archived {
-                    self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
+            if card.archived {
+                self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: DateFormatter.localizedString(from: self.card.archivedDate!, dateStyle: .medium, timeStyle: .none)))
+            }
+            self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: "\(checkInCard.values.count)"))
+            
+            var max: CLLocationDistance = 0.0
+            var min: CLLocationDistance = 50000000.0
+            
+            var maxString: String?
+            var minString: String?
+            
+            for v in checkInCard.values {
+                if v.distance > max {
+                    max = v.distance
+                    maxString = v.distanceString
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: "\(checkInCard.values.count)"))
-                
-                var max: CLLocationDistance = 0.0
-                var min: CLLocationDistance = 50000000.0
-                
-                var maxString: String?
-                var minString: String?
-                
-                for v in checkInCard.values {
-                    if v.distance > max {
-                        max = v.distance
-                        maxString = v.distanceString
-                    }
-                    if v.distance < min {
-                        min = v.distance
-                        minString = v.distanceString
-                    }
+                if v.distance < min {
+                    min = v.distance
+                    minString = v.distanceString
                 }
-                
-                if maxString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
-                }
-                if minString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
-                }
-            } else {
-                self.data!.append((title: Localizations.General.createDate, data: DateFormatter.localizedString(from: self.card.created, dateStyle: .medium, timeStyle: .none)))
-                self.data!.append((title: Localizations.Analytics.Statistics.checkins, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
+            }
+            
+            if maxString != nil {
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
+            }
+            if minString != nil {
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
             }
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
@@ -195,14 +182,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
-                }
-                return node
-            }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -307,13 +286,6 @@ class CheckInAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

@@ -18,7 +18,6 @@ private enum AnalyticsNodeType {
     case lineChart
     case barChart
     case export
-    case proReview
     case average
     case more
 }
@@ -44,13 +43,8 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.lineChart)
-        if Store.current.isPro {
-            self.nodes.append(.average)
-        }
+        self.nodes.append(.average)
         self.nodes.append(.barChart)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -86,29 +80,23 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
             }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(criterion.values.count)"))
             
-            if isPro {
-                var minimum: Double = 10
-                var maximum: Double = 0
-                var sum: Double = 0
-                for v in criterion.values {
-                    if v.value > maximum {
-                        maximum = v.value
-                    }
-                    if v.value < minimum {
-                        minimum = v.value
-                    }
-                    
-                    sum += v.value
+            var minimum: Double = 10
+            var maximum: Double = 0
+            var sum: Double = 0
+            for v in criterion.values {
+                if v.value > maximum {
+                    maximum = v.value
+                }
+                if v.value < minimum {
+                    minimum = v.value
                 }
                 
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: String(format: "%.0f", maximum)))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: String(format: "%.0f", minimum)))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: String(format: "%.0f", sum/Double(criterion.values.count))))
-            } else {
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                sum += v.value
             }
+            
+            self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: String(format: "%.0f", maximum)))
+            self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: String(format: "%.0f", minimum)))
+            self.data!.append((title: Localizations.Analytics.Statistics.average, data: String(format: "%.0f", sum/Double(criterion.values.count))))
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
@@ -227,14 +215,6 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
                 }
                 return node
             }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
-                }
-                return node
-            }
         case .more:
             return {
                 let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
@@ -291,13 +271,6 @@ class CriterionTenAnalyticsSection: ListSectionController, ASSectionController, 
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

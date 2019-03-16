@@ -47,10 +47,8 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
         }
         
         self.nodes.append(.stat)
-        if Store.current.isPro {
-            self.nodes.append(.line)
-            self.nodes.append(.startsSum)
-        }
+        self.nodes.append(.line)
+        self.nodes.append(.startsSum)
         self.nodes.append(.bar)
     }
     // MARK: - Override
@@ -64,16 +62,10 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
         let item = self.nodes[index]
-        var distance = Localizations.Activity.Analytics.Barchart.title + "\n\(Localizations.General.last7)"
-        if isPro {
-            distance = Localizations.Activity.Analytics.Barchart.title
-        }
+        let distance = Localizations.Activity.Analytics.Barchart.title + "\n\(Localizations.General.last7)"
         switch item {
         case .bar:
-            var maxCount: Int = 7
-            if isPro {
-                maxCount = Database.manager.application.firstStartDate.days(to: Date().end)
-            }
+            let maxCount: Int = 7
             var data = [BarChartDataEntry]()
             var components = DateComponents()
             for i in 0...maxCount {
@@ -193,17 +185,10 @@ class ActivityAnalyticsSection: ListSectionController, ASSectionController {
             self.data!.append((title: Localizations.Activity.Analytics.Stat.cards, data: "\(cards.count)"))
             self.data!.append((title: Localizations.Activity.Analytics.Stat.archived, data: "\(archived.count)"))
             self.data!.append((title: Localizations.Activity.Analytics.Stat.version, data: "\(fullVersion)"))
-            if isPro {
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.alldays, data: "\(days)"))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.firsStartDate, data: "\(firstStart)"))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.updateDate, data: "\(updateDate)"))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.totalStarts, data: "\(totalStarts)"))
-            } else {
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.alldays, data: proPlaceholder))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.firsStartDate, data: proPlaceholder))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.updateDate, data: proPlaceholder))
-                self.data!.append((title: Localizations.Activity.Analytics.Stat.totalStarts, data: proPlaceholder))
-            }
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.alldays, data: "\(days)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.firsStartDate, data: "\(firstStart)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.updateDate, data: "\(updateDate)"))
+            self.data!.append((title: Localizations.Activity.Analytics.Stat.totalStarts, data: "\(totalStarts)"))
             
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)

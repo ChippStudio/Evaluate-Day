@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B50B18D822022799008A2231 /* AnalyticsProReviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */; };
 		B50B18DA2202F6EB008A2231 /* AnalyticsPieChartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */; };
 		B50B18DD22045BD1008A2231 /* NumbersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50B18DC22045BD1008A2231 /* NumbersList.storyboard */; };
 		B50B18DF22045C03008A2231 /* NumbersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B18DE22045C03008A2231 /* NumbersListViewController.swift */; };
@@ -393,7 +392,6 @@
 		7C3DBDAD229DB2AB1651F7A6 /* Pods_EvaluateDayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EvaluateDayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		946D58101EC7DECDA1AD25D7 /* Pods-EvaluateDayUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDayUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDayUITests/Pods-EvaluateDayUITests.release.xcconfig"; sourceTree = "<group>"; };
 		94DD3AAE2D688BAF2D7A9AB7 /* Pods-EvaluateDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDay/Pods-EvaluateDay.debug.xcconfig"; sourceTree = "<group>"; };
-		B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProReviewNode.swift; sourceTree = "<group>"; };
 		B50B18D92202F6EB008A2231 /* AnalyticsPieChartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPieChartNode.swift; sourceTree = "<group>"; };
 		B50B18DC22045BD1008A2231 /* NumbersList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NumbersList.storyboard; sourceTree = "<group>"; };
 		B50B18DE22045C03008A2231 /* NumbersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewController.swift; sourceTree = "<group>"; };
@@ -1412,7 +1410,6 @@
 				B5257D6C1FEA710700AC54DE /* AnalyticsExportFileTypeNode.swift */,
 				B5F597711FBD60F30098A071 /* AnalyticsCalendarNode.swift */,
 				B5A11401200E17C2008DBF02 /* AnalyticsMapNode.swift */,
-				B50B18D722022799008A2231 /* AnalyticsProReviewNode.swift */,
 				B5F597771FBDBCE50098A071 /* AnalyticsLineChartNode.swift */,
 				B5F597791FBDBD080098A071 /* AnalyticsBarChartNode.swift */,
 				B59D03AF2201BC0B0048B0AF /* AnalyticsHorizontalBarChartNode.swift */,
@@ -2331,7 +2328,6 @@
 				B55464882024A7BE00923CE3 /* DateNode.swift in Sources */,
 				B5D9A84A205BBB4300F84091 /* ActivityUserSection.swift in Sources */,
 				B5C7572A1F9DCA160032199E /* App.swift in Sources */,
-				B50B18D822022799008A2231 /* AnalyticsProReviewNode.swift in Sources */,
 				B5BD3B402008E9140075C75F /* CheckInAnalyticsSection.swift in Sources */,
 				B5257D6B1FEA6E4300AC54DE /* AnalyticsExportNode.swift in Sources */,
 				B5A5915021D8D6720026FD84 /* DateSelectorNode.swift in Sources */,

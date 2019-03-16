@@ -21,7 +21,6 @@ private enum AnalyticsNodeType {
     case bar
     case viewAll
     case export
-    case proReview
     case allPhotos
 }
 
@@ -46,11 +45,7 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        } else {
-            self.nodes.append(.map)
-        }
+        self.nodes.append(.map)
         self.nodes.append(.calendar)
         self.nodes.append(.bar)
         self.nodes.append(.viewAll)
@@ -110,56 +105,47 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
             self.data!.append((title: Localizations.Analytics.Statistics.entries, data: "\(journalCard.values.count)"))
             
-            if isPro {
-                var max: CLLocationDistance = 0.0
-                var min: CLLocationDistance = 50000000.0
-                
-                var maxString: String?
-                var minString: String?
-                
-                var maxCh = 0
-                var minCh = 1000000
-                var sum = 0
-                
-                for v in journalCard.values {
-                    if v.location != nil {
-                        if v.location!.distance > max {
-                            max = v.location!.distance
-                            maxString = v.location!.distanceString
-                        }
-                        if v.location!.distance < min {
-                            min = v.location!.distance
-                            minString = v.location!.distanceString
-                        }
+            var max: CLLocationDistance = 0.0
+            var min: CLLocationDistance = 50000000.0
+            
+            var maxString: String?
+            var minString: String?
+            
+            var maxCh = 0
+            var minCh = 1000000
+            var sum = 0
+            
+            for v in journalCard.values {
+                if v.location != nil {
+                    if v.location!.distance > max {
+                        max = v.location!.distance
+                        maxString = v.location!.distanceString
                     }
-                    
-                    if v.text.count > maxCh {
-                        maxCh = v.text.count
+                    if v.location!.distance < min {
+                        min = v.location!.distance
+                        minString = v.location!.distanceString
                     }
-                    if v.text.count < minCh {
-                        minCh = v.text.count
-                    }
-                    sum += v.text.count
                 }
                 
-                if maxString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
+                if v.text.count > maxCh {
+                    maxCh = v.text.count
                 }
-                if minString != nil {
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
+                if v.text.count < minCh {
+                    minCh = v.text.count
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: "\(sum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: "\(maxCh)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: "\(minCh)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: String(format: "%.2f", Double(sum)/Double(journalCard.values.count))))
-            } else {
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: proPlaceholder))
+                sum += v.text.count
             }
+            
+            if maxString != nil {
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: maxString!))
+            }
+            if minString != nil {
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: minString!))
+            }
+            self.data!.append((title: Localizations.Analytics.Statistics.Characters.total, data: "\(sum)"))
+            self.data!.append((title: Localizations.Analytics.Statistics.Characters.max, data: "\(maxCh)"))
+            self.data!.append((title: Localizations.Analytics.Statistics.Characters.min, data: "\(minCh)"))
+            self.data!.append((title: Localizations.Analytics.Statistics.Characters.average, data: String(format: "%.2f", Double(sum)/Double(journalCard.values.count))))
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
@@ -239,14 +225,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
         case .allPhotos:
             return {
                 let node = SettingsMoreNode(title: Localizations.Analytics.Journal.viewAllPhotos, subtitle: nil, image: nil)
-                return node
-            }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
-                }
                 return node
             }
         case .export:
@@ -351,12 +329,6 @@ class JournalAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

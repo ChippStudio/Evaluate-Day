@@ -19,7 +19,6 @@ private enum AnalyticsNodeType {
     case barChart
     case horizontalBarChart
     case export
-    case proReview
     case more
 }
 
@@ -44,13 +43,8 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.lineChart)
-        if Store.current.isPro {
-            self.nodes.append(.horizontalBarChart)
-        }
+        self.nodes.append(.horizontalBarChart)
         self.nodes.append(.barChart)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -86,29 +80,23 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
             }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(criterion.values.count)"))
             
-            if isPro {
-                var minimum: Double = 3
-                var maximum: Double = 0
-                var sum: Double = 0
-                for v in criterion.values {
-                    if v.value > maximum {
-                        maximum = v.value
-                    }
-                    if v.value < minimum {
-                        minimum = v.value
-                    }
-                    
-                    sum += v.value
+            var minimum: Double = 3
+            var maximum: Double = 0
+            var sum: Double = 0
+            for v in criterion.values {
+                if v.value > maximum {
+                    maximum = v.value
                 }
-        
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: self.emogi(forValue: maximum)))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: self.emogi(forValue: minimum)))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: self.emogi(forValue: (sum/Double(criterion.values.count).rounded()))))
-            } else {
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                if v.value < minimum {
+                    minimum = v.value
+                }
+                
+                sum += v.value
             }
+    
+            self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: self.emogi(forValue: maximum)))
+            self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: self.emogi(forValue: minimum)))
+            self.data!.append((title: Localizations.Analytics.Statistics.average, data: self.emogi(forValue: (sum/Double(criterion.values.count).rounded()))))
             
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
@@ -221,14 +209,6 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
                 }
                 return node
             }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
-                }
-                return node
-            }
         case .more:
             return {
                 let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
@@ -285,12 +265,6 @@ class CriterionThreeAnalyticsSection: ListSectionController, ASSectionController
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
     private func emogi(forValue value: Double) -> String {
         let index = Int(value)
         if index == 0 {

@@ -27,8 +27,6 @@ class ProMoreViewController: UIViewController, UITableViewDataSource, UITableVie
         // Set items
         self.items.append((image: #imageLiteral(resourceName: "passcode"), title: Localizations.Settings.Pro.Description.More.Passcode.title, subtitle: Localizations.Settings.Pro.Description.More.Passcode.description))
         self.items.append((image: #imageLiteral(resourceName: "listB"), title: Localizations.Settings.Pro.Description.More.Cards.title, subtitle: Localizations.Settings.Pro.Description.More.Cards.description))
-        self.items.append((image: #imageLiteral(resourceName: "analyticsB"), title: Localizations.Settings.Pro.Description.More.Analytics.title, subtitle: Localizations.Settings.Pro.Description.More.Analytics.description))
-        self.items.append((image: #imageLiteral(resourceName: "activityB"), title: Localizations.Settings.Pro.Description.More.Activity.title, subtitle: Localizations.Settings.Pro.Description.More.Activity.description))
         self.items.append((image: #imageLiteral(resourceName: "sync"), title: Localizations.Settings.Pro.Description.More.Sync.title, subtitle: Localizations.Settings.Pro.Description.More.Sync.description))
         self.items.append((image: #imageLiteral(resourceName: "themes"), title: Localizations.Settings.Pro.Description.More.Themes.title, subtitle: Localizations.Settings.Pro.Description.More.Themes.description))
         self.items.append((image: #imageLiteral(resourceName: "export"), title: Localizations.Settings.Pro.Description.More.Export.title, subtitle: Localizations.Settings.Pro.Description.More.Export.description))

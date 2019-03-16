@@ -34,8 +34,8 @@ let proPlaceholder = "🔒"
 let largeTitleFontSize: CGFloat = 28.0
 
 // MARK: - Limits
-let cardsLimit: Int = 6
-let pastDaysLimit: Int = 2
+let cardsLimit: Int = 10
+let pastDaysLimit: Int = 3
 
 // MARK: - Cards
 let cardInsets = UIEdgeInsets(top: 70.0, left: 0.0, bottom: 0.0, right: 0.0)

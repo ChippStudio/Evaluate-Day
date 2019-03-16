@@ -19,7 +19,6 @@ private enum AnalyticsNodeType {
     case calendar
     case export
     case barChart
-    case proReview
     case monthTotal
     case more
 }
@@ -48,13 +47,8 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.calendar)
-        if Store.current.isPro {
-            self.nodes.append(.monthTotal)
-        }
+        self.nodes.append(.monthTotal)
         self.nodes.append(.barChart)
         self.nodes.append(.more)
         self.nodes.append(.export)
@@ -92,34 +86,27 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
             }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(self.groupedData.count)"))
             
-            if isPro {
-                self.data!.append((title: Localizations.Analytics.Habit.marks, data: "\(habitCard.values.count)"))
-                
-                var maximum = 0
-                var minimum = 1000000000
-                var sum = 0
-                
-                for i in self.groupedData {
-                    if i.count > maximum {
-                        maximum = i.count
-                    }
-                    if i.count < minimum {
-                        minimum = i.count
-                    }
-                    
-                    sum += i.count
+            self.data!.append((title: Localizations.Analytics.Habit.marks, data: "\(habitCard.values.count)"))
+            
+            var maximum = 0
+            var minimum = 1000000000
+            var sum = 0
+            
+            for i in self.groupedData {
+                if i.count > maximum {
+                    maximum = i.count
+                }
+                if i.count < minimum {
+                    minimum = i.count
                 }
                 
-                if maximum != 0 && minimum != 1000000000 {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(self.groupedData.count))"))
-                }
-            } else {
-                self.data!.append((title: Localizations.Analytics.Habit.marks, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                sum += i.count
+            }
+            
+            if maximum != 0 && minimum != 1000000000 {
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(self.groupedData.count))"))
             }
             
             return {
@@ -224,14 +211,6 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 }
                 return node
             }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
-                }
-                return node
-            }
         case .more:
             return {
                 let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
@@ -307,13 +286,6 @@ class HabitAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

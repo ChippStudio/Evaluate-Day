@@ -17,7 +17,6 @@ private enum AnalyticsNodeType {
     case information
     case export
     case barChart
-    case proReview
 }
 
 class ListAnalyticsSection: ListSectionController, ASSectionController, AnalyticalSection {
@@ -44,9 +43,6 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.barChart)
         self.nodes.append(.export)
     }
@@ -86,38 +82,29 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
             }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(self.groupedData.count)"))
             
-            if isPro {
-                self.data!.append((title: Localizations.Analytics.List.items, data: "\(listCard.values.count)"))
-                self.data!.append((title: Localizations.Analytics.List.itemsDone, data: "\(allDone)"))
-                self.data!.append((title: Localizations.Analytics.List.percent, data: String(format: "%.0f", allPercent) + " %"))
+            self.data!.append((title: Localizations.Analytics.List.items, data: "\(listCard.values.count)"))
+            self.data!.append((title: Localizations.Analytics.List.itemsDone, data: "\(allDone)"))
+            self.data!.append((title: Localizations.Analytics.List.percent, data: String(format: "%.0f", allPercent) + " %"))
 
-                var maximum = 0
-                var minimum = 1000000000
-                var sum = 0
+            var maximum = 0
+            var minimum = 1000000000
+            var sum = 0
 
-                for i in self.groupedData {
-                    if i.count > maximum {
-                        maximum = i.count
-                    }
-                    if i.count < minimum {
-                        minimum = i.count
-                    }
-
-                    sum += i.count
+            for i in self.groupedData {
+                if i.count > maximum {
+                    maximum = i.count
+                }
+                if i.count < minimum {
+                    minimum = i.count
                 }
 
-                if maximum != 0 && minimum != 1000000000 {
-                    self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
-                    self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(self.groupedData.count))"))
-                }
-            } else {
-                self.data!.append((title: Localizations.Analytics.List.items, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.List.itemsDone, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.List.percent, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                sum += i.count
+            }
+
+            if maximum != 0 && minimum != 1000000000 {
+                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(self.groupedData.count))"))
             }
 
             return {
@@ -159,14 +146,6 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
                 node.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
                 OperationQueue.main.addOperation {
                     node.shareButton.view.tag = index
-                }
-                return node
-            }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -216,13 +195,6 @@ class ListAnalyticsSection: ListSectionController, ASSectionController, Analytic
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

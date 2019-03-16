@@ -18,7 +18,6 @@ private enum AnalyticsNodeType {
     case lineChart
     case barChart
     case export
-    case proReview
     case average
     case total
     case more
@@ -45,15 +44,10 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.lineChart)
-        if Store.current.isPro {
-            self.nodes.append(.average)
-            if (self.card.data as! CounterCard).isSum {
-                self.nodes.append(.total)
-            }
+        self.nodes.append(.average)
+        if (self.card.data as! CounterCard).isSum {
+            self.nodes.append(.total)
         }
         self.nodes.append(.barChart)
         self.nodes.append(.more)
@@ -90,34 +84,26 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
             }
             self.data!.append((title: Localizations.Analytics.Statistics.days, data: "\(counterCard.values.count)"))
             
-            if isPro {
-                var minimum: Double = 3
-                var maximum: Double = 0
-                var sum: Double = 0
-                for v in counterCard.values {
-                    if v.value > maximum {
-                        maximum = v.value
-                    }
-                    if v.value < minimum {
-                        minimum = v.value
-                    }
-                    
-                    sum += v.value
+            var minimum: Double = 3
+            var maximum: Double = 0
+            var sum: Double = 0
+            for v in counterCard.values {
+                if v.value > maximum {
+                    maximum = v.value
                 }
-                if counterCard.isSum {
-                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + counterCard.startValue)"))
+                if v.value < minimum {
+                    minimum = v.value
                 }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(counterCard.values.count))"))
-            } else {
-                if counterCard.isSum {
-                    self.data!.append((title: Localizations.Analytics.Statistics.sum, data: proPlaceholder))
-                }
-                self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: proPlaceholder))
-                self.data!.append((title: Localizations.Analytics.Statistics.average, data: proPlaceholder))
+                
+                sum += v.value
             }
+            if counterCard.isSum {
+                self.data!.append((title: Localizations.Analytics.Statistics.sum, data: "\(sum + counterCard.startValue)"))
+            }
+            self.data!.append((title: Localizations.Analytics.Statistics.maximum, data: "\(maximum)"))
+            self.data!.append((title: Localizations.Analytics.Statistics.minimum, data: "\(minimum)"))
+            self.data!.append((title: Localizations.Analytics.Statistics.average, data: "\(Float(sum)/Float(counterCard.values.count))"))
+
             return {
                 let node = AnalyticsStatisticNode(data: self.data!)
                 return node
@@ -286,14 +272,6 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
                 }
                 return node
             }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
-                }
-                return node
-            }
         case .more:
             return {
                 let node = SettingsMoreNode(title: Localizations.Analytics.allData, subtitle: nil, image: nil)
@@ -350,13 +328,6 @@ class CounterAnalyticsSection: ListSectionController, ASSectionController, Analy
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

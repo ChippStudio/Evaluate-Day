@@ -20,7 +20,6 @@ private enum AnalyticsNodeType {
     case calendar
     case pieChart
     case export
-    case proReview
     case more
 }
 
@@ -46,14 +45,9 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
         
         self.nodes.append(.title)
         self.nodes.append(.information)
-        if !Store.current.isPro {
-            self.nodes.append(.proReview)
-        }
         self.nodes.append(.calendar)
         self.nodes.append(.colorInformation)
-        if Store.current.isPro {
-            self.nodes.append(.pieChart)
-        }
+        self.nodes.append(.pieChart)
         self.nodes.append(.more)
         self.nodes.append(.export)
     }
@@ -99,11 +93,7 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
             for color in colorsForSelection {
                 let colorsCount = colorCard.values.filter("text=%@", color.color)
                 if colorsCount.count != 0 {
-                    if isPro {
-                        data!.append((color: color.color, data: "\(colorsCount.count)"))
-                    } else {
-                        data!.append((color: color.color, data: proPlaceholder))
-                    }
+                    data!.append((color: color.color, data: "\(colorsCount.count)"))
                 }
             }
             return {
@@ -144,14 +134,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
                 }
                 node.didLoadCalendar = { () in
                     node.calendar.delegate = self
-                }
-                return node
-            }
-        case .proReview:
-            return {
-                let node = AnalyticsProReviewNode()
-                node.didLoadProView = { (pro) in
-                    node.pro.button.addTarget(self, action: #selector(self.proReviewAction(sender:)), for: .touchUpInside)
                 }
                 return node
             }
@@ -248,13 +230,6 @@ class ColorAnalyticsSection: ListSectionController, ASSectionController, Analyti
     }
     
     // MARK: - Actions
-    @objc private func proReviewAction(sender: UIButton) {
-        if let nav = self.viewController?.navigationController {
-            let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            nav.pushViewController(controller, animated: true)
-        }
-    }
-    
     private func export(withType type: ExportType, indexPath: IndexPath, index: Int) {
         //export data
         switch type {

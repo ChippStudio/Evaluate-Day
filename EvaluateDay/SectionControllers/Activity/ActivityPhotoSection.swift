@@ -48,7 +48,7 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
     }
     // MARK: - Override
     override func numberOfItems() -> Int {
-        if photos.count == 0 || !self.isPro {
+        if photos.count == 0 {
             return 1
         }
         
@@ -68,13 +68,9 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
     }
     
     func nodeBlockForItem(at index: Int) -> ASCellNodeBlock {
-        var subtitle = ""
-        if !self.isPro {
-            subtitle = Localizations.Activity.Gallery.subtitle
-        }
         if index == 0 {
             return {
-                let node = TitleNode(title: Localizations.Activity.Gallery.title, subtitle: subtitle, image: Images.Media.imagePlaceholder.image)
+                let node = TitleNode(title: Localizations.Activity.Gallery.title, subtitle: "", image: Images.Media.imagePlaceholder.image)
                 return node
             }
         }

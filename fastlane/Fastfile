@@ -16,20 +16,7 @@ platform :ios do
   end
 
   desc "Push a new release build to the App Store"
-  # Relese app in the App Store
-  # options = screenshots:make - make new screenshots from UI tests
-  # options = screenshots:skip - don't upload screenshots in the App Store
-  lane :release do |options|
-    #get options
-    skipScreenshots = false
-    if options[:screenshots] == "make"
-      # Make new screenshots
-      puts "Make new screenshots on deliver step"
-      screenshots
-    elsif options[:screenshots] == "skip"
-      puts "Skip screenshots on deliver step"
-      skipScreenshots = true
-    end
+  lane :release do
 
     # Get information from info.plist
     buildVersion = get_info_plist_value(path: "./EvaluateDay/Support/Info.plist", key: "CSBuild")
@@ -49,23 +36,7 @@ platform :ios do
     gym(scheme: "EvaluateDay") # Build your app - more options available
     deliver(force: true,
             app_version: appVersion,
-            skip_screenshots: skipScreenshots,
-            screenshots_path: "./fastlane/store_screenshots")
-  end
-
-  lane :screenshots do
-    # Test snapshots
-    snapshot(scheme: "EvaluateDay",
-            reinstall_app: true,
-            stop_after_first_error: true,
-            clear_previous_screenshots: true,)
-    frameit(white: false)
-    sh "python3 screenshots.py"
-  end
-
-  lane :frame do
-    frameit(white: false)
-    sh "python3 screenshots.py"
+            skip_screenshots: true)
   end
 
   after_all do |lane|
