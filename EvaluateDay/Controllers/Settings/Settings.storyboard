@@ -95,7 +95,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="ahm-SK-uge" secondAttribute="trailing" constant="15" id="coz-i0-LoR"/>
                                                 <constraint firstItem="kkc-Az-rhV" firstAttribute="leading" secondItem="Mfy-01-d8r" secondAttribute="trailing" constant="15" id="fyn-qF-GRD"/>
                                                 <constraint firstItem="kkc-Az-rhV" firstAttribute="top" secondItem="ahm-SK-uge" secondAttribute="bottom" constant="-26" id="hZU-7l-cGR"/>
-                                                <constraint firstItem="Mfy-01-d8r" firstAttribute="leading" secondItem="IQR-Kc-qYn" secondAttribute="leading" constant="15" id="puS-uh-UU1"/>
+                                                <constraint firstItem="Mfy-01-d8r" firstAttribute="leading" secondItem="IQR-Kc-qYn" secondAttribute="leadingMargin" id="puS-uh-UU1"/>
                                                 <constraint firstItem="Mfy-01-d8r" firstAttribute="centerY" secondItem="IQR-Kc-qYn" secondAttribute="centerY" id="tJD-xR-A88"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -442,7 +442,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="RQX-tW-Vxx" firstAttribute="top" secondItem="E68-dt-ddm" secondAttribute="bottom" constant="-26" id="BDi-4Z-0h5"/>
-                                                <constraint firstItem="yKp-YD-ThD" firstAttribute="leading" secondItem="7O1-X2-Uq6" secondAttribute="leading" constant="15" id="DLa-2I-EKO"/>
+                                                <constraint firstItem="yKp-YD-ThD" firstAttribute="leading" secondItem="7O1-X2-Uq6" secondAttribute="leadingMargin" id="DLa-2I-EKO"/>
                                                 <constraint firstItem="RQX-tW-Vxx" firstAttribute="centerY" secondItem="7O1-X2-Uq6" secondAttribute="centerY" id="FCr-XY-0vL"/>
                                                 <constraint firstItem="E68-dt-ddm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RQX-tW-Vxx" secondAttribute="trailing" constant="10" id="Hdn-Wx-LJC"/>
                                                 <constraint firstItem="yKp-YD-ThD" firstAttribute="centerY" secondItem="RQX-tW-Vxx" secondAttribute="centerY" id="JYB-3R-4gn"/>
@@ -615,7 +615,7 @@
                                                 <constraint firstItem="cVa-N6-NBf" firstAttribute="top" secondItem="U2c-nm-3Jh" secondAttribute="bottom" constant="-26" id="Wzn-Qi-pRP"/>
                                                 <constraint firstItem="cVa-N6-NBf" firstAttribute="centerY" secondItem="NHa-5v-gLf" secondAttribute="centerY" id="g7Q-aV-Gpg"/>
                                                 <constraint firstAttribute="trailing" secondItem="U2c-nm-3Jh" secondAttribute="trailing" constant="15" id="qal-9C-oEA"/>
-                                                <constraint firstItem="hgP-gY-pTm" firstAttribute="leading" secondItem="NHa-5v-gLf" secondAttribute="leading" constant="15" id="w9o-yC-dCs"/>
+                                                <constraint firstItem="hgP-gY-pTm" firstAttribute="leading" secondItem="NHa-5v-gLf" secondAttribute="leadingMargin" id="w9o-yC-dCs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

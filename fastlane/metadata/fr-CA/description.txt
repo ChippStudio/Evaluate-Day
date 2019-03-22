@@ -1,10 +1,10 @@
 Evaluate Day is a personal diary and life analysis tool designed to track your daily endeavours and productivity to reach your set goals.
 
 STIMULATE YOUR DAY WITH:
-- Customized dashboard
+- Customized collections
 - Your productivity criteria rate (100, 10, or 3 point scales)
 - Multiple life data tracking
-- Recurrent list of actions with countable and uncountable data (e.g. water drunk per day or sum data over all time like – savings)
+- Recurrent list of actions with countable and uncountable data (e.g. water drink per day or sum data over all time like – savings)
 - Clean and user-friendly interface
 - Continual monitoring and reminders of your habits
 - Localization data review
@@ -13,7 +13,7 @@ STIMULATE YOUR DAY WITH:
 - Simple and quick process for adding data
 
 TRACK LIFE PARAMETERS!
-Evaluate day has created a unique set of cards in order to understand your life changes and track them in figures clearly. You can sort and customize your cards the way it works better for you to see an objective picture.
+Evaluate Day has created a unique set of cards in order to understand your life changes and track them in figures clearly. You can sort and customize your cards the way it works better for you to see an objective picture.
 For example, you can track how much water you drink a day, or places you have visited during a week, or medications taken during a set period of time.
 
 ANALYZE YOUR DATA!
@@ -27,7 +27,7 @@ If you want to maximize your Daily Evaluation process with special analytical in
 - Expanded card analysis instruments
 - Continuous updates for Evaluate Day
 
-€3.99 monthly, €29.99 annually
+€2.49 monthly, €14.99 annually
 
 Price may vary by location. Subscriptions will be charged to your credit card through your iTunes account. Your subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You will not be able to cancel the subscription once activated. Manage your subscriptions in Account Settings after purchase. Any unused portion of a free trial peri​od, will be forfeited when the user purchases a subscription.
 

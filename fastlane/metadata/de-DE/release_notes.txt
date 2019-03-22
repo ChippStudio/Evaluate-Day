@@ -1,10 +1,25 @@
-- Light update of user interface
-- Bug fixes and performance improvements
+Neues Design, vereinfachte Dateneingabe und neue Grafiken und Daten in der Analytik. Viele kleine Fehler behoben. Und vieles mehr.....
 
 ********
 
-Vielen Dank für die Verwendung von Evaluate Day.
+- Mikroanalytik in sieben Tagen, direkt vor Ort.
+- In der kostenlosen Version wird die Anzahl der Karten erweitert.
+- Die vollständige Analyse ist jetzt in der kostenlosen Version der Anwendung verfügbar.
+- Erweiterte Analyse der Benutzeraktivität
+- Sammlungen (Dashboards) helfen bei der Gruppierung der Karten. Jetzt wird es noch einfacher, die Karte zu finden.
+- Die Nutzung der Sammlungen ist wesentlich komfortabler geworden.
+- Zusätzliche Gruppierung der Karten nach Typ
+- Erweiterte Sortierfunktionen für Karten und Abholungen
+- Der Ansatz zum Hinzufügen von Daten für die Vortage wurde überarbeitet. Weniger Aktionen zur Änderung des Datums und zur Bearbeitung der Daten
+- Zeigt alle auf der Karte eingegebenen Daten an, mit der Möglichkeit, sie zu löschen.
+- Neue Ansicht zur Eingabe von Zahlenwerten, mit eingebautem Taschenrechner
+- Aktualisierter Bildschirm zum Hinzufügen eines Protokolleintrags
+- Die Möglichkeit, bis zu 3 Bilder zur Aufnahme hinzuzufügen, wurde verbessert (PRO).
 
-Gefallt Dir unsere aktuelle Version? Dann freuen wir uns auf dein Feedback in der App Store
+********
 
-Fragen / Anregungen? Schreiben Sie uns an support@evaluateday.com
+Vielen Dank, dass Sie Evaluate Day verwendet haben.
+
+Magst du die Updates? Wir freuen uns sehr über Ihr Feedback im App Store!
+
+Fragen / Anregungen? Schicken Sie uns eine E-Mail an suppor@evaluateday.com

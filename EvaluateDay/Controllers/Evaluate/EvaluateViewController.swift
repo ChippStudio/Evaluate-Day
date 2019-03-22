@@ -404,35 +404,13 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             return
         }
         
-        if Database.manager.application.isAlreadyRateThisVersion {
-            return
-        }
-        
         if Database.manager.app.objects(AppUsage.self).count % 20 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
-            let alert = UIAlertController(title: Localizations.General.like, message: nil, preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: Localizations.General.yes, style: .default) { (_) in
-                try! Database.manager.app.write {
-                    Database.manager.application.isAlreadyRateThisVersion = true
-                }
-                if #available(iOS 10.3, *) {
-                    sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: true)])
-                    SKStoreReviewController.requestReview()
-                } else {
-                    // Fallback on earlier versions
-                }
+            if #available(iOS 10.3, *) {
+                sendEvent(.showAppRate, withProperties: nil)
+                SKStoreReviewController.requestReview()
+            } else {
+                // Fallback on earlier versions
             }
-            
-            let noAction = UIAlertAction(title: Localizations.General.no, style: .default) { (_) in
-                try! Database.manager.app.write {
-                    Database.manager.application.isAlreadyRateThisVersion = true
-                }
-                sendEvent(.showAppRate, withProperties: ["like": NSNumber(value: false)])
-            }
-            
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            
-            self.present(alert, animated: true, completion: nil)
         }
     }
     

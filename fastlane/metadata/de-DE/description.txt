@@ -1,56 +1,43 @@
-Evaluate Day ist eine elegante und flexible Anwendung für die Verfolgung von allen Parametern Ihres Lebens, Aufzeichnung von Tagesbücher und Analysen aller Lifestyle-Indikatoren.
+Du willst dein Leben verändern? Schaffen Sie nützliche Gewohnheiten und verfolgen Sie das Leben in Zahlen? Evaluate Day wird Ihnen helfen, Ihr Leben zu digitalisieren und, basierend auf diesen Daten, zu verbessern.
 
-ALLES UNTER KONTROLLE
-Erstellen Sie Ihre einzigartigen Karteikarten, sortieren sie diese und notieren Sie jeden Tag alle Änderungen. Sie erhalten ein objektives Bild über Ihre Fortschritte; Sie werden alle Änderungen in Ihrem Tagesablauf mitbekommen und können rechtzeitige Korrekturen vornehmen.
+Evaluate Day ist ein persönliches Tagebuch und Lebensanalysetool, das entwickelt wurde, um Ihre täglichen Bemühungen und Leistungen zur Erreichung Ihrer Ziele zu verfolgen.
 
-KARTEIKARTEN
-- Farbe - schafft eine Stimmung und charakterisiert verschiedene Aspekte Ihres Lebens
-- Ihren Standort -  speichern Sie die Orte, die Sie besuchen
-- Phrase - einen kurzen und prägnanten Spruch oder Idee, die nicht mehr so schnell verloren geht
-- 100-Punkten-Bewertungskriterien - bewerten Sie allen Eckdaten aus Ihrem Leben auf einer 100-Punkte-Skala
-- 10-Punkten-Bewertungskriterien - oder auf einer 10-Punkte-Skala
-- 3-Punkten-Bewertungskriterien - Sie können das auch anhand einer 3-Punkte-Skala machen; Es gibt eine bequeme Skala für jeden Zweck.
-- Zähler - er kann die Anzahl der verschiedenen Parameter aufnehmen. Sie können Ihren täglichen Zähler einstellen(z. B. getrunkenen Wasser pro Tag) oder summieren Sie Daten über die Zeit  (z. B. Ersparnisse)
-- Tracker - verfolgen und markieren Sie verschiedene periodische Aktivitäten
-- Gewohnheit - formieren Sie Ihre Gewohnheiten mit Hilfe der kontinuierlichen Überwachung und Erinnerungen
-- Liste - halten Sie die Listen fest; zum Beispiel Einkäufen oder Aktivitäten
-- Ziel - Sie können auch ein Ziel setzen und ihre Fortschritte verfolgen.
-- Journal - führen Sie ein Tagebuch, notieren Sie Ideen oder schreiben Sie ein Buch,
+MOTIVIERE DICH TÄGLICH DURCH:
+- Kartensammlungen
+- Kriterien festlegen und bewerten (Skalen 100, 10 oder 3)
+- Verfolgung verschiedener Parameter
+- Unbegrenzte Anzahl von Karten zur Datenverfolgung (z.B. Wasserverbrauch pro Tag oder die Summe der Daten für die gesamte Zeit, wie - Einsparungen)
+- Saubere und benutzerfreundliche Oberfläche
+- Ständige Überwachung und Erinnerung an Ihre Gewohnheiten
+- Schneller und einfacher Überblick über alle Daten
+- Bunte Themen, um Ihre Stimmung und Lebenseigenschaften besser auszudrücken.
+- Einzigartiger Kartensatz zur Leistungsverfolgung und Ideenerfassung
+- Einfacher und schneller Prozess zum Hinzufügen von Daten
 
-ANALYTISCHE INSTRUMENTE UND EXPORT
-* erfordert Evaluate Day Pro
-Evaluate Day ist ein einfaches Instrument, das analytischen Prozesse aus Ihrem Leben einfach und bequem macht
+VERFOLGUNG VERSCHIEDENER PARAMETER!
+Evaluate Day hat einen einzigartigen Kartensatz, um Ihre Lebensveränderungen zu verstehen und sie in Zahlen zu erfassen. Sie können Ihre Karten so sortieren und anpassen, wie es für Sie am besten ist, um ein objektives Bild von sich selbst zu bekommen.
+So können Sie beispielsweise verfolgen, wie viel Wasser Sie pro Tag trinken, welche Orte Sie während der Woche besucht haben oder welche Medikamente Sie über einen bestimmten Zeitraum eingenommen haben.
 
-IST AUF ALLEN iOS GERÄTEN VERFÜGBAR
-* erfordert Evaluate Day Pro
-Evaluate Day funktioniert auf iPhone und iPad
+ANALYSE IHRER DATEN!
+Die App bietet einfache und übersichtliche Werkzeuge zur Analyse Ihrer Daten. Sie können auch Ihre täglichen Ergebnisse miteinander vergleichen.
 
-EVALUATE DAY
-- 12 Kärtchen für praktisch alle Aktivitäten, welche Sie verfolgen möchten
-- ein einfaches und schnelles Verfahren zum Analysieren und Hinzufügen von neuen Daten
-- Unbegrenzte Variabilität von verschiedenen Kärtchen
-- Archivierung von unbenutzten Kärtchen
-- Erinnerungen, die Sie für sich anpassen können
-- Es ist sogar möglich schnell mit Ihren Freunden über Ihre Fortschritte direkt aus der Anwendung mit einem anschaulichen Bild zu teilen
-- eine einfache Synchronisierung mit allen Ihren Geräten über iCloud
-- Sie können die App mit einem Passwort schützen
-- passen sie Evaluate Day an ihre Stimmung mit Hilfe der verschiedenen Themen.
+MEHR!
+Wenn Sie Ihren täglichen Auswertungsprozess mit speziellen Analysetools maximieren oder Ihre Daten in eine andere Software exportieren möchten, müssen Sie in der Anwendung ein Abonnement erwerben. Die Pro-Version öffnet Funktionen wie z.B.
+- Passwortschutz
+- Teile deine Erfolge mit deinen Freunden.
+- Zuverlässige und einfache Synchronisation mehrerer Geräte über iCloud
+- Erweiterte Datenanalysetools
+- Ständige Updates für den Evaluate Day
 
-Evaluate Day PRO
-A Pro Abonnement  für Evaluate Day eröffnet noch mehr wunderbaren Möglichkeiten und ermöglicht es uns die Anwendung weiter zu entwickeln und sie noch besser zu machen:
--Erweiterte Export in CSV, TXT und JSON
--Fantastische Anwendungs-Themen für die Erzeugung deiner persönlichen Stimmung
--Erweiterte Karte Analyseinstrumente
--Einfache und zuverlässige Synchronisation auf mehreren Geräten über iCloud
--Passwort-Schutz der Anwendung
--ständig neue Updates für Evaluate Day
+2,49 € pro Monat, 14,99 € pro Jahr
 
-3,99 € monatlich, 29,99 € jährlich
-Preis variiert basierend auf Ihrem Standort. Abonnements werden über Ihre Kreditkarte durch Ihr iTunes-Konto verrechnet. Ihr Abonnement wird automatisch verlängert, wenn es nicht zumindest 24 Stunden vor Ende der aktuellen Periode gekündigt wird. Sie können das Abonnement nicht kündigen, sobald es aktiviert ist. Verwalten Sie Ihre Abonnements nach dem Kauf in den Kontoeinstellungen. Unverbrauchte Zeit einer kostenlosen Testphase verfällt beim Kauf eines Abonnements.
+Der Preis kann je nach Standort variieren. Die Abonnementgebühr wird von Ihrer Kreditkarte über Ihr iTunes-Konto abgebucht. Das Abonnement wird automatisch verlängert, es sei denn, die automatische Verlängerung wird mindestens 24 Stunden vor Ablauf der aktuellen Abonnementlaufzeit deaktiviert. Nach der Aktivierung können Sie sich nicht mehr abmelden. Verwalten Sie Ihr Abonnement nach dem Kauf in Ihren Kontoeinstellungen. Der Rest der kostenlosen Probezeit wird mit dem Kauf Ihres Abonnements gekündigt.
 
-Wir würden gerne Ihre Fragen beantworten, oder einfach hören, was Sie über Evaluate Day denken. Finden Sie uns online via:
-hello@evaluateday.com
-Facebook: https://www.facebook.com/evaluateday/
+WERDEN WIR STÄNDIG IN KONTAKT BLEIBEN:
+Ideen und Vorschläge: hello@evaluateday.com
+Facebook: https://facebook.com/evaluateday/
+Instagram: https://instagram.com/evaluatedayapp/
+Website: https://evaluateday.com
 
 Datenschutzerklärung: http://evaluateday.com/privacy/
 Nutzungsbedingungen: http://evaluateday.com/terms/

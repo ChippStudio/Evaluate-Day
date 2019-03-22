@@ -153,10 +153,12 @@ class SubscriptionBuyCell: UITableViewCell {
     }
     
     @IBAction func topSelectedButtonAction(_ sender: UIButton) {
+        Feedback.player.select()
         self.isTopSelected = true
     }
     
     @IBAction func BottomSelectedButtonAction(_ sender: UIButton) {
+        Feedback.player.select()
         self.isTopSelected = false
     }
 }

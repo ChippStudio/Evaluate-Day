@@ -165,12 +165,15 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     
     // MARK: - SKRequestDelegate
     func requestDidFinish(_ request: SKRequest) {
-//        self.validateReceipt()
-//        print("Where WTF!!")
+        if request is SKReceiptRefreshRequest {
+            SKPaymentQueue.default().restoreCompletedTransactions()
+        }
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
-//        print(" TRANSACTION ERROR = \(error.localizedDescription)")
+        if request is SKReceiptRefreshRequest {
+            self.restoreHandler?(nil, error)
+        }
     }
     
     // MARK: - Computed variables
@@ -296,8 +299,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     }
     
     func restore(completion: @escaping ([SKPaymentTransaction]?, Error?) -> Void) {
+        let receiptRequest = SKReceiptRefreshRequest(receiptProperties: nil)
+        receiptRequest.start()
         self.restoreHandler = completion
-        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     // MARK: - Private actions

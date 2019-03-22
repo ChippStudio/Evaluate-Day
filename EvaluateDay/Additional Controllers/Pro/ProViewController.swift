@@ -28,6 +28,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Set navigation item
         self.navigationItem.title = Localizations.Settings.Pro.title
         
+        Feedback.player.play(sound: SoundType.openPro, hapticFeedback: true, impact: false, feedbackType: nil)
         if Store.current.isPro {
             sendEvent(Analytics.openProReview, withProperties: nil)
         } else {
@@ -131,6 +132,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.showLoadView()
             let product = cell.isTopSelected ? Store.current.annualy : Store.current.mouthly
             sendEvent(Analytics.startPay, withProperties: ["product": product?.productIdentifier ?? "WTF"])
+            Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
             Store.current.payment(product: product) { (transaction, error) in
                 if transaction != nil {
                     if transaction!.transactionState == SKPaymentTransactionState.purchasing || transaction!.transactionState == SKPaymentTransactionState.purchased {
@@ -144,6 +146,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @objc func restorePurchasesAction(sender: UIButton) {
         self.showLoadView()
+        Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
         Store.current.restore { (transactions, error) in
             self.hideLoadView()
         }
@@ -152,6 +155,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @objc func oneTimePurchaseAction(sender: UIButton) {
         self.showLoadView()
         sendEvent(Analytics.startPay, withProperties: ["product": Store.current.lifetime.productIdentifier])
+        Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
         Store.current.payment(product: Store.current.lifetime) { (transaction, error) in
             if transaction != nil {
                 if transaction!.transactionState == SKPaymentTransactionState.purchasing || transaction!.transactionState == SKPaymentTransactionState.purchased {

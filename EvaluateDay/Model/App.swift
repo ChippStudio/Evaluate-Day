@@ -61,7 +61,7 @@ class Settings: Object {
     @objc dynamic var weekStart: Int = 2
     @objc dynamic var cameraRoll: Bool = true
     @objc dynamic var celsius: Bool = true
-    @objc dynamic var sound: Bool = true
+    @objc dynamic var sound: Bool = false
     @objc dynamic var changeAppIcon: Bool = false
     @objc dynamic var passcode: Bool = false
     @objc dynamic var passcodeBiometric: Bool = true

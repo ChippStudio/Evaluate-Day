@@ -83,6 +83,7 @@ class CollectionListSection: ListSectionController, ASSectionController {
         if let nav = self.viewController?.navigationController {
             if let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as? EvaluateViewController {
                 controller.collection = self.collection.id
+                Feedback.player.select()
                 nav.pushViewController(controller, animated: true)
             }
         }
@@ -93,6 +94,7 @@ class CollectionListSection: ListSectionController, ASSectionController {
         if let split = self.viewController?.universalSplitController {
             let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController() as! EditCollectionViewController
             controller.collection = self.collection
+            Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
             split.pushSideViewController(controller)
         }
     }

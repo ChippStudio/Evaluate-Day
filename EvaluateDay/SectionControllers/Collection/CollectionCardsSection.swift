@@ -71,6 +71,7 @@ class CollectionCardsSection: ListSectionController, ASSectionController, ASColl
         if index == 1 {
             if let nav = self.viewController?.navigationController {
                 let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                Feedback.player.select()
                 nav.pushViewController(controller, animated: true)
             }
         }
@@ -82,6 +83,7 @@ class CollectionCardsSection: ListSectionController, ASSectionController, ASColl
         if let nav = self.viewController?.navigationController {
             let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
             controller.cardType = item.type
+            Feedback.player.select()
             nav.pushViewController(controller, animated: true)
         }
     }

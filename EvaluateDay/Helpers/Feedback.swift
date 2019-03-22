@@ -73,15 +73,15 @@ final class Feedback {
     }
     
     // MARK: - Haptic Feedback
-    private func select() {
+    func select() {
         self.selectGenerator.prepare()
         self.selectGenerator.selectionChanged()
     }
-    private func notify(type: UINotificationFeedbackGenerator.FeedbackType) {
+    func notify(type: UINotificationFeedbackGenerator.FeedbackType) {
         self.notificationGenerator.prepare()
         self.notificationGenerator.notificationOccurred(type)
     }
-    private func impact() {
+    func impact() {
         self.impactGenerator.prepare()
         self.impactGenerator.impactOccurred()
     }

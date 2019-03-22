@@ -118,9 +118,11 @@ class NumberViewController: UIViewController {
     // MARK: - Actions
     @IBAction func saveButtonAction(_ sender: UIButton) {
         self.delegate?.numberController?(controller: self, willCloseWith: self.value, forProperty: self.property)
+        Feedback.player.select()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func closeButtonAction(_ sender: UIButton) {
+        Feedback.player.impact()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -168,6 +170,10 @@ class NumberViewController: UIViewController {
     
     @IBAction func operationButtonAction(_ sender: UIButton) {
         guard let operation = Operation(rawValue: sender.tag) else {
+            return
+        }
+        
+        if self.expression.isEmpty {
             return
         }
         
