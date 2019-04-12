@@ -474,7 +474,6 @@
 		B53795752239A74C00C5BDD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B53795762239A74D00C5BDD2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B53795772239A74F00C5BDD2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B53795782239A77700C5BDD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B53977D5214A8D8A002EAAFA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		B53DEA4521DDD965002FAD8C /* EvaluateDotsAnalyticsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateDotsAnalyticsNode.swift; sourceTree = "<group>"; };
 		B53E5F462053F66300B50B60 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
@@ -570,6 +569,7 @@
 		B5970F2321F225BF000B0BAA /* CollectionsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollectionsList.storyboard; sourceTree = "<group>"; };
 		B5970F2521F225D2000B0BAA /* CollectionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListViewController.swift; sourceTree = "<group>"; };
 		B5970F2721F22700000B0BAA /* CollectionsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListCell.swift; sourceTree = "<group>"; };
+		B59A02FF224B5B5E00D00D09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B59B4C7B1FD8383C00E9A778 /* Pro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		B59D039E21FC6D7F0048B0AF /* ReorderCollections.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReorderCollections.storyboard; sourceTree = "<group>"; };
 		B59D03A021FC6D9D0048B0AF /* ReorderCards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReorderCards.storyboard; sourceTree = "<group>"; };
@@ -1831,7 +1831,7 @@
 				TargetAttributes = {
 					B5B27E541F9DA66000CB9121 = {
 						CreatedOnToolsVersion = 9.0.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1870,6 +1870,7 @@
 				en,
 				ru,
 				de,
+				Base,
 			);
 			mainGroup = B5B27E4C1F9DA66000CB9121;
 			productRefGroup = B5B27E561F9DA66000CB9121 /* Products */;
@@ -2421,7 +2422,7 @@
 		B5B27E611F9DA66000CB9121 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B53795782239A77700C5BDD2 /* en */,
+				B59A02FF224B5B5E00D00D09 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2572,7 +2573,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2595,7 +2596,7 @@
 				PRODUCT_NAME = "Evaluate Day";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

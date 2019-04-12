@@ -74,7 +74,7 @@ class ShareViewController: UIViewController {
     @IBAction func shareButtonAction(_ sender: UIButton) {
         
         var items = [Any]()
-        items.append(self.image)
+        items.append(self.image as Any)
         // Make universal Branch Link
         let linkObject = BranchUniversalObject(canonicalIdentifier: self.canonicalIdentifier)
         linkObject.title = Localizations.Share.Link.title

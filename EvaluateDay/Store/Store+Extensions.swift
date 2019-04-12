@@ -27,6 +27,7 @@ extension SKProduct {
                     trialDuration = Localizations.Many.month(intro.subscriptionPeriod.numberOfUnits)
                 case .year:
                     trialDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
+                @unknown default:()
                 }
                 descriptionString = Localizations.Settings.Pro.Subscription.Introductory.trial(trialDuration)
             case.payAsYouGo:
@@ -53,6 +54,7 @@ extension SKProduct {
                 case .year:
                     introDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
                     oneTime = Localizations.Many.year(0)
+                @unknown default:()
                 }
                 priceString = "\(price) / \(oneTime)"
                 descriptionString = Localizations.Settings.Pro.Subscription.Introductory.start(introDuration, priceString)
@@ -75,9 +77,11 @@ extension SKProduct {
                     introDuration = Localizations.Many.month(intro.subscriptionPeriod.numberOfUnits)
                 case .year:
                     introDuration = Localizations.Many.year(intro.subscriptionPeriod.numberOfUnits)
+                @unknown default:()
                 }
                 priceString = "\(price)"
                 descriptionString = Localizations.Settings.Pro.Subscription.Introductory.start(introDuration, priceString)
+            @unknown default:()
             }
         }
         

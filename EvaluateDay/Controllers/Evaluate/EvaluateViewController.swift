@@ -223,7 +223,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         super.viewDidAppear(animated)
         
         if self.scrollToCard != nil {
-            if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.scrollToCard, false).first {
+            if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.scrollToCard!, false).first {
                 self.adapter.scroll(to: DiffCard(card: card), supplementaryKinds: nil, scrollDirection: .vertical, scrollPosition: .top, animated: true)
                 self.scrollToCard = nil
             }

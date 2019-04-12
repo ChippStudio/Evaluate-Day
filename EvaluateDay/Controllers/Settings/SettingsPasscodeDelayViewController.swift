@@ -111,7 +111,7 @@ class SettingsPasscodeDelayViewController: UIViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let oldIndexPath = IndexPath(row: self.require.index(of: Database.manager.application.settings.passcodeDelay)!, section: 0)
+        let oldIndexPath = IndexPath(row: self.require.firstIndex(of: Database.manager.application.settings.passcodeDelay)!, section: 0)
         
         try! Database.manager.app.write {
             Database.manager.application.settings.passcodeDelay = self.require[indexPath.row]

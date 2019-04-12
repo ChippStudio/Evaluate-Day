@@ -126,6 +126,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 }
             })
         case .deferred: ()
+        @unknown default:()
         }
     }
     

@@ -25,6 +25,7 @@ enum UserLoginType: Int {
     case vk
 }
 
+@available(iOS 10.0, *)
 enum ExportType {
     case csv
     case json

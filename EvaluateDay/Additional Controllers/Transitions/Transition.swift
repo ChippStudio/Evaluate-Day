@@ -189,7 +189,7 @@ extension Transition {
 private var transitionAssociatedObject: UInt8 = 0
 
 public extension UIViewController {
-    public var transition: Transition? {
+    var transition: Transition? {
         get {
             return objc_getAssociatedObject(self, &transitionAssociatedObject) as? Transition
         }

@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let notification = CKNotification(fromRemoteNotificationDictionary: userInfo)
+        let notification = CKNotification(fromRemoteNotificationDictionary: userInfo)!
         if notification.subscriptionID == SyncKey.zoneNotification {
             self.syncEngine.fetchDataFromCloudKit(completion: {
                 completionHandler(.newData)

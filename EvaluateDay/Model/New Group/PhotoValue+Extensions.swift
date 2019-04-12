@@ -43,7 +43,7 @@ extension PhotoValue: CloudKitSyncable {
             let imagePath = documentPath.appending("/media").appending("/\(photoValue.id)")
             let url = URL(fileURLWithPath: imagePath)
             do {
-                try FileManager.default.copyItem(at: photoAsset.fileURL, to: url)
+                try FileManager.default.copyItem(at: photoAsset.fileURL!, to: url)
             } catch let error {
                 print("Copy image went wrong - \(error.localizedDescription)")
             }
