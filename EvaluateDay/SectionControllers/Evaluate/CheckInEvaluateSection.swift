@@ -174,6 +174,8 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             Database.manager.data.add(value, update: true)
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
         self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -233,6 +235,9 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
                     batchContext.reload(self)
                 }, completion: nil)
             })
+            
+            self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+            self.viewController?.userActivity?.becomeCurrent()
             
             //Feedback
             Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)

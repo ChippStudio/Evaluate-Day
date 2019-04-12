@@ -1583,6 +1583,43 @@ internal enum Localizations {
     }
   }
 
+  internal enum Siri {
+    internal enum Shortcut {
+      internal enum General {
+        internal enum Analytics {
+          /// Open and view analytics for card
+          internal static let description = Localizations.tr("Localizable", "siri.shortcut.general.analytics.description")
+          /// Open Analytics
+          internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.general.analytics.suggest")
+          /// Open Analytics for %@
+          internal static func title(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "siri.shortcut.general.analytics.title", p1)
+          }
+        }
+        internal enum Collection {
+          /// Open collection and evaluate all cards
+          internal static let description = Localizations.tr("Localizable", "siri.shortcut.general.collection.description")
+          /// Open Collection
+          internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.general.collection.suggest")
+          /// Open collection - %@
+          internal static func title(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "siri.shortcut.general.collection.title", p1)
+          }
+        }
+        internal enum Evaluate {
+          /// Open card and evaluate from the app
+          internal static let description = Localizations.tr("Localizable", "siri.shortcut.general.evaluate.description")
+          /// Evaluate Card
+          internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.general.evaluate.suggest")
+          /// Evaluate %@
+          internal static func title(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "siri.shortcut.general.evaluate.title", p1)
+          }
+        }
+      }
+    }
+  }
+
   internal enum Update {
     /// Download now
     internal static let button = Localizations.tr("Localizable", "update.button")

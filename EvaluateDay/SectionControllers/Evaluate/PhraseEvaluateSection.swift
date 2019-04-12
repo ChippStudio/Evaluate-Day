@@ -135,6 +135,9 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
                 }
             }
             
+            self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+            self.viewController?.userActivity?.becomeCurrent()
+            
             collectionContext?.performBatch(animated: true, updates: { (batchContext) in
                 batchContext.reload(self)
             }, completion: nil)

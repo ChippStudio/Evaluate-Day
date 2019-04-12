@@ -64,6 +64,10 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         
         // Feedback
         Feedback.player.play(sound: .openAnalytics, hapticFeedback: true)
+        
+        // Set user activity
+        self.userActivity = self.card.data.shortcut(for: .openAnalytics)
+        self.userActivity?.becomeCurrent()
     }
     
     override func didReceiveMemoryWarning() {

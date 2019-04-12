@@ -90,6 +90,8 @@ class ColorEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             
             node.colors.didSelectColor = { (color) in
                 if colorCard.realm != nil {
+                    self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+                    self.viewController?.userActivity?.becomeCurrent()
                     if let value = colorCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
                         try! Database.manager.data.write {
                             value.text = color

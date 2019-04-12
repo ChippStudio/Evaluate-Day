@@ -34,6 +34,10 @@ extension Update: Evaluable {
     func textExport() -> String {
         return Localizations.Update.subtitle
     }
+    
+    func shortcut(for item: SiriShortcutItem) -> NSUserActivity? {
+        return nil
+    }
 }
 
 extension Update: Analytical {

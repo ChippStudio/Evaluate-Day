@@ -155,6 +155,9 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
                 }
             }
             
+            self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+            self.viewController?.userActivity?.becomeCurrent()
+            
             collectionContext?.performBatch(animated: false, updates: { (batchContext) in
                 batchContext.reload(self)
             }, completion: nil)
@@ -183,6 +186,9 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
             }
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         
@@ -207,6 +213,9 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
                 Database.manager.data.add(newValue)
             }
         }
+        
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
         
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: false, impact: true, feedbackType: nil)

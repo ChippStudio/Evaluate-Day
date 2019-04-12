@@ -38,6 +38,49 @@ enum ShortcutItems: String {
     case collection = "shortcut-collection"
 }
 
+enum SiriShortcutItem: String {
+    // MARK: - General
+    case openAnalytics = "ee.chippstudio.evaluateday.siri.general.openAnalytics"
+    case evaluate = "ee.chippstudio.evaluateday.siri.general.evaluate"
+    case collection = "ee.chippstudio.evaluateday.siri.general.collection"
+    
+    // MARK: - Check In
+    case checkInQuick = "ee.chippstudio.evaluateday.siri.checkin.quick"
+    case checkInMap = "ee.chippstudio.evaluateday.siri.checkin.map"
+    
+    // MARK: - Phrase
+    case phraseEdit = "ee.chippstudio.evaluateday.siri.phrase.edit"
+    
+    // MARK: - Criterion
+    case criterionBad = "ee.chippstudio.evaluateday.siri.criterion.bad"
+    case criterionNeutral = "ee.chippstudio.evaluateday.siri.criterion.neutral"
+    case criterionGood = "ee.chippstudio.evaluateday.siri.criterion.good"
+    
+    // MARK: - Counter
+    case counterIncrease = "ee.chippstudio.evaluateday.siri.counter.increase"
+    case counterDecrease = "ee.chippstudio.evaluateday.siri.counter.decrease"
+    case counterEnterValue = "ee.chippstudio.evaluateday.siri.counter.enterValue"
+    
+    // MARK: - Habit
+    case habitMark = "ee.chippstudio.evaluateday.siri.habit.mark"
+    case habitMarkAndComment = "ee.chippstudio.evaluateday.siri.habit.markAndComment"
+    
+    // MARK: - Tracker
+    case trackerMark = "ee.chippstudio.evaluateday.siri.tracker.mark"
+    case trackerMarkAndComment = "ee.chippstudio.evaluateday.siri.tracker.markAndComment"
+    
+    // MARK: - List
+    case listOpen = "ee.chippstudio.evaluateday.siri.list.open"
+    
+    // MARK: - Goal
+    case goalIncrease = "ee.chippstudio.evaluateday.siri.goal.increase"
+    case goalDecrease = "ee.chippstudio.evaluateday.siri.goal.decrease"
+    case goalEnterValue = "ee.chippstudio.evaluateday.siri.goal.enterValue"
+    
+    // MARK: - Journal
+    case journalNewEntry = "ee.chippstudio.evaluateday.siri.journal.newEntry"
+}
+
 enum AnalyticsChartNodeOptionsKey: String {
     case dateFormat
     case valueSubString

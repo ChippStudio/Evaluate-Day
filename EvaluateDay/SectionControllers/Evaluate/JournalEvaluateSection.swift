@@ -183,6 +183,9 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             Database.manager.data.add(textValue, update: true)
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         

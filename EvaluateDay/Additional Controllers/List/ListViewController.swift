@@ -223,6 +223,9 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
             }
         }
         
+        self.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.userActivity?.becomeCurrent()
+        
         self.tableNode.reloadData()
     }
     
@@ -262,6 +265,9 @@ class ListViewController: UIViewController, ASTableDataSource, ASTableDelegate, 
                 item.order = self.undone.count
             }
         }
+        
+        self.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.userActivity?.becomeCurrent()
         
         self.tableNode.reloadData()
     }

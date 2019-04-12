@@ -165,6 +165,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
             }
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -187,6 +190,9 @@ class HabitEvaluateSection: ListSectionController, ASSectionController, Evaluabl
         try! Database.manager.data.write {
             Database.manager.data.add(value)
         }
+        
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
         
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)

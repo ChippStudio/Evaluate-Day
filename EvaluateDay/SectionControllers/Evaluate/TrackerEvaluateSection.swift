@@ -163,6 +163,9 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
             }
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)
@@ -181,6 +184,10 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         try! Database.manager.data.write {
             Database.manager.data.add(value)
         }
+        
+        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         //Feedback
         Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         

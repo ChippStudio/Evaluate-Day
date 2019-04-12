@@ -11,6 +11,9 @@ import RealmSwift
 import IGListKit
 import CloudKit
 import AsyncDisplayKit
+import CoreSpotlight
+import CoreServices
+import Intents
 
 extension CounterCard: Editable {
     var sectionController: ListSectionController {
@@ -75,6 +78,39 @@ extension CounterCard: Evaluable {
         }
         
         return txtText
+    }
+    
+    func shortcut(for item: SiriShortcutItem) -> NSUserActivity? {
+        let activity = NSUserActivity(activityType: item.rawValue)
+        activity.isEligibleForSearch = true
+        
+        if #available(iOS 12.0, *) {
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(self.card.id)
+            activity.isEligibleForPrediction = true
+        }
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        switch item {
+        case .openAnalytics:
+            activity.title = Localizations.Siri.Shortcut.General.Analytics.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.General.Analytics.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .evaluate:
+            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+            }
+            activity.contentAttributeSet = attributes
+        default:
+            return nil
+        }
+        
+        return activity
     }
 }
 

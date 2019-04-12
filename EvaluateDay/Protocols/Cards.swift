@@ -21,6 +21,9 @@ protocol Evaluable {
     func hasEvent(forDate date: Date) -> Bool
     func lastEventDate() -> Date?
     func textExport() -> String
+    
+    // Siri Shortcut
+    func shortcut(for item: SiriShortcutItem) -> NSUserActivity?
 }
 
 protocol Editable {

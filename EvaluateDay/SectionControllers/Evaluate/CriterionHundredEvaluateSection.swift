@@ -105,6 +105,8 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
                             Database.manager.data.add(newValue)
                         }
                     }
+                    self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+                    self.viewController?.userActivity?.becomeCurrent()
                 }
             }
             

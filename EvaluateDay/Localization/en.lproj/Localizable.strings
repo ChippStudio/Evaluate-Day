@@ -554,3 +554,14 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "onboarding.newsletter.placeholder" = "Email address";
 "onboarding.enjoy.text" = "Enjoy!";
 "onboarding.enjoy.button" = "Start app";
+
+// MARK: - Siri
+"siri.shortcut.general.analytics.title" = "Open Analytics for %@";
+"siri.shortcut.general.analytics.description" = "Open and view analytics for card";
+"siri.shortcut.general.analytics.suggest" = "Open Analytics";
+"siri.shortcut.general.evaluate.title" = "Evaluate %@";
+"siri.shortcut.general.evaluate.description" = "Open card and evaluate from the app";
+"siri.shortcut.general.evaluate.suggest" = "Evaluate Card";
+"siri.shortcut.general.collection.title" = "Open collection - %@";
+"siri.shortcut.general.collection.description" = "Open collection and evaluate all cards";
+"siri.shortcut.general.collection.suggest" = "Open Collection";
