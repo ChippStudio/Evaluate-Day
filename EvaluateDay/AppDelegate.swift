@@ -214,9 +214,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("ggggggggggggggg")
     }
     
-    // MARK: - Respond Universal Links
+    // MARK: - Response User Activity
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        // pass the url to the handle deep link call
+        
+        if SiriShortcutItem(rawValue: userActivity.activityType) != nil {
+            self.shortcut = userActivity
+            self.openFromUserActivity()
+            return true
+        }
+        
         return Branch.getInstance(branchApiKey).continue(userActivity)
     }
     
@@ -313,6 +319,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.actionCardID = nil
         self.actionID = nil
+    }
+    
+    private var shortcut: NSUserActivity?
+    func openFromUserActivity() {
+        if self.shortcut == nil {
+            return
+        }
+        
+        guard let item = SiriShortcutItem(rawValue: self.shortcut!.activityType) else {
+            return
+        }
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if topController as? PasscodeViewController == nil {
+                
+                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
+                self.window?.rootViewController = split
+                self.window?.makeKeyAndVisible()
+                
+                switch item {
+                case .openAnalytics:
+                    if let card = self.shortcut?.userInfo?["card"] as? String {
+                        // Open card analytics view controller
+                        if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", card, false).first {
+                            let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
+                            analytycs.card = card
+                            split.pushSideViewController(analytycs)
+                        }
+                    }
+                case .evaluate:
+                    if let card = self.shortcut?.userInfo?["card"] as? String {
+                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                        controller.scrollToCard = card
+                        split.mainController.pushViewController(controller, animated: true)
+                    }
+                case .collection:
+                    if let collection = self.shortcut!.userInfo?["collection"] as? String {
+                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                        controller.collection = collection
+                        split.mainController.pushViewController(controller, animated: true)
+                    }
+                default: ()
+                }
+                
+            } else {
+                return
+            }
+        }
+        
+        self.shortcut = nil
     }
     
     // MARK: - Controll locations

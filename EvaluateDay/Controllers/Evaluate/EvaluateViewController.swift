@@ -88,6 +88,8 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         } else if self.collection != nil {
             if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.collection!).first {
                 self.navigationItem.title = dashboard.title
+                self.userActivity = dashboard.shortcut
+                self.userActivity?.becomeCurrent()
             } else {
                 self.navigationItem.title = Localizations.Collection.titlePlaceholder
             }

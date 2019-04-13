@@ -272,6 +272,7 @@ class PasscodeViewController: UIViewController {
         
         (UIApplication.shared.delegate as! AppDelegate).openFromNotification()
         (UIApplication.shared.delegate as! AppDelegate).openFromQuickAction()
+        (UIApplication.shared.delegate as! AppDelegate).openFromUserActivity()
         Store.current.openDetailsController()
     }
     

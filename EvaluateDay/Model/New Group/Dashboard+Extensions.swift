@@ -10,6 +10,33 @@ import Foundation
 import UIKit
 import CloudKit
 import RealmSwift
+import CoreSpotlight
+import CoreServices
+import Intents
+
+extension Dashboard {
+    var shortcut: NSUserActivity? {
+        let activity = NSUserActivity(activityType: SiriShortcutItem.collection.rawValue)
+        activity.isEligibleForSearch = true
+        
+        if #available(iOS 12.0, *) {
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(self.id)
+            activity.isEligibleForPrediction = true
+        }
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        activity.title = Localizations.Siri.Shortcut.General.Collection.title(self.title)
+        attributes.contentDescription = Localizations.Siri.Shortcut.General.Collection.description
+        
+        if #available(iOS 12.0, *) {
+            activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Collection.suggest
+        }
+        activity.contentAttributeSet = attributes
+        activity.userInfo = ["collection": self.id]
+        
+        return activity
+    }
+}
 
 extension Dashboard: CloudKitSyncable {
     func record(zoneID: CKRecordZone.ID) -> CKRecord? {

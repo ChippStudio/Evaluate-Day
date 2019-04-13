@@ -1585,6 +1585,28 @@ internal enum Localizations {
 
   internal enum Siri {
     internal enum Shortcut {
+      internal enum Checkin {
+        internal enum Map {
+          /// Open map and set location in the card
+          internal static let description = Localizations.tr("Localizable", "siri.shortcut.checkin.map.description")
+          /// Open Map
+          internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.checkin.map.suggest")
+          /// Open Map Action in - %@
+          internal static func title(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "siri.shortcut.checkin.map.title", p1)
+          }
+        }
+        internal enum Quick {
+          /// Set current location in the card
+          internal static let description = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.description")
+          /// Quick Check In
+          internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.suggest")
+          /// Quick Check In Action in - %@
+          internal static func title(_ p1: String) -> String {
+            return Localizations.tr("Localizable", "siri.shortcut.checkin.quick.title", p1)
+          }
+        }
+      }
       internal enum General {
         internal enum Analytics {
           /// Open and view analytics for card

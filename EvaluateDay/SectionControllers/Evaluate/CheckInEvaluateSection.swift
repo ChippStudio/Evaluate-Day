@@ -174,8 +174,12 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             Database.manager.data.add(value, update: true)
         }
         
+        self.viewController?.userActivity = self.card.data.shortcut(for: .checkInMap)
+        self.viewController?.userActivity?.becomeCurrent()
+        
         self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
         self.viewController?.userActivity?.becomeCurrent()
+        
         self.collectionContext?.performBatch(animated: true, updates: { (batchContext) in
             batchContext.reload(self)
         }, completion: nil)

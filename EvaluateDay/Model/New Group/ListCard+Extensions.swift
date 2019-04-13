@@ -114,6 +114,7 @@ extension ListCard: Evaluable {
             return nil
         }
         
+        activity.userInfo = ["card": self.card.id]
         return activity
     }
 }
