@@ -121,7 +121,7 @@ class CollectionsListViewController: UIViewController, UITableViewDataSource, UI
     @objc func newCollectionButtonAction(sender: AnyObject) {
         if let split = self.universalSplitController as? SplitController {
             let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController()!
-            split.pushSideViewController(controller)
+            split.pushSideViewController(controller, complition: nil)
         }
     }
 }

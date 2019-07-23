@@ -26,6 +26,7 @@ class SplitController: UniversalSplitViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateAppearance(animated: false)
+        self.emptyView = SplitEmptyView()
     }
     
     override func updateAppearance(animated: Bool) {

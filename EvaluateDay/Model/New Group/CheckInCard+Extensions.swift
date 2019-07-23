@@ -98,13 +98,6 @@ extension CheckInCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
-            if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
-            }
-            activity.contentAttributeSet = attributes
         case .checkInQuick:
             activity.title = Localizations.Siri.Shortcut.Checkin.Quick.title(self.card.title)
             attributes.contentDescription = Localizations.Siri.Shortcut.Checkin.Quick.description
@@ -125,6 +118,22 @@ extension CheckInCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.checkInQuick, .checkInMap]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

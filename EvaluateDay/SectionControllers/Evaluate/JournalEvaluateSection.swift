@@ -183,7 +183,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             Database.manager.data.add(textValue, update: true)
         }
         
-        self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
+        self.viewController?.userActivity = self.card.data.shortcut(for: .journalNewEntry)
         self.viewController?.userActivity?.becomeCurrent()
         
         //Feedback

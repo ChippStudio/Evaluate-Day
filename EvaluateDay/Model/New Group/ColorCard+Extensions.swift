@@ -99,19 +99,16 @@ extension ColorCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
-            if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
-            }
-            activity.contentAttributeSet = attributes
         default:
             return nil
         }
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        return nil
     }
 }
 

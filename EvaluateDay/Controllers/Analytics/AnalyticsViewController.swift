@@ -81,6 +81,11 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         self.adapter.performUpdates(animated: true, completion: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.userActivity = nil
+    }
+    
     override func updateAppearance(animated: Bool) {
         super.updateAppearance(animated: animated)
         

@@ -99,11 +99,20 @@ extension TrackerCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+        case .trackerMark:
+            activity.title = Localizations.Siri.Shortcut.Tracker.Mark.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Tracker.Mark.description
+            
             if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Tracker.Mark.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .trackerMarkAndComment:
+            activity.title = Localizations.Siri.Shortcut.Tracker.MarkAndComment.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Tracker.MarkAndComment.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Tracker.MarkAndComment.suggest
             }
             activity.contentAttributeSet = attributes
         default:
@@ -112,6 +121,22 @@ extension TrackerCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.trackerMark, .trackerMarkAndComment]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

@@ -312,6 +312,7 @@
 		B5C7573D1F9DF8870032199E /* ColorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7573C1F9DF8870032199E /* ColorCard.swift */; };
 		B5C757401F9F32B10032199E /* TitleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7573F1F9F32B10032199E /* TitleNode.swift */; };
 		B5C757421F9F33660032199E /* ColorEvaluateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C757411F9F33660032199E /* ColorEvaluateNode.swift */; };
+		B5C86F9E22DE146100C8C7C5 /* SplitEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C86F9D22DE146100C8C7C5 /* SplitEmptyView.swift */; };
 		B5CA2D5C1FB43CD100547EC8 /* ColorAnalyticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA2D5B1FB43CD100547EC8 /* ColorAnalyticsSection.swift */; };
 		B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA2D5D1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift */; };
 		B5CA2D651FB464C000547EC8 /* ColorDotNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */; };
@@ -703,6 +704,7 @@
 		B5C7573C1F9DF8870032199E /* ColorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCard.swift; sourceTree = "<group>"; };
 		B5C7573F1F9F32B10032199E /* TitleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleNode.swift; sourceTree = "<group>"; };
 		B5C757411F9F33660032199E /* ColorEvaluateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEvaluateNode.swift; sourceTree = "<group>"; };
+		B5C86F9D22DE146100C8C7C5 /* SplitEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitEmptyView.swift; sourceTree = "<group>"; };
 		B5CA2D5B1FB43CD100547EC8 /* ColorAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAnalyticsSection.swift; sourceTree = "<group>"; };
 		B5CA2D5D1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionHundredAnalyticsSection.swift; sourceTree = "<group>"; };
 		B5CA2D641FB464C000547EC8 /* ColorDotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDotNode.swift; sourceTree = "<group>"; };
@@ -988,8 +990,8 @@
 			isa = PBXGroup;
 			children = (
 				B562180D1FD57E5C0061AC70 /* Store.swift */,
-				B5A226C320FCB5B60060538F /* Store+Extensions.swift */,
 				B5535AEB1FEFF7A500D2AE25 /* Store+Enums.swift */,
+				B5A226C320FCB5B60060538F /* Store+Extensions.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1035,6 +1037,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FD38DC1FD940EA0071B1F0 /* EmptyView.swift */,
+				B5C86F9D22DE146100C8C7C5 /* SplitEmptyView.swift */,
 				B5A1B0E51FBACF0B003D9E81 /* LaunchView.swift */,
 				B5DED7A21FCC607D002DD956 /* SettingsFooterView.swift */,
 				B59DA05F211D5F0100A9FCFB /* ShareView.swift */,
@@ -2344,6 +2347,7 @@
 				B5A5916521D8FC0E0026FD84 /* CollectionActionsSection.swift in Sources */,
 				B5D9A84F2060122A00F84091 /* ActivityAnalyticsObject.swift in Sources */,
 				B5D854CC1FCDAA8300BB4E14 /* PasscodeViewController.swift in Sources */,
+				B5C86F9E22DE146100C8C7C5 /* SplitEmptyView.swift in Sources */,
 				B591FAD61FA832E5007EE0F1 /* CriterionHundredEditableSection.swift in Sources */,
 				B50B18ED22047E7E008A2231 /* MarkListCell.swift in Sources */,
 				B516CA5821EBC5090002915F /* NewCardCell.swift in Sources */,

@@ -266,7 +266,7 @@
 	<key>CFBundleVersion</key>
 	<string>8658</string>
 	<key>CSBuild</key>
-	<string>8689</string>
+	<string>8749</string>
 	<key>CSDemo</key>
 	<false/>
 	<key>CSSandbox</key>
@@ -304,6 +304,12 @@
 	<string>Save photos from the Evaluate Day</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Add your photos in the Evaluate Day</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ee.chippstudio.evaluateday.siri.general.openAnalytics</string>
+		<string>ee.chippstudio.evaluateday.siri.general.evaluate</string>
+		<string>ee.chippstudio.evaluateday.siri.general.collection</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

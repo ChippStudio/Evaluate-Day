@@ -82,6 +82,18 @@ extension UIImage {
         return newImage
     }
     
+    func resizeImage(maxSize: CGFloat) -> UIImage {
+        
+        let devider = max(self.size.width, self.size.height) / maxSize
+        let newSize = CGSize(width: self.size.width / devider, height: self.size.height / devider)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     func increaseSize(by value: CGFloat) -> UIImage {
         // Guard newSize is different
         var newSize = self.size

@@ -99,11 +99,28 @@ extension CriterionThreeCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+        case .criterionBad:
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.description
+            
             if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .criterionNeutral:
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .criterionGood:
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.suggest
             }
             activity.contentAttributeSet = attributes
         default:
@@ -112,6 +129,22 @@ extension CriterionThreeCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.criterionBad, .criterionNeutral, .criterionGood]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

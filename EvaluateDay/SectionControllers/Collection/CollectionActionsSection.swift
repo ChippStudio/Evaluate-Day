@@ -68,12 +68,12 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
         if index == 0 {
             if let split = self.viewController?.universalSplitController as? SplitController {
                 let controller = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateInitialViewController()!
-                split.pushSideViewController(controller)
+                split.pushSideViewController(controller, complition: nil)
             }
         } else if index == 1 {
             if let split = self.viewController?.universalSplitController as? SplitController {
                 let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-                split.pushSideViewController(controller)
+                split.pushSideViewController(controller, complition: nil)
             }
         }
     }
@@ -82,7 +82,7 @@ class CollectionActionsSection: ListSectionController, ASSectionController {
     @objc func newCollectionAction(sender: ASButtonNode) {
         if let split = self.viewController?.universalSplitController as? SplitController {
             let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController()!
-            split.pushSideViewController(controller)
+            split.pushSideViewController(controller, complition: nil)
         }
     }
 }

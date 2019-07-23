@@ -16,6 +16,7 @@ import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
 import Firebase
+import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -130,6 +131,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id as NSSecureCoding])
             UIApplication.shared.shortcutItems?.append(collectionItem)
         }
+        
+        // Set new Siri Suggestens Shortcuts
+        if #available(iOS 12.0, *) {
+            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
+            var suggestions = [INShortcut]()
+            for card in cards {
+                if let cardsSuggestions = card.data.suggestions {
+                    for activity in cardsSuggestions {
+                        suggestions.append(INShortcut(userActivity: activity))
+                    }
+                }
+            }
+            
+            INVoiceShortcutCenter.shared.setShortcutSuggestions(suggestions)
+        }
+        
         // Present passcode controller if needed
         if Database.manager.application.settings.passcode {
             if var topController = UIApplication.shared.keyWindow?.rootViewController {
@@ -265,7 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     split.mainController.pushViewController(controller, animated: true)
                 case .activity:
                     let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-                    split.pushSideViewController(controller)
+                    split.pushSideViewController(controller, complition: nil)
                 case .collection:
                     if self.shortcutCollectionID != nil {
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
@@ -309,7 +326,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.actionCardID!, false).first {
                         let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                         analytycs.card = card
-                        split.pushSideViewController(analytycs)
+                        split.pushSideViewController(analytycs, complition: nil)
                     }
                 }
             } else {
@@ -349,7 +366,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", card, false).first {
                             let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                             analytycs.card = card
-                            split.pushSideViewController(analytycs)
+                            split.pushSideViewController(analytycs, complition: nil)
+                        } else {
+                            if !Store.current.isPro {
+                                let pro = UIStoryboard.controller(in: .pro)
+                                split.pushSideViewController(pro, complition: nil)
+                            } else {
+                                self.showSyncAlert()
+                            }
                         }
                     }
                 case .evaluate:
@@ -357,12 +381,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                         controller.scrollToCard = card
                         split.mainController.pushViewController(controller, animated: true)
+                    } else {
+                        if !Store.current.isPro {
+                            let pro = UIStoryboard.controller(in: .pro)
+                            split.pushSideViewController(pro, complition: nil)
+                        } else {
+                            self.showSyncAlert()
+                        }
                     }
                 case .collection:
                     if let collection = self.shortcut!.userInfo?["collection"] as? String {
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                         controller.collection = collection
                         split.mainController.pushViewController(controller, animated: true)
+                    } else {
+                        if !Store.current.isPro {
+                            let pro = UIStoryboard.controller(in: .pro)
+                            split.pushSideViewController(pro, complition: nil)
+                        } else {
+                            self.showSyncAlert()
+                        }
                     }
                 default: ()
                 }
@@ -373,6 +411,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         self.shortcut = nil
+    }
+    
+    // MARK: - Show sync alert
+    private func showSyncAlert() {
+        let alert = UIAlertController(title: Localizations.Settings.Sync.UserActivity.Alert.title, message: Localizations.Settings.Sync.UserActivity.Alert.message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: Localizations.General.ok, style: .cancel, handler: nil)
+        let openSettings = UIAlertAction(title: Localizations.Settings.Sync.UserActivity.Alert.openSettings, style: .default) { (_) in
+            if let split = self.window?.rootViewController as? SplitController {
+                let settings = UIStoryboard.controller(in: .settings)
+                split.pushSideViewController(settings, complition: {
+                    let data = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateViewController(withIdentifier: "dataManagerSegue")
+                    split.pushInSideViewController(data, complition: nil)
+                })
+            }
+        }
+        
+        alert.addAction(ok)
+        alert.addAction(openSettings)
+        
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Controll locations
@@ -411,6 +469,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Firebase.Analytics.setUserProperty("\(starts.count)", forName: "Starts")
         Firebase.Analytics.setUserProperty(voiceOver ? "true" : "false", forName: "VoiceOver")
         Firebase.Analytics.setUserProperty(Store.current.isPro ? "true" : "false", forName: "Pro")
+        
     }
     private func controlLocations() {
         let values = Database.manager.data.objects(LocationValue.self).filter("isDeleted=%@", false)
@@ -429,6 +488,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    // MARK: - Controll weather
     private func controlWeathers() {
         let values = Database.manager.data.objects(WeatherValue.self).filter("isDeleted=%@", false)
         for v in values {

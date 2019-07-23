@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Storyboards: String {
     case split = "SplitController"
@@ -44,4 +45,14 @@ enum Storyboards: String {
     case journalGallery = "JournalGallery"
     case text = "Text"
     case number = "Number"
+}
+
+extension UIStoryboard {
+    static func controller(in storyboard: Storyboards, for identifier: String? = nil) -> UIViewController {
+        if identifier == nil {
+            return UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateInitialViewController()!
+        } else {
+            return UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(withIdentifier: identifier!)
+        }
+    }
 }

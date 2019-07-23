@@ -205,7 +205,7 @@ class CollectionViewController: UIViewController, ListAdapterDataSource, DateSec
             let section = ProLockSection()
             section.didSelectPro = { () in
                 let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-                self.universalSplitController?.pushSideViewController(controller)
+                self.universalSplitController?.pushSideViewController(controller, complition: nil)
             }
             section.inset = UIEdgeInsets(top: 35.0, left: 0.0, bottom: 35.0, right: 0.0)
             return section

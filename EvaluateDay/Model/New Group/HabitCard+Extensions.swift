@@ -99,11 +99,20 @@ extension HabitCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+        case .habitMark:
+            activity.title = Localizations.Siri.Shortcut.Habit.Mark.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Habit.Mark.description
+            
             if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Habit.Mark.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .habitMarkAndComment:
+            activity.title = Localizations.Siri.Shortcut.Habit.MarkAndComment.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Habit.MarkAndComment.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Habit.MarkAndComment.suggest
             }
             activity.contentAttributeSet = attributes
         default:
@@ -112,6 +121,22 @@ extension HabitCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.habitMark, .habitMarkAndComment]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

@@ -99,11 +99,28 @@ extension CounterCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+        case .counterIncrease:
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.description
+            
             if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .counterDecrease:
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .counterEnterValue:
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Value.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Value.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Counter.Evaluate.Value.suggest
             }
             activity.contentAttributeSet = attributes
         default:
@@ -112,6 +129,22 @@ extension CounterCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.counterIncrease, .counterDecrease, .counterEnterValue]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

@@ -20,7 +20,8 @@ class CardsListDotNode: ASCellNode {
         super.init()
         
         self.cover.backgroundColor = UIColor.main
-        self.image.image = image.resizedImage(newSize: CGSize(width: 30.0, height: 30.0))
+        self.image.image = image //.resizeImage(maxSize: 30.0)
+        self.image.contentMode = .scaleAspectFit
         self.image.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor.textTint)
         
         self.addSubnode(self.cover)

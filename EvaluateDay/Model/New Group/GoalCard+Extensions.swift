@@ -100,11 +100,28 @@ extension GoalCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
-        case .evaluate:
-            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.card.title)
-            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+        case .goalIncrease:
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.description
+            
             if #available(iOS 12.0, *) {
-                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .goalDecrease:
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.suggest
+            }
+            activity.contentAttributeSet = attributes
+        case .goalEnterValue:
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Value.title(self.card.title)
+            attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Value.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Goal.Evaluate.Value.suggest
             }
             activity.contentAttributeSet = attributes
         default:
@@ -113,6 +130,22 @@ extension GoalCard: Evaluable {
         
         activity.userInfo = ["card": self.card.id]
         return activity
+    }
+    
+    var suggestions: [NSUserActivity]? {
+        let items: [SiriShortcutItem] = [.goalIncrease, .goalDecrease, .goalEnterValue]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

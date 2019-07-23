@@ -197,6 +197,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case .welcome:
             sendEvent(.openWelcomeCards, withProperties: nil)
             self.openWelcome()
+        case .siri: ()
         }
     }
     
@@ -354,6 +355,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let themeSection = SettingsSection(items: themeItems, header: Localizations.Settings.Themes.title, footer: nil)
         self.settings.append(themeSection)
         
+        if #available(iOS 12.0, *) {
+            // Siri
+            let siriItem = SettingItem(title: Localizations.Siri.Settings.title, type: .more, action: MainSettingsAction.siri, image: Images.Media.siri.image)
+            let shortcutSection = SettingsSection(items: [siriItem], header: Localizations.Siri.Settings.sectionTitle, footer: nil)
+            self.settings.append(shortcutSection)
+        }
+        
         // General
         let notificationItem = SettingItem(title: Localizations.Settings.Notifications.title, type: .more, action: MainSettingsAction.notification, subtitle: "\(Database.manager.application.notifications.count)", image: Images.Media.notification.image)
         let weekItem = SettingItem(title: Localizations.Settings.General.week, type: .more, action: MainSettingsAction.week, subtitle: nil, image: Images.Media.week.image)
@@ -400,6 +408,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case bool
         case rate
         case welcome
+        case siri
     }
     
     private enum BooleanAction: Int {

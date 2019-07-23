@@ -56,6 +56,13 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
     var isShowSideCloseButton = true
     var closeButtonTitle = "Close"
     var closeButtonImage: UIImage?
+    var emptyView: UIView? {
+        didSet {
+            if self.emptyView != nil {
+                self.addEmptyView()
+            }
+        }
+    }
     
     // MARK: - Separator
     var separatorViewColor = UIColor.lightGray
@@ -145,6 +152,7 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
         self.animation({ 
             self.mainController.view.frame = rect
             if self.sideController != nil { self.sideController?.view.frame = sideRect }
+            if self.emptyView != nil { self.emptyView?.frame = CGRect(x: mainControllerWidth, y: 0.0, width: size.width - mainControllerWidth, height: size.height) }
             }, withTransitionCoordinator: coordinator)
     }
     
@@ -211,6 +219,7 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
                 }, withTransitionCoordinator: coordinator)
             
             self.addSeparator()
+            self.addEmptyView(size: size)
         } else {
             self.removeSideCloseButton()
             
@@ -230,7 +239,7 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             self.isSideOpen = false
             
             self.removeSeparator()
-            
+            self.removeEmptyView()
             self.mainController.delegate = self
         }
     }
@@ -281,7 +290,7 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
     
     fileprivate func addSeparator(_ size: CGSize) {
         removeSeparator()
-        separatorView = UIView(frame: CGRect(x: mainControllerWidth - 1, y: 0, width: 1, height: size.height))
+        separatorView = UIView(frame: CGRect(x: mainControllerWidth - 1, y: 0, width: 0.5, height: size.height))
         separatorView.autoresizingMask = .flexibleHeight
         separatorView.backgroundColor = separatorViewColor
         mainController.view.addSubview(separatorView)
@@ -289,6 +298,24 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
     
     fileprivate func removeSeparator() {
         separatorView?.removeFromSuperview()
+    }
+    
+    // MARK: - Empty View
+    private func addEmptyView(size: CGSize? = nil) {
+        if self.emptyView != nil && self.isControllerContaintsSideController && self.sideController == nil {
+            if size == nil {
+                self.emptyView!.frame = CGRect(x: mainControllerSize.width, y: 0.0, width: self.view.frame.size.width - mainControllerSize.width, height: UIScreen.main.bounds.size.height)
+            } else {
+//                print(CGRect(x: mainControllerWidth, y: 0.0, width: size!.width - mainControllerWidth, height: size!.height))
+                self.emptyView!.frame = CGRect(x: mainControllerWidth, y: 0.0, width: size!.width - mainControllerWidth, height: size!.height)
+            }
+            self.view.addSubview(self.emptyView!)
+        }
+    }
+    private func removeEmptyView() {
+        if self.emptyView != nil {
+            self.emptyView!.removeFromSuperview()
+        }
     }
     // MARK: - Close button Actions
     fileprivate var closeSideButton: UIBarButtonItem!
@@ -320,18 +347,36 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
         self.mainController = controller
     }
     
-    func pushSideViewController(_ controller: UIViewController) {
+    func pushSideViewController(_ controller: UIViewController, complition: (() -> Void)?) {
+        self.removeEmptyView()
         if self.isControllerContaintsSideController {
             self.casheViewControllers.removeAll()
             let navigationController = UINavigationController(rootViewController: controller)
             self.sideController = navigationController
             self.casheViewControllers.append(controller)
+            complition?()
         } else {
             self.mainController.pushViewController(controller, animated: true)
             self.casheViewControllers.append(controller)
+            complition?()
         }
     }
-    func popViewController() {
+    func pushInSideViewController(_ controller: UIViewController, complition: (() -> Void)?) {
+        if self.isControllerContaintsSideController {
+            if let nav = self.sideController {
+                nav.pushViewController(controller, animated: true)
+                self.casheViewControllers.append(controller)
+                complition?()
+            } else {
+                self.pushSideViewController(controller, complition: complition)
+            }
+        } else {
+            self.mainController.pushViewController(controller, animated: true)
+            self.casheViewControllers.append(controller)
+            complition?()
+        }
+    }
+    func popViewController(complition: (() -> Void)?) {
         if self.isControllerContaintsSideController {
             guard let controller = self.sideController else {
                 return
@@ -340,16 +385,19 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             if !self.casheViewControllers.isEmpty {
                 self.casheViewControllers.removeLast()
                 controller.popViewController(animated: true)
+                complition?()
             } else {
                 self.casheViewControllers.removeAll()
                 self.removeChildViewController(controller)
                 self.sideController = nil
+                complition?()
             }
         } else {
             if self.casheViewControllers.count != 0 {
                 self.casheViewControllers.removeLast()
             }
             self.mainController.popViewController(animated: true)
+            complition?()
         }
     }
     func popSideViewController() {
@@ -368,11 +416,9 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
                 self.mainController.popViewController(animated: true)
             }
             self.casheViewControllers.removeAll()
-//            if self.casheViewControllers.count != 0 {
-//                self.casheViewControllers.removeLast()
-//            }
-//            self.mainController.popViewController(animated: true)
         }
+        
+        self.addEmptyView()
     }
 
     // MARK: - Helpers

@@ -38,6 +38,10 @@ extension Update: Evaluable {
     func shortcut(for item: SiriShortcutItem) -> NSUserActivity? {
         return nil
     }
+    
+    var suggestions: [NSUserActivity]? {
+        return nil
+    }
 }
 
 extension Update: Analytical {

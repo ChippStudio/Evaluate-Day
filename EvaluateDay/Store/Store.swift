@@ -238,7 +238,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
             (UIApplication.shared.delegate as! AppDelegate).window?.makeKeyAndVisible()
             
             let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            split.pushSideViewController(controller)
+            split.pushSideViewController(controller, complition: nil)
         }
         
         self.isNeedOpenDetails = false

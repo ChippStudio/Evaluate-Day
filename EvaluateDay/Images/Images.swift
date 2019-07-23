@@ -82,6 +82,7 @@ internal enum Images {
     internal static let reorder = ImageAsset(name: "reorder")
     internal static let settings = ImageAsset(name: "settings")
     internal static let share = ImageAsset(name: "share")
+    internal static let siri = ImageAsset(name: "siri")
     internal static let sound = ImageAsset(name: "sound")
     internal static let support = ImageAsset(name: "support")
     internal static let sync = ImageAsset(name: "sync")

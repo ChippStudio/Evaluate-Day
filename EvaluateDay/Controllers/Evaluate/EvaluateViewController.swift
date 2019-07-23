@@ -82,9 +82,23 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         // Get cards
         self.setCards()
         
-        // Navigation bar
+        // Navigation bar and activity
         if self.cardType != nil {
             self.navigationItem.title = Sources.title(forType: cardType!)
+            let activity = NSUserActivity(activityType: SiriShortcutItem.evaluate.rawValue)
+            let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+            if #available(iOS 12.0, *) {
+                activity.persistentIdentifier = NSUserActivityPersistentIdentifier("\(self.cardType)")
+                activity.isEligibleForPrediction = true
+            }
+            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(self.cardType.string)
+            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+            }
+            activity.contentAttributeSet = attributes
+            self.userActivity = activity
+            self.userActivity?.becomeCurrent()
         } else if self.collection != nil {
             if let dashboard = Database.manager.data.objects(Dashboard.self).filter("id=%@", self.collection!).first {
                 self.navigationItem.title = dashboard.title
@@ -95,7 +109,22 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
         } else {
             self.navigationItem.title = Localizations.Collection.allcards
+            let activity = NSUserActivity(activityType: SiriShortcutItem.evaluate.rawValue)
+            let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+            if #available(iOS 12.0, *) {
+                activity.persistentIdentifier = NSUserActivityPersistentIdentifier("All Cards")
+                activity.isEligibleForPrediction = true
+            }
+            activity.title = Localizations.Siri.Shortcut.General.Evaluate.title(Localizations.Collection.allcards)
+            attributes.contentDescription = Localizations.Siri.Shortcut.General.Evaluate.description
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
+            }
+            activity.contentAttributeSet = attributes
+            self.userActivity = activity
+            self.userActivity?.becomeCurrent()
         }
+        // navigation
         self.navigationController?.navigationBar.accessibilityIdentifier = "evaluateNavigationBar"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         if #available(iOS 11.0, *) {
@@ -291,7 +320,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 cntrl.didSelectItem = { (index, card) in
                     let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                     analytycs.card = card
-                    self.universalSplitController?.pushSideViewController(analytycs)
+                    self.universalSplitController?.pushSideViewController(analytycs, complition: nil)
                 }
             }
             return controller
@@ -350,7 +379,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         if let preview = viewControllerToCommit as? AnalyticsPreviewViewController {
             let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
             analytics.card = preview.card
-            self.universalSplitController?.pushSideViewController(analytics)
+            self.universalSplitController?.pushSideViewController(analytics, complition: nil)
         }
     }
     
@@ -360,15 +389,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         case Localizations.General.Action.analytics:
             let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
             analytics.card = controller.card
-            self.universalSplitController?.pushSideViewController(analytics)
+            self.universalSplitController?.pushSideViewController(analytics, complition: nil)
         case Localizations.General.edit:
             let edit = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             edit.card = controller.card
-            self.universalSplitController?.pushSideViewController(edit)
+            self.universalSplitController?.pushSideViewController(edit, complition: nil)
         case Localizations.CardMerge.action:
             let merge = UIStoryboard(name: Storyboards.cardMerge.rawValue, bundle: nil).instantiateInitialViewController() as! CardMergeViewController
             merge.card = controller.card
-            self.universalSplitController?.pushSideViewController(merge)
+            self.universalSplitController?.pushSideViewController(merge, complition: nil)
         case Localizations.General.archive:
             try! Database.manager.data.write {
                 controller.card.archived = true
@@ -391,7 +420,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController() as! NewCardViewController
         controller.cardType = self.cardType
         controller.collectionID = self.collection
-        self.universalSplitController?.pushSideViewController(controller)
+        self.universalSplitController?.pushSideViewController(controller, complition: nil)
     }
     
     @objc func reorderCardsAction(sender: UIBarButtonItem) {
@@ -431,5 +460,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
             self.present(shareActivity, animated: true, completion: nil)
         }
+    }
+    
+    private func setActivity() {
+        
     }
 }

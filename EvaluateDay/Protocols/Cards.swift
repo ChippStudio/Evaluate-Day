@@ -24,6 +24,7 @@ protocol Evaluable {
     
     // Siri Shortcut
     func shortcut(for item: SiriShortcutItem) -> NSUserActivity?
+    var suggestions: [NSUserActivity]? { get }
 }
 
 protocol Editable {

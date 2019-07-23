@@ -95,7 +95,7 @@ class CollectionListSection: ListSectionController, ASSectionController {
             let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController() as! EditCollectionViewController
             controller.collection = self.collection
             Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
-            split.pushSideViewController(controller)
+            split.pushSideViewController(controller, complition: nil)
         }
     }
 }
