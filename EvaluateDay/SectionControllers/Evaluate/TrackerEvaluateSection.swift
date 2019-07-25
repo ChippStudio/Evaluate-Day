@@ -270,6 +270,16 @@ class TrackerEvaluateSection: ListSectionController, ASSectionController, Evalua
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        switch shortcut {
+        case .trackerMark:
+            self.markAction(sender: ASButtonNode())
+        case .trackerMarkAndComment:
+            self.markAndCommentAction(sender: ASButtonNode())
+        default: ()
+        }
+    }
 }
 
 class TrackerNode: ASCellNode {

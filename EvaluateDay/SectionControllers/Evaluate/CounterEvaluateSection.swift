@@ -274,6 +274,18 @@ class CounterEvaluateSection: ListSectionController, ASSectionController, Evalua
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        switch shortcut {
+        case .counterIncrease:
+            self.plusButtonAction(sender: ASButtonNode())
+        case .counterDecrease:
+            self.minusButtonAction(sender: ASButtonNode())
+        case .counterEnterValue:
+            self.customValueButtonAction(sender: ASButtonNode())
+        default: ()
+        }
+    }
 }
 
 class CounterNode: ASCellNode {

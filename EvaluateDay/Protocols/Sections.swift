@@ -20,6 +20,9 @@ protocol EvaluableSection {
     
     // MARK: - Handlers
     var didSelectItem: ((_ section: Int, _  bcard: Card) -> Void)? { get set }
+    
+    // MARK: - Actions
+    func performAction(for shortcut: SiriShortcutItem)
 }
 
 // MARK: - Analytical

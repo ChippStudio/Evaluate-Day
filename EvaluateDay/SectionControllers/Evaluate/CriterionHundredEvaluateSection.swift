@@ -187,6 +187,10 @@ class CriterionHundredEvaluateSection: ListSectionController, ASSectionControlle
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        
+    }
 }
 
 class HundredNode: ASCellNode {

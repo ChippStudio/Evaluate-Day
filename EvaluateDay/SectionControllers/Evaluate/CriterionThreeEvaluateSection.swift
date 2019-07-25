@@ -90,32 +90,7 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
             node.share.shareButton.addTarget(self, action: #selector(self.shareAction(sender:)), forControlEvents: .touchUpInside)
             
             node.buttons.didChangeValue = { newCurrentValue in
-                if criterionCard.realm != nil {
-                    if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
-                        try! Database.manager.data.write {
-                            value.value = Double(newCurrentValue)
-                            value.edited = Date()
-                        }
-                    } else {
-                        let newValue = NumberValue()
-                        newValue.value = Double(newCurrentValue)
-                        newValue.created = self.date
-                        newValue.owner = self.card.id
-                        try! Database.manager.data.write {
-                            Database.manager.data.add(newValue)
-                        }
-                    }
-                    
-                    //Feedback
-                    Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
-                    
-                    self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
-                    self.viewController?.userActivity?.becomeCurrent()
-                    
-                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-                        batchContext.reload(self)
-                    }, completion: nil)
-                }
+                self.changeValue(newCurrentValue: newCurrentValue)
             }
             
             return node
@@ -148,6 +123,32 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
     }
     
     // MARK: - Actions
+    private func changeValue(newCurrentValue: Int) {
+        let criterionCard = self.card.data as! CriterionThreeCard
+        if criterionCard.realm != nil {
+            if let value = criterionCard.values.filter("(created >= %@) AND (created <= %@)", self.date.start, self.date.end).sorted(byKeyPath: "edited", ascending: false).first {
+                try! Database.manager.data.write {
+                    value.value = Double(newCurrentValue)
+                    value.edited = Date()
+                }
+            } else {
+                let newValue = NumberValue()
+                newValue.value = Double(newCurrentValue)
+                newValue.created = self.date
+                newValue.owner = self.card.id
+                try! Database.manager.data.write {
+                    Database.manager.data.add(newValue)
+                }
+            }
+            
+            //Feedback
+            Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
+            
+            self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                batchContext.reload(self)
+            }, completion: nil)
+        }
+    }
     @objc private func analyticsButton(sender: ASButtonNode) {
         self.didSelectItem?(self.section, self.card)
     }
@@ -192,6 +193,18 @@ class CriterionThreeEvaluateSection: ListSectionController, ASSectionController,
         
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
+    }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        switch shortcut {
+        case .criterionBad:
+            self.changeValue(newCurrentValue: 0)
+        case .criterionGood:
+            self.changeValue(newCurrentValue: 2)
+        case .criterionNeutral:
+            self.changeValue(newCurrentValue: 1)
+        default: ()
+        }
     }
 }
 

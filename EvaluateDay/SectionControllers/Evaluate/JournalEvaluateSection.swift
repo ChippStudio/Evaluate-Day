@@ -239,6 +239,12 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        if shortcut == .journalNewEntry {
+            self.makeNewEntry(sender: ASButtonNode())
+        }
+    }
 }
 
 class JournalNode: ASCellNode {

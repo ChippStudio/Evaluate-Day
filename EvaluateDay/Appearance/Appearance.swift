@@ -30,10 +30,18 @@ extension UIColor {
         return UIColor.white
     }
     
+    @nonobjc class var inverseBackground: UIColor {
+        if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
+            
+            if UserDefaults.standard.bool(forKey: Theme.blackMode.rawValue) {
+                return UIColor.white
+            }
+        }
+        
+        return UIColor.black
+    }
+    
     @nonobjc class var main: UIColor {
-//        if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
-//            return UIColor(red: 130.0 / 255.0, green: 183.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
-//        }
         return UIColor(red: 106.0 / 255.0, green: 130.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
     }
     
@@ -58,6 +66,14 @@ extension UIColor {
         }
         
         return UIColor(red: 22.0 / 255.0, green: 38.0 / 255.0, blue: 46.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var inverseText: UIColor {
+        if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
+            return UIColor(red: 22.0 / 255.0, green: 38.0 / 255.0, blue: 46.0 / 255.0, alpha: 1.0)
+        }
+        
+        return UIColor(red: 222 / 255.0, green: 223 / 255.0, blue: 223 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var positive: UIColor {

@@ -79,6 +79,7 @@ enum Analytics: String {
     case touchLegal
     case openEvaluateSite
     case openChipp
+    case openShortcuts
     
     // MARK: - Welcome
     case startOnboarding

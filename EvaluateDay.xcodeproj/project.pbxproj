@@ -305,6 +305,8 @@
 		B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */; };
 		B5BD3B4F2009F98D0075C75F /* CheckInPermissionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */; };
 		B5BD494E2116FAEB004872B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5BD494D2116FAEB004872B0 /* Images.xcassets */; };
+		B5C6503D22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6503C22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift */; };
+		B5C6503F22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6503E22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift */; };
 		B5C7572A1F9DCA160032199E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C757291F9DCA160032199E /* App.swift */; };
 		B5C7572C1F9DCA300032199E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7572B1F9DCA300032199E /* Card.swift */; };
 		B5C7572E1F9DCAA50032199E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7572D1F9DCAA50032199E /* Extensions.swift */; };
@@ -384,6 +386,7 @@
 		B5FD38DD1FD940EA0071B1F0 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD38DC1FD940EA0071B1F0 /* EmptyView.swift */; };
 		B5FFDD4B201B8416008D0365 /* WeatherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4A201B8416008D0365 /* WeatherValue.swift */; };
 		B5FFDD4D201B8429008D0365 /* PhotoValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFDD4C201B8429008D0365 /* PhotoValue.swift */; };
+		B5FFE93D22E713B30001F418 /* SettingsShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFE93C22E713B30001F418 /* SettingsShortcutsViewController.swift */; };
 		F7C7283007B287248892BFBA /* Pods_EvaluateDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A05D43F1B23052DFBB9BF53 /* Pods_EvaluateDay.framework */; };
 /* End PBXBuildFile section */
 
@@ -697,6 +700,8 @@
 		B5BD3B4C2009F42C0075C75F /* CheckInActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInActionNode.swift; sourceTree = "<group>"; };
 		B5BD3B4E2009F98D0075C75F /* CheckInPermissionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInPermissionNode.swift; sourceTree = "<group>"; };
 		B5BD494D2116FAEB004872B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B5C6503C22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSiriAddShortcutCell.swift; sourceTree = "<group>"; };
+		B5C6503E22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSiriEditShortcutCell.swift; sourceTree = "<group>"; };
 		B5C757291F9DCA160032199E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B5C7572B1F9DCA300032199E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B5C7572D1F9DCAA50032199E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -777,6 +782,7 @@
 		B5FD38DC1FD940EA0071B1F0 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B5FFDD4A201B8416008D0365 /* WeatherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherValue.swift; sourceTree = "<group>"; };
 		B5FFDD4C201B8429008D0365 /* PhotoValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoValue.swift; sourceTree = "<group>"; };
+		B5FFE93C22E713B30001F418 /* SettingsShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsShortcutsViewController.swift; sourceTree = "<group>"; };
 		D941F71BB0F6AE6C2C6E49A7 /* Pods-EvaluateDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluateDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-EvaluateDay/Pods-EvaluateDay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -957,6 +963,8 @@
 				B50B18EC22047E7E008A2231 /* MarkListCell.swift */,
 				B50B18EE22048848008A2231 /* LocationListCell.swift */,
 				B5F5BFA82205E01000D566AA /* GalleryCell.swift */,
+				B5C6503C22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift */,
+				B5C6503E22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1614,6 +1622,7 @@
 				B5D854D11FCEE4B000BB4E14 /* SettingsPasscodeDelayViewController.swift */,
 				B5D854C01FCCBA0200BB4E14 /* SettingsWeekViewController.swift */,
 				B5D854C21FCCBA4F00BB4E14 /* SettingsAboutViewController.swift */,
+				B5FFE93C22E713B30001F418 /* SettingsShortcutsViewController.swift */,
 				B5CA2D661FB55FA600547EC8 /* Settings.swift */,
 			);
 			path = Settings;
@@ -2266,6 +2275,7 @@
 				B5A11402200E17C2008DBF02 /* AnalyticsMapNode.swift in Sources */,
 				B5970F1521F1259D000B0BAA /* EditCollectionImagesViewController.swift in Sources */,
 				B587D6B91FB6B7D1006D62C1 /* SettingsProNode.swift in Sources */,
+				B5FFE93D22E713B30001F418 /* SettingsShortcutsViewController.swift in Sources */,
 				B58DDAA621F38973005F48AE /* ProViewController.swift in Sources */,
 				B57B0649201B21C000C4E182 /* GoalMergeSection.swift in Sources */,
 				B5899B1721D7BE0400CF123B /* CollectionCardsSection.swift in Sources */,
@@ -2309,6 +2319,7 @@
 				B59D03A321FC6DBF0048B0AF /* ReorderCollectionsViewController.swift in Sources */,
 				B5B7EE462010B70800BCD41A /* TextValue+Extensions.swift in Sources */,
 				B55D3284207905A700BD1E75 /* TrackerEditableSection.swift in Sources */,
+				B5C6503D22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift in Sources */,
 				B5A85ED82209C87000BF2AC6 /* NumberViewController.swift in Sources */,
 				B5F597781FBDBCE50098A071 /* AnalyticsLineChartNode.swift in Sources */,
 				B5BD3B4D2009F42C0075C75F /* CheckInActionNode.swift in Sources */,
@@ -2318,6 +2329,7 @@
 				B5E7721C1FA07E46002FA03F /* Sources.swift in Sources */,
 				B5A0CFF11FB1A44E002B1636 /* BottomViewController.swift in Sources */,
 				B50B18E4220474E9008A2231 /* ColorsListViewController.swift in Sources */,
+				B5C6503F22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift in Sources */,
 				B5CA2D5E1FB43D0E00547EC8 /* CriterionHundredAnalyticsSection.swift in Sources */,
 				B52B904A2226BBF200D898BE /* TourViewController.swift in Sources */,
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,

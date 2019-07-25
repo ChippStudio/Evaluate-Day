@@ -34,6 +34,7 @@ internal enum Images {
   }
   internal enum Media {
     internal static let chippLogo = ImageAsset(name: "Chipp-logo")
+    internal static let siriCheckmark = ImageAsset(name: "SiriCheckmark")
     internal static let activity = ImageAsset(name: "activity")
     internal static let analytics = ImageAsset(name: "analytics")
     internal static let app = ImageAsset(name: "app")
@@ -83,6 +84,7 @@ internal enum Images {
     internal static let settings = ImageAsset(name: "settings")
     internal static let share = ImageAsset(name: "share")
     internal static let siri = ImageAsset(name: "siri")
+    internal static let siriColor = ImageAsset(name: "siriColor")
     internal static let sound = ImageAsset(name: "sound")
     internal static let support = ImageAsset(name: "support")
     internal static let sync = ImageAsset(name: "sync")

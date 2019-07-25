@@ -364,6 +364,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if let card = self.shortcut?.userInfo?["card"] as? String {
                         // Open card analytics view controller
                         if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", card, false).first {
+                            let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                            controller.scrollToCard = card.id
+                            split.mainController.pushViewController(controller, animated: true)
                             let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                             analytycs.card = card
                             split.pushSideViewController(analytycs, complition: nil)
@@ -377,18 +380,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         }
                     }
                 case .evaluate:
-                    if let card = self.shortcut?.userInfo?["card"] as? String {
-                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
-                        controller.scrollToCard = card
-                        split.mainController.pushViewController(controller, animated: true)
-                    } else {
-                        if !Store.current.isPro {
-                            let pro = UIStoryboard.controller(in: .pro)
-                            split.pushSideViewController(pro, complition: nil)
-                        } else {
-                            self.showSyncAlert()
-                        }
+                    let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                    if let cardType = CardType(rawValue: Int((self.shortcut?.userInfo?["card_type"] as? String) ?? "100") ?? 100) {
+                        controller.cardType = cardType
                     }
+                    
+                    split.mainController.pushViewController(controller, animated: true)
                 case .collection:
                     if let collection = self.shortcut!.userInfo?["collection"] as? String {
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
@@ -402,7 +399,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             self.showSyncAlert()
                         }
                     }
-                default: ()
+                default:
+                    if let card = self.shortcut?.userInfo?["card"] as? String {
+                        let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                        controller.scrollToCard = card
+                        if let action = SiriShortcutItem(rawValue: self.shortcut!.activityType) {
+                            controller.cardAction = action
+                        }
+                        split.mainController.pushViewController(controller, animated: true)
+                    } else {
+                        if !Store.current.isPro {
+                            let pro = UIStoryboard.controller(in: .pro)
+                            split.pushSideViewController(pro, complition: nil)
+                        } else {
+                            self.showSyncAlert()
+                        }
+                    }
                 }
                 
             } else {

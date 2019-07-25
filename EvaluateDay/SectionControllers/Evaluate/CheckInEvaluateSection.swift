@@ -240,9 +240,6 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
                 }, completion: nil)
             })
             
-            self.viewController?.userActivity = self.card.data.shortcut(for: .evaluate)
-            self.viewController?.userActivity?.becomeCurrent()
-            
             //Feedback
             Feedback.player.play(sound: nil, hapticFeedback: true, impact: false, feedbackType: nil)
         }
@@ -295,6 +292,16 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
         
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
+    }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        switch shortcut {
+        case .checkInMap:
+            self.selectOnMapAction(sender: ASButtonNode())
+        case .checkInQuick:
+            self.checkInAction(sender: ASButtonNode())
+        default: ()
+        }
     }
 }
 

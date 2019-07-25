@@ -68,6 +68,10 @@ class UpdateEvaluateSection: ListSectionController, ASSectionController, Evaluab
     override func didSelectItem(at index: Int) {
         
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        
+    }
 }
 
 class UpdateCardNode: ASCellNode {

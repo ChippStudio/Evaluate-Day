@@ -57,6 +57,11 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
     var closeButtonTitle = "Close"
     var closeButtonImage: UIImage?
     var emptyView: UIView? {
+        willSet {
+            if self.emptyView != nil {
+                self.emptyView!.removeFromSuperview()
+            }
+        }
         didSet {
             if self.emptyView != nil {
                 self.addEmptyView()

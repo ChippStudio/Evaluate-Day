@@ -204,6 +204,12 @@ class PhraseEvaluateSection: ListSectionController, ASSectionController, Evaluab
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        if shortcut == .phraseEdit {
+            self.editTextAction(sender: ASButtonNode())
+        }
+    }
 }
 
 class PhraseNode: ASCellNode {

@@ -1595,6 +1595,10 @@ internal enum Localizations {
 
   internal enum Siri {
     internal enum Settings {
+      /// Add to Siri
+      internal static let add = Localizations.tr("Localizable", "siri.settings.add")
+      /// Added to Siri
+      internal static let added = Localizations.tr("Localizable", "siri.settings.added")
       /// Siri
       internal static let sectionTitle = Localizations.tr("Localizable", "siri.settings.sectionTitle")
       /// Shortcuts

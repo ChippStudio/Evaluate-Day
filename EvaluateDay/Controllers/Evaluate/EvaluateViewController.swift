@@ -69,6 +69,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     var scrollToCard: String!
+    var cardAction: SiriShortcutItem!
     
     // MARK: - Objects
     private let proLockObject = ProLock()
@@ -96,6 +97,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             if #available(iOS 12.0, *) {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Evaluate.suggest
             }
+            activity.userInfo = ["card_type": "\(self.cardType.rawValue)"]
             activity.contentAttributeSet = attributes
             self.userActivity = activity
             self.userActivity?.becomeCurrent()
@@ -256,6 +258,16 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         if self.scrollToCard != nil {
             if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.scrollToCard!, false).first {
                 self.adapter.scroll(to: DiffCard(card: card), supplementaryKinds: nil, scrollDirection: .vertical, scrollPosition: .top, animated: true)
+                
+                if self.cardAction != nil {
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                        if let section = self.adapter.sectionController(for: DiffCard(card: card)) as? EvaluableSection {
+                            section.performAction(for: self.cardAction)
+                            self.cardAction = nil
+                        }
+                    }
+                }
+                
                 self.scrollToCard = nil
             }
         }
@@ -429,18 +441,18 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     }
     
     // MARK: - Private
+    private var isShowedReviewPopUp = false
     @objc private func controlUserReview(sender: Notification?) {
         // Automation app review requist
         if UserDefaults.standard.bool(forKey: "demo") || UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
             return
         }
         
-        if Database.manager.app.objects(AppUsage.self).count % 20 == 0 && Database.manager.app.objects(Card.self).count <= 1 {
+        if Database.manager.app.objects(AppUsage.self).count % 20 == 0 && Database.manager.app.objects(Card.self).count <= 1 && !self.isShowedReviewPopUp {
             if #available(iOS 10.3, *) {
+                self.isShowedReviewPopUp = true
                 sendEvent(.showAppRate, withProperties: nil)
                 SKStoreReviewController.requestReview()
-            } else {
-                // Fallback on earlier versions
             }
         }
     }
@@ -460,9 +472,5 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }
             self.present(shareActivity, animated: true, completion: nil)
         }
-    }
-    
-    private func setActivity() {
-        
     }
 }

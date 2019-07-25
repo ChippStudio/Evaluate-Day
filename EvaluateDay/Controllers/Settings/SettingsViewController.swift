@@ -30,6 +30,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     private let weekSegue = "weekSegue"
     private let aboutSegue = "aboutSegue"
     private let dataManagerSegue = "dataManagerSegue"
+    private let shortcutSegue = "shortcutSegue"
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -197,7 +198,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case .welcome:
             sendEvent(.openWelcomeCards, withProperties: nil)
             self.openWelcome()
-        case .siri: ()
+        case .siri:
+            sendEvent(.openShortcuts, withProperties: nil)
+            self.openController(id: self.shortcutSegue)
         }
     }
     

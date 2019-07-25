@@ -561,6 +561,8 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 // MARK: - Siri
 "siri.settings.sectionTitle" = "Siri";
 "siri.settings.title" = "Shortcuts";
+"siri.settings.add" = "Add to Siri";
+"siri.settings.added" = "Added to Siri";
 "siri.shortcut.general.analytics.title" = "Open Analytics for %@";
 "siri.shortcut.general.analytics.description" = "Open and view analytics for card";
 "siri.shortcut.general.analytics.suggest" = "Open Analytics";

@@ -179,6 +179,12 @@ class ListEvaluateSection: ListSectionController, ASSectionController, Evaluable
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        if shortcut == .listOpen {
+            self.openListAction(sender: ASButtonNode())
+        }
+    }
 }
 
 class ListNode: ASCellNode {

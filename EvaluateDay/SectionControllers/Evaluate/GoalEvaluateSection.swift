@@ -276,6 +276,18 @@ class GoalEvaluateSection: ListSectionController, ASSectionController, Evaluable
         node.share.shareCover.alpha = 1.0
         node.share.shareImage.alpha = 1.0
     }
+    
+    func performAction(for shortcut: SiriShortcutItem) {
+        switch shortcut {
+        case .goalIncrease:
+            self.plusButtonAction(sender: ASButtonNode())
+        case .goalDecrease:
+            self.minusButtonAction(sender: ASButtonNode())
+        case .goalEnterValue:
+            self.customValueButtonAction(sender: ASButtonNode())
+        default: ()
+        }
+    }
 }
 
 class GoalNode: ASCellNode {
