@@ -101,7 +101,7 @@ extension GoalCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .goalIncrease:
-            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Increase.description
             
             if #available(iOS 12.0, *) {
@@ -109,7 +109,7 @@ extension GoalCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .goalDecrease:
-            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Decrease.description
             
             if #available(iOS 12.0, *) {
@@ -117,7 +117,7 @@ extension GoalCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .goalEnterValue:
-            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Value.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Goal.Evaluate.Value.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Goal.Evaluate.Value.description
             
             if #available(iOS 12.0, *) {

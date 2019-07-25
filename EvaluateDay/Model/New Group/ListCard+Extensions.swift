@@ -104,7 +104,7 @@ extension ListCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .listOpen:
-            activity.title = Localizations.Siri.Shortcut.List.Open.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.List.Open.title
             attributes.contentDescription = Localizations.Siri.Shortcut.List.Open.description
             
             if #available(iOS 12.0, *) {

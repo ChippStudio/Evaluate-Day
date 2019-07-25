@@ -99,14 +99,14 @@ extension CheckInCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .checkInQuick:
-            activity.title = Localizations.Siri.Shortcut.Checkin.Quick.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Checkin.Quick.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Checkin.Quick.description
             if #available(iOS 12.0, *) {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Checkin.Quick.suggest
             }
             activity.contentAttributeSet = attributes
         case .checkInMap:
-            activity.title = Localizations.Siri.Shortcut.Checkin.Map.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Checkin.Map.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Checkin.Map.description
             if #available(iOS 12.0, *) {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Checkin.Map.suggest

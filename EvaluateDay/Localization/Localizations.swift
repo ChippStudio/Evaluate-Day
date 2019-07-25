@@ -1611,20 +1611,16 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.checkin.map.description")
           /// Open Map
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.checkin.map.suggest")
-          /// Open Map Action in - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.checkin.map.title", p1)
-          }
+          /// Open Map
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.checkin.map.title")
         }
         internal enum Quick {
           /// Set current location in the card
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.description")
           /// Quick Check In
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.suggest")
-          /// Quick Check In Action in - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.checkin.quick.title", p1)
-          }
+          /// Quick Check
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.title")
         }
       }
       internal enum Counter {
@@ -1634,30 +1630,24 @@ internal enum Localizations {
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.decrease.description")
             /// Decrease Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.decrease.suggest")
-            /// Decrese - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.decrease.title", p1)
-            }
+            /// Decrease Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.decrease.title")
           }
           internal enum Increase {
             /// Increse value by step
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.increase.description")
             /// Increase Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.increase.suggest")
-            /// Increase - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.increase.title", p1)
-            }
+            /// Increase Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.increase.title")
           }
           internal enum Value {
             /// Set new value to the card
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.value.description")
-            /// Set Value
+            /// Set New Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.value.suggest")
-            /// Set value - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.value.title", p1)
-            }
+            /// Set New Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.counter.evaluate.value.title")
           }
         }
       }
@@ -1668,30 +1658,24 @@ internal enum Localizations {
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.bad.description")
             /// Evaluate Bad
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.bad.suggest")
-            /// Evaluate %@ to bad
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.bad.title", p1)
-            }
+            /// Set Bad
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.bad.title")
           }
           internal enum Good {
             /// Evaluete today criterion to good
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.good.description")
             /// Evaluate Good
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.good.suggest")
-            /// Evaluate %@ to Good
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.good.title", p1)
-            }
+            /// Set Good
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.good.title")
           }
           internal enum Neutral {
             /// Evaluete today criterion to neutral
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.neutral.description")
             /// Evaluate Neutral
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.neutral.suggest")
-            /// Evaluate %@ to neutral
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.neutral.title", p1)
-            }
+            /// Set Neutral
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.neutral.title")
           }
         }
       }
@@ -1734,30 +1718,24 @@ internal enum Localizations {
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.decrease.description")
             /// Decrease Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.decrease.suggest")
-            /// Decrese - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.decrease.title", p1)
-            }
+            /// Decrease Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.decrease.title")
           }
           internal enum Increase {
             /// Increse value by step
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.increase.description")
             /// Increase Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.increase.suggest")
-            /// Increase - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.increase.title", p1)
-            }
+            /// Increase Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.increase.title")
           }
           internal enum Value {
             /// Set new value to the card
             internal static let description = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.value.description")
             /// Set Value
             internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.value.suggest")
-            /// Set value - %@
-            internal static func title(_ p1: String) -> String {
-              return Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.value.title", p1)
-            }
+            /// Set New Value
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.goal.evaluate.value.title")
           }
         }
       }
@@ -1767,20 +1745,16 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.habit.mark.description")
           /// Mark
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.habit.mark.suggest")
-          /// Mark - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.habit.mark.title", p1)
-          }
+          /// Mark
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.habit.mark.title")
         }
         internal enum MarkAndComment {
           /// Increse the counter by 1 and add the comment
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.habit.markAndComment.description")
           /// Mark and Comment
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.habit.markAndComment.suggest")
-          /// Mark and Comment - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.habit.markAndComment.title", p1)
-          }
+          /// Mark and Comment
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.habit.markAndComment.title")
         }
       }
       internal enum Journal {
@@ -1789,10 +1763,8 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.journal.newEntry.description")
           /// New Entry
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.journal.newEntry.suggest")
-          /// Create new entry - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.journal.newEntry.title", p1)
-          }
+          /// Create new entry
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.journal.newEntry.title")
         }
       }
       internal enum List {
@@ -1801,10 +1773,8 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.list.open.description")
           /// Open List
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.list.open.suggest")
-          /// Open List in %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.list.open.title", p1)
-          }
+          /// Open List
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.list.open.title")
         }
       }
       internal enum Phrase {
@@ -1813,10 +1783,8 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.phrase.edit.description")
           /// Edit Phrase
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.phrase.edit.suggest")
-          /// Edit Phrase in - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.phrase.edit.title", p1)
-          }
+          /// Edit Phrase
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.phrase.edit.title")
         }
       }
       internal enum Tracker {
@@ -1825,20 +1793,16 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.tracker.mark.description")
           /// Mark
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.tracker.mark.suggest")
-          /// Mark - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.tracker.mark.title", p1)
-          }
+          /// Mark
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.tracker.mark.title")
         }
         internal enum MarkAndComment {
           /// Increse the counter by 1 and add the comment
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.tracker.markAndComment.description")
           /// Mark and Comment
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.tracker.markAndComment.suggest")
-          /// Mark and Comment - %@
-          internal static func title(_ p1: String) -> String {
-            return Localizations.tr("Localizable", "siri.shortcut.tracker.markAndComment.title", p1)
-          }
+          /// Mark and Comment
+          internal static let title = Localizations.tr("Localizable", "siri.shortcut.tracker.markAndComment.title")
         }
       }
     }

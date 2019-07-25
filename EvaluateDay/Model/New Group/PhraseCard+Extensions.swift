@@ -99,7 +99,7 @@ extension PhraseCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .phraseEdit:
-            activity.title = Localizations.Siri.Shortcut.Phrase.Edit.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Phrase.Edit.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Phrase.Edit.description
             
             if #available(iOS 12.0, *) {

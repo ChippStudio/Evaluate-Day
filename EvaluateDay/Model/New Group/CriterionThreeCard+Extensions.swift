@@ -100,7 +100,7 @@ extension CriterionThreeCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .criterionBad:
-            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Bad.description
             
             if #available(iOS 12.0, *) {
@@ -108,7 +108,7 @@ extension CriterionThreeCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .criterionNeutral:
-            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Neutral.description
             
             if #available(iOS 12.0, *) {
@@ -116,7 +116,7 @@ extension CriterionThreeCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .criterionGood:
-            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Good.description
             
             if #available(iOS 12.0, *) {

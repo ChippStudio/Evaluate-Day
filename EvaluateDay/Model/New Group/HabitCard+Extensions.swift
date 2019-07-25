@@ -100,7 +100,7 @@ extension HabitCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .habitMark:
-            activity.title = Localizations.Siri.Shortcut.Habit.Mark.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Habit.Mark.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Habit.Mark.description
             
             if #available(iOS 12.0, *) {
@@ -108,7 +108,7 @@ extension HabitCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .habitMarkAndComment:
-            activity.title = Localizations.Siri.Shortcut.Habit.MarkAndComment.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Habit.MarkAndComment.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Habit.MarkAndComment.description
             
             if #available(iOS 12.0, *) {

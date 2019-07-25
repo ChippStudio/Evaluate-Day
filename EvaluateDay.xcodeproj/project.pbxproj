@@ -307,6 +307,10 @@
 		B5BD494E2116FAEB004872B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5BD494D2116FAEB004872B0 /* Images.xcassets */; };
 		B5C6503D22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6503C22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift */; };
 		B5C6503F22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6503E22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift */; };
+		B5C6504122E9DFEF00D6CCF7 /* CardSettingsSiriObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6504022E9DFEF00D6CCF7 /* CardSettingsSiriObject.swift */; };
+		B5C6504322E9E0B300D6CCF7 /* CardSettingsSiriSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6504222E9E0B300D6CCF7 /* CardSettingsSiriSection.swift */; };
+		B5C6504522E9E58F00D6CCF7 /* CardSettingsSiriAddNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6504422E9E58F00D6CCF7 /* CardSettingsSiriAddNode.swift */; };
+		B5C6504722E9E5A900D6CCF7 /* CardSettingsEditSiriNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6504622E9E5A900D6CCF7 /* CardSettingsEditSiriNode.swift */; };
 		B5C7572A1F9DCA160032199E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C757291F9DCA160032199E /* App.swift */; };
 		B5C7572C1F9DCA300032199E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7572B1F9DCA300032199E /* Card.swift */; };
 		B5C7572E1F9DCAA50032199E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7572D1F9DCAA50032199E /* Extensions.swift */; };
@@ -702,6 +706,10 @@
 		B5BD494D2116FAEB004872B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5C6503C22E9C9FF00D6CCF7 /* SettingsSiriAddShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSiriAddShortcutCell.swift; sourceTree = "<group>"; };
 		B5C6503E22E9CA1600D6CCF7 /* SettingsSiriEditShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSiriEditShortcutCell.swift; sourceTree = "<group>"; };
+		B5C6504022E9DFEF00D6CCF7 /* CardSettingsSiriObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSiriObject.swift; sourceTree = "<group>"; };
+		B5C6504222E9E0B300D6CCF7 /* CardSettingsSiriSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSiriSection.swift; sourceTree = "<group>"; };
+		B5C6504422E9E58F00D6CCF7 /* CardSettingsSiriAddNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsSiriAddNode.swift; sourceTree = "<group>"; };
+		B5C6504622E9E5A900D6CCF7 /* CardSettingsEditSiriNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsEditSiriNode.swift; sourceTree = "<group>"; };
 		B5C757291F9DCA160032199E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B5C7572B1F9DCA300032199E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B5C7572D1F9DCAA50032199E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -1033,6 +1041,7 @@
 				B59F9F4D211B2EED00A59516 /* CardSettingsNotificationObject.swift */,
 				B560DB3E211B575C00378AD8 /* CardSettingsDeleteObject.swift */,
 				B5970F1C21F21BC5000B0BAA /* CardSettingsCollectionObject.swift */,
+				B5C6504022E9DFEF00D6CCF7 /* CardSettingsSiriObject.swift */,
 				B5D3FB9A21410A55004DFF78 /* EvaluateEmptyCardObject.swift */,
 				B5899B1421D7BD8000CF123B /* CollectionCardsObject.swift */,
 				B5A5916221D8FBEB0026FD84 /* CollectionActionsObject.swift */,
@@ -1297,6 +1306,7 @@
 				B5970F1E21F21C30000B0BAA /* CardSettingsCollectionSections.swift */,
 				B59F9F4F211B30E600A59516 /* CardSettingsNotificationSection.swift */,
 				B560DB40211B580800378AD8 /* CardSettingsDeleteSection.swift */,
+				B5C6504222E9E0B300D6CCF7 /* CardSettingsSiriSection.swift */,
 			);
 			path = Editable;
 			sourceTree = "<group>";
@@ -1410,6 +1420,8 @@
 				B59F9F4B211ADA8E00A59516 /* CardSettingsSectionTitleNode.swift */,
 				B5A0CFDB1FAC6D55002B1636 /* CardSettingsBooleanNode.swift */,
 				B5970F2021F21FF3000B0BAA /* CardSettingsCollectionNode.swift */,
+				B5C6504422E9E58F00D6CCF7 /* CardSettingsSiriAddNode.swift */,
+				B5C6504622E9E5A900D6CCF7 /* CardSettingsEditSiriNode.swift */,
 				B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */,
 				B5D854C61FCD859900BB4E14 /* SettingsSelectNode.swift */,
 				B5D854E71FD041C500BB4E14 /* SettingsNotificationNode.swift */,
@@ -2129,6 +2141,7 @@
 				B55464DB2028615000923CE3 /* JournalAnalyticsSection.swift in Sources */,
 				B5899B1B21D7C19900CF123B /* CardsListDotNode.swift in Sources */,
 				B5479FC521E78A400002E7D7 /* Images.swift in Sources */,
+				B5C6504122E9DFEF00D6CCF7 /* CardSettingsSiriObject.swift in Sources */,
 				B570C3F81FAC363200B12309 /* CardSettingsTextNode.swift in Sources */,
 				B5EC88532011EF850056C1C7 /* PhrasesViewController.swift in Sources */,
 				B5D9A85320612AE100F84091 /* ActivityPhotoObject.swift in Sources */,
@@ -2382,7 +2395,9 @@
 				B5970F1F21F21C30000B0BAA /* CardSettingsCollectionSections.swift in Sources */,
 				B5B7EE482010B7C300BCD41A /* PhraseCard.swift in Sources */,
 				B5970F2121F21FF3000B0BAA /* CardSettingsCollectionNode.swift in Sources */,
+				B5C6504322E9E0B300D6CCF7 /* CardSettingsSiriSection.swift in Sources */,
 				B5AB1E7C2018A21500BB1A64 /* MarkValue.swift in Sources */,
+				B5C6504522E9E58F00D6CCF7 /* CardSettingsSiriAddNode.swift in Sources */,
 				B55D3286207907BD00BD1E75 /* TrackerEvaluateSection.swift in Sources */,
 				B516CA7821EF97610002915F /* EditCollectionViewController.swift in Sources */,
 				B5970F1B21F1EEED000B0BAA /* DangerNode.swift in Sources */,
@@ -2410,6 +2425,7 @@
 				B5A9D5A6201F00F8006DFB32 /* JournalCard.swift in Sources */,
 				B5D854BF1FCCB99000BB4E14 /* SettingsPasscodeViewController.swift in Sources */,
 				B5535AE81FEFD92A00D2AE25 /* CriterionHundredCard+Extensions.swift in Sources */,
+				B5C6504722E9E5A900D6CCF7 /* CardSettingsEditSiriNode.swift in Sources */,
 				B55D328A20790B4400BD1E75 /* TrackerMergeSection.swift in Sources */,
 				B54535DC21DCF1B2005A93CE /* EvaluateLineAnalyticsNode.swift in Sources */,
 				B55464D3202743FF00923CE3 /* JournalEntryNode.swift in Sources */,

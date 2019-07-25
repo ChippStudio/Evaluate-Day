@@ -100,7 +100,7 @@ extension TrackerCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .trackerMark:
-            activity.title = Localizations.Siri.Shortcut.Tracker.Mark.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Tracker.Mark.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Tracker.Mark.description
             
             if #available(iOS 12.0, *) {
@@ -108,7 +108,7 @@ extension TrackerCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .trackerMarkAndComment:
-            activity.title = Localizations.Siri.Shortcut.Tracker.MarkAndComment.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Tracker.MarkAndComment.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Tracker.MarkAndComment.description
             
             if #available(iOS 12.0, *) {

@@ -100,7 +100,7 @@ extension CounterCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .counterIncrease:
-            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Increase.description
             
             if #available(iOS 12.0, *) {
@@ -108,7 +108,7 @@ extension CounterCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .counterDecrease:
-            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Decrease.description
             
             if #available(iOS 12.0, *) {
@@ -116,7 +116,7 @@ extension CounterCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .counterEnterValue:
-            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Value.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Counter.Evaluate.Value.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Counter.Evaluate.Value.description
             
             if #available(iOS 12.0, *) {

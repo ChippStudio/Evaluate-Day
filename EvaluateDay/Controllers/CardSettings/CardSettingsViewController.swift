@@ -97,7 +97,14 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextV
         if self.card.realm != nil {
             let not = CardSettingsNotificationObject(card: self.card)
             let del = CardSettingsDeleteObject()
-            return [crd, col, not, del]
+            var objs: [ListDiffable] = [crd, col, not, del]
+            
+            if #available(iOS 12.0, *) {
+                let siri = CardSettingsSiriObject()
+                objs.insert(siri, at: 2)
+            }
+            
+            return objs
         }
         
         return [crd, col]
@@ -146,6 +153,12 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextV
             let controller = CardSettingsCollectionSections(card: self.card)
             controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 0.0, right: 0.0)
             return controller
+        } else if object is CardSettingsSiriObject {
+            if #available(iOS 12.0, *) {
+                let controller = CardSettingsSiriSection(card: self.card)
+                controller.inset = UIEdgeInsets(top: 50.0, left: 0.0, bottom: 0.0, right: 0.0)
+                return controller
+            }
         }
         
         return ListSectionController()

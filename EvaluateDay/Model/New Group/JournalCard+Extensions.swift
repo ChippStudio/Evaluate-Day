@@ -153,7 +153,7 @@ extension JournalCard: Evaluable {
             }
             activity.contentAttributeSet = attributes
         case .journalNewEntry:
-            activity.title = Localizations.Siri.Shortcut.Journal.NewEntry.title(self.card.title)
+            activity.title = Localizations.Siri.Shortcut.Journal.NewEntry.title
             attributes.contentDescription = Localizations.Siri.Shortcut.Journal.NewEntry.description
             if #available(iOS 12.0, *) {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Journal.NewEntry.suggest
