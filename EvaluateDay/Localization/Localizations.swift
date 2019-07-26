@@ -1677,6 +1677,14 @@ internal enum Localizations {
             /// Set Neutral
             internal static let title = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.neutral.title")
           }
+          internal enum Slider {
+            /// Open Evaluate Day app and evaluate criterion for today
+            internal static let description = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.slider.description")
+            /// Evaluate Criterion
+            internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.slider.suggest")
+            /// Evaluate Criterion
+            internal static let title = Localizations.tr("Localizable", "siri.shortcut.criterion.evaluate.slider.title")
+          }
         }
       }
       internal enum General {

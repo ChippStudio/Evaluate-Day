@@ -266,9 +266,9 @@
 	<key>CFBundleVersion</key>
 	<string>8658</string>
 	<key>CSBuild</key>
-	<string>8816</string>
+	<string>8826</string>
 	<key>CSDemo</key>
-	<false/>
+	<true/>
 	<key>CSSandbox</key>
 	<false/>
 	<key>CSTest</key>

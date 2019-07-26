@@ -145,6 +145,7 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
                             print("Records successfully deleted in this zone.")
                             try! Database.manager.app.write {
                                 Database.manager.application.settings.enableSync = false
+                                Database.manager.application.sync.lastSyncDate = nil
                             }
                             if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SwitchCell {
                                 cell.switchControl.isEnabled = false
@@ -152,7 +153,7 @@ class SettingsDataManagerViewController: UIViewController, UITableViewDataSource
                             (UIApplication.shared.delegate as! AppDelegate).syncEngine.stopSync()
                             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
                             
-                            let alert = UIAlertController(title: Localizations.Messages.Data.Cloud.DeleteAll.title, message: Localizations.Messages.Data.Cloud.DeleteAll.subtitle, preferredStyle: .alert)
+                            let alert = UIAlertController(title: Localizations.Messages.Data.Cloud.DeleteAll.title, message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: Localizations.General.ok, style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                             

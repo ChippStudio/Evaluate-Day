@@ -119,33 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Set quick actions
-        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.General.Shortcut.Evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "cardQA"), userInfo: nil)
-        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.General.Shortcut.Activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
         
-        UIApplication.shared.shortcutItems = [evaluateItem, activityItem]
-        
-        for collection in Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false) {
-            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, collection.id)
-            let title = collection.title.isEmpty ? Localizations.Collection.Edit.titlePlaceholder : collection.title
-            let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id as NSSecureCoding])
-            UIApplication.shared.shortcutItems?.append(collectionItem)
-        }
-        
-        // Set new Siri Suggestens Shortcuts
-        if #available(iOS 12.0, *) {
-            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
-            var suggestions = [INShortcut]()
-            for card in cards {
-                if let cardsSuggestions = card.data.suggestions {
-                    for activity in cardsSuggestions {
-                        suggestions.append(INShortcut(userActivity: activity))
-                    }
-                }
-            }
-            
-            INVoiceShortcutCenter.shared.setShortcutSuggestions(suggestions)
-        }
+        self.setAllIndexesAndActions()
         
         // Present passcode controller if needed
         if Database.manager.application.settings.passcode {
@@ -237,6 +212,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if SiriShortcutItem(rawValue: userActivity.activityType) != nil {
             self.shortcut = userActivity
             self.openFromUserActivity()
+            return true
+        }
+        
+        if userActivity.activityType == CSSearchableItemActionType {
+            self.searchActivity = userActivity
+            self.openFromSearch()
             return true
         }
         
@@ -361,9 +342,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 switch item {
                 case .openAnalytics:
-                    if let card = self.shortcut?.userInfo?["card"] as? String {
+                    if let cardId = self.shortcut?.userInfo?["card"] as? String {
                         // Open card analytics view controller
-                        if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", card, false).first {
+                        if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", cardId, false).first {
                             let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                             controller.scrollToCard = card.id
                             split.mainController.pushViewController(controller, animated: true)
@@ -423,6 +404,87 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         self.shortcut = nil
+    }
+    
+    private var searchActivity: NSUserActivity?
+    func openFromSearch() {
+        if self.searchActivity == nil {
+            return
+        }
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if topController as? PasscodeViewController == nil {
+                
+                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
+                self.window?.rootViewController = split
+                self.window?.makeKeyAndVisible()
+                
+                // Open from search
+                if let cardId = self.searchActivity?.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                    // Open card analytics view controller
+                    let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
+                    controller.scrollToCard = cardId
+                    split.mainController.pushViewController(controller, animated: true)
+                }
+            } else {
+                return
+            }
+            
+            self.searchActivity = nil
+        }
+    }
+    
+    func setAllIndexesAndActions() {
+        // Set quick actions
+        let evaluateItem = UIApplicationShortcutItem(type: ShortcutItems.evaluate.rawValue, localizedTitle: Localizations.General.Shortcut.Evaluate.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "cardQA"), userInfo: nil)
+        let activityItem = UIApplicationShortcutItem(type: ShortcutItems.activity.rawValue, localizedTitle: Localizations.General.Shortcut.Activity.title, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "userQA"), userInfo: nil)
+        
+        UIApplication.shared.shortcutItems = [evaluateItem, activityItem]
+        
+        for collection in Database.manager.data.objects(Dashboard.self).filter("isDeleted=%@", false) {
+            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@ AND dashboard=%@", false, collection.id)
+            let title = collection.title.isEmpty ? Localizations.Collection.Edit.titlePlaceholder : collection.title
+            let collectionItem = UIApplicationShortcutItem(type: ShortcutItems.collection.rawValue, localizedTitle: title, localizedSubtitle: Localizations.Collection.Analytics.cards + ": " + "\(cards.count)", icon: UIApplicationShortcutIcon(templateImageName: "collectionsQA"), userInfo: ["collection": collection.id as NSSecureCoding])
+            UIApplication.shared.shortcutItems?.append(collectionItem)
+        }
+        
+        // Set new Siri Suggestens Shortcuts
+        if #available(iOS 12.0, *) {
+            let cards = Database.manager.data.objects(Card.self).filter("isDeleted=%@", false)
+            var suggestions = [INShortcut]()
+            for card in cards {
+                if let cardsSuggestions = card.data.suggestions {
+                    for activity in cardsSuggestions {
+                        suggestions.append(INShortcut(userActivity: activity))
+                    }
+                }
+            }
+            
+            INVoiceShortcutCenter.shared.setShortcutSuggestions(suggestions)
+        }
+        
+        // Set spotlight indexes
+        var items = [CSSearchableItem]()
+        for card in Database.manager.data.objects(Card.self).filter("isDeleted=%@", false) {
+            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+            attributeSet.title = card.title
+            attributeSet.contentDescription = card.subtitle
+            attributeSet.contentCreationDate = card.created
+            attributeSet.contentModificationDate = card.edited
+            
+            let item = CSSearchableItem(uniqueIdentifier: card.id, domainIdentifier: "ee.chippstudio.EvaluateDay.card", attributeSet: attributeSet)
+            items.append(item)
+        }
+        
+        CSSearchableIndex.default().indexSearchableItems(items) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
     }
     
     // MARK: - Show sync alert

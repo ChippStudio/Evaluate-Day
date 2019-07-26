@@ -99,6 +99,14 @@ extension CriterionTenCard: Evaluable {
                 activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.General.Analytics.suggest
             }
             activity.contentAttributeSet = attributes
+        case .criterion10Evaluate:
+            activity.title = Localizations.Siri.Shortcut.Criterion.Evaluate.Slider.title
+            attributes.contentDescription = Localizations.Siri.Shortcut.Criterion.Evaluate.Slider.description
+            
+            if #available(iOS 12.0, *) {
+                activity.suggestedInvocationPhrase = Localizations.Siri.Shortcut.Criterion.Evaluate.Slider.suggest
+            }
+            activity.contentAttributeSet = attributes
         default:
             return nil
         }
@@ -108,7 +116,19 @@ extension CriterionTenCard: Evaluable {
     }
     
     var suggestions: [NSUserActivity]? {
-        return nil
+        let items: [SiriShortcutItem] = [.criterion10Evaluate]
+        var activities = [NSUserActivity]()
+        for i in items {
+            if let cardActivity = self.shortcut(for: i) {
+                activities.append(cardActivity)
+            }
+        }
+        
+        if activities.isEmpty {
+            return nil
+        }
+        
+        return activities
     }
 }
 

@@ -1,1 +1,1 @@
-action,plank,lifesum,cozi,myfitnesspal,dailymotion,easy,diet,diary,habitica,the,mummy,healthy,gaia
+reminder,productive,daily,motivation,habitica,routine,tasker,bull,planner,breaker,action,plank,plan

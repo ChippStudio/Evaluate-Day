@@ -152,7 +152,7 @@ class SettingsShortcutsViewController: UIViewController, UITableViewDataSource, 
                 
                 self.cardsShortcuts.removeAll()
                 
-                for card in Database.manager.data.objects(Card.self).filter("isDeleted=%@", false) {
+                for card in Database.manager.data.objects(Card.self).filter(Sources.predicate).sorted(byKeyPath: Sources.sorted, ascending: Sources.ascending) {
                     var section = (card.title, [Shortcut]())
                     if let suggestions = card.data.suggestions {
                         for suggest in suggestions {

@@ -32,10 +32,7 @@ extension UIColor {
     
     @nonobjc class var inverseBackground: UIColor {
         if UserDefaults.standard.bool(forKey: Theme.darkMode.rawValue) {
-            
-            if UserDefaults.standard.bool(forKey: Theme.blackMode.rawValue) {
-                return UIColor.white
-            }
+            return UIColor.white
         }
         
         return UIColor.black

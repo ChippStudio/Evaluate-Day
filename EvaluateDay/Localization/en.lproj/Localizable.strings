@@ -581,6 +581,9 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "siri.shortcut.phrase.edit.title" = "Edit Phrase";
 "siri.shortcut.phrase.edit.description" = "Open edit controller and set or edit a phrase";
 "siri.shortcut.phrase.edit.suggest" = "Edit Phrase";
+"siri.shortcut.criterion.evaluate.slider.title" = "Evaluate Criterion";
+"siri.shortcut.criterion.evaluate.slider.description" = "Open Evaluate Day app and evaluate criterion for today";
+"siri.shortcut.criterion.evaluate.slider.suggest" = "Evaluate Criterion";
 "siri.shortcut.criterion.evaluate.bad.title" = "Set Bad";
 "siri.shortcut.criterion.evaluate.bad.description" = "Evaluete today criterion to bad";
 "siri.shortcut.criterion.evaluate.bad.suggest" = "Evaluate Bad";

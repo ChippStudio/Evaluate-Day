@@ -771,6 +771,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="8WX-OX-u6i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BBG-0q-hph" secondAttribute="top" constant="10" id="062-mW-KOc"/>
                                                 <constraint firstItem="8WX-OX-u6i" firstAttribute="centerY" secondItem="BBG-0q-hph" secondAttribute="centerY" id="4qU-iW-rAz"/>
@@ -782,6 +783,7 @@
                                                 <constraint firstItem="8WX-OX-u6i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bVg-zm-Omq" secondAttribute="trailing" constant="10" id="xGK-Ly-ucO"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="siriCover" destination="8WX-OX-u6i" id="pXn-b0-HO1"/>
                                             <outlet property="siriLabel" destination="zDi-qT-Ue4" id="HaW-gJ-u8Y"/>
@@ -849,6 +851,7 @@
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fQk-nN-Rlx" secondAttribute="bottom" constant="10" id="qXR-R2-cr8"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="phrase" destination="Wpj-A5-Flm" id="uWh-JT-6uR"/>
                                             <outlet property="siriCover" destination="fQk-nN-Rlx" id="hNJ-aV-b3H"/>

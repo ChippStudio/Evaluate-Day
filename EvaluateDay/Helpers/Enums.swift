@@ -51,7 +51,13 @@ enum SiriShortcutItem: String {
     // MARK: - Phrase
     case phraseEdit = "ee.chippstudio.evaluateday.siri.phrase.edit"
     
-    // MARK: - Criterion
+    // MARK: - Criterion 100
+    case criterion100Evaluate = "ee.chippstudio.evaluateday.siri.criterion.100.evaluate"
+    
+    // MARK: - Criterion 10
+    case criterion10Evaluate = "ee.chippstudio.evaluateday.siri.criterion.10.evaluate"
+    
+    // MARK: - Criterion 3
     case criterionBad = "ee.chippstudio.evaluateday.siri.criterion.bad"
     case criterionNeutral = "ee.chippstudio.evaluateday.siri.criterion.neutral"
     case criterionGood = "ee.chippstudio.evaluateday.siri.criterion.good"
