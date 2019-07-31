@@ -93,7 +93,7 @@ class ActivityPhotoSection: ListSectionController, ASSectionController {
     }
     
     func sizeRangeForItem(at index: Int) -> ASSizeRange {
-        var width = self.collectionContext!.containerSize.width/3
+        var width = self.collectionContext!.containerSize.width/3 - 5.0
         if index == 7 && !self.isFullGalery {
             width = self.collectionContext!.containerSize.width
         }

@@ -572,7 +572,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "siri.shortcut.general.collection.title" = "Open collection - %@";
 "siri.shortcut.general.collection.description" = "Open collection and evaluate all cards";
 "siri.shortcut.general.collection.suggest" = "Open Collection";
-"siri.shortcut.checkin.quick.title" = "Quick Check";
+"siri.shortcut.checkin.quick.title" = "Quick Check In";
 "siri.shortcut.checkin.quick.description" = "Set current location in the card";
 "siri.shortcut.checkin.quick.suggest" = "Quick Check In";
 "siri.shortcut.checkin.map.title" = "Open Map";

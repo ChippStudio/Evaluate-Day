@@ -28,6 +28,7 @@ class AnalyticsViewController: UIViewController, ListAdapterDataSource {
         self.navigationItem.title = Localizations.Analytics.title
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .automatic
+//            self.navigationController?.navigationBar.prefersLargeTitles = true
         }
         
         // Collection view

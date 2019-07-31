@@ -39,9 +39,10 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
         }
     }
     
-    fileprivate var sideControllerSnapshot: UIView?
+    private var previousSideViewController: UINavigationController?
     fileprivate(set) var sideController: UINavigationController? {
         willSet {
+            self.previousSideViewController = self.sideController
             self.removeChildViewController(sideController)
         }
         didSet {
@@ -274,6 +275,13 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             return
         }
         
+        var animationDuration: TimeInterval = 0.2
+        if let prev = self.previousSideViewController {
+            if prev.viewControllers.first == controller.viewControllers.first {
+                animationDuration = 0.0
+            }
+        }
+        
         if isControllerContaintsSideController {
             self.addChild(controller)
             self.didMove(toParent: self)
@@ -282,7 +290,11 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
             controller.view.autoresizingMask = UIView.AutoresizingMask()
             self.sideControllerSize = controller.view.bounds.size
             
-            self.view.insertSubview(controller.view, belowSubview: self.mainController.view)
+            UIView.transition(with: self.view, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+                self.view.insertSubview(controller.view, belowSubview: self.mainController.view)
+            }) { (_) in
+                
+            }
             
             self.addSideCloseButton()
         }
@@ -314,7 +326,11 @@ class UniversalSplitViewController: UIViewController, UINavigationControllerDele
 //                print(CGRect(x: mainControllerWidth, y: 0.0, width: size!.width - mainControllerWidth, height: size!.height))
                 self.emptyView!.frame = CGRect(x: mainControllerWidth, y: 0.0, width: size!.width - mainControllerWidth, height: size!.height)
             }
-            self.view.addSubview(self.emptyView!)
+            UIView.transition(with: self.view, duration: 0.2, options: .transitionCrossDissolve, animations: {
+                self.view.addSubview(self.emptyView!)
+            }) { (_) in
+                
+            }
         }
     }
     private func removeEmptyView() {

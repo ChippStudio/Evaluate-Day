@@ -1619,7 +1619,7 @@ internal enum Localizations {
           internal static let description = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.description")
           /// Quick Check In
           internal static let suggest = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.suggest")
-          /// Quick Check
+          /// Quick Check In
           internal static let title = Localizations.tr("Localizable", "siri.shortcut.checkin.quick.title")
         }
       }
