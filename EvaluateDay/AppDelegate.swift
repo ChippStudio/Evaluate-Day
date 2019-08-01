@@ -22,6 +22,11 @@ import Intents
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     var syncEngine: SyncEngine!
+    var date: Date = Date() {
+        didSet {
+            sendEvent(Analytics.changeMainDate, withProperties: nil)
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Danger ZONE please not release with TRUE

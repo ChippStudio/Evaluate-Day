@@ -23,10 +23,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - Variable
     var date: Date = Date() {
         didSet {
-            // FIXME: - Think about it
-//            if let split = self.universalSplitController as? SplitController {
-//                split.date = self.date
-//            }
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.date = self.date
+            }
             self.dateObject.date = self.date
             if self.adapter == nil {
                 return
@@ -239,10 +238,9 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // FIXME: - Think about it
-//        if let split = self.universalSplitController as? SplitController {
-//            self.date = split.date
-//        }
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            self.date = delegate.date
+        }
         if let section = self.adapter.sectionController(for: self.dateObject) as? DateSection {
             section.date = self.date
             section.isEdit = false

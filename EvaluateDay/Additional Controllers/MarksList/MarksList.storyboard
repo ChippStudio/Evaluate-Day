@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jvx-is-k5P">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jvx-is-k5P">
+    <device id="ipad11_0rounded" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,18 +15,18 @@
             <objects>
                 <viewController id="Jvx-is-k5P" customClass="MarksListViewController" customModule="Evaluate_Day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcL-OI-9du">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laA-A0-lnR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="139" y="24" width="556" height="1170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" rowHeight="85" id="uwN-KO-U0t" customClass="MarkListCell" customModule="Evaluate_Day" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="28" width="556" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uwN-KO-U0t" id="AGw-r9-ozm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="556" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVc-Gv-Oye">
@@ -79,10 +79,26 @@
                         <constraints>
                             <constraint firstItem="laA-A0-lnR" firstAttribute="leading" secondItem="yN7-J1-j4D" secondAttribute="leading" id="J8W-QB-ZPf"/>
                             <constraint firstAttribute="bottom" secondItem="laA-A0-lnR" secondAttribute="bottom" id="SDL-Zr-IwJ"/>
+                            <constraint firstItem="laA-A0-lnR" firstAttribute="width" secondItem="kcL-OI-9du" secondAttribute="width" multiplier="2/3" id="ndi-fL-sSm"/>
                             <constraint firstItem="yN7-J1-j4D" firstAttribute="trailing" secondItem="laA-A0-lnR" secondAttribute="trailing" id="pDB-Lv-mRq"/>
                             <constraint firstItem="laA-A0-lnR" firstAttribute="top" secondItem="yN7-J1-j4D" secondAttribute="top" id="rO5-6h-mn2"/>
+                            <constraint firstItem="laA-A0-lnR" firstAttribute="centerX" secondItem="kcL-OI-9du" secondAttribute="centerX" id="vl3-e0-JeF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yN7-J1-j4D"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ndi-fL-sSm"/>
+                                <exclude reference="vl3-e0-JeF"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="J8W-QB-ZPf"/>
+                                <include reference="ndi-fL-sSm"/>
+                                <include reference="vl3-e0-JeF"/>
+                                <exclude reference="pDB-Lv-mRq"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="laA-A0-lnR" id="HVJ-kA-hw7"/>
