@@ -33,10 +33,10 @@ class OnboardingEnjoyViewController: UIViewController {
     // MARK: - Actions
     @IBAction func startButtonAction(_ sender: UIButton) {
         sendEvent(Analytics.finishOnboarding, withProperties: nil)
-        let controller = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+        let controller = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController()!
         try! Database.manager.app.write {
             Database.manager.application.isShowWelcome = true
         }
-        self.present(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil) 
     }
 }

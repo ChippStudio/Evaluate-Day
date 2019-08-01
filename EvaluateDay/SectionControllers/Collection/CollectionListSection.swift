@@ -91,11 +91,11 @@ class CollectionListSection: ListSectionController, ASSectionController {
     
     // MARK: - Actions
     @objc func editCollectionButtonAction(sender: ASButtonNode) {
-        if let split = self.viewController?.universalSplitController {
+        if let nav = self.viewController?.navigationController {
             let controller = UIStoryboard(name: Storyboards.editCollection.rawValue, bundle: nil).instantiateInitialViewController() as! EditCollectionViewController
             controller.collection = self.collection
             Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
-            split.pushSideViewController(controller, complition: nil)
+            nav.pushViewController(controller, animated: true)
         }
     }
 }

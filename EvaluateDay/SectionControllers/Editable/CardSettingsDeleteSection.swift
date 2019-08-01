@@ -147,9 +147,7 @@ class CardSettingsDeleteSection: ListSectionController, ASSectionController {
             
             Feedback.player.play(sound: .deleteCard, feedbackType: .success)
             
-            if let split = self.viewController?.universalSplitController {
-                split.popSideViewController()
-            }
+            self.viewController?.navigationController?.popViewController(animated: true)
         }
         
         let archiveAction = UIAlertAction(title: Localizations.General.archive, style: .default) { (_) in

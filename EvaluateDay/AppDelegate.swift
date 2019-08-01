@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if Database.manager.application.isShowWelcome {
-            self.window?.rootViewController = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController()!
+            self.window?.rootViewController = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController()!
             self.window?.makeKeyAndVisible()
         } else {
             self.window?.rootViewController = UIStoryboard(name: Storyboards.onboarding.rawValue, bundle: nil).instantiateInitialViewController()!
@@ -253,22 +253,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if topController as? PasscodeViewController == nil {
                 
-                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
-                self.window?.rootViewController = split
+                let nav = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+                self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
                 
                 switch self.shortcutItem! {
                 case .evaluate:
                     let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController()!
-                    split.mainController.pushViewController(controller, animated: true)
+                    nav.pushViewController(controller, animated: true)
                 case .activity:
                     let controller = UIStoryboard(name: Storyboards.activity.rawValue, bundle: nil).instantiateInitialViewController()!
-                    split.pushSideViewController(controller, complition: nil)
+                    nav.pushViewController(controller, animated: true)
                 case .collection:
                     if self.shortcutCollectionID != nil {
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                         controller.collection = self.shortcutCollectionID!
-                        split.mainController.pushViewController(controller, animated: true)
+                        nav.pushViewController(controller, animated: true)
                     }
                 }
             } else {
@@ -293,21 +293,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if topController as? PasscodeViewController == nil {
                 
-                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
-                self.window?.rootViewController = split
+                let nav = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+                self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
                 
                 if self.actionID! == "Evaluate-Action" || self.actionCardID == UNNotificationDefaultActionIdentifier {
                     // Open Evaluate day controller
                     let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                     controller.scrollToCard = self.actionCardID
-                    split.mainController.pushViewController(controller, animated: true)
+                    nav.pushViewController(controller, animated: true)
                 } else if self.actionID! == "Analytics-Action" {
                     // Open card analytics view controller
                     if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", self.actionCardID!, false).first {
                         let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                         analytycs.card = card
-                        split.pushSideViewController(analytycs, complition: nil)
+                        nav.pushViewController(analytycs, animated: true)
                     }
                 }
             } else {
@@ -336,8 +336,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if topController as? PasscodeViewController == nil {
                 
-                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
-                self.window?.rootViewController = split
+                let nav = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+                self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
                 
                 switch item {
@@ -347,14 +347,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if let card = Database.manager.data.objects(Card.self).filter("id=%@ AND isDeleted=%@", cardId, false).first {
                             let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                             controller.scrollToCard = card.id
-                            split.mainController.pushViewController(controller, animated: true)
+                            nav.pushViewController(controller, animated: true)
                             let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                             analytycs.card = card
-                            split.pushSideViewController(analytycs, complition: nil)
+                            nav.pushViewController(analytycs, animated: true)
                         } else {
                             if !Store.current.isPro {
                                 let pro = UIStoryboard.controller(in: .pro)
-                                split.pushSideViewController(pro, complition: nil)
+                                nav.pushViewController(pro, animated: true)
                             } else {
                                 self.showSyncAlert()
                             }
@@ -366,16 +366,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         controller.cardType = cardType
                     }
                     
-                    split.mainController.pushViewController(controller, animated: true)
+                    nav.pushViewController(controller, animated: true)
                 case .collection:
                     if let collection = self.shortcut!.userInfo?["collection"] as? String {
                         let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                         controller.collection = collection
-                        split.mainController.pushViewController(controller, animated: true)
+                        nav.pushViewController(controller, animated: true)
                     } else {
                         if !Store.current.isPro {
                             let pro = UIStoryboard.controller(in: .pro)
-                            split.pushSideViewController(pro, complition: nil)
+                            nav.pushViewController(pro, animated: true)
                         } else {
                             self.showSyncAlert()
                         }
@@ -387,11 +387,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if let action = SiriShortcutItem(rawValue: self.shortcut!.activityType) {
                             controller.cardAction = action
                         }
-                        split.mainController.pushViewController(controller, animated: true)
+                        nav.pushViewController(controller, animated: true)
                     } else {
                         if !Store.current.isPro {
                             let pro = UIStoryboard.controller(in: .pro)
-                            split.pushSideViewController(pro, complition: nil)
+                            nav.pushViewController(pro, animated: true)
                         } else {
                             self.showSyncAlert()
                         }
@@ -419,8 +419,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if topController as? PasscodeViewController == nil {
                 
-                let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
-                self.window?.rootViewController = split
+                let nav = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+                self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
                 
                 // Open from search
@@ -428,7 +428,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     // Open card analytics view controller
                     let controller = UIStoryboard(name: Storyboards.evaluate.rawValue, bundle: nil).instantiateInitialViewController() as! EvaluateViewController
                     controller.scrollToCard = cardId
-                    split.mainController.pushViewController(controller, animated: true)
+                    nav.pushViewController(controller, animated: true)
                 }
             } else {
                 return
@@ -492,12 +492,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let alert = UIAlertController(title: Localizations.Settings.Sync.UserActivity.Alert.title, message: Localizations.Settings.Sync.UserActivity.Alert.message, preferredStyle: .alert)
         let ok = UIAlertAction(title: Localizations.General.ok, style: .cancel, handler: nil)
         let openSettings = UIAlertAction(title: Localizations.Settings.Sync.UserActivity.Alert.openSettings, style: .default) { (_) in
-            if let split = self.window?.rootViewController as? SplitController {
+            if let nav = self.window?.rootViewController as? UINavigationController {
                 let settings = UIStoryboard.controller(in: .settings)
-                split.pushSideViewController(settings, complition: {
-                    let data = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateViewController(withIdentifier: "dataManagerSegue")
-                    split.pushInSideViewController(data, complition: nil)
-                })
+                nav.pushViewController(settings, animated: true)
+                let data = UIStoryboard(name: Storyboards.settings.rawValue, bundle: nil).instantiateViewController(withIdentifier: "dataManagerSegue")
+                nav.pushViewController(data, animated: true)
             }
         }
         

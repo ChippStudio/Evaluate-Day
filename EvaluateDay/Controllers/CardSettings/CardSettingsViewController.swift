@@ -195,6 +195,6 @@ class CardSettingsViewController: UIViewController, ListAdapterDataSource, TextV
         
         // Analytics
         sendEvent(.addNewCard, withProperties: ["type": self.card.type.string])
-        self.universalSplitController?.popViewController(complition: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

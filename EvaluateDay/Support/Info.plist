@@ -266,7 +266,7 @@
 	<key>CFBundleVersion</key>
 	<string>8658</string>
 	<key>CSBuild</key>
-	<string>8839</string>
+	<string>8840</string>
 	<key>CSDemo</key>
 	<true/>
 	<key>CSSandbox</key>
@@ -318,7 +318,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>SplitController</string>
+	<string>Collection</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

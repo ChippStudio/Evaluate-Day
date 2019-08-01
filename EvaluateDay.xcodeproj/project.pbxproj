@@ -141,9 +141,6 @@
 		B587D6B51FB5D157006D62C1 /* SettingsMoreNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */; };
 		B587D6B91FB6B7D1006D62C1 /* SettingsProNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */; };
 		B587D6C81FB96D11006D62C1 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B587D6C71FB96D11006D62C1 /* Icons.xcassets */; };
-		B5899B0721D7AD2800CF123B /* UniversalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5899B0621D7AD2800CF123B /* UniversalSplitViewController.swift */; };
-		B5899B0921D7AFDE00CF123B /* SplitController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5899B0821D7AFDE00CF123B /* SplitController.storyboard */; };
-		B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5899B0A21D7B04600CF123B /* SplitController.swift */; };
 		B5899B0E21D7B2C000CF123B /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5899B0D21D7B2C000CF123B /* Collection.storyboard */; };
 		B5899B1021D7B2CE00CF123B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5899B0F21D7B2CE00CF123B /* CollectionViewController.swift */; };
 		B5899B1221D7B48E00CF123B /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5899B1121D7B48E00CF123B /* Appearance.swift */; };
@@ -536,9 +533,6 @@
 		B587D6B41FB5D157006D62C1 /* SettingsMoreNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMoreNode.swift; sourceTree = "<group>"; };
 		B587D6B81FB6B7D1006D62C1 /* SettingsProNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProNode.swift; sourceTree = "<group>"; };
 		B587D6C71FB96D11006D62C1 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
-		B5899B0621D7AD2800CF123B /* UniversalSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalSplitViewController.swift; sourceTree = "<group>"; };
-		B5899B0821D7AFDE00CF123B /* SplitController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitController.storyboard; sourceTree = "<group>"; };
-		B5899B0A21D7B04600CF123B /* SplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitController.swift; sourceTree = "<group>"; };
 		B5899B0D21D7B2C000CF123B /* Collection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collection.storyboard; sourceTree = "<group>"; };
 		B5899B0F21D7B2CE00CF123B /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B5899B1121D7B48E00CF123B /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
@@ -1584,7 +1578,6 @@
 			isa = PBXGroup;
 			children = (
 				B5EA3E64221189B10020D4CB /* Onboarding */,
-				B5E75E8B1FA1A7CC00DBF6D5 /* Split */,
 				B5899B0C21D7B29600CF123B /* Collection */,
 				B5B27E851F9DC30500CB9121 /* Evaluate */,
 				B53E5F452053F65200B50B60 /* Activity */,
@@ -1765,16 +1758,6 @@
 				B584E0CE1FE01CCF008093D5 /* Demo.swift */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		B5E75E8B1FA1A7CC00DBF6D5 /* Split */ = {
-			isa = PBXGroup;
-			children = (
-				B5899B0821D7AFDE00CF123B /* SplitController.storyboard */,
-				B5899B0A21D7B04600CF123B /* SplitController.swift */,
-				B5899B0621D7AD2800CF123B /* UniversalSplitViewController.swift */,
-			);
-			path = Split;
 			sourceTree = "<group>";
 		};
 		B5E7721A1FA07E0F002FA03F /* Cards Source */ = {
@@ -1963,7 +1946,6 @@
 				B50B18DD22045BD1008A2231 /* NumbersList.storyboard in Resources */,
 				B516CA2C21EA8BB70002915F /* AppIcon-11.png in Resources */,
 				B58DDAAD21F483FA005F48AE /* AnalyticsPreview.storyboard in Resources */,
-				B5899B0921D7AFDE00CF123B /* SplitController.storyboard in Resources */,
 				B516CA4721EA8C5B0002915F /* AppIcon-9-Preview.png in Resources */,
 				B59D039F21FC6D7F0048B0AF /* ReorderCollections.storyboard in Resources */,
 				B5A730ED1FF2437C006B6F58 /* closeSettings.wav in Resources */,
@@ -2302,7 +2284,6 @@
 				B5693EF2202462F100B8879C /* JournalNewEntryActionNode.swift in Sources */,
 				B57F45CC20E675D900672FD6 /* secret.swift in Sources */,
 				B57B0643201B170300C4E182 /* GoalEvaluateNode.swift in Sources */,
-				B5899B0B21D7B04600CF123B /* SplitController.swift in Sources */,
 				B52B904E2229325C00D898BE /* NewsletterViewController.swift in Sources */,
 				B5A85ED12209A1DD00BF2AC6 /* TextControllerTransition.swift in Sources */,
 				B52D26ED2017648700332D0A /* HabitAnalyticsSection.swift in Sources */,
@@ -2348,7 +2329,6 @@
 				B52D26DB201726E800332D0A /* CounterAnalyticsSection.swift in Sources */,
 				B5970F2621F225D2000B0BAA /* CollectionsListViewController.swift in Sources */,
 				B5D854E21FD0159300BB4E14 /* RepeatViewController.swift in Sources */,
-				B5899B0721D7AD2800CF123B /* UniversalSplitViewController.swift in Sources */,
 				B52D26EB2017638100332D0A /* HabitMergeSection.swift in Sources */,
 				B5EC8859201220F30056C1C7 /* CounterCard+Extensions.swift in Sources */,
 				B5DED79D1FCB04A8002DD956 /* UpdateEvaluateSection.swift in Sources */,

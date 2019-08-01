@@ -335,7 +335,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
             
             sendEvent(Analytics.deleteCollection, withProperties: nil)
             
-            self.universalSplitController?.popSideViewController()
+            self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: Localizations.General.cancel, style: .cancel, handler: nil)
         
@@ -365,7 +365,7 @@ class EditCollectionViewController: UIViewController, UITableViewDataSource, UIT
         
         sendEvent(Analytics.addNewCollection, withProperties: nil)
         
-        self.universalSplitController?.popSideViewController()
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Keyboard actions

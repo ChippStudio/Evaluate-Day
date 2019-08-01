@@ -23,9 +23,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     // MARK: - Variable
     var date: Date = Date() {
         didSet {
-            if let split = self.universalSplitController as? SplitController {
-                split.date = self.date
-            }
+            // FIXME: - Think about it
+//            if let split = self.universalSplitController as? SplitController {
+//                split.date = self.date
+//            }
             self.dateObject.date = self.date
             if self.adapter == nil {
                 return
@@ -238,9 +239,10 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let split = self.universalSplitController as? SplitController {
-            self.date = split.date
-        }
+        // FIXME: - Think about it
+//        if let split = self.universalSplitController as? SplitController {
+//            self.date = split.date
+//        }
         if let section = self.adapter.sectionController(for: self.dateObject) as? DateSection {
             section.date = self.date
             section.isEdit = false
@@ -332,7 +334,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
                 cntrl.didSelectItem = { (index, card) in
                     let analytycs = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
                     analytycs.card = card
-                    self.universalSplitController?.pushSideViewController(analytycs, complition: nil)
+                    self.navigationController?.pushViewController(analytycs, animated: true)
                 }
             }
             return controller
@@ -391,7 +393,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         if let preview = viewControllerToCommit as? AnalyticsPreviewViewController {
             let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
             analytics.card = preview.card
-            self.universalSplitController?.pushSideViewController(analytics, complition: nil)
+            self.navigationController?.pushViewController(analytics, animated: false)
         }
     }
     
@@ -401,15 +403,15 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         case Localizations.General.Action.analytics:
             let analytics = UIStoryboard(name: Storyboards.analytics.rawValue, bundle: nil).instantiateInitialViewController() as! AnalyticsViewController
             analytics.card = controller.card
-            self.universalSplitController?.pushSideViewController(analytics, complition: nil)
+            self.navigationController?.pushViewController(analytics, animated: false)
         case Localizations.General.edit:
             let edit = UIStoryboard(name: Storyboards.cardSettings.rawValue, bundle: nil).instantiateInitialViewController() as! CardSettingsViewController
             edit.card = controller.card
-            self.universalSplitController?.pushSideViewController(edit, complition: nil)
+            self.navigationController?.pushViewController(edit, animated: false)
         case Localizations.CardMerge.action:
             let merge = UIStoryboard(name: Storyboards.cardMerge.rawValue, bundle: nil).instantiateInitialViewController() as! CardMergeViewController
             merge.card = controller.card
-            self.universalSplitController?.pushSideViewController(merge, complition: nil)
+            self.navigationController?.pushViewController(merge, animated: false)
         case Localizations.General.archive:
             try! Database.manager.data.write {
                 controller.card.archived = true
@@ -432,7 +434,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         let controller = UIStoryboard(name: Storyboards.newCard.rawValue, bundle: nil).instantiateInitialViewController() as! NewCardViewController
         controller.cardType = self.cardType
         controller.collectionID = self.collection
-        self.universalSplitController?.pushSideViewController(controller, complition: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc func reorderCardsAction(sender: UIBarButtonItem) {

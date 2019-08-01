@@ -166,6 +166,6 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     @objc func openProAction(sender: UIButton) {
         let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-        self.universalSplitController?.pushSideViewController(controller, complition: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

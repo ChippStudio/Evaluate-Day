@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 enum Storyboards: String {
-    case split = "SplitController"
     case collection = "Collection"
     case collectionsList = "CollectionsList"
     case editCollection = "EditCollection"

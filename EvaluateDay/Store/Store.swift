@@ -233,12 +233,12 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 return
             }
             
-            let split = UIStoryboard(name: Storyboards.split.rawValue, bundle: nil).instantiateInitialViewController() as! SplitController
-            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = split
+            let collection = UIStoryboard(name: Storyboards.collection.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = collection
             (UIApplication.shared.delegate as! AppDelegate).window?.makeKeyAndVisible()
             
             let controller = UIStoryboard(name: Storyboards.pro.rawValue, bundle: nil).instantiateInitialViewController()!
-            split.pushSideViewController(controller, complition: nil)
+            collection.pushViewController(controller, animated: true)
         }
         
         self.isNeedOpenDetails = false
