@@ -125,9 +125,13 @@ class NewCardViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
-        sendEvent(Analytics.selectNewCard, withProperties: ["type": source.type.string])
-        self.makeNewCard(withType: source.type)
+        if Database.manager.data.objects(Card.self).filter("isDeleted=%@", false).count >= cardsLimit && !Store.current.isPro {
+            return
+        } else {
+            let source = self.sources.groupedCards[indexPath.section].cards[indexPath.row]
+            sendEvent(Analytics.selectNewCard, withProperties: ["type": source.type.string])
+            self.makeNewCard(withType: source.type)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

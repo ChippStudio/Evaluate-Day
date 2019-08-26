@@ -31,7 +31,7 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
         if let av = user.avatar {
             photo = UIImage(data: av)
         }
-        var name = user.name
+        let name = user.name
         let email = user.email
         var bio = user.bio
         let web = user.web
@@ -39,9 +39,6 @@ class ActivityUserSection: ListSectionController, ASSectionController, TextViewC
         // Set place holders
         if bio == nil && name == nil && !self.isEditMode {
             bio = Localizations.Activity.User.Description.bio
-        }
-        if name == nil && !self.isEditMode {
-            name = Localizations.Activity.User.Description.name
         }
         return {
             self.node = UserInformationNode(photo: photo, name: name, email: email, bio: bio, web: web, isEdit: self.isEditMode)

@@ -139,6 +139,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         sendEvent(Analytics.donePay, withProperties: ["product": product?.productIdentifier ?? "WTF"])
                     }
                 }
+                self.tableView.reloadData()
                 self.hideLoadView()
             }
         }
@@ -148,6 +149,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.showLoadView()
         Feedback.player.notify(type: UINotificationFeedbackGenerator.FeedbackType.success)
         Store.current.restore { (transactions, error) in
+            self.tableView.reloadData()
             self.hideLoadView()
         }
     }

@@ -392,7 +392,7 @@
 "settings.pro.description.more.future.title" = "Будущее";
 "settings.pro.description.more.passcode.description" = "Защита приложения код-паролем поможет сохранить ваши данные в безопасности.";
 "settings.pro.description.more.passcode.title" = "Пароль";
-"settings.pro.description.more.past.description" = "Оценивайте пропущенные дни, которые были более 3 дней назад";
+"settings.pro.description.more.past.description" = "Оценивайте пропущенные дни";
 "settings.pro.description.more.past.title" = "Прошлое";
 "settings.pro.description.more.sync.description" = "Синхронизация данных со всеми вашими iOS устройствами";
 "settings.pro.description.more.sync.title" = "Синхронизация";

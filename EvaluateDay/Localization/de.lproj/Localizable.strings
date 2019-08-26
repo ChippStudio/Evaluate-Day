@@ -382,7 +382,7 @@
 "settings.pro.description.more.future.title" = "Zukunft";
 "settings.pro.description.more.passcode.description" = "Schützen Sie die App mit einem Passwort und halten Sie Ihre Daten sicher.";
 "settings.pro.description.more.passcode.title" = "Passwort";
-"settings.pro.description.more.past.description" = "Bewerten Sie verpassten Tage, die bis zu 3 Tage zurückliegen";
+"settings.pro.description.more.past.description" = "Bewerten Sie verpassten Tage";
 "settings.pro.description.more.past.title" = "Vergangenheit";
 "settings.pro.description.more.sync.description" = "Synchronisieren Sie Daten mit all Ihren iOS-Geräten";
 "settings.pro.description.more.sync.title" = "Synchronisierung";

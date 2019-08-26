@@ -300,6 +300,8 @@ internal enum Localizations {
       internal enum Description {
         /// This information will be used as your signature.
         internal static let bio = Localizations.tr("Localizable", "activity.user.description.bio")
+        /// Set information about yourself 💬
+        internal static let empty = Localizations.tr("Localizable", "activity.user.description.empty")
         /// Super User
         internal static let name = Localizations.tr("Localizable", "activity.user.description.name")
       }
@@ -1372,7 +1374,7 @@ internal enum Localizations {
             internal static let title = Localizations.tr("Localizable", "settings.pro.description.more.passcode.title")
           }
           internal enum Past {
-            /// Rate missed days for up to 3 days back
+            /// Rate missed days. Not only today
             internal static let description = Localizations.tr("Localizable", "settings.pro.description.more.past.description")
             /// Past
             internal static let title = Localizations.tr("Localizable", "settings.pro.description.more.past.title")

@@ -12,11 +12,12 @@ import AsyncDisplayKit
 class UserInformationNode: ASCellNode {
     // MARK: - UI
     var editButton = ASButtonNode()
-    var userPhoto = ASImageNode()
+    var userPhoto: ASImageNode!
     var userName: ASTextNode!
     var userEmail: ASTextNode!
     var userBio: ASTextNode!
     var userWeb: ASTextNode!
+    var emptyProfileDescription = ASTextNode()
     var firstSeparator: ASDisplayNode!
     var secondSeparator: ASDisplayNode!
     
@@ -28,12 +29,18 @@ class UserInformationNode: ASCellNode {
     init(photo: UIImage?, name: String?, email: String?, bio: String?, web: String?, isEdit: Bool) {
         super.init()
         
+        self.emptyProfileDescription.attributedText = NSAttributedString(string: Localizations.Activity.User.Description.empty, attributes: [NSAttributedString.Key.foregroundColor: UIColor.main, NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)])
+        
         self.editMode = isEdit
         
-        self.userPhoto.image = Images.Media.userAvatar.image
-        if photo != nil {
-            self.userPhoto.image = photo
+        if self.editMode || photo != nil {
+            self.userPhoto = ASImageNode()
+            self.userPhoto.image = Images.Media.userAvatar.image
+            if photo != nil {
+                self.userPhoto.image = photo
+            }
         }
+        
         if self.editMode {
             self.userPhoto.isAccessibilityElement = true
             self.userPhoto.accessibilityTraits = UIAccessibilityTraits.button
@@ -46,7 +53,7 @@ class UserInformationNode: ASCellNode {
             editString = Localizations.General.done
             accessibilityEditLabel = Localizations.Accessibility.Activity.PersonalInformation.save
         }
-        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedString.Key.foregroundColor: UIColor.main])
+        let editAttr = NSAttributedString(string: editString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.main])
         let editHighlightedAttr = NSAttributedString(string: editString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2), NSAttributedString.Key.foregroundColor: UIColor.text])
         self.editButton.setAttributedTitle(editAttr, for: .normal)
         self.editButton.setAttributedTitle(editHighlightedAttr, for: .highlighted)
@@ -143,14 +150,23 @@ class UserInformationNode: ASCellNode {
         let editStackInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -20.0, right: 10.0)
         let editStackInset = ASInsetLayoutSpec(insets: editStackInsets, child: editStack)
         
-        self.userPhoto.style.preferredSize = CGSize(width: 100.0, height: 100.0)
-        self.userPhoto.cornerRadius = 10
+        let cell = ASStackLayoutSpec.vertical()
+        cell.spacing = 20.0
+        cell.children = [editStackInset]
         
-        let photoAndText = ASStackLayoutSpec.horizontal()
-        photoAndText.spacing = 20.0
-        photoAndText.children = [self.userPhoto]
-        
-        if self.userName != nil || self.userEmail != nil || self.userBio != nil {
+        if self.userName != nil || self.userEmail != nil || self.userWeb != nil || self.userPhoto != nil {
+            
+            let photoAndText = ASStackLayoutSpec.horizontal()
+            photoAndText.spacing = 20.0
+            photoAndText.children = []
+            
+            if self.userPhoto != nil {
+                self.userPhoto.style.preferredSize = CGSize(width: 100.0, height: 100.0)
+                self.userPhoto.cornerRadius = 10
+                
+                photoAndText.children?.append(self.userPhoto)
+            }
+            
             let nameAndEmail = ASStackLayoutSpec.vertical()
             nameAndEmail.spacing = 10.0
             nameAndEmail.style.flexShrink = 1.0
@@ -169,14 +185,17 @@ class UserInformationNode: ASCellNode {
             }
             
             photoAndText.children?.append(nameAndEmail)
+            
+            let photoAndTextInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+            let photoAndTextInset = ASInsetLayoutSpec(insets: photoAndTextInsets, child: photoAndText)
+            
+            cell.children?.append(photoAndTextInset)
+        } else {
+            let descriptionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+            let descriptionInset = ASInsetLayoutSpec(insets: descriptionInsets, child: self.emptyProfileDescription)
+            
+            cell.children?.append(descriptionInset)
         }
-        
-        let photoAndTextInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        let photoAndTextInset = ASInsetLayoutSpec(insets: photoAndTextInsets, child: photoAndText)
-        
-        let cell = ASStackLayoutSpec.vertical()
-        cell.spacing = 20.0
-        cell.children = [editStackInset, photoAndTextInset]
         
         if self.firstSeparator != nil {
             self.firstSeparator.style.preferredSize = CGSize(width: 250.0, height: 0.2)

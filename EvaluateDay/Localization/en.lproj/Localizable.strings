@@ -105,6 +105,7 @@
 "activity.user.placeholder.web" = "Your web site";
 "activity.user.description.name" = "Super User";
 "activity.user.description.bio" = "This information will be used as your signature.";
+"activity.user.description.empty" = "Set information about yourself 💬";
 
 // MARK: - Analytics
 "analytics.action" = "Analytics";
@@ -455,7 +456,7 @@ Evaluate Day’s simple instruments make the analytic process easy and convenien
 "settings.pro.description.more.future.title" = "Future";
 "settings.pro.description.more.passcode.description" = "Protecting the application with a passcode will help keep your data safe.";
 "settings.pro.description.more.passcode.title" = "Passcode";
-"settings.pro.description.more.past.description" = "Rate missed days for up to 3 days back";
+"settings.pro.description.more.past.description" = "Rate missed days. Not only today";
 "settings.pro.description.more.past.title" = "Past";
 "settings.pro.description.more.sync.description" = "Synchronize data with all your iOS devices";
 "settings.pro.description.more.sync.title" = "Sync";

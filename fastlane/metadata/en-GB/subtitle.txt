@@ -1,2 +1,1 @@
-Goal keeper, Task Reminder
- 
+More than tracker of habits

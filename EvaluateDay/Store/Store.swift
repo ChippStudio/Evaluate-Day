@@ -113,6 +113,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 print(transaction.error!.localizedDescription)
             }
         case .restored:
+            
             self.validateReceipt(completion: { (isPro, date) in
                 self.valid = date
                 try! Database.manager.app.write {
@@ -301,6 +302,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     
     func restore(completion: @escaping ([SKPaymentTransaction]?, Error?) -> Void) {
         let receiptRequest = SKReceiptRefreshRequest(receiptProperties: nil)
+        receiptRequest.delegate = self
         receiptRequest.start()
         self.restoreHandler = completion
     }

@@ -1,21 +1,8 @@
-New design, simplified process of adding data and newly added graphs and data to analytics. Fixed many minor bugs. And much more...
+New
+    - Siri Shortcuts is now available from the app.
 
-********
-
-- Microanalytics for 7 days right in the cards
-- The free version now has more cards
-- Full analytics is now also available in the free version of the application
-- Extended analytics of user activity
-- Collections (Dashboards) will help you group cards. Now finding a card you are looking for will be even easier.
-- It is now much more convenient to use collections.
-- Additional grouping of cards by types
-- Advanced sorting of cards and collections
-- Revised approach to adding data for previous days. Fewer steps to change dates and edit data
-- Viewing all the data entered in the card with the ability to delete it
-- A new type for entering numeric values, with a built-in calculator
-- Updated screen for adding a log entry
-- Increased ability to add up to 3 pictures to an entry (PRO)
-
+Fixed
+    - Some users have a problem with lifetime subscription. Sorry about that.
 ********
 
 Thank you for using Evaluate Day app!
