@@ -37,7 +37,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
     
     // MARK: - Pro
     var isPro: Bool {
-        return Database.manager.application.user.pro
+        return Database.manager.application.user.subscription || Database.manager.application.user.lifetimePro
     }
     
     // MARK: - Private variable
@@ -95,10 +95,18 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         switch transaction.transactionState {
         case .purchasing: ()
         case .purchased:
+            for transaction in queue.transactions {
+                if transaction.payment.productIdentifier == self.lifetimeProductId {
+                    try! Database.manager.app.write {
+                        Database.manager.application.user.lifetimePro = true
+                    }
+                    return
+                }
+            }
             self.validateReceipt(completion: { (isPro, date) in
                 self.valid = date
                 try! Database.manager.app.write {
-                    Database.manager.application.user.pro = isPro
+                    Database.manager.application.user.subscription = isPro
                 }
                 
                 if isPro {
@@ -113,11 +121,18 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 print(transaction.error!.localizedDescription)
             }
         case .restored:
-            
+            for transaction in queue.transactions {
+                if transaction.payment.productIdentifier == self.lifetimeProductId {
+                    try! Database.manager.app.write {
+                        Database.manager.application.user.lifetimePro = true
+                    }
+                    return
+                }
+            }
             self.validateReceipt(completion: { (isPro, date) in
                 self.valid = date
                 try! Database.manager.app.write {
-                    Database.manager.application.user.pro = isPro
+                    Database.manager.application.user.subscription = isPro
                 }
                 
                 if isPro {
@@ -135,10 +150,18 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         if queue.transactions.isEmpty {
             self.restoreHandler?(nil, StoreError.failRestore)
         } else {
+            for transaction in queue.transactions {
+                if transaction.payment.productIdentifier == self.lifetimeProductId {
+                    try! Database.manager.app.write {
+                        Database.manager.application.user.lifetimePro = true
+                    }
+                    return
+                }
+            }
             self.validateReceipt(completion: { (isPro, date) in
                 self.valid = date
                 try! Database.manager.app.write {
-                    Database.manager.application.user.pro = isPro
+                    Database.manager.application.user.subscription = isPro
                 }
                 
                 if isPro {
@@ -266,7 +289,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         self.validateReceipt(completion: { (isPro, date) in
             self.valid = date
             try! Database.manager.app.write {
-                Database.manager.application.user.pro = isPro
+                Database.manager.application.user.subscription = isPro
             }
             
             if isPro {
@@ -277,7 +300,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 self.controlFromPreviousVersion { (isPro, date) in
                     self.valid = date
                     try! Database.manager.app.write {
-                        Database.manager.application.user.pro = isPro
+                        Database.manager.application.user.subscription = isPro
                     }
                     
                     if !isPro {

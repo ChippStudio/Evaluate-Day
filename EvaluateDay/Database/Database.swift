@@ -31,7 +31,7 @@ final class Database: NSObject {
     private let dataRealmKey = "Data"
     
     // MARK: - Migrations
-    private let schemaVersion: UInt64 = 6
+    private let schemaVersion: UInt64 = 7
     private var appMigration: MigrationBlock!
     private var dataMigration: MigrationBlock!
     
@@ -68,6 +68,12 @@ final class Database: NSObject {
                     newObject!["collectionSortedManually"] = true
                     newObject!["collectionSortedAlphabet"] = false
                     newObject!["collectionSortedDate"] = false
+                })
+            }
+            if oldSchemaVersion < 7 {
+                migration.enumerateObjects(ofType: User.className(), { (oldObject, newObject) in
+                    newObject!["subscription"] = oldObject!["pro"]
+                    newObject!["lifetimePro"] = false
                 })
             }
         })

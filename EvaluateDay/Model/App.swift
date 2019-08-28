@@ -47,7 +47,8 @@ class User: Object {
     @objc dynamic var bio: String?
     @objc dynamic var avatar: Data? // Set default
     @objc dynamic var deviseToken: Data?
-    @objc dynamic var pro: Bool = false
+    @objc dynamic var subscription: Bool = false // Old pro
+    @objc dynamic var lifetimePro: Bool = false
 }
 
 class AppUsage: Object {

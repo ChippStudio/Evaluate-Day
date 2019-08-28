@@ -292,7 +292,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             mailView.mailComposeDelegate = self
             mailView.setSubject(Localizations.Settings.Support.Mail.subject)
             var pro = 0
-            if Database.manager.application.user.pro {
+            if Database.manager.application.user.subscription || Database.manager.application.user.lifetimePro {
                 pro = 1
             }
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String + "(\(pro))"
