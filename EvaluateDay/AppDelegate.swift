@@ -19,7 +19,7 @@ import Firebase
 import Intents
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     var syncEngine: SyncEngine!
     var date: Date = Date() {
@@ -66,13 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.syncEngine = SyncEngine()
         
         // Init Branch
-        Branch.getInstance(branchApiKey).initSession(launchOptions: launchOptions) { (parameters, error) in
+        Branch.getInstance(branchApiKey).initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { (parameters, error) in
             if error != nil {
                 print(error!.localizedDescription)
             } else {
                 print("params: %@", parameters as? [String: AnyObject] ?? {})
             }
-        }
+        })
         
         // Set Notification Categories
         let evaluateAction = UNNotificationAction(identifier: "Evaluate-Action", title: Localizations.General.Action.evaluate, options: .foreground)
@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let branchHandler = Branch.getInstance(branchApiKey).application(app, open: url, options: options)
         
-        return branchHandler
+        return branchHandler ?? false
     }
 
     // MARK: - Application lifecircle

@@ -264,7 +264,7 @@ class EntryViewController: UIViewController, SelectMapViewControllerDelegate, Ti
         locationValue.street = nvalue.street
         
         try! Database.manager.data.write {
-            Database.manager.data.add(locationValue, update: true)
+            Database.manager.data.add(locationValue, update: .modified)
         }
         
         self.pageNode.reloadData()
@@ -465,7 +465,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
                     weatherValue.latitude = location.latitude
                     weatherValue.longitude = location.longitude
                     try! Database.manager.data.write {
-                        Database.manager.data.add(weatherValue, update: true)
+                        Database.manager.data.add(weatherValue, update: .modified)
                     }
                     
 //                    self.tableNode.reloadSections(IndexSet(integer: 3), with: .automatic)
@@ -504,7 +504,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             weatherValue.cloudCover = json[WeatherKey.cloudCover].doubleValue
             
             try! Database.manager.data.write {
-                Database.manager.data.add(weatherValue, update: true)
+                Database.manager.data.add(weatherValue, update: .modified)
             }
             
             self.pageNode.reloadData()
@@ -670,7 +670,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             locationValue.country = country
             
             try! Database.manager.data.write {
-                Database.manager.data.add(locationValue, update: true)
+                Database.manager.data.add(locationValue, update: .modified)
             }
             
             self.pageNode.reloadData()

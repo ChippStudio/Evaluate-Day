@@ -180,7 +180,7 @@ class JournalEvaluateSection: ListSectionController, ASSectionController, Evalua
             textValue.created = Calendar.current.date(byAdding: components, to: self.date)!
         }
         try! Database.manager.data.write {
-            Database.manager.data.add(textValue, update: true)
+            Database.manager.data.add(textValue, update: .modified)
         }
         
         self.viewController?.userActivity = self.card.data.shortcut(for: .journalNewEntry)

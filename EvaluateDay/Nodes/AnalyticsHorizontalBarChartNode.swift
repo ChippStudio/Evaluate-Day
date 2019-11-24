@@ -79,7 +79,7 @@ class AnalyticsHorizontalBarChartNode: ASCellNode, IAxisValueFormatter, IValueFo
                 self.chart.xAxis.labelCount = opt
             }
             
-            let dataSet = BarChartDataSet(values: data, label: nil)
+            let dataSet = BarChartDataSet(entries: data, label: nil)
             dataSet.drawValuesEnabled = true
             dataSet.valueTextColor = UIColor.text
             dataSet.valueFormatter = self

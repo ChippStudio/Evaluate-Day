@@ -100,6 +100,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                     try! Database.manager.app.write {
                         Database.manager.application.user.lifetimePro = true
                     }
+                    self.paymentHandler?(transaction, nil)
                     return
                 }
             }
@@ -126,6 +127,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                     try! Database.manager.app.write {
                         Database.manager.application.user.lifetimePro = true
                     }
+                    self.paymentHandler?(transaction, nil)
                     return
                 }
             }
@@ -155,6 +157,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                     try! Database.manager.app.write {
                         Database.manager.application.user.lifetimePro = true
                     }
+                    self.restoreHandler?(queue.transactions, nil)
                     return
                 }
             }

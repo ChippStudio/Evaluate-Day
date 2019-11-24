@@ -125,7 +125,7 @@ class AnalyticsBarChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate 
             
             self.chart.delegate = self
             
-            let dataSet = BarChartDataSet(values: data, label: nil)
+            let dataSet = BarChartDataSet(entries: data, label: nil)
             dataSet.drawValuesEnabled = false
             dataSet.highlightEnabled = true
             var highlightColor = UIColor.positive

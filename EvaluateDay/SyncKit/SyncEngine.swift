@@ -524,16 +524,16 @@ class SyncEngine {
                         realm.delete(deletedObjects)
                         
                         // Add objects
-                        realm.add(textObjects, update: true)
-                        realm.add(criteriaObjects, update: true)
-                        realm.add(locationsObjects, update: true)
-                        realm.add(markObjects, update: true)
-                        realm.add(photoObjects, update: true)
-                        realm.add(weatherObjects, update: true)
+                        realm.add(textObjects, update: .modified)
+                        realm.add(criteriaObjects, update: .modified)
+                        realm.add(locationsObjects, update: .modified)
+                        realm.add(markObjects, update: .modified)
+                        realm.add(photoObjects, update: .modified)
+                        realm.add(weatherObjects, update: .modified)
                         
-                        realm.add(cardsObjects, update: true)
+                        realm.add(cardsObjects, update: .modified)
                         
-                        realm.add(dashboardsObjects, update: true)
+                        realm.add(dashboardsObjects, update: .modified)
                         
                         try! realm.commitWrite(withoutNotifying: sync.tokens)
                         

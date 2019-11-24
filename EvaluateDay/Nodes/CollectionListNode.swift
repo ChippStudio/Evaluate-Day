@@ -87,7 +87,7 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
     // MARK: - Override
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        self.imageNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 120.0)
+        self.imageNode.style.preferredSize.height = 120 // = CGSize(width: constrainedSize.max.width, height: 120.0)
         let fullEditButton = ASBackgroundLayoutSpec(child: self.editButton, background: self.editButtonCover)
         
         let fullEditButtonInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 0.0, right: 10.0)
@@ -99,7 +99,7 @@ class CollectionListNode: ASCellNode, ASCollectionDataSource {
         let titleInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let titleInset = ASInsetLayoutSpec(insets: titleInsets, child: self.title)
         
-        self.collectionNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 60.0)
+        self.collectionNode.style.preferredSize.height = 60.0 // = CGSize(width: constrainedSize.max.width, height: 60.0)
         let collectionNodeInsets = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
         let collectionNodeInset = ASInsetLayoutSpec(insets: collectionNodeInsets, child: self.collectionNode)
         

@@ -171,7 +171,7 @@ class CheckInEvaluateSection: ListSectionController, ASSectionController, Evalua
             if value.realm != nil {
                 value.edited = Date()
             }
-            Database.manager.data.add(value, update: true)
+            Database.manager.data.add(value, update: .modified)
         }
         
         self.viewController?.userActivity = self.card.data.shortcut(for: .checkInMap)

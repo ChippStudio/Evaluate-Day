@@ -59,7 +59,7 @@ class AnalyticsPieChartNode: ASCellNode, IValueFormatter {
             self.chart.legend.enabled = false
             self.chart.rotationEnabled = false
             
-            let dataSet = PieChartDataSet(values: data, label: nil)
+            let dataSet = PieChartDataSet(entries: data, label: nil)
             dataSet.valueFormatter = self
             dataSet.valueColors = [UIColor.black]
             dataSet.colors.removeAll()

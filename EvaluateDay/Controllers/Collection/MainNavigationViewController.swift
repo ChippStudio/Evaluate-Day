@@ -32,4 +32,16 @@ class MainNavigationViewController: UINavigationController {
         }
         return UIStatusBarStyle.default
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 13.0, *) {
+            let mode = self.traitCollection.userInterfaceStyle == .dark ? true : false
+            UserDefaults.standard.set(mode, forKey: Theme.darkMode.rawValue)
+            (UIApplication.shared.delegate as! AppDelegate).window!.didUpdatedAppearance(animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }

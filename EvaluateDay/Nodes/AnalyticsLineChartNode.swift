@@ -472,7 +472,7 @@ class AnalyticsLineChartNode: ASCellNode, IAxisValueFormatter, ChartViewDelegate
             }
         }
         
-        let dataSet = LineChartDataSet(values: newData, label: nil)
+        let dataSet = LineChartDataSet(entries: newData, label: nil)
         dataSet.lineWidth = 1.0
         if self.selectedRange == .year {
             dataSet.circleRadius = 1.0
