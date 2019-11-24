@@ -115,7 +115,7 @@ import Intents
         
         let branchHandler = Branch.getInstance(branchApiKey).application(app, open: url, options: options)
         
-        return branchHandler ?? false
+        return branchHandler
     }
 
     // MARK: - Application lifecircle

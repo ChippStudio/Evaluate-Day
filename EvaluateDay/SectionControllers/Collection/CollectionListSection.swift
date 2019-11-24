@@ -66,8 +66,8 @@ class CollectionListSection: ListSectionController, ASSectionController {
             return ASSizeRange(min: min, max: max)
         }
         
-        let max = CGSize(width: width - 20.0, height: CGFloat.greatestFiniteMagnitude)
-        let min = CGSize(width: width - 20.0, height: 0)
+        let max = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let min = CGSize(width: width, height: 0)
         return ASSizeRange(min: min, max: max)
     }
     

@@ -221,12 +221,21 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
         let duration: TimeInterval = animated ? 0.2 : 0
         UIView.animate(withDuration: duration) {
             //set NavigationBar
-            self.navigationController?.navigationBar.barTintColor = UIColor.background
-            self.navigationController?.navigationBar.tintColor = UIColor.main
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
+            if #available(iOS 13.0, *) {
+                let navAppearence = UINavigationBarAppearance()
+                navAppearence.backgroundColor = UIColor.background
+                navAppearence.titleTextAttributes = [.foregroundColor: UIColor.white]
+                navAppearence.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+                self.navigationController?.navigationBar.scrollEdgeAppearance = navAppearence
+                self.navigationController?.navigationBar.standardAppearance = navAppearence
+            } else {
+                self.navigationController?.navigationBar.barTintColor = UIColor.background
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+                if #available(iOS 11.0, *) {
+                    self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+                }
             }
+            self.navigationController?.navigationBar.tintColor = UIColor.main
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
             
@@ -249,7 +258,7 @@ class EvaluateViewController: UIViewController, ListAdapterDataSource, UIViewCon
             }, completion: nil)
         }
         self.setCards()
-        self.updateAppearance(animated: false)
+        self.updateAppearance(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
