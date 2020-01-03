@@ -182,7 +182,7 @@ class ProViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.loadCoverView.backgroundColor = UIColor.background
         self.loadCoverView.alpha = 0.0
         
-        self.loadIndicatorView = UIActivityIndicatorView(style: .gray)
+        self.loadIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
         self.loadIndicatorView.alpha = 0.0
         self.loadIndicatorView.startAnimating()
         

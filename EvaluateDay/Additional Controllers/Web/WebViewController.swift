@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
 
     // MARK: - UI
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     var closeButton: UIBarButtonItem!
     
     // MARK: - Variable
